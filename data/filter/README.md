@@ -62,3 +62,42 @@ object containing:
 
 Rows with `keep: true` are written to the filtered parquet split. Per-row judge
 decisions are written to the configured `--decisions-dir`.
+
+## Codex CLI As A Small LLM API
+
+`utils/codex_cli` wraps `codex exec` behind a small Python interface.
+It is useful when you want to call Codex from scripts without using the
+interactive UI.
+
+```bash
+python3 -m utils.codex_cli "Return a JSON object with keep=true."
+```
+
+Or from Python:
+
+```python
+from utils.codex_cli import CodexLLM
+
+client = CodexLLM(model="gpt-5.4", timeout=120, max_tool_retries=3)
+result = client.complete("Classify this problem as keep or drop.")
+print(result.text)
+```
+
+The wrapper runs:
+
+```text
+codex exec --json --ephemeral --ignore-user-config --ignore-rules
+```
+
+with an empty temporary working directory, `read-only` sandbox,
+`--ask-for-approval never`, disabled web search, no project docs, and disabled
+multi-agent feature. It also parses Codex JSONL events and raises an error if
+Codex emits a shell, file-change, MCP, or web-search tool event.
+
+By default, tool-use failures are retried up to 3 times before raising
+`CodexToolRetryError`. Set `max_tool_retries=0` or pass `--max-tool-retries 0`
+to fail on the first tool-use event.
+
+The Codex CLI docs do not currently expose a single flag that removes every
+tool from the model interface. This wrapper keeps the prompt short and enforces
+no-tool behavior at the event layer.
