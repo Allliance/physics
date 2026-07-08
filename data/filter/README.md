@@ -98,6 +98,12 @@ object containing:
 Rows with `keep: true` are written to the filtered parquet split. Per-row judge
 decisions are written to the configured `--decisions-dir`.
 
+Decision logs are append-only checkpoints. Each completed row is written and
+fsynced immediately, so an interrupted run can be resumed by rerunning the same
+command with the same `--input-dir`, `--splits`, and `--decisions-dir`. Existing
+valid row decisions are skipped, and parquet outputs are rebuilt from the
+checkpoint when the split finishes.
+
 ## Codex CLI As A Small LLM API
 
 `utils/codex_cli` wraps `codex exec` behind a small Python interface.

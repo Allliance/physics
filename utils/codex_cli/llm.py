@@ -7,6 +7,7 @@ import json
 import os
 import subprocess
 import tempfile
+import time
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -60,6 +61,8 @@ class CodexLLM:
     system_prompt: str = DEFAULT_SYSTEM_PROMPT
     strict_no_tools: bool = True
     max_tool_retries: int = 3
+    max_exec_retries: int = 6
+    exec_retry_delay: float = 10.0
 
     def complete(
         self,
@@ -98,23 +101,28 @@ class CodexLLM:
         output_schema: Path | None,
         api_key: str | None,
     ) -> CodexLLMResult:
-        with tempfile.TemporaryDirectory(prefix="codex-llm-") as tmpdir:
-            cmd = self._build_command(Path(tmpdir), output_schema)
-            env = os.environ.copy()
-            if api_key:
-                env["CODEX_API_KEY"] = api_key
+        for attempt in range(1, self.max_exec_retries + 2):
+            with tempfile.TemporaryDirectory(prefix="codex-llm-") as tmpdir:
+                cmd = self._build_command(Path(tmpdir), output_schema)
+                env = os.environ.copy()
+                if api_key:
+                    env["CODEX_API_KEY"] = api_key
 
-            completed = subprocess.run(
-                cmd,
-                input=self._compose_prompt(system_prompt, prompt),
-                text=True,
-                capture_output=True,
-                timeout=self.timeout,
-                env=env,
-                check=False,
-            )
+                completed = subprocess.run(
+                    cmd,
+                    input=self._compose_prompt(system_prompt, prompt),
+                    text=True,
+                    capture_output=True,
+                    timeout=self.timeout,
+                    env=env,
+                    check=False,
+                )
 
-        if completed.returncode != 0:
+            if completed.returncode == 0:
+                break
+            if attempt <= self.max_exec_retries and is_retryable_exec_error(completed.stderr):
+                time.sleep(min(self.exec_retry_delay * attempt, 60.0))
+                continue
             raise CodexExecError(
                 f"codex exec failed with exit code {completed.returncode}\n"
                 f"stderr:\n{completed.stderr.strip()}"
@@ -202,6 +210,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--model-reasoning-effort", default=os.getenv("CODEX_LLM_REASONING_EFFORT"))
     parser.add_argument("--codex-bin", default=os.getenv("CODEX_BIN", "codex"))
     parser.add_argument("--timeout", type=float, default=120.0)
+    parser.add_argument("--max-exec-retries", type=int, default=6)
+    parser.add_argument("--exec-retry-delay", type=float, default=10.0)
     parser.add_argument(
         "--max-tool-retries",
         type=int,
@@ -239,6 +249,8 @@ def main() -> int:
         system_prompt=args.system,
         strict_no_tools=not args.allow_tools,
         max_tool_retries=args.max_tool_retries,
+        max_exec_retries=args.max_exec_retries,
+        exec_retry_delay=args.exec_retry_delay,
     )
     result = client.complete(
         prompt,
@@ -251,3 +263,18 @@ def main() -> int:
 
         print(json.dumps(result.usage), file=sys.stderr)
     return 0
+
+
+def is_retryable_exec_error(stderr: str) -> bool:
+    if not stderr.strip():
+        return True
+    retry_markers = [
+        "429",
+        "Too Many Requests",
+        "exceeded retry limit",
+        "failed to refresh available models",
+        "403 Forbidden",
+        "failed to connect to websocket",
+        "rate limit",
+    ]
+    return any(marker.lower() in stderr.lower() for marker in retry_markers)

@@ -77,6 +77,14 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--max-retries", type=int, default=2)
     parser.add_argument("--codex-bin", default=os.getenv("CODEX_BIN", "codex"))
     parser.add_argument("--max-tool-retries", type=int, default=3)
+    parser.add_argument("--max-exec-retries", type=int, default=6)
+    parser.add_argument("--exec-retry-delay", type=float, default=10.0)
+    parser.add_argument(
+        "--output-mode",
+        choices=("kept", "verdict-subsets", "both"),
+        default="kept",
+        help="Write one kept parquet, verdict-specific subset parquets, or both.",
+    )
     parser.add_argument("--limit", type=int, help="Only process the first N rows per split.")
     parser.add_argument(
         "--on-error",
@@ -129,7 +137,14 @@ def compact_record(row: dict[str, Any], index: int) -> dict[str, Any]:
     record = {"row_index": index}
     for key in preferred:
         if key in row:
-            record[key] = row[key]
+            if key in {"graphs", "images"}:
+                value = row[key]
+                record[key] = {
+                    "count": len(value) if isinstance(value, list) else None,
+                    "omitted": "Raw visual payload excluded from judge input.",
+                }
+            else:
+                record[key] = row[key]
     if len(record) == 1:
         record.update(row)
     return record
@@ -245,6 +260,7 @@ class JudgeConfig:
     json_mode: bool
     api_key: str | None
     on_error: str
+    output_mode: str
 
 
 @dataclass
@@ -257,6 +273,110 @@ class RowDecision:
 def write_decision(handle: Any, decision: dict[str, Any]) -> None:
     handle.write(json.dumps(decision, ensure_ascii=False, default=json_default) + "\n")
     handle.flush()
+    os.fsync(handle.fileno())
+
+
+def load_existing_decisions(decisions_path: Path, rows: list[dict[str, Any]]) -> list[RowDecision | None]:
+    decisions: list[RowDecision | None] = [None] * len(rows)
+    if not decisions_path.exists():
+        return decisions
+
+    with decisions_path.open("r", encoding="utf-8") as decisions_file:
+        for line_number, line in enumerate(decisions_file, start=1):
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                decision = json.loads(line)
+            except json.JSONDecodeError:
+                print(
+                    f"Skipping malformed checkpoint line {line_number} in {decisions_path}",
+                    file=sys.stderr,
+                    flush=True,
+                )
+                continue
+
+            index = decision.get("row_index")
+            if not isinstance(index, int) or index < 0 or index >= len(rows):
+                continue
+
+            row_id = rows[index].get("id")
+            if decision.get("id") != row_id:
+                print(
+                    f"Skipping checkpoint row {index}: id mismatch "
+                    f"({decision.get('id')!r} != {row_id!r})",
+                    file=sys.stderr,
+                    flush=True,
+                )
+                continue
+
+            row_source = rows[index].get("source_file")
+            if row_source is not None and decision.get("source_file") != row_source:
+                print(
+                    f"Skipping checkpoint row {index}: source_file mismatch "
+                    f"({decision.get('source_file')!r} != {row_source!r})",
+                    file=sys.stderr,
+                    flush=True,
+                )
+                continue
+
+            verdict = decision.get("verdict")
+            if verdict not in FINAL_ANSWERABLE_VERDICTS:
+                print(
+                    f"Skipping checkpoint row {index}: invalid verdict {verdict!r}",
+                    file=sys.stderr,
+                    flush=True,
+                )
+                continue
+
+            decision = dict(decision)
+            decision.pop("split", None)
+            decision["keep"] = verdict in KEEP_VERDICTS
+            decision.setdefault("label", verdict)
+            decision.setdefault("reason", "")
+            decisions[index] = RowDecision(
+                index=index,
+                keep=bool(decision["keep"]),
+                decision=decision,
+            )
+
+    return decisions
+
+
+def ensure_checkpoint_append_boundary(decisions_path: Path) -> None:
+    if not decisions_path.exists() or decisions_path.stat().st_size == 0:
+        return
+    with decisions_path.open("rb+") as decisions_file:
+        decisions_file.seek(-1, os.SEEK_END)
+        if decisions_file.read(1) != b"\n":
+            decisions_file.write(b"\n")
+            decisions_file.flush()
+            os.fsync(decisions_file.fileno())
+
+
+def count_present_decisions(decisions: list[RowDecision | None]) -> int:
+    return sum(result is not None for result in decisions)
+
+
+def write_checkpoint_snapshot(
+    decisions_path: Path,
+    *,
+    split_name: str,
+    decisions: list[RowDecision | None],
+) -> None:
+    with decisions_path.open("w", encoding="utf-8") as decisions_file:
+        for result in decisions:
+            if result is not None:
+                append_checkpoint(decisions_file, split_name=split_name, result=result)
+
+
+def append_checkpoint(
+    handle: Any,
+    *,
+    split_name: str,
+    result: RowDecision,
+) -> None:
+    write_decision(handle, {"split": split_name, **result.decision})
 
 
 def judge_row(index: int, row: dict[str, Any], config: JudgeConfig) -> RowDecision:
@@ -311,11 +431,11 @@ def filter_split(
     config: JudgeConfig,
     limit: int | None,
     workers: int,
-) -> None:
+) -> dict[str, int]:
     split_name = split_path.name
     rel_path = split_path.relative_to(input_dir)
     out_path = output_dir / rel_path
-    decisions_path = decisions_dir / f"{split_path.stem}.jsonl"
+    decisions_path = decisions_dir / rel_path.with_suffix(".jsonl")
 
     table = pq.read_table(split_path)
     rows = table.to_pylist()
@@ -323,39 +443,91 @@ def filter_split(
         rows = rows[:limit]
 
     print(f"Filtering {split_name}: {len(rows)} row(s)", flush=True)
-    decisions: list[RowDecision | None] = [None] * len(rows)
     decisions_path.parent.mkdir(parents=True, exist_ok=True)
+    decisions = load_existing_decisions(decisions_path, rows)
+    existing_count = count_present_decisions(decisions)
 
-    if workers <= 1:
-        for index, row in enumerate(rows):
-            decisions[index] = judge_row(index, row, config)
-            print_progress(decisions[index], len(rows))
-    else:
-        with ThreadPoolExecutor(max_workers=workers) as executor:
-            future_to_index = {
-                executor.submit(judge_row, index, row, config): index
-                for index, row in enumerate(rows)
-            }
-            completed = 0
-            for future in as_completed(future_to_index):
-                result = future.result()
-                decisions[result.index] = result
-                completed += 1
-                print_progress(result, len(rows), completed=completed)
+    legacy_decisions_path = decisions_dir / f"{split_path.stem}.jsonl"
+    if existing_count == 0 and legacy_decisions_path != decisions_path:
+        legacy_decisions = load_existing_decisions(legacy_decisions_path, rows)
+        legacy_count = count_present_decisions(legacy_decisions)
+        if legacy_count:
+            decisions = legacy_decisions
+            existing_count = legacy_count
+            write_checkpoint_snapshot(
+                decisions_path,
+                split_name=split_name,
+                decisions=decisions,
+            )
+            print(
+                f"  Migrated {legacy_count}/{len(rows)} legacy decision(s) "
+                f"from {legacy_decisions_path} to {decisions_path}",
+                flush=True,
+            )
+
+    pending = [(index, row) for index, row in enumerate(rows) if decisions[index] is None]
+
+    if existing_count:
+        print(
+            f"  Resuming from {decisions_path}: "
+            f"{existing_count}/{len(rows)} row decision(s) already present",
+            flush=True,
+        )
+    if not pending:
+        print("  No pending rows; rebuilding parquet output from checkpoint.", flush=True)
+
+    ensure_checkpoint_append_boundary(decisions_path)
+    with decisions_path.open("a", encoding="utf-8") as decisions_file:
+        if workers <= 1:
+            for completed, (index, row) in enumerate(pending, start=1):
+                result = judge_row(index, row, config)
+                decisions[index] = result
+                append_checkpoint(decisions_file, split_name=split_name, result=result)
+                print_progress(result, len(pending), completed=completed)
+        elif pending:
+            with ThreadPoolExecutor(max_workers=workers) as executor:
+                future_to_index = {
+                    executor.submit(judge_row, index, row, config): index for index, row in pending
+                }
+                completed = 0
+                for future in as_completed(future_to_index):
+                    result = future.result()
+                    decisions[result.index] = result
+                    append_checkpoint(decisions_file, split_name=split_name, result=result)
+                    completed += 1
+                    print_progress(result, len(pending), completed=completed)
 
     keep_mask: list[bool] = []
-    with decisions_path.open("w", encoding="utf-8") as decisions_file:
-        for result in decisions:
-            if result is None:
-                raise RuntimeError("Internal error: missing row decision.")
-            keep_mask.append(result.keep)
-            decision = {"split": split_name, **result.decision}
-            write_decision(decisions_file, decision)
+    verdicts: list[str] = []
+    for result in decisions:
+        if result is None:
+            raise RuntimeError("Internal error: missing row decision.")
+        keep_mask.append(result.keep)
+        verdict = result.decision.get("verdict")
+        if verdict not in FINAL_ANSWERABLE_VERDICTS:
+            raise RuntimeError(f"Internal error: invalid verdict {verdict!r}.")
+        verdicts.append(verdict)
 
-    filtered = table.slice(0, len(rows)).filter(pa.array(keep_mask, type=pa.bool_()))
-    out_path.parent.mkdir(parents=True, exist_ok=True)
-    pq.write_table(filtered, out_path)
-    print(f"Wrote {filtered.num_rows}/{len(rows)} row(s) to {out_path}", flush=True)
+    input_slice = table.slice(0, len(rows))
+    counts = {verdict: verdicts.count(verdict) for verdict in sorted(FINAL_ANSWERABLE_VERDICTS)}
+
+    if config.output_mode in {"kept", "both"}:
+        filtered = input_slice.filter(pa.array(keep_mask, type=pa.bool_()))
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        pq.write_table(filtered, out_path)
+        print(f"Wrote {filtered.num_rows}/{len(rows)} row(s) to {out_path}", flush=True)
+
+    if config.output_mode in {"verdict-subsets", "both"}:
+        subset_dir = output_dir / rel_path.with_suffix("")
+        subset_dir.mkdir(parents=True, exist_ok=True)
+        for verdict in sorted(FINAL_ANSWERABLE_VERDICTS):
+            mask = [item == verdict for item in verdicts]
+            subset = input_slice.filter(pa.array(mask, type=pa.bool_()))
+            subset_path = subset_dir / f"{verdict}.parquet"
+            pq.write_table(subset, subset_path)
+            print(f"Wrote {subset.num_rows}/{len(rows)} row(s) to {subset_path}", flush=True)
+
+    return counts
 
 
 def print_progress(result: RowDecision | None, total: int, completed: int | None = None) -> None:
@@ -393,6 +565,8 @@ def build_judge_config(args: argparse.Namespace, prompt: str) -> JudgeConfig:
             codex_bin=args.codex_bin,
             timeout=args.timeout,
             max_tool_retries=args.max_tool_retries,
+            max_exec_retries=args.max_exec_retries,
+            exec_retry_delay=args.exec_retry_delay,
         )
         model = args.model or os.getenv("CODEX_LLM_MODEL")
 
@@ -406,6 +580,7 @@ def build_judge_config(args: argparse.Namespace, prompt: str) -> JudgeConfig:
         json_mode=not args.no_json_mode,
         api_key=args.api_key,
         on_error=args.on_error,
+        output_mode=args.output_mode,
     )
 
 
