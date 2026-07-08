@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dataset Inspection</title>
+    <link rel="stylesheet" href="/vendor/katex/katex.min.css" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="topbar">
+        <div>
+          <p class="eyebrow">Inspection Tool</p>
+          <h1>Dataset Samples</h1>
+        </div>
+        <div class="summary" id="summary">Loading datasets...</div>
+      </section>
+
+      <section class="controls" aria-label="Dataset controls">
+        <label class="control dataset-control">
+          <span>Dataset</span>
+          <select id="datasetSelect"></select>
+        </label>
+        <label class="control search-control">
+          <span>Question phrase</span>
+          <input id="searchInput" type="search" placeholder="Filter by text in the question..." autocomplete="off" />
+        </label>
+        <label class="control label-control">
+          <span>Label</span>
+          <select id="labelSelect">
+            <option value="">Any label</option>
+          </select>
+        </label>
+      </section>
+
+      <section class="content">
+        <div class="list-head">
+          <div>
+            <h2>Samples</h2>
+            <p id="resultMeta">Choose a dataset to begin.</p>
+          </div>
+          <div class="pager">
+            <button id="prevButton" type="button">Prev</button>
+            <button id="nextButton" type="button">Next</button>
+          </div>
+        </div>
+        <div id="sampleList" class="sample-list" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <dialog id="sampleDialog" class="sample-dialog">
+      <form method="dialog" class="dialog-shell">
+        <div class="dialog-head">
+          <div>
+            <p class="eyebrow" id="dialogEyebrow">Sample</p>
+            <h2 id="dialogTitle">Details</h2>
+          </div>
+          <button class="icon-button" value="cancel" aria-label="Close details" type="submit">&times;</button>
+        </div>
+        <div id="dialogContent" class="field-list"></div>
+      </form>
+    </dialog>
+
+    <script src="/vendor/katex/katex.min.js"></script>
+    <script src="/vendor/katex/contrib/auto-render.min.js"></script>
+    <script src="/app.js"></script>
+  </body>
+</html>
