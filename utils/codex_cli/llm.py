@@ -54,6 +54,7 @@ class CodexLLM:
     """
 
     model: str | None = None
+    model_reasoning_effort: str | None = None
     codex_bin: str = "codex"
     timeout: float | None = None
     system_prompt: str = DEFAULT_SYSTEM_PROMPT
@@ -124,6 +125,8 @@ class CodexLLM:
     def _build_command(self, cwd: Path, output_schema: Path | None) -> list[str]:
         cmd = [
             self.codex_bin,
+            "--ask-for-approval",
+            "never",
             "exec",
             "--json",
             "--ephemeral",
@@ -132,8 +135,6 @@ class CodexLLM:
             "--skip-git-repo-check",
             "--sandbox",
             "read-only",
-            "--ask-for-approval",
-            "never",
             "--cd",
             str(cwd),
             "-c",
@@ -151,6 +152,8 @@ class CodexLLM:
         ]
         if self.model:
             cmd.extend(["--model", self.model])
+        if self.model_reasoning_effort:
+            cmd.extend(["-c", f'model_reasoning_effort="{self.model_reasoning_effort}"'])
         if output_schema:
             cmd.extend(["--output-schema", str(output_schema)])
         cmd.append("-")
@@ -196,6 +199,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("prompt", nargs="?", help="Prompt text. Reads stdin when omitted.")
     parser.add_argument("--system", default=DEFAULT_SYSTEM_PROMPT)
     parser.add_argument("--model", default=os.getenv("CODEX_LLM_MODEL"))
+    parser.add_argument("--model-reasoning-effort", default=os.getenv("CODEX_LLM_REASONING_EFFORT"))
     parser.add_argument("--codex-bin", default=os.getenv("CODEX_BIN", "codex"))
     parser.add_argument("--timeout", type=float, default=120.0)
     parser.add_argument(
@@ -229,6 +233,7 @@ def main() -> int:
 
     client = CodexLLM(
         model=args.model,
+        model_reasoning_effort=args.model_reasoning_effort,
         codex_bin=args.codex_bin,
         timeout=args.timeout,
         system_prompt=args.system,

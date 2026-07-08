@@ -51,13 +51,48 @@ Useful smoke test:
 python3 data/filter/filter_dataset.py --limit 5 --output-dir /tmp/frontier-filter-smoke
 ```
 
+Run the labeled dev set with Codex CLI as the judge:
+
+```bash
+python3 data/filter/filter_dataset.py \
+  --judge-backend codex-cli \
+  --workers 32 \
+  --input-dir data/filter/dev_sets \
+  --splits physics_ttt_test_labeled.parquet \
+  --output-dir /tmp/physics-ttt-dev-filtered \
+  --decisions-dir /tmp/physics-ttt-dev-decisions
+```
+
+## Development Set
+
+A small labeled Physics-TTT test set is available for prompt/filter debugging:
+
+```text
+data/filter/dev_sets/physics_ttt_test_labeled.json
+data/filter/dev_sets/physics_ttt_test_labeled.parquet
+```
+
+Each row has `label` using the same taxonomy requested from the judge:
+
+```text
+fully_final_answerable
+partial_final_answerable
+non_final_answerable
+```
+
+The filter prompt input intentionally excludes `label`.
+
 ## Change The Filtering Rule
 
 Edit `data/filter/prompts/final_answerable.txt`. The prompt must ask for a JSON
 object containing:
 
 ```json
-{"keep": true, "label": "final_answerable", "reason": "short reason"}
+{
+  "verdict": "fully_final_answerable",
+  "keep": true,
+  "reason": "short reason"
+}
 ```
 
 Rows with `keep: true` are written to the filtered parquet split. Per-row judge
