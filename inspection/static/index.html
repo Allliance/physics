@@ -10,9 +10,12 @@
   <body>
     <main class="shell">
       <section class="topbar">
-        <div>
-          <p class="eyebrow">Inspection Tool</p>
-          <h1>Dataset Samples</h1>
+        <div class="title-block">
+          <button id="questionPreviewButton" class="preview-button" type="button">Question preview</button>
+          <div>
+            <p class="eyebrow">Inspection Tool</p>
+            <h1>Dataset Samples</h1>
+          </div>
         </div>
         <div class="summary" id="summary">Loading datasets...</div>
       </section>
@@ -59,6 +62,33 @@
           <button class="icon-button" value="cancel" aria-label="Close details" type="submit">&times;</button>
         </div>
         <div id="dialogContent" class="field-list"></div>
+      </form>
+    </dialog>
+
+    <dialog id="questionPreviewDialog" class="sample-dialog question-preview-dialog">
+      <form method="dialog" class="dialog-shell">
+        <div class="dialog-head">
+          <div>
+            <p class="eyebrow">Manual Question</p>
+            <h2>Question Preview</h2>
+          </div>
+          <button class="icon-button" value="cancel" aria-label="Close question preview" type="submit">&times;</button>
+        </div>
+        <div class="question-preview-body">
+          <label class="preview-input-panel">
+            <span>Question text</span>
+            <textarea id="questionPreviewInput" placeholder="Paste a question here..."></textarea>
+          </label>
+          <section class="preview-output-panel" aria-live="polite">
+            <div class="field field-question field-primary">
+              <div class="field-name">
+                <span>Preview</span>
+                <span id="questionPreviewCount">0 chars</span>
+              </div>
+              <div id="questionPreviewOutput" class="field-value preview-placeholder">Paste a question to preview it.</div>
+            </div>
+          </section>
+        </div>
       </form>
     </dialog>
 

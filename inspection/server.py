@@ -43,7 +43,7 @@ def parse_dataset_id(value: str) -> tuple[str, Path]:
         path.relative_to(PROJECT_ROOT)
     except ValueError as exc:
         raise ValueError("Dataset path escapes project root") from exc
-    if kind not in {"parquet-file", "parquet-dir", "jsonl-file"}:
+    if kind not in {"parquet-file", "parquet-dir", "jsonl-file", "json-file", "repair-file"}:
         raise ValueError(f"Unsupported dataset kind: {kind}")
     return kind, path
 
@@ -54,7 +54,9 @@ def discover_datasets() -> list[dict]:
     parquet_roots = []
     filtered = PROJECT_ROOT / "filtered_datasets"
     if filtered.exists():
-        for directory in sorted({p.parent.parent for p in filtered.glob("*/*/*/*.parquet")}):
+        split_names = {"train", "test", "validation", "val", "dev"}
+        candidates = {p.parent.parent for p in filtered.glob("**/*.parquet") if p.parent.name in split_names}
+        for directory in sorted(candidates):
             files = sorted(directory.glob("*/*.parquet"))
             if files:
                 parquet_roots.append((directory, files))
@@ -93,6 +95,20 @@ def discover_datasets() -> list[dict]:
                 "path": relative,
                 "type": "jsonl file",
                 "files": 1,
+            }
+        )
+
+    repair_dev_set = PROJECT_ROOT / "data" / "repair" / "dev_set"
+    for repaired in sorted(repair_dev_set.glob("*_repaired.json")) if repair_dev_set.exists() else []:
+        original_path = repaired.with_name(repaired.name.replace("_repaired.json", ".json"))
+        relative = rel(repaired)
+        datasets.append(
+            {
+                "id": dataset_id("repair-file", relative),
+                "label": f"Repair / dev_set / {original_path.stem}",
+                "path": relative,
+                "type": "repair comparison",
+                "files": 2 if original_path.exists() else 1,
             }
         )
 
@@ -136,6 +152,59 @@ def read_jsonl_file(path: Path) -> list[dict]:
     return rows
 
 
+def read_json_file(path: Path) -> list[dict]:
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    if isinstance(payload, list):
+        rows = payload
+    elif isinstance(payload, dict):
+        rows = [payload]
+    else:
+        raise ValueError(f"Unsupported JSON payload in {rel(path)}")
+
+    normalized = []
+    for row in rows:
+        item = row if isinstance(row, dict) else {"value": row}
+        item.setdefault("__dataset_file", rel(path))
+        normalized.append(item)
+    return normalized
+
+
+def read_json_rows(path: Path) -> list[dict]:
+    try:
+        return read_json_file(path)
+    except json.JSONDecodeError:
+        return read_jsonl_file(path)
+
+
+def read_repair_file(path: Path) -> list[dict]:
+    repaired_rows = read_json_rows(path)
+    original_path = path.with_name(path.name.replace("_repaired.json", ".json"))
+    original_by_id = {}
+    if original_path.exists():
+        for row in read_json_rows(original_path):
+            row_id = safe_string(row.get("id"))
+            if row_id:
+                original_by_id[row_id] = row
+
+    rows = []
+    for row in repaired_rows:
+        item = dict(row)
+        row_id = safe_string(item.get("id"))
+        original = original_by_id.get(row_id)
+        if original and "question" in original:
+            item["original_question"] = original["question"]
+        else:
+            item["original_question"] = item.get("question", "")
+        if "repaired_question" not in item:
+            item["repaired_question"] = item.get("question", "")
+        item["question"] = item["original_question"]
+        item.setdefault("repair_status", "repaired")
+        item.setdefault("__dataset_file", rel(path))
+        item.setdefault("__part", "repair")
+        rows.append(item)
+    return rows
+
+
 @lru_cache(maxsize=32)
 def load_dataset(dataset: str) -> tuple[dict, ...]:
     kind, path = parse_dataset_id(dataset)
@@ -147,6 +216,10 @@ def load_dataset(dataset: str) -> tuple[dict, ...]:
         rows.extend(read_parquet_file(path))
     elif kind == "jsonl-file":
         rows.extend(read_jsonl_file(path))
+    elif kind == "json-file":
+        rows.extend(read_json_file(path))
+    elif kind == "repair-file":
+        rows.extend(read_repair_file(path))
 
     normalized = []
     for index, row in enumerate(rows):
@@ -157,7 +230,7 @@ def load_dataset(dataset: str) -> tuple[dict, ...]:
 
 
 def question_text(row: dict) -> str:
-    for key in ("question", "statement", "problem", "prompt"):
+    for key in ("question", "questions", "statement", "problem", "prompt"):
         if key in row:
             return safe_string(row[key])
     return ""
@@ -165,7 +238,7 @@ def question_text(row: dict) -> str:
 
 def label_values(row: dict) -> list[str]:
     values = []
-    for key in ("label", "labels", "verdict", "part", "__part", "category", "split", "__split"):
+    for key in ("label", "labels", "verdict", "part", "__part", "repair_status", "category", "domain", "split", "__split"):
         if key not in row or row[key] in (None, ""):
             continue
         value = row[key]

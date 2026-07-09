@@ -18,6 +18,11 @@ const els = {
   sampleList: document.querySelector("#sampleList"),
   prevButton: document.querySelector("#prevButton"),
   nextButton: document.querySelector("#nextButton"),
+  questionPreviewButton: document.querySelector("#questionPreviewButton"),
+  questionPreviewDialog: document.querySelector("#questionPreviewDialog"),
+  questionPreviewInput: document.querySelector("#questionPreviewInput"),
+  questionPreviewOutput: document.querySelector("#questionPreviewOutput"),
+  questionPreviewCount: document.querySelector("#questionPreviewCount"),
   dialog: document.querySelector("#sampleDialog"),
   dialogEyebrow: document.querySelector("#dialogEyebrow"),
   dialogTitle: document.querySelector("#dialogTitle"),
@@ -105,6 +110,58 @@ function setError(message) {
   els.sampleList.innerHTML = `<div class="error-state">${escapeHtml(message)}</div>`;
 }
 
+function questionTextFromParsedJson(value) {
+  if (typeof value === "string") return value;
+  if (Array.isArray(value)) {
+    const item = value.find((entry) => entry && typeof entry === "object" && "question" in entry);
+    return item ? text(item.question) : text(value);
+  }
+  if (value && typeof value === "object" && "question" in value) {
+    return text(value.question);
+  }
+  return text(value);
+}
+
+function decodeQuestionPreviewText(value) {
+  const trimmed = value.trim();
+  if (!trimmed) return "";
+
+  if (
+    (trimmed.startsWith('"') && trimmed.endsWith('"')) ||
+    looksJson(trimmed)
+  ) {
+    try {
+      return questionTextFromParsedJson(JSON.parse(trimmed));
+    } catch {
+      // Fall through to fragment decoding for copied JSON field values.
+    }
+  }
+
+  if (/^"question"\s*:/.test(trimmed)) {
+    try {
+      return questionTextFromParsedJson(JSON.parse(`{${trimmed.replace(/,\s*$/, "")}}`));
+    } catch {
+      // Fall through to fragment decoding for partial or malformed JSON.
+    }
+  }
+
+  return value
+    .replaceAll("\\r\\n", "\n")
+    .replaceAll("\\n", "\n")
+    .replaceAll("\\t", "\t")
+    .replaceAll("\\\\", "\\");
+}
+
+function renderQuestionPreview() {
+  const rawQuestion = els.questionPreviewInput.value;
+  const question = decodeQuestionPreviewText(rawQuestion);
+  const trimmed = question.trim();
+  els.questionPreviewCount.textContent = `${question.length.toLocaleString()} chars`;
+  els.questionPreviewOutput.classList.toggle("preview-placeholder", !trimmed);
+  els.questionPreviewOutput.innerHTML = escapeHtml(trimmed || "Paste a question to preview it.");
+  renderMath(els.questionPreviewOutput);
+}
+
 function escapeHtml(value) {
   return String(value)
     .replaceAll("&", "&amp;")
@@ -180,6 +237,18 @@ function renderLabelOptions() {
   state.label = els.labelSelect.value;
 }
 
+function currentDatasetName() {
+  const dataset = state.datasets.find((item) => item.id === state.dataset);
+  if (!dataset) return state.dataset.split(":").pop().split("/").pop() || "dataset";
+  if (dataset.path) {
+    if (dataset.type === "jsonl file") return dataset.path.split("/").pop().replace(/\.jsonl$/, "");
+    const parts = dataset.path.split("/");
+    if (dataset.type === "parquet file") return parts.slice(-3).join("/");
+    return parts[parts.length - 1];
+  }
+  return dataset.label.replace(/\s+-\s+all prepared parts$/, "");
+}
+
 async function loadDatasets() {
   const payload = await getJson("/api/datasets");
   state.datasets = payload.datasets;
@@ -222,7 +291,8 @@ async function openSample(rowIndex) {
   try {
     const payload = await getJson(`/api/sample?${params}`);
     const sample = payload.sample;
-    els.dialogTitle.textContent = text(sample.id || sample.sample_id || sample.__line_number || rowIndex);
+    const questionId = text(sample.id || sample.sample_id || sample.__line_number || rowIndex);
+    els.dialogTitle.textContent = `${currentDatasetName()}:${questionId}`;
     renderFields(sample);
   } catch (error) {
     els.dialogTitle.textContent = "Unable to load sample";
@@ -230,28 +300,40 @@ async function openSample(rowIndex) {
   }
 }
 
-function renderFields(sample) {
-  const label = text(sample.__part || sample.verdict || sample.part || sample.label || "unlabeled");
-  const primaryKeys = ["question", "final_answers", "solution"].filter((key) => key in sample);
+function firstPresent(sample, keys) {
+  return keys.find((key) => key in sample);
+}
 
-  const fieldHtml = (key, mode) => {
+function renderFields(sample) {
+  const label = text(sample.repair_status || sample.__part || sample.verdict || sample.part || sample.label || sample.domain || "unlabeled");
+  const isRepairSample = "repaired_question" in sample || "original_question" in sample;
+  const sections = isRepairSample
+    ? [
+        { title: "Original Question", key: firstPresent(sample, ["original_question", "question"]), kind: "text" },
+        { title: "Repaired Question", key: firstPresent(sample, ["repaired_question"]), kind: "text" },
+        { title: "Ground Truth", key: firstPresent(sample, ["final_answers", "ground_truth", "answers"]), kind: "answers" },
+        { title: "Solution", key: firstPresent(sample, ["solution", "solutions", "answer", "explanation"]), kind: "text" },
+      ].filter((section) => section.key)
+    : [
+        { title: "Question", key: firstPresent(sample, ["question", "questions", "statement", "problem", "prompt"]), kind: "text" },
+        { title: "Ground Truth", key: firstPresent(sample, ["final_answers", "ground_truth", "answers"]), kind: "answers" },
+        { title: "Solution", key: firstPresent(sample, ["solution", "solutions", "answer", "explanation"]), kind: "text" },
+      ].filter((section) => section.key);
+
+  const fieldHtml = (section) => {
+    const key = section.key;
     const value = prettyValue(sample[key]);
-    const safeKey = key.replaceAll("_", "-");
+    const safeKey = section.title.toLowerCase().replaceAll(" ", "-");
     const fieldClass = ["field", `field-${safeKey}`, "field-primary"].join(" ");
     const length = text(sample[key]).length;
-    const title = {
-      question: "Question",
-      final_answers: "Ground Truth",
-      solution: "Solution",
-    }[key] || key;
     const valueHtml =
-      key === "final_answers"
+      section.kind === "answers"
         ? finalAnswersHtml(sample[key])
         : `<div class="field-value">${escapeHtml(value || "(empty)")}</div>`;
     return `
       <section class="${fieldClass}">
         <div class="field-name">
-          <span>${escapeHtml(title)}</span>
+          <span>${escapeHtml(section.title)}</span>
           <span>${length.toLocaleString()} chars</span>
         </div>
         ${valueHtml}
@@ -261,8 +343,8 @@ function renderFields(sample) {
 
   els.dialogContent.innerHTML = `
     ${labelBarHtml(label)}
-    <div class="primary-fields">
-      ${primaryKeys.map((key) => fieldHtml(key)).join("")}
+    <div class="primary-fields${isRepairSample ? " repair-fields" : ""}">
+      ${sections.map((section) => fieldHtml(section)).join("")}
     </div>
   `;
   renderMath(els.dialogContent);
@@ -340,6 +422,14 @@ els.nextButton.addEventListener("click", () => {
   state.offset += state.limit;
   loadSamples();
 });
+
+els.questionPreviewButton.addEventListener("click", () => {
+  renderQuestionPreview();
+  els.questionPreviewDialog.showModal();
+  requestAnimationFrame(() => els.questionPreviewInput.focus());
+});
+
+els.questionPreviewInput.addEventListener("input", renderQuestionPreview);
 
 loadDatasets().catch((error) => {
   els.summary.textContent = "Unable to load datasets";
