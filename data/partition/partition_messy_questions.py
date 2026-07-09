@@ -219,7 +219,12 @@ def row_key(record: dict[str, Any]) -> tuple[str, str, int, str, str | None]:
     )
 
 
-def load_existing(path: Path, rows: list[dict[str, Any]]) -> list[PartitionResult | None]:
+def load_existing(
+    path: Path,
+    rows: list[dict[str, Any]],
+    *,
+    retry_failed: bool = False,
+) -> list[PartitionResult | None]:
     results: list[PartitionResult | None] = [None] * len(rows)
     if not path.exists():
         return results
@@ -242,6 +247,8 @@ def load_existing(path: Path, rows: list[dict[str, Any]]) -> list[PartitionResul
             )
             index = expected.get(key)
             if index is not None and record.get("partitioned_question"):
+                if retry_failed and not (record.get("verification") or {}).get("passed"):
+                    continue
                 results[index] = PartitionResult(index=index, record=record)
     return results
 
@@ -256,18 +263,17 @@ def ensure_append_boundary(path: Path) -> None:
 
 
 def build_user_prompt(record: dict[str, Any]) -> str:
-    payload = {
-        "dataset": record["dataset"],
-        "split": record["split"],
-        "row_index": record["row_index"],
-        "id": record["id"],
-        "source_file": record.get("source_file"),
-        "question": record["question"],
-    }
     return (
         "Convert this messy multi-part physics question into a clean multi-part "
         "question by adding labels and line breaks only.\n\n"
-        f"{json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True)}"
+        f"Dataset: {record['dataset']}\n"
+        f"Split: {record['split']}\n"
+        f"Row index: {record['row_index']}\n"
+        f"ID: {record['id']}\n"
+        f"Source file: {record.get('source_file')}\n\n"
+        "Question text begins after this line. Copy LaTeX backslashes exactly; "
+        "the text is not JSON and backslashes are literal.\n\n"
+        f"{record['question']}"
     )
 
 
@@ -412,6 +418,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--workers", type=int, default=1)
     parser.add_argument("--limit", type=int)
     parser.add_argument("--examples", nargs="*", help="Specific ids or dataset/split:id keys")
+    parser.add_argument(
+        "--retry-failed",
+        action="store_true",
+        help="Ignore existing checkpoint entries whose verification did not pass.",
+    )
     parser.add_argument("--codex-bin", default=os.getenv("CODEX_BIN", "codex"))
     parser.add_argument("--timeout", type=float, default=240.0)
     parser.add_argument("--api-key", default=os.getenv("CODEX_API_KEY"))
@@ -427,7 +438,7 @@ def main() -> int:
     rows = select_rows(args)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     system_prompt = args.prompt.read_text(encoding="utf-8")
-    results = load_existing(args.output, rows)
+    results = load_existing(args.output, rows, retry_failed=args.retry_failed)
     existing = sum(item is not None for item in results)
     pending = [(i, row) for i, row in enumerate(rows) if results[i] is None]
     print(
