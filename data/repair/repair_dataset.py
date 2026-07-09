@@ -83,6 +83,13 @@ def parse_args() -> argparse.Namespace:
         ),
     )
     parser.add_argument(
+        "--output-filename",
+        help=(
+            "Write every repaired split using this filename in the corresponding "
+            "relative output directory."
+        ),
+    )
+    parser.add_argument(
         "--drop-no-content",
         action="store_true",
         help="Drop rows whose repair is exactly [NO_FINAL_ANSWERABLE_CONTENT].",
@@ -142,10 +149,18 @@ def json_default(value: Any) -> str:
     return str(value)
 
 
+def question_field_name(row: dict[str, Any]) -> str:
+    for field in ("question", "questions"):
+        value = row.get(field)
+        if isinstance(value, str) and value.strip():
+            return field
+    raise ValueError("Record must contain a non-empty string field named 'question' or 'questions'.")
+
+
 def build_user_prompt(row: dict[str, Any]) -> str:
-    question = row.get("question")
+    question = row.get(question_field_name(row))
     if not isinstance(question, str) or not question.strip():
-        raise ValueError("Record must contain a non-empty string field named 'question'.")
+        raise ValueError("Record must contain a non-empty string field named 'question' or 'questions'.")
     return f"Original problem statement:\n\n{question}"
 
 
@@ -399,18 +414,20 @@ def build_output_rows(
 
         output_row = dict(row)
         if output_mode == "replace-question":
+            question_field = question_field_name(row)
+            original_question_field = f"original_{question_field}"
             output_row = {}
             placed_question = False
             for key, value in row.items():
-                if key == "question":
-                    output_row["question"] = repair.repaired_question
-                    output_row["original_question"] = value
+                if key == question_field:
+                    output_row[question_field] = repair.repaired_question
+                    output_row[original_question_field] = value
                     placed_question = True
                 else:
                     output_row[key] = value
             if not placed_question:
-                output_row["question"] = repair.repaired_question
-                output_row["original_question"] = row.get("question")
+                output_row[question_field] = repair.repaired_question
+                output_row[original_question_field] = row.get(question_field)
         else:
             output_row["repaired_question"] = repair.repaired_question
         output_row["repair_status"] = repair.status
@@ -445,10 +462,14 @@ def repair_split(
     config: RepairConfig,
     limit: int | None,
     workers: int,
+    output_filename: str | None,
 ) -> dict[str, int]:
     split_name = split_path.name
     rel_path = split_path.relative_to(input_dir)
-    out_path = output_dir / rel_path
+    out_rel_path = rel_path.with_name(output_filename) if output_filename else rel_path
+    if out_rel_path.suffix not in SUPPORTED_SUFFIXES:
+        raise ValueError(f"Unsupported output filename suffix: {out_rel_path.suffix}")
+    out_path = output_dir / out_rel_path
     repairs_path = repairs_dir / rel_path.with_suffix(".jsonl")
 
     rows, _schema = load_rows(split_path)
@@ -581,6 +602,7 @@ def main() -> int:
             config=config,
             limit=args.limit,
             workers=args.workers,
+            output_filename=args.output_filename,
         )
         for key, value in counts.items():
             totals[key] += value
