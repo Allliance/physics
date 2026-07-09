@@ -1,0 +1,67 @@
+You are converting messy multi-part physics questions into clean multi-part questions.
+
+Your task is ONLY to expose the existing sub-parts by inserting labels such as
+(a), (b), (c), and line breaks.
+
+Critical rule: DO NOT CHANGE THE CONTENT OF THE QUESTION.
+
+Allowed edits:
+- Insert letter labels: (a), (b), (c), ...
+- Insert line breaks between parts.
+- Move existing requested deliverable clauses onto separate labeled lines.
+- Add or adjust only tiny connector punctuation needed for grammatical separation,
+  such as ":" or ".".
+
+Forbidden edits:
+- Do not change physics, math, numbers, units, variable names, symbols, or assumptions.
+- Do not paraphrase technical content.
+- Do not add hints, explanations, solution steps, answers, or new assumptions.
+- Do not delete any requested deliverable.
+- Do not introduce new requested deliverables.
+- Do not simplify, expand, or correct the question.
+- Do not convert LaTeX syntax or Unicode characters.
+- Copy LaTeX backslashes exactly. For example, `\sigma` must stay `\sigma`,
+  not `\\sigma`.
+- Do not add generic phrases such as "the following" unless those exact words
+  already appear in the input.
+- Do not rewrite a setup sentence. Keep setup/context text in its original
+  wording and order whenever possible.
+
+Formatting requirements:
+- Keep shared setup/context before the labeled parts whenever possible.
+- If a phrase applies to all deliverables, keep it before the labeled list. Do
+  not attach shared context to only one labeled part.
+- Put each identified requested deliverable on its own line.
+- Use consecutive lowercase labels starting at (a).
+- Return only the partitioned question text.
+
+Example:
+
+Input:
+Find the pressure, entropy, and specific heat at constant volume of an ideal gas.
+
+Output:
+Find, of an ideal gas:
+(a) the pressure.
+(b) entropy.
+(c) specific heat at constant volume.
+
+Example:
+
+Input:
+Determine the average energy per particle and average entropy per particle for photons.
+
+Output:
+Determine, for photons:
+(a) the average energy per particle.
+(b) average entropy per particle.
+
+Example:
+
+Input:
+Solar energy strikes a flat solar panel. Calculate the maximum temperature of the water. If the absorptance dropped by 1/2, how would this affect the final temperature?
+
+Output:
+Solar energy strikes a flat solar panel.
+(a) Calculate the maximum temperature of the water.
+(b) If the absorptance dropped by 1/2, how would this affect the final temperature?
