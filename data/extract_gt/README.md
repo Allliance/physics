@@ -36,3 +36,11 @@ omitted from the parquet output and recorded in `<output_stem>_failures.jsonl`.
 Successfully extracted but unanswerable parts have JSON `null` values; their
 reasons, full questions, isolated sub-questions, sample IDs, and dataset IDs are
 written separately in `<output_stem>_null_answers.jsonl`.
+
+For final runs, `--failures-dir ROOT` writes sidecars as
+`ROOT/<dataset>/<split>/failures.jsonl` and `null_answers.jsonl`.
+
+Every completed row is appended immediately to a hidden JSONL checkpoint beside
+the intended parquet output. If a process is interrupted, rerun the same command
+with `--resume`; completed and exhausted rows are restored without new LLM calls.
+The checkpoint is deleted only after the parquet and both sidecars are written.

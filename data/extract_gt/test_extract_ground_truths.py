@@ -1,4 +1,5 @@
 import json
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -7,11 +8,14 @@ from extract_ground_truths import (
     ExtractionValidationError,
     RowExtractionError,
     collect_null_answers,
+    checkpoint_path,
     extract_one,
     failed_row_record,
     infer_part_labels,
     is_ordered_token_subsequence,
+    load_checkpoint,
     parse_and_verify,
+    sidecar_paths,
     sub_questions,
 )
 
@@ -27,6 +31,14 @@ class InferPartLabelsTest(unittest.TestCase):
     def test_multi_part_requires_a_and_b(self):
         with self.assertRaises(ValueError):
             infer_part_labels("Find x and y.", True)
+
+    def test_line_labels_can_start_late_or_skip_a_part(self):
+        question = "Context.\n(b) Find b.\n(c) Find c.\n(e) Find e."
+        self.assertEqual(infer_part_labels(question, True), ["b", "c", "e"])
+
+    def test_labels_allow_internal_whitespace(self):
+        question = "Choose one.\n( a ) First.\n( b ) Second.\n(c) Third."
+        self.assertEqual(infer_part_labels(question, True), ["a", "b", "c"])
 
 
 class OrderedTokenVerificationTest(unittest.TestCase):
@@ -118,6 +130,36 @@ class OutputColumnTest(unittest.TestCase):
 
 
 class SidecarRecordTest(unittest.TestCase):
+    def test_checkpoint_loads_completed_rows_and_discards_truncated_tail(self):
+        rows = [{"id": "a"}, {"id": "b"}]
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / ".out.parquet.checkpoint.jsonl"
+            record = {"index": 0, "sample_id": "a", "status": "ok", "output": {"id": "a"}}
+            path.write_text(json.dumps(record) + "\n{truncated", encoding="utf-8")
+            self.assertEqual(load_checkpoint(path, rows), {0: record})
+            self.assertEqual(path.read_text(encoding="utf-8"), json.dumps(record) + "\n")
+
+    def test_checkpoint_path_is_hidden_beside_output(self):
+        self.assertEqual(
+            checkpoint_path(Path("final_datasets/Physics-TTT/train.parquet")),
+            Path("final_datasets/Physics-TTT/.train.parquet.checkpoint.jsonl"),
+        )
+
+    def test_custom_sidecar_layout(self):
+        failures, nulls = sidecar_paths(
+            Path("partitioned_datasets/FrontierPhysics/test.parquet"),
+            Path("final_datasets/FrontierPhysics/test.parquet"),
+            Path("data/extract_gt/final_failures"),
+        )
+        self.assertEqual(
+            failures,
+            Path("data/extract_gt/final_failures/FrontierPhysics/test/failures.jsonl"),
+        )
+        self.assertEqual(
+            nulls,
+            Path("data/extract_gt/final_failures/FrontierPhysics/test/null_answers.jsonl"),
+        )
+
     def test_sub_questions_and_null_answer_record(self):
         question = "Context. (a) Find x. (b) Find y."
         self.assertEqual(sub_questions(question, ["a", "b"]), {"a": "Find x.", "b": "Find y."})

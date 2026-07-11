@@ -27,7 +27,8 @@ DEFAULT_INPUT_DIR = HERE / "dev_set"
 DEFAULT_OUTPUT_DIR = HERE / "outputs" / "dev_set"
 DEFAULT_PROMPT = HERE / "extract_prompt.txt"
 SUPPORTED_SUFFIXES = {".json", ".jsonl", ".parquet"}
-PART_MARKER = re.compile(r"(?<![A-Za-z0-9])\(([a-z])\)\s+", re.IGNORECASE)
+PART_MARKER = re.compile(r"(?<![A-Za-z0-9])\(\s*([a-z])\s*\)\s+", re.IGNORECASE)
+LINE_PART_MARKER = re.compile(r"^\s*\(\s*([a-z])\s*\)\s+", re.IGNORECASE | re.MULTILINE)
 CONTENT_TOKEN = re.compile(r"\\[A-Za-z]+|[A-Za-z]+|\d+(?:\.\d+)?|[=+*/^_<>-]")
 
 
@@ -54,6 +55,14 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("inputs", type=Path, nargs="*", help="Input JSON, JSONL, or parquet files.")
     parser.add_argument("--input-dir", type=Path, default=DEFAULT_INPUT_DIR)
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR)
+    parser.add_argument(
+        "--failures-dir",
+        type=Path,
+        help=(
+            "Optional root for <dataset>/<split>/failures.jsonl and "
+            "null_answers.jsonl. By default sidecars are written beside each output."
+        ),
+    )
     parser.add_argument("--prompt-file", type=Path, default=DEFAULT_PROMPT)
     parser.add_argument("--model", default="gpt-5.5")
     parser.add_argument("--model-reasoning-effort", default="high")
@@ -69,6 +78,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--api-key", default=os.getenv("CODEX_API_KEY"))
     parser.add_argument("--codex-bin", default=os.getenv("CODEX_BIN", "codex"))
     parser.add_argument("--overwrite", action="store_true")
+    parser.add_argument(
+        "--resume",
+        action="store_true",
+        help="Resume an interrupted run from its per-row JSONL checkpoint.",
+    )
     return parser.parse_args()
 
 
@@ -131,9 +145,16 @@ def write_rows(path: Path, rows: list[dict[str, Any]]) -> None:
 
 
 def infer_part_labels(question: str, is_multi_part: bool) -> list[str]:
-    """Infer the consecutive question labels, ignoring incidental later variables."""
+    """Infer explicit part labels, including partial/nonconsecutive question sets."""
     if not is_multi_part:
         return ["a"]
+    line_labels = []
+    for match in LINE_PART_MARKER.finditer(question):
+        label = match.group(1).lower()
+        if label not in line_labels:
+            line_labels.append(label)
+    if len(line_labels) >= 2:
+        return line_labels
     matches = [(m.group(1).lower(), m.start()) for m in PART_MARKER.finditer(question)]
     labels: list[str] = []
     cursor = -1
@@ -145,7 +166,7 @@ def infer_part_labels(question: str, is_multi_part: bool) -> list[str]:
         cursor = positions[0]
         labels.append(label)
     if len(labels) < 2:
-        raise ValueError("Multi-part question does not contain a consecutive (a), (b), ... sequence")
+        raise ValueError("Multi-part question does not contain recognizable explicit part labels")
     return labels
 
 
@@ -296,6 +317,43 @@ def null_answers_sidecar_path(output_path: Path) -> Path:
     return output_path.with_name(f"{output_path.stem}_null_answers.jsonl")
 
 
+def sidecar_paths(input_path: Path, output_path: Path, failures_dir: Path | None) -> tuple[Path, Path]:
+    if failures_dir is None:
+        return failure_sidecar_path(output_path), null_answers_sidecar_path(output_path)
+    split_dir = failures_dir / input_path.parent.name / input_path.stem
+    return split_dir / "failures.jsonl", split_dir / "null_answers.jsonl"
+
+
+def checkpoint_path(output_path: Path) -> Path:
+    return output_path.with_name(f".{output_path.name}.checkpoint.jsonl")
+
+
+def load_checkpoint(path: Path, rows: list[dict[str, Any]]) -> dict[int, dict[str, Any]]:
+    records: dict[int, dict[str, Any]] = {}
+    valid_lines = []
+    for line_number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), start=1):
+        if not line.strip():
+            continue
+        try:
+            record = json.loads(line)
+            index = int(record["index"])
+            if index < 0 or index >= len(rows):
+                raise ValueError("index out of range")
+            if record.get("sample_id") != rows[index].get("id"):
+                raise ValueError("sample id does not match current input")
+            if record.get("status") not in {"ok", "failed"}:
+                raise ValueError("invalid status")
+        except Exception as exc:
+            # A process kill can leave only the final line partially written.
+            if line_number == len(path.read_text(encoding="utf-8").splitlines()):
+                break
+            raise ValueError(f"Invalid checkpoint line {line_number}: {exc}") from exc
+        records[index] = record
+        valid_lines.append(json.dumps(record, ensure_ascii=False, default=str))
+    path.write_text("".join(line + "\n" for line in valid_lines), encoding="utf-8")
+    return records
+
+
 def collect_null_answers(input_path: Path, rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     null_answers = []
     for row in rows:
@@ -348,6 +406,11 @@ def process_file(
     output_path = args.output_dir / path.name
     if output_path.exists() and not args.overwrite:
         raise FileExistsError(f"Output exists (use --overwrite): {output_path}")
+    checkpoint = checkpoint_path(output_path)
+    if checkpoint.exists() and not args.resume:
+        raise FileExistsError(f"Interrupted-run checkpoint exists (use --resume): {checkpoint}")
+    if args.overwrite and checkpoint.exists() and not args.resume:
+        checkpoint.unlink()
     client = CodexLLM(
         model=args.model,
         model_reasoning_effort=args.model_reasoning_effort,
@@ -356,38 +419,68 @@ def process_file(
     )
     config = Config(prompt, args.api_key, args.max_extraction_attempts)
     completed: list[dict[str, Any] | None] = [None] * len(rows)
-    failed_rows: list[dict[str, Any]] = []
+    failed_by_index: dict[int, dict[str, Any]] = {}
+    if args.resume and checkpoint.exists():
+        for index, record in load_checkpoint(checkpoint, rows).items():
+            if record["status"] == "ok":
+                completed[index] = record["output"]
+            else:
+                failed_by_index[index] = record["failure"]
+    pending = [
+        (i, row)
+        for i, row in enumerate(rows)
+        if completed[i] is None and i not in failed_by_index
+    ]
+    checkpoint.parent.mkdir(parents=True, exist_ok=True)
     with ThreadPoolExecutor(max_workers=args.workers) as pool:
         futures = {
             pool.submit(extract_one, i, row, client, config): (i, row)
-            for i, row in enumerate(rows)
+            for i, row in pending
         }
-        for future in as_completed(futures):
-            index, row = futures[future]
-            try:
-                _, output = future.result()
-                completed[index] = output
-                status = "ok"
-            except RowExtractionError as exc:
-                failed_rows.append(failed_row_record(path, exc))
-                status = "failed"
-            print(
-                f"[{path.name}] {index + 1}/{len(rows)} {row.get('id', '')} {status}",
-                flush=True,
-            )
+        with checkpoint.open("a", encoding="utf-8") as checkpoint_file:
+            for future in as_completed(futures):
+                index, row = futures[future]
+                try:
+                    _, output = future.result()
+                    completed[index] = output
+                    record = {
+                        "index": index,
+                        "sample_id": row.get("id"),
+                        "status": "ok",
+                        "output": output,
+                    }
+                    status = "ok"
+                except RowExtractionError as exc:
+                    failure = failed_row_record(path, exc)
+                    failed_by_index[index] = failure
+                    record = {
+                        "index": index,
+                        "sample_id": row.get("id"),
+                        "status": "failed",
+                        "failure": failure,
+                    }
+                    status = "failed"
+                checkpoint_file.write(json.dumps(record, ensure_ascii=False, default=str) + "\n")
+                checkpoint_file.flush()
+                print(
+                    f"[{path.name}] {index + 1}/{len(rows)} {row.get('id', '')} {status}",
+                    flush=True,
+                )
     output_rows = [row for row in completed if row is not None]
+    failed_rows = [failed_by_index[index] for index in sorted(failed_by_index)]
     null_answers = collect_null_answers(path, output_rows)
     write_rows(output_path, output_rows)
-    failure_sidecar = failure_sidecar_path(output_path)
+    failure_sidecar, null_sidecar = sidecar_paths(path, output_path, args.failures_dir)
+    failure_sidecar.parent.mkdir(parents=True, exist_ok=True)
     failure_sidecar.write_text(
         "".join(json.dumps(item, ensure_ascii=False) + "\n" for item in failed_rows),
         encoding="utf-8",
     )
-    null_sidecar = null_answers_sidecar_path(output_path)
     null_sidecar.write_text(
         "".join(json.dumps(item, ensure_ascii=False) + "\n" for item in null_answers),
         encoding="utf-8",
     )
+    checkpoint.unlink(missing_ok=True)
     return output_path, failure_sidecar, len(failed_rows), null_sidecar, len(null_answers)
 
 
