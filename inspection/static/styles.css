@@ -530,7 +530,8 @@ textarea:focus {
   background: #fbfdfc;
 }
 
-.field-final-answers .field-value {
+.field-final-answers .field-value,
+.field-ground-truths .field-value {
   background: #f2fbf8;
 }
 
@@ -548,7 +549,27 @@ textarea:focus {
   background: #ffffff;
 }
 
+.answer-card-unavailable {
+  border-color: #fdba74;
+  background: #fffaf3;
+}
+
+.answer-unavailable {
+  display: grid;
+  gap: 5px;
+  padding: 10px 4px 4px;
+  color: #9a3412;
+  line-height: 1.55;
+}
+
+.answer-unavailable span {
+  color: #7c2d12;
+}
+
 .answer-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   margin-bottom: 8px;
   color: #0f4f4a;
   font-size: 0.78rem;
@@ -556,9 +577,32 @@ textarea:focus {
   text-transform: uppercase;
 }
 
+.part-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #ffffff;
+  font-size: 0.88rem;
+  text-transform: lowercase;
+}
+
 .answer-render {
   overflow-x: auto;
-  padding: 6px 0;
+  padding: 10px 4px;
+  color: #111827;
+  font-size: 1.06rem;
+  line-height: 1.75;
+  white-space: pre-wrap;
+}
+
+.answer-render .katex-display {
+  margin: 0.65em 0;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .answer-source {

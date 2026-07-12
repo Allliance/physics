@@ -80,12 +80,16 @@ function parseMaybeJson(value) {
   }
 }
 
-function finalAnswerItems(value) {
+function groundTruthItems(value) {
   const parsed = parseMaybeJson(value);
-  if (Array.isArray(parsed)) return parsed.map((item) => text(item));
-  if (parsed && typeof parsed === "object") return [JSON.stringify(parsed, null, 2)];
+  if (Array.isArray(parsed)) {
+    return parsed.map((item, index) => ({ label: String(index + 1), answer: item }));
+  }
+  if (parsed && typeof parsed === "object") {
+    return Object.entries(parsed).map(([label, answer]) => ({ label, answer }));
+  }
   const raw = text(parsed).trim();
-  return raw ? [raw] : [];
+  return raw ? [{ label: "1", answer: raw }] : [];
 }
 
 function renderMath(root) {
@@ -177,7 +181,9 @@ function renderDatasets() {
     .join("");
 
   if (state.datasets.length) {
-    const preferred = state.datasets.find((dataset) => dataset.id.includes("FrontierPhysics"));
+    const preferred =
+      state.datasets.find((dataset) => dataset.type === "ground-truth extraction") ||
+      state.datasets.find((dataset) => dataset.id.includes("FrontierPhysics"));
     state.dataset = (preferred || state.datasets[0]).id;
     els.datasetSelect.value = state.dataset;
   }
@@ -311,12 +317,12 @@ function renderFields(sample) {
     ? [
         { title: "Original Question", key: firstPresent(sample, ["original_question", "question"]), kind: "text" },
         { title: "Repaired Question", key: firstPresent(sample, ["repaired_question"]), kind: "text" },
-        { title: "Ground Truth", key: firstPresent(sample, ["final_answers", "ground_truth", "answers"]), kind: "answers" },
+        { title: "Ground Truths", key: firstPresent(sample, ["ground_truths", "ground_truth", "final_answers", "answers"]), kind: "answers" },
         { title: "Solution", key: firstPresent(sample, ["solution", "solutions", "answer", "explanation"]), kind: "text" },
       ].filter((section) => section.key)
     : [
         { title: "Question", key: firstPresent(sample, ["question", "questions", "statement", "problem", "prompt"]), kind: "text" },
-        { title: "Ground Truth", key: firstPresent(sample, ["final_answers", "ground_truth", "answers"]), kind: "answers" },
+        { title: "Ground Truths", key: firstPresent(sample, ["ground_truths", "ground_truth", "final_answers", "answers"]), kind: "answers" },
         { title: "Solution", key: firstPresent(sample, ["solution", "solutions", "answer", "explanation"]), kind: "text" },
       ].filter((section) => section.key);
 
@@ -328,7 +334,7 @@ function renderFields(sample) {
     const length = text(sample[key]).length;
     const valueHtml =
       section.kind === "answers"
-        ? finalAnswersHtml(sample[key])
+        ? finalAnswersHtml(sample[key], sample.null_answer_reasons || sample.ground_truth_failure_reasons)
         : `<div class="field-value">${escapeHtml(value || "(empty)")}</div>`;
     return `
       <section class="${fieldClass}">
@@ -364,31 +370,72 @@ function labelBarHtml(label) {
   `;
 }
 
-function finalAnswersHtml(value) {
-  const answers = finalAnswerItems(value);
-  if (!answers.length) {
+function finalAnswersHtml(value, failureReasons = {}) {
+  const items = groundTruthItems(value);
+  const reasons = parseMaybeJson(failureReasons);
+  if (!items.length) {
     return `<div class="field-value">(empty)</div>`;
   }
   return `
     <div class="answer-list">
-      ${answers
-        .map((answer, index) => {
-          const trimmed = answer.trim();
-          const math = trimmed.startsWith("\\") || /[\\$_^{}]/.test(trimmed) ? trimmed : `\\text{${trimmed.replaceAll("\\", "\\\\").replaceAll("{", "\\{").replaceAll("}", "\\}")}}`;
+      ${items
+        .map(({ label, answer }) => {
+          const unavailable = answer === null;
+          const reason = reasons && typeof reasons === "object" ? text(reasons[label]) : "";
           return `
-            <div class="answer-card">
-              <div class="answer-label">Ground truth ${index + 1}</div>
-              <div class="answer-render">\\[${escapeHtml(math)}\\]</div>
-              <details class="answer-source">
-                <summary>Source</summary>
-                <pre>${escapeHtml(answer)}</pre>
-              </details>
+            <div class="answer-card${unavailable ? " answer-card-unavailable" : ""}">
+              <div class="answer-label"><span class="part-badge">(${escapeHtml(label)})</span> Ground truth</div>
+              ${unavailable
+                ? `<div class="answer-unavailable"><strong>Not extractable from the solution</strong><span>${escapeHtml(reason || "No reason supplied.")}</span></div>`
+                : `<div class="answer-render">${answerDisplayHtml(text(answer))}</div>
+                   <details class="answer-source">
+                     <summary>Selected source content</summary>
+                     <pre>${escapeHtml(text(answer))}</pre>
+                   </details>`}
             </div>
           `;
         })
         .join("")}
     </div>
   `;
+}
+
+function escapedDollarCount(value) {
+  let count = 0;
+  for (let index = 0; index < value.length; index += 1) {
+    if (value[index] !== "$") continue;
+    let slashes = 0;
+    for (let cursor = index - 1; cursor >= 0 && value[cursor] === "\\"; cursor -= 1) slashes += 1;
+    if (slashes % 2 === 0) count += 1;
+  }
+  return count;
+}
+
+function answerDisplayHtml(answer) {
+  let display = answer.trim();
+  if (!display) return "(empty)";
+
+  // Exact extracted spans occasionally begin/end inside a solution display-math
+  // block. Remove delimiter-only lines for presentation; the untouched text is
+  // always available under "Exact source substring".
+  display = display
+    .split("\n")
+    .filter((line) => !/^(\s*)(\$\$|\\\[|\\\])(\s*)$/.test(line))
+    .join("\n")
+    .trim();
+
+  const hasDelimiters = /\$|\\\(|\\\)|\\\[|\\\]/.test(display);
+  if (!hasDelimiters) {
+    const plainWords = /^[\p{L}\s-]+$/u.test(display);
+    const math = plainWords
+      ? `\\text{${display.replaceAll("\\", "\\\\").replaceAll("{", "\\{").replaceAll("}", "\\}")}}`
+      : display;
+    return `\\[${escapeHtml(math)}\\]`;
+  }
+
+  // Balance a truncated inline delimiter at the edge of an exact source span.
+  if (escapedDollarCount(display.replaceAll("$$", "")) % 2 === 1) display += "$";
+  return escapeHtml(display);
 }
 
 els.datasetSelect.addEventListener("change", () => {

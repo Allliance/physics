@@ -16,5 +16,5 @@ Then open:
 http://127.0.0.1:8765
 ```
 
-The server discovers parquet files under `filtered_datasets/` and jsonl files under `original_datasets/`.
+The server discovers parquet files under `filtered_datasets/` and `repaired_datasets/`, plus jsonl files under `original_datasets/`. It also exposes extracted ground truths from `data/extract_gt/outputs/dev_set*/` as prominent dataset choices. Each part is shown separately with KaTeX-rendered mathematics and expandable selected source content.
 Use the search box to filter samples by phrase in the `question` field.

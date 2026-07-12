@@ -20,6 +20,7 @@ import pyarrow.parquet as pq
 APP_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = APP_DIR.parent
 STATIC_DIR = APP_DIR / "static"
+SPLIT_NAMES = {"train", "test", "validation", "val", "dev"}
 
 
 def rel(path: Path) -> str:
@@ -51,11 +52,28 @@ def parse_dataset_id(value: str) -> tuple[str, Path]:
 def discover_datasets() -> list[dict]:
     datasets: list[dict] = []
 
+    ground_truth_outputs = PROJECT_ROOT / "data" / "extract_gt" / "outputs"
+    ground_truth_files = (
+        sorted(ground_truth_outputs.glob("dev_set*/*.parquet"))
+        if ground_truth_outputs.exists()
+        else []
+    )
+    for parquet in ground_truth_files:
+        relative = rel(parquet)
+        datasets.append(
+            {
+                "id": dataset_id("parquet-file", relative),
+                "label": f"Extracted ground truths / {parquet.parent.name} / {parquet.stem}",
+                "path": relative,
+                "type": "ground-truth extraction",
+                "files": 1,
+            }
+        )
+
     parquet_roots = []
     filtered = PROJECT_ROOT / "filtered_datasets"
     if filtered.exists():
-        split_names = {"train", "test", "validation", "val", "dev"}
-        candidates = {p.parent.parent for p in filtered.glob("**/*.parquet") if p.parent.name in split_names}
+        candidates = {p.parent.parent for p in filtered.glob("**/*.parquet") if p.parent.name in SPLIT_NAMES}
         for directory in sorted(candidates):
             files = sorted(directory.glob("*/*.parquet"))
             if files:
@@ -73,7 +91,32 @@ def discover_datasets() -> list[dict]:
             }
         )
 
-    for parquet in sorted(filtered.glob("**/*.parquet")) if filtered.exists() else []:
+    repaired = PROJECT_ROOT / "repaired_datasets"
+    repaired_roots = []
+    if repaired.exists():
+        for directory in sorted({p.parent for p in repaired.glob("*/*.parquet")}):
+            files = sorted(directory.glob("*.parquet"))
+            if files:
+                repaired_roots.append((directory, files))
+
+    for directory, files in repaired_roots:
+        relative = rel(directory)
+        datasets.append(
+            {
+                "id": dataset_id("parquet-dir", relative),
+                "label": f"{directory.name} - all repaired parts",
+                "path": relative,
+                "type": "repaired parquet directory",
+                "files": len(files),
+            }
+        )
+
+    parquet_files = []
+    for root in (filtered, repaired):
+        if root.exists():
+            parquet_files.extend(root.glob("**/*.parquet"))
+
+    for parquet in sorted(parquet_files):
         relative = rel(parquet)
         datasets.append(
             {
@@ -129,8 +172,11 @@ def read_parquet_file(path: Path) -> list[dict]:
     for row in rows:
         row.setdefault("__dataset_file", rel(path))
         parent = path.parent.name
-        if parent in {"train", "test", "validation", "val", "dev"}:
+        if parent in SPLIT_NAMES:
             row.setdefault("__split", parent)
+            row.setdefault("__part", path.stem)
+        elif path.stem in SPLIT_NAMES:
+            row.setdefault("__split", path.stem)
             row.setdefault("__part", path.stem)
     return rows
 
@@ -210,7 +256,8 @@ def load_dataset(dataset: str) -> tuple[dict, ...]:
     kind, path = parse_dataset_id(dataset)
     rows: list[dict] = []
     if kind == "parquet-dir":
-        for parquet in sorted(path.glob("*/*.parquet")):
+        parquet_paths = sorted({*path.glob("*.parquet"), *path.glob("*/*.parquet")})
+        for parquet in parquet_paths:
             rows.extend(read_parquet_file(parquet))
     elif kind == "parquet-file":
         rows.extend(read_parquet_file(path))
