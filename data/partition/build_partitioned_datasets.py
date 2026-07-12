@@ -23,7 +23,7 @@ DEFAULT_PARTITIONS = REPO_ROOT / "scratch" / "multipart_analysis" / "messy_parti
 
 QUESTION_FIELD_BY_DATASET = {
     "FrontierPhysics": "question",
-    "Physics-TTT": "questions",
+    "Physics": "questions",
 }
 MULTI_LABELS = {"clean_multi_part", "messy_multi_part"}
 

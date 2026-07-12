@@ -6,7 +6,7 @@ Physics and FrontierPhysics problem records.
 ## Files
 
 - `FrontierPhysics.jsonl`
-- `Physics-TTT.jsonl`
+- `Physics.jsonl`
 
 ## FrontierPhysics.jsonl
 
@@ -29,7 +29,7 @@ All 471 rows have a non-empty `rubric` field. The upstream shards contain some
 repeated `id` values across different source files, so `source_file` is kept to
 make each row traceable.
 
-## Physics-TTT.jsonl
+## Physics.jsonl
 
 This file is the upstream Physics problem data with rubrics merged by `id`.
 

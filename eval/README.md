@@ -14,7 +14,7 @@ uv run --with pyarrow python -m eval FrontierPhysics test --mode separated --lim
 Run against an OpenAI-compatible or vLLM chat-completions endpoint:
 
 ```bash
-uv run --with pyarrow python -m eval Physics-TTT test --mode separated \
+uv run --with pyarrow python -m eval Physics test --mode separated \
   --generator-backend openai --generator-url http://localhost:8000 \
   --generator-model my-model --generator-api-key EMPTY \
   --judge-backend openai --judge-url https://api.openai.com \
@@ -23,7 +23,7 @@ uv run --with pyarrow python -m eval Physics-TTT test --mode separated \
 
 Dataset files are resolved from `final_datasets/<dataset>/<split>.parquet`, next
 to the `eval` package. Supported datasets are `FrontierPhysics` and
-`Physics-TTT`; supported splits are `train`, `validation`, and `test`.
+`Physics`; supported splits are `train`, `validation`, and `test`.
 `FrontierPhysics validation` is rejected because that split does not exist.
 
 Artifacts live under `eval/artifacts/<dataset>/<split>/<mode>/model_<generator>/`.

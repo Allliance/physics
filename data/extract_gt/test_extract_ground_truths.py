@@ -141,8 +141,8 @@ class SidecarRecordTest(unittest.TestCase):
 
     def test_checkpoint_path_is_hidden_beside_output(self):
         self.assertEqual(
-            checkpoint_path(Path("final_datasets/Physics-TTT/train.parquet")),
-            Path("final_datasets/Physics-TTT/.train.parquet.checkpoint.jsonl"),
+            checkpoint_path(Path("final_datasets/Physics/train.parquet")),
+            Path("final_datasets/Physics/.train.parquet.checkpoint.jsonl"),
         )
 
     def test_custom_sidecar_layout(self):

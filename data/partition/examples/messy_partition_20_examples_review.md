@@ -23,7 +23,7 @@ Determine for the photons, electrons, positrons and neutrinos during the first s
 (b) average entropy per particle.
 ```
 
-## Physics-TTT/test.parquet row=67 id=quantum/4007
+## Physics/test.parquet row=67 id=quantum/4007
 
 Verification passed: `True`
 Metrics: jaccard=0.9474, content_jaccard=1.0, missing=0.0137, added=0.04, length_ratio=0.9967, doubled_latex=[]
@@ -44,7 +44,7 @@ Determine, of an electron contained in a cube of essentially infinite volume $L^
 The electron is in an electromagnetic field characterized by the vector potential $$ \mathbf{A} = H_0x\hat{e}_y \quad (\lvert \hat{e}_y \rvert = 1). $$
 ```
 
-## Physics-TTT/train.parquet row=45 id=statistics/2-126
+## Physics/train.parquet row=45 id=statistics/2-126
 
 Verification passed: `True`
 Metrics: jaccard=0.9315, content_jaccard=1.0, missing=0.0286, added=0.0423, length_ratio=0.9942, doubled_latex=[]
@@ -64,7 +64,7 @@ Find, of an ideal Boltzmann gas of indistinguishable particles in the extreme re
 (c) specific heat at constant volume.
 ```
 
-## Physics-TTT/train.parquet row=94 id=optics/3-25
+## Physics/train.parquet row=94 id=optics/3-25
 
 Verification passed: `True`
 Metrics: jaccard=0.9692, content_jaccard=1.0, missing=0.0156, added=0.0156, length_ratio=1.0, doubled_latex=[]
@@ -83,7 +83,7 @@ Solar energy at the rate 800 W/m$^2$ strikes a flat solar panel for water heatin
 (b) If the absorptance dropped by 1/2, how would this affect the final temperature?
 ```
 
-## Physics-TTT/train.parquet row=305 id=electro/1_15
+## Physics/train.parquet row=305 id=electro/1_15
 
 Verification passed: `True`
 Metrics: jaccard=0.9385, content_jaccard=1.0, missing=0.0317, added=0.0317, length_ratio=0.9896, doubled_latex=[]
@@ -225,7 +225,7 @@ Assuming the Dietriche equation of state, $$P = \rho^2 \left( \frac{\partial e}{
 (c) Further give the expression for the second virial coefficient $B_2$ for the Dietrici equation of state.
 ```
 
-## Physics-TTT/test.parquet row=12 id=mechanics/1_30
+## Physics/test.parquet row=12 id=mechanics/1_30
 
 Verification passed: `True`
 Metrics: jaccard=0.9605, content_jaccard=1.0, missing=0.0135, added=0.0267, length_ratio=0.9945, doubled_latex=[]
@@ -245,7 +245,7 @@ Calculate:
 (b) the time taken to travel from London to Paris.
 ```
 
-## Physics-TTT/test.parquet row=30 id=electro/1_17
+## Physics/test.parquet row=30 id=electro/1_17
 
 Verification passed: `True`
 Metrics: jaccard=1.0, content_jaccard=1.0, missing=0.0, added=0.0, length_ratio=1.0, doubled_latex=[]
@@ -264,7 +264,7 @@ The inside of a grounded spherical metal shell (inner radius $R_1$ and outer rad
 (b) Find the potential at the center.
 ```
 
-## Physics-TTT/test.parquet row=103 id=quantum/5077
+## Physics/test.parquet row=103 id=quantum/5077
 
 Verification passed: `True`
 Metrics: jaccard=1.0, content_jaccard=1.0, missing=0.0, added=0.0, length_ratio=1.0, doubled_latex=[]
@@ -284,7 +284,7 @@ A particle which moves only in the $x$ direction is confined between vertical wa
 (c) What is the energy of such a particle?
 ```
 
-## Physics-TTT/train.parquet row=70 id=Classical Mechanics/2-5
+## Physics/train.parquet row=70 id=Classical Mechanics/2-5
 
 Verification passed: `True`
 Metrics: jaccard=1.0, content_jaccard=1.0, missing=0.0, added=0.0, length_ratio=1.0, doubled_latex=[]
@@ -303,7 +303,7 @@ Three identical masses are interconnected via three identical springs and the sy
 (b) Suppose you displace the top mass a bit and the masses are initially at rest, determine the subsequent motion of the system after letting go of the top mass.
 ```
 
-## Physics-TTT/train.parquet row=284 id=atomic/4-46
+## Physics/train.parquet row=284 id=atomic/4-46
 
 Verification passed: `False`
 Metrics: jaccard=0.9636, content_jaccard=0.9231, missing=0.0, added=0.0364, length_ratio=1.0116, doubled_latex=['\\\\text', '\\\\text', '\\\\pi', '\\\\pi']
@@ -322,7 +322,7 @@ A $K_0^L$ meson $(Mc^2 = 498 \\text{ MeV})$ decays into $\\pi^+\\pi^-$ $(mc^2 = 
 (b) Find the maximum longitudinal momentum that a pion can have in the laboratory.
 ```
 
-## Physics-TTT/train.parquet row=310 id=quantum/7010
+## Physics/train.parquet row=310 id=quantum/7010
 
 Verification passed: `True`
 Metrics: jaccard=0.9852, content_jaccard=1.0, missing=0.0075, added=0.0075, length_ratio=0.995, doubled_latex=[]
@@ -342,7 +342,7 @@ Two identical nonrelativistic fermions of mass $m$, spin $1/2$ are in a one-dime
 (c) Calculate (in first-order perturbation theory) the energies of second- and third-lowest states; leave your result in the form of an integral.
 ```
 
-## Physics-TTT/train.parquet row=669 id=atomic/3-11
+## Physics/train.parquet row=669 id=atomic/3-11
 
 Verification passed: `True`
 Metrics: jaccard=1.0, content_jaccard=1.0, missing=0.0, added=0.0, length_ratio=1.0, doubled_latex=[]
@@ -360,7 +360,7 @@ Partitioned:
 (b) How does $\mu^+$ decay?
 ```
 
-## Physics-TTT/validation.parquet row=14 id=optics/2-53
+## Physics/validation.parquet row=14 id=optics/2-53
 
 Verification passed: `True`
 Metrics: jaccard=0.9348, content_jaccard=1.0, missing=0.0444, added=0.0227, length_ratio=0.9826, doubled_latex=[]
@@ -379,7 +379,7 @@ A transmission type diffraction grating having 250 lines/mm is illuminated with 
 (b) what colors are they?
 ```
 
-## Physics-TTT/validation.parquet row=18 id=optics/2-35
+## Physics/validation.parquet row=18 id=optics/2-35
 
 Verification passed: `True`
 Metrics: jaccard=0.964, content_jaccard=1.0, missing=0.0183, added=0.0183, length_ratio=0.9942, doubled_latex=[]

@@ -58,18 +58,18 @@ python3 data/filter/filter_dataset.py \
   --judge-backend codex-cli \
   --workers 32 \
   --input-dir data/filter/dev_sets \
-  --splits physics_ttt_test_labeled.parquet \
-  --output-dir /tmp/physics-ttt-dev-filtered \
-  --decisions-dir /tmp/physics-ttt-dev-decisions
+  --splits physics_test_labeled.parquet \
+  --output-dir /tmp/physics-dev-filtered \
+  --decisions-dir /tmp/physics-dev-decisions
 ```
 
 ## Development Set
 
-A small labeled Physics-TTT test set is available for prompt/filter debugging:
+A small labeled Physics test set is available for prompt/filter debugging:
 
 ```text
-data/filter/dev_sets/physics_ttt_test_labeled.json
-data/filter/dev_sets/physics_ttt_test_labeled.parquet
+data/filter/dev_sets/physics_test_labeled.json
+data/filter/dev_sets/physics_test_labeled.parquet
 ```
 
 Each row has `label` using the same taxonomy requested from the judge:

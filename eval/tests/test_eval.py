@@ -8,7 +8,7 @@ from eval.pipeline import resolve_ground_truth
 class ParsingTests(unittest.TestCase):
     def test_dataset_selection(self):
         self.assertEqual(resolve_dataset_path("FrontierPhysics", "test").name, "test.parquet")
-        self.assertEqual(resolve_dataset_path("Physics-TTT", "validation").name, "validation.parquet")
+        self.assertEqual(resolve_dataset_path("Physics", "validation").name, "validation.parquet")
         with self.assertRaisesRegex(ValueError, "no validation split"):
             resolve_dataset_path("FrontierPhysics", "validation")
 

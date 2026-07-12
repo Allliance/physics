@@ -7,7 +7,7 @@ from pathlib import Path
 from .llm import make_llm
 from .pipeline import RunConfig, run
 
-DATASETS = ("FrontierPhysics", "Physics-TTT")
+DATASETS = ("FrontierPhysics", "Physics")
 SPLITS = ("train", "validation", "test")
 DATA_ROOT = Path(__file__).resolve().parent.parent / "final_datasets"
 
