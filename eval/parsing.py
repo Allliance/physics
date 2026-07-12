@@ -42,16 +42,23 @@ def extract_boxes(text: str) -> list[str]:
     return boxes
 
 
+def strip_part_label(answer: str) -> str:
+    """Remove one leading part label from extracted answer content."""
+    match = _LABEL.match(answer)
+    return answer[match.end():].strip() if match else answer.strip()
+
+
 def map_separated_boxes(boxes: list[str], part_ids: list[str]) -> tuple[dict[str, str], list[str]]:
     answers: dict[str, str] = {}
     errors: list[str] = []
     for index, box in enumerate(boxes):
         match = _LABEL.match(box)
-        label = match.group(1).lower() if match else None
+        supplied_label = match.group(1).lower() if match else None
+        label = supplied_label
         if label not in part_ids:
             label = part_ids[index] if index < len(part_ids) else None
             errors.append(f"box {index + 1} lacked a valid label; assigned by position")
-        content = box[match.end():].strip() if match and match.group(1).lower() == label else box.strip()
+        content = strip_part_label(box)
         if label is not None and label not in answers:
             answers[label] = content
         elif label is not None:

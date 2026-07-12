@@ -6,7 +6,9 @@ from unittest.mock import patch
 
 from eval.__main__ import resolve_dataset_path
 from eval.parsing import detect_part_ids, extract_boxes, map_separated_boxes, parse_json_object
-from eval.pipeline import RunConfig, _key, load_ground_truths, resolve_ground_truth, run
+from eval.pipeline import (
+    RunConfig, _key, candidate_answers, load_ground_truths, resolve_ground_truth, run,
+)
 
 
 class ParsingTests(unittest.TestCase):
@@ -48,6 +50,21 @@ class ParsingTests(unittest.TestCase):
         mapped, errors = map_separated_boxes(["(a) 1", "(b): 2"], ["a", "b"])
         self.assertEqual(mapped, {"a": "1", "b": "2"})
         self.assertEqual(errors, [])
+
+    def test_preserved_single_subquestion_box_is_canonicalized_to_a(self):
+        mapped, errors = map_separated_boxes(["(c) final answer"], ["a"])
+        self.assertEqual(mapped, {"a": "final answer"})
+        self.assertEqual(errors, ["box 1 lacked a valid label; assigned by position"])
+
+    def test_cached_single_subquestion_answer_is_canonicalized_to_a(self):
+        row = {"is_multi_part": False}
+        response = {"extracted_answers": {"b": "(b) final answer"}}
+        self.assertEqual(candidate_answers(row, response, ["a"]), {"a": "final answer"})
+
+    def test_true_multipart_answer_keys_are_not_canonicalized(self):
+        row = {"is_multi_part": True}
+        response = {"extracted_answers": {"b": "final answer"}}
+        self.assertEqual(candidate_answers(row, response, ["a"]), {"b": "final answer"})
 
     def test_json_fenced(self):
         self.assertEqual(parse_json_object('```json\n{"correct": ["a"]}\n```')["correct"], ["a"])

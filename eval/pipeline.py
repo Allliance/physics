@@ -13,7 +13,9 @@ from pathlib import Path
 from typing import Any
 
 from .llm import LLM
-from .parsing import detect_part_ids, extract_boxes, map_separated_boxes, parse_json_object
+from .parsing import (
+    detect_part_ids, extract_boxes, map_separated_boxes, parse_json_object, strip_part_label,
+)
 from .prompts import (
     MERGED_GENERATION_SYSTEM, MERGED_JUDGE_SYSTEM, SEPARATED_GENERATION_SYSTEM,
     SEPARATED_JUDGE_SYSTEM, generation_prompt, merged_judge_prompt, separated_judge_prompt,
@@ -62,6 +64,17 @@ def resolve_ground_truth(row: dict[str, Any], parts: list[str]) -> tuple[dict[st
     if missing:
         raise ValueError(f"Row {row.get('id')!r} ground_truths is missing parts: {missing}")
     return {part: str(supplied[part]) for part in parts}, "ground_truths"
+
+
+def candidate_answers(row: dict[str, Any], response: dict[str, Any],
+                      parts: list[str]) -> dict[str, str]:
+    """Canonicalize a preserved single sub-question to the dataset's part ``a``."""
+    supplied = response.get("extracted_answers", {})
+    if not isinstance(supplied, dict):
+        return {}
+    if row.get("is_multi_part") is False and parts == ["a"] and len(supplied) == 1:
+        return {"a": strip_part_label(str(next(iter(supplied.values()))))}
+    return {str(part): str(answer) for part, answer in supplied.items()}
 
 
 def _key(dataset: Path, row: dict[str, Any]) -> str:
@@ -192,12 +205,18 @@ def run(dataset: Path, output_root: Path, config: RunConfig, generator: LLM, jud
                     _append(failures_path, failure)
                     failures[failure_key] = failure
                 return
-            correct = [p for p in parsed.get("correct", []) if p in parts]
+            returned_correct = parsed.get("correct", [])
+            if (row.get("is_multi_part") is False and parts == ["a"]
+                    and isinstance(returned_correct, list) and returned_correct):
+                correct = ["a"]
+            else:
+                correct = [p for p in returned_correct if p in parts]
             judgment = {"key": key, "id": row.get("id"), "part_ids": parts, "correct": correct,
                         "score": len(set(correct)) / len(parts), "judge_response": completion.text,
                         "usage": completion.usage}
         else:
             truths, provenance = resolve_ground_truth(row, parts)
+            answers = candidate_answers(row, response, parts)
             per_part, correct = {}, []
             for part in parts:
                 failure_key = f"{key}:{part}"
@@ -206,7 +225,7 @@ def run(dataset: Path, output_root: Path, config: RunConfig, generator: LLM, jud
                 try:
                     completion = judge.complete(
                         separated_judge_prompt(row["question"], part, truths[part],
-                                               response.get("extracted_answers", {}).get(part, "")),
+                                               answers.get(part, "")),
                         system_prompt=SEPARATED_JUDGE_SYSTEM, schema=SEPARATED_SCHEMA,
                     )
                     parsed = parse_json_object(completion.text)

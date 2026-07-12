@@ -46,3 +46,7 @@ determine the generated part labels, judge lookups, and score denominator, so
 gaps such as `b`, `d`, `f` require no inference from question formatting. Rows
 with no non-null ground-truth parts are skipped. Both modes require
 `ground_truths`; merged mode still uses `solution` as the answer reference.
+For a preserved single sub-question (`is_multi_part=false`), the sole part is
+canonicalized to `a` even when the question or model answer retains an original
+label such as `(b)` or `(c)`. Genuine multipart rows keep their original part
+identifiers.
