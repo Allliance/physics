@@ -31,8 +31,9 @@ class OpenAICompatibleLLM:
     base_url: str
     api_key: str = "EMPTY"
     timeout: float = 300.0
-    temperature: float = 0.0
+    temperature: float | None = 0.0
     max_tokens: int | None = None
+    reasoning_effort: str | None = None
 
     def complete(self, prompt: str, *, system_prompt: str, schema: dict[str, Any] | None = None) -> Completion:
         body: dict[str, Any] = {
@@ -41,17 +42,27 @@ class OpenAICompatibleLLM:
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": prompt},
             ],
-            "temperature": self.temperature,
         }
+        if self.temperature is not None:
+            body["temperature"] = self.temperature
         if self.max_tokens is not None:
-            body["max_tokens"] = self.max_tokens
+            token_limit_parameter = ("max_completion_tokens"
+                                     if self.model.startswith(("gpt-5", "o1", "o3", "o4"))
+                                     else "max_tokens")
+            body[token_limit_parameter] = self.max_tokens
+        if self.reasoning_effort is not None:
+            body["reasoning_effort"] = self.reasoning_effort
         if schema is not None:
             body["response_format"] = {
                 "type": "json_schema",
                 "json_schema": {"name": "evaluation", "strict": True, "schema": schema},
             }
+        base_url = self.base_url.rstrip("/")
+        endpoint = (f"{base_url}/chat/completions"
+                    if base_url.endswith(("/v1", "/openai"))
+                    else f"{base_url}/v1/chat/completions")
         request = urllib.request.Request(
-            f"{self.base_url.rstrip('/')}/v1/chat/completions",
+            endpoint,
             data=json.dumps(body).encode(),
             headers={"Authorization": f"Bearer {self.api_key}", "Content-Type": "application/json"},
             method="POST",
@@ -99,12 +110,12 @@ class CodexCLICompatibleLLM:
 
 
 def make_llm(*, backend: str, model: str, url: str | None, api_key: str, timeout: float,
-             reasoning_effort: str | None = None) -> LLM:
+             reasoning_effort: str | None = None, max_tokens: int | None = None) -> LLM:
     if backend == "codex":
         return CodexCLICompatibleLLM(model=model, reasoning_effort=reasoning_effort, timeout=timeout)
     if backend == "openai":
         if not url:
             raise ValueError("--url is required for the openai backend")
-        return OpenAICompatibleLLM(model=model, base_url=url, api_key=api_key, timeout=timeout)
+        return OpenAICompatibleLLM(model=model, base_url=url, api_key=api_key, timeout=timeout,
+                                   max_tokens=max_tokens, reasoning_effort=reasoning_effort)
     raise ValueError(f"Unknown backend: {backend}")
-

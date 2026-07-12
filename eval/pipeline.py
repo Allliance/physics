@@ -53,7 +53,7 @@ def load_ground_truths(row: dict[str, Any]) -> dict[str, str]:
     supplied = _json_value(row["ground_truths"])
     if not isinstance(supplied, dict):
         raise ValueError(f"Row {row.get('id')!r} ground_truths must be a JSON object")
-    return {str(part): str(answer) for part, answer in supplied.items()}
+    return {str(part): str(answer) for part, answer in supplied.items() if answer is not None}
 
 
 def resolve_ground_truth(row: dict[str, Any], parts: list[str]) -> tuple[dict[str, str], str]:
@@ -95,6 +95,10 @@ class RunConfig:
     limit: int | None = None
     overwrite: bool = False
     max_workers: int = 32
+    generator_reasoning_effort: str | None = None
+    generator_max_tokens: int | None = None
+    judge_reasoning_effort: str | None = None
+    judge_max_tokens: int | None = None
 
 
 def model_artifact_dir(root: Path, dataset: Path, config: RunConfig) -> Path:
@@ -110,18 +114,22 @@ def artifact_dir(root: Path, dataset: Path, config: RunConfig) -> Path:
 def run(dataset: Path, output_root: Path, config: RunConfig, generator: LLM, judge: LLM) -> Path:
     if config.mode not in {"merged", "separated"}:
         raise ValueError("mode must be merged or separated")
-    rows = read_rows(dataset)
+    all_rows = read_rows(dataset)
+    rows = [row for row in all_rows if load_ground_truths(row)]
+    skipped_no_ground_truth_parts = len(all_rows) - len(rows)
     if config.limit is not None:
         rows = rows[:config.limit]
     model_out = model_artifact_dir(output_root, dataset, config)
     out = artifact_dir(output_root, dataset, config)
     model_out.mkdir(parents=True, exist_ok=True)
     out.mkdir(parents=True, exist_ok=True)
-    responses_path, judgments_path = model_out / "responses.jsonl", out / "judgments.jsonl"
+    responses_path = model_out / "responses.jsonl"
+    judgments_path, failures_path = out / "judgments.jsonl", out / "failures.jsonl"
     if config.overwrite:
         responses_path.unlink(missing_ok=True)
         judgments_path.unlink(missing_ok=True)
     responses, judgments = _load_jsonl(responses_path), _load_jsonl(judgments_path)
+    failures = _load_jsonl(failures_path, key="failure_key")
     gen_system = MERGED_GENERATION_SYSTEM if config.mode == "merged" else SEPARATED_GENERATION_SYSTEM
 
     write_lock = threading.Lock()
@@ -148,15 +156,42 @@ def run(dataset: Path, output_root: Path, config: RunConfig, generator: LLM, jud
                 responses[key] = record
 
         response = responses[key]
-        if key in judgments:
-            return
+        cached_judgment = judgments.get(key)
+        if cached_judgment is not None:
+            cached_parts = cached_judgment.get("part_ids", [])
+            if cached_parts == parts:
+                return
+            if set(parts).issubset(cached_parts):
+                filtered = dict(cached_judgment)
+                filtered["part_ids"] = parts
+                filtered["correct"] = [part for part in cached_judgment.get("correct", []) if part in parts]
+                filtered["score"] = len(filtered["correct"]) / len(parts)
+                if config.mode == "separated" and "parts" in cached_judgment:
+                    filtered["parts"] = {part: cached_judgment["parts"][part] for part in parts}
+                filtered["created_at"] = datetime.now(timezone.utc).isoformat()
+                with write_lock:
+                    _append(judgments_path, filtered)
+                    judgments[key] = filtered
+                return
         if config.mode == "merged":
-            completion = judge.complete(
-                merged_judge_prompt(row["question"], str(row.get("solution") or ""),
-                                    response.get("extracted_answer", ""), parts),
-                system_prompt=MERGED_JUDGE_SYSTEM, schema=MERGED_SCHEMA,
-            )
-            parsed = parse_json_object(completion.text)
+            failure_key = f"{key}:merged"
+            if failure_key in failures:
+                return
+            try:
+                completion = judge.complete(
+                    merged_judge_prompt(row["question"], str(row.get("solution") or ""),
+                                        response.get("extracted_answer", ""), parts),
+                    system_prompt=MERGED_JUDGE_SYSTEM, schema=MERGED_SCHEMA,
+                )
+                parsed = parse_json_object(completion.text)
+            except Exception as exc:
+                failure = {"failure_key": failure_key, "key": key, "id": row.get("id"),
+                           "part": None, "error": f"{type(exc).__name__}: {exc}",
+                           "created_at": datetime.now(timezone.utc).isoformat()}
+                with write_lock:
+                    _append(failures_path, failure)
+                    failures[failure_key] = failure
+                return
             correct = [p for p in parsed.get("correct", []) if p in parts]
             judgment = {"key": key, "id": row.get("id"), "part_ids": parts, "correct": correct,
                         "score": len(set(correct)) / len(parts), "judge_response": completion.text,
@@ -165,12 +200,24 @@ def run(dataset: Path, output_root: Path, config: RunConfig, generator: LLM, jud
             truths, provenance = resolve_ground_truth(row, parts)
             per_part, correct = {}, []
             for part in parts:
-                completion = judge.complete(
-                    separated_judge_prompt(row["question"], part, truths[part],
-                                           response.get("extracted_answers", {}).get(part, "")),
-                    system_prompt=SEPARATED_JUDGE_SYSTEM, schema=SEPARATED_SCHEMA,
-                )
-                parsed = parse_json_object(completion.text)
+                failure_key = f"{key}:{part}"
+                if failure_key in failures:
+                    return
+                try:
+                    completion = judge.complete(
+                        separated_judge_prompt(row["question"], part, truths[part],
+                                               response.get("extracted_answers", {}).get(part, "")),
+                        system_prompt=SEPARATED_JUDGE_SYSTEM, schema=SEPARATED_SCHEMA,
+                    )
+                    parsed = parse_json_object(completion.text)
+                except Exception as exc:
+                    failure = {"failure_key": failure_key, "key": key, "id": row.get("id"),
+                               "part": part, "error": f"{type(exc).__name__}: {exc}",
+                               "created_at": datetime.now(timezone.utc).isoformat()}
+                    with write_lock:
+                        _append(failures_path, failure)
+                        failures[failure_key] = failure
+                    return
                 is_correct = parsed.get("correct") is True
                 if is_correct:
                     correct.append(part)
@@ -180,6 +227,8 @@ def run(dataset: Path, output_root: Path, config: RunConfig, generator: LLM, jud
             judgment = {"key": key, "id": row.get("id"), "part_ids": parts, "correct": correct,
                         "score": len(correct) / len(parts), "ground_truth_source": provenance,
                         "parts": per_part}
+        judgment["judge_reasoning_effort"] = config.judge_reasoning_effort
+        judgment["judge_max_tokens"] = config.judge_max_tokens
         judgment["created_at"] = datetime.now(timezone.utc).isoformat()
         with write_lock:
             _append(judgments_path, judgment)
@@ -189,9 +238,13 @@ def run(dataset: Path, output_root: Path, config: RunConfig, generator: LLM, jud
         list(executor.map(process_row, rows))
 
     selected = [judgments[_key(dataset, row)] for row in rows if _key(dataset, row) in judgments]
+    failed = [failure for failure in failures.values()
+              if failure.get("key") in {_key(dataset, row) for row in rows}]
     summary = {
         "dataset": str(dataset), "mode": config.mode, "generator": config.generator_name,
         "judge": config.judge_name, "num_rows": len(selected),
+        "num_skipped_no_ground_truth_parts": skipped_no_ground_truth_parts,
+        "num_failed_judgments": len(failed),
         "mean_score": sum(x["score"] for x in selected) / len(selected) if selected else None,
         "created_at": datetime.now(timezone.utc).isoformat(),
     }
