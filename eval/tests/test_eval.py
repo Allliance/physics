@@ -10,7 +10,7 @@ from eval.llm import OpenAICompatibleLLM
 from eval.__main__ import resolve_dataset_path
 from eval.parsing import detect_part_ids, extract_boxes, map_separated_boxes, parse_json_object
 from eval.pipeline import (
-    GenerationConfig, RunConfig, _key, candidate_answers, load_ground_truths,
+    SEPARATED_SCHEMA, GenerationConfig, RunConfig, _key, candidate_answers, load_ground_truths,
     model_artifact_dir, resolve_ground_truth, run,
 )
 
@@ -131,6 +131,9 @@ class LLMTests(unittest.TestCase):
 
 
 class JudgmentCacheTests(unittest.TestCase):
+    def test_judge_schema_has_no_free_form_text(self):
+        self.assertEqual(set(SEPARATED_SCHEMA["properties"]), {"correct"})
+
     def test_generation_cache_tag_changes_with_sampling(self):
         greedy = GenerationConfig("model", temperature=0.0)
         sampled = GenerationConfig("model", temperature=1.0, top_p=1.0)

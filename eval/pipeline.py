@@ -27,8 +27,8 @@ MERGED_SCHEMA = {
 }
 SEPARATED_SCHEMA = {
     "type": "object",
-    "properties": {"correct": {"type": "boolean"}, "reason": {"type": "string"}},
-    "required": ["correct", "reason"], "additionalProperties": False,
+    "properties": {"correct": {"type": "boolean"}},
+    "required": ["correct"], "additionalProperties": False,
 }
 
 
@@ -239,8 +239,6 @@ def run(dataset: Path, output_root: Path, config: RunConfig, generator: LLM, jud
             per_part, correct = {}, []
             for part in parts:
                 failure_key = f"{key}:{part}"
-                if failure_key in failures:
-                    return
                 try:
                     completion = judge.complete(
                         separated_judge_prompt(row["question"], part, truths[part],
@@ -262,6 +260,8 @@ def run(dataset: Path, output_root: Path, config: RunConfig, generator: LLM, jud
                 per_part[part] = {"correct": is_correct, "reason": str(parsed.get("reason", "")),
                                   "judge_response": completion.text, "usage": completion.usage,
                                   "ground_truth": truths[part]}
+                with write_lock:
+                    failures.pop(failure_key, None)
             judgment = {"key": key, "id": row.get("id"), "part_ids": parts, "correct": correct,
                         "score": len(correct) / len(parts), "ground_truth_source": provenance,
                         "parts": per_part}

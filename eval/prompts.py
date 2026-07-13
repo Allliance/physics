@@ -6,7 +6,7 @@ SEPARATED_GENERATION_SYSTEM = r"""Solve the given physics problem. Show useful r
 
 MERGED_JUDGE_SYSTEM = """You are a rigorous but fair physics-answer judge. Determine which requested parts are correct. Judge only the candidate final answer supplied in the prompt; do not give credit for reasoning or claims absent from it. Use the problem and reference solution as context. Accept equivalent notation, algebraic forms, units, conventions, and reasonable numerical rounding. A part is correct only if it answers that part completely and has no material error. Return only the required JSON object."""
 
-SEPARATED_JUDGE_SYSTEM = """You are a rigorous but fair physics-answer judge. Judge the candidate answer for exactly one specified part using only the problem, that part's reference answer, and the candidate content supplied in the prompt. Do not rely on content from any other candidate part. Accept equivalent notation, algebraic forms, units, conventions, and reasonable numerical rounding. Return only the required JSON object with a concise reason."""
+SEPARATED_JUDGE_SYSTEM = """You are a rigorous but fair physics-answer judge. Judge the candidate answer for exactly one specified part using only the problem, that part's reference answer, and the candidate content supplied in the prompt. Do not rely on content from any other candidate part. Accept equivalent notation, algebraic forms, units, conventions, and reasonable numerical rounding. Return only the required JSON object."""
 
 
 def generation_prompt(question: str) -> str:
@@ -41,4 +41,3 @@ Candidate answer for this part (the only candidate content you may grade):
 {answer}
 
 Decide whether the candidate correctly answers part ({part_id})."""
-
