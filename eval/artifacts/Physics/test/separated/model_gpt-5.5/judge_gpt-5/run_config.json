@@ -1,0 +1,18 @@
+{
+  "mode": "separated",
+  "generator_name": "gpt-5.5",
+  "judge_name": "gpt-5",
+  "limit": null,
+  "overwrite": false,
+  "max_workers": 16,
+  "generator_reasoning_effort": null,
+  "generator_max_tokens": null,
+  "judge_reasoning_effort": "high-with-low-fallback",
+  "judge_max_tokens": 2048,
+  "aggregation": {
+    "primary_reasoning_effort": "high",
+    "fallback_reasoning_effort": "low",
+    "primary_judgments": 87,
+    "fallback_judgments": 33
+  }
+}

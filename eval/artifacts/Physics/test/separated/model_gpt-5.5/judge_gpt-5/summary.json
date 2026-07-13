@@ -1,0 +1,13 @@
+{
+  "dataset": "final_datasets/Physics/test.parquet",
+  "mode": "separated",
+  "generator": "gpt-5.5",
+  "judge": "gpt-5",
+  "num_rows": 120,
+  "num_skipped_no_ground_truth_parts": 1,
+  "num_failed_judgments": 2,
+  "num_high_reasoning_judgments": 87,
+  "num_low_reasoning_fallback_judgments": 33,
+  "mean_score": 0.8130555555555556,
+  "created_at": "2026-07-12T20:58:05.845193+00:00"
+}
