@@ -101,22 +101,41 @@ def _append(path: Path, value: dict[str, Any]) -> None:
 
 
 @dataclass
+class GenerationConfig:
+    """Model-agnostic generation settings recorded with every evaluation."""
+
+    model: str
+    reasoning_effort: str | None = None
+    max_tokens: int | None = None
+    temperature: float | None = None
+    top_p: float | None = None
+    top_k: int | None = None
+    min_p: float | None = None
+    presence_penalty: float | None = None
+    repetition_penalty: float | None = None
+    extra_body: dict[str, Any] | None = None
+
+    def cache_tag(self) -> str:
+        payload = json.dumps(asdict(self), sort_keys=True, separators=(",", ":"))
+        return hashlib.sha256(payload.encode()).hexdigest()[:10]
+
+
+@dataclass
 class RunConfig:
     mode: str
-    generator_name: str
+    generation: GenerationConfig
     judge_name: str
     limit: int | None = None
     overwrite: bool = False
     max_workers: int = 32
-    generator_reasoning_effort: str | None = None
-    generator_max_tokens: int | None = None
     judge_reasoning_effort: str | None = None
     judge_max_tokens: int | None = None
 
 
 def model_artifact_dir(root: Path, dataset: Path, config: RunConfig) -> Path:
-    model = re.sub(r"[^A-Za-z0-9_.-]+", "_", config.generator_name)
-    return root / dataset.parent.name / dataset.stem / config.mode / f"model_{model}"
+    model = re.sub(r"[^A-Za-z0-9_.-]+", "_", config.generation.model)
+    return (root / dataset.parent.name / dataset.stem / config.mode
+            / f"model_{model}_gen_{config.generation.cache_tag()}")
 
 
 def artifact_dir(root: Path, dataset: Path, config: RunConfig) -> Path:
@@ -257,14 +276,30 @@ def run(dataset: Path, output_root: Path, config: RunConfig, generator: LLM, jud
         list(executor.map(process_row, rows))
 
     selected = [judgments[_key(dataset, row)] for row in rows if _key(dataset, row) in judgments]
+    selected_responses = [responses[_key(dataset, row)] for row in rows
+                          if _key(dataset, row) in responses]
     failed = [failure for failure in failures.values()
               if failure.get("key") in {_key(dataset, row) for row in rows}]
+    prompt_tokens = sum((item.get("usage") or {}).get("prompt_tokens", 0) or 0
+                        for item in selected_responses)
+    completion_tokens = sum((item.get("usage") or {}).get("completion_tokens", 0) or 0
+                            for item in selected_responses)
+    token_cap = config.generation.max_tokens
     summary = {
-        "dataset": str(dataset), "mode": config.mode, "generator": config.generator_name,
+        "dataset": str(dataset), "mode": config.mode, "generator": config.generation.model,
         "judge": config.judge_name, "num_rows": len(selected),
         "num_skipped_no_ground_truth_parts": skipped_no_ground_truth_parts,
         "num_failed_judgments": len(failed),
         "mean_score": sum(x["score"] for x in selected) / len(selected) if selected else None,
+        "format_error_rows": sum(bool(item.get("format_errors"))
+                                 for item in selected_responses),
+        "empty_final_rows": sum(not item.get("response") for item in selected_responses),
+        "rows_at_token_cap": (sum(
+            ((item.get("usage") or {}).get("completion_tokens", 0) or 0) >= token_cap
+            for item in selected_responses) if token_cap is not None else None),
+        "generator_prompt_tokens": prompt_tokens,
+        "generator_completion_tokens": completion_tokens,
+        "generator_total_tokens": prompt_tokens + completion_tokens,
         "created_at": datetime.now(timezone.utc).isoformat(),
     }
     (out / "summary.json").write_text(json.dumps(summary, indent=2) + "\n")

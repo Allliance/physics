@@ -1,13 +1,17 @@
 import json
 import unittest
+from io import BytesIO
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from unittest.mock import patch
 
+from eval.llm import OpenAICompatibleLLM
+
 from eval.__main__ import resolve_dataset_path
 from eval.parsing import detect_part_ids, extract_boxes, map_separated_boxes, parse_json_object
 from eval.pipeline import (
-    RunConfig, _key, candidate_answers, load_ground_truths, resolve_ground_truth, run,
+    GenerationConfig, RunConfig, _key, candidate_answers, load_ground_truths,
+    model_artifact_dir, resolve_ground_truth, run,
 )
 
 
@@ -51,6 +55,16 @@ class ParsingTests(unittest.TestCase):
         self.assertEqual(mapped, {"a": "1", "b": "2"})
         self.assertEqual(errors, [])
 
+    def test_formula_letter_is_not_mistaken_for_part_label(self):
+        mapped, errors = map_separated_boxes([r"V=1", r"\,(b) 2"], ["a", "b"])
+        self.assertEqual(mapped, {"b": "2", "a": "V=1"})
+        self.assertEqual(errors, ["box 1 lacked a valid label; assigned by position"])
+
+    def test_explicit_label_wins_over_earlier_positional_fallback(self):
+        mapped, errors = map_separated_boxes(["(a) wrong part", "(b) requested"], ["b"])
+        self.assertEqual(mapped, {"b": "requested"})
+        self.assertEqual(errors, ["expected 1 boxes, found 2"])
+
     def test_preserved_single_subquestion_box_is_canonicalized_to_a(self):
         mapped, errors = map_separated_boxes(["(c) final answer"], ["a"])
         self.assertEqual(mapped, {"a": "final answer"})
@@ -91,14 +105,46 @@ class FailingLLM:
         raise AssertionError("cached judgments should not invoke an LLM")
 
 
+class LLMTests(unittest.TestCase):
+    def test_null_final_content_becomes_empty_answer(self):
+        raw = {"choices": [{"message": {"content": None}}], "usage": {}}
+        response = BytesIO(json.dumps(raw).encode())
+        response.__enter__ = lambda value: value
+        response.__exit__ = lambda *args: None
+        with patch("urllib.request.urlopen", return_value=response):
+            completion = OpenAICompatibleLLM("model", "http://localhost").complete(
+                "prompt", system_prompt="system")
+        self.assertEqual(completion.text, "")
+
+    def test_model_specific_extra_body_is_sent(self):
+        raw = {"choices": [{"message": {"content": "answer"}}]}
+        response = BytesIO(json.dumps(raw).encode())
+        response.__enter__ = lambda value: value
+        response.__exit__ = lambda *args: None
+        with patch("urllib.request.urlopen", return_value=response) as request:
+            OpenAICompatibleLLM(
+                "model", "http://localhost",
+                extra_body={"chat_template_kwargs": {"enable_thinking": False}},
+            ).complete("prompt", system_prompt="system")
+        body = json.loads(request.call_args.args[0].data)
+        self.assertEqual(body["chat_template_kwargs"], {"enable_thinking": False})
+
+
 class JudgmentCacheTests(unittest.TestCase):
+    def test_generation_cache_tag_changes_with_sampling(self):
+        greedy = GenerationConfig("model", temperature=0.0)
+        sampled = GenerationConfig("model", temperature=1.0, top_p=1.0)
+        self.assertNotEqual(greedy.cache_tag(), sampled.cache_tag())
+
     def test_cached_judgment_drops_null_parts_without_llm_call(self):
         row = {"id": "sample", "question": "question", "ground_truths": {"a": "yes", "b": None}}
         with TemporaryDirectory() as directory:
             root = Path(directory)
             dataset = root / "Dataset" / "test.parquet"
             key = _key(dataset, row)
-            out = root / "artifacts" / "Dataset" / "test" / "separated" / "model_generator"
+            config = RunConfig(mode="separated", generation=GenerationConfig("generator"),
+                               judge_name="judge")
+            out = model_artifact_dir(root / "artifacts", dataset, config)
             judge_out = out / "judge_judge"
             judge_out.mkdir(parents=True)
             (out / "responses.jsonl").write_text(json.dumps({
@@ -110,7 +156,6 @@ class JudgmentCacheTests(unittest.TestCase):
                 "correct": ["a", "b"], "score": 1.0,
                 "parts": {"a": {"correct": True}, "b": {"correct": True}},
             }) + "\n")
-            config = RunConfig(mode="separated", generator_name="generator", judge_name="judge")
             with patch("eval.pipeline.read_rows", return_value=[row]):
                 result = run(dataset, root / "artifacts", config, FailingLLM(), FailingLLM())
             migrated = json.loads((result / "judgments.jsonl").read_text().splitlines()[-1])
@@ -118,6 +163,10 @@ class JudgmentCacheTests(unittest.TestCase):
             self.assertEqual(migrated["correct"], ["a"])
             self.assertEqual(migrated["score"], 1.0)
             self.assertEqual(list(migrated["parts"]), ["a"])
+            summary = json.loads((result / "summary.json").read_text())
+            self.assertNotIn("correct_parts", summary)
+            self.assertNotIn("total_parts", summary)
+            self.assertNotIn("micro_part_score", summary)
 
 
 if __name__ == "__main__":

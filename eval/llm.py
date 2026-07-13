@@ -32,6 +32,12 @@ class OpenAICompatibleLLM:
     api_key: str = "EMPTY"
     timeout: float = 300.0
     temperature: float | None = 0.0
+    top_p: float | None = None
+    top_k: int | None = None
+    min_p: float | None = None
+    presence_penalty: float | None = None
+    repetition_penalty: float | None = None
+    extra_body: dict[str, Any] | None = None
     max_tokens: int | None = None
     reasoning_effort: str | None = None
 
@@ -45,6 +51,10 @@ class OpenAICompatibleLLM:
         }
         if self.temperature is not None:
             body["temperature"] = self.temperature
+        for name in ("top_p", "top_k", "min_p", "presence_penalty", "repetition_penalty"):
+            value = getattr(self, name)
+            if value is not None:
+                body[name] = value
         if self.max_tokens is not None:
             token_limit_parameter = ("max_completion_tokens"
                                      if self.model.startswith(("gpt-5", "o1", "o3", "o4"))
@@ -52,6 +62,8 @@ class OpenAICompatibleLLM:
             body[token_limit_parameter] = self.max_tokens
         if self.reasoning_effort is not None:
             body["reasoning_effort"] = self.reasoning_effort
+        if self.extra_body:
+            body.update(self.extra_body)
         if schema is not None:
             body["response_format"] = {
                 "type": "json_schema",
@@ -74,7 +86,9 @@ class OpenAICompatibleLLM:
             detail = exc.read().decode(errors="replace")
             raise RuntimeError(f"LLM HTTP {exc.code}: {detail}") from exc
         return Completion(
-            text=raw["choices"][0]["message"]["content"],
+            # Reasoning models can exhaust their token budget before emitting a
+            # final channel, in which case OpenAI-compatible servers return null.
+            text=raw["choices"][0]["message"].get("content") or "",
             usage=raw.get("usage"),
             raw=raw,
         )
@@ -110,12 +124,21 @@ class CodexCLICompatibleLLM:
 
 
 def make_llm(*, backend: str, model: str, url: str | None, api_key: str, timeout: float,
-             reasoning_effort: str | None = None, max_tokens: int | None = None) -> LLM:
+             reasoning_effort: str | None = None, max_tokens: int | None = None,
+             temperature: float | None = 0.0, top_p: float | None = None,
+             top_k: int | None = None, min_p: float | None = None,
+             presence_penalty: float | None = None,
+             repetition_penalty: float | None = None,
+             extra_body: dict[str, Any] | None = None) -> LLM:
     if backend == "codex":
         return CodexCLICompatibleLLM(model=model, reasoning_effort=reasoning_effort, timeout=timeout)
     if backend == "openai":
         if not url:
             raise ValueError("--url is required for the openai backend")
         return OpenAICompatibleLLM(model=model, base_url=url, api_key=api_key, timeout=timeout,
-                                   max_tokens=max_tokens, reasoning_effort=reasoning_effort)
+                                   max_tokens=max_tokens, reasoning_effort=reasoning_effort,
+                                   temperature=temperature, top_p=top_p, top_k=top_k,
+                                   min_p=min_p, presence_penalty=presence_penalty,
+                                   repetition_penalty=repetition_penalty,
+                                   extra_body=extra_body)
     raise ValueError(f"Unknown backend: {backend}")

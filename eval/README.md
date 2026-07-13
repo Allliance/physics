@@ -32,7 +32,10 @@ to the `eval` package. Supported datasets are `FrontierPhysics` and
 `Physics`; supported splits are `train`, `validation`, and `test`.
 `FrontierPhysics validation` is rejected because that split does not exist.
 
-Artifacts live under `eval/artifacts/<dataset>/<split>/<mode>/model_<generator>/`.
+Artifacts live under
+`eval/artifacts/<dataset>/<split>/<mode>/model_<generator>_gen_<config-hash>/`.
+The hash covers the full generation configuration, preventing responses made
+with different reasoning or sampling settings from sharing a cache.
 The reusable generation cache is stored there as `responses.jsonl`. Judge-specific
 `judgments.jsonl`, `summary.json`, and `run_config.json` live inside its
 `judge_<judge>/` subdirectory.
