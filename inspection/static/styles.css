@@ -626,6 +626,69 @@ textarea:focus {
   overflow-wrap: anywhere;
 }
 
+.evaluation-parts {
+  display: grid;
+  gap: 16px;
+}
+
+.evaluation-part {
+  overflow: hidden;
+  border: 2px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.evaluation-part.part-correct { border-color: #86c9a6; }
+.evaluation-part.part-incorrect { border-color: #e7a0a6; }
+
+.evaluation-part-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: #f8fafc;
+}
+
+.part-correct .evaluation-part-head { color: #166534; background: #ecfdf3; }
+.part-incorrect .evaluation-part-head { color: #991b1b; background: #fff1f2; }
+
+.answer-comparison {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.comparison-card { min-width: 0; padding: 14px 18px; }
+.comparison-card + .comparison-card { border-left: 1px solid var(--line); }
+.candidate-answer { background: #fffdf5; }
+.reference-answer { background: #f2fbf8; }
+
+.comparison-title {
+  color: var(--muted);
+  font-size: .78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.judge-reason {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  padding: 12px 16px;
+  border-top: 1px solid var(--line);
+  color: #334155;
+  line-height: 1.5;
+}
+
+.format-warning { padding: 14px 16px; border: 1px solid #fdba74; border-radius: 8px; background: #fff7ed; color: #9a3412; }
+.model-response { padding: 14px 16px; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+.model-response summary { cursor: pointer; font-weight: 760; color: var(--accent-strong); }
+.model-response pre { overflow-x: auto; white-space: pre-wrap; line-height: 1.55; }
+
+@media (max-width: 800px) {
+  .answer-comparison { grid-template-columns: 1fr; }
+  .comparison-card + .comparison-card { border-left: 0; border-top: 1px solid var(--line); }
+}
+
 .field-meta {
   box-shadow: none;
 }

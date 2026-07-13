@@ -52,6 +52,19 @@ def parse_dataset_id(value: str) -> tuple[str, Path]:
 def discover_datasets() -> list[dict]:
     datasets: list[dict] = []
 
+    review_dir = PROJECT_ROOT / "inspection" / "reviews"
+    for review in sorted(review_dir.glob("*.json")) if review_dir.exists() else []:
+        relative = rel(review)
+        datasets.append(
+            {
+                "id": dataset_id("json-file", relative),
+                "label": f"Evaluation review / {review.stem.replace('_', ' ')}",
+                "path": relative,
+                "type": "evaluation review",
+                "files": 1,
+            }
+        )
+
     ground_truth_outputs = PROJECT_ROOT / "data" / "extract_gt" / "outputs"
     ground_truth_files = (
         sorted(ground_truth_outputs.glob("dev_set*/*.parquet"))
@@ -285,7 +298,7 @@ def question_text(row: dict) -> str:
 
 def label_values(row: dict) -> list[str]:
     values = []
-    for key in ("label", "labels", "verdict", "part", "__part", "repair_status", "category", "domain", "split", "__split"):
+    for key in ("label", "labels", "verdict", "part", "__part", "repair_status", "selection", "dataset", "category", "domain", "split", "__split"):
         if key not in row or row[key] in (None, ""):
             continue
         value = row[key]
@@ -322,6 +335,7 @@ def sample_summary(row: dict) -> dict:
         "split": safe_string(row.get("__split") or row.get("split")),
         "part": safe_string(row.get("__part") or row.get("verdict") or row.get("part")),
         "labels": label_values(row),
+        "score": row.get("score"),
         "field_count": len([key for key in row if not key.startswith("__")]),
     }
 

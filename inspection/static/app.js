@@ -202,6 +202,7 @@ function renderSamples(items) {
       const tags = item.labels && item.labels.length ? item.labels : [item.split, item.part].filter(Boolean);
       const tagHtml = tags.map((tag) => `<span class="pill">${escapeHtml(tag)}</span>`).join("");
       const source = item.source_file ? `Source: ${escapeHtml(item.source_file)}` : "";
+      const score = item.score === null || item.score === undefined ? "" : `Score: ${Number(item.score).toFixed(3)}`;
       return `
         <button class="sample-item" type="button" data-row-index="${item.row_index}">
           <div>
@@ -211,7 +212,7 @@ function renderSamples(items) {
             </div>
             <div class="sample-question">${escapeHtml(item.question || "(No question field)")}</div>
           </div>
-          <div class="sample-meta">${source}<br>${item.field_count} fields</div>
+          <div class="sample-meta">${score}${score && source ? "<br>" : ""}${source}<br>${item.field_count} fields</div>
         </button>
       `;
     })
@@ -311,6 +312,10 @@ function firstPresent(sample, keys) {
 }
 
 function renderFields(sample) {
+  if (sample.evaluation_parts) {
+    renderEvaluationFields(sample);
+    return;
+  }
   const label = text(sample.repair_status || sample.__part || sample.verdict || sample.part || sample.label || sample.domain || "unlabeled");
   const isRepairSample = "repaired_question" in sample || "original_question" in sample;
   const sections = isRepairSample
@@ -353,6 +358,48 @@ function renderFields(sample) {
       ${sections.map((section) => fieldHtml(section)).join("")}
     </div>
   `;
+  renderMath(els.dialogContent);
+}
+
+function renderEvaluationFields(sample) {
+  const score = Number(sample.score || 0);
+  const label = `${sample.selection} · ${sample.dataset} · score ${score.toFixed(3)}`;
+  const parts = parseMaybeJson(sample.evaluation_parts) || {};
+  const partHtml = Object.entries(parts)
+    .map(([part, result]) => {
+      const correct = result.judge_correct === true;
+      return `
+        <section class="evaluation-part ${correct ? "part-correct" : "part-incorrect"}">
+          <div class="evaluation-part-head">
+            <span class="part-badge">(${escapeHtml(part)})</span>
+            <strong>${correct ? "Judge: correct" : "Judge: incorrect"}</strong>
+          </div>
+          <div class="answer-comparison">
+            <div class="comparison-card candidate-answer">
+              <div class="comparison-title">Extracted final answer</div>
+              <div class="answer-render">${answerDisplayHtml(text(result.extracted_answer))}</div>
+            </div>
+            <div class="comparison-card reference-answer">
+              <div class="comparison-title">Ground truth</div>
+              <div class="answer-render">${answerDisplayHtml(text(result.ground_truth))}</div>
+            </div>
+          </div>
+          <div class="judge-reason"><strong>Judge reason</strong><span>${escapeHtml(text(result.judge_reason) || "(none)")}</span></div>
+        </section>`;
+    })
+    .join("");
+  const formatErrors = Array.isArray(sample.format_errors) ? sample.format_errors : parseMaybeJson(sample.format_errors);
+  els.dialogContent.innerHTML = `
+    ${labelBarHtml(label)}
+    <div class="primary-fields">
+      <section class="field field-question field-primary">
+        <div class="field-name"><span>Question</span><span>${text(sample.question).length.toLocaleString()} chars</span></div>
+        <div class="field-value">${escapeHtml(text(sample.question))}</div>
+      </section>
+      <div class="evaluation-parts">${partHtml}</div>
+      ${formatErrors && formatErrors.length ? `<div class="format-warning"><strong>Format errors:</strong> ${escapeHtml(formatErrors.join("; "))}</div>` : ""}
+      <details class="model-response"><summary>Full model response</summary><pre>${escapeHtml(text(sample.full_model_response))}</pre></details>
+    </div>`;
   renderMath(els.dialogContent);
 }
 

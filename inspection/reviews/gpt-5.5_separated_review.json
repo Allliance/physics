@@ -1,0 +1,568 @@
+[
+  {
+    "id": "interacting-electron-gas/6.4",
+    "dataset": "FrontierPhysics",
+    "split": "test",
+    "mode": "separated",
+    "generator": "gpt-5.5",
+    "judge": "gpt-5.5",
+    "score": 0.0,
+    "question": "Problem 6.4. Estimate the lowest energy $\\epsilon_0$ of an electron in a Wigner-Seitz cell by the following variational calculation. Assume that the potential due to the ion is Coulombic for $r > r_c$ and a repulsive hard core for $r \\leq r_c$, where $r_c$ is the radius of the outermost occupied Bohr orbit in the ionic core. Take as a trial wave function the correct ground state (boundary condition and all) for an electron feeling the hard core repulsion but no Coulomb attraction. Express the result in eV.",
+    "evaluation_parts": {
+      "a": {
+        "extracted_answer": "\\ \\epsilon_0 \\le\n3.810\\,\\frac{\\alpha^2}{(r_s-r_c)^2}\n-14.40\\,\n\\frac{\\displaystyle \\int_0^1 \\frac{\\sin^2(\\alpha x)}{r_c+(r_s-r_c)x}\\,dx}\n{\\displaystyle \\int_0^1 \\sin^2(\\alpha x)\\,dx}\n\\ \\text{eV},\\quad\n\\alpha\\cot\\alpha=\\frac{r_s-r_c}{r_s},\\ \\ r_s,r_c\\text{ in Angstroms}.",
+        "ground_truth": "\\epsilon_0 = -\\frac{40.82\\ \\text{eV}}{r_s} \\left(1 - \\frac{1}{r_s}\\right)",
+        "judge_correct": false,
+        "judge_reason": "The candidate gives a general unsimplified variational upper-bound formula involving an extra parameter r_c and an implicit alpha, rather than the reference result epsilon_0 = -40.82 eV/r_s (1 - 1/r_s). It does not reproduce the required dependence or coefficient for part (a)."
+      }
+    },
+    "format_errors": [],
+    "full_model_response": "For a spherical Wigner-Seitz cell of radius \\(r_s\\), take the hard-core radius as \\(r_c\\). The trial state is the \\(l=0\\) ground state in the shell \\(r_c<r<r_s\\), with\n\\[\n\\psi(r)=A\\frac{\\sin k(r-r_c)}{r},\n\\]\nsatisfying \\(\\psi(r_c)=0\\) and the Wigner-Seitz boundary condition \\(\\psi'(r_s)=0\\). Thus, with \\(L=r_s-r_c\\) and \\(\\alpha=kL\\),\n\\[\n\\alpha\\cot\\alpha=\\frac{L}{r_s}.\n\\]\nThe variational estimate is kinetic energy plus the Coulomb expectation value \\(-e^2/r\\) over the same trial state.\n\n\\[\n\\boxed{(a)\\ \\epsilon_0 \\le\n3.810\\,\\frac{\\alpha^2}{(r_s-r_c)^2}\n-14.40\\,\n\\frac{\\displaystyle \\int_0^1 \\frac{\\sin^2(\\alpha x)}{r_c+(r_s-r_c)x}\\,dx}\n{\\displaystyle \\int_0^1 \\sin^2(\\alpha x)\\,dx}\n\\ \\text{eV},\\quad\n\\alpha\\cot\\alpha=\\frac{r_s-r_c}{r_s},\\ \\ r_s,r_c\\text{ in Angstroms}.}\n\\]",
+    "selection": "worst"
+  },
+  {
+    "id": "textbook/12.5",
+    "dataset": "FrontierPhysics",
+    "split": "test",
+    "mode": "separated",
+    "generator": "gpt-5.5",
+    "judge": "gpt-5.5",
+    "score": 0.0,
+    "question": "PROBLEM 12.5. Evaluate $\\langle r^2 \\rangle$ for a Cooper pair.",
+    "evaluation_parts": {
+      "a": {
+        "extracted_answer": "\\ \\langle r^2\\rangle=\\frac{\\hbar^2 v_F^2}{8\\Delta^2},\\ \\text{so } r_{\\rm rms}=\\frac{\\hbar v_F}{2\\sqrt{2}\\,\\Delta},\\text{ where }v_F\\text{ is the Fermi velocity and }\\Delta\\text{ is the superconducting gap.}",
+        "ground_truth": "\\langle r^2 \\rangle \\approx \\frac{4}{3} \\left( \\frac{\\hbar v_F}{E} \\right)^2",
+        "judge_correct": false,
+        "judge_reason": "The candidate gives a different numerical prefactor, 1/8 in terms of Δ, rather than the reference 4/3 in terms of E. Even identifying E with Δ or 2Δ does not make the coefficient match."
+      }
+    },
+    "format_errors": [],
+    "full_model_response": "For a BCS Cooper pair, use the pair wavefunction in momentum space\n\\[\n\\phi_{\\mathbf k}\\propto \\frac{\\Delta}{2\\sqrt{\\xi_k^2+\\Delta^2}},\n\\]\nwith \\(\\xi_k\\simeq \\hbar v_F(k-k_F)\\) near the Fermi surface. By Parseval’s theorem,\n\\[\n\\langle r^2\\rangle=\\frac{\\int d^3k\\,|\\nabla_{\\mathbf k}\\phi_{\\mathbf k}|^2}{\\int d^3k\\,|\\phi_{\\mathbf k}|^2}.\n\\]\nApproximating \\(k\\simeq k_F\\) in the measure and extending the \\(\\xi\\)-integrals to infinity gives\n\\[\n\\int d\\xi\\,\\phi^2 \\propto \\frac{\\pi\\Delta}{4},\\qquad\n\\int d\\xi\\,\\left(\\frac{d\\phi}{d\\xi}\\right)^2 \\propto \\frac{\\pi}{32\\Delta}.\n\\]\nSince \\(d/dk=\\hbar v_F\\,d/d\\xi\\),\n\\[\n\\langle r^2\\rangle=\\frac{(\\hbar v_F)^2}{8\\Delta^2}.\n\\]\n\n\\[\n\\boxed{(a)\\ \\langle r^2\\rangle=\\frac{\\hbar^2 v_F^2}{8\\Delta^2},\\ \\text{so } r_{\\rm rms}=\\frac{\\hbar v_F}{2\\sqrt{2}\\,\\Delta},\\text{ where }v_F\\text{ is the Fermi velocity and }\\Delta\\text{ is the superconducting gap.}}\n\\]",
+    "selection": "worst"
+  },
+  {
+    "id": "textbook/15.23",
+    "dataset": "FrontierPhysics",
+    "split": "test",
+    "mode": "separated",
+    "generator": "gpt-5.5",
+    "judge": "gpt-5.5",
+    "score": 0.0,
+    "question": "(a) Determine the angular frequency \\(\\omega_k\\) for the Brillouin peaks in water for 90^{\\circ} laser scattering, using a He–Ne laser with \\(\\lambda = 632.8\\,\\text{nm}\\).\n(b) Determine the width of the Rayleigh peak. The thermal diffusivity of water is \\(D_T = 1.4 \\times 10^{-7} \\, \\text{m}^2/\\text{s}.\\)",
+    "evaluation_parts": {
+      "a": {
+        "extracted_answer": "\\ \\omega_k = v_s k,\\quad k=\\frac{4\\pi n}{\\lambda}\\sin\\frac{90^\\circ}{2};\\ \\text{using }n=1.33,\\ v_s=1.48\\times10^3\\,\\text{m/s},\\ \\omega_k \\approx 2.8\\times10^{10}\\,\\text{s}^{-1}",
+        "ground_truth": "\\omega_B \\approx 2.1\\times 10^{10}\\,\\text{s}^{-1}",
+        "judge_correct": false,
+        "judge_reason": "The candidate uses an extra refractive-index factor, giving \\(2.8\\times10^{10}\\,\\mathrm{s^{-1}}\\), about 33% higher than the reference \\(2.1\\times10^{10}\\,\\mathrm{s^{-1}}\\). This is not a rounding or algebraic-equivalence difference for the specified answer."
+      },
+      "b": {
+        "extracted_answer": "\\ \\text{Rayleigh half-width at half-maximum } \\Gamma_R=D_T k^2\\approx 4.9\\times10^7\\,\\text{s}^{-1}\\ \\text{for }k=\\frac{4\\pi(1.33)}{632.8\\times10^{-9}}\\sin45^\\circ;\\ \\text{FWHM}=2\\Gamma_R\\approx 9.8\\times10^7\\,\\text{s}^{-1}",
+        "ground_truth": "\\Delta \\omega_R \\approx 2.7\\times 10^{7}\\,\\text{s}^{-1}",
+        "judge_correct": false,
+        "judge_reason": "The reference width is about 2.7e7 s^-1 using k=(4π/λ)sin45°. The candidate includes an extra refractive-index factor, giving 4.9e7 s^-1 for the half-width and 9.8e7 s^-1 for FWHM, neither matching the specified reference value."
+      }
+    },
+    "format_errors": [],
+    "full_model_response": "For 90 degree scattering, the scattering wave number is\n\n\\[\nk=\\frac{4\\pi n}{\\lambda}\\sin\\frac{\\theta}{2}\n\\]\n\nusing water’s refractive index \\(n \\approx 1.33\\), \\(\\theta=90^\\circ\\), and \\(\\lambda=632.8\\,\\text{nm}\\). Thus\n\n\\[\nk \\approx \\frac{4\\pi(1.33)}{632.8\\times10^{-9}}\\sin45^\\circ\n\\approx 1.87\\times10^7\\,\\text{m}^{-1}.\n\\]\n\nThe Brillouin angular frequency shift is \\(\\omega_k = v_s k\\), with \\(v_s \\approx 1.48\\times10^3\\,\\text{m/s}\\) for water.\n\n\\[\n\\boxed{(a)\\ \\omega_k = v_s k,\\quad k=\\frac{4\\pi n}{\\lambda}\\sin\\frac{90^\\circ}{2};\\ \\text{using }n=1.33,\\ v_s=1.48\\times10^3\\,\\text{m/s},\\ \\omega_k \\approx 2.8\\times10^{10}\\,\\text{s}^{-1}}\n\\]\n\nThe Rayleigh peak has thermal diffusion linewidth set by\n\n\\[\n\\Gamma_R = D_T k^2.\n\\]\n\nUsing \\(D_T=1.4\\times10^{-7}\\,\\text{m}^2/\\text{s}\\),\n\n\\[\n\\Gamma_R \\approx (1.4\\times10^{-7})(1.87\\times10^7)^2\n\\approx 4.9\\times10^7\\,\\text{s}^{-1}.\n\\]\n\n\\[\n\\boxed{(b)\\ \\text{Rayleigh half-width at half-maximum } \\Gamma_R=D_T k^2\\approx 4.9\\times10^7\\,\\text{s}^{-1}\\ \\text{for }k=\\frac{4\\pi(1.33)}{632.8\\times10^{-9}}\\sin45^\\circ;\\ \\text{FWHM}=2\\Gamma_R\\approx 9.8\\times10^7\\,\\text{s}^{-1}}\n\\]",
+    "selection": "worst"
+  },
+  {
+    "id": "textbook/5.7",
+    "dataset": "FrontierPhysics",
+    "split": "test",
+    "mode": "separated",
+    "generator": "gpt-5.5",
+    "judge": "gpt-5.5",
+    "score": 0.0,
+    "question": "A one-electron atom whose ground state is nondegenerate is placed in a uniform electric field in the z-direction. (Note: $\\alpha$ stands for the polarizability.) Ignore spin.\n(a) Obtain an approximate expression for the induced electric dipole moment of the ground state by considering the expectation value of $ez$ with respect to the perturbed-state vector computed to first order.\n(b) Obtain the same expression from the energy shift $\\Delta = -\\alpha|\\mathbf{E}|^2/2$ of the ground state computed to second order.",
+    "evaluation_parts": {
+      "a": {
+        "extracted_answer": "\\ \\langle ez\\rangle_{\\mathrm{ind}}=-\\alpha E_z,\\quad \\alpha=2e^2\\sum_{n\\neq0}\\frac{|\\langle n|z|0\\rangle|^2}{E_n-E_0}\\ \\text{for } \\mathbf E=E_z\\hat z.",
+        "ground_truth": "\\langle ez \\rangle = -2e^2 |\\mathbf{E}| \\sum_{nlm} \\frac{|\\langle nlm^{(0)}|z|100^{(0)}\\rangle|^2}{E_{100} - E_{nlm}} \\equiv \\alpha |\\mathbf{E}|",
+        "judge_correct": false,
+        "judge_reason": "The sum for alpha is equivalent to the reference polarizability, but the induced expectation value has the opposite sign: the reference gives <ez> = alpha |E| for a field in the z direction, while the candidate states <ez>_ind = -alpha E_z."
+      },
+      "b": {
+        "extracted_answer": "\\ \\Delta=-\\frac12\\alpha E_z^2\\Rightarrow p_z=-\\frac{\\partial\\Delta}{\\partial E_z}=\\alpha E_z,\\ \\text{so } \\langle ez\\rangle_{\\mathrm{ind}}=-\\alpha E_z.",
+        "ground_truth": "\\alpha |\\mathbf{E}|",
+        "judge_correct": false,
+        "judge_reason": "The energy derivative gives the correct induced dipole component, p_z = -∂Δ/∂E_z = αE_z, whose magnitude is α|E|. But the candidate then states ⟨ez⟩_ind = -αE_z, contradicting the requested/reference result for this part."
+      }
+    },
+    "format_errors": [],
+    "full_model_response": "For a field \\(\\mathbf E=E\\hat z\\), the perturbation for the electron is\n\\[\nH'=eEz,\n\\]\nsince the electron charge is \\(-e\\). Let \\(|0\\rangle\\) be the nondegenerate ground state and \\(|n\\rangle\\) excited eigenstates. The first-order corrected state is\n\\[\n|\\psi_0\\rangle \\simeq |0\\rangle+\\sum_{n\\neq 0}|n\\rangle\n\\frac{\\langle n|eEz|0\\rangle}{E_0-E_n}.\n\\]\nAssuming the unperturbed ground state has no permanent dipole, \\(\\langle 0|ez|0\\rangle=0\\), the induced expectation value comes from the cross terms:\n\\[\n\\langle ez\\rangle\n=2e^2E\\sum_{n\\neq0}\\frac{|\\langle n|z|0\\rangle|^2}{E_0-E_n}\n=-\\alpha E,\n\\]\nwhere\n\\[\n\\alpha=2e^2\\sum_{n\\neq0}\\frac{|\\langle n|z|0\\rangle|^2}{E_n-E_0}.\n\\]\n\n\\[\n\\boxed{(a)\\ \\langle ez\\rangle_{\\mathrm{ind}}=-\\alpha E_z,\\quad \\alpha=2e^2\\sum_{n\\neq0}\\frac{|\\langle n|z|0\\rangle|^2}{E_n-E_0}\\ \\text{for } \\mathbf E=E_z\\hat z.}\n\\]\n\nThe second-order ground-state energy shift is\n\\[\n\\Delta^{(2)}\n=\\sum_{n\\neq0}\\frac{|\\langle n|eE_z z|0\\rangle|^2}{E_0-E_n}\n=-\\frac12\\alpha E_z^2.\n\\]\nThe physical electric dipole moment is \\(p_z=-\\partial \\Delta/\\partial E_z=\\alpha E_z\\). Since the question asks for \\(\\langle ez\\rangle\\), and the electron dipole is \\(p_z=\\langle -ez\\rangle\\), we get\n\\[\n\\langle ez\\rangle_{\\mathrm{ind}}=-p_z=-\\alpha E_z.\n\\]\n\n\\[\n\\boxed{(b)\\ \\Delta=-\\frac12\\alpha E_z^2\\Rightarrow p_z=-\\frac{\\partial\\Delta}{\\partial E_z}=\\alpha E_z,\\ \\text{so } \\langle ez\\rangle_{\\mathrm{ind}}=-\\alpha E_z.}\n\\]",
+    "selection": "worst"
+  },
+  {
+    "id": "textbook/2.7",
+    "dataset": "FrontierPhysics",
+    "split": "test",
+    "mode": "separated",
+    "generator": "gpt-5.5",
+    "judge": "gpt-5.5",
+    "score": 0.3333333333333333,
+    "question": "Give:\n(a) an asymptotic expression for the number of ways in which a given energy E can be distributed among a set of N one-dimensional harmonic oscillators, the energy eigenvalues of the oscillators being (n+\\frac{1}{2})\\,\\hbar\\omega, n=0,1,2,\\dots.\n(b) the corresponding expression for the \"volume\" of the relevant region of the phase space of this system.\n(c) the conversion factor \\omega_0 between the two results.",
+    "evaluation_parts": {
+      "a": {
+        "extracted_answer": "\\ W(E)\\sim \\frac{1}{(N-1)!}\\left(\\frac{E-\\frac{N}{2}\\hbar\\omega}{\\hbar\\omega}\\right)^{N-1}",
+        "ground_truth": "\\Omega(E) \\approx \\frac{(E/\\hbar\\omega)^{N-1}}{(N-1)!}",
+        "judge_correct": true,
+        "judge_reason": "The candidate gives the standard stars-and-bars asymptotic using the excitation energy above the zero-point energy. This differs from the reference only by the zero-point shift, which is negligible in the large-E asymptotic and is consistent with the stated oscillator spectrum."
+      },
+      "b": {
+        "extracted_answer": "\\ \\frac{d\\Phi}{dE}\\sim \\frac{(2\\pi)^N}{(N-1)!\\,\\omega^N}\\left(E-\\frac{N}{2}\\hbar\\omega\\right)^{N-1}",
+        "ground_truth": "\\Gamma(E;\\Delta) \\approx \\left(\\frac{2\\pi}{\\omega}\\right)^{N} \\frac{E^{N-1}\\,\\Delta}{(N-1)!}",
+        "judge_correct": false,
+        "judge_reason": "The expression matches the phase-space density of states up to the optional zero-point shift, but part (b)'s reference asks for the shell volume over an energy width Δ, including a multiplicative Δ factor. The candidate gives dΦ/dE rather than Γ(E;Δ), so it is incomplete."
+      },
+      "c": {
+        "extracted_answer": "\\ \\omega_0=h=2\\pi\\hbar,\\ \\text{so that }W(E)\\,dE=\\frac{1}{h^N}\\frac{d\\Phi}{dE}\\,dE",
+        "ground_truth": "\\omega_{0}=h^{N}",
+        "judge_correct": false,
+        "judge_reason": "The required conversion factor for an N-dimensional oscillator system is h^N. The candidate states \\omega_0=h, even though their later formula uses 1/h^N, so the requested value of \\omega_0 is not correctly given."
+      }
+    },
+    "format_errors": [],
+    "full_model_response": "Useful variables: let\n\\[\nM=\\frac{E}{\\hbar\\omega}-\\frac{N}{2}\n\\]\nbe the total number of excitation quanta, assumed large and integer.\n\nThe number of quantum distributions is the number of nonnegative integer solutions of \\(\\sum_i n_i=M\\), so\n\\[\nW(E)=\\binom{M+N-1}{N-1}.\n\\]\nFor large \\(M\\), this is asymptotically \\(M^{N-1}/(N-1)!\\).\n\nThe corresponding classical phase-space shell volume is obtained from\n\\[\nH=\\sum_{i=1}^N\\left(\\frac{p_i^2}{2m}+\\frac12m\\omega^2q_i^2\\right),\n\\]\ngiving\n\\[\n\\frac{d\\Phi}{dE}=\\frac{(2\\pi)^N E_{\\rm exc}^{N-1}}{(N-1)!\\,\\omega^N},\n\\]\nwhere \\(E_{\\rm exc}=E-\\frac{N}{2}\\hbar\\omega\\).\n\n\\[\n\\boxed{(a)\\ W(E)\\sim \\frac{1}{(N-1)!}\\left(\\frac{E-\\frac{N}{2}\\hbar\\omega}{\\hbar\\omega}\\right)^{N-1}}\n\\]\n\n\\[\n\\boxed{(b)\\ \\frac{d\\Phi}{dE}\\sim \\frac{(2\\pi)^N}{(N-1)!\\,\\omega^N}\\left(E-\\frac{N}{2}\\hbar\\omega\\right)^{N-1}}\n\\]\n\n\\[\n\\boxed{(c)\\ \\omega_0=h=2\\pi\\hbar,\\ \\text{so that }W(E)\\,dE=\\frac{1}{h^N}\\frac{d\\Phi}{dE}\\,dE}\n\\]",
+    "selection": "worst"
+  },
+  {
+    "id": "Classical Mechanics/2-17",
+    "dataset": "Physics",
+    "split": "test",
+    "mode": "separated",
+    "generator": "gpt-5.5",
+    "judge": "gpt-5.5",
+    "score": 0.0,
+    "question": "(a) A mass _m_ is dropped from rest at the equator, from an initial height _H_. Ignore air resistance in this problem. \n\ni. In what direction is the projectile deflected by the Coriolis force?\n\nii. Determine the distance of the horizontal deflection when the mass hits the ground (from the point it would have hit with no deflection), in terms of the initial height _H_, and the earth’s rotation _ω_. \n\niii. Evaluate the deflection for _H = 1.5 km_.\n\n(b) A water tower of cross-sectional area _A_1 and height _H_ is filled with water. The top is open to atmospheric pressure. At the bottom is a spigot of area $A_2 << A_1$.\n\ni. Find the speed of the water, _v_, leaving the spigot as a function of the height of the water, _h_, in the tank.\n\nii. Assuming _h = H_ when the spigot is opened at _t = 0_, find the total time it takes to drain the tank.\n\niii. Before opening the spigot in part (b), cover the top of the reservoir except for a tube of negligible area submerged down to _H/2_. Now, open the spigot. Calculate how long it takes to drain the reservoir.",
+    "evaluation_parts": {
+      "a": {
+        "extracted_answer": "(i)\\ \\text{The projectile is deflected eastward, in the direction of Earth's rotation.}",
+        "ground_truth": "eastward; x = \\omega \\sqrt{8H^{3}/9g}; x = 1.22 \\, \\text{m}",
+        "judge_correct": false,
+        "judge_reason": "The candidate correctly gives the eastward direction for (a)(i), but does not provide the required horizontal deflection formula or the numerical value for H = 1.5 km."
+      },
+      "b": {
+        "extracted_answer": "(i)\\ v(h)=\\sqrt{2gh}\\ \\text{for }A_2\\ll A_1,\\text{ where }h\\text{ is the water height above the spigot.}",
+        "ground_truth": "v_{2} = \\frac{2gh}{\\sqrt{1 - (A_{2}/A_{1})^{2}}}; t = \\frac{A_{1}}{A_{2}} \\sqrt{1 - \\left( \\frac{A_{2}}{A_{1}} \\right)^{2}} \\sqrt{\\frac{2H}{g}}; t = t_1 + t_2 + t_3 = \\frac{3A_1}{2A_2} \\sqrt{1 - \\left( \\frac{A_2}{A_1} \\right)^2} \\sqrt{\\frac{H}{g}}",
+        "judge_correct": false,
+        "judge_reason": "The candidate gives only the approximate spigot speed for (b)(i), which is acceptable in the A2 << A1 limit, but does not answer the required drain times for (b)(ii) or (b)(iii)."
+      }
+    },
+    "format_errors": [
+      "duplicate box for part a",
+      "duplicate box for part a",
+      "duplicate box for part b",
+      "duplicate box for part b",
+      "expected 2 boxes, found 6"
+    ],
+    "full_model_response": "For the falling mass, take east as \\(x\\), up as \\(z\\), and at the equator \\(\\boldsymbol{\\Omega}\\) points north. Since \\(v_z=-gt\\), the Coriolis acceleration is eastward with magnitude \\(a_x=2\\omega gt\\). Integrating twice gives \\(x(t)=\\frac13\\omega g t^3\\), with fall time \\(T=\\sqrt{2H/g}\\).\n\nFor the tank, use Bernoulli and continuity with \\(A_2\\ll A_1\\), so the water surface speed is negligible. In part (b)(iii), the submerged air tube makes the pressure at its lower end atmospheric while the water level is above \\(H/2\\), giving constant effective head \\(H/2\\) until the level reaches the tube.\n\n\\[\n\\boxed{(a)(i)\\ \\text{The projectile is deflected eastward, in the direction of Earth's rotation.}}\n\\]\n\n\\[\n\\boxed{(a)(ii)\\ \\Delta x=\\frac13\\omega g\\left(\\frac{2H}{g}\\right)^{3/2}=\\frac{2\\sqrt2}{3}\\frac{\\omega H^{3/2}}{\\sqrt g}\\ \\text{eastward, where }g\\text{ is gravitational acceleration.}}\n\\]\n\n\\[\n\\boxed{(a)(iii)\\ \\text{For }H=1.5\\,\\text{km},\\ \\omega=7.29\\times10^{-5}\\,\\text{s}^{-1},\\ g=9.81\\,\\text{m/s}^2:\\ \\Delta x\\approx 1.28\\,\\text{m eastward}.}\n\\]\n\n\\[\n\\boxed{(b)(i)\\ v(h)=\\sqrt{2gh}\\ \\text{for }A_2\\ll A_1,\\text{ where }h\\text{ is the water height above the spigot.}}\n\\]\n\n\\[\n\\boxed{(b)(ii)\\ t_{\\rm drain}=\\frac{A_1}{A_2}\\sqrt{\\frac{2H}{g}}\\ \\text{for initial water height }H.}\n\\]\n\n\\[\n\\boxed{(b)(iii)\\ t_{\\rm drain}=\\frac{3}{2}\\frac{A_1}{A_2}\\sqrt{\\frac{H}{g}},\\text{ with the air tube ending at height }H/2\\text{ above the spigot.}}\n\\]",
+    "selection": "worst"
+  },
+  {
+    "id": "Electricity and Magenetism/4-7",
+    "dataset": "Physics",
+    "split": "test",
+    "mode": "separated",
+    "generator": "gpt-5.5",
+    "judge": "gpt-5.5",
+    "score": 0.0,
+    "question": "A charged plane lies at $ z = h $. Centered at the origin is a conducting sphere of radius $ R < h $. Consider polar coordinates on the plane with $ \\rho $ as the radial distance from the z-axis. The surface charge density on the plane is\n\n$$\n\\sigma(\\rho) = \\frac{R^3}{(h^2 + \\rho^2)^{3/2}} \\sigma_0,\n$$\n\n(4.7.1)\n\nwhere $ \\sigma_0 $ is some constant.  Calculate the pressure on the plane as a function of the position on the plane.",
+    "evaluation_parts": {
+      "a": {
+        "extracted_answer": "\\ \\frac{d\\mathbf F}{dA}=-\\,\\hat{\\mathbf z}\\,\\frac{\\sigma_0^2 R^7(2h^2-R^2)}{8\\epsilon_0 h^3\\,(h^2+\\rho^2)^{3/2}\\left[\\rho^2+\\left(h-\\frac{R^2}{2h}\\right)^2\\right]^{3/2}}\\quad\\text{for a grounded conducting sphere; the scalar pressure magnitude is the positive coefficient.}",
+        "ground_truth": "None",
+        "judge_correct": false,
+        "judge_reason": "The candidate adds an unsupported grounded-sphere condition even though the problem only says conducting sphere; the pressure depends on the sphere's electrical condition (grounded vs isolated/neutral). With the supplied reference answer being none, this extra assumption makes the answer not a correct answer to the specified part as stated."
+      }
+    },
+    "format_errors": [],
+    "full_model_response": "Assuming the conducting sphere is grounded, use the image construction for a grounded sphere. A charge element on the plane at distance \\(s=\\sqrt{h^2+\\rho'^2}\\) has image charge factor \\(-R/s\\) at the inverted point. With the given density, the inverted image distribution becomes a uniformly charged spherical shell of density \\(-\\sigma_0\\), radius\n\n\\[\na=\\frac{R^2}{2h},\n\\]\n\ncentered at \\(z=a\\). Outside that image shell, its field is the same as a point charge \\(-4\\pi a^2\\sigma_0\\) at \\(z=a\\).\n\nAt the charged plane, the plane’s own charge produces no average normal field on itself, so the normal force per unit area is \\(\\sigma(\\rho)E_{z,\\text{image}}\\), directed toward the sphere.\n\n\\[\n\\boxed{(a)\\ \\frac{d\\mathbf F}{dA}=-\\,\\hat{\\mathbf z}\\,\\frac{\\sigma_0^2 R^7(2h^2-R^2)}{8\\epsilon_0 h^3\\,(h^2+\\rho^2)^{3/2}\\left[\\rho^2+\\left(h-\\frac{R^2}{2h}\\right)^2\\right]^{3/2}}\\quad\\text{for a grounded conducting sphere; the scalar pressure magnitude is the positive coefficient.}}\n\\]",
+    "selection": "worst"
+  },
+  {
+    "id": "atomic/2-8",
+    "dataset": "Physics",
+    "split": "test",
+    "mode": "separated",
+    "generator": "gpt-5.5",
+    "judge": "gpt-5.5",
+    "score": 0.0,
+    "question": "What is the density of nuclear matter in $\\text{ton/cm}^3$?  \n\n(a) 0.004.  \n(b) 400.  \n(c) $10^9$. ",
+    "evaluation_parts": {
+      "c": {
+        "extracted_answer": "",
+        "ground_truth": "10^9 \\text{ton/cm}^3",
+        "judge_correct": false,
+        "judge_reason": "No answer was provided for part (c), so it does not state the required density of 10^9 ton/cm^3."
+      }
+    },
+    "format_errors": [
+      "expected 3 boxes, found 1"
+    ],
+    "full_model_response": "Nuclear density is roughly\n\n\\[\n\\rho \\sim \\frac{m_p}{\\frac{4}{3}\\pi r_0^3}\n\\]\n\nwith \\(m_p \\approx 1.67\\times 10^{-27}\\,\\text{kg}\\) and \\(r_0 \\approx 1.2\\times 10^{-15}\\,\\text{m}\\). This gives\n\n\\[\n\\rho \\sim 2\\times 10^{17}\\,\\text{kg/m}^3\n\\]\n\nSince \\(1\\,\\text{ton/cm}^3 = 10^9\\,\\text{kg/m}^3\\),\n\n\\[\n\\rho \\sim 2\\times 10^8\\,\\text{ton/cm}^3\n\\]\n\nso the closest listed order of magnitude is \\(10^9\\).\n\n\\[\n\\boxed{(a)\\ \\text{The density of nuclear matter is of order }10^9\\ \\text{ton/cm}^3\\text{, so the correct choice is (c).}}\n\\]",
+    "selection": "worst"
+  },
+  {
+    "id": "atomic/3-45",
+    "dataset": "Physics",
+    "split": "test",
+    "mode": "separated",
+    "generator": "gpt-5.5",
+    "judge": "gpt-5.5",
+    "score": 0.0,
+    "question": "How many of one million 1-GeV neutrinos interact when traversing the earth? ($ \\sigma = 0.7 \\times 10^{-38} \\text{ cm}^2/n $, where $ n $ means a nucleon, $ R = 6000 \\text{ km}, \\rho \\approx 5 \\text{ g/cm}^2 $, $\\langle A \\rangle = 20$)  \n(a) all.  \n(b) $\\approx 25$.  \n(c) none.  ",
+    "evaluation_parts": {
+      "b": {
+        "extracted_answer": "",
+        "ground_truth": "25.2",
+        "judge_correct": false,
+        "judge_reason": "The candidate provides no answer for part (b), so it does not give the expected value of about 25 interactions."
+      }
+    },
+    "format_errors": [
+      "expected 3 boxes, found 1"
+    ],
+    "full_model_response": "Useful estimate:\n\nThe interaction probability is\n\n\\[\nP \\approx \\sigma \\, n_N \\, L\n\\]\n\nwhere \\(n_N \\approx \\rho N_A\\) is the nucleon number density. Taking the path through Earth as a diameter,\n\n\\[\nL = 2R = 1.2\\times 10^9\\ \\text{cm}\n\\]\n\nand using \\(\\rho \\approx 5\\ \\text{g/cm}^3\\),\n\n\\[\nn_N \\approx 5(6.0\\times 10^{23}) \\approx 3.0\\times 10^{24}\\ \\text{nucleons/cm}^3\n\\]\n\nSo\n\n\\[\nP \\approx (0.7\\times 10^{-38})(3.0\\times 10^{24})(1.2\\times 10^9)\n\\approx 2.5\\times 10^{-5}\n\\]\n\nFor \\(10^6\\) neutrinos:\n\n\\[\nN_{\\text{int}} \\approx 10^6(2.5\\times 10^{-5}) \\approx 25\n\\]\n\n\\[\n\\boxed{(a)\\ \\text{About }25\\text{ of one million 1-GeV neutrinos interact while traversing Earth, so the correct choice is (b).}}\n\\]",
+    "selection": "worst"
+  },
+  {
+    "id": "atomic/3-51",
+    "dataset": "Physics",
+    "split": "test",
+    "mode": "separated",
+    "generator": "gpt-5.5",
+    "judge": "gpt-5.5",
+    "score": 0.0,
+    "question": "A beam of unpolarized electrons\n\n(a) can be described by a wave function that is an equal superposition of spin-up and spin-down wave functions.  \n(b) cannot be described by a wave function.  \n(c) neither of the above.",
+    "evaluation_parts": {
+      "a": {
+        "extracted_answer": "\\ \\text{Choice (b): an unpolarized electron beam cannot be described by a single wave function; it is described by a mixed-state density matrix.}",
+        "ground_truth": "The answer is (a).",
+        "judge_correct": false,
+        "judge_reason": "The candidate selects choice (b), but the reference answer for the part is choice (a)."
+      }
+    },
+    "format_errors": [
+      "expected 3 boxes, found 1"
+    ],
+    "full_model_response": "An equal superposition of spin-up and spin-down is a pure spin state, not an unpolarized beam. An unpolarized beam is a statistical mixture, described by a density matrix such as \\(\\rho=\\frac12(|\\uparrow\\rangle\\langle\\uparrow|+|\\downarrow\\rangle\\langle\\downarrow|)\\), not by one wave function.\n\n\\(\\boxed{(a)\\ \\text{Choice (b): an unpolarized electron beam cannot be described by a single wave function; it is described by a mixed-state density matrix.}}\\)",
+    "selection": "worst"
+  },
+  {
+    "id": "textbook/5.6",
+    "dataset": "FrontierPhysics",
+    "split": "test",
+    "mode": "separated",
+    "generator": "gpt-5.5",
+    "judge": "gpt-5.5",
+    "score": 0.8,
+    "question": "The Manning transition: A linear polyelectrolyte (rod) of length \\(L\\) and radius \\(a\\) carries \\(N\\) positive charges left on the rod, while \\(N\\) negatively charged counter-ions are in solution (water). Ignoring Coulomb repulsion among counter-ions, each counter-ion moves in the potential \\(\\phi(r) = -2 (Ne/L) \\ln(r/L)\\) (cylindrical geometry), with Hamiltonian\n\\[\\mathcal{H} = \\sum_{i=1}^{N} \\Big[ \\frac{p_i^{2}}{2m} + 2 e^{2} n \\ln(r/L) \\Big], \\quad n \\equiv N/L.\n\\]\nThe container is a cylinder of radius \\(R\\) and height \\(L\\).\n(a) Compute the canonical partition function \\(Z\\) in terms of \\(T,n,R,a\\).\n(b) Compute the single-particle radial distribution \\(p(r)\\) and its first moment \\(\\langle r \\rangle\\).\n(c) Identify the transition temperature in the limit \\(R \\gg a\\). Indicate the scaling of \\(\\langle r \\rangle\\) with \\(R\\) or \\(a\\).\n(d) Compute the pressure on the cylindrical wall \\(r=R\\) for \\(R\\gg a\\), all \\(T\\).\n(e) Now include ion-ion repulsions approximately by allowing \\(N_1\\) ions to condense on the rod and \\(N_2=N-N_1\\) to remain free with Hamiltonian \\(\\sum_{i=1}^{N_2} [p_i^{2}/(2m) + 2 e^{2} n_2 \\ln(r/L)]\\), where \\(n_2=N_2/L\\). Guess the equilibrium \\(N_2^{*}\\).",
+    "evaluation_parts": {
+      "a": {
+        "extracted_answer": "\\; Z=\\frac1{N!}\\left[\\frac{Q_1}{\\lambda_T^3}\\right]^N,\\quad Q_1=2\\pi L^{1+\\alpha}\\frac{R^{2-\\alpha}-a^{2-\\alpha}}{2-\\alpha},\\quad \\alpha=\\frac{2e^2n}{k_BT};\\ \\text{for }\\alpha=2,\\ Q_1=2\\pi L^3\\ln(R/a).",
+        "ground_truth": "\\lambda=h/\\sqrt{2\\pi m k_B T}. Z = \\Big( \\frac{2\\pi e}{n\\, \\lambda^{3}} \\Big)^{\\!N} L^{2 N e^{2} n/(k_B T)} \\Big[ \\frac{R^{2(1 - e^{2} n/(k_B T))} - a^{2(1 - e^{2} n/(k_B T))}}{2\\big(1 - e^{2} n/(k_B T)\\big)} \\Big]^{\\!N}",
+        "judge_correct": true,
+        "judge_reason": "The candidate gives the correct single-particle configurational integral and thermal-wavelength factor: integrating L dz and 2πr dr with exp[-2e^2 n ln(r/L)/(kBT)] yields Q1=2πL^{1+α}(R^{2-α}-a^{2-α})/(2-α), α=2e^2n/kBT, with the logarithmic special case. Including 1/N! is the standard canonical indistinguishability factor; using Stirling and L=N/n recovers the reference form."
+      },
+      "b": {
+        "extracted_answer": "\\; p(r)=\\frac{(2-\\alpha)r^{1-\\alpha}}{R^{2-\\alpha}-a^{2-\\alpha}}\\ \\ (a\\le r\\le R),\\quad \\alpha=\\frac{2e^2n}{k_BT};\\quad \\langle r\\rangle=\\frac{2-\\alpha}{3-\\alpha}\\frac{R^{3-\\alpha}-a^{3-\\alpha}}{R^{2-\\alpha}-a^{2-\\alpha}},\\ \\text{with }p(r)=\\frac1{r\\ln(R/a)},\\ \\langle r\\rangle=\\frac{R-a}{\\ln(R/a)}\\text{ at }\\alpha=2.",
+        "ground_truth": "p(r) = 2\\Big(1 - \\frac{e^{2} n}{k_B T}\\Big) \\frac{r^{1 - 2 e^{2} n/(k_B T)}}{R^{2(1 - e^{2} n/(k_B T))} - a^{2(1 - e^{2} n/(k_B T))}}, \\langle r \\rangle = \\frac{2k_B T - 2 e^{2} n}{3k_B T - 2 e^{2} n} \\, \\frac{R^{3 - 2 e^{2} n/(k_B T)} - a^{3 - 2 e^{2} n/(k_B T)}}{R^{2 - 2 e^{2} n/(k_B T)} - a^{2 - 2 e^{2} n/(k_B T)}}",
+        "judge_correct": true,
+        "judge_reason": "The candidate's definitions with alpha = 2e^2 n/(k_B T) exactly reproduce the reference forms for p(r) and <r>, including the correctly normalized limiting case alpha=2."
+      },
+      "c": {
+        "extracted_answer": "\\; k_BT_c=e^2n.\\ \\text{For }R\\gg a:\\ T>T_c\\Rightarrow \\langle r\\rangle\\sim R;\\ T=T_c\\Rightarrow \\langle r\\rangle\\sim R/\\ln(R/a);\\ T_c/3<T<T_c\\Rightarrow \\langle r\\rangle\\sim a^{\\alpha-2}R^{3-\\alpha};\\ T=T_c/3\\Rightarrow \\langle r\\rangle\\sim a\\ln(R/a);\\ T<T_c/3\\Rightarrow \\langle r\\rangle\\sim a,\\ \\alpha=2e^2n/(k_BT).",
+        "ground_truth": "If e^{2} n/(k_B T) > 1 (low T), \\langle r \\rangle \\propto a. If e^{2} n/(k_B T) < 1 (high T), \\langle r \\rangle \\propto R. T_c = \\frac{e^{2} n}{k_B}.",
+        "judge_correct": false,
+        "judge_reason": "Although it gives the correct transition temperature and high-temperature scaling, it does not match the reference low-temperature result: for all T<Tc the reference expects <r> proportional to a. The candidate instead introduces extra regimes with R-dependent scaling below Tc, and its stated Tc/3 boundary is inconsistent with its own alpha definition."
+      },
+      "d": {
+        "extracted_answer": "\\; P_R=\\frac{nk_BT}{2\\pi R}\\frac{\\partial\\ln Q_1}{\\partial R}=\\frac{nk_BT(2-\\alpha)}{2\\pi R^2\\left[1-(a/R)^{2-\\alpha}\\right]},\\quad \\alpha=\\frac{2e^2n}{k_BT};\\ \\text{for }R\\gg a:\\ P_R\\sim \\frac{nk_BT(2-\\alpha)}{2\\pi R^2}\\ (T>T_c),\\ P_R\\sim \\frac{nk_BT}{2\\pi R^2\\ln(R/a)}\\ (T=T_c),\\ P_R\\sim \\frac{nk_BT(\\alpha-2)a^{\\alpha-2}}{2\\pi R^\\alpha}\\ (T<T_c).",
+        "ground_truth": "For T<T_c, P=0. For T>T_c, P = \\frac{k_B T}{2\\pi R L} \\cdot \\frac{2N\\big(1 - e^{2} n/(k_B T)\\big)}{R}, so equivalently P V = N k_B T \\Big(1 - \\frac{e^{2} n}{k_B T}\\Big), \\quad V=\\pi R^{2} L.",
+        "judge_correct": true,
+        "judge_reason": "The high-temperature expression matches the reference exactly after using n=N/L and alpha=2e^2 n/(k_B T): P=N k_B T(1-e^2 n/k_B T)/(pi R^2 L). For T<T_c the candidate gives the finite-size asymptotic pressure, which vanishes as R>>a, consistent with the reference's P=0 limiting result; it also notes the critical logarithmic vanishing."
+      },
+      "e": {
+        "extracted_answer": "\\; N_2^*=L\\,n_2^*,\\qquad n_2^*=\\min\\!\\left(n,\\frac{k_BT}{e^2}\\right),\\ \\text{so }N_2^*=N\\text{ for }T\\ge T_c=e^2n/k_B,\\text{ and }N_2^*=\\frac{Lk_BT}{e^2}\\text{ for }T<T_c.",
+        "ground_truth": "n_2^{*} = \\frac{k_B T}{e^{2}} \\quad \\Rightarrow \\quad N_2^{*} = \\frac{k_B T}{e^{2}} \\, L. For T>T_c, n_2^{*}=n and there is no condensation.",
+        "judge_correct": true,
+        "judge_reason": "Matches the reference: the free ion density is n2*=kBT/e^2 below the transition, capped at the total density n above Tc=e^2 n/kB, giving no condensation for T>=Tc."
+      }
+    },
+    "format_errors": [],
+    "full_model_response": "Let\n\\[\n\\beta=\\frac1{k_BT},\\qquad \\alpha=2\\beta e^2 n=\\frac{2e^2 n}{k_BT},\\qquad \\lambda_T=\\frac{h}{\\sqrt{2\\pi m k_BT}} .\n\\]\nThe one-ion configurational integral is\n\\[\nQ_1=2\\pi L\\int_a^R r\\,dr\\,\\left(\\frac rL\\right)^{-\\alpha}.\n\\]\n\n\\[\n\\boxed{(a)\\; Z=\\frac1{N!}\\left[\\frac{Q_1}{\\lambda_T^3}\\right]^N,\\quad Q_1=2\\pi L^{1+\\alpha}\\frac{R^{2-\\alpha}-a^{2-\\alpha}}{2-\\alpha},\\quad \\alpha=\\frac{2e^2n}{k_BT};\\ \\text{for }\\alpha=2,\\ Q_1=2\\pi L^3\\ln(R/a).}\n\\]\n\nThe normalized radial density is proportional to the cylindrical measure \\(r\\,dr\\) times the Boltzmann weight:\n\\[\np(r)\\,dr\\propto r^{1-\\alpha}\\,dr.\n\\]\n\n\\[\n\\boxed{(b)\\; p(r)=\\frac{(2-\\alpha)r^{1-\\alpha}}{R^{2-\\alpha}-a^{2-\\alpha}}\\ \\ (a\\le r\\le R),\\quad \\alpha=\\frac{2e^2n}{k_BT};\\quad \\langle r\\rangle=\\frac{2-\\alpha}{3-\\alpha}\\frac{R^{3-\\alpha}-a^{3-\\alpha}}{R^{2-\\alpha}-a^{2-\\alpha}},\\ \\text{with }p(r)=\\frac1{r\\ln(R/a)},\\ \\langle r\\rangle=\\frac{R-a}{\\ln(R/a)}\\text{ at }\\alpha=2.}\n\\]\n\nThe Manning transition occurs when the radial integral changes from being dominated by the outer wall to being dominated by the rod cutoff, i.e. at \\(\\alpha=2\\).\n\n\\[\n\\boxed{(c)\\; k_BT_c=e^2n.\\ \\text{For }R\\gg a:\\ T>T_c\\Rightarrow \\langle r\\rangle\\sim R;\\ T=T_c\\Rightarrow \\langle r\\rangle\\sim R/\\ln(R/a);\\ T_c/3<T<T_c\\Rightarrow \\langle r\\rangle\\sim a^{\\alpha-2}R^{3-\\alpha};\\ T=T_c/3\\Rightarrow \\langle r\\rangle\\sim a\\ln(R/a);\\ T<T_c/3\\Rightarrow \\langle r\\rangle\\sim a,\\ \\alpha=2e^2n/(k_BT).}\n\\]\n\nThe wall pressure follows from\n\\[\nP(2\\pi RL\\,dR)=k_BT\\,\\frac{\\partial \\ln Z}{\\partial R}\\,dR.\n\\]\n\n\\[\n\\boxed{(d)\\; P_R=\\frac{nk_BT}{2\\pi R}\\frac{\\partial\\ln Q_1}{\\partial R}=\\frac{nk_BT(2-\\alpha)}{2\\pi R^2\\left[1-(a/R)^{2-\\alpha}\\right]},\\quad \\alpha=\\frac{2e^2n}{k_BT};\\ \\text{for }R\\gg a:\\ P_R\\sim \\frac{nk_BT(2-\\alpha)}{2\\pi R^2}\\ (T>T_c),\\ P_R\\sim \\frac{nk_BT}{2\\pi R^2\\ln(R/a)}\\ (T=T_c),\\ P_R\\sim \\frac{nk_BT(\\alpha-2)a^{\\alpha-2}}{2\\pi R^\\alpha}\\ (T<T_c).}\n\\]\n\nIncluding ion-ion repulsion in this mean-field Manning picture, the free ions regulate their effective line density to the critical value when possible.\n\n\\[\n\\boxed{(e)\\; N_2^*=L\\,n_2^*,\\qquad n_2^*=\\min\\!\\left(n,\\frac{k_BT}{e^2}\\right),\\ \\text{so }N_2^*=N\\text{ for }T\\ge T_c=e^2n/k_B,\\text{ and }N_2^*=\\frac{Lk_BT}{e^2}\\text{ for }T<T_c.}\n\\]",
+    "selection": "random"
+  },
+  {
+    "id": "chapter4/11",
+    "dataset": "FrontierPhysics",
+    "split": "test",
+    "mode": "separated",
+    "generator": "gpt-5.5",
+    "judge": "gpt-5.5",
+    "score": 1.0,
+    "question": "Molecular oxygen has a net magnetic spin, \\(\\vec{S}\\), of unity, i.e. \\(S^{z}\\) is quantized to \\(-1, 0, +1\\). The Hamiltonian for an ideal gas of \\(N\\) such molecules in a magnetic field \\(\\vec{B} \\parallel \\hat{z}\\) is\n\\[\\mathcal{H} = \\sum_{i=1}^{N} \\left[ \\frac{\\vec{p}_i^{2}}{2m} - \\mu B S_i^{z} \\right],\\]\nwhere \\(\\{\\vec{p}_i\\}\\) are the center-of-mass momenta and \\(\\{\\vec{q}_i\\}\\) are confined to a volume \\(V\\). Ignore all other degrees of freedom.\n(a) Treating \\(\\{\\vec{p}_i, \\vec{q}_i\\}\\) classically, but the spin degrees of freedom as quantized, calculate the partition function, \\(\\tilde{Z}(T, N, V, B)\\).\n\n(b) What are the probabilities for \\(S_i^z\\) of a specific molecule to take on values of \\(-1\\), \\(0\\), \\(+1\\) at a temperature \\(T\\)?\n\n(c) Find the average magnetic dipole moment density, \\(\\langle M \\rangle / V\\), where \\(M = \\mu \\sum_{i=1}^N S_i^z\\).\n\n(d) Calculate the zero field susceptibility \\(\\chi = (\\partial \\langle M \\rangle/\\partial B)_{B=0}\\).",
+    "evaluation_parts": {
+      "a": {
+        "extracted_answer": "\\ \\tilde Z(T,N,V,B)=\\frac{1}{N!}\\left[\\frac{V}{\\lambda_T^3}\\left(1+2\\cosh\\frac{\\mu B}{k_BT}\\right)\\right]^N,\\quad \\lambda_T=\\frac{h}{\\sqrt{2\\pi m k_BT}}",
+        "ground_truth": "\\tilde{Z} = \\frac{1}{N!}\\left[ \\frac{V}{\\lambda^{3}}\\, \\big( e^{\\beta \\mu B} + 1 + e^{-\\beta \\mu B} \\big) \\right]^{N},\\qquad \\lambda = \\frac{h}{\\sqrt{2\\pi m k_B T}}",
+        "judge_correct": true,
+        "judge_reason": "Equivalent to the reference: the translational factor and Gibbs factor are correct, and 1+2 cosh(mu B/kBT) equals e^{beta mu B}+1+e^{-beta mu B} with the same thermal wavelength."
+      },
+      "b": {
+        "extracted_answer": "\\ P(S_i^z=-1)=\\frac{e^{-\\mu B/(k_BT)}}{1+2\\cosh(\\mu B/(k_BT))},\\quad P(S_i^z=0)=\\frac{1}{1+2\\cosh(\\mu B/(k_BT))},\\quad P(S_i^z=+1)=\\frac{e^{\\mu B/(k_BT)}}{1+2\\cosh(\\mu B/(k_BT))}",
+        "ground_truth": "P(S^z=-1) = \\frac{e^{-\\beta \\mu B}}{2\\cosh(\\beta\\mu B)+1},\\quad P(S^z=0) = \\frac{1}{2\\cosh(\\beta\\mu B)+1},\\quad P(S^z=+1) = \\frac{e^{\\beta \\mu B}}{2\\cosh(\\beta\\mu B)+1}",
+        "judge_correct": true,
+        "judge_reason": "Matches the Boltzmann probabilities for Sz=-1,0,+1 with beta=1/(kBT) and the correct normalization 1+2 cosh(mu B/kBT)."
+      },
+      "c": {
+        "extracted_answer": "\\ \\frac{\\langle M\\rangle}{V}=\\frac{N\\mu}{V}\\frac{2\\sinh(\\mu B/(k_BT))}{1+2\\cosh(\\mu B/(k_BT))}",
+        "ground_truth": "\\langle M \\rangle = N\\mu\\, \\frac{2\\sinh(\\beta\\mu B)}{2\\cosh(\\beta\\mu B)+1}, so \\(\\langle M \\rangle/V\\) is obtained by dividing by \\(V\\)",
+        "judge_correct": true,
+        "judge_reason": "The expression matches the reference result for <M>/V, with beta written as 1/(k_B T), and correctly includes the factor N mu/V and spin-1 denominator 1+2 cosh(mu B/k_B T)."
+      },
+      "d": {
+        "extracted_answer": "\\ \\chi=\\left(\\frac{\\partial\\langle M\\rangle}{\\partial B}\\right)_{B=0}=\\frac{2N\\mu^2}{3k_BT}",
+        "ground_truth": "\\chi = \\left.\\frac{\\partial \\langle M \\rangle}{\\partial B}\\right|_{B=0} = \\frac{2 N \\mu^{2}}{3 k_B T}",
+        "judge_correct": true,
+        "judge_reason": "Matches the reference zero-field susceptibility exactly: chi = 2 N mu^2/(3 k_B T)."
+      }
+    },
+    "format_errors": [],
+    "full_model_response": "Let \\(\\beta=1/(k_BT)\\). The translational and spin factors separate for each molecule:\n\\[\nZ_1=\\frac{1}{h^3}\\int_V d^3q\\int d^3p\\,e^{-\\beta p^2/(2m)}\n\\sum_{S^z=-1}^{1}e^{\\beta \\mu B S^z}.\n\\]\nThe classical translational integral gives \\(V(2\\pi m k_BT)^{3/2}/h^3=V/\\lambda_T^3\\), where \\(\\lambda_T=h/\\sqrt{2\\pi m k_BT}\\). The spin sum is\n\\[\ne^{-\\beta\\mu B}+1+e^{\\beta\\mu B}=1+2\\cosh(\\beta\\mu B).\n\\]\nFor indistinguishable ideal gas molecules, divide by \\(N!\\).\n\nFor one molecule, the spin probabilities are Boltzmann weights normalized by the spin partition factor. The average spin is\n\\[\n\\langle S^z\\rangle\n=\\frac{e^{\\beta\\mu B}-e^{-\\beta\\mu B}}{1+2\\cosh(\\beta\\mu B)}\n=\\frac{2\\sinh(\\beta\\mu B)}{1+2\\cosh(\\beta\\mu B)}.\n\\]\nThus \\(\\langle M\\rangle=N\\mu\\langle S^z\\rangle\\). For small \\(B\\), \\(\\sinh x\\sim x\\), \\(\\cosh x\\sim 1\\), so\n\\[\n\\langle M\\rangle \\sim N\\mu \\frac{2\\beta\\mu B}{3}.\n\\]\n\n\\[\n\\boxed{(a)\\ \\tilde Z(T,N,V,B)=\\frac{1}{N!}\\left[\\frac{V}{\\lambda_T^3}\\left(1+2\\cosh\\frac{\\mu B}{k_BT}\\right)\\right]^N,\\quad \\lambda_T=\\frac{h}{\\sqrt{2\\pi m k_BT}}}\n\\]\n\n\\[\n\\boxed{(b)\\ P(S_i^z=-1)=\\frac{e^{-\\mu B/(k_BT)}}{1+2\\cosh(\\mu B/(k_BT))},\\quad P(S_i^z=0)=\\frac{1}{1+2\\cosh(\\mu B/(k_BT))},\\quad P(S_i^z=+1)=\\frac{e^{\\mu B/(k_BT)}}{1+2\\cosh(\\mu B/(k_BT))}}\n\\]\n\n\\[\n\\boxed{(c)\\ \\frac{\\langle M\\rangle}{V}=\\frac{N\\mu}{V}\\frac{2\\sinh(\\mu B/(k_BT))}{1+2\\cosh(\\mu B/(k_BT))}}\n\\]\n\n\\[\n\\boxed{(d)\\ \\chi=\\left(\\frac{\\partial\\langle M\\rangle}{\\partial B}\\right)_{B=0}=\\frac{2N\\mu^2}{3k_BT}}\n\\]",
+    "selection": "random"
+  },
+  {
+    "id": "pathria/6.31",
+    "dataset": "FrontierPhysics",
+    "split": "test",
+    "mode": "separated",
+    "generator": "gpt-5.5",
+    "judge": "gpt-5.5",
+    "score": 1.0,
+    "question": "Use the following values to determine the equilibrium constant for the reaction $2\\mathrm{CO} + \\mathrm{O}_2 \\rightleftarrows 2\\mathrm{CO}_2$. At a combustion temperature of $T = 1500\\,\\text{K}$: $\\beta\\mu_{\\mathrm{CO}_2}^{(0)} = -60.95$, $\\beta\\mu_{\\mathrm{CO}}^{(0)} = -35.18$, and $\\beta\\mu_{\\mathrm{O}_2}^{(0)} = -27.08$.\n(a) Use this data to compute the fraction $[\\mathrm{CO}]/[\\mathrm{CO}_2]$ for the case of $[\\mathrm{O}_2] = 0.01$.\n(b) Repeat for a catalytic converter temperature of $T = 600\\,\\text{K}$, where $\\beta \\mu_{\\rm CO_2}^{(0)} = -103.45$, $\\beta \\mu_{\\rm CO}^{(0)} = -45.38$, and $\\beta \\mu_{\\rm O_2}^{(0)} = -23.49$.",
+    "evaluation_parts": {
+      "a": {
+        "extracted_answer": "\\ \\frac{[\\mathrm{CO}]}{[\\mathrm{CO}_2]}=\\frac{1}{\\sqrt{0.01\\,e^{24.46}}}\\approx 4.9\\times10^{-5}\\text{ at }T=1500\\,\\mathrm K",
+        "ground_truth": "K\\approx 4\\times 10^{10}, [\\mathrm{CO}]/[\\mathrm{CO}_2] \\simeq 5\\times 10^{-5}",
+        "judge_correct": true,
+        "judge_reason": "The candidate computes the requested CO/CO2 fraction for [O2]=0.01 as about 4.9e-5, matching the reference value 5e-5 within rounding."
+      },
+      "b": {
+        "extracted_answer": "\\ \\frac{[\\mathrm{CO}]}{[\\mathrm{CO}_2]}=\\frac{1}{\\sqrt{0.01\\,e^{92.65}}}\\approx 7.6\\times10^{-20}\\text{ at }T=600\\,\\mathrm K",
+        "ground_truth": "K\\approx 1.7\\times 10^{-40}, [\\mathrm{CO}]/[\\mathrm{CO}_2] \\simeq 7\\times 10^{-20}",
+        "judge_correct": true,
+        "judge_reason": "The candidate gives the correct equilibrium ratio for part (b), about 7.6e-20, which agrees with the reference 7e-20 within rounding; the omitted explicit K is implicit in the exponent used."
+      }
+    },
+    "format_errors": [],
+    "full_model_response": "For ideal mixtures, use\n\\[\n\\beta\\mu_i=\\beta\\mu_i^{(0)}+\\ln[i],\n\\]\nand equilibrium requires\n\\[\n2\\mu_{\\mathrm{CO}_2}-2\\mu_{\\mathrm{CO}}-\\mu_{\\mathrm{O}_2}=0.\n\\]\nThus\n\\[\nK=\\frac{[\\mathrm{CO}_2]^2}{[\\mathrm{CO}]^2[\\mathrm{O}_2]}\n=\\exp\\left[-\\left(2\\beta\\mu_{\\mathrm{CO}_2}^{(0)}-2\\beta\\mu_{\\mathrm{CO}}^{(0)}-\\beta\\mu_{\\mathrm{O}_2}^{(0)}\\right)\\right],\n\\]\nso\n\\[\n\\frac{[\\mathrm{CO}]}{[\\mathrm{CO}_2]}=\\frac{1}{\\sqrt{K[\\mathrm{O}_2]}}.\n\\]\n\nAt \\(1500\\,\\mathrm K\\),\n\\[\n\\Delta(\\beta\\mu^{(0)})=2(-60.95)-2(-35.18)-(-27.08)=-24.46,\n\\]\nso \\(K=e^{24.46}\\), and with \\([\\mathrm O_2]=0.01\\),\n\\[\n\\frac{[\\mathrm{CO}]}{[\\mathrm{CO}_2]}=\\frac{1}{\\sqrt{0.01e^{24.46}}}\\approx 4.9\\times10^{-5}.\n\\]\n\n\\[\n\\boxed{(a)\\ \\frac{[\\mathrm{CO}]}{[\\mathrm{CO}_2]}=\\frac{1}{\\sqrt{0.01\\,e^{24.46}}}\\approx 4.9\\times10^{-5}\\text{ at }T=1500\\,\\mathrm K}\n\\]\n\nAt \\(600\\,\\mathrm K\\),\n\\[\n\\Delta(\\beta\\mu^{(0)})=2(-103.45)-2(-45.38)-(-23.49)=-92.65,\n\\]\nso \\(K=e^{92.65}\\), and\n\\[\n\\frac{[\\mathrm{CO}]}{[\\mathrm{CO}_2]}=\\frac{1}{\\sqrt{0.01e^{92.65}}}\\approx 7.6\\times10^{-20}.\n\\]\n\n\\[\n\\boxed{(b)\\ \\frac{[\\mathrm{CO}]}{[\\mathrm{CO}_2]}=\\frac{1}{\\sqrt{0.01\\,e^{92.65}}}\\approx 7.6\\times10^{-20}\\text{ at }T=600\\,\\mathrm K}\n\\]",
+    "selection": "random"
+  },
+  {
+    "id": "sakurai/3.5",
+    "dataset": "FrontierPhysics",
+    "split": "test",
+    "mode": "separated",
+    "generator": "gpt-5.5",
+    "judge": "gpt-5.5",
+    "score": 1.0,
+    "question": "Consider a spin 1 particle. Evaluate the matrix elements of $$\n(a) S_z(S_z+\\hbar)(S_z-\\hbar) \\quad \\text{and} \\quad\n(b) S_x(S_x+\\hbar)(S_x-\\hbar).\n$$",
+    "evaluation_parts": {
+      "a": {
+        "extracted_answer": "\\ \\langle \\alpha|S_z(S_z+\\hbar)(S_z-\\hbar)|\\beta\\rangle=0\\ \\text{for all spin-1 states }|\\alpha\\rangle,|\\beta\\rangle",
+        "ground_truth": "zero",
+        "judge_correct": true,
+        "judge_reason": "For spin-1, the eigenvalues of S_z are -hbar, 0, and +hbar, so the polynomial S_z(S_z+hbar)(S_z-hbar) vanishes on every basis state and is the zero operator; hence all matrix elements are zero."
+      },
+      "b": {
+        "extracted_answer": "\\ \\langle \\alpha|S_x(S_x+\\hbar)(S_x-\\hbar)|\\beta\\rangle=0\\ \\text{for all spin-1 states }|\\alpha\\rangle,|\\beta\\rangle",
+        "ground_truth": "zero",
+        "judge_correct": true,
+        "judge_reason": "For a spin-1 particle the eigenvalues of any spin component, including S_x, are -hbar, 0, and +hbar, so S_x(S_x+hbar)(S_x-hbar) is the zero operator and all matrix elements vanish."
+      }
+    },
+    "format_errors": [],
+    "full_model_response": "For a spin-1 particle, the eigenvalues of any spin component \\(S_i\\) are \\(m\\hbar\\) with \\(m=-1,0,1\\). Therefore for any eigenvalue \\(\\lambda \\in \\{-\\hbar,0,\\hbar\\}\\),\n\n\\[\n\\lambda(\\lambda+\\hbar)(\\lambda-\\hbar)=\\lambda(\\lambda^2-\\hbar^2)=0.\n\\]\n\nSo the operator polynomial vanishes for \\(S_z\\). Since \\(S_x\\) has the same spin-1 spectrum, the same polynomial also vanishes for \\(S_x\\). Thus all matrix elements are zero in any basis.\n\n\\[\n\\boxed{(a)\\ \\langle \\alpha|S_z(S_z+\\hbar)(S_z-\\hbar)|\\beta\\rangle=0\\ \\text{for all spin-1 states }|\\alpha\\rangle,|\\beta\\rangle}\n\\]\n\n\\[\n\\boxed{(b)\\ \\langle \\alpha|S_x(S_x+\\hbar)(S_x-\\hbar)|\\beta\\rangle=0\\ \\text{for all spin-1 states }|\\alpha\\rangle,|\\beta\\rangle}\n\\]",
+    "selection": "random"
+  },
+  {
+    "id": "textbook/15.2",
+    "dataset": "FrontierPhysics",
+    "split": "test",
+    "mode": "separated",
+    "generator": "gpt-5.5",
+    "judge": "gpt-5.5",
+    "score": 1.0,
+    "question": "(b) Now consider the generalization\n\n(471)\n$$\n\\Psi_m(z_1,...,z_N) = \\prod_{j < k} (z_j - z_k)^m \\exp\\left(-\\sum_{j=1}^N \\frac{|z_j|^2}{4\\ell}\\right)\n$$\n\nto $N$ particles confined to move in the $x$–$y$ plane, where  $z_j = x_j + i y_j$ . For what values of $m$ is this wavefunction antisymmetric with respect to particle interchange?",
+    "evaluation_parts": {
+      "a": {
+        "extracted_answer": "(b)\\ \\Psi_m \\text{ is antisymmetric under particle interchange for odd integer } m,\\text{ i.e. } m=1,3,5,\\ldots \\text{ (more generally, any odd integer).}",
+        "ground_truth": "m is odd",
+        "judge_correct": true,
+        "judge_reason": "The candidate states that the wavefunction is antisymmetric for odd integer m, which matches the reference answer that m is odd."
+      }
+    },
+    "format_errors": [
+      "box 1 lacked a valid label; assigned by position"
+    ],
+    "full_model_response": "Under exchange of two particles, say \\(z_a \\leftrightarrow z_b\\), the Gaussian factor is unchanged. In the product, the factor \\((z_a-z_b)^m\\) becomes \\((z_b-z_a)^m = (-1)^m (z_a-z_b)^m\\), while the other pair factors only rearrange.\n\nSo the wavefunction changes by \\((-1)^m\\). It is antisymmetric when this equals \\(-1\\), requiring \\(m\\) to be an odd integer.\n\n\\[\n\\boxed{(b)\\ \\Psi_m \\text{ is antisymmetric under particle interchange for odd integer } m,\\text{ i.e. } m=1,3,5,\\ldots \\text{ (more generally, any odd integer).}}\n\\]",
+    "selection": "random"
+  },
+  {
+    "id": "quantum/3-3029",
+    "dataset": "Physics",
+    "split": "test",
+    "mode": "separated",
+    "generator": "gpt-5.5",
+    "judge": "gpt-5.5",
+    "score": 0.5,
+    "question": "An $\\Omega^-$ hyperon (spin 3/2, mass 1672 $\\text{MeV}/c^2$, intrinsic parity $+$) can decay via the weak interaction into a $\\Lambda$ hyperon (spin 1/2, mass 1116 $\\text{MeV}/c^2$, intrinsic parity $+$) and a $K^-$ meson (spin 0, mass 494 $\\text{MeV}/c^2$, intrinsic parity $-$), i.e., $\\Omega^- \\rightarrow \\Lambda + K^-$. \n\n(a) What is the most general form of the angular distribution of the $K^-$ mesons relative to the spin direction of the $\\Omega^-$ for the case when the $\\Omega^-$ has a maximum possible component of angular momentum along the a-axis, i.e., the initial state $|\\Omega^m_j\\rangle = |\\Omega^{+3/2}_{3/2}\\rangle$ (Assume that the $\\Omega^-$ is at rest).\n\n(b) What restrictions, if any, would be imposed on the form of the angular distribution if parity were conserved in the decay process?\n",
+    "evaluation_parts": {
+      "a": {
+        "extracted_answer": "\\ \\frac{d\\Gamma}{d\\Omega}=C\\left(\\left|A\\,Y_{1,1}(\\theta,\\phi)+\\frac{B}{2}Y_{2,1}(\\theta,\\phi)\\right|^2+\\frac{3|B|^2}{4}\\left|Y_{2,2}(\\theta,\\phi)\\right|^2\\right),\\ \\text{where }A,B\\text{ are arbitrary complex }P\\text{- and }D\\text{-wave amplitudes and }C\\text{ is a normalization constant.}",
+        "ground_truth": "I \\propto \\sin^2 \\theta (1 + \\alpha \\cos \\theta) where \\alpha = -2Re\\, a_p^* a_d / (|a_p|^2 + |a_d|^2)",
+        "judge_correct": false,
+        "judge_reason": "The answer has the right idea of summing P- and D-wave spherical-harmonic contributions, but the D-wave spin-coupling coefficients are not consistent with the required distribution. As written, the pure D-wave terms leave an extra cos^2(theta) dependence, so it does not reduce to the reference form I ∝ sin^2(theta)(1 + alpha cos(theta))."
+      },
+      "b": {
+        "extracted_answer": "\\ \\text{If parity were conserved, only the }L=1\\text{ partial wave would be allowed, so }B=0\\text{ in part (a), giving }\\frac{d\\Gamma}{d\\Omega}=C|A|^2|Y_{1,1}(\\theta,\\phi)|^2=\\frac{3C|A|^2}{8\\pi}\\sin^2\\theta.",
+        "ground_truth": "I \\propto (1 - \\cos^2 \\theta)",
+        "judge_correct": true,
+        "judge_reason": "The candidate imposes parity conservation to allow only the L=1 partial wave and obtains a distribution proportional to |Y_{1,1}|^2 = sin^2 theta = 1 - cos^2 theta, matching the reference."
+      }
+    },
+    "format_errors": [],
+    "full_model_response": "For an initial \\(\\Omega^-\\) at rest with spin projection \\(m=+3/2\\), the final \\(\\Lambda K\\) state has total spin \\(S=1/2\\), so angular momentum conservation allows orbital angular momentum \\(L\\) satisfying\n\\[\n|L-1/2|\\le 3/2 \\le L+1/2,\n\\]\nhence \\(L=1\\) or \\(L=2\\). The \\(K^-\\) angular dependence is therefore a coherent sum of \\(P\\)- and \\(D\\)-wave amplitudes coupled to the \\(\\Lambda\\) spin.\n\nFor \\(J=3/2,\\ M=3/2\\), the allowed coupled states are\n\\[\n\\begin{aligned}\n|J{=}3/2,M{=}3/2;L{=}1\\rangle &= Y_{1,1}\\,|\\Lambda,+1/2\\rangle,\\\\\n|J{=}3/2,M{=}3/2;L{=}2\\rangle\n&= \\frac{1}{2}Y_{2,1}\\,|\\Lambda,+1/2\\rangle\n-\\frac{\\sqrt3}{2}Y_{2,2}\\,|\\Lambda,-1/2\\rangle .\n\\end{aligned}\n\\]\nAfter summing over unobserved \\(\\Lambda\\) spin, the most general distribution is determined by two complex amplitudes \\(A\\) and \\(B\\) for \\(L=1\\) and \\(L=2\\).\n\n\\[\n\\boxed{(a)\\ \\frac{d\\Gamma}{d\\Omega}=C\\left(\\left|A\\,Y_{1,1}(\\theta,\\phi)+\\frac{B}{2}Y_{2,1}(\\theta,\\phi)\\right|^2+\\frac{3|B|^2}{4}\\left|Y_{2,2}(\\theta,\\phi)\\right|^2\\right),\\ \\text{where }A,B\\text{ are arbitrary complex }P\\text{- and }D\\text{-wave amplitudes and }C\\text{ is a normalization constant.}}\n\\]\n\nUnder parity, the final-state parity is\n\\[\nP_f=P_\\Lambda P_K(-1)^L=(+)(-)(-1)^L=-(-1)^L.\n\\]\nSince \\(P_i=+\\), parity conservation requires\n\\[\n-(-1)^L=+ \\quad \\Rightarrow \\quad L\\ \\text{odd}.\n\\]\nOf the allowed values \\(L=1,2\\), only \\(L=1\\) remains. Thus the \\(D\\)-wave amplitude must vanish.\n\n\\[\n\\boxed{(b)\\ \\text{If parity were conserved, only the }L=1\\text{ partial wave would be allowed, so }B=0\\text{ in part (a), giving }\\frac{d\\Gamma}{d\\Omega}=C|A|^2|Y_{1,1}(\\theta,\\phi)|^2=\\frac{3C|A|^2}{8\\pi}\\sin^2\\theta.}\n\\]",
+    "selection": "random"
+  },
+  {
+    "id": "quantum/6023",
+    "dataset": "Physics",
+    "split": "test",
+    "mode": "separated",
+    "generator": "gpt-5.5",
+    "judge": "gpt-5.5",
+    "score": 0.5,
+    "question": "Elastic scattering from some central potential $V$ may be adequately calculated using the first Born approximation. Experimental results give the following general behavior of the cross section as a function of momentum transfer $q = |\\mathbf{k} - \\mathbf{k'}|$.\n\nIn terms of the parameters shown in Fig. 6.6:\n(a) What is the approximate size (extension in space) of the potential $V$? (Hint: Expand the Born approximation for the scattering amplitude for small $q$.)\n(b) What is the behavior of the potential $V$ at very small distances?",
+    "evaluation_parts": {
+      "a": {
+        "extracted_answer": "\\ \\text{The approximate size is }R=\\left({\\int_0^\\infty r^4V(r)\\,dr\\over \\int_0^\\infty r^2V(r)\\,dr}\\right)^{1/2}\n=\\left[-{3\\over \\sigma(0)}{d\\sigma\\over d(q^2)}\\bigg|_{q=0}\\right]^{1/2},\\ \\sigma(q)\\equiv {d\\sigma\\over d\\Omega}(q);\\ \\text{equivalently }R\\sim 1/q_0\\text{ for the plotted falloff scale }q_0.",
+        "ground_truth": "R = \\sqrt{\\frac{10}{q_0^2 |f(0)|} (|f(0)| - |f(q_0)|)}",
+        "judge_correct": false,
+        "judge_reason": "The candidate gives an rms-radius expression and a small-q derivative relation, but it does not reproduce the required estimate from the plotted quantities. The reference size has coefficient 10 and depends on |f(0)|-|f(q0)| as R = sqrt[10(|f(0)|-|f(q0)|)/(q0^2 |f(0)|)], whereas the candidate’s derivative formula corresponds to a different radius convention and its R~1/q0 statement is only a rough scale."
+      },
+      "b": {
+        "extracted_answer": "\\ \\text{If the plotted large-}q\\text{ behavior is }\\sigma(q)={d\\sigma\\over d\\Omega}\\propto q^{-\\alpha},\\text{ then }V(r\\to0)\\propto r^{\\alpha/2-3};\\text{ for a }q^{-4}\\text{ tail, }V(r\\to0)\\propto 1/r\\text{, with sign not fixed by }\\sigma.",
+        "ground_truth": "\\bar{V} behaves like r^{(\\frac{N}{2}-3)}",
+        "judge_correct": true,
+        "judge_reason": "The candidate states that if the large-q cross section falls as q^{-alpha}, then V(r->0) behaves as r^{alpha/2-3}, which is the same as the reference r^{N/2-3} with alpha identified as N. The added q^{-4} example is consistent with that formula."
+      }
+    },
+    "format_errors": [],
+    "full_model_response": "In the first Born approximation,\n\\[\nf(q)=-{2m\\over \\hbar^2 q}\\int_0^\\infty rV(r)\\sin(qr)\\,dr ,\n\\]\nso at small \\(q\\),\n\\[\n{d\\sigma\\over d\\Omega}(q)\\simeq {d\\sigma\\over d\\Omega}(0)\n\\left[1-{q^2\\over 3}{\\int r^4V(r)\\,dr\\over \\int r^2V(r)\\,dr}\\right].\n\\]\nThus the initial curvature in \\(q\\) gives the spatial extent. The large-\\(q\\) tail probes the small-\\(r\\) singularity because the Born amplitude is a Fourier transform of \\(V\\).\n\n\\[\n\\boxed{(a)\\ \\text{The approximate size is }R=\\left({\\int_0^\\infty r^4V(r)\\,dr\\over \\int_0^\\infty r^2V(r)\\,dr}\\right)^{1/2}\n=\\left[-{3\\over \\sigma(0)}{d\\sigma\\over d(q^2)}\\bigg|_{q=0}\\right]^{1/2},\\ \\sigma(q)\\equiv {d\\sigma\\over d\\Omega}(q);\\ \\text{equivalently }R\\sim 1/q_0\\text{ for the plotted falloff scale }q_0.}\n\\]\n\n\\[\n\\boxed{(b)\\ \\text{If the plotted large-}q\\text{ behavior is }\\sigma(q)={d\\sigma\\over d\\Omega}\\propto q^{-\\alpha},\\text{ then }V(r\\to0)\\propto r^{\\alpha/2-3};\\text{ for a }q^{-4}\\text{ tail, }V(r\\to0)\\propto 1/r\\text{, with sign not fixed by }\\sigma.}\n\\]",
+    "selection": "random"
+  },
+  {
+    "id": "electro/4_29",
+    "dataset": "Physics",
+    "split": "test",
+    "mode": "separated",
+    "generator": "gpt-5.5",
+    "judge": "gpt-5.5",
+    "score": 1.0,
+    "question": "(a) $X$-rays which strike a metal surface at an angle of incidence to the normal greater than a critical angle $\\theta_0$ are totally reflected. Assuming that a metal contains $n$ free electrons per unit volume, calculate $\\theta_0$ as a function of the angular frequency $\\omega$ of the $X$-rays.\n\n(b) If $\\omega$ and $\\theta$ are such that total reflection does not occur, calculate what fraction of the incident wave is reflected. You may assume, for simplicity, that the polarization vector of the $X$-rays is perpendicular to the plane of incidence.",
+    "evaluation_parts": {
+      "a": {
+        "extracted_answer": "\\ \\theta_0=\\sin^{-1}\\!\\left[\\sqrt{1-\\frac{\\omega_p^2}{\\omega^2}}\\right],\\quad \\omega_p^2=\\frac{n e^2}{\\varepsilon_0 m_e}\\ \\text{(SI)},\\ \\text{so total reflection occurs for }\\theta>\\theta_0.",
+        "ground_truth": "\\omega_P^2 = \\frac{ne^2}{m\\epsilon_0}, \\theta_0 = \\arcsin \\left( 1 - \\frac{\\omega_P^2}{\\omega^2} \\right)^{1/2}",
+        "judge_correct": true,
+        "judge_reason": "Matches the reference expression for the plasma frequency and critical angle, with correct SI form and the stated condition for total reflection at incidence angles above the critical angle."
+      },
+      "b": {
+        "extracted_answer": "\\ R=\\left(\\frac{\\cos\\theta-\\sqrt{1-\\frac{\\omega_p^2}{\\omega^2}-\\sin^2\\theta}}{\\cos\\theta+\\sqrt{1-\\frac{\\omega_p^2}{\\omega^2}-\\sin^2\\theta}}\\right)^2,\\quad \\omega_p^2=\\frac{n e^2}{\\varepsilon_0 m_e},\\ \\sin\\theta<\\sqrt{1-\\frac{\\omega_p^2}{\\omega^2}},\\ \\text{for }s\\text{-polarized }X\\text{-rays}.",
+        "ground_truth": "R = \\left( \\frac{E'}{E} \\right)^2 = \\left( \\frac{\\cos \\theta - n \\cos \\theta''}{\\cos \\theta + n \\cos \\theta} \\right)^2",
+        "judge_correct": true,
+        "judge_reason": "The candidate gives the s-polarized Fresnel reflectance for incidence from vacuum into a metal with refractive index sqrt(1-omega_p^2/omega^2), using Snell's law to write n cos(theta_t)=sqrt(1-omega_p^2/omega^2-sin^2(theta)). The stated no-total-reflection condition is also consistent."
+      }
+    },
+    "format_errors": [],
+    "full_model_response": "For a free-electron metal, the electron displacement under an \\(X\\)-ray field gives the dielectric function\n\\[\n\\varepsilon(\\omega)=1-\\frac{\\omega_p^2}{\\omega^2},\\qquad \n\\omega_p^2=\\frac{n e^2}{\\varepsilon_0 m_e}.\n\\]\nThus the refractive index of the metal is\n\\[\nN=\\sqrt{1-\\frac{\\omega_p^2}{\\omega^2}}<1.\n\\]\nFor incidence from vacuum, Snell’s law gives \\(\\sin\\theta_t=\\sin\\theta/N\\). A propagating transmitted wave exists only if \\(\\sin\\theta\\le N\\), so total external reflection begins at \\(\\sin\\theta_0=N\\).\n\nFor perpendicular, or \\(s\\), polarization, the Fresnel amplitude reflection coefficient is\n\\[\nr_s=\\frac{\\cos\\theta-N\\cos\\theta_t}{\\cos\\theta+N\\cos\\theta_t}.\n\\]\nUsing \\(N\\cos\\theta_t=\\sqrt{N^2-\\sin^2\\theta}\\), the reflected fraction is \\(R=|r_s|^2\\).\n\n\\[\n\\boxed{(a)\\ \\theta_0=\\sin^{-1}\\!\\left[\\sqrt{1-\\frac{\\omega_p^2}{\\omega^2}}\\right],\\quad \\omega_p^2=\\frac{n e^2}{\\varepsilon_0 m_e}\\ \\text{(SI)},\\ \\text{so total reflection occurs for }\\theta>\\theta_0.}\n\\]\n\n\\[\n\\boxed{(b)\\ R=\\left(\\frac{\\cos\\theta-\\sqrt{1-\\frac{\\omega_p^2}{\\omega^2}-\\sin^2\\theta}}{\\cos\\theta+\\sqrt{1-\\frac{\\omega_p^2}{\\omega^2}-\\sin^2\\theta}}\\right)^2,\\quad \\omega_p^2=\\frac{n e^2}{\\varepsilon_0 m_e},\\ \\sin\\theta<\\sqrt{1-\\frac{\\omega_p^2}{\\omega^2}},\\ \\text{for }s\\text{-polarized }X\\text{-rays}.}\n\\]",
+    "selection": "random"
+  },
+  {
+    "id": "mechanics/1_58",
+    "dataset": "Physics",
+    "split": "test",
+    "mode": "separated",
+    "generator": "gpt-5.5",
+    "judge": "gpt-5.5",
+    "score": 1.0,
+    "question": "Estimate how big an asteroid you could escape by jumping.\n",
+    "evaluation_parts": {
+      "a": {
+        "extracted_answer": "\\ \\text{For a spherical asteroid of density }\\rho\\approx3\\times10^3\\,\\mathrm{kg/m^3}\\text{ and jump speed }v_j\\approx3\\,\\mathrm{m/s},\\ R=\\frac{v_j}{\\sqrt{8\\pi G\\rho/3}}\\approx2.3\\,\\mathrm{km},\\text{ so the asteroid diameter is }D\\approx4.6\\,\\mathrm{km}\\text{, roughly }5\\,\\mathrm{km}\\text{ across.}",
+        "ground_truth": "R = 2.7 \\times 10^3 \\ \\text{m}",
+        "judge_correct": true,
+        "judge_reason": "Candidate derives the correct escape-speed relation for a uniform spherical asteroid and gives R≈2.3 km, which is reasonably close to the reference R=2.7×10^3 m for an estimate; the added diameter statement does not invalidate the radius answer."
+      }
+    },
+    "format_errors": [],
+    "full_model_response": "A typical vertical jump speed is about \\(v_j\\sim 3\\,\\mathrm{m/s}\\). For a spherical asteroid of density \\(\\rho\\),  \n\\[\nv_{\\rm esc}=\\sqrt{\\frac{2GM}{R}}=R\\sqrt{\\frac{8\\pi G\\rho}{3}}.\n\\]\nSet \\(v_{\\rm esc}\\approx v_j\\).\n\n\\[\n\\boxed{(a)\\ \\text{For a spherical asteroid of density }\\rho\\approx3\\times10^3\\,\\mathrm{kg/m^3}\\text{ and jump speed }v_j\\approx3\\,\\mathrm{m/s},\\ R=\\frac{v_j}{\\sqrt{8\\pi G\\rho/3}}\\approx2.3\\,\\mathrm{km},\\text{ so the asteroid diameter is }D\\approx4.6\\,\\mathrm{km}\\text{, roughly }5\\,\\mathrm{km}\\text{ across.}}\n\\]",
+    "selection": "random"
+  },
+  {
+    "id": "quantum/3-3023",
+    "dataset": "Physics",
+    "split": "test",
+    "mode": "separated",
+    "generator": "gpt-5.5",
+    "judge": "gpt-5.5",
+    "score": 1.0,
+    "question": "Consider an electron in a uniform magnetic field in the positive $z$ direction. The result of a measurement has shown that the electron spin is along the positive $x$ direction at $t = 0$. Use Ehrenfest theorem to compute the probability for $t > 0$ that the electron is in the state (a) $s_x = 1/2$, (b) $s_x = -1/2$, (c) $s_y = 1/2$, (d) $s_y = -1/2$, (e) $s_z = 1/2$, (f) $s_z = -1/2$. \n\nEhrenfest theorem states that the expectation values of a quantum mechanical operator obey the classical equation of motion. \n\n[Hint: Recall the connection between expectation values and probability considerations].",
+    "evaluation_parts": {
+      "a": {
+        "extracted_answer": "\\ P(s_x=1/2\\text{ at time }t)=\\frac{1+\\cos(\\Omega t)}{2},\\quad \\Omega=\\frac{g e B}{2m}",
+        "ground_truth": "\\mathbf{P} = \\cos^2(\\omega t/2)",
+        "judge_correct": true,
+        "judge_reason": "The candidate's (1+cos(Ωt))/2 is algebraically equal to cos^2(Ωt/2), matching the reference form with Ω as the spin precession frequency; any sign convention for the electron does not affect this probability."
+      },
+      "b": {
+        "extracted_answer": "\\ P(s_x=-1/2\\text{ at time }t)=\\frac{1-\\cos(\\Omega t)}{2},\\quad \\Omega=\\frac{g e B}{2m}",
+        "ground_truth": "1 - \\mathbf{P} = \\sin^2(\\omega t/2)",
+        "judge_correct": true,
+        "judge_reason": "The candidate gives (1 - cos(Ωt))/2, which is algebraically sin^2(Ωt/2), matching the reference form for the probability of measuring s_x = -1/2 up to notation for the Larmor frequency."
+      },
+      "c": {
+        "extracted_answer": "\\ P(s_y=1/2\\text{ at time }t)=\\frac{1+\\sin(\\Omega t)}{2},\\quad \\Omega=\\frac{g e B}{2m}",
+        "ground_truth": "\\mathbf{P} = \\cos^2\\left(\\frac{\\omega t}{2} - \\frac{\\pi}{4}\\right)",
+        "judge_correct": true,
+        "judge_reason": "The reference expression cos^2(ωt/2 - π/4) is algebraically equal to (1 + sin(ωt))/2. The candidate gives this same probability, with Ω playing the role of the spin precession frequency."
+      },
+      "d": {
+        "extracted_answer": "\\ P(s_y=-1/2\\text{ at time }t)=\\frac{1-\\sin(\\Omega t)}{2},\\quad \\Omega=\\frac{g e B}{2m}",
+        "ground_truth": "1 - \\mathbf{P} = \\sin^2\\left(\\frac{\\omega t}{2} - \\frac{\\pi}{4}\\right)",
+        "judge_correct": true,
+        "judge_reason": "The reference expression sin^2(ωt/2−π/4) simplifies to (1−sin(ωt))/2, which matches the candidate’s probability with Ω identified as the Larmor/precession frequency."
+      },
+      "e": {
+        "extracted_answer": "\\ P(s_z=1/2\\text{ at time }t)=\\frac{1}{2}",
+        "ground_truth": "\\mathbf{P} = \\frac{1}{2}",
+        "judge_correct": true,
+        "judge_reason": "The candidate gives P(s_z=1/2)=1/2, matching the reference answer for part (e)."
+      },
+      "f": {
+        "extracted_answer": "\\ P(s_z=-1/2\\text{ at time }t)=\\frac{1}{2}",
+        "ground_truth": "1 - \\mathbf{P} = \\frac{1}{2}",
+        "judge_correct": true,
+        "judge_reason": "The candidate gives P(s_z=-1/2)=1/2, matching the reference result for part (f)."
+      }
+    },
+    "format_errors": [],
+    "full_model_response": "For an electron, with \\(e>0\\) denoting the magnitude of its charge and \\(B=B\\hat z\\), the spin Hamiltonian is\n\\[\nH=-\\boldsymbol\\mu\\cdot \\mathbf B=\\Omega S_z,\\qquad \\Omega=\\frac{g e B}{2m}\n\\]\nin SI units, approximately \\(\\Omega=eB/m\\) for \\(g\\simeq 2\\).\n\nEhrenfest gives\n\\[\n\\frac{d\\langle S_x\\rangle}{dt}=-\\Omega\\langle S_y\\rangle,\\qquad\n\\frac{d\\langle S_y\\rangle}{dt}=\\Omega\\langle S_x\\rangle,\\qquad\n\\frac{d\\langle S_z\\rangle}{dt}=0.\n\\]\nSince initially the spin is along \\(+x\\),\n\\[\n\\langle S_x\\rangle=\\frac{\\hbar}{2}\\cos\\Omega t,\\quad\n\\langle S_y\\rangle=\\frac{\\hbar}{2}\\sin\\Omega t,\\quad\n\\langle S_z\\rangle=0.\n\\]\nFor a spin-\\(\\frac12\\) measurement, \\(P_+-P_- = 2\\langle S_i\\rangle/\\hbar\\) and \\(P_++P_-=1\\).\n\n\\[\n\\boxed{(a)\\ P(s_x=1/2\\text{ at time }t)=\\frac{1+\\cos(\\Omega t)}{2},\\quad \\Omega=\\frac{g e B}{2m}}\n\\]\n\n\\[\n\\boxed{(b)\\ P(s_x=-1/2\\text{ at time }t)=\\frac{1-\\cos(\\Omega t)}{2},\\quad \\Omega=\\frac{g e B}{2m}}\n\\]\n\n\\[\n\\boxed{(c)\\ P(s_y=1/2\\text{ at time }t)=\\frac{1+\\sin(\\Omega t)}{2},\\quad \\Omega=\\frac{g e B}{2m}}\n\\]\n\n\\[\n\\boxed{(d)\\ P(s_y=-1/2\\text{ at time }t)=\\frac{1-\\sin(\\Omega t)}{2},\\quad \\Omega=\\frac{g e B}{2m}}\n\\]\n\n\\[\n\\boxed{(e)\\ P(s_z=1/2\\text{ at time }t)=\\frac{1}{2}}\n\\]\n\n\\[\n\\boxed{(f)\\ P(s_z=-1/2\\text{ at time }t)=\\frac{1}{2}}\n\\]",
+    "selection": "random"
+  }
+]
