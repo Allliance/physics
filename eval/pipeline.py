@@ -30,10 +30,10 @@ MERGED_SCHEMA = {
                 "type": "object",
                 "properties": {
                     "part": {"type": "string"},
-                    "correct": {"type": "boolean"},
+                    "score": {"type": ["integer", "null"], "enum": [0, 1, None]},
                     "reason": {"type": "string"},
                 },
-                "required": ["part", "correct", "reason"],
+                "required": ["part", "score", "reason"],
                 "additionalProperties": False,
             },
         },
@@ -117,17 +117,32 @@ def _append(path: Path, value: dict[str, Any]) -> None:
         handle.flush()
 
 
+def _valid_merged_score(value: Any) -> bool:
+    return value is None or (type(value) is int and value in {0, 1})
+
+
+def _usage_token_count(item: dict[str, Any], *names: str) -> int:
+    usage = item.get("usage") or {}
+    for name in names:
+        value = usage.get(name)
+        if value is not None:
+            return int(value or 0)
+    return 0
+
+
 def _judgment_has_reasons(judgment: dict[str, Any], mode: str, parts: list[str]) -> bool:
+    per_part = judgment.get("parts")
     if mode == "merged":
-        per_part = judgment.get("parts")
         return (
             isinstance(per_part, dict)
-            and all(isinstance(per_part.get(part), dict)
-                    and isinstance(per_part[part].get("reason"), str)
-                    and per_part[part]["reason"].strip()
-                    for part in parts)
+            and bool(per_part)
+            and all(isinstance(value, dict)
+                    and "score" in value
+                    and _valid_merged_score(value["score"])
+                    and isinstance(value.get("reason"), str)
+                    and value["reason"].strip()
+                    for value in per_part.values())
         )
-    per_part = judgment.get("parts")
     return (
         isinstance(per_part, dict)
         and all(isinstance(per_part.get(part), dict)
@@ -137,37 +152,41 @@ def _judgment_has_reasons(judgment: dict[str, Any], mode: str, parts: list[str])
     )
 
 
-def _merged_part_results(parsed: dict[str, Any], parts: list[str],
-                         row: dict[str, Any]) -> dict[str, dict[str, Any]]:
-    """Normalize the current reasoned merged schema, with old-schema tolerance."""
+def _merged_part_results(parsed: dict[str, Any], row: dict[str, Any]) -> dict[str, dict[str, Any]]:
+    """Normalize merged judge output."""
     parsed_parts = parsed.get("parts")
     results: dict[str, dict[str, Any]] = {}
     if isinstance(parsed_parts, list):
-        for item in parsed_parts:
+        for index, item in enumerate(parsed_parts):
             if not isinstance(item, dict):
                 continue
-            part = str(item.get("part", ""))
-            if part in parts and part not in results:
+            part = str(item.get("part") or "").strip()
+            if not part:
+                part = "a" if len(parsed_parts) == 1 else str(index + 1)
+            if "score" in item and _valid_merged_score(item["score"]):
+                score = item["score"]
+            else:
+                score = 1 if item.get("correct") is True else 0
+            if part not in results:
                 results[part] = {
-                    "correct": item.get("correct") is True,
+                    "score": score,
                     "reason": str(item.get("reason", "")),
                 }
 
     # Tolerate legacy/non-strict JSON if a backend ignores the schema.
     if not results and isinstance(parsed.get("correct"), list):
         returned_correct = [str(part) for part in parsed.get("correct", [])]
-        for part in parts:
+        for part in returned_correct:
             results[part] = {
-                "correct": part in returned_correct,
+                "score": 1,
                 "reason": str(parsed.get("reason", "")),
             }
 
-    if row.get("is_multi_part") is False and parts == ["a"] and results:
+    if row.get("is_multi_part") is False and results:
         any_result = next(iter(results.values()))
         results = {"a": any_result}
-
-    for part in parts:
-        results.setdefault(part, {"correct": False, "reason": ""})
+    if not results:
+        results = {"a": {"score": None, "reason": "Judge did not return any part judgments."}}
     return results
 
 
@@ -218,8 +237,14 @@ def run(dataset: Path, output_root: Path, config: RunConfig, generator: LLM, jud
     if config.mode not in {"merged", "separated"}:
         raise ValueError("mode must be merged or separated")
     all_rows = read_rows(dataset)
-    rows = [row for row in all_rows if load_ground_truths(row)]
-    skipped_no_ground_truth_parts = len(all_rows) - len(rows)
+    if config.mode == "merged":
+        rows = [row for row in all_rows if str(row.get("solution") or "").strip()]
+        skipped_no_ground_truth_parts = 0
+        skipped_no_reference_solution = len(all_rows) - len(rows)
+    else:
+        rows = [row for row in all_rows if load_ground_truths(row)]
+        skipped_no_ground_truth_parts = len(all_rows) - len(rows)
+        skipped_no_reference_solution = 0
     if config.limit is not None:
         rows = rows[:config.limit]
     model_out = model_artifact_dir(output_root, dataset, config)
@@ -239,8 +264,11 @@ def run(dataset: Path, output_root: Path, config: RunConfig, generator: LLM, jud
 
     def process_row(row: dict[str, Any]) -> None:
         key = _key(dataset, row)
-        truths = load_ground_truths(row)
-        parts = detect_part_ids(truths)
+        if config.mode == "merged":
+            parts = []
+        else:
+            truths = load_ground_truths(row)
+            parts = detect_part_ids(truths)
         if key not in responses:
             completion = generator.complete(generation_prompt(row["question"]), system_prompt=gen_system)
             boxes = extract_boxes(completion.text)
@@ -261,10 +289,14 @@ def run(dataset: Path, output_root: Path, config: RunConfig, generator: LLM, jud
         response = responses[key]
         cached_judgment = judgments.get(key)
         if cached_judgment is not None:
-            cached_parts = cached_judgment.get("part_ids", [])
-            if cached_parts == parts and _judgment_has_reasons(cached_judgment, config.mode, parts):
+            if config.mode == "merged" and _judgment_has_reasons(cached_judgment, config.mode, parts):
                 return
-            if (set(parts).issubset(cached_parts)
+            cached_parts = cached_judgment.get("part_ids", [])
+            if (config.mode != "merged" and cached_parts == parts
+                    and _judgment_has_reasons(cached_judgment, config.mode, parts)):
+                return
+            if (config.mode != "merged"
+                    and set(parts).issubset(cached_parts)
                     and _judgment_has_reasons(cached_judgment, config.mode, parts)):
                 filtered = dict(cached_judgment)
                 filtered["part_ids"] = parts
@@ -278,13 +310,13 @@ def run(dataset: Path, output_root: Path, config: RunConfig, generator: LLM, jud
                     judgments[key] = filtered
                 return
         if config.mode == "merged":
-            failure_key = f"{key}:merged"
+            failure_key = f"{key}:merged:v2"
             if failure_key in failures:
                 return
             try:
                 completion = judge.complete(
                     merged_judge_prompt(row["question"], str(row.get("solution") or ""),
-                                        response.get("extracted_answer", ""), parts),
+                                        response.get("extracted_answer", "")),
                     system_prompt=MERGED_JUDGE_SYSTEM, schema=MERGED_SCHEMA,
                 )
                 parsed = parse_json_object(completion.text)
@@ -296,11 +328,15 @@ def run(dataset: Path, output_root: Path, config: RunConfig, generator: LLM, jud
                     _append(failures_path, failure)
                     failures[failure_key] = failure
                 return
-            part_results = _merged_part_results(parsed, parts, row)
-            correct = [part for part in parts if part_results[part]["correct"]]
+            part_results = _merged_part_results(parsed, row)
+            parts = list(part_results)
+            scored_parts = [part for part in parts if part_results[part]["score"] is not None]
+            correct = [part for part in scored_parts if part_results[part]["score"] == 1]
+            score = (sum(part_results[part]["score"] for part in scored_parts) / len(scored_parts)
+                     if scored_parts else None)
             per_part = {
                 part: {
-                    "correct": part in correct,
+                    "score": part_results[part]["score"],
                     "reason": str(part_results[part].get("reason", "")),
                     "judge_response": completion.text,
                     "usage": completion.usage,
@@ -308,8 +344,10 @@ def run(dataset: Path, output_root: Path, config: RunConfig, generator: LLM, jud
                 for part in parts
             }
             judgment = {"key": key, "id": row.get("id"), "part_ids": parts, "correct": correct,
-                        "score": len(set(correct)) / len(parts), "judge_response": completion.text,
-                        "usage": completion.usage, "parts": per_part}
+                        "score": score, "num_scored_parts": len(scored_parts),
+                        "num_unscored_parts": len(parts) - len(scored_parts),
+                        "judge_response": completion.text, "usage": completion.usage,
+                        "parts": per_part}
         else:
             truths, provenance = resolve_ground_truth(row, parts)
             answers = candidate_answers(row, response, parts)
@@ -353,21 +391,25 @@ def run(dataset: Path, output_root: Path, config: RunConfig, generator: LLM, jud
         list(executor.map(process_row, rows))
 
     selected = [judgments[_key(dataset, row)] for row in rows if _key(dataset, row) in judgments]
+    scored_selected = [item for item in selected if item.get("score") is not None]
     selected_responses = [responses[_key(dataset, row)] for row in rows
                           if _key(dataset, row) in responses]
     failed = [failure for failure in failures.values()
               if failure.get("key") in {_key(dataset, row) for row in rows}]
-    prompt_tokens = sum((item.get("usage") or {}).get("prompt_tokens", 0) or 0
+    prompt_tokens = sum(_usage_token_count(item, "prompt_tokens", "input_tokens")
                         for item in selected_responses)
-    completion_tokens = sum((item.get("usage") or {}).get("completion_tokens", 0) or 0
+    completion_tokens = sum(_usage_token_count(item, "completion_tokens", "output_tokens")
                             for item in selected_responses)
     token_cap = config.generation.max_tokens
     summary = {
         "dataset": str(dataset), "mode": config.mode, "generator": config.generation.model,
         "judge": config.judge_name, "num_rows": len(selected),
         "num_skipped_no_ground_truth_parts": skipped_no_ground_truth_parts,
+        "num_skipped_no_reference_solution": skipped_no_reference_solution,
         "num_failed_judgments": len(failed),
-        "mean_score": sum(x["score"] for x in selected) / len(selected) if selected else None,
+        "mean_score": (sum(x["score"] for x in scored_selected) / len(scored_selected)
+                       if scored_selected else None),
+        "num_unscored_rows": len(selected) - len(scored_selected),
         "format_error_rows": sum(bool(item.get("format_errors"))
                                  for item in selected_responses),
         "empty_final_rows": sum(not item.get("response") for item in selected_responses),

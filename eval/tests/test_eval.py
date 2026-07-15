@@ -147,8 +147,8 @@ class JudgmentCacheTests(unittest.TestCase):
         self.assertEqual(set(SEPARATED_SCHEMA["properties"]), {"correct", "reason"})
         self.assertEqual(set(SEPARATED_SCHEMA["required"]), {"correct", "reason"})
         part_schema = MERGED_SCHEMA["properties"]["parts"]["items"]
-        self.assertEqual(set(part_schema["properties"]), {"part", "correct", "reason"})
-        self.assertEqual(set(part_schema["required"]), {"part", "correct", "reason"})
+        self.assertEqual(set(part_schema["properties"]), {"part", "score", "reason"})
+        self.assertEqual(set(part_schema["required"]), {"part", "score", "reason"})
 
     def test_generation_cache_tag_changes_with_sampling(self):
         greedy = GenerationConfig("model", temperature=0.0)
@@ -261,8 +261,8 @@ class JudgmentCacheTests(unittest.TestCase):
             }) + "\n")
             judge = SequenceLLM(json.dumps({
                 "parts": [
-                    {"part": "a", "correct": True, "reason": "Part a matches."},
-                    {"part": "b", "correct": False, "reason": "Part b does not match."},
+                    {"part": "a", "score": 1, "reason": "Part a matches."},
+                    {"part": "b", "score": 0, "reason": "Part b does not match."},
                 ]
             }))
             with patch("eval.pipeline.read_rows", return_value=[row]):
@@ -270,8 +270,72 @@ class JudgmentCacheTests(unittest.TestCase):
             judgment = json.loads((result / "judgments.jsonl").read_text().splitlines()[-1])
             self.assertEqual(judgment["correct"], ["a"])
             self.assertEqual(judgment["score"], 0.5)
+            self.assertEqual(judgment["parts"]["a"]["score"], 1)
+            self.assertEqual(judgment["parts"]["b"]["score"], 0)
             self.assertEqual(judgment["parts"]["a"]["reason"], "Part a matches.")
             self.assertEqual(judgment["parts"]["b"]["reason"], "Part b does not match.")
+
+    def test_merged_judgment_does_not_require_ground_truths(self):
+        row = {
+            "id": "sample",
+            "question": "question",
+            "solution": "final answer yes",
+            "is_multi_part": False,
+        }
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            dataset = root / "Dataset" / "test.parquet"
+            key = _key(dataset, row)
+            config = RunConfig(mode="merged", generation=GenerationConfig("generator"),
+                               judge_name="judge")
+            out = model_artifact_dir(root / "artifacts", dataset, config)
+            out.mkdir(parents=True)
+            (out / "responses.jsonl").write_text(json.dumps({
+                "key": key, "id": "sample", "part_ids": [],
+                "extracted_answer": "yes",
+            }) + "\n")
+            judge = SequenceLLM(json.dumps({
+                "parts": [{"part": "a", "score": 1, "reason": "The candidate states yes."}]
+            }))
+            with patch("eval.pipeline.read_rows", return_value=[row]):
+                result = run(dataset, root / "artifacts", config, FailingLLM(), judge)
+            judgment = json.loads((result / "judgments.jsonl").read_text().splitlines()[-1])
+            self.assertEqual(judgment["part_ids"], ["a"])
+            self.assertEqual(judgment["score"], 1.0)
+
+    def test_merged_null_part_scores_are_excluded_from_denominator(self):
+        row = {
+            "id": "sample",
+            "question": "(a) answer yes. (b) answer no.",
+            "solution": "(a) yes. (b) See the book.",
+            "is_multi_part": True,
+        }
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            dataset = root / "Dataset" / "test.parquet"
+            key = _key(dataset, row)
+            config = RunConfig(mode="merged", generation=GenerationConfig("generator"),
+                               judge_name="judge")
+            out = model_artifact_dir(root / "artifacts", dataset, config)
+            out.mkdir(parents=True)
+            (out / "responses.jsonl").write_text(json.dumps({
+                "key": key, "id": "sample", "part_ids": [],
+                "extracted_answer": "(a) yes; (b) no",
+            }) + "\n")
+            judge = SequenceLLM(json.dumps({
+                "parts": [
+                    {"part": "a", "score": 1, "reason": "Part a matches."},
+                    {"part": "b", "score": None, "reason": "Reference points to inaccessible material."},
+                ]
+            }))
+            with patch("eval.pipeline.read_rows", return_value=[row]):
+                result = run(dataset, root / "artifacts", config, FailingLLM(), judge)
+            judgment = json.loads((result / "judgments.jsonl").read_text().splitlines()[-1])
+            self.assertEqual(judgment["score"], 1.0)
+            self.assertEqual(judgment["num_scored_parts"], 1)
+            self.assertEqual(judgment["num_unscored_parts"], 1)
+            summary = json.loads((result / "summary.json").read_text())
+            self.assertEqual(summary["mean_score"], 1.0)
 
 
 if __name__ == "__main__":
