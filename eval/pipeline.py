@@ -22,13 +22,30 @@ from .prompts import (
 )
 
 MERGED_SCHEMA = {
-    "type": "object", "properties": {"correct": {"type": "array", "items": {"type": "string"}}},
-    "required": ["correct"], "additionalProperties": False,
+    "type": "object",
+    "properties": {
+        "parts": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "part": {"type": "string"},
+                    "correct": {"type": "boolean"},
+                    "reason": {"type": "string"},
+                },
+                "required": ["part", "correct", "reason"],
+                "additionalProperties": False,
+            },
+        },
+    },
+    "required": ["parts"],
+    "additionalProperties": False,
 }
 SEPARATED_SCHEMA = {
     "type": "object",
-    "properties": {"correct": {"type": "boolean"}},
-    "required": ["correct"], "additionalProperties": False,
+    "properties": {"correct": {"type": "boolean"}, "reason": {"type": "string"}},
+    "required": ["correct", "reason"],
+    "additionalProperties": False,
 }
 
 
@@ -98,6 +115,60 @@ def _append(path: Path, value: dict[str, Any]) -> None:
     with path.open("a") as handle:
         handle.write(json.dumps(value, ensure_ascii=False) + "\n")
         handle.flush()
+
+
+def _judgment_has_reasons(judgment: dict[str, Any], mode: str, parts: list[str]) -> bool:
+    if mode == "merged":
+        per_part = judgment.get("parts")
+        return (
+            isinstance(per_part, dict)
+            and all(isinstance(per_part.get(part), dict)
+                    and isinstance(per_part[part].get("reason"), str)
+                    and per_part[part]["reason"].strip()
+                    for part in parts)
+        )
+    per_part = judgment.get("parts")
+    return (
+        isinstance(per_part, dict)
+        and all(isinstance(per_part.get(part), dict)
+                and isinstance(per_part[part].get("reason"), str)
+                and per_part[part]["reason"].strip()
+                for part in parts)
+    )
+
+
+def _merged_part_results(parsed: dict[str, Any], parts: list[str],
+                         row: dict[str, Any]) -> dict[str, dict[str, Any]]:
+    """Normalize the current reasoned merged schema, with old-schema tolerance."""
+    parsed_parts = parsed.get("parts")
+    results: dict[str, dict[str, Any]] = {}
+    if isinstance(parsed_parts, list):
+        for item in parsed_parts:
+            if not isinstance(item, dict):
+                continue
+            part = str(item.get("part", ""))
+            if part in parts and part not in results:
+                results[part] = {
+                    "correct": item.get("correct") is True,
+                    "reason": str(item.get("reason", "")),
+                }
+
+    # Tolerate legacy/non-strict JSON if a backend ignores the schema.
+    if not results and isinstance(parsed.get("correct"), list):
+        returned_correct = [str(part) for part in parsed.get("correct", [])]
+        for part in parts:
+            results[part] = {
+                "correct": part in returned_correct,
+                "reason": str(parsed.get("reason", "")),
+            }
+
+    if row.get("is_multi_part") is False and parts == ["a"] and results:
+        any_result = next(iter(results.values()))
+        results = {"a": any_result}
+
+    for part in parts:
+        results.setdefault(part, {"correct": False, "reason": ""})
+    return results
 
 
 @dataclass
@@ -191,14 +262,15 @@ def run(dataset: Path, output_root: Path, config: RunConfig, generator: LLM, jud
         cached_judgment = judgments.get(key)
         if cached_judgment is not None:
             cached_parts = cached_judgment.get("part_ids", [])
-            if cached_parts == parts:
+            if cached_parts == parts and _judgment_has_reasons(cached_judgment, config.mode, parts):
                 return
-            if set(parts).issubset(cached_parts):
+            if (set(parts).issubset(cached_parts)
+                    and _judgment_has_reasons(cached_judgment, config.mode, parts)):
                 filtered = dict(cached_judgment)
                 filtered["part_ids"] = parts
                 filtered["correct"] = [part for part in cached_judgment.get("correct", []) if part in parts]
                 filtered["score"] = len(filtered["correct"]) / len(parts)
-                if config.mode == "separated" and "parts" in cached_judgment:
+                if "parts" in cached_judgment:
                     filtered["parts"] = {part: cached_judgment["parts"][part] for part in parts}
                 filtered["created_at"] = datetime.now(timezone.utc).isoformat()
                 with write_lock:
@@ -224,15 +296,20 @@ def run(dataset: Path, output_root: Path, config: RunConfig, generator: LLM, jud
                     _append(failures_path, failure)
                     failures[failure_key] = failure
                 return
-            returned_correct = parsed.get("correct", [])
-            if (row.get("is_multi_part") is False and parts == ["a"]
-                    and isinstance(returned_correct, list) and returned_correct):
-                correct = ["a"]
-            else:
-                correct = [p for p in returned_correct if p in parts]
+            part_results = _merged_part_results(parsed, parts, row)
+            correct = [part for part in parts if part_results[part]["correct"]]
+            per_part = {
+                part: {
+                    "correct": part in correct,
+                    "reason": str(part_results[part].get("reason", "")),
+                    "judge_response": completion.text,
+                    "usage": completion.usage,
+                }
+                for part in parts
+            }
             judgment = {"key": key, "id": row.get("id"), "part_ids": parts, "correct": correct,
                         "score": len(set(correct)) / len(parts), "judge_response": completion.text,
-                        "usage": completion.usage}
+                        "usage": completion.usage, "parts": per_part}
         else:
             truths, provenance = resolve_ground_truth(row, parts)
             answers = candidate_answers(row, response, parts)

@@ -38,7 +38,10 @@ The hash covers the full generation configuration, preventing responses made
 with different reasoning or sampling settings from sharing a cache.
 The reusable generation cache is stored there as `responses.jsonl`. Judge-specific
 `judgments.jsonl`, `summary.json`, and `run_config.json` live inside its
-`judge_<judge>/` subdirectory.
+`judge_<judge>/` subdirectory. Judge rows include per-part reasons in
+`parts`: separated mode stores the reason for the single part judged by each
+judge call, while merged mode stores one reason for every requested part in
+the single merged judgment.
 JSONL files append after every completion and are reused on restart. Use
 `--overwrite` for a fresh run. Rows run concurrently with 32 workers by default;
 use `--max-workers` to change the limit.
