@@ -4,8 +4,8 @@ This package runs a resumable two-stage evaluation: model responses are cached
 first, then judged. `merged` uses one final box and the row's `solution`, with
 the judge inferring parts from the problem and solution; `separated` uses one
 box and one judgment per detected part.
-The default mode is `separated`; pass `--mode merged` only when merged scoring
-is specifically needed.
+The default mode is `merged`; pass `--mode separated` only when separated
+per-part extraction and scoring is specifically needed.
 
 Run one-row Codex smoke tests:
 
@@ -27,6 +27,12 @@ uv run --with pyarrow python -m eval Physics test --mode separated \
 Reasoning-capable OpenAI-compatible endpoints can use
 `--generator-reasoning-effort high`; cap generated tokens with
 `--generator-max-tokens 32768`.
+Use `--repeat K` to run K independent generation-plus-judgment attempts for
+each selected problem. The default is `--repeat 1`, matching the legacy one
+attempt behavior. Attempt 1 keeps the legacy cache key; later attempts are
+stored in the same `responses.jsonl` and `judgments.jsonl` files with derived
+attempt keys plus `row_key` and `attempt` metadata, so repeat runs are
+resumable and can reuse existing first-attempt artifacts.
 
 Dataset files are resolved from `final_datasets/<dataset>/<split>.parquet`, next
 to the `eval` package. Supported datasets are `FrontierPhysics` and
@@ -49,6 +55,10 @@ divided by the number of non-null part scores.
 JSONL files append after every completion and are reused on restart. Use
 `--overwrite` for a fresh run. Rows run concurrently with 32 workers by default;
 use `--max-workers` to change the limit.
+When `--repeat K` is greater than 1, `summary.json` keeps `mean_score` as the
+first-attempt mean and also reports `mean@K`/`mean_at_K` and
+`best@K`/`best_at_K`. These are computed per problem across all K scored
+attempts, then averaged across problems.
 
 In separated mode, part IDs come from the finalized dataset's `ground_truths`
 JSON dictionary keys, in dictionary order, excluding keys whose value is null.

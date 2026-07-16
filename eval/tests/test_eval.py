@@ -10,8 +10,8 @@ from eval.llm import Completion, OpenAICompatibleLLM
 from eval.__main__ import resolve_dataset_path
 from eval.parsing import detect_part_ids, extract_boxes, map_separated_boxes, parse_json_object
 from eval.pipeline import (
-    MERGED_SCHEMA, SEPARATED_SCHEMA, GenerationConfig, RunConfig, _key, candidate_answers,
-    load_ground_truths, model_artifact_dir, resolve_ground_truth, run,
+    MERGED_SCHEMA, SEPARATED_SCHEMA, GenerationConfig, RunConfig, _attempt_key, _key,
+    candidate_answers, load_ground_truths, model_artifact_dir, resolve_ground_truth, run,
 )
 
 
@@ -154,6 +154,84 @@ class JudgmentCacheTests(unittest.TestCase):
         greedy = GenerationConfig("model", temperature=0.0)
         sampled = GenerationConfig("model", temperature=1.0, top_p=1.0)
         self.assertNotEqual(greedy.cache_tag(), sampled.cache_tag())
+
+    def test_repeat_runs_generation_and_judgment_per_attempt(self):
+        row = {"id": "sample", "question": "question", "ground_truths": {"a": "yes"}}
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            dataset = root / "Dataset" / "test.parquet"
+            row_key = _key(dataset, row)
+            config = RunConfig(mode="separated", generation=GenerationConfig("generator"),
+                               judge_name="judge", repeat=4, max_workers=1)
+            generator = SequenceLLM(
+                r"\boxed{(a) yes}",
+                r"\boxed{(a) no}",
+                r"\boxed{(a) yes}",
+                r"\boxed{(a) yes}",
+            )
+            judge = SequenceLLM(
+                '{"correct": true, "reason": "attempt 1"}',
+                '{"correct": false, "reason": "attempt 2"}',
+                '{"correct": true, "reason": "attempt 3"}',
+                '{"correct": true, "reason": "attempt 4"}',
+            )
+            with patch("eval.pipeline.read_rows", return_value=[row]):
+                result = run(dataset, root / "artifacts", config, generator, judge)
+
+            self.assertEqual(len(generator.calls), 4)
+            self.assertEqual(len(judge.calls), 4)
+            response_keys = [
+                json.loads(line)["key"]
+                for line in model_artifact_dir(root / "artifacts", dataset, config)
+                .joinpath("responses.jsonl").read_text().splitlines()
+            ]
+            self.assertEqual(response_keys, [_attempt_key(row_key, attempt)
+                                             for attempt in range(1, 5)])
+            summary = json.loads((result / "summary.json").read_text())
+            self.assertEqual(summary["repeat"], 4)
+            self.assertEqual(summary["num_rows"], 1)
+            self.assertEqual(summary["num_attempts"], 4)
+            self.assertEqual(summary["mean_score"], 1.0)
+            self.assertEqual(summary["mean@4"], 0.75)
+            self.assertEqual(summary["best@4"], 1.0)
+            self.assertEqual(summary["mean_at_4"], 0.75)
+            self.assertEqual(summary["best_at_4"], 1.0)
+            self.assertEqual(summary["num_rows_with_all_4_attempts_scored"], 1)
+
+    def test_repeat_reuses_legacy_first_attempt_cache(self):
+        row = {"id": "sample", "question": "question", "ground_truths": {"a": "yes"}}
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            dataset = root / "Dataset" / "test.parquet"
+            row_key = _key(dataset, row)
+            config = RunConfig(mode="separated", generation=GenerationConfig("generator"),
+                               judge_name="judge", repeat=2, max_workers=1)
+            out = model_artifact_dir(root / "artifacts", dataset, config)
+            judge_out = out / "judge_judge"
+            judge_out.mkdir(parents=True)
+            (out / "responses.jsonl").write_text(json.dumps({
+                "key": row_key, "id": "sample", "part_ids": ["a"],
+                "extracted_answers": {"a": "yes"},
+            }) + "\n")
+            (judge_out / "judgments.jsonl").write_text(json.dumps({
+                "key": row_key, "id": "sample", "part_ids": ["a"],
+                "correct": ["a"], "score": 1.0,
+                "parts": {"a": {"correct": True, "reason": "cached first attempt"}},
+            }) + "\n")
+            generator = SequenceLLM(r"\boxed{(a) no}")
+            judge = SequenceLLM('{"correct": false, "reason": "new second attempt"}')
+            with patch("eval.pipeline.read_rows", return_value=[row]):
+                result = run(dataset, root / "artifacts", config, generator, judge)
+
+            self.assertEqual(len(generator.calls), 1)
+            self.assertEqual(len(judge.calls), 1)
+            judgments = [json.loads(line) for line in (result / "judgments.jsonl").read_text().splitlines()]
+            self.assertEqual([item["key"] for item in judgments],
+                             [row_key, _attempt_key(row_key, 2)])
+            summary = json.loads((result / "summary.json").read_text())
+            self.assertEqual(summary["mean_score"], 1.0)
+            self.assertEqual(summary["mean@2"], 0.5)
+            self.assertEqual(summary["best@2"], 1.0)
 
     def test_cached_judgment_drops_null_parts_without_llm_call(self):
         row = {"id": "sample", "question": "question", "ground_truths": {"a": "yes", "b": None}}

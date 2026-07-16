@@ -1,10 +1,45 @@
-# Physics
+# Physics Evaluation
 
 Evaluation and training of LLMs on university-level physics problems.
 
-# Judge
+## Signifiance
 
-## Judge modes
+For **GPT-5.5-High** as both the generator and judge on the Physics test split
+in **merged judge mode**, four cached in-repo runs produced:
+
+| Run | Score |
+| --- | ---: |
+| 1 | 84.53% |
+| 2 | 82.27% |
+| 3 | 83.29% |
+| 4 | 82.22% |
+
+Aggregating the four runs over rows with all four scores:
+
+| Metric | Score |
+| --- | ---: |
+| mean@4 | 83.25% |
+| best@4 | 89.59% |
+
+
+## Judge
+
+### Consistency Across Models
+
+Holding the generator fixed at **GPT-5.5 (high reasoning)**, the merged-mode
+judge score changes noticeably between GPT-5.5 and Gemini 3.1 Pro Preview, both
+run with high reasoning:
+
+| Dataset | GPT-5.5 judge | Gemini 3.1 Pro Preview judge | Difference |
+| --- | ---: | ---: | ---: |
+| Physics | 84.53% | 90.04% | +5.51 pts |
+| Frontier Physics | 92.00% | 95.70% | +3.70 pts |
+
+Both Gemini merged-mode runs completed with zero failed judge calls. Physics had
+two unscored rows under the GPT-5.5 judge and one unscored row under the Gemini
+judge, so the Physics comparison is slightly affected by scored-row coverage.
+
+### Judge modes
 
 The evaluator supports two judge modes. In **separated mode**, the generator is
 asked to box one answer per detected problem part, and the judge scores each
@@ -24,7 +59,7 @@ change in model behavior.
 | Physics | 83.36% | 84.53% | +1.17 pts |
 | Frontier Physics | 89.52% | 92.00% | +2.49 pts |
 
-## Human evaluation
+### Human evaluation
 
 For human inspection, 10 representative samples from Physics and 10 from
 Frontier Physics were judged with merged mode. These samples should be reviewed
@@ -33,9 +68,7 @@ by expert physicists:
 - [PDF review packet](eval/review/gpt-5.5_merged_random_review.pdf)
 - [HTML review packet](eval/review/gpt-5.5_merged_random_review.html)
 
-## Self Consistency (GPT-5.5)
-
-### Judge
+### Self Consistency (GPT-5.5)
 
 GPT-5.5 was judged four times on the same cached GPT-5.5 Physics test
 generations in merged mode. The mean scores were stable, with a 0.94 percentage
@@ -53,7 +86,7 @@ were:
 | 3 | 83.29% |
 | 4 | 82.22% |
 
-## Judge comparison for GPT-5.5 (high)
+### Judge comparison for GPT-5.5 (high)
 
 This table holds the generator fixed at **GPT-5.5 (high reasoning)** and reports
 its mean per-problem score from different judges in separated mode.
@@ -73,7 +106,7 @@ judgments when available and low-reasoning judgments as fallback, completing
 119/122 and 107/110. All other judges completed every scorable problem.
 
 
-# Model results
+## Model results
 
 The table below reports the mean per-problem score on the test splits. All runs use
 **separated mode**, in which each problem part is answered and judged separately,

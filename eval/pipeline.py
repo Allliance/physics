@@ -99,6 +99,12 @@ def _key(dataset: Path, row: dict[str, Any]) -> str:
     return hashlib.sha256(identity.encode()).hexdigest()[:20]
 
 
+def _attempt_key(row_key: str, attempt: int) -> str:
+    if attempt < 1:
+        raise ValueError("attempt must be at least 1")
+    return row_key if attempt == 1 else f"{row_key}:attempt:{attempt}"
+
+
 def _load_jsonl(path: Path, key: str = "key") -> dict[str, dict[str, Any]]:
     if not path.exists():
         return {}
@@ -220,6 +226,7 @@ class RunConfig:
     max_workers: int = 32
     judge_reasoning_effort: str | None = None
     judge_max_tokens: int | None = None
+    repeat: int = 1
 
 
 def model_artifact_dir(root: Path, dataset: Path, config: RunConfig) -> Path:
@@ -236,6 +243,8 @@ def artifact_dir(root: Path, dataset: Path, config: RunConfig) -> Path:
 def run(dataset: Path, output_root: Path, config: RunConfig, generator: LLM, judge: LLM) -> Path:
     if config.mode not in {"merged", "separated"}:
         raise ValueError("mode must be merged or separated")
+    if config.repeat < 1:
+        raise ValueError("repeat must be at least 1")
     all_rows = read_rows(dataset)
     if config.mode == "merged":
         rows = [row for row in all_rows if str(row.get("solution") or "").strip()]
@@ -256,14 +265,17 @@ def run(dataset: Path, output_root: Path, config: RunConfig, generator: LLM, jud
     if config.overwrite:
         responses_path.unlink(missing_ok=True)
         judgments_path.unlink(missing_ok=True)
+        failures_path.unlink(missing_ok=True)
     responses, judgments = _load_jsonl(responses_path), _load_jsonl(judgments_path)
     failures = _load_jsonl(failures_path, key="failure_key")
     gen_system = MERGED_GENERATION_SYSTEM if config.mode == "merged" else SEPARATED_GENERATION_SYSTEM
 
     write_lock = threading.Lock()
 
-    def process_row(row: dict[str, Any]) -> None:
-        key = _key(dataset, row)
+    def process_attempt(task: tuple[dict[str, Any], int]) -> None:
+        row, attempt = task
+        row_key = _key(dataset, row)
+        key = _attempt_key(row_key, attempt)
         if config.mode == "merged":
             parts = []
         else:
@@ -274,6 +286,7 @@ def run(dataset: Path, output_root: Path, config: RunConfig, generator: LLM, jud
             boxes = extract_boxes(completion.text)
             record = {
                 "key": key, "dataset": str(dataset), "id": row.get("id"), "part_ids": parts,
+                "row_key": row_key, "attempt": attempt,
                 "response": completion.text, "boxes": boxes, "usage": completion.usage,
                 "created_at": datetime.now(timezone.utc).isoformat(),
             }
@@ -304,6 +317,8 @@ def run(dataset: Path, output_root: Path, config: RunConfig, generator: LLM, jud
                 filtered["score"] = len(filtered["correct"]) / len(parts)
                 if "parts" in cached_judgment:
                     filtered["parts"] = {part: cached_judgment["parts"][part] for part in parts}
+                filtered["row_key"] = row_key
+                filtered["attempt"] = attempt
                 filtered["created_at"] = datetime.now(timezone.utc).isoformat()
                 with write_lock:
                     _append(judgments_path, filtered)
@@ -322,7 +337,8 @@ def run(dataset: Path, output_root: Path, config: RunConfig, generator: LLM, jud
                 parsed = parse_json_object(completion.text)
             except Exception as exc:
                 failure = {"failure_key": failure_key, "key": key, "id": row.get("id"),
-                           "part": None, "error": f"{type(exc).__name__}: {exc}",
+                           "row_key": row_key, "attempt": attempt, "part": None,
+                           "error": f"{type(exc).__name__}: {exc}",
                            "created_at": datetime.now(timezone.utc).isoformat()}
                 with write_lock:
                     _append(failures_path, failure)
@@ -343,7 +359,8 @@ def run(dataset: Path, output_root: Path, config: RunConfig, generator: LLM, jud
                 }
                 for part in parts
             }
-            judgment = {"key": key, "id": row.get("id"), "part_ids": parts, "correct": correct,
+            judgment = {"key": key, "id": row.get("id"), "part_ids": parts,
+                        "row_key": row_key, "attempt": attempt, "correct": correct,
                         "score": score, "num_scored_parts": len(scored_parts),
                         "num_unscored_parts": len(parts) - len(scored_parts),
                         "judge_response": completion.text, "usage": completion.usage,
@@ -363,7 +380,8 @@ def run(dataset: Path, output_root: Path, config: RunConfig, generator: LLM, jud
                     parsed = parse_json_object(completion.text)
                 except Exception as exc:
                     failure = {"failure_key": failure_key, "key": key, "id": row.get("id"),
-                               "part": part, "error": f"{type(exc).__name__}: {exc}",
+                               "row_key": row_key, "attempt": attempt, "part": part,
+                               "error": f"{type(exc).__name__}: {exc}",
                                "created_at": datetime.now(timezone.utc).isoformat()}
                     with write_lock:
                         _append(failures_path, failure)
@@ -377,7 +395,8 @@ def run(dataset: Path, output_root: Path, config: RunConfig, generator: LLM, jud
                                   "ground_truth": truths[part]}
                 with write_lock:
                     failures.pop(failure_key, None)
-            judgment = {"key": key, "id": row.get("id"), "part_ids": parts, "correct": correct,
+            judgment = {"key": key, "id": row.get("id"), "part_ids": parts,
+                        "row_key": row_key, "attempt": attempt, "correct": correct,
                         "score": len(correct) / len(parts), "ground_truth_source": provenance,
                         "parts": per_part}
         judgment["judge_reasoning_effort"] = config.judge_reasoning_effort
@@ -388,14 +407,28 @@ def run(dataset: Path, output_root: Path, config: RunConfig, generator: LLM, jud
             judgments[key] = judgment
 
     with ThreadPoolExecutor(max_workers=config.max_workers) as executor:
-        list(executor.map(process_row, rows))
+        tasks = [(row, attempt) for row in rows for attempt in range(1, config.repeat + 1)]
+        list(executor.map(process_attempt, tasks))
 
     selected = [judgments[_key(dataset, row)] for row in rows if _key(dataset, row) in judgments]
     scored_selected = [item for item in selected if item.get("score") is not None]
-    selected_responses = [responses[_key(dataset, row)] for row in rows
-                          if _key(dataset, row) in responses]
+    selected_attempts = [
+        judgments[_attempt_key(_key(dataset, row), attempt)]
+        for row in rows for attempt in range(1, config.repeat + 1)
+        if _attempt_key(_key(dataset, row), attempt) in judgments
+    ]
+    selected_responses = [
+        responses[_attempt_key(_key(dataset, row), attempt)]
+        for row in rows for attempt in range(1, config.repeat + 1)
+        if _attempt_key(_key(dataset, row), attempt) in responses
+    ]
+    first_attempt_responses = [responses[_key(dataset, row)] for row in rows
+                               if _key(dataset, row) in responses]
     failed = [failure for failure in failures.values()
-              if failure.get("key") in {_key(dataset, row) for row in rows}]
+              if failure.get("key") in {
+                  _attempt_key(_key(dataset, row), attempt)
+                  for row in rows for attempt in range(1, config.repeat + 1)
+              }]
     prompt_tokens = sum(_usage_token_count(item, "prompt_tokens", "input_tokens")
                         for item in selected_responses)
     completion_tokens = sum(_usage_token_count(item, "completion_tokens", "output_tokens")
@@ -403,7 +436,8 @@ def run(dataset: Path, output_root: Path, config: RunConfig, generator: LLM, jud
     token_cap = config.generation.max_tokens
     summary = {
         "dataset": str(dataset), "mode": config.mode, "generator": config.generation.model,
-        "judge": config.judge_name, "num_rows": len(selected),
+        "judge": config.judge_name, "repeat": config.repeat,
+        "num_rows": len(selected), "num_attempts": len(selected_attempts),
         "num_skipped_no_ground_truth_parts": skipped_no_ground_truth_parts,
         "num_skipped_no_reference_solution": skipped_no_reference_solution,
         "num_failed_judgments": len(failed),
@@ -411,9 +445,15 @@ def run(dataset: Path, output_root: Path, config: RunConfig, generator: LLM, jud
                        if scored_selected else None),
         "num_unscored_rows": len(selected) - len(scored_selected),
         "format_error_rows": sum(bool(item.get("format_errors"))
-                                 for item in selected_responses),
-        "empty_final_rows": sum(not item.get("response") for item in selected_responses),
+                                 for item in first_attempt_responses),
+        "format_error_attempts": sum(bool(item.get("format_errors"))
+                                     for item in selected_responses),
+        "empty_final_rows": sum(not item.get("response") for item in first_attempt_responses),
+        "empty_final_attempts": sum(not item.get("response") for item in selected_responses),
         "rows_at_token_cap": (sum(
+            ((item.get("usage") or {}).get("completion_tokens", 0) or 0) >= token_cap
+            for item in first_attempt_responses) if token_cap is not None else None),
+        "attempts_at_token_cap": (sum(
             ((item.get("usage") or {}).get("completion_tokens", 0) or 0) >= token_cap
             for item in selected_responses) if token_cap is not None else None),
         "generator_prompt_tokens": prompt_tokens,
@@ -421,6 +461,28 @@ def run(dataset: Path, output_root: Path, config: RunConfig, generator: LLM, jud
         "generator_total_tokens": prompt_tokens + completion_tokens,
         "created_at": datetime.now(timezone.utc).isoformat(),
     }
+    if config.repeat > 1:
+        per_row_mean_scores, per_row_best_scores = [], []
+        for row in rows:
+            scores = []
+            for attempt in range(1, config.repeat + 1):
+                judgment = judgments.get(_attempt_key(_key(dataset, row), attempt))
+                if judgment is None or judgment.get("score") is None:
+                    break
+                scores.append(judgment["score"])
+            if len(scores) == config.repeat:
+                per_row_mean_scores.append(sum(scores) / len(scores))
+                per_row_best_scores.append(max(scores))
+        mean_at_k = (sum(per_row_mean_scores) / len(per_row_mean_scores)
+                     if per_row_mean_scores else None)
+        best_at_k = (sum(per_row_best_scores) / len(per_row_best_scores)
+                     if per_row_best_scores else None)
+        summary[f"mean@{config.repeat}"] = mean_at_k
+        summary[f"best@{config.repeat}"] = best_at_k
+        summary[f"mean_at_{config.repeat}"] = mean_at_k
+        summary[f"best_at_{config.repeat}"] = best_at_k
+        summary[f"num_rows_with_all_{config.repeat}_attempts_scored"] = len(per_row_mean_scores)
+        summary[f"num_rows_missing_{config.repeat}_attempt_scores"] = len(rows) - len(per_row_mean_scores)
     (out / "summary.json").write_text(json.dumps(summary, indent=2) + "\n")
     (out / "run_config.json").write_text(json.dumps(asdict(config), indent=2) + "\n")
     return out

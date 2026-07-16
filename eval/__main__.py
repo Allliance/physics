@@ -44,15 +44,19 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Generate and LLM-judge one physics dataset split.")
     parser.add_argument("dataset", choices=DATASETS)
     parser.add_argument("split", choices=SPLITS)
-    parser.add_argument("--mode", choices=["merged", "separated"], default="separated")
+    parser.add_argument("--mode", choices=["merged", "separated"], default="merged")
     parser.add_argument("--output-root", type=Path, default=Path("eval/artifacts"))
     parser.add_argument("--limit", type=int)
     parser.add_argument("--timeout", type=float, default=300)
     parser.add_argument("--max-workers", type=int, default=32)
+    parser.add_argument("--repeat", type=int, default=1,
+                        help="number of independent generation+judgment attempts per problem")
     parser.add_argument("--overwrite", action="store_true")
     endpoint_args(parser, "generator")
     endpoint_args(parser, "judge")
     args = parser.parse_args()
+    if args.repeat < 1:
+        parser.error("--repeat must be at least 1")
     try:
         dataset_path = resolve_dataset_path(args.dataset, args.split)
     except ValueError as exc:
@@ -84,6 +88,7 @@ def main() -> int:
     config = RunConfig(mode=args.mode, generation=generation,
                        judge_name=judge_name, limit=args.limit,
                        overwrite=args.overwrite, max_workers=args.max_workers,
+                       repeat=args.repeat,
                        judge_reasoning_effort=args.judge_reasoning_effort,
                        judge_max_tokens=args.judge_max_tokens)
     print(run(dataset_path, args.output_root, config, generator, judge))
