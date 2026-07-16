@@ -419,6 +419,7 @@ textarea:focus {
 }
 
 .repair-fields .field-final-answers,
+.repair-fields .field-extracted-ground-truths,
 .repair-fields .field-solution {
   grid-column: 1 / -1;
 }
@@ -531,6 +532,7 @@ textarea:focus {
 }
 
 .field-final-answers .field-value,
+.field-extracted-ground-truths .field-value,
 .field-ground-truths .field-value {
   background: #f2fbf8;
 }
@@ -683,6 +685,18 @@ textarea:focus {
 .model-response { padding: 14px 16px; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
 .model-response summary { cursor: pointer; font-weight: 760; color: var(--accent-strong); }
 .model-response pre { overflow-x: auto; white-space: pre-wrap; line-height: 1.55; }
+.model-response .rendered-text {
+  overflow-x: auto;
+  padding-top: 10px;
+  white-space: pre-wrap;
+  line-height: 1.62;
+}
+
+.model-response .katex-display {
+  margin: 0.75em 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
 
 @media (max-width: 800px) {
   .answer-comparison { grid-template-columns: 1fr; }

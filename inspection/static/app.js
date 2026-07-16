@@ -101,6 +101,7 @@ function renderMath(root) {
       { left: "$", right: "$", display: false },
       { left: "\\(", right: "\\)", display: false },
     ],
+    ignoredClasses: ["katex", "katex-display", "manual-katex"],
     throwOnError: false,
     strict: false,
   });
@@ -175,6 +176,29 @@ function escapeHtml(value) {
     .replaceAll("'", "&#039;");
 }
 
+function normalizeEscapedLatex(value) {
+  return text(value)
+    .replace(/\\\\([A-Za-z])/g, "\\$1")
+    .replace(/\\\\([[\](){}])/g, "\\$1");
+}
+
+function richTextHtml(value, { normalizeLatex = false } = {}) {
+  const display = normalizeLatex ? normalizeEscapedLatex(value) : text(value);
+  return escapeHtml(display || "(empty)");
+}
+
+function mathBlockHtml(math) {
+  if (window.katex) {
+    const rendered = katex.renderToString(math, {
+      displayMode: true,
+      throwOnError: false,
+      strict: false,
+    });
+    return `<span class="manual-katex">${rendered}</span>`;
+  }
+  return `\\[${escapeHtml(math)}\\]`;
+}
+
 function renderDatasets() {
   els.datasetSelect.innerHTML = state.datasets
     .map((dataset) => `<option value="${escapeHtml(dataset.id)}">${escapeHtml(dataset.label)}</option>`)
@@ -182,7 +206,9 @@ function renderDatasets() {
 
   if (state.datasets.length) {
     const preferred =
+      state.datasets.find((dataset) => dataset.type === "ground-truth extraction issues") ||
       state.datasets.find((dataset) => dataset.type === "ground-truth extraction") ||
+      state.datasets.find((dataset) => dataset.type === "original test set" && dataset.id.includes("FrontierPhysics")) ||
       state.datasets.find((dataset) => dataset.id.includes("FrontierPhysics"));
     state.dataset = (preferred || state.datasets[0]).id;
     els.datasetSelect.value = state.dataset;
@@ -203,6 +229,12 @@ function renderSamples(items) {
       const tagHtml = tags.map((tag) => `<span class="pill">${escapeHtml(tag)}</span>`).join("");
       const source = item.source_file ? `Source: ${escapeHtml(item.source_file)}` : "";
       const score = item.score === null || item.score === undefined ? "" : `Score: ${Number(item.score).toFixed(3)}`;
+      const facts = [
+        item.has_solution ? "Solution" : "",
+        item.ground_truth_count ? `${item.ground_truth_count} extracted GT` : "",
+        `${item.field_count} fields`,
+      ].filter(Boolean);
+      const meta = [score, source, ...facts].filter(Boolean).map(escapeHtml).join("<br>");
       return `
         <button class="sample-item" type="button" data-row-index="${item.row_index}">
           <div>
@@ -212,7 +244,7 @@ function renderSamples(items) {
             </div>
             <div class="sample-question">${escapeHtml(item.question || "(No question field)")}</div>
           </div>
-          <div class="sample-meta">${score}${score && source ? "<br>" : ""}${source}<br>${item.field_count} fields</div>
+          <div class="sample-meta">${meta}</div>
         </button>
       `;
     })
@@ -311,6 +343,10 @@ function firstPresent(sample, keys) {
   return keys.find((key) => key in sample);
 }
 
+function groundTruthTitle(key) {
+  return key === "final_answers" ? "Extracted Ground Truths" : "Ground Truths";
+}
+
 function renderFields(sample) {
   if (sample.evaluation_parts) {
     renderEvaluationFields(sample);
@@ -318,16 +354,17 @@ function renderFields(sample) {
   }
   const label = text(sample.repair_status || sample.__part || sample.verdict || sample.part || sample.label || sample.domain || "unlabeled");
   const isRepairSample = "repaired_question" in sample || "original_question" in sample;
+  const answerKey = firstPresent(sample, ["ground_truths", "ground_truth", "final_answers", "answers"]);
   const sections = isRepairSample
     ? [
         { title: "Original Question", key: firstPresent(sample, ["original_question", "question"]), kind: "text" },
         { title: "Repaired Question", key: firstPresent(sample, ["repaired_question"]), kind: "text" },
-        { title: "Ground Truths", key: firstPresent(sample, ["ground_truths", "ground_truth", "final_answers", "answers"]), kind: "answers" },
+        { title: groundTruthTitle(answerKey), key: answerKey, kind: "answers" },
         { title: "Solution", key: firstPresent(sample, ["solution", "solutions", "answer", "explanation"]), kind: "text" },
       ].filter((section) => section.key)
     : [
         { title: "Question", key: firstPresent(sample, ["question", "questions", "statement", "problem", "prompt"]), kind: "text" },
-        { title: "Ground Truths", key: firstPresent(sample, ["ground_truths", "ground_truth", "final_answers", "answers"]), kind: "answers" },
+        { title: groundTruthTitle(answerKey), key: answerKey, kind: "answers" },
         { title: "Solution", key: firstPresent(sample, ["solution", "solutions", "answer", "explanation"]), kind: "text" },
       ].filter((section) => section.key);
 
@@ -351,10 +388,18 @@ function renderFields(sample) {
       </section>
     `;
   };
+  const reviewNote = text(sample.review_note || "").trim();
+  const issueMeta = [
+    sample.issue_type ? `issue: ${text(sample.issue_type)}` : "",
+    sample.dataset ? `dataset: ${text(sample.dataset)}` : "",
+    sample.original_row_index !== undefined ? `source row: ${text(sample.original_row_index)}` : "",
+  ].filter(Boolean).join(" · ");
 
   els.dialogContent.innerHTML = `
     ${labelBarHtml(label)}
     <div class="primary-fields${isRepairSample ? " repair-fields" : ""}">
+      ${reviewNote ? `<div class="format-warning"><strong>Review note:</strong> ${escapeHtml(reviewNote)}</div>` : ""}
+      ${issueMeta ? `<div class="judge-reason"><strong>Issue metadata</strong><span>${escapeHtml(issueMeta)}</span></div>` : ""}
       ${sections.map((section) => fieldHtml(section)).join("")}
     </div>
   `;
@@ -363,11 +408,19 @@ function renderFields(sample) {
 
 function renderEvaluationFields(sample) {
   const score = Number(sample.score || 0);
-  const label = `${sample.selection} · ${sample.dataset} · score ${score.toFixed(3)}`;
+  const label = `${sample.selection || sample.mode || "evaluation"} · ${sample.dataset} · score ${score.toFixed(3)}`;
   const parts = parseMaybeJson(sample.evaluation_parts) || {};
   const partHtml = Object.entries(parts)
     .map(([part, result]) => {
       const correct = result.judge_correct === true;
+      const referenceTitle = text(result.reference_title || "Ground truth");
+      const referenceAnswer = text(
+        result.reference_answer === undefined ? result.ground_truth : result.reference_answer,
+      );
+      const referenceIsSolution = referenceTitle.toLowerCase().includes("solution");
+      const cleanedGroundTruths = text(result.cleaned_ground_truths || "");
+      const judgeRawResponse = text(result.judge_raw_response || "").trim();
+      const judgeUsage = text(result.judge_usage || "").trim();
       return `
         <section class="evaluation-part ${correct ? "part-correct" : "part-incorrect"}">
           <div class="evaluation-part-head">
@@ -380,25 +433,38 @@ function renderEvaluationFields(sample) {
               <div class="answer-render">${answerDisplayHtml(text(result.extracted_answer))}</div>
             </div>
             <div class="comparison-card reference-answer">
-              <div class="comparison-title">Ground truth</div>
-              <div class="answer-render">${answerDisplayHtml(text(result.ground_truth))}</div>
+              <div class="comparison-title">${escapeHtml(referenceTitle)}</div>
+              <div class="answer-render">${referenceIsSolution ? richTextHtml(referenceAnswer, { normalizeLatex: true }) : answerDisplayHtml(referenceAnswer)}</div>
             </div>
           </div>
+          ${cleanedGroundTruths ? `<details class="answer-source"><summary>Cleaned extracted ground truths</summary><pre>${escapeHtml(cleanedGroundTruths)}</pre></details>` : ""}
           <div class="judge-reason"><strong>Judge reason</strong><span>${escapeHtml(text(result.judge_reason) || "(none)")}</span></div>
+          ${judgeRawResponse ? `<details class="answer-source"><summary>Raw judge response</summary><pre>${escapeHtml(judgeRawResponse)}</pre></details>` : ""}
+          ${judgeUsage ? `<details class="answer-source"><summary>Judge metadata</summary><pre>${escapeHtml(judgeUsage)}</pre></details>` : ""}
         </section>`;
     })
     .join("");
   const formatErrors = Array.isArray(sample.format_errors) ? sample.format_errors : parseMaybeJson(sample.format_errors);
+  const reviewNote = text(sample.review_note || sample.manual_review_reason || "").trim();
+  const solution = text(sample.solution || "").trim();
+  const candidateMeta = [
+    sample.source_file ? `source ${sample.source_file}` : "",
+    sample.key ? `key ${sample.key}` : "",
+    sample.part_ids ? `judged parts ${text(sample.part_ids)}` : "",
+  ].filter(Boolean).join(" · ");
   els.dialogContent.innerHTML = `
     ${labelBarHtml(label)}
     <div class="primary-fields">
+      ${reviewNote ? `<div class="format-warning"><strong>Review note:</strong> ${escapeHtml(reviewNote)}</div>` : ""}
+      ${candidateMeta ? `<div class="judge-reason"><strong>Candidate metadata</strong><span>${escapeHtml(candidateMeta)}</span></div>` : ""}
       <section class="field field-question field-primary">
         <div class="field-name"><span>Question</span><span>${text(sample.question).length.toLocaleString()} chars</span></div>
         <div class="field-value">${escapeHtml(text(sample.question))}</div>
       </section>
       <div class="evaluation-parts">${partHtml}</div>
       ${formatErrors && formatErrors.length ? `<div class="format-warning"><strong>Format errors:</strong> ${escapeHtml(formatErrors.join("; "))}</div>` : ""}
-      <details class="model-response"><summary>Full model response</summary><pre>${escapeHtml(text(sample.full_model_response))}</pre></details>
+      ${solution ? `<details class="model-response" open><summary>Final solution</summary><div class="rendered-text">${richTextHtml(solution, { normalizeLatex: true })}</div></details>` : ""}
+      <details class="model-response"><summary>Full model response</summary><div class="rendered-text">${richTextHtml(sample.full_model_response)}</div></details>
     </div>`;
   renderMath(els.dialogContent);
 }
@@ -477,7 +543,7 @@ function answerDisplayHtml(answer) {
     const math = plainWords
       ? `\\text{${display.replaceAll("\\", "\\\\").replaceAll("{", "\\{").replaceAll("}", "\\}")}}`
       : display;
-    return `\\[${escapeHtml(math)}\\]`;
+    return mathBlockHtml(math);
   }
 
   // Balance a truncated inline delimiter at the edge of an exact source span.

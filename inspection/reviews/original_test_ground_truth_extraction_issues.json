@@ -1,0 +1,318 @@
+[
+  {
+    "id": "Electricity and Magenetism/4-1",
+    "dataset": "Physics",
+    "split": "test",
+    "source_dataset_file": "backup/0_original_datasets/prepared/Physics/test.parquet",
+    "original_row_index": 24,
+    "labels": [
+      "malformed_latex",
+      "Physics"
+    ],
+    "issue_type": "malformed_latex",
+    "review_note": "Four top-level parts are present, but parts (b) and (c) have malformed LaTeX with missing closing braces; part (d) also appears to use q_1 instead of the problem charge q.",
+    "detected_top_level_part_labels": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ],
+    "detected_top_level_part_count": 4,
+    "final_answer_count": 4,
+    "question": "Two infinite conducting planes are \narranged in a parallel configuration, with one in the $ x = 0 $ plane, and the other in the $ x = D $ \nplane. Both of these conducting planes are grounded. A point charge $ q $ is introduced between \nthe two planes, at the position $ (x, y, z) = (a, 0, 0) $. We would like to calculate the result potential \nbetween the plates. This problem can be solved using the *method of images*.\n\n(a) Determine the series of image charges that can reproduce the potential between these plates. \n(Warning, infinite series may be in your near future.)\n\n(b) From these image charges, derive the potential function between the plates.\n\n(c) Determine the surface charge density as a function of radial position, $ r = \\sqrt{y^2 + z^2} $, on the surface of the $ x = 0 $ plate.\n\n(d) Compute the integral of the surface charge density, $ \\sigma $, over the whole $ x = 0 $ plane. You \nshould reach a complication. Use Green's reciprocity theorem to resolve this issue. The \ntheorem says that if one problem contains a charge distribution, $ \\rho_1 $, creating a potential $ V_1 $, \nand another problem has $ \\rho_2 $ and $ V_2$, then  \n$$\n\\int \\rho_1 V_2 \\, d\\tau = \\int \\rho_2 V_1 \\, d\\tau\n$$\n\nwhere the integrals are over \nall of space. [Hint: for distribution 1, use the actual situation; for distribution 2, remove $ q $, \nand set one of the conductors at potential $ V_0 $.]",
+    "final_answers": [
+      "\\text{Place a charge } q \\text{ at } x = 2nD + a \\text{ and } -q \\text{ at } x = 2nD - a \\text{ for } n \\in \\mathbb{Z}.",
+      "V(x, y, z) = \\frac{q}{4\\pi\\epsilon_0} \\sum_{n \\in \\mathbb{Z}} \\left\\{ \\frac{1}{\\sqrt{(x-(2nD+a))^2 + y^2 + z^2}} - \\frac{1}{\\sqrt{(x-(2nD-a))^2 + y^2 + z^2}} \\right\\",
+      "\\sigma (r) = -\\frac{q}{4\\pi} \\sum_{n \\in \\mathbb{Z}} \\left\\{ \\frac{2nD + a}{[(2nD+a)^2 + r^2]^{3/2}} - \\frac{2nD - a}{[(2nD-a)^2 + r^2]^{3/2}} \\right\\",
+      "Q_{1t} = -\\left(1 - \\frac{a}{D}\\right)q_1"
+    ]
+  },
+  {
+    "id": "electro/4_24",
+    "dataset": "Physics",
+    "split": "test",
+    "source_dataset_file": "backup/0_original_datasets/prepared/Physics/test.parquet",
+    "original_row_index": 34,
+    "labels": [
+      "length_mismatch",
+      "Physics"
+    ],
+    "issue_type": "length_mismatch",
+    "review_note": "Three top-level parts are present, but only one final answer was extracted. Parts (a), (b), and the wavelength portion of (c) are missing.",
+    "detected_top_level_part_labels": [
+      "a",
+      "b",
+      "c"
+    ],
+    "detected_top_level_part_count": 3,
+    "final_answer_count": 1,
+    "question": "An electromagnetic wave with electric field given by\n\n$$\nE_y = E_0 e^{i(Kz-\\omega t)}, \\quad E_x = E_z = 0,\n$$\n\npropagates in a uniform medium consisting of $n$ free electrons per unit volume. All other charges in the medium are fixed and do not affect the wave.\n\n(a) Write down Maxwell's equations for the fields in the medium.\n\n(b) Show that they can be satisfied by the wave provided $\\omega^2 > \\frac{ne^2}{m \\varepsilon_0}$.\n\n(c) Find the magnetic field and the wavelength of the electromagnetic wave for a given (allowable) $\\omega$. Neglect the magnetic force on the electrons.",
+    "final_answers": [
+      "\\mathbf{B} = -\\frac{K}{\\omega} E_0 e^{i(Kz-\\omega t)} \\mathbf{e}_x"
+    ]
+  },
+  {
+    "id": "electro/4_16",
+    "dataset": "Physics",
+    "split": "test",
+    "source_dataset_file": "backup/0_original_datasets/prepared/Physics/test.parquet",
+    "original_row_index": 49,
+    "labels": [
+      "length_mismatch",
+      "Physics"
+    ],
+    "issue_type": "length_mismatch",
+    "review_note": "Three top-level parts are present, but the only extracted ground truth is the vague phrase \"Electric Field\".",
+    "detected_top_level_part_labels": [
+      "a",
+      "b",
+      "c"
+    ],
+    "detected_top_level_part_count": 3,
+    "final_answer_count": 1,
+    "question": "A harmonic plane wave of frequency $\\nu$ is incident normally on an interface between two dielectric media of indices of refraction $n_1$ and $n_2$. A fraction $\\rho$ of the energy is reflected and forms a standing wave when combined with the incoming wave. Recall that on reflection the electric field changes phase by $\\pi$ for $n_2 > n_1$.\n\n(a) Find an expression for the total electric field as a function of the distance $d$ from the interface. Determine the positions of the maxima and minima of $\\langle E^2 \\rangle$.\n\n(b) From the behavior of the electric field, determine the phase change on reflection of the magnetic field. Find $B(z, t)$ and $\\langle B^2 \\rangle$.\n\n(c) When O. Wiener did such an experiment using a photographic plate in 1890, a band of minimum darkening of the plate was found for $d = 0$. Was the darkening caused by the electric or the magnetic field?",
+    "final_answers": [
+      "\\text{Electric Field}"
+    ]
+  },
+  {
+    "id": "Statistical Mechanics/16-3",
+    "dataset": "Physics",
+    "split": "test",
+    "source_dataset_file": "backup/0_original_datasets/prepared/Physics/test.parquet",
+    "original_row_index": 61,
+    "labels": [
+      "length_mismatch",
+      "malformed_latex",
+      "Physics"
+    ],
+    "issue_type": "length_mismatch, malformed_latex",
+    "review_note": "Three top-level parts are present, but the extractor split part (a) into two answers and one expression is malformed: the square-root expression is missing a closing brace.",
+    "detected_top_level_part_labels": [
+      "a",
+      "b",
+      "c"
+    ],
+    "detected_top_level_part_count": 3,
+    "final_answer_count": 4,
+    "question": "(a) Consider the thermal radiation in a cavity of volume $V$ at temperature $\\tau$. Show that the energy density of the photons in the cavity is $U/V = A T^4$, where $A$ is a constant that depends only on fundamental physical constants. Show that the flux of radiant energy from a small hole in the wall of the cavity (named black body radiation) is given by $J_U = BT^4$, with $B$ being another constant. [Note: You don’t have to work out the constants $A$ and $B$.]\n\n(b) Let us assume that the sun and the earth are perfect black-body radiators and that there is no source of energy other than the sun. Show that at steady-state, the temperature on the earth’s surface is linearly proportional to the sun’s surface temperature. Find the expression for the proportionality constant.\n\n(c) To reduce global warming, it has been suggested recently that one can place a giant solar screen (at the so-called Lagrange point) between the sun and the earth to reduce the solar flux arriving on earth. Suppose that one is able to construct such a screen to reduce the solar flux to earth by 5%. By how much (in K) will the average temperature of the earth’s surface be reduced? Assume the value for the earth’s surface temperature without the screen to be 280 K.",
+    "final_answers": [
+      "\\frac{U}{V} = A T^4",
+      "J_U = B T^4",
+      "T_e = T_s \\sqrt{\\frac{R_s}{2 R_{es}}",
+      "\\Delta T = 3.6 \\, \\text{K}"
+    ]
+  },
+  {
+    "id": "mechanics/1_84",
+    "dataset": "Physics",
+    "split": "test",
+    "source_dataset_file": "backup/0_original_datasets/prepared/Physics/test.parquet",
+    "original_row_index": 110,
+    "labels": [
+      "length_mismatch",
+      "Physics"
+    ],
+    "issue_type": "length_mismatch",
+    "review_note": "Two top-level parts are present, but only the frequencies for part (a) were extracted; part (b) is missing.",
+    "detected_top_level_part_labels": [
+      "a",
+      "b"
+    ],
+    "detected_top_level_part_count": 2,
+    "final_answer_count": 1,
+    "question": "A thin ring of mass $M$ and radius $r$ lies flat on a frictionless table. It is constrained by two extended identical springs with relaxed length $l_0$ ($l_0 \\gg r$) and spring constant $k$ as shown in Fig. 1.55.\n\n(a) What are the normal modes of small oscillations and their frequencies?  \n(b) What qualitative changes in the motion would occur if the relaxed lengths of the springs were $2l_0$?\n",
+    "final_answers": [
+      "\\omega_x = \\sqrt{\\frac{2k}{M}}, \\, \\omega_y = \\sqrt{\\frac{k}{M}}"
+    ]
+  },
+  {
+    "id": "Classical Mechanics/2-17",
+    "dataset": "Physics",
+    "split": "test",
+    "source_dataset_file": "backup/0_original_datasets/prepared/Physics/test.parquet",
+    "original_row_index": 125,
+    "labels": [
+      "length_mismatch",
+      "malformed_latex",
+      "Physics"
+    ],
+    "issue_type": "length_mismatch, malformed_latex",
+    "review_note": "Two top-level parts each contain i-iii subparts, so six answer entries are plausible, but the fourth entry is malformed: the square-root expression is missing a closing brace.",
+    "detected_top_level_part_labels": [
+      "a",
+      "b"
+    ],
+    "detected_top_level_part_count": 2,
+    "final_answer_count": 6,
+    "question": "(a) A mass _m_ is dropped from rest at the equator, from an initial height _H_. Ignore air resistance in this problem. \n\ni. In what direction is the projectile deflected by the Coriolis force?\n\nii. Determine the distance of the horizontal deflection when the mass hits the ground (from the point it would have hit with no deflection), in terms of the initial height _H_, and the earth’s rotation _ω_. \n\niii. Evaluate the deflection for _H = 1.5 km_.\n\n(b) A water tower of cross-sectional area _A_1 and height _H_ is filled with water. The top is open to atmospheric pressure. At the bottom is a spigot of area $A_2 << A_1$.\n\ni. Find the speed of the water, _v_, leaving the spigot as a function of the height of the water, _h_, in the tank.\n\nii. Assuming _h = H_ when the spigot is opened at _t = 0_, find the total time it takes to drain the tank.\n\niii. Before opening the spigot in part (b), cover the top of the reservoir except for a tube of negligible area submerged down to _H/2_. Now, open the spigot. Describe what happens and calculate how long it takes to drain the reservoir.",
+    "final_answers": [
+      "\\text{Eastward}",
+      "x = \\omega \\sqrt{\\frac{8H^3}{9g}}",
+      "x = 1.22 \\, \\text{m}",
+      "v_2 = \\sqrt{\\frac{2gh}{1 - \\left( \\frac{A_2}{A_1} \\right)^2}",
+      "t = \\frac{A_1}{A_2} \\sqrt{1 - \\left( \\frac{A_2}{A_1} \\right)^2} \\sqrt{\\frac{2H}{g}}",
+      "t = \\frac{3A_1}{2A_2} \\sqrt{1 - \\left( \\frac{A_2}{A_1} \\right)^2} \\sqrt{\\frac{H}{g}}"
+    ]
+  },
+  {
+    "id": "kinetic/3.6",
+    "dataset": "FrontierPhysics",
+    "split": "test",
+    "source_dataset_file": "backup/0_original_datasets/prepared/FrontierPhysics/test.parquet",
+    "original_row_index": 1,
+    "labels": [
+      "length_mismatch",
+      "null_ground_truth",
+      "FrontierPhysics"
+    ],
+    "issue_type": "length_mismatch, null_ground_truth",
+    "review_note": "Eight top-level parts are present, but eleven answers were extracted. Part (c) is null, and later sub-results from parts (g)/(h) were split into extra ground-truth entries.",
+    "detected_top_level_part_labels": [
+      "a",
+      "b",
+      "c",
+      "d",
+      "e",
+      "f",
+      "g",
+      "h"
+    ],
+    "detected_top_level_part_count": 8,
+    "final_answer_count": 11,
+    "question": "The Lorentz gas describes non-interacting particles colliding with a fixed set of scatterers. Consider a uniform two dimensional density $n_0$ of fixed impurities, which are hard circles of radius $a$.\n\n(a) Show that the differential cross section of a hard circle scattering through an angle $\\theta$ is $d\\sigma = \\tfrac{a}{2} \\sin(\\theta/2)\\, d\\theta$, and calculate the total cross section.\n\n(b) Write down the Boltzmann equation for the one particle density $f(\\vec{q}, \\vec{p}, t)$ of the Lorentz gas (including only collisions with the fixed impurities). Ignore the electron spin.\n\n(c) Find the eigenfunctions and eigenvalues of the collision operator.\n\n(d) Using $\\vec{F}\\equiv -\\partial U/\\partial\\vec{q}$, and\n$$\n n(\\vec{q},t) = \\int d^{2}\\vec{p} \\, f(\\vec{q},\\vec{p},t), \\qquad \\langle g(\\vec{q},t) \\rangle = \\frac{1}{n(\\vec{q},t)} \\int d^{2}\\vec{p} \\, f(\\vec{q},\\vec{p},t) \\, g(\\vec{q},t),\n$$\nshow that for any function $\\chi(|\\vec{p}|)$,\n$\\displaystyle \\frac{\\partial}{\\partial t} \\big(n \\langle \\chi \\rangle \\big) + \\frac{\\partial}{\\partial \\vec{q}} \\cdot \\Big( n \\big\\langle (\\vec{p}/m) \\, \\chi \\big\\rangle \\Big) = \\vec{F} \\cdot \\Big( n \\big\\langle \\partial \\chi/\\partial \\vec{p} \\big\\rangle \\Big)$.\n\n(e) Derive the conservation equation for local density $\\rho\\equiv m n(\\vec q,t)$, in terms of the local velocity $\\vec u \\equiv \\langle \\vec p/m\\rangle$.\n\n(f) Since the magnitude of particle momentum is unchanged by impurity scattering, the Lorentz gas has an infinity of conserved quantities $|\\vec p|^{m}$. This unrealistic feature is removed upon inclusion of particle-particle collisions. For the rest of this problem focus only on $p^2/(2m)$ as a conserved quantity. Derive the conservation equation for the energy density $\\epsilon(\\vec q,t) \\equiv (\\rho/2)\\langle c^2\\rangle$, where $\\vec c \\equiv \\vec p/m - \\vec u$, in terms of the energy flux $\\vec h \\equiv \\rho \\langle \\vec c \\, c^2\\rangle/2$, and the pressure tensor $P_{\\alpha\\beta} \\equiv \\rho \\langle c_\\alpha c_\\beta\\rangle$.\n\n(g) Starting with a one particle density reflecting local equilibrium,\n$\\displaystyle f^{0}(\\vec p,\\vec q,t)= \\frac{n(\\vec q,t)}{2\\pi m k_B T(\\vec q,t)} \\exp\\big[-p^2/(2 m k_B T(\\vec q,t))\\big]$, calculate $\\vec u$, $\\vec h$, and $P_{\\alpha\\beta}$. Hence obtain the zeroth order hydrodynamic equations.\n\n(h) Show that in the single collision time approximation $C[f]=(f^0-f)/\\tau$, the first order solution is\n$$\n f^{1}(\\vec p,\\vec q,t)= f^{0}(\\vec p,\\vec q,t)\\left[1-\\tau\\, \\frac{\\vec p}{m}\\cdot\\left( \\nabla \\ln\\rho - \\nabla \\ln T + \\frac{p^2}{2 m k_B T^2} \\, \\nabla T - \\frac{\\vec F}{k_B T}\\right)\\right].\n$$\n\n(i) Show that using the first order expression for $f$, we obtain $\\rho \\, \\vec u = n\\tau\\, \\big[ \\vec F - k_B T \\, \\nabla \\ln(\\rho T) \\big]$.\n\n(j) From the above equation, calculate the velocity response function $\\chi_{\\alpha\\beta} = \\partial u_\\alpha/\\partial F_\\beta$.\n\n(k) Calculate $P_{\\alpha\\beta}$ and $\\vec h$, and hence write down the first order hydrodynamic equations.",
+    "final_answers": [
+      "$d\\sigma = (a/2)\\sin(\\theta/2)\\, d\\theta$, $\\;\\sigma_{\\rm tot}=2a$",
+      "$\\partial_t f + (\\vec p/m)\\cdot\\partial_{\\vec q} f + \\vec F\\cdot\\partial_{\\vec p} f = (n_0 |\\vec p|/m) \\int d\\theta\\, (d\\sigma/d\\theta) [f(\\vec p') - f(\\vec p)]$",
+      null,
+      "$\\partial_t(n\\langle\\chi\\rangle)+\\partial_{\\vec q}\\cdot\\big(n\\langle (\\vec p/m)\\chi\\rangle\\big)=\\vec F\\cdot n\\langle \\partial\\chi/\\partial\\vec p\\rangle$",
+      "$\\partial_t\\rho + \\nabla\\cdot(\\rho\\vec u)=0$",
+      "$\\partial_t[\\tfrac{\\rho}{2} u^2 + \\epsilon] + \\nabla\\cdot[ \\vec u(\\tfrac{\\rho}{2}u^2+\\epsilon) + \\vec h] + \\partial_{q_\\alpha}(u_\\beta P_{\\alpha\\beta}) = (\\rho/m)\\, \\vec F\\cdot\\vec u$",
+      "$\\vec u=0,\\; \\vec h=0,\\; P_{\\alpha\\beta}=n k_B T\\, \\delta_{\\alpha\\beta}$; zeroth-order hydrodynamics stationary",
+      "$f^{1}= f^{0}\\Big[1-\\tau\\, \\dfrac{\\vec p}{m}\\cdot\\Big( \\nabla \\ln\\rho - \\nabla \\ln T + \\dfrac{p^2}{2 m k_B T^2} \\, \\nabla T - \\dfrac{\\vec F}{k_B T}\\Big)\\Big]$",
+      "$\\rho\\, \\vec u = n\\tau\\, \\big[ \\vec F - k_B T \\, \\nabla \\ln(\\rho T) \\big]$",
+      "$\\chi_{\\alpha\\beta}= (n\\tau/\\rho)\\, \\delta_{\\alpha\\beta}$",
+      "$P_{\\alpha\\beta}=n k_B T\\,\\delta_{\\alpha\\beta}$, $\\; \\vec h = -12\\, n k_B^2 T\\, \\tau\\, \\nabla T$"
+    ]
+  },
+  {
+    "id": "textbook/14.1",
+    "dataset": "FrontierPhysics",
+    "split": "test",
+    "source_dataset_file": "backup/0_original_datasets/prepared/FrontierPhysics/test.parquet",
+    "original_row_index": 19,
+    "labels": [
+      "null_ground_truth",
+      "FrontierPhysics"
+    ],
+    "issue_type": "null_ground_truth",
+    "review_note": "No explicit (a)/(b) labels are present. The extracted answers are [null, 2.0], which drops the derivation/action part and leaves only the dynamical exponent.",
+    "detected_top_level_part_labels": [],
+    "detected_top_level_part_count": 0,
+    "final_answer_count": 2,
+    "question": "In the quantum rotor model\n\n(418) \n$$\nH = E_C \\sum_i (\\hat{n}_i - n_0)^2 - t \\sum_{\\langle ij \\rangle} \\left( b_i^{\\dagger} b_j + h.c. \\right),\n$$\n\nshow that when  $n_0$  is not an integer, the corresponding action is of the form\n\n(419) \n$$\nS \\propto \\int_0^\\beta d\\tau \\left( -in_0 \\partial_\\tau \\theta - \\sum_{\\langle ij \\rangle} V \\cos(\\theta_i - \\theta_j) \\right).\n$$\n\nThis version of the quantum rotor model is known as the incommensurate Bose-Hubbard model. What consequences does this have on the value of the dynamical exponent?",
+    "final_answers": [
+      null,
+      2.0
+    ]
+  },
+  {
+    "id": "textbook/7.3",
+    "dataset": "FrontierPhysics",
+    "split": "test",
+    "source_dataset_file": "backup/0_original_datasets/prepared/FrontierPhysics/test.parquet",
+    "original_row_index": 43,
+    "labels": [
+      "null_ground_truth",
+      "FrontierPhysics"
+    ],
+    "issue_type": "null_ground_truth",
+    "review_note": "The question has three roman-numeral subparts, but four answers were extracted; the first three are null and only the average collision count remains.",
+    "detected_top_level_part_labels": [],
+    "detected_top_level_part_count": 0,
+    "final_answer_count": 4,
+    "question": "**Exercise 7.3.** Assume the probability that an electron experiences a collision between time *t* and $t + dt$ is $dt/\\tau$. \n(i) Let $t_c$ be the time between two subsequent collisions. Show that the probability distribution function for $t_c$ is $p(t_c) = (1/\\tau)e^{-t_c/\\tau}$. \n(ii) Calculate $\\langle t_c \\rangle$ and $\\langle t_c^2 \\rangle$. \n(iii) Let *n* be the number of collisions experienced by the electron in a time interval of length *t* (say, between *t'* and $t' + t$). Show that the probability distribution for *n* is the Poisson distribution $P(n) = e^{-\\overline{n}} \\overline{n}^n / n!$, where $\\overline{n}$ is its average. Find the value of $\\overline{n}$.",
+    "final_answers": [
+      null,
+      null,
+      null,
+      "t/\\tau"
+    ]
+  },
+  {
+    "id": "textbook/12.7",
+    "dataset": "FrontierPhysics",
+    "split": "test",
+    "source_dataset_file": "backup/0_original_datasets/prepared/FrontierPhysics/test.parquet",
+    "original_row_index": 54,
+    "labels": [
+      "null_ground_truth",
+      "FrontierPhysics"
+    ],
+    "issue_type": "null_ground_truth",
+    "review_note": "The question asks for the commutator and its interpretation. The second extracted answer is null, so the interpretation is missing.",
+    "detected_top_level_part_labels": [],
+    "detected_top_level_part_count": 0,
+    "final_answer_count": 2,
+    "question": "PROBLEM 12.7. Evaluate the commutator $[b_k, b_k^{\\dagger}]$, where the $b_k$'s are the Cooper pair annihilation operators. What does the lack of commutativity of the Cooper pair creation and annihilation operators mean?",
+    "final_answers": [
+      "1 - n_{k\\uparrow} - n_{k\\downarrow}",
+      null
+    ]
+  },
+  {
+    "id": "pathria/6.14",
+    "dataset": "FrontierPhysics",
+    "split": "test",
+    "source_dataset_file": "backup/0_original_datasets/prepared/FrontierPhysics/test.parquet",
+    "original_row_index": 114,
+    "labels": [
+      "length_mismatch",
+      "FrontierPhysics"
+    ],
+    "issue_type": "length_mismatch",
+    "review_note": "Two top-level parts are present, but both answers were merged into one string instead of separate ground-truth entries.",
+    "detected_top_level_part_labels": [
+      "a",
+      "b"
+    ],
+    "detected_top_level_part_count": 2,
+    "final_answer_count": 1,
+    "question": "Consider the effusion of molecules of a Maxwellian gas through an opening of area $a$ in the walls of a vessel of volume $V$.\n(a) Show that, while the molecules inside the vessel have a mean kinetic energy $\\tfrac{3}{2}kT$, the effused ones have a mean kinetic energy $2kT$, $T$ being the quasistatic equilibrium temperature of the gas.\n(b) Assuming that the effusion is so slow that the gas inside is always in a state of quasistatic equilibrium, determine the manner in which the density, the temperature, and the pressure of the gas vary with time.",
+    "final_answers": [
+      "(a) mean effused energy = 2kT; (b) T(t)=T_0(1+ct)^{-2},\\ T\\propto N^{1/3},\\ P\\propto N^{4/3}"
+    ]
+  },
+  {
+    "id": "kardar/1.4",
+    "dataset": "FrontierPhysics",
+    "split": "test",
+    "source_dataset_file": "backup/0_original_datasets/prepared/FrontierPhysics/test.parquet",
+    "original_row_index": 120,
+    "labels": [
+      "null_ground_truth",
+      "FrontierPhysics"
+    ],
+    "issue_type": "null_ground_truth",
+    "review_note": "Six top-level parts are present and six answers were extracted, but part (a) is null even though it asks for the partition-function integral.",
+    "detected_top_level_part_labels": [
+      "a",
+      "b",
+      "c",
+      "d",
+      "e",
+      "f"
+    ],
+    "detected_top_level_part_count": 6,
+    "final_answer_count": 6,
+    "question": "4. Surfactant condensation: N surfactant molecules are added to the surface of water over an area A. They are subject to a Hamiltonian $\\mathcal{H} = \\sum_{i=1}^N \\frac{\\vec p_i^{\\,2}}{2m} + \\frac{1}{2} \\sum_{i,j} V(\\vec r_i - \\vec r_j)$, where $\\vec r_i$ and $\\vec p_i$ are two dimensional vectors indicating the position and momentum of particle i.\n(a) Write down the expression for the partition function $Z(N, T, A)$ in terms of integrals over $\\vec r_i$ and $\\vec p_i$, and perform the integrals over the momenta.\nThe inter-particle potential $V(r)$ is infinite for separations $|\\vec r| < a$, and attractive for $|\\vec r| > a$ such that $\\int_a^\\infty 2\\pi r dr V(r) = -u_0.$\n(b) Estimate the total non-excluded area available in the positional phase space of the system of N particles.\n(c) Estimate the total potential energy of the system, assuming a uniform density $n = N/A$. Using this potential energy for all configurations allowed in the previous part, write down an approximation for Z.\n(d) The surface tension of water without surfactants is $\\sigma_0$, approximately independent of temperature. Calculate the surface tension $\\sigma(n, T)$ in the presence of surfactants.\n(e) Show that below a certain temperature, $T_c$, the expression for $\\sigma$ is manifestly incorrect. What do you think happens at low temperatures?\n(f) Compute the heat capacities, $C_A$ and write down an expression for $C_\\sigma$ without explicit evaluation, due to the surfactants.",
+    "final_answers": [
+      null,
+      "$(A - N\\Omega/2)^N$",
+      "$-\\frac{N^2}{2A}u_0$, $Z(N, T, A) \\approx \\frac{1}{N! \\lambda^{2N}} (A - N\\Omega/2)^N \\exp \\left[ \\frac{\\beta u_0 N^2}{2A} \\right]$",
+      "$\\sigma(n, T) = \\sigma_0 - \\frac{Nk_B T}{A-N\\Omega/2} + \\frac{u_0 N^2}{2A^2}$",
+      "$T_c = \\frac{8u_0}{27k_B\\Omega}$",
+      "$C_A = Nk_B$, $C_\\sigma = \\frac{dQ}{dT}|_\\sigma = \\frac{\\partial E}{\\partial T}|_\\sigma - \\sigma \\frac{\\partial A}{\\partial T}|_\\sigma$"
+    ]
+  }
+]

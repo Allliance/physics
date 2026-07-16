@@ -21,6 +21,10 @@ APP_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = APP_DIR.parent
 STATIC_DIR = APP_DIR / "static"
 SPLIT_NAMES = {"train", "test", "validation", "val", "dev"}
+ORIGINAL_DATASET_DIRS = (
+    PROJECT_ROOT / "original_datasets",
+    PROJECT_ROOT / "backup" / "0_original_datasets",
+)
 
 
 def rel(path: Path) -> str:
@@ -33,6 +37,26 @@ def human_label(path: str) -> str:
 
 def dataset_id(kind: str, path: str) -> str:
     return f"{kind}:{path}"
+
+
+def unique_existing_dirs(paths: tuple[Path, ...]) -> list[Path]:
+    seen: set[Path] = set()
+    existing = []
+    for path in paths:
+        if not path.exists():
+            continue
+        resolved = path.resolve()
+        if resolved in seen:
+            continue
+        seen.add(resolved)
+        existing.append(path)
+    return existing
+
+
+def review_metadata(review: Path) -> tuple[str, str]:
+    if review.name == "original_test_ground_truth_extraction_issues.json":
+        return "Original test sets / ground-truth extraction issues", "ground-truth extraction issues"
+    return f"Evaluation review / {review.stem.replace('_', ' ')}", "evaluation review"
 
 
 def parse_dataset_id(value: str) -> tuple[str, Path]:
@@ -55,12 +79,13 @@ def discover_datasets() -> list[dict]:
     review_dir = PROJECT_ROOT / "inspection" / "reviews"
     for review in sorted(review_dir.glob("*.json")) if review_dir.exists() else []:
         relative = rel(review)
+        label, kind = review_metadata(review)
         datasets.append(
             {
                 "id": dataset_id("json-file", relative),
-                "label": f"Evaluation review / {review.stem.replace('_', ' ')}",
+                "label": label,
                 "path": relative,
-                "type": "evaluation review",
+                "type": kind,
                 "files": 1,
             }
         )
@@ -141,18 +166,18 @@ def discover_datasets() -> list[dict]:
             }
         )
 
-    original = PROJECT_ROOT / "original_datasets"
-    for jsonl in sorted(original.glob("*.jsonl")) if original.exists() else []:
-        relative = rel(jsonl)
-        datasets.append(
-            {
-                "id": dataset_id("jsonl-file", relative),
-                "label": human_label(relative),
-                "path": relative,
-                "type": "jsonl file",
-                "files": 1,
-            }
-        )
+    for original in unique_existing_dirs(ORIGINAL_DATASET_DIRS):
+        for parquet in sorted(original.glob("prepared/*/test.parquet")):
+            relative = rel(parquet)
+            datasets.append(
+                {
+                    "id": dataset_id("parquet-file", relative),
+                    "label": f"Original test set / {parquet.parent.name}",
+                    "path": relative,
+                    "type": "original test set",
+                    "files": 1,
+                }
+            )
 
     repair_dev_set = PROJECT_ROOT / "data" / "repair" / "dev_set"
     for repaired in sorted(repair_dev_set.glob("*_repaired.json")) if repair_dev_set.exists() else []:
@@ -194,6 +219,41 @@ def read_parquet_file(path: Path) -> list[dict]:
     return rows
 
 
+def safe_project_path(raw_path: str) -> Path:
+    path = (PROJECT_ROOT / raw_path).resolve()
+    try:
+        path.relative_to(PROJECT_ROOT)
+    except ValueError as exc:
+        raise ValueError("Source path escapes project root") from exc
+    return path
+
+
+@lru_cache(maxsize=32)
+def read_parquet_rows(path_text: str) -> tuple[dict, ...]:
+    return tuple(read_parquet_file(safe_project_path(path_text)))
+
+
+def enrich_original_test_issue_row(row: dict) -> dict:
+    path_text = row.get("source_dataset_file")
+    row_index = row.get("original_row_index")
+    if not path_text or row_index is None:
+        return row
+
+    source_rows = read_parquet_rows(safe_string(path_text))
+    source_index = int(row_index)
+    if source_index < 0 or source_index >= len(source_rows):
+        return row
+
+    source = source_rows[source_index]
+    item = dict(row)
+    item.setdefault("solution", source.get("solution") or source.get("solutions") or "")
+    item.setdefault("source_file", source.get("source_file") or source.get("__dataset_file") or "")
+    item.setdefault("question", source.get("question") or source.get("questions") or item.get("question", ""))
+    item.setdefault("__split", source.get("__split") or "test")
+    item.setdefault("__part", "ground-truth issue")
+    return item
+
+
 def read_jsonl_file(path: Path) -> list[dict]:
     rows = []
     with path.open("r", encoding="utf-8") as handle:
@@ -223,6 +283,7 @@ def read_json_file(path: Path) -> list[dict]:
     normalized = []
     for row in rows:
         item = row if isinstance(row, dict) else {"value": row}
+        item = enrich_original_test_issue_row(item)
         item.setdefault("__dataset_file", rel(path))
         normalized.append(item)
     return normalized
@@ -317,6 +378,29 @@ def label_options(rows: list[dict]) -> list[dict]:
     return [{"value": key, "count": counts[key]} for key in sorted(counts, key=str.casefold)]
 
 
+def first_value(row: dict, keys: tuple[str, ...]):
+    for key in keys:
+        if key in row and row[key] not in (None, ""):
+            return row[key]
+    return None
+
+
+def count_ground_truths(value) -> int:
+    if value in (None, ""):
+        return 0
+    parsed = value
+    if isinstance(value, str):
+        try:
+            parsed = json.loads(value)
+        except json.JSONDecodeError:
+            return 1 if value.strip() else 0
+    if isinstance(parsed, list):
+        return len(parsed)
+    if isinstance(parsed, dict):
+        return len(parsed)
+    return 1
+
+
 def compact(text: str, limit: int = 260) -> str:
     text = " ".join(text.split())
     if len(text) <= limit:
@@ -326,6 +410,8 @@ def compact(text: str, limit: int = 260) -> str:
 
 def sample_summary(row: dict) -> dict:
     question = question_text(row)
+    solution = first_value(row, ("solution", "solutions", "answer", "explanation"))
+    ground_truths = first_value(row, ("ground_truths", "ground_truth", "final_answers", "answers"))
     return {
         "row_index": row["__row_index"],
         "id": safe_string(row.get("id") or row.get("sample_id") or row.get("__line_number") or row["__row_index"]),
@@ -336,6 +422,8 @@ def sample_summary(row: dict) -> dict:
         "part": safe_string(row.get("__part") or row.get("verdict") or row.get("part")),
         "labels": label_values(row),
         "score": row.get("score"),
+        "has_solution": bool(safe_string(solution).strip()),
+        "ground_truth_count": count_ground_truths(ground_truths),
         "field_count": len([key for key in row if not key.startswith("__")]),
     }
 
