@@ -35,9 +35,21 @@ run with high reasoning:
 | Physics | 84.53% | 90.04% | +5.51 pts |
 | Frontier Physics | 92.00% | 95.70% | +3.70 pts |
 
-Both Gemini merged-mode runs completed with zero failed judge calls. Physics had
-two unscored rows under the GPT-5.5 judge and one unscored row under the Gemini
-judge, so the Physics comparison is slightly affected by scored-row coverage.
+Manual review of the merged-mode disagreements found:
+
+- Gemini was more accurate at extracting the parts requested by the finalized
+  question text; GPT-5.5 sometimes inferred extra parts from the reference
+  solution and penalized answers for omissions that were not actually asked.
+- Gemini was often able to identify errors or typos in the reference solutions,
+  accepting correct answers that GPT-5.5 rejected because they disagreed with
+  the provided reference.
+- Despite the score gap, the judges agreed exactly on most merged row scores:
+  106/121 Physics rows (87.6%) and 98/110 Frontier Physics rows (89.1%).
+  On comparable inferred parts, agreement was higher: 254/267 Physics parts
+  (95.1%) and 339/349 Frontier Physics parts (97.1%).
+- After aligning GPT-5.5 to Gemini's extracted parts, GPT-5.5 rose to 85.80% on
+  Physics and 93.14% on Frontier Physics, but Gemini still led by 4.16 and 2.56
+  percentage points respectively.
 
 ### Judge modes
 

@@ -1,0 +1,420 @@
+{
+  "description": "Manual review of merged-mode judge disagreements after rescoring GPT-5.5 on Gemini 3.1 Pro Preview's extracted parts.",
+  "generator": "gpt-5.5",
+  "mode": "merged",
+  "judge_artifacts": {
+    "gpt_5_5": "eval/artifacts/{dataset}/test/merged/model_gpt-5.5_gen_772970d6d2/judge_gpt-5.5/judgments.jsonl",
+    "gemini_3_1_pro_preview": "eval/artifacts/{dataset}/test/merged/model_gpt-5.5_gen_772970d6d2/judge_gemini-3.1-pro-preview/judgments.jsonl"
+  },
+  "method": "For each row where Gemini's score exceeded GPT-5.5 after aligning GPT-5.5 to Gemini's inferred parts, inspect the question, reference solution, generated answer, and both judges' part reasons. Verdicts are manual engineering/physics judgments, not new model calls.",
+  "summary": {
+    "num_rows_reviewed": 18,
+    "num_disputed_parts_reviewed": 23,
+    "preferred_gemini_parts": 21,
+    "preferred_gpt_5_5_parts": 2,
+    "ambiguous_or_partial_parts": 1,
+    "notes": "Most Gemini wins are legitimate corrections of reference typos or acceptance of equivalent approximations. The main clear Gemini false positive is mechanics/3_18 part a. atomic/1-27 part a is partial/ambiguous because the answer gives only the small-height approximation while the reference includes the exact expression."
+  },
+  "cases": [
+    {
+      "dataset": "Physics",
+      "id": "Classical Mechanics/2-17",
+      "gpt_5_5_score_on_gemini_parts": 0.5,
+      "gemini_score": 1.0,
+      "overall_preferred_judge": "gemini",
+      "disputed_parts": [
+        {
+          "part": "b, i",
+          "gpt_5_5_score": 0,
+          "gemini_score": 1,
+          "preferred_judge": "gemini",
+          "actual_verdict": "candidate_correct",
+          "rationale": "The prompt states A2 << A1, so v = sqrt(2gh) is the intended leading approximation to the exact finite-area formula."
+        },
+        {
+          "part": "b, ii",
+          "gpt_5_5_score": 0,
+          "gemini_score": 1,
+          "preferred_judge": "gemini",
+          "actual_verdict": "candidate_correct",
+          "rationale": "The drain time omits sqrt(1-(A2/A1)^2), which is negligible under the explicit A2 << A1 assumption."
+        },
+        {
+          "part": "b, iii",
+          "gpt_5_5_score": 0,
+          "gemini_score": 1,
+          "preferred_judge": "gemini",
+          "actual_verdict": "candidate_correct",
+          "rationale": "The same A2 << A1 approximation applies to the tube-draining result."
+        }
+      ],
+      "question": "(a) A mass _m_ is dropped from rest at the equator, from an initial height _H_. Ignore air resistance in this problem. \n\ni. In what direction is the projectile deflected by the Coriolis force?\n\nii. Determine the distance of the horizontal deflection when the mass hits the ground (from the point it would have hit with no deflection), in terms of the initial height _H_, and the earth’s rotation _ω_. \n\niii. Evaluate the deflection for _H = 1.5 km_.\n\n(b) A water tower of cross-sectional area _A_1 and height _H_ is filled with water. The top is open to atmospheric pressure. At the bottom is a spigot of area $A_2 << A_1$.\n\ni. Find the speed of the water, _v_, leaving the spigot as a function of the height of the water, _h_, in the tank.\n\nii. Assuming _h = H_ when the spigot is opened at _t = 0_, find the total time it takes to drain the tank.\n\niii. Before opening the spigot in part (b), cover the top of the reservoir except for a tube of negligible area submerged down to _H/2_. Now, open the spigot. Calculate how long it takes to drain the reservoir.",
+      "model_extracted_answer": "\\begin{gathered}\n\\text{(a)(i) The deflection is eastward.}\\\\\n\\text{(a)(ii) } \\Delta x=\\frac{1}{3}\\omega g\\left(\\frac{2H}{g}\\right)^{3/2}\n=\\frac{2\\sqrt2}{3}\\,\\frac{\\omega H^{3/2}}{\\sqrt g}\\ \\text{eastward}.\\\\\n\\text{(a)(iii) For }H=1.5\\,\\mathrm{km},\\ \\Delta x\\approx 1.27\\,\\mathrm{m}\\ \\text{eastward}.\\\\[3pt]\n\\text{(b)(i) } v(h)=\\sqrt{2gh}.\\\\\n\\text{(b)(ii) } t_{\\rm drain}=\\frac{A_1}{A_2}\\sqrt{\\frac{2H}{g}}.\\\\\n\\text{(b)(iii) } t_{\\rm drain}\n=\\frac{A_1}{A_2}\\left(\\frac12\\sqrt{\\frac{H}{g}}+\\sqrt{\\frac{H}{g}}\\right)\n=\\frac{3}{2}\\frac{A_1}{A_2}\\sqrt{\\frac{H}{g}}.\n\\end{gathered}",
+      "reference_solution": "(a) (i) Set up coordinates and local compass directions at a point on the equator as seen in the bird’s eye view below.\n\n$$\n\\mathbf{F}_{\\text{Cor}} = -2m\\mathbf{ω} \\times \\mathbf{v} = -2mω(-v) \\hat{\\mathbf{z}} \\times \\hat{\\mathbf{x}} = 2mωv \\hat{\\mathbf{y}}.\n$$\n\n\nThus, the mass is deflected **eastward**. We neglected the additional Coriolis force due to the gained eastward speed and the centrifugal force since both are $\\mathcal{O}(ω^2)$.\n\n(ii) The ball is dropped at _t = 0_ (at rest), _v = gt_. Thus,\n\n$$\n\\mathbf{F}_{\\text{Cor}} = 2mωgt \\hat{\\mathbf{y}},\n$$\n\n\nor\n\n$$\na_h = 2ωgt \\hat{\\mathbf{y}},\n$$\n\n\nwhere $a_h$is the horizontal acceleration. Integrating twice and setting the initial\n\nhorizontal speed and initial horizontal position equal to 0 gives a horizontal deflection as a function of time of\n\n$$\n \nx(t) = \\int_{0}^{t} dt' \\int_{0}^{t'} dt'' 2\\omega gt'' = \\frac{1}{3} \\omega g t^{3}. \\tag{2.17.1} \n$$\n\n\nIt takes a time $ t = \\sqrt{2H/g} $ to hit the ground and so the deflection is\n\n$$\n \nx = \\omega \\sqrt{8H^{3}/9g}. \\tag{2.17.2} \n$$\n\n\n(iii) $ \\omega = 2\\pi \\, \\text{rad/24 hrs} = 7 \\times 10^{-5} \\, \\text{rad/s}. $ Plugging this in gives $ x = 1.22 \\, \\text{m}. $\n\n(b) (i) Denote the surface of the water in the reservoir by 1 and the spigot by 2. Bernoulli’s relation, equating energy densities at the top and bottom, reads\n\n$$\n \nP_{1} + \\frac{1}{2} \\rho v_{1}^{2} + \\rho gh = P_{2} + \\frac{1}{2} \\rho v_{2}^{2}. \\tag{2.17.3}\n$$\n\n\nBoth the top and the spigot exit are at equilibrium with the atmosphere and thus $ P_{1} = P_{2} = P_{\\text{atm}} $. Equating flows gives $ A_{1}v_{1} = A_{2}v_{2}. $ Therefore, we get\n\n$$\n \nv_{2} = \\frac{2gh}{\\sqrt{1 - (A_{2}/A_{1})^{2}}}. \\tag{2.17.4} \n$$\n\n\n(ii) Since $ h $ is decreasing, $ v_{1} = -\\dot{h}. $ Thus,\n\n$$\n \n\\dot{h} = -\\frac{A_{2}}{A_{1}} v_{2} = -\\frac{A_{2}}{A_{1}} \\frac{2g}{\\sqrt{1 - (A_{2}/A_{1})^{2}}} \\sqrt{h}. \\tag{2.17.5}\n$$\n\n\nIntegrating in time from 0 to $ t $ and in $ h $ from $ H $ to 0 gives\n\n$$\n \nt = \\frac{A_{1}}{A_{2}} \\sqrt{1 - \\left( \\frac{A_{2}}{A_{1}} \\right)^{2}} \\sqrt{\\frac{2H}{g}}. \\tag{2.17.6}\n$$\n\n\n(iii) Stage 1: the reservoir water level (not in the tube) cannot decrease since air cannot get inside the reservoir. Initially, only the water level in the tube decreases until it reaches the bottom of the tube. Since the tube has negligible area, we will neglect the time for this to happen: $ t_{1} \\approx 0. $\n\nStage 2: Now, the pressure at $ H/2 $ is $ P_{\\text{atm}} $ since it is at equilibrium with the atmosphere. The pressure there never changes even as the water level in the reservoir decreases. Therefore, the flow rate through the spigot will be constant until the reservoir water level reaches the bottom of the tube.\n\nLet 1 not stand for the level $ H/2 $. Then, $ P_{1} = P_{2} = P_{\\text{atm}}, $ and so\n\n$$\n\\frac{1}{2} \\rho g H = \\frac{1}{2} \\rho \\left( \\frac{A_{2}}{A_{1}} \\right)^{2} v_{2}^{2} + \\frac{1}{2}\\rho g H=\\frac{1}{2} \\rho v_{2}^{2}.\n$$\n\n\nThus, $ v_{2} = \\sqrt\\frac{gH}{{1-(A_{2}/A_{1})^{2}}} $ and the flow rate $ A_{2}v_{2} $ is constant. It takes time $ t_{2} = \\frac{A_{1}}{A_{2}} \\frac{H}{2} / A_{2}v_{2} $ to drain. Thus,\n\n$$\nt_{2} = \\frac{A_{1}}{2A_{2}} \\sqrt{1 - \\left( \\frac{A_{2}}{A_{1}} \\right)^{2}} \\sqrt{\\frac{H}{g}}. \\tag{2.17.7}\n$$\nStage 3: Now, the story is the same as part (b), but starting at $ H/2 $ rather than $ H $.\nThus,\n\n$$\nt_3 = \\frac{A_1}{A_2} \\sqrt{1 - \\left( \\frac{A_2}{A_1} \\right)^2} \\sqrt{\\frac{H}{g}}\n$$\n\n(2.17.8)\n\nAll together,  $ t = t_1 + t_2 + t_3 = \\frac{3A_1}{2A_2} \\sqrt{1 - \\left( \\frac{A_2}{A_1} \\right)^2} \\sqrt{\\frac{H}{g}} $."
+    },
+    {
+      "dataset": "Physics",
+      "id": "Quantum Mechanics/29-3",
+      "gpt_5_5_score_on_gemini_parts": 0.5,
+      "gemini_score": 1.0,
+      "overall_preferred_judge": "gemini",
+      "disputed_parts": [
+        {
+          "part": "b",
+          "gpt_5_5_score": 0,
+          "gemini_score": 1,
+          "preferred_judge": "gemini",
+          "actual_verdict": "candidate_correct",
+          "rationale": "The perturbation is applied from the far past, so the Gaussian time integral should run over the full real line. The reference integrates from 0 to infinity and even notes the professor's solution is four times larger. The candidate has the full-line factor."
+        }
+      ],
+      "question": "A simple harmonic oscillator with angular frequency\n$\\omega$ containing a particle of mass $m$ is in the $n = 10$ state, $|10\\rangle$, at time $t_0$ in the far distant past.\nA time-dependent perturbation $H'(x, t) = \\alpha x^5 e^{-(t/\\tau)^2}$ is applied to the oscillator. Consider only\nthe effects that are first order in $\\alpha$.\n\n(a) Write down all the possible values of $n$ to which the state can transition.\n\n(b) Calculate the probability that the oscillator will be in the final state from part (a) with the\nhighest energy after a time $t \\gg \\tau$ has elapsed.",
+      "model_extracted_answer": "\\text{(a) } n=5,7,9,11,13,15.\n\\qquad\n\\text{(b) } P_{10\\to 15}\n=\n360360\\,\\pi\\,\\frac{\\alpha^2\\tau^2}{\\hbar^2}\n\\left(\\frac{\\hbar}{2m\\omega}\\right)^5\ne^{-25\\omega^2\\tau^2/2}",
+      "reference_solution": "(a) We are looking for $|n\\rangle$ such that $\\langle n|x^5|10\\rangle \\neq 0$. The energy is $\\frac{1}{2}m\\omega^2 x^2 + \\frac{p^2}{2m}$. The natural energy unit is $\\hbar \\omega$. Thus, in natural units, $\\frac{1}{\\hbar \\omega}\\left(\\frac{1}{2} m \\omega^2 x^2+\\frac{p^2}{2 m}\\right)=(2 m \\hbar \\omega)^{-1 / 2}(m \\omega x+i p)(m \\omega x-i p)$. Let $a_{ \\pm}=(2 m \\hbar \\omega)^{-1 / 2}(m \\omega x \\pm i p) \\text { so that } x=(\\hbar / 2 m \\omega)^{1 / 2}\\left(a_{+}+a_{-}\\right) .$  The diagram below shows states connected to $|10\\rangle \\text { by } 5 x' \\text { s. }$\n\n$$\n\\int_{-\\infty}^{\\infty} x^5 f(x) dx = 0 \\ \\text{if} \\ f(x) \\ \\text{is odd.} \\ x^5 \\ \\text{is odd, whereas} \\ \\langle x|10\\rangle \\ \\text{is even. Thus, we need odd} \\ n.\n$$\nAllowed: n = 5, 7, 9, 11, 13, 15 \n\n\n(b) $(\\hbar/2m\\omega)^{5/2}a_+^5$ links $|15\\rangle$ to $|10\\rangle$. Recall that $a_{+}|n\\rangle=\\sqrt{n+1}|n+1\\rangle .$ Thus,\n\n$$\n\\langle 15| x^5|10\\rangle=(\\hbar / 2 m \\omega)^{5 / 2}\\langle 15| a_{+}^5|10\\rangle=(\\hbar / 2 m \\omega)^{5 / 2}\\left(\\frac{15!}{10!}\\right)^{1 / 2}  \\tag{29.3.1}\n$$\n\n\nWrite $|\\psi(t)\\rangle = \\sum_m c_m(t) e^{-i\\omega_m t} |m\\rangle$, where $\\omega_m = \\omega(m + \\frac{1}{2})$. Then,\n\n$$\nH|\\psi(t)\\rangle=i \\hbar \\frac{d}{d t}|\\psi(t)\\rangle=\\sum_m\\left(i \\hbar \\dot{c}_m+\\hbar \\omega_m c_m\\right) e^{-i \\omega_m t}|m\\rangle  \\tag{29.3.2}\n$$\nOn the other hand,\n\n$$\n(H_0 + H') |\\psi(t)\\rangle = \\sum_m (E_m + H') c_m e^{-i\\omega_m t} |m\\rangle . \\tag{29.3.3}\n$$\n\n\nSet these equal and cancel $\\hbar\\omega_m$ with $E_m$. Take the inner product with $\\langle n|$ to get\n\n$$\ni\\hbar \\dot{c}_n e^{-i\\omega_n t} = \\sum_m c_m e^{-i\\omega_m t} \\langle n|H'|m\\rangle . \\tag{29.3.4}\n$$\n\nDefine $ \\omega_{nm} \\equiv \\omega_n - \\omega_m = \\omega(n-m) $ and $ H'_{nm} \\equiv \\langle n|H'|m\\rangle $ so that the rate equation may be written as\n\n$$\n\\dot{c}_n=-\\frac{i}{\\hbar} \\sum_m c_m^{i \\omega_{n m} t} H_{n m}^{\\prime}\n\\tag{29.3.5}\n$$\n\n\nPlug in the initial conditions $ c_m^{(0)} = \\delta_{m,10} $ in the RHS. Then,\n\n$$\n\\dot{c}_{15}=-\\frac{i}{\\hbar} e^{i \\omega(15-10) t} H_{15,10}^{\\prime}=-\\frac{i \\alpha}{\\hbar} e^{-(t / \\tau)^2+i 5 \\omega t}(\\hbar / 2 m \\omega)^{5 / 2}\\left(\\frac{15!}{10!}\\right)^{1 / 2}\n\\tag{29.3.6}\n$$\n\n\nFor $ t \\gg \\tau $, we may integrate all the way up to $\\infty$:\n\n$$\n\\begin{aligned}\nc_{15} & \\approx-\\frac{i \\alpha}{\\hbar}\\left(\\frac{\\hbar}{2 m \\omega}\\right)^{5 / 2}\\left(\\frac{15!}{10!}\\right)^{1 / 2} \\int_0^{\\infty} \\exp \\left\\{\\frac{-1}{\\tau^2}\\left[\\left(t^{\\prime}\\right)^2-i 5 \\omega \\tau^2 t^{\\prime}-\\left(\\frac{5 \\omega \\tau^2}{2}\\right)^2\\right]-\\left(\\frac{5 \\omega \\tau}{2}\\right)^2\\right\\} \\\\\n& =-\\frac{i \\alpha \\tau}{\\hbar}\\left(\\frac{\\hbar}{2 m \\omega}\\right)^{5 / 2}\\left(\\frac{15!}{10!}\\right)^{1 / 2} e^{-25 \\omega^2 \\tau^2 / 4} \\int_0^{\\infty} e^{-\\xi^2} d \\xi \\\\\n& =-\\frac{i \\alpha \\tau}{\\hbar}\\left(\\frac{\\hbar}{2 m \\omega}\\right)^{5 / 2}\\left(\\frac{15!}{10!}\\right)^{1 / 2} \\frac{\\sqrt{\\pi}}{2} e^{-25 \\omega^2 \\tau^2 / 4}\n\\end{aligned}\n$$\n\n\nTherefore, the probability of ending up in $|15\\rangle$ is \n\n$$\nP_{15}=\\left|c_{15}\\right|^2=\\frac{\\pi}{4}\\left(\\frac{15!}{10!}\\right)\\left(\\frac{\\alpha}{\\hbar}\\right)^2\\left(\\frac{\\hbar}{2 m \\omega}\\right)^5 \\tau^2 e^{-25 \\omega^2 \\tau^2 / 2} .\n\\tag{29.3.8}\n$$\n\n\nNote: Professor’s solution is 4 times this!"
+    },
+    {
+      "dataset": "Physics",
+      "id": "atomic/1-27",
+      "gpt_5_5_score_on_gemini_parts": 0.5,
+      "gemini_score": 1.0,
+      "overall_preferred_judge": "gpt-5.5_stricter",
+      "disputed_parts": [
+        {
+          "part": "a",
+          "gpt_5_5_score": 0,
+          "gemini_score": 1,
+          "preferred_judge": "gpt-5.5",
+          "actual_verdict": "candidate_partially_correct",
+          "rationale": "The candidate gives the common small-gH/v^2 interferometer phase approximation, but the prompt asks to derive the intensity and does not explicitly state that approximation. The reference gives an exact expression before the approximation. Full credit is too lenient."
+        }
+      ],
+      "question": "A beam of neutrons (mass $m$) traveling with nonrelativistic speed $v$ impinges on the system shown in Fig. 1.7, with beam-splitting mirrors at corners $B$ and $D$, mirrors at $A$ and $C$, and a neutron detector at $E$. The corners all make right angles, and neither the mirrors nor the beam-splitters affect the neutron spin. The beams separated at $B$ rejoin coherently at $D$, and the detector $E$ reports the neutron intensity $I$.\n\n(a) In this part of the problem, assume the system to be in a vertical plane (so gravity points down parallel to AB and DC). Given that detector intensity was $I_0$ with the system in a horizontal plane, derive an expression for the intensity $I_g$ for the vertical configuration.\n\n(b) For this part of the problem, suppose the system lies in a horizontal plane. A uniform magnetic field, pointing out of the plane, acts in the dotted region indicated which encompasses a portion of the leg BC. The incident neutrons are polarized with spin pointing along BA as shown. The neutrons which pass through the magnetic field region will have their spins pressed by an amount depending on the field strength. Suppose the spin expectation value presses through an angle $\\theta$ as shown. Let $I(\\theta)$ be the intensity at the detector E. Derive $I(\\theta)$ as a function of $\\theta$, given that $I(\\theta = 0) = I_0$.",
+      "model_extracted_answer": "\\text{(a) } I_g=I_0\\,\\frac{1+\\cos\\!\\left(\\frac{mg\\mathcal A}{\\hbar v}\\right)}{2}\n=I_0\\cos^2\\!\\left(\\frac{mg\\mathcal A}{2\\hbar v}\\right),\\quad \\mathcal A=(AB)(BC).\n\\qquad\n\\text{(b) } I(\\theta)=I_0\\,\\frac{1+\\cos(\\theta/2)}{2}=I_0\\cos^2(\\theta/4).",
+      "reference_solution": "(a) Assume that when the system is in a horizontal plane the two split beams of neutrons have the same intensity when they reach $D$, and so the wave functions will each have amplitude $\\sqrt{I_0}/2$. Now consider the system in a vertical plane. As $BA$ and $CD$ are equivalent dynamically, they need not be considered. The velocities of neutrons $v$ in $BC$ and $v_1$ in $AD$ are related through the energy equation.\n\n$$ \\frac{1}{2}mv^2 = \\frac{1}{2}mv_1^2 + mgH, $$\n\ngiving\n\n$$ v_1 = \\sqrt{v^2 - 2gH}. $$\n\nWhen the two beams recombine at $D$, the wave function is\n\n$$\n\\Psi = \\left[ \\frac{\\sqrt{I_0}}{2} \\exp \\left(i \\frac{mv_1}{\\hbar}L \\right) + \\frac{\\sqrt{I_0}}{2} \\exp \\left(i \\frac{mv}{\\hbar}L \\right) \\right] \\exp \\left( -i\\frac{Et}{\\hbar} \\right) \\exp(i\\delta),\n$$\n\nand the intensity is\n\n$$\nI_g = |\\Psi|^2 = \\frac{I_0}{2} + \\frac{I_0}{2} \\cos \\left[ \\frac{mL(v-v_1)}{\\hbar} \\right] = I_0 \\cos^2 \\left[ \\frac{mL(v-v_1)}{2\\hbar} \\right].\n$$\n\nIf we can take $\\frac{1}{2}mv^2 \\gg mgH$, then $v_1 \\approx v - \\frac{gH}{v}$ and\n\n$$\nI_g \\approx I_0 \\cos^2 \\left( \\frac{mgHL}{2\\hbar v} \\right).\n$$\n\n(b) Take $z$-axis in the direction of $BA$ and proceed in the representation of $(s^2, s_z)$. At $D$ the spin state is $\\binom{1}{0}$ for neutrons proceeding along $BAD$ and is $\\binom{\\cos \\frac{\\theta}{2}}{\\sin \\frac{\\theta}{2}}$ for those proceeding along $BCD$. Recombination gives\n\n$$\n\\Psi = \\frac{\\sqrt{I_0}}{2} \\exp \\left( -i\\frac{Et}{\\hbar} \\right) \\exp(i\\delta) \\left[ \\binom{1}{0} + \\binom{\\cos \\frac{\\theta}{2}}{\\sin \\frac{\\theta}{2}} \\right]\n$$\n\n$$\n= \\frac{\\sqrt{I_0}}{2} \\exp \\left( -i\\frac{Et}{\\hbar} \\right) \\exp(i\\delta) \\left( \\begin{matrix} 1 + \\cos \\frac{\\theta}{2} \\\\ \\sin \\frac{\\theta}{2} \\end{matrix} \\right),\n$$\n\nand hence\n\n$$\nI(\\theta) = |\\Psi|^2 = \\frac{I_0}{4} \\left[ \\left( 1 + \\cos \\frac{\\theta}{2} \\right)^2 + \\sin^2 \\frac{\\theta}{2} \\right] = I_0 \\cos^2 \\frac{\\theta}{4}.\n$$"
+    },
+    {
+      "dataset": "Physics",
+      "id": "electro/4_20",
+      "gpt_5_5_score_on_gemini_parts": 0.0,
+      "gemini_score": 1.0,
+      "overall_preferred_judge": "gemini",
+      "disputed_parts": [
+        {
+          "part": "a",
+          "gpt_5_5_score": 0,
+          "gemini_score": 1,
+          "preferred_judge": "gemini",
+          "actual_verdict": "candidate_correct",
+          "rationale": "The problem hint uses gamma*omega/c as the small dimensionless parameter, which matches the candidate's convention. GPT-5.5 graded against a different SI-unit form involving mu0."
+        },
+        {
+          "part": "b",
+          "gpt_5_5_score": 0,
+          "gemini_score": 1,
+          "preferred_judge": "gemini",
+          "actual_verdict": "candidate_correct",
+          "rationale": "Given the same convention as part a, the rotation angle magnitude follows from the index splitting and is consistent with the prompt's variables."
+        }
+      ],
+      "question": "A dextrose solution is optically active and is characterized by a polarization vector (electric dipole moment per unit volume): $\\mathbf{P} = \\gamma \\mathbf{\\nabla} \\times \\mathbf{E},$ where $ \\gamma $ is a real constant which depends on the dextrose concentration. The solution is non-conducting ($ \\mathbf{J_{\\text{free}}} = 0 $) and non-magnetic (magnetization vector $ \\mathbf{M} = 0 $). Consider a plane electromagnetic wave of (real) angular frequency $ \\omega $ propagating in such a solution. For definiteness, assume that the wave propagates in the $ +z $ direction. (Also assume that $\\frac{\\gamma \\omega}{c} \\ll 1$ so that square roots can be approximated by $ \\sqrt{1+A} \\approx 1 + \\frac{1}{2} A $.)\n\n(a) Find the two possible indices of refraction for such a wave. For each possible index, find the corresponding electric field.\n\n(b) Suppose linearly polarized light is incident on the dextrose solution. After traveling a distance $ L $ through the solution, the light is still linearly polarized but the direction of polarization has been rotated by an angle $ \\phi $ (Faraday rotation). Find $ \\phi $ in terms of $ L $, $ \\gamma $, and $ \\omega $.",
+      "model_extracted_answer": "\\text{(a) } n_\\pm\\simeq 1\\pm \\frac{\\gamma\\omega}{2c},\\quad \n\\mathbf E_\\pm(z,t)=\\Re\\!\\left[E_0(\\hat{\\mathbf x}\\pm i\\hat{\\mathbf y})e^{i(n_\\pm\\omega z/c-\\omega t)}\\right].\n\\quad\n\\text{(b) } \\phi_{\\rm signed}=-\\frac{\\gamma\\omega^2L}{2c^2}\\text{ for initial }+\\hat{\\mathbf x}\\text{ polarization with the convention in (a), so }|\\phi|=\\frac{\\gamma\\omega^2L}{2c^2}.",
+      "reference_solution": "### Solution:\n\n(a) $D, E, P, B, H, M$ are related by\n\n$$\n\\mathbf{D} = \\varepsilon_0 \\mathbf{E} + \\mathbf{P}, \\quad \\mathbf{B} = \\mu_0 (\\mathbf{H} + \\mathbf{M}).\n$$\n\nWith $\\mathbf{P} = \\gamma \\nabla \\times \\mathbf{E}, \\mathbf{M} = 0$, we have\n\n$$\n\\mathbf{D} = \\varepsilon_0 \\mathbf{E} + \\gamma \\nabla \\times \\mathbf{E}, \\quad \\mathbf{B} = \\mu_0 \\mathbf{H}.\n$$\n\nFor a source-free medium, two of Maxwell’s equations are\n\n$$\n\\nabla \\times \\mathbf{H} = \\dot{\\mathbf{D}}, \\quad \\nabla \\cdot \\mathbf{E} = 0.\n$$\n\nThe first equation gives\n\n$$\n\\nabla \\times \\mathbf{B} = \\mu_0 \\dot{\\mathbf{D}} = \\frac{1}{c^2} \\dot{\\mathbf{E}} + \\gamma \\mu_0 \\nabla \\times \\dot{\\mathbf{E}},\n$$\n\nwhile the second gives\n\n$$\n\\nabla \\times (\\nabla \\times \\mathbf{E}) = -\\nabla^2 \\mathbf{E}.\n$$\n\nThen from Maxwell’s equation\n\n$$\n\\nabla \\times \\mathbf{E} = -\\dot{\\mathbf{B}},\n$$\n\nwe have\n\n$$\n\\nabla \\times (\\nabla \\times \\mathbf{E}) = -\\nabla \\times \\dot{\\mathbf{B}},\n$$\n\nor\n\n$$\n-\\nabla^2 \\mathbf{E} = -\\frac{1}{c^2} \\ddot{\\mathbf{E}} - \\gamma \\mu_0 \\nabla \\times \\ddot{\\mathbf{E}}. \\tag{1}\n$$\n\nFor a plane electromagnetic wave\n\n$$\n\\mathbf{E} = \\mathbf{E}_0 e^{i(kz - \\omega t)} = E_x \\mathbf{e}_x + E_y \\mathbf{e}_y,\n$$\n\nthe actions of the operators $\\nabla$ and $\\frac{\\partial}{\\partial t}$ result in (see Problem 4004)\n\n$$\n\\nabla \\rightarrow ik \\mathbf{e}_z, \\quad \\frac{\\partial}{\\partial t} \\rightarrow -i \\omega.\n$$\n\nEquation (1) then becomes\n\n$$\nk^2 \\mathbf{E} = \\frac{\\omega^2}{c^2} \\mathbf{E} + i \\gamma \\mu_0 \\omega^2 \\mathbf{k}e_z \\times \\mathbf{E},\n$$\n\nwhich has component equations\n\n$$\n\\left( k^2 - \\frac{\\omega^2}{c^2} \\right) E_x + i \\gamma \\mu_0 \\omega^2 k E_y = 0,\n$$\n\n$$\ni \\gamma \\mu_0 \\omega^2 k E_x - \\left( k^2 - \\frac{\\omega^2}{c^2} \\right) E_y = 0.\n$$\n\nThese simultaneous equations have nonzero solutions if and only if\n\n$$\n\\begin{vmatrix} \nk^2 - \\frac{\\omega^2}{c^2} & i \\gamma \\mu_0 \\omega^2 k \\\\ \ni \\gamma \\mu_0 \\omega^2 k & -(k^2 - \\frac{\\omega^2}{c^2}) \n\\end{vmatrix} \n= -\\left( k^2 - \\frac{\\omega^2}{c^2} \\right) + \\gamma^2 \\mu_0^2 \\omega^4 k^2 = 0,\n$$\n\ni.e.,\n\n$$\nk^2 - \\frac{\\omega^2}{c^2} = \\pm \\gamma \\mu_0 \\omega^2 k.\n$$\n\nThe top and bottom signs give\n\n$$\n\\left( k^2_\\pm - \\frac{\\omega^2}{c^2} \\right) (E_x \\pm i E_y) = 0.\n$$\n\nHence the wave is equivalent to two circularly polarized waves. For the right-hand circular polarization, $E_x + iE_y \\neq 0$ and we have\n\n$$\nk^2_+ = \\frac{\\omega^2}{c^2} + \\gamma \\mu_0 \\omega^2 k_+.\n$$\n\nFor the left-hand circular polarization, $E_x - iE_y \\neq 0$ and we have\n\n$$\nk^2_- = \\frac{\\omega^2}{c^2} - \\gamma \\mu_0 \\omega^2 k_-.\n$$\n\nSolving the equation for $k_{\\pm}$\n\n$$\nk^2_{\\pm} \\mp \\gamma \\mu_0 \\omega^2 k_{\\pm} - \\frac{\\omega^2}{c^2} = 0,\n$$\n\nwe have\n\n$$\nk_\\pm = \\frac{1}{2} \\left[ \\pm \\gamma \\mu_0 \\omega^2 \\pm \\sqrt{\\gamma^2 \\mu_0^2 \\omega^4 + \\frac{4 \\omega^2}{c^2}} \\right].\n$$\n\nAs $k_\\pm$ has to be positive we choose the positive sign in front of the square root. Hence\n\n$$\nk_\\pm = \\frac{\\omega}{c} \\left[ 1 + \\left( \\frac{\\gamma \\mu_0 \\omega c}{2} \\right)^2 \\right]^{\\frac{1}{2}} \\pm \\frac{\\gamma \\mu_0 \\omega^2}{2}.\n$$\n\nTo convert to Gaussian units, we have to replace $\\frac{1}{4 \\pi \\varepsilon_0} = \\frac{\\mu_0 c^2}{4 \\pi}$ by 1. Thus $\\frac{\\gamma \\mu_0 \\omega c}{2}$ is to be replaced by $\\frac{2 \\pi \\gamma \\nu}{c}$, which is assumed to be $\\ll 1$. Therefore $k_\\pm \\approx \\frac{\\omega}{c} \\pm \\frac{\\gamma \\mu_0 \\omega^2}{2},$ and $n_\\pm = \\frac{c}{\\omega}k_\\pm \\approx 1 \\pm \\frac{\\gamma \\mu_0 \\omega c}{2}$.\n\n(b) If the traversing light is linearly polarized, the different refractive indices of the circularly polarized components mean that the components will rotate by different angles. Recombining them, the plane of polarization is seen to rotate as the medium is traversed. The angle rotated after traversing a distance $L$ is (cf. Problem 4018)\n\n$$\n\\phi = \\frac{1}{2}(\\phi_1 + \\phi_2) = \\frac{1}{2}(k_+ - k_-)L \\approx \\frac{1}{2} \\gamma \\mu_0 \\omega^2 L.\n$$"
+    },
+    {
+      "dataset": "Physics",
+      "id": "electro/5_13",
+      "gpt_5_5_score_on_gemini_parts": 0.75,
+      "gemini_score": 1.0,
+      "overall_preferred_judge": "gemini",
+      "disputed_parts": [
+        {
+          "part": "d",
+          "gpt_5_5_score": 0,
+          "gemini_score": 1,
+          "preferred_judge": "gemini",
+          "actual_verdict": "candidate_correct",
+          "rationale": "Field momentum density is epsilon0 E x B. Since B is proportional to v, the result is proportional to v, not v^2. The reference final expression has a typo."
+        }
+      ],
+      "question": "Given a uniform beam of charged particles $ q/l $ charges per unit length, moving with velocity $ v $, uniformly distributed within a circular cylinder of radius $ R $. What is the\n\n(a) electric field $\\mathbf{E}$\n\n(b) magnetic field $\\mathbf{B}$\n\n(c) energy density\n\n(d) momentum density\n\nof the field throughout space?",
+      "model_extracted_answer": "\\begin{gathered}\n\\text{Let } \\lambda=\\frac{q}{l},\\quad r=\\text{distance from beam axis},\\quad \\hat{\\mathbf z}=\\text{direction of motion}.\\\\[2mm]\n\\text{(a) }\\mathbf E(r)=\n\\begin{cases}\n\\dfrac{\\lambda r}{2\\pi\\epsilon_0 R^2}\\,\\hat{\\mathbf r}, & r<R,\\\\[2mm]\n\\dfrac{\\lambda}{2\\pi\\epsilon_0 r}\\,\\hat{\\mathbf r}, & r\\ge R,\n\\end{cases}\\\\[4mm]\n\\text{(b) }\\mathbf B(r)=\n\\begin{cases}\n\\dfrac{\\mu_0\\lambda v r}{2\\pi R^2}\\,\\hat{\\boldsymbol\\phi}, & r<R,\\\\[2mm]\n\\dfrac{\\mu_0\\lambda v}{2\\pi r}\\,\\hat{\\boldsymbol\\phi}, & r\\ge R,\n\\end{cases}\\\\[4mm]\n\\text{(c) }u(r)=\n\\begin{cases}\n\\dfrac{\\lambda^2 r^2}{8\\pi^2\\epsilon_0 R^4}\\left(1+\\dfrac{v^2}{c^2}\\right), & r<R,\\\\[2mm]\n\\dfrac{\\lambda^2}{8\\pi^2\\epsilon_0 r^2}\\left(1+\\dfrac{v^2}{c^2}\\right), & r\\ge R,\n\\end{cases}\\\\[4mm]\n\\text{(d) }\\mathbf g(r)=\\epsilon_0\\mathbf E\\times\\mathbf B=\n\\begin{cases}\n\\dfrac{\\mu_0\\lambda^2 v r^2}{4\\pi^2 R^4}\\,\\hat{\\mathbf z}, & r<R,\\\\[2mm]\n\\dfrac{\\mu_0\\lambda^2 v}{4\\pi^2 r^2}\\,\\hat{\\mathbf z}, & r\\ge R.\n\\end{cases}\n\\end{gathered}",
+      "reference_solution": "### Solution:\n\n(a), (b) Referring to Problems 5011 and 5012, we have\n\n$$\n\\mathbf{E} =\n\\begin{cases} \n\\frac{qr}{2\\pi \\varepsilon_0 R^2l} \\mathbf{e}_r, & (r < R) \\\\\n\\frac{q}{2\\pi \\varepsilon_0 rl} \\mathbf{e}_r, & (r > R)\n\\end{cases}\n$$\n\n$$\n\\mathbf{B} = \n\\begin{cases} \n\\frac{vqr}{2\\pi \\varepsilon_0 c^2 R^2l} \\mathbf{e}_\\theta, & (r < R) \\\\\n\\frac{vq}{2\\pi \\varepsilon_0 c^2 rl} \\mathbf{e}_\\theta, & (r > R)\n\\end{cases}\n$$\n\n(c) The energy density is\n\n$$\n\\begin{align*}\nw &= \\frac{1}{2} \\left( \\varepsilon_0 E^2 + \\frac{1}{\\mu_0} B^2 \\right) \\\\ \n&= \\begin{cases}\n\\left( 1 + \\frac{v^2}{c^2} \\right) \\frac{q^2 r^2}{8 \\pi^2 \\varepsilon_0 R^4 l^2}, & (r < R) \\\\\n\\left( 1 + \\frac{v^2}{c^2} \\right) \\frac{q^2}{8 \\pi^2 \\varepsilon_0 r^2 l^2}, & (r > R)\n\\end{cases}\n\\end{align*}\n$$\n\n(d) The momentum density is\n\n$$\n\\begin{align*}\n\\mathbf{g} &= \\varepsilon_0 \\mathbf{E} \\times \\mathbf{B} \\\\\n&= \n\\begin{cases}\n\\frac{v^2 q^2 r^2}{4 \\pi^2 \\varepsilon_0 c^2 R^4 l^2} \\mathbf{e}_z, & (r < R) \\\\\n\\frac{v^2 q^2}{4 \\pi^2 \\varepsilon_0 c^2 r^2 l^2} \\mathbf{e}_z, & (r > R)\n\\end{cases}\n\\end{align*}\n$$"
+    },
+    {
+      "dataset": "Physics",
+      "id": "mechanics/3_18",
+      "gpt_5_5_score_on_gemini_parts": 0.5,
+      "gemini_score": 1.0,
+      "overall_preferred_judge": "gpt-5.5",
+      "disputed_parts": [
+        {
+          "part": "a",
+          "gpt_5_5_score": 0,
+          "gemini_score": 1,
+          "preferred_judge": "gpt-5.5",
+          "actual_verdict": "candidate_wrong",
+          "rationale": "The magnitude of the angle is right, but the candidate gives the y component with the opposite sign and says to aim below +x. The reference requires +4c/5 in the ship-1 frame."
+        }
+      ],
+      "question": "As observed in an inertial frame $S$, two spaceships are travelling in opposite directions along straight, parallel trajectories separated by a distance $d$ as shown in Fig. 3.14. The speed of each ship is $c/2$, where $c$ is the speed of light.\n\n(a) At the instant (as viewed from $S$) when the ships are at the points of closest approach (indicated by the dotted line in the figure), ship (1) ejects a small package which has speed $3c/4$ (also as viewed from $S$). From the point of view of the observer in ship (1), at what angle must the package be aimed for it to be received by ship (2)? Assume the observer in ship (1) has a coordinate system whose axes are parallel to those of $S$ and, as shown in the figure, the direction of motion is parallel to the $y$-axis.\n(b) What is the speed of the package as seen by the observer in ship (1)?\n",
+      "model_extracted_answer": "\\text{(a) Aim with components }(u'_x,u'_y)=\\left(\\frac{\\sqrt{15}}{10}c,-\\frac45c\\right),\\ \\text{i.e. } \\theta=\\tan^{-1}\\!\\left(\\frac{8}{\\sqrt{15}}\\right)\\approx64.2^\\circ\\text{ below the }+x\\text{-axis.}\\quad \\text{(b) }u'=\\frac{\\sqrt{79}}{10}c\\approx0.889c.",
+      "reference_solution": "(a) Consider the events in the frame $S$. The package must have $u_y = \\frac{c}{2}$ so that after traveling a distance $\\Delta x = d$ it will have the same $y$-coordinate as ship (2). Thus in $S$, the package must have velocity components \n\n$$\nu_y = \\frac{c}{2}, \\quad u_x = \\sqrt{u^2 - u_y^2} = \\sqrt{\\left( \\frac{3c}{4} \\right)^2 - \\left( \\frac{c}{2} \\right)^2} = \\frac{\\sqrt{5}c}{4}.\n$$\n\nLet $S'$ be the inertial frame attached to ship (1) with its coordinate axes $x', y', z'$ parallel to the corresponding axes $x, y, z$ of $S$. As $S'$ has a velocity $v_1 = -\\frac{c}{2}$, which is in the $y$-direction, relative to $S$, the transformation for velocity is given by \n\n$$\nu_y' = \\frac{u_y - v_1}{1 - \\frac{v_1 u_y}{c^2}}, \\quad u_x' = \\frac{u_x}{\\gamma \\left( 1 - \\frac{v_1 u_y}{c^2} \\right)},\n$$ \n\nwhere \n\n$$\n\\gamma = \\frac{1}{\\sqrt{1 - \\left(\\frac{1}{2}\\right)^2}} = \\frac{2}{\\sqrt{3}}.\n$$\n\nHence \n\n$$\nu_y' = \\frac{\\frac{c}{2} + \\frac{c}{2}}{1 + \\frac{1}{2} \\cdot \\frac{1}{2}} = \\frac{4}{5}c ,\n$$\n\n$$\nu_x' = \\frac{\\frac{\\sqrt{5}}{4}c}{\\frac{2}{\\sqrt{3}}\\left(1 + \\frac{1}{2} \\cdot \\frac{1}{2} \\right)} = \\frac{\\sqrt{15}}{10}c.\n$$\n\nThus ship (1) must aim the package at an angle $\\alpha$ with the direction of ship (2) given by\n\n$$\n\\tan \\alpha = \\frac{u'_y}{u'_x} = \\frac{8}{\\sqrt{15}},\n$$\n\nor\n\n$$\n\\alpha = 64.2^\\circ.\n$$\n\n(b) The speed of the package as seen by the observer in ship (1) is\n\n$$\nu' = \\sqrt{u'^2_x + u'^2_y} = \\sqrt{\\frac{16}{25} + \\frac{15}{100}} c = \\sqrt{\\frac{79}{100}} c = 0.889c.\n$$\n"
+    },
+    {
+      "dataset": "Physics",
+      "id": "optics/3-7",
+      "gpt_5_5_score_on_gemini_parts": 0.75,
+      "gemini_score": 1.0,
+      "overall_preferred_judge": "gemini",
+      "disputed_parts": [
+        {
+          "part": "c",
+          "gpt_5_5_score": 0,
+          "gemini_score": 1,
+          "preferred_judge": "gemini",
+          "actual_verdict": "candidate_correct",
+          "rationale": "From gamma = 1.2, v/c = sqrt(1 - 1/1.2^2) = sqrt(11)/6 = 0.553. The reference's 0.53c is a numerical/rounding error."
+        }
+      ],
+      "question": "﻿\nA projective photon, with frequency $f$ in the rest frame of a target electron, is seen to scatter at $-90^\\circ$ with frequency $f'$, while the target scatters at $\\theta^\\circ$.\n\n(a) Determine the relation of $f'/f$ to $\\theta$.\n(b) Determine the total electron energy in terms of $f$, $f'$, and the electron mass $m$.\n( c ) If the photon energy loss would be 0.2 of the rest energy of the electron, what would be the speed of the scattered electron?\n\n(d) An observer O moves in a direction parallel to the incident photon's direction at a speed $u$ when the electron-photon collision occurs. What expression would O use for his measure of the electron's energy in its scattered state (in terms of $m, v, u$ and $c$)?\n",
+      "model_extracted_answer": "\\begin{aligned}\n\\text{(a)}\\;&\\frac{f'}{f}=\\tan\\theta.\\\\\n\\text{(b)}\\;&E_e=mc^2+h(f-f').\\\\\n\\text{(c)}\\;&v=\\frac{\\sqrt{11}}{6}c\\approx 0.553c.\\\\\n\\text{(d)}\\;&E_O=\\gamma_u\\gamma_v m(c^2-u v\\cos\\theta),\\quad\n\\gamma_u=\\frac{1}{\\sqrt{1-u^2/c^2}},\\quad\n\\gamma_v=\\frac{1}{\\sqrt{1-v^2/c^2}}.\n\\end{aligned}",
+      "reference_solution": "﻿(a) Referring to Figs. 3.10 and 3.11, we have\n\n$$p_e \\sin \\theta = p_{f'}, \\quad p_e \\cos \\theta = p_f,$$\n\nwhere\n\n$$p_e = mv, \\quad p_f = \\frac{hf}{c}, \\quad p_{f'} = \\frac{hf'}{c}.$$\n\nHence $\\tan \\theta = f'/f$.\n\n\n(b) The total energy of the electron is\n\n$$E = [m^2 c^4 + p_e^2 c^2]^{1/2} = [m^2 c^4 + (f^2 + f'^2) h^2]^{1/2}.$$\n\n(c) The rest mass of electron is $mc^2$ and the photon energy loss is $0.2 \\, mc^2$. According to the energy conservation law, we have\n\n$$mc^2 + hf = \\gamma mc^2 + hf'$$\n\nwhere\n\n$$\\gamma = \\frac{1}{\\sqrt{1 - \\frac{v^2}{c^2}}}.$$\n\nWith\n$$\nhf - hf' = (\\gamma - 1)mc^2 = 0.2 \\, mc^2, $$\n\nwe get\n\n$$ \\gamma = 1.2 \\, \\text{or} \\, v = 0.53 \\, c. $$\n\n(d) $$E' = \\frac{E - p_0 \\cdot u}{\\sqrt{1 - u^2/c^2}} = \\frac{E - p_0 u \\cos \\theta}{\\sqrt{1 - u^2/c^2}}, $$\n\nwhere \n\n$$E = \\frac{mc^2}{\\sqrt{1 - u^2/c^2}}, \\, p_0 = hf/c.$$\n"
+    },
+    {
+      "dataset": "Physics",
+      "id": "quantum/3-3042",
+      "gpt_5_5_score_on_gemini_parts": 0.4,
+      "gemini_score": 0.6,
+      "overall_preferred_judge": "gemini",
+      "disputed_parts": [
+        {
+          "part": "c",
+          "gpt_5_5_score": 0,
+          "gemini_score": 1,
+          "preferred_judge": "gemini",
+          "actual_verdict": "candidate_correct",
+          "rationale": "The electron magnetic moment has the negative sign relative to angular momentum. The candidate's -mu_B/3 z is physically consistent with its positive energy shift."
+        }
+      ],
+      "question": "A hydrogen atom is in a $^2P_{1/2}$ state with total angular momentum up along the t-axis. In all parts of this problem show your computations and reasoning carefully.\n\n(a) With what probability will the electron be found with spin down?  \n\n(b) Compute the probability per unit solid angle $P(\\theta, \\varphi)$ that the electron will be found at spherical angles $\\theta, \\varphi$ (independent of radial distance and spin).  \n\n(c) An experimenter applies a weak magnetic field along the positive z-axis. What is the effective magnetic moment of the atom in this field?  \n\n(d) Starting from the original state, the experimenter slowly raises the magnetic field until it overpowers the fine structure. What are the orbital and spin quantum numbers of the final state?  \n\n[Assume the Hamiltonian is linear in the magnetic field.]  \n\n(e) What is the effective magnetic moment of this final state?  ",
+      "model_extracted_answer": "\\begin{gathered}\n\\text{(a) }P(\\text{spin down})=\\frac23.\\\\[3pt]\n\\text{(b) }P(\\theta,\\varphi)=\\frac13|Y_{10}|^2+\\frac23|Y_{11}|^2\n=\\frac{1}{4\\pi}.\\\\[3pt]\n\\text{(c) }\\langle m_l+2m_s\\rangle\n=\\frac13(1)+\\frac23(0)=\\frac13,\\quad\n\\Delta E=\\frac{\\mu_B B}{3},\\quad\n\\boldsymbol\\mu_{\\rm eff}=-\\frac{\\mu_B}{3}\\,\\hat{\\mathbf z}.\\\\[3pt]\n\\text{(d) Adiabatically following the }{}^2P_{1/2},m_j=\\tfrac12\\text{ state into the strong-field limit gives}\\\\\nm_l=+1,\\qquad m_s=-\\frac12.\\\\[3pt]\n\\text{(e) }\\boldsymbol\\mu_{\\rm eff}\n=-\\mu_B\\bigl(1+2(-\\tfrac12)\\bigr)\\hat{\\mathbf z}\n=\\mathbf 0.\n\\end{gathered}",
+      "reference_solution": "(a) For the state $^2P_{1/2}, l = 1, s = 1/2, J = 1/2, J_z = 1/2$. Transforming the coupling representation into the uncoupling representation, we have\n\n$$\n| J, J_z \\rangle = | 1/2, 1/2 \\rangle = \\sqrt{\\frac{2}{3}} | 1, 1 \\rangle | 1/2, -1/2 \\rangle - \\sqrt{\\frac{1}{3}} | 1, 0 \\rangle | 1/2, 1/2 \\rangle.\n$$\n\nTherefore $P_\\downarrow = 2/3$.\n\n(b) As\n\n$$\n| J, J_z \\rangle = \\sqrt{\\frac{1}{3}} \\left( \\begin{matrix} \\sqrt{2} Y_{11} \\\\ Y_{10} \\end{matrix} \\right),\n$$\n\nwe have\n\n$$\nP(\\theta, \\varphi) \\, d\\Omega = \\frac{1}{3} (2Y_{11}^*Y_{11} + Y_{10}^*Y_{10}) \\, d\\Omega.\n$$\n\nHence the probability per unit solid angle is\n\n$$\nP(\\theta, \\varphi) = \\frac{1}{3} \\left( 2 \\times \\frac{3}{8\\pi} \\sin^2\\theta + \\frac{3}{4\\pi} \\cos^2\\theta \\right) = \\frac{1}{4\\pi}.\n$$\n\n(c) In the weak magnetic field, $J$ and $J_z$ are good quantum numbers and the state remains unchanged. The effective magnetic moment is\n\n$$\n\\mu = \\left\\langle \\frac{1}{2}, \\frac{1}{2} \\middle| \\mu_z \\middle| \\frac{1}{2}, \\frac{1}{2} \\right\\rangle = g \\cdot \\frac{e}{2mc} \\left\\langle \\frac{1}{2}, \\frac{1}{2} \\middle| J_z \\middle| \\frac{1}{2}, \\frac{1}{2} \\right\\rangle = g \\cdot \\frac{e\\hbar}{4mc},\n$$\n\nwhere $m$ is the electron mass and\n\n$$\ng = 1 + \\frac{J(J + 1) - l(l + 1) + s(s + 1)}{2J(J + 1)} = \\frac{2}{3}.\n$$\n\nHence $\\mu = e\\hbar/6mc$.\n\n(d) In a strong magnetic field, the interaction of the magnetic moment with the field is much stronger than the coupling interaction of spin and orbit, so that the latter can be neglected. Here $l$ and $s$ are good quantum numbers. The Hamiltonian related to the magnetic field is\n\n$$\nW = - \\mu_l \\cdot \\mathbf{B} - \\mu_s \\cdot \\mathbf{B} = eB\\hat{l}_z/2mc + eB\\hat{s}_z/mc.\n$$\n\nWhen the magnetic field is increased slowly from zero, the state remains at the lowest energy. From the expression of $W$, we see that when the magnetic field becomes strong, only if $l_z = -\\hbar, s_z = -\\hbar/2$ can the state remain at the lowest energy. Thus the quantum numbers of the final state are $l = 1, l_z = -1, s = 1/2, s_z = -1/2$.\n\n(e) the effective magnetic moment of the final state is\n\n$$\n\\mu = \\bar{\\mu}_{lz} + \\bar{\\mu}_{sz} = -e\\hbar/2mc - e\\hbar/2mc = -e\\hbar/mc.\n$$"
+    },
+    {
+      "dataset": "Physics",
+      "id": "quantum/4007",
+      "gpt_5_5_score_on_gemini_parts": 0.6666666666666666,
+      "gemini_score": 1.0,
+      "overall_preferred_judge": "gemini",
+      "disputed_parts": [
+        {
+          "part": "b",
+          "gpt_5_5_score": 0,
+          "gemini_score": 1,
+          "preferred_judge": "gemini",
+          "actual_verdict": "candidate_correct",
+          "rationale": "For a finite cube L^3, Landau degeneracy per k_z is finite, proportional to flux through area L^2, and diverges in the infinite-volume limit. The candidate is more precise than the reference's 'infinite' statement."
+        }
+      ],
+      "question": "Determine, of an electron contained in a cube of essentially infinite volume $L^3$. The electron is in an electromagnetic field characterized by the vector potential $$ \\mathbf{A} = H_0x\\hat{e}_y \\quad (\\lvert \\hat{e}_y \\rvert = 1). $$:\n(a) the energy levels.\n(b) their degeneracy.\n(c) the corresponding eigenfunctions.",
+      "model_extracted_answer": "\\begin{gathered}\n\\text{Let } l_B=\\sqrt{\\frac{\\hbar c}{e|H_0|}},\\qquad \\omega_c=\\frac{e|H_0|}{mc}\\quad(e>0),\\quad n=0,1,2,\\ldots.\\\\[2mm]\n\\text{(a) } E_{n,k_z}=\\hbar\\omega_c\\left(n+\\frac12\\right)+\\frac{\\hbar^2 k_z^2}{2m}.\\\\[2mm]\n\\text{(b) For each fixed }(n,k_z)\\text{, the Landau degeneracy is }\nN_\\phi=\\frac{L^2}{2\\pi l_B^2}\n=\\frac{e|H_0|L^2}{hc},\n\\text{ up to boundary corrections.}\\\\[2mm]\n\\text{(c) With }k_y=\\frac{2\\pi m_y}{L},\\ k_z=\\frac{2\\pi m_z}{L},\\text{ and }x_0=-k_y l_B^2,\\\\\n\\psi_{n,k_y,k_z}(x,y,z)=\n\\frac{e^{i(k_y y+k_z z)}}{L}\\,\n\\frac{1}{\\pi^{1/4}\\sqrt{2^n n!\\,l_B}}\\,\nH_n\\!\\left(\\frac{x-x_0}{l_B}\\right)\n\\exp\\!\\left[-\\frac{(x-x_0)^2}{2l_B^2}\\right],\n\\\\\n\\text{with allowed }k_y\\text{ chosen so that }x_0\\text{ lies inside the cube. Spin is neglected.}\n\\end{gathered}",
+      "reference_solution": "As $\\mathbf{A} = H_0x\\hat{e}_y$, we have the Schrödinger equation\n\n$$\n\\hat{H}\\psi = \\frac{1}{2m} \\left[ \\hat{p}_x^2 + \\hat{p}_z^2 + \\left( \\hat{p}_y - H_0xe/c \\right)^2 \\right] \\psi = E\\psi,\n$$\n\nwhere $e$ is the electron charge $(e < 0)$.\nAs $[\\hat{H}, \\hat{p}_y] = [\\hat{H}, \\hat{p}_z] = 0$, $[\\hat{p}_y, \\hat{p}_z] = 0$, we can choose $\\hat{H}, \\hat{p}_y, \\hat{p}_z$ as a complete set of mechanical variables, the corresponding eigenfunction being\n\n$$\n\\psi = e^{i(p_yy+p_zz)/\\hbar} \\psi_0(x)\n$$\n\nwhere $p_y, p_z$ are arbitrary real numbers. Substitution of $\\psi$ in the Schrödinger equation gives\n\n$$\n\\frac{1}{2m} \\left[ \\hat{p}_x^2 + \\left( eH_0/c \\right)^2 (x - cp_y/eH_0)^2 \\right] \\psi_0 = E_0 \\psi_0,\n$$\n\nwhere $E_0 = E - p_z^2/2m$, or\n\n$$\n-\\frac{\\hbar^2}{2m} \\frac{d^2\\psi_0}{dx^2} + \\frac{m}{2} \\left( H_0e/cm \\right)^2 (x - x_0)^2 \\psi_0 = E_0 \\psi_0,\n$$\n\nwhere $x_0 = cp_y/eH_0$.\n\nThe last equation is the energy eigenequation of a one-dimensional oscillator of natural frequency $\\omega_0 = -H_0e/mc$ and equilibrium position $x = x_0$, the energy eigenvalues being\n\n$$\nE_0 = (n + 1/2) \\hbar\\omega_0, \\quad n = 0, 1, 2, \\ldots\n$$\n\nor\n\n$$\nE = p_z^2/2m - (n + 1/2) H_0e\\hbar/mc, \\quad n = 0, 1, 2, \\ldots\n$$\n\nThe corresponding eigenfunctions are  \n\n$$\n\\psi_{0n} \\sim \\exp \\left[ \\frac{e H_0}{2 \\hbar c} \\, (x - x_0)^2 \\right] H_n \\left( - \\frac{e H_0}{\\hbar c} \\, (x - x_0) \\right),\n$$\n\nwhere $H_n$ are Hermite polynomials.  \nAs no $p_y$ terms occur in the expression for energy levels and $p_y$ can be any arbitrary real number, the degeneracies of energy levels are infinite.  \nThe eigenfunctions for the original system are therefore  \n\n$$\n\\psi(x) = C_n \\exp \\left[ i \\frac{(p_y y + p_z z)}{\\hbar} + \\frac{e H_0}{2 \\hbar c} \\, (x - x_0)^2 \\right]  \\\\\n\\times H_n\\left( - \\frac{e H_0}{\\hbar c} \\, (x - x_0) \\right),\n$$\n\nwhere $C_n$ is the normalization constant."
+    },
+    {
+      "dataset": "Physics",
+      "id": "statistics/2-158",
+      "gpt_5_5_score_on_gemini_parts": 0.0,
+      "gemini_score": 1.0,
+      "overall_preferred_judge": "gemini_outcome_with_bad_part_label",
+      "disputed_parts": [
+        {
+          "part": "a",
+          "gpt_5_5_score": 0,
+          "gemini_score": 1,
+          "preferred_judge": "gemini",
+          "actual_verdict": "candidate_correct_for_asked_part",
+          "rationale": "The finalized prompt asks only part b. The candidate answers the numerical minimum spot size, and 9 micrometers is close to the reference's 8 micrometers. Gemini's part label is wrong, but the scoring outcome is right; GPT-5.5 penalized an unasked reference part a."
+        }
+      ],
+      "question": "In an experiment a beam of silver atoms emerges from an oven, which contains silver vapor at $T = 1200 \\text{ K}$. The beam is collimated by being passed through a small circular aperture.\n\n(b) If the screen is at $L = 1$ meter from the aperture, estimate numerically the smallest $D$ that can be obtained by varying $a$. (You may assume for simplicity that all atoms have the same momentum along the direction of the beam and have a mass of $M_{Ag} = 1.8 \\times 10^{-22} \\text{ g}$).",
+      "model_extracted_answer": "\\text{(b) }D_{\\min}\\approx 9\\times 10^{-6}\\ \\mathrm{m}\\approx 9\\ \\mu\\mathrm{m}\\text{, obtained for }a\\approx 4.6\\ \\mu\\mathrm{m}.",
+      "reference_solution": "(a) According to the uncertainty principle, the smaller $a$ is, the greater is the uncertainty in the $y$-component of the momentum of the silver atoms that pass through the aperture and the larger is the spot.\n\n(b) Using the uncertainty principle, we obtain the angle of deflection of the outgoing atoms\n\n$$\n\\theta \\approx \\frac{\\lambda}{a} \\approx \\frac{h}{pa} = \\frac{h}{a\\sqrt{3mkT}} .\n$$\nThus, \n\n$$\nD = a + 2\\theta L = a + \\frac{2hL}{a\\sqrt{3mkT}} \\geq 2 \\sqrt{\\frac{2hL}{\\sqrt{3mkT}}} .\n$$\n\n$$\nD_{min} = 2 \\ \\frac{{(2hL)}^{1/2}}{(3mkT)^{1/4}}  = 8.0 \\times 10^{-6} \\text{ m} .\n$$\n\nThat is, the smallest diameter is about $80 \\times 10^3 \\mathring{A}$."
+    },
+    {
+      "dataset": "FrontierPhysics",
+      "id": "series-expansions/7.11",
+      "gpt_5_5_score_on_gemini_parts": 0.6666666666666666,
+      "gemini_score": 1.0,
+      "overall_preferred_judge": "gemini",
+      "disputed_parts": [
+        {
+          "part": "c",
+          "gpt_5_5_score": 0,
+          "gemini_score": 1,
+          "preferred_judge": "gemini",
+          "actual_verdict": "candidate_correct",
+          "rationale": "The Potts self-dual condition is (exp(J)-1)^2 = q, giving J_c = log(1 + sqrt(q)). The reference's sqrt(q-1) is algebraically wrong."
+        }
+      ],
+      "question": "11. Clock model duality: Consider spins \\(s_i=(1,2,\\dots,q)\\) on the sites of a square lattice, interacting via the clock model\n$$\n\\beta H_C = - \\sum_{\\langle i,j \\rangle} J\\big(|(s_i - s_j)_{\\text{mod }q}|\\big).\n$$\nUse bond variables \\(b_{ij} = (s_i - s_j)_{\\text{mod }q}\\), with the constraint that around each plaquette the sum of the four bond variables must be zero modulo q.\n\n(b) Implement the constraints via\n$$\n\\delta\\big[S_p\\big|_{\\text{mod }q}\\big] = \\frac{1}{q} \\sum_{n_p=1}^q \\exp\\left[ \\frac{2\\pi i n_p S_p}{q} \\right]\n$$\nfor each plaquette. Give the partition function written in terms of dual variables, where \\(\\lambda(k)\\) is the discrete Fourier transform of \\(\\mathrm{e}^{J(n)}\\).\n\n(c) Calculate the dual interaction parameter of a Potts model, and hence locate the critical point \\(J_c(q)\\).\n\n(d) Construct the dual of the anisotropic Potts model with\n$$\n-\\beta H = \\sum_{x,y} \\big( J_x \\delta_{s_{x,y}, s_{x+1,y}} + J_y \\delta_{s_{x,y}, s_{x,y+1}} \\big),\n$$\nand find the line of self-dual interactions in the \\((J_x,J_y)\\) plane.",
+      "model_extracted_answer": "\\begin{aligned}\n\\text{(b)}\\quad\n&Z_C\n= q\\,q^{-N_p}\n\\sum_{\\{n_p\\in\\mathbb Z_q\\}}\n\\prod_{\\langle p,p'\\rangle}\n\\lambda(n_p-n_{p'}),\\\\\n&\\lambda(k)=\\sum_{b=0}^{q-1} e^{J(b)} e^{2\\pi i k b/q}.\n\\\\[4pt]\n\\text{(c)}\\quad\n&\\text{For the Potts model, }\ne^{J^*}\n=\\frac{e^J+q-1}{e^J-1},\n\\qquad\n(e^J-1)(e^{J^*}-1)=q,\\\\\n&\\text{so the self-dual critical point is }\nJ_c(q)=\\ln(1+\\sqrt q).\n\\\\[4pt]\n\\text{(d)}\\quad\n&\\text{The anisotropic dual Potts couplings obey}\\\\\n&(e^{J_x^*}-1)(e^{J_y}-1)=q,\\qquad\n(e^{J_y^*}-1)(e^{J_x}-1)=q,\\\\\n&\\text{i.e. }\ne^{J_x^*}=\\frac{e^{J_y}+q-1}{e^{J_y}-1},\n\\qquad\ne^{J_y^*}=\\frac{e^{J_x}+q-1}{e^{J_x}-1}.\\\\\n&\\text{The self-dual line is }\n(e^{J_x}-1)(e^{J_y}-1)=q.\n\\end{aligned}",
+      "reference_solution": "(a) For each plaquette p, the oriented sum of bond differences around it vanishes modulo q:\n$$\nS_p = \\sum_{\\text{around }p} b'_{ij} = \\sum_{\\text{around }p} (s_i - s_j) \\equiv 0 \\; (\\mathrm{mod}\\; q),\n$$\nso the 2N bond variables are constrained by N such conditions.\n\n(b) The partition function in bond variables with constraints is\n$$\nZ = \\sum_{\\{b_{ij}\\}} \\prod_p \\delta\\big[S_p|_{\\text{mod }q}\\big] \\prod_{\\langle ij \\rangle} \\mathrm{e}^{J(b_{ij})} = \\sum_{\\{b_{ij}\\}} \\prod_p \\frac{1}{q} \\sum_{n_p} \\exp\\left[ \\frac{2\\pi i n_p}{q} \\sum b'_{ij} \\right] \\prod_{\\langle ij \\rangle} \\mathrm{e}^{J(b_{ij})}.\n$$\nEach bond \\(b_{ij}\\) appears in the sums for its two adjacent plaquettes p and p', producing\n$$\n\\sum_{b_{ij}=0}^{q-1} \\exp\\left[ \\frac{2\\pi i b_{ij}}{q} (n_p - n_{p'}) + J(b_{ij}) \\right] = \\lambda(n_p - n_{p'}) \\equiv \\mathrm{e}^{\\tilde{J}(n_p - n_{p'})}.\n$$\nThus\n$$\nZ = q^{-N} \\sum_{\\{n_p\\}} \\prod_{\\langle p,p' \\rangle} \\mathrm{e}^{\\tilde{J}(n_p - n_{p'})} = \\sum_{\\{n_p\\}} \\exp\\left[ \\sum_{\\langle p,p' \\rangle} \\tilde{J}(n_p - n_{p'}) \\right].\n$$\n\n(c) For the Potts model, the transform has two values:\n$$\n\\lambda(n_p = n_{p'}) = \\mathrm{e}^J + q - 1,\\qquad \\lambda(n_p \\ne n_{p'}) = \\mathrm{e}^J - 1.\n$$\nHence the dual coupling satisfies\n$$\n\\mathrm{e}^{\\tilde{J}} = \\frac{\\mathrm{e}^J + q - 1}{\\mathrm{e}^J - 1}.\n$$\nA single critical point occurs at self-duality, yielding\n$$\nJ_c(q) = \\ln\\big(1 + \\sqrt{q-1}\\big).\n$$\n\n(d) The dual of the anisotropic square lattice maps \\(J_x\\leftrightarrow \\tilde{J}_y\\) and \\(J_y\\leftrightarrow \\tilde{J}_x\\) with\n$$\n\\tilde{J}_x = \\ln \\frac{\\mathrm{e}^{J_y} + q - 1}{\\mathrm{e}^{J_y} - 1},\\qquad \\tilde{J}_y = \\ln \\frac{\\mathrm{e}^{J_x} + q - 1}{\\mathrm{e}^{J_x} - 1}.\n$$\nThe self-dual line is \\(\\tilde{J}_y = J_x\\) (equivalently \\(\\tilde{J}_x = J_y\\))."
+    },
+    {
+      "dataset": "FrontierPhysics",
+      "id": "textbook/7.2",
+      "gpt_5_5_score_on_gemini_parts": 0.5,
+      "gemini_score": 1.0,
+      "overall_preferred_judge": "gemini",
+      "disputed_parts": [
+        {
+          "part": "a",
+          "gpt_5_5_score": 0,
+          "gemini_score": 1,
+          "preferred_judge": "gemini",
+          "actual_verdict": "candidate_correct",
+          "rationale": "Changing variables k^s -> x gives the candidate's Gamma(d/s)/s prefactor. The reference has prefactor errors."
+        },
+        {
+          "part": "c",
+          "gpt_5_5_score": 0,
+          "gemini_score": 1,
+          "preferred_judge": "gemini",
+          "actual_verdict": "candidate_correct",
+          "rationale": "At T=0, n = Omega_d k_F^d/(d(2pi)^d), E/N = d/(d+s) epsilon_F, and P = s n epsilon_F/(d+s). The candidate is correct; the reference's s/d coefficient is an integration error."
+        }
+      ],
+      "question": "Generalized ideal gas: Consider a gas of non-interacting identical (spinless) quantum particles with an energy spectrum $\\varepsilon = |\\vec{p}/\\hbar|^s$, contained in a box of volume $V$ in $d$ dimensions.\n\n(a) Calculate the grand potential $\\mathcal{G}_{\\eta} = -k_B T \\ln \\mathcal{Q}_{\\eta}$, and the density $n = N/V$, at a chemical potential $\\mu$. Express your answers in terms of $s$, $d$, and $f_m^{\\eta}(z)$, where $z = e^{\\beta \\mu}$, and\n$\\displaystyle f_m^{\\eta}(z) = \\frac{1}{\\Gamma(m)} \\int_0^{\\infty} \\frac{dx\\, x^{m-1}}{z^{-1} e^x - \\eta}$.\n(Hint: Use integration by parts on the expression for $\\ln \\mathcal{Q}_\\eta$.)\n\n(b) Find the ratio $PV/E$.\n\n(c) For fermions, calculate the dependence of $E/N$, and $P$, on the density $n = N/V$, at zero temperature. (Hint: $f_m(z) \\to \\frac{(\\ln z)^m}{m!}$ as $z \\to \\infty$.)\n\n(d) For bosons, find the dimension $d_{\\ell}(s)$, below which there is no Bose condensation. Is there condensation for $s = 2$ at $d = 2$?",
+      "model_extracted_answer": "\\begin{aligned}\n\\text{(a)}\\quad \n\\mathcal G_\\eta\n&=-\\frac{V\\Omega_d}{(2\\pi)^d}\\frac{\\Gamma(d/s)}{s}(k_BT)^{1+d/s}\nf_{1+d/s}^{\\eta}(z),\\\\\nn\n&=\\frac{\\Omega_d}{(2\\pi)^d}\\frac{\\Gamma(d/s)}{s}(k_BT)^{d/s}\nf_{d/s}^{\\eta}(z).\\\\\n\\text{(b)}\\quad &\\frac{PV}{E}=\\frac{s}{d}.\\\\\n\\text{(c)}\\quad \n\\varepsilon_F\n&=\\left(\\frac{d(2\\pi)^d n}{\\Omega_d}\\right)^{s/d},\\qquad\n\\frac{E}{N}=\\frac{d}{d+s}\\varepsilon_F,\\qquad\nP=\\frac{s}{d+s}n\\varepsilon_F.\\\\\n\\text{(d)}\\quad \n&d_\\ell(s)=s,\\ \\text{and Bose condensation occurs only for }d>s;\\\\\n&\\text{therefore for }s=2,\\ d=2,\\ \\text{there is no Bose condensation.}\n\\end{aligned}",
+      "reference_solution": "The grand partition function for fermions and bosons leads to\n$\\ln \\mathcal{Q}_{\\eta} = -\\eta \\sum_{\\nu} \\ln \\big[ 1 - \\eta e^{\\beta(\\mu - \\varepsilon_{\\nu})} \\big]$, with $\\eta=+1$ (bosons), $\\eta=-1$ (fermions).\nPassing to the continuum in $d$ dimensions: $\\sum_{\\nu} \\to \\dfrac{V S_d}{(2\\pi)^d} \\int k^{d-1}\\, dk$, where $S_d = \\dfrac{2\\pi^{d/2}}{\\Gamma(d/2)}$.\nFor $\\varepsilon = k^s$ one obtains, after a change of variables $x=\\beta k^s$ and an integration by parts,\n$\\ln \\mathcal{Q}_{\\eta} = \\dfrac{V S_d}{(2\\pi)^d}\\, \\beta^{-d/s}\\, \\Gamma\\!\\left(\\dfrac{d}{s}+1\\right)\\, f_{\\frac{d}{s}+1}^{\\eta}(z)$,\nwith $z=e^{\\beta \\mu}$.\nThe number density follows from $N = z\\, \\partial (\\ln \\mathcal{Q}_{\\eta})/\\partial z$;\n$n = \\dfrac{N}{V} = \\dfrac{S_d}{(2\\pi)^{d/s}} (k_B T)^{d/s} \\Gamma\\!\\left(\\dfrac{d}{s}\\right) f_{\\frac{d}{s}}^{\\eta}(z)$.\n\nThe pressure is $PV = k_B T \\ln \\mathcal{Q}_{\\eta}$. Since $\\ln \\mathcal{Q}_{\\eta} \\propto \\beta^{-d/s}$, the energy satisfies $E = -\\partial_{\\beta} \\ln \\mathcal{Q}_{\\eta}|_z = \\dfrac{d}{s} k_B T \\ln \\mathcal{Q}_{\\eta}$. Hence $\\dfrac{PV}{E} = \\dfrac{s}{d}$, identical to the classical result.\n\nFor fermions at $T=0$, with Fermi energy $\\varepsilon_F$, one finds\n$E = \\dfrac{V S_d}{(2\\pi)^d} \\dfrac{\\varepsilon_F^{\\frac{d}{s}+1}}{d}$, $\\quad PV = \\dfrac{V S_d}{(2\\pi)^d} \\dfrac{\\varepsilon_F^{\\frac{d}{s}+1}}{s}$, $\\quad n = \\dfrac{S_d}{(2\\pi)^d} \\dfrac{\\varepsilon_F^{\\frac{d}{s}}}{s}$.\nTherefore $E/N = (s/d)\\, \\varepsilon_F \\propto n^{s/d}$ and $P \\propto n^{1+s/d}$.\n\nFor bosons, Bose-Einstein condensation requires that the integral defining $f_{d/s}^+(1)$ be finite at $z=1$. The small-$x$ behavior gives $\\int_0 dx\\, x^{d/s-2}$, which converges for $d/s-2>-1$, i.e. $d>s$. Thus condensation occurs only for $d>d_{\\ell}(s)$ with $d_{\\ell}(s)=s$. For $s=2$ at $d=2$, the integral diverges (logarithmically), and there is no condensation."
+    },
+    {
+      "dataset": "FrontierPhysics",
+      "id": "textbook/7.5",
+      "gpt_5_5_score_on_gemini_parts": 0.8333333333333334,
+      "gemini_score": 1.0,
+      "overall_preferred_judge": "gemini",
+      "disputed_parts": [
+        {
+          "part": "f",
+          "gpt_5_5_score": 0,
+          "gemini_score": 1,
+          "preferred_judge": "gemini",
+          "actual_verdict": "candidate_correct",
+          "rationale": "For a 3D free Fermi gas, kappa_T = (1/n^2) dn/dmu = 3/(2 n E_F). The candidate's order-of-magnitude estimate is physically valid; the reference's 1/(4 n E_F) estimate is rough and low."
+        }
+      ],
+      "question": "Non-interacting fermions: Consider a grand canonical ensemble of non-interacting fermions with chemical potential $\\mu$. The one-particle states are labelled by a wavevector $\\vec{k}$, and have energies $\\mathcal{E}(\\vec{k})$.\n\n(a) What is the joint probability $P(\\{ n_{\\vec{k}} \\})$, of finding a set of occupation numbers $\\{ n_{\\vec{k}} \\}$ of the one-particle states?\n\n(b) Express your answer to part (a) in terms of the average occupation numbers $\\{ \\langle n_{\\vec{k}} \\rangle_- \\}$.\n\n(c) A random variable has a set of $\\ell$ discrete outcomes with probabilities $p_n$, where $n = 1, 2, \\dots, \\ell$. What is the entropy of this probability distribution? What is the maximum possible entropy?\n\n(d) Calculate the entropy of the probability distribution for fermion occupation numbers in part (b).\n\n(e) Calculate the variance of the total number of particles $\\langle N^2 \\rangle_c$.\n\n(f) The number fluctuations of a gas is related to its compressibility $\\kappa_{T}$, and number density $n=N/V$, by $\\langle N^{2} \\rangle_c = N n k_B T \\kappa_T$. Give a numerical estimate of the compressibility of the fermi gas in a metal at $T=0$ in units of $\\text{\\AA}^{3}\\,\\text{eV}^{-1}$.",
+      "model_extracted_answer": "\\begin{gathered}\n\\text{(a) }\\;\nP(\\{n_{\\vec k}\\})\n=\n\\frac{\\exp\\!\\left[-\\beta\\sum_{\\vec k}n_{\\vec k}\\bigl(\\mathcal E(\\vec k)-\\mu\\bigr)\\right]}\n{\\prod_{\\vec k}\\left(1+e^{-\\beta(\\mathcal E(\\vec k)-\\mu)}\\right)},\n\\qquad n_{\\vec k}=0,1.\n\\\\[0.7em]\n\\text{(b) }\\;\n\\langle n_{\\vec k}\\rangle_-\n=f_{\\vec k}\n=\n\\frac{1}{e^{\\beta(\\mathcal E(\\vec k)-\\mu)}+1},\n\\qquad\nP(\\{n_{\\vec k}\\})\n=\n\\prod_{\\vec k}\nf_{\\vec k}^{\\,n_{\\vec k}}\n(1-f_{\\vec k})^{1-n_{\\vec k}}.\n\\\\[0.7em]\n\\text{(c) }\\;\nS=-k_B\\sum_{n=1}^{\\ell}p_n\\ln p_n,\n\\qquad\nS_{\\max}=k_B\\ln \\ell\n\\text{ at }p_n=1/\\ell.\n\\\\[0.7em]\n\\text{(d) }\\;\nS\n=\n-k_B\\sum_{\\vec k}\n\\left[\nf_{\\vec k}\\ln f_{\\vec k}\n+\n(1-f_{\\vec k})\\ln(1-f_{\\vec k})\n\\right].\n\\\\[0.7em]\n\\text{(e) }\\;\n\\langle N^2\\rangle_c\n=\n\\langle (N-\\langle N\\rangle)^2\\rangle\n=\n\\sum_{\\vec k}\nf_{\\vec k}(1-f_{\\vec k})\n=\n\\sum_{\\vec k}\n\\frac{1}{4\\cosh^2\\!\\left[\\beta(\\mathcal E(\\vec k)-\\mu)/2\\right]}.\n\\\\[0.7em]\n\\text{(f) }\\;\n\\kappa_T(T=0)\n=\n\\frac{1}{n^2}\\frac{\\partial n}{\\partial \\mu}\n=\n\\frac{3}{2nE_F}\n\\quad\\text{for a 3D free Fermi gas.}\n\\text{ Using }n\\sim 0.1\\,\\text{\\AA}^{-3},\\;E_F\\sim 5\\text{--}10\\,\\text{eV},\n\\;\n\\kappa_T\\sim 1\\text{--}3\\,\\text{\\AA}^3\\text{eV}^{-1}\n\\text{, i.e. of order }2\\,\\text{\\AA}^3\\text{eV}^{-1}.\n\\end{gathered}",
+      "reference_solution": "(a) In the grand canonical ensemble the joint probability factorizes over $\\vec{k}$ as\n$P(\\{n_{\\vec{k}}\\}) = \\prod_{\\vec{k}} \\dfrac{\\exp\\{\\beta[\\mu - \\mathcal{E}(\\vec{k})] n_{\\vec{k}}\\}}{1 + \\exp\\{\\beta[\\mu - \\mathcal{E}(\\vec{k})]\\}}$, with $n_{\\vec{k}}\\in\\{0,1\\}$.\n\n(b) The mean occupations are $\\langle n_{\\vec{k}} \\rangle_- = \\dfrac{e^{\\beta(\\mu - \\mathcal{E}(\\vec{k}))}}{1 + e^{\\beta(\\mu - \\mathcal{E}(\\vec{k}))}}$. Hence $e^{\\beta(\\mu - \\mathcal{E})} = \\langle n\\rangle_-/(1-\\langle n\\rangle_-)$ and\n$P(\\{n_{\\vec{k}}\\}) = \\prod_{\\vec{k}} \\big[ (\\langle n_{\\vec{k}} \\rangle_-)^{n_{\\vec{k}}} (1-\\langle n_{\\vec{k}} \\rangle_-)^{1-n_{\\vec{k}}} \\big]$.\n\n(c) The entropy is $S = -k_B \\sum_{n=1}^{\\ell} p_n \\ln p_n$. It is maximized for $p_n=1/\\ell$, giving $S_{\\max}=k_B \\ln \\ell$.\n\n(d) The entropy is additive over independent modes:\n$S = -k_B \\sum_{\\vec{k}} \\big[ \\langle n_{\\vec{k}} \\rangle_- \\ln \\langle n_{\\vec{k}} \\rangle_- + (1-\\langle n_{\\vec{k}} \\rangle_-) \\ln (1-\\langle n_{\\vec{k}} \\rangle_-) \\big]$. As $T\\to 0$, $\\langle n_{\\vec{k}} \\rangle_-\\to 0$ or $1$, so $S\\to 0$.\n\n(e) With independent occupations, $\\langle N^2 \\rangle_c = \\sum_{\\vec{k}} \\langle n_{\\vec{k}}^2 \\rangle_c = \\sum_{\\vec{k}} [\\langle n_{\\vec{k}} \\rangle_- - \\langle n_{\\vec{k}} \\rangle_-^2] = \\sum_{\\vec{k}} \\langle n_{\\vec{k}} \\rangle_- (1-\\langle n_{\\vec{k}} \\rangle_-)$. At $T=0$, each term vanishes, so $\\langle N^2 \\rangle_c=0$.\n\n(f) For small but finite $T$, only $\\sim N k_B T/\\varepsilon_F$ states near $\\varepsilon_F$ have $\\langle n\\rangle\\approx 1/2$, so $\\langle N^2 \\rangle_c \\approx \\dfrac{1}{4} N (k_B T/\\varepsilon_F)$. Hence $\\kappa_T \\approx \\dfrac{1}{4 n \\varepsilon_F}$. With $n\\approx 0.1\\,\\text{\\AA}^{-3}$, $\\varepsilon_F\\approx 5\\,$eV, one estimates $\\kappa_T \\approx 0.5\\,\\text{\\AA}^3\\,\\text{eV}^{-1}$."
+    },
+    {
+      "dataset": "FrontierPhysics",
+      "id": "pathria/6.14",
+      "gpt_5_5_score_on_gemini_parts": 0.5,
+      "gemini_score": 1.0,
+      "overall_preferred_judge": "gemini",
+      "disputed_parts": [
+        {
+          "part": "b",
+          "gpt_5_5_score": 0,
+          "gemini_score": 1,
+          "preferred_judge": "gemini",
+          "actual_verdict": "candidate_correct",
+          "rationale": "From dT/T = (1/3)dN/N, N is proportional to T^3. Since T(t) is proportional to (1+ct)^-2, density is (1+ct)^-6 and pressure is (1+ct)^-8. The reference's final exponents contradict its own intermediate relation."
+        }
+      ],
+      "question": "Consider the effusion of molecules of a Maxwellian gas through an opening of area $a$ in the walls of a vessel of volume $V$.\n(a) Determine the mean kinetic energy of the molecules inside the vessel and of the effused ones, $T$ being the quasistatic equilibrium temperature of the gas.\n(b) Assuming that the effusion is so slow that the gas inside is always in a state of quasistatic equilibrium, determine the manner in which the density, the temperature, and the pressure of the gas vary with time.",
+      "model_extracted_answer": "\\begin{aligned}\n\\text{(a)}\\quad &\\langle E\\rangle_{\\rm inside}=\\frac32 kT,\\qquad\n\\langle E\\rangle_{\\rm effused}=2kT.\\\\[2mm]\n\\text{(b)}\\quad &\nn(t)=n_0\\left(1+\\frac{t}{6}\\frac{a}{V}\\sqrt{\\frac{kT_0}{2\\pi m}}\\right)^{-6},\\\\\n&\nT(t)=T_0\\left(1+\\frac{t}{6}\\frac{a}{V}\\sqrt{\\frac{kT_0}{2\\pi m}}\\right)^{-2},\\\\\n&\np(t)=p_0\\left(1+\\frac{t}{6}\\frac{a}{V}\\sqrt{\\frac{kT_0}{2\\pi m}}\\right)^{-8}.\n\\end{aligned}",
+      "reference_solution": "(a) The mean kinetic energy associated with the normal component of effusing molecules is\n$$\n\\Big\\langle \\tfrac{1}{2} m u_z^2 \\Big\\rangle = \\frac{1}{4} m\\, \\frac{\\langle u^3\\rangle}{\\langle u\\rangle} = kT,\n$$\nusing Maxwellian averages. The transverse components each contribute $\\tfrac{1}{2}kT$, so the mean energy per effused molecule is $2kT$.\n\n(b) Inside the vessel, $E=(3/2)NkT$ and $P=NkT/V$ hold quasistatically, but the energy loss rate is $dE/dt = 2kT\\, dN/dt$. Hence\n$$\n\\frac{dT}{T} = \\frac{1}{3}\\frac{dN}{N} \\ \\Rightarrow\\ T\\propto N^{1/3},\\ \\ P\\propto N^{4/3}.\n$$\nUsing $dN/dt = -(1/4)a n\\langle u\\rangle = -(aN/4V)\\sqrt{8kT/(\\pi m)}$, one finds\n$$\n\\frac{dT}{T} = -\\frac{1}{3}\\frac{a}{V}\\Big(\\frac{kT}{2\\pi m}\\Big)^{1/2} dt \\ \\Rightarrow\\ \\ T(t) = T_0\\, (1 + c t)^{-2},\n$$\nwith $c=(a/6V)\\sqrt{kT_0/(2\\pi m)}$. Then $N(t)\\propto T^{3/2}$ and $P(t)\\propto T^2$."
+    },
+    {
+      "dataset": "FrontierPhysics",
+      "id": "probability/2.1",
+      "gpt_5_5_score_on_gemini_parts": 0.8,
+      "gemini_score": 1.0,
+      "overall_preferred_judge": "gemini",
+      "disputed_parts": [
+        {
+          "part": "c",
+          "gpt_5_5_score": 0,
+          "gemini_score": 1,
+          "preferred_judge": "gemini",
+          "actual_verdict": "candidate_correct",
+          "rationale": "For the Cauchy distribution, the mean does not exist. The reference's zero is only a Cauchy principal value, not an expectation."
+        }
+      ],
+      "question": "1. Characteristic functions: Calculate the characteristic function, the mean, and the variance of the following probability density functions:\n\n(a) Uniform: p(x)=\\frac{1}{2a} for -a<x<a, and p(x)=0 otherwise.\n\n(b) Laplace: p(x)=\\frac{1}{2a} \\exp\\!\\left(-\\frac{|x|}{a}\\right).\n\n(c) Cauchy: p(x)=\\frac{a}{\\pi(x^2+a^2)}.\n\nThe following two probability density functions are defined for x\\ge 0. Compute only the mean and variance for each.\n\n(d) Rayleigh: p(x)=\\frac{x}{a^2} \\exp\\!\\left(-\\frac{x^2}{2a^2}\\right).\n\n(e) Maxwell: p(x)=\\sqrt{\\frac{2}{\\pi}}\\,\\frac{x^2}{a^3}\\,\\exp\\!\\left(-\\frac{x^2}{2a^2}\\right).",
+      "model_extracted_answer": "\\begin{gathered}\n\\text{(a) Uniform: }\\phi(t)=\\frac{\\sin(at)}{at},\\quad \\mathbb{E}[X]=0,\\quad \\mathrm{Var}(X)=\\frac{a^2}{3}.\\\\[3pt]\n\\text{(b) Laplace: }\\phi(t)=\\frac{1}{1+a^2t^2},\\quad \\mathbb{E}[X]=0,\\quad \\mathrm{Var}(X)=2a^2.\\\\[3pt]\n\\text{(c) Cauchy: }\\phi(t)=e^{-a|t|},\\quad \\mathbb{E}[X]\\text{ does not exist},\\quad \\mathrm{Var}(X)\\text{ does not exist}.\\\\[3pt]\n\\text{(d) Rayleigh: }\\mathbb{E}[X]=a\\sqrt{\\frac{\\pi}{2}},\\quad \\mathrm{Var}(X)=\\frac{4-\\pi}{2}a^2.\\\\[3pt]\n\\text{(e) Maxwell: }\\mathbb{E}[X]=2a\\sqrt{\\frac{2}{\\pi}},\\quad \\mathrm{Var}(X)=\\left(3-\\frac{8}{\\pi}\\right)a^2.\n\\end{gathered}",
+      "reference_solution": "(a) Uniform on (-a,a):\n\\[f(k)=\\frac{1}{2a}\\int_{-a}^a e^{-ikx}\\,dx=\\frac{\\sin(ak)}{ak}.\\]\nFrom symmetry, \\(\\langle x\\rangle=0\\). Also\n\\[\\langle x^2\\rangle=\\frac{1}{2a}\\int_{-a}^a x^2\\,dx=\\frac{a^2}{3},\\]\nso Var(x)=a^2/3.\n\n(b) Laplace:\n\\[f(k)=\\frac{1}{2a}\\int_{-\\infty}^{\\infty} e^{-ikx-|x|/a}\\,dx=\\frac{1}{1+(ak)^2}.\\]\nHence \\(\\langle x\\rangle=0\\), and \\(\\langle x^2\\rangle=2a^2\\), so Var(x)=2a^2.\n\n(c) Cauchy:\n\\[f(k)=\\int_{-\\infty}^{\\infty} e^{-ikx}\\,\\frac{a}{\\pi(x^2+a^2)}\\,dx= e^{-|ak|}.\\]\nThe first moment vanishes by symmetry, \\(\\langle x\\rangle=0\\). The second moment diverges, \\(\\langle x^2\\rangle=\\infty\\), so the variance does not exist.\n\n(d) Rayleigh (x\\ge 0):\n\\[\\langle x\\rangle=\\int_0^{\\infty} \\frac{x^2}{a^2}e^{-x^2/(2a^2)}dx=\\sqrt{\\frac{\\pi}{2}}\\,a,\\quad \\langle x^2\\rangle=\\int_0^{\\infty} \\frac{x^3}{a^2}e^{-x^2/(2a^2)}dx=2a^2,\\]\nso Var(x)=2a^2-(\\sqrt{\\pi/2}a)^2= a^2\\,(2-\\pi/2)=a^2\\,(4-\\pi)/2.\n\n(e) Maxwell (x\\ge 0):\n\\[\\langle x\\rangle=\\sqrt{\\frac{2}{\\pi}}\\int_0^{\\infty} \\frac{x^3}{a^3}e^{-x^2/(2a^2)}dx=2\\sqrt{\\frac{2}{\\pi}}\\,a,\\]\n\\[\\langle x^2\\rangle=\\sqrt{\\frac{2}{\\pi}}\\int_0^{\\infty} \\frac{x^4}{a^3}e^{-x^2/(2a^2)}dx=3a^2,\\]\nso Var(x)=3a^2-\\bigl(2\\sqrt{2/\\pi}\\,a\\bigr)^2=a^2\\,(3-8/\\pi)."
+    },
+    {
+      "dataset": "FrontierPhysics",
+      "id": "textbook/7.1",
+      "gpt_5_5_score_on_gemini_parts": 0.6666666666666666,
+      "gemini_score": 1.0,
+      "overall_preferred_judge": "gemini",
+      "disputed_parts": [
+        {
+          "part": "b",
+          "gpt_5_5_score": 0,
+          "gemini_score": 1,
+          "preferred_judge": "gemini",
+          "actual_verdict": "candidate_correct",
+          "rationale": "For bosons, ln Z has a positive exchange correction proportional to beta^(3/2), so E = -d ln Z/d beta has a negative correction; fermions have the opposite sign. The candidate's signs are correct."
+        }
+      ],
+      "question": "Identical particle pair: Let $Z_1(m)$ denote the partition function for a single quantum particle of mass $m$ in a volume $V$.\n\n(a) Calculate the partition function of two such particles, if they are bosons, and also if they are (spinless) fermions.\n\n(b) Use the classical approximation $Z_1(m) = \\frac{V}{\\lambda^3}$ with $\\lambda = \\frac{h}{\\sqrt{2 \\pi m k_B T}}$. Calculate the corrections to the energy $E$, and the heat capacity $C$, due to Bose or Fermi statistics.\n\n(c) At what temperature does the approximation used above break down?",
+      "model_extracted_answer": "\\begin{aligned}\n\\text{(a)}\\quad\n&Z_2^{B}=\\frac12\\left[Z_1(m)^2+Z_1(2\\beta)\\right]\n=\\frac12\\left[Z_1(m)^2+Z_1(m/2)\\right],\\\\\n&Z_2^{F}=\\frac12\\left[Z_1(m)^2-Z_1(2\\beta)\\right]\n=\\frac12\\left[Z_1(m)^2-Z_1(m/2)\\right].\\\\[2mm]\n\\text{(b)}\\quad\n&Z_2^{B/F}=\\frac12\\left(\\frac{V}{\\lambda^3}\\right)^2\n\\left(1\\pm \\frac{\\lambda^3}{2^{3/2}V}\\right),\\\\\n&E_B=3k_BT-\\frac{3k_BT\\,\\lambda^3}{2^{5/2}V},\n\\qquad\nE_F=3k_BT+\\frac{3k_BT\\,\\lambda^3}{2^{5/2}V},\\\\\n&C_B=3k_B+\\frac{3k_B\\,\\lambda^3}{2^{7/2}V},\n\\qquad\nC_F=3k_B-\\frac{3k_B\\,\\lambda^3}{2^{7/2}V}.\n\\\\[2mm]\n\\text{(c)}\\quad\n&\\text{The approximation breaks down when } \\lambda^3/V\\sim 1,\n\\text{ i.e. } \nT\\sim \\frac{h^2}{2\\pi m k_B V^{2/3}}.\n\\end{aligned}",
+      "reference_solution": "A two particle wave function is constructed from one particle states $k_1$, and $k_2$. Depending on the statistics of the two particles, we have\n\nBosons:\n\n$|k_1, k_2\\rangle_B = \\left\\{\\begin{array}{ll} \\dfrac{(|k_1\\rangle|k_2\\rangle + |k_2\\rangle|k_1\\rangle)}{\\sqrt{2}} & \\text{for } k_1 \\neq k_2 \\\\ |k_1\\rangle|k_2\\rangle & \\text{for } k_1 = k_2 \\end{array} \\right.$\n\nFermions:\n\n$|k_1, k_2\\rangle_F = \\begin{cases} \\dfrac{(|k_1\\rangle |k_2\\rangle - |k_2\\rangle |k_1\\rangle)}{\\sqrt{2}} & \\text{for } k_1 \\neq k_2 \\\\ \\text{no state} & \\text{for } k_1 = k_2 \\end{cases}$\n\nFor the Boson system, the partition function is\n$Z_2^B = \\mathrm{tr}(e^{-\\beta H}) = \\sum_{k_1,k_2} \\langle k_1, k_2| e^{-\\beta H} |k_1, k_2 \\rangle_B$\n$= \\sum_{k_1 > k_2} \\frac{\\langle k_1 | \\langle k_2 | + \\langle k_2 | \\langle k_1 |}{\\sqrt{2}} e^{-\\beta H} \\frac{|k_1 \\rangle |k_2 \\rangle + |k_2 \\rangle |k_1 \\rangle}{\\sqrt{2}} + \\sum_k \\langle k | \\langle k | e^{-\\beta H} | k \\rangle | k \\rangle$\n$= \\sum_{k_1 > k_2} \\exp \\left[-\\frac{\\beta \\hbar^{2}}{2m} \\left(k_1^2 + k_2^2\\right) \\right] + \\sum_k \\exp \\left(- \\frac{2 \\beta \\hbar^{2} k^2}{2m} \\right)$\n$= \\frac{1}{2} \\sum_{k_1,k_2} \\exp \\left[-\\frac{\\beta \\hbar^{2}}{2m} \\left(k_1^2 + k_2^2\\right) \\right] + \\frac{1}{2} \\sum_k \\exp \\left(- \\frac{\\beta \\hbar^{2} k^2}{m} \\right)$,\nthus\n$Z_2^B = \\dfrac{1}{2} \\left[ Z_1^2(m) + Z_1 \\left( \\dfrac{m}{2} \\right) \\right]$.\n\nFor the Fermion system,\n$Z_2^F = \\mathrm{tr}(e^{-\\beta H}) = \\sum_{k_1,k_2} \\langle k_1, k_2 | e^{-\\beta H} | k_1, k_2 \\rangle_F$\n$= \\sum_{k_1 > k_2} \\frac{\\langle k_1|\\langle k_2| - \\langle k_2|\\langle k_1|}{\\sqrt{2}} e^{-\\beta H} \\frac{|k_1\\rangle |k_2\\rangle - |k_2\\rangle |k_1\\rangle}{\\sqrt{2}}$\n$= \\frac{1}{2} \\sum_{k_1,k_2} \\exp\\left[-\\frac{\\beta \\hbar^2}{2m} (k_1^2 + k_2^2)\\right] - \\frac{1}{2} \\sum_k \\exp\\left(-\\frac{\\beta \\hbar^2 k^2}{m}\\right)$,\nthus\n$Z_2^F = \\dfrac{1}{2} \\left[ Z_1^2(m) - Z_1 \\left( \\dfrac{m}{2} \\right) \\right]$.\nClassical Boltzmann particles: $Z_2^{\\text{class}} = \\dfrac{1}{2} Z_1(m)^2$.\n\nWith $Z_1(m) = V/\\lambda^3$, $\\lambda = h/\\sqrt{2\\pi m k_B T}$, in the non-degenerate limit\n$\\ln Z_2^{\\pm} \\approx \\ln Z_2^{\\text{class}} \\pm 2^{-3/2} \\dfrac{\\lambda^3}{V}$,\nso\n$\\Delta \\ln Z_2^{\\pm} = \\pm 2^{-3/2} \\dfrac{h^3 \\beta^{3/2}}{V (2\\pi m)^{3/2}}$.\nHence\n$\\Delta E^{\\pm} = -\\partial_{\\beta} \\Delta \\ln Z_2 = \\pm \\dfrac{3}{2^{5/2}} \\dfrac{h^3 \\beta^{3/2}}{V (2\\pi m)^{3/2}} = \\pm \\dfrac{3}{2^{5/2}} k_B T \\left( \\dfrac{\\lambda^3}{V} \\right)$,\n$\\Delta C_V^{\\pm} = \\left.\\partial_T \\Delta E\\right|_V = \\pm \\dfrac{3}{2^{7/2}} \\dfrac{h^3 k_B}{V (2\\pi m k_B T)^{3/2}} = \\pm \\dfrac{3}{2^{7/2}} k_B \\left( \\dfrac{\\lambda^3}{V} \\right)$.\n\nBreakdown of the approximation occurs when the correction is $\\mathcal{O}(1)$, i.e. when the thermal wavelength is comparable to the box size:\n$\\lambda = \\dfrac{h}{\\sqrt{2\\pi m k_B T}} \\gtrsim L \\sim V^{1/3}$, or $T \\lesssim \\dfrac{h^2}{2\\pi m k_B L^2}$."
+    },
+    {
+      "dataset": "FrontierPhysics",
+      "id": "cmft/5.6.1",
+      "gpt_5_5_score_on_gemini_parts": 0.5,
+      "gemini_score": 1.0,
+      "overall_preferred_judge": "gemini",
+      "disputed_parts": [
+        {
+          "part": "b",
+          "gpt_5_5_score": 0,
+          "gemini_score": 1,
+          "preferred_judge": "gemini",
+          "actual_verdict": "candidate_correct",
+          "rationale": "Using the effective-action condition rho c^2 = g^2 chi(2k_F,0) with chi approximately log(omega_D/T)/(4 pi v_F) gives the candidate's exponent with 4 pi. The reference's extra pi is inconsistent with that substitution."
+        }
+      ],
+      "question": "Peierls instability.\n\nIn problem 2.4.3 we saw that the half-filled one-dimensional lattice system is unstable to the formation of a commensurate periodic lattice distortion. It turns out that this is a general phenomenon: at zero temperature, one-dimensional crystals comprising electrons and ions tend to spontaneously develop lattice distortions transforming them into dielectrics. This lattice instability is known as a Peierls distortion, and in this problem we study its nature.\n\nThe starting point of the theory is the Euclidean action for a one-dimensional gas of electrons,\n\\[\nS_{\\text{el}}[\\psi] = \\int d\\tau \\int dx \\, \\bar{\\psi} \\left( \\partial_{\\tau} - \\frac{\\partial_x^2}{2m} - \\mu \\right) \\psi,\n\\]\nwhere, for simplicity, we assume spinless electrons. Anticipating that the detailed nature of lattice vibrations may not be essential, we describe the lattice in terms of a harmonic Euclidean action (section 1.1),\n\\[\nS_{\\rm ph}[u] = \\frac{\\rho}{2} \\int d\\tau \\int dx \\left( (\\partial_\\tau u)^2 + c^2 (\\partial_x u)^2 \\right),\n\\]\nwhere \\(u(\\tau, x)\\) denotes the scalar bosonic displacement field. We couple the electron system to lattice distortions in the Fr\\\"ohlich deformation potential approximation,\n\\[\nS_{\\text{el-ph}}[\\psi, u] = g \\int d\\tau \\int dx \\; \\bar{\\psi} \\psi \\, \\partial_x u.\n\\]\nThe full Euclidean action \\(S = S_{\\text{el}} + S_{\\text{ph}} + S_{\\text{el-ph}}\\) represents an interacting theory. We analyze it perturbatively in \\(g\\) and then explore the stability of the ensuing effective theory by mean-field methods.\n\n(a) Give the effective action for the displacement field \\(u\\). Taking \\(g\\) small, give the action up to second order in \\(u\\):\n\\[\nS_{\\text{eff}}[u] \\simeq \\sum_{q,\\omega_m} \\left( \\frac{\\rho}{2} (\\omega_m^2 + c^2 q^2) - \\frac{g^2}{2} q^2 \n\\chi(q, \\omega_{m}) \\right) |u_{\\omega_m, q}|^2,\n\\]\nwhere \\(\\chi(q, \\omega_m) = -T L^{-1} \\sum_{p, \\omega_n} G_{0, p, \\omega_n} G_{0, p+q, \\omega_n + \\omega_m}\\) contains the Green functions of the free one-dimensional electron gas.\n\n(b) Determine the critical temperature \\(T_c\\) below which a static inhomogeneous solution of the form \\(u_0 \\cos(2 k_{\\mathrm F} x + \\varphi)\\) can have lower action than a homogeneous solution \\(u_0\\). Use the approximation \\(\\chi(2 k_{\\mathrm F}, 0) \\simeq \\ln(\\beta \\omega_{\\mathrm D}) / (4 \\pi v_{\\mathrm F})\\), where \\(\\omega_{\\mathrm D}\\) is the Debye frequency.",
+      "model_extracted_answer": "\\begin{gathered}\n\\text{(a) }\\quad\ne^{-S_{\\rm eff}[u]}=\\int D(\\bar\\psi,\\psi)\\,e^{-S_{\\rm el}[\\psi]-S_{\\rm ph}[u]-S_{\\rm el-ph}[\\psi,u]},\\\\\nS_{\\rm eff}[u]\\simeq\n\\sum_{q,\\omega_m}\n\\left[\n\\frac{\\rho}{2}\\left(\\omega_m^2+c^2q^2\\right)\n-\\frac{g^2}{2}q^2\\chi(q,\\omega_m)\n\\right]\n|u_{\\omega_m,q}|^2,\\\\\n\\chi(q,\\omega_m)=\n-\\frac{T}{L}\\sum_{p,\\omega_n}\nG_0(p,\\omega_n)G_0(p+q,\\omega_n+\\omega_m),\n\\qquad\nG_0(p,\\omega_n)=\\frac{1}{-i\\omega_n+\\xi_p},\\\\\n\\xi_p=\\frac{p^2}{2m}-\\mu.\\\\[4pt]\n\\text{(b) }\\quad\nu(x)=u_0\\cos(2k_Fx+\\varphi)\\text{ lowers the action when }\n\\rho c^2-g^2\\chi(2k_F,0)<0.\\\\\nT_c\\text{ is determined by }\n\\rho c^2=g^2\\chi(2k_F,0;T_c)\n\\simeq\n\\frac{g^2}{4\\pi v_F}\\ln\\!\\left(\\frac{\\omega_D}{T_c}\\right),\\\\\n\\therefore\\qquad\nT_c=\\omega_D\\exp\\!\\left[-\\frac{4\\pi\\rho c^2v_F}{g^2}\\right],\n\\qquad\nT<T_c\\text{ gives the Peierls-distorted dielectric state.}\n\\end{gathered}",
+      "reference_solution": "(a) Integrating out the electron degrees of freedom \\(\\psi\\),\n\\[\n\\int D\\psi\\, e^{-S_{\\text{el}}-S_{\\text{el-ph}}} = \\exp\\left( \\mathrm{tr}\\, \\ln \\left[ \\partial_{\\tau} - \\frac{\\partial_x^2}{2m} - \\mu + g \\, \\partial_x u \\right] \\right).\n\\]\nWith the bare electron Green function \\(G_0^{-1} = \\partial_\\tau - \\partial_x^2/(2m) - \\mu\\), a second-order expansion in \\(g\\) gives\n\\[\n\\mathrm{tr}\\, \\ln \\left[G_0^{-1} + g (\\partial_x u) \\right] \\simeq \\mathrm{tr}\\, \\ln G_0^{-1} - \\frac{g^2}{2} \\sum_{\\omega_m, q} q^2 \\, \\chi(q, \\omega_m) \\, |u_{\\omega_m, q}|^2,\n\\]\nwhere the first-order term vanishes by symmetry. Adding this to the free action of the displacement field yields\n\\[\nS_{\\text{eff}}[u] \\simeq \\sum_{q,\\omega_m} \\left( \\frac{\\rho}{2} (\\omega_m^2 + c^2 q^2) - \\frac{g^2}{2} q^2 \n\\chi(q, \\omega_{m}) \\right) |u_{\\omega_m, q}|^2.\n\\]\n\n(b) For a static periodic modulation,\n\\[\n u_{\\omega_m,q} = \\pi u_0 \\big[ e^{i\\varphi} \\delta(q - 2k_{\\mathrm F}) + e^{-i\\varphi} \\delta(q + 2k_{\\mathrm F}) \\big] \\, \\delta(\\omega_m),\n\\]\nwe obtain\n\\[\nS_{\\mathrm{eff}} = 4 \\pi^2 u_0^2 k_{\\mathrm F}^2 \\left[ \\rho c^2 - g^2 \\, \\chi(2 k_{\\mathrm F}, 0) \\right],\n\\]\nwhich must be compared to \\(S_{\\mathrm{eff}}[u_0]=0\\) for a static uniform mode. The transition occurs when\n\\[ \\rho c^2 < 4 \\pi^2 g^2 \\, \\chi(2 k_{\\mathrm F}, 0). \\]\nUsing \\(\\chi(2 k_{\\mathrm F},0) \\simeq \\ln(\\beta \\omega_{\\mathrm D})/(4\\pi v_{\\mathrm F})\\), one finds the critical temperature\n\\[\nT_c = \\omega_{\\mathrm D} \\, \\exp\\!\\left( - \\frac{4 \\pi^2 v_{\\mathrm F} \\rho c^2}{g^2} \\right).\n\\]"
+    },
+    {
+      "dataset": "FrontierPhysics",
+      "id": "vi/2",
+      "gpt_5_5_score_on_gemini_parts": 0.7142857142857143,
+      "gemini_score": 1.0,
+      "overall_preferred_judge": "gemini",
+      "disputed_parts": [
+        {
+          "part": "b",
+          "gpt_5_5_score": 0,
+          "gemini_score": 1,
+          "preferred_judge": "gemini",
+          "actual_verdict": "candidate_correct",
+          "rationale": "Bits are entropy divided by k_B ln 2, not multiplied by ln 2/k_B. The candidate's bit count is correct."
+        },
+        {
+          "part": "e",
+          "gpt_5_5_score": 0,
+          "gemini_score": 1,
+          "preferred_judge": "gemini",
+          "actual_verdict": "candidate_correct",
+          "rationale": "The standard Hawking evaporation time is 5120 pi G^2 M^3/(hbar c^4). The candidate includes the pi factor that the reference dropped."
+        }
+      ],
+      "question": "Black hole thermodynamics: According to Bekenstein and Hawking, the entropy of a black hole is proportional to its area $A$, and given by\n\\[\nS=\\frac{k_B c^{3}}{4 G \\hbar}A.\n\\]\n(a) Calculate the escape velocity at a radius $R$ from a mass $M$ using classical mechanics. Find the relationship between the radius and mass of a black hole by setting this escape velocity to the speed of light $c$.\n\n(b) Does entropy increase or decrease when two black holes collapse into one? What is the entropy change for the universe (in equivalent number of bits of information), when two solar mass black holes $(M_{\\odot}\\approx 2\\times 10^{30}\\,\\text{kg})$ coalesce?\n\n(c) The internal energy of the black hole is given by the Einstein relation, $E=Mc^{2}$. Find the temperature of the black hole in terms of its mass.\n\n(d) A \"black hole\" actually emits thermal radiation due to pair creation processes on its event horizon. Find the rate of energy loss due to such radiation.\n\n(e) Find the amount of time it takes an isolated black hole to evaporate. How long is this time for a black hole of solar mass?\n\n(f) What is the mass of a black hole that is in thermal equilibrium with the current cosmic background radiation at $T=2.7\\,\\text{K}$?\n\n(g) Consider a spherical volume of space of radius $R$. According to the recently formulated Holographic Principle there is a maximum to the amount of entropy that this volume of space can have, independent of its contents! What is this maximal entropy?",
+      "model_extracted_answer": "\\begin{aligned}\n\\text{(a)}\\;& v_{\\rm esc}=\\sqrt{\\frac{2GM}{R}},\\qquad v_{\\rm esc}=c\\Rightarrow R_s=\\frac{2GM}{c^2}.\\\\[2mm]\n\\text{(b)}\\;& S\\propto M^2,\\text{ so entropy increases. For }M_1=M_2=M_\\odot,\\\\\n&\\Delta S=S(2M_\\odot)-2S(M_\\odot)=\\frac{8\\pi k_BG M_\\odot^2}{\\hbar c},\\\\\n&\\Delta N_{\\rm bits}=\\frac{\\Delta S}{k_B\\ln 2}\n=\\frac{8\\pi G M_\\odot^2}{\\hbar c\\ln 2}\\approx 3.1\\times 10^{77}\\ \\text{bits}.\\\\[2mm]\n\\text{(c)}\\;& T=\\left(\\frac{\\partial S}{\\partial E}\\right)^{-1}\n=\\frac{\\hbar c^3}{8\\pi k_BGM}.\\\\[2mm]\n\\text{(d)}\\;& \\frac{dE}{dt}=-P,\\qquad \nP=\\sigma A T^4=\\frac{\\hbar c^6}{15360\\pi G^2M^2}.\\\\[2mm]\n\\text{(e)}\\;& \\frac{dM}{dt}=-\\frac{\\hbar c^4}{15360\\pi G^2M^2},\\qquad\nt_{\\rm evap}=\\frac{5120\\pi G^2M^3}{\\hbar c^4}.\\\\\n&\\text{For }M=M_\\odot\\approx 2\\times 10^{30}\\,\\mathrm{kg},\\quad\nt_{\\rm evap}\\approx 6.7\\times 10^{74}\\,\\mathrm{s}\\approx 2.1\\times 10^{67}\\,\\mathrm{yr}.\\\\[2mm]\n\\text{(f)}\\;& M=\\frac{\\hbar c^3}{8\\pi k_BGT}\n\\quad\\Rightarrow\\quad\nM(T=2.7\\,\\mathrm K)\\approx 4.6\\times 10^{22}\\,\\mathrm{kg}.\\\\[2mm]\n\\text{(g)}\\;& S_{\\max}=\\frac{k_Bc^3}{4G\\hbar}(4\\pi R^2)\n=\\frac{\\pi k_Bc^3R^2}{G\\hbar},\n\\qquad\nN_{\\max}=\\frac{\\pi c^3R^2}{G\\hbar\\ln 2}\\ \\text{bits}.\n\\end{aligned}",
+      "reference_solution": "(a) Equating kinetic and gravitational potential energies at the surface,\n\\[\n\\frac{1}{2}m v_E^2=\\frac{G M m}{R}\\;\\Rightarrow\\; v_E=\\sqrt{\\frac{2GM}{R}}.\n\\]\nSetting $v_E=c$ gives the Schwarzschild radius relation\n\\[\nR=\\frac{2GM}{c^2}.\n\\]\n\n(b) Using $S=(k_B c^3/4G\\hbar)A$ with $A=4\\pi R^2$ and $R=2GM/c^2$, $S(M)=\\dfrac{4\\pi k_B G}{\\hbar c}M^2$. For two black holes of mass $M$ merging to one of mass $2M$,\n\\[\n\\Delta S=S(2M)-2S(M)=\\frac{8\\pi G k_B}{\\hbar c}M^2>0.\n\\]\nFor two solar-mass black holes,\n\\[\n\\Delta S\\approx 3\\times 10^{54}\\,\\text{J/K},\\quad \\text{bits}\\;N_I=\\frac{\\Delta S\\,\\ln 2}{k_B}\\approx 1.5\\times 10^{77}.\n\\]\n\n(c) Using $1/T=\\partial S/\\partial E$ and $E=Mc^2$,\n\\[\n\\frac{1}{T}=\\frac{1}{c^2}\\frac{\\partial S}{\\partial M}=\\frac{8\\pi k_B G}{\\hbar c^3}M\\;\\Rightarrow\\; T=\\frac{\\hbar c^3}{8\\pi k_B G}\\frac{1}{M}.\n\\]\n\n(d) Treating the hole as a blackbody, the Stefan–Boltzmann law gives\n\\[\n\\frac{1}{A}\\frac{dE}{dt}=-\\sigma T^4,\\quad \\sigma=\\frac{\\pi^2 k_B^4}{60\\,\\hbar^3 c^2}.\n\\]\n\n(e) With $A=16\\pi G^2 M^2/c^4$, $E=Mc^2$, and $T=\\hbar c^3/(8\\pi k_B G M)$,\n\\[\n\\frac{d(Mc^2)}{dt}=-\\sigma A T^4\\;\\Rightarrow\\; M^2\\frac{dM}{dt}=-\\frac{\\hbar c^4}{15360\\,G^2}\\equiv -b.\n\\]\nSolving, $M(t)=(M_0^3-3bt)^{1/3}$, and the evaporation time is\n\\[\n\\tau=\\frac{M_0^3}{3b}\\approx 2.2\\times 10^{74}\\,\\text{s}\\quad \\text{for }M_0=M_{\\odot}.\n\\]\n\n(f) From $T=\\hbar c^3/(8\\pi k_B G M)$,\n\\[\nM=\\frac{\\hbar c^3}{8\\pi k_B G T}\\approx 4.5\\times 10^{22}\\,\\text{kg}\\quad (T=2.7\\,\\text{K}).\n\\]\n\n(g) The maximal entropy is that of a black hole that fits the volume (Holographic Principle):\n\\[\nS\\le S_{\\rm BH}=\\frac{k_B c^3}{4G\\hbar}A=\\frac{k_B c^3}{4G\\hbar}\\,(4\\pi R^2)=\\frac{\\pi k_B c^3}{G\\hbar}\\,R^2.\n\\]"
+    }
+  ]
+}
