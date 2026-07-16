@@ -26,6 +26,8 @@ Aggregating the four runs over rows with all four scores:
 
 ### Consistency Across Models
 
+Bottom Line: Gemini scores slightly higher, most of the time correctly identifying reference solution typos.
+
 Holding the generator fixed at **GPT-5.5 (high reasoning)**, the merged-mode
 judge score changes noticeably between GPT-5.5 and Gemini 3.1 Pro Preview, both
 run with high reasoning:
