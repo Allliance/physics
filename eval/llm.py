@@ -20,7 +20,9 @@ class Completion:
 
 
 class LLM(Protocol):
-    def complete(self, prompt: str, *, system_prompt: str, schema: dict[str, Any] | None = None) -> Completion: ...
+    def complete(self, prompt: str, *, system_prompt: str,
+                 schema: dict[str, Any] | None = None,
+                 image_paths: list[Path] | None = None) -> Completion: ...
 
 
 @dataclass
@@ -31,7 +33,7 @@ class OpenAICompatibleLLM:
     base_url: str
     api_key: str = "EMPTY"
     timeout: float = 300.0
-    temperature: float | None = 0.0
+    temperature: float | None = None
     top_p: float | None = None
     top_k: int | None = None
     min_p: float | None = None
@@ -41,7 +43,11 @@ class OpenAICompatibleLLM:
     max_tokens: int | None = None
     reasoning_effort: str | None = None
 
-    def complete(self, prompt: str, *, system_prompt: str, schema: dict[str, Any] | None = None) -> Completion:
+    def complete(self, prompt: str, *, system_prompt: str,
+                 schema: dict[str, Any] | None = None,
+                 image_paths: list[Path] | None = None) -> Completion:
+        if image_paths:
+            raise NotImplementedError("image inputs are only implemented for the codex backend")
         body: dict[str, Any] = {
             "model": self.model,
             "messages": [
@@ -100,7 +106,9 @@ class CodexCLICompatibleLLM:
     reasoning_effort: str | None = None
     timeout: float = 300.0
 
-    def complete(self, prompt: str, *, system_prompt: str, schema: dict[str, Any] | None = None) -> Completion:
+    def complete(self, prompt: str, *, system_prompt: str,
+                 schema: dict[str, Any] | None = None,
+                 image_paths: list[Path] | None = None) -> Completion:
         client = CodexLLM(
             model=self.model,
             model_reasoning_effort=self.reasoning_effort,
@@ -115,17 +123,18 @@ class CodexCLICompatibleLLM:
                 json.dump(schema, handle)
                 handle.close()
                 schema_path = Path(handle.name)
-                result = client.complete(prompt, system_prompt=system_prompt, output_schema=schema_path)
+                result = client.complete(prompt, system_prompt=system_prompt,
+                                         output_schema=schema_path, image_paths=image_paths)
             finally:
                 Path(handle.name).unlink(missing_ok=True)
         else:
-            result = client.complete(prompt, system_prompt=system_prompt)
+            result = client.complete(prompt, system_prompt=system_prompt, image_paths=image_paths)
         return Completion(text=result.text, usage=result.usage, raw={"attempts": result.attempts})
 
 
 def make_llm(*, backend: str, model: str, url: str | None, api_key: str, timeout: float,
              reasoning_effort: str | None = None, max_tokens: int | None = None,
-             temperature: float | None = 0.0, top_p: float | None = None,
+             temperature: float | None = None, top_p: float | None = None,
              top_k: int | None = None, min_p: float | None = None,
              presence_penalty: float | None = None,
              repetition_penalty: float | None = None,

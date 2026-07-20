@@ -24,6 +24,14 @@ Aggregating the four runs over rows with all four scores:
 
 ## Judge
 
+### Evaluation mode policy
+
+Merged mode is the default and only supported mode for new evaluations.
+Separated mode is deprecated and disabled in the evaluator because it can waste
+tokens on boxed-answer extraction failures and part-mapping errors. Historical
+separated-mode tables below are retained only for context; do not use them for
+new headline reporting.
+
 ### Consistency Across Models
 
 Bottom Line: Gemini scores slightly higher, most of the time correctly identifying reference solution typos.
@@ -55,18 +63,15 @@ Manual review of the merged-mode disagreements found:
 
 ### Judge modes
 
-The evaluator supports two judge modes. In **separated mode**, the generator is
-asked to box one answer per detected problem part, and the judge scores each
-extracted part answer against the corresponding ground truth. In **merged
-mode**, the generator produces one final boxed answer, and the judge compares it
-against the reference solution while inferring the relevant parts.
+The evaluator supports **merged mode** for new runs. In merged mode, the
+generator produces one final boxed answer, and the judge compares it against the
+reference solution while inferring the relevant parts.
 
-Merged mode is preferred for headline reporting because separated mode can
-produce false negatives when boxed-answer extraction fails, finds the wrong
-number of boxes, or maps boxes to the wrong parts. On GPT-5.5 judged by GPT-5.5,
-merged mode is only slightly higher than separated mode, consistent with this
-mainly reflecting separated-mode extraction false negatives rather than a large
-change in model behavior.
+Separated mode is deprecated and disabled. It asked the generator to box one
+answer per detected problem part, then judged each extracted part answer against
+ground truth. That path produced false negatives when boxed-answer extraction
+failed, found the wrong number of boxes, or mapped boxes to the wrong parts.
+The old comparison below is historical only.
 
 | Dataset | Separated | Merged | Difference |
 | --- | ---: | ---: | ---: |
@@ -102,8 +107,9 @@ were:
 
 ### Judge comparison for GPT-5.5 (high)
 
-This table holds the generator fixed at **GPT-5.5 (high reasoning)** and reports
-its mean per-problem score from different judges in separated mode.
+This historical table holds the generator fixed at **GPT-5.5 (high reasoning)**
+and reports its mean per-problem score from different judges in deprecated
+separated mode.
 
 | Judge | Physics | Frontier Physics |
 | --- | ---: | ---: |
@@ -122,9 +128,9 @@ judgments when available and low-reasoning judgments as fallback, completing
 
 ## Model results
 
-The table below reports the mean per-problem score on the test splits. All runs use
-**separated mode**, in which each problem part is answered and judged separately,
-and **GPT-5.5 (high reasoning)** as the judge. Higher is better.
+The historical table below reports the mean per-problem score on the test
+splits. These runs used deprecated **separated mode** and **GPT-5.5 (high
+reasoning)** as the judge. Higher is better.
 
 | Model | Physics | Frontier Physics |
 | --- | ---: | ---: |

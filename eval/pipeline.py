@@ -5,14 +5,17 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+import tempfile
 import threading
+from base64 import b64decode
+from binascii import Error as Base64Error
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from .llm import LLM
+from .llm import Completion, LLM
 from .parsing import (
     detect_part_ids, extract_boxes, map_separated_boxes, parse_json_object, strip_part_label,
 )
@@ -54,7 +57,7 @@ def read_rows(path: Path) -> list[dict[str, Any]]:
         import pyarrow.parquet as pq
     except ImportError as exc:
         raise RuntimeError("Parquet support requires pyarrow: uv run --with pyarrow python -m eval ...") from exc
-    return pq.read_table(path).to_pylist()
+    return [normalize_row(row) for row in pq.read_table(path).to_pylist()]
 
 
 def _json_value(value: Any) -> Any:
@@ -64,6 +67,139 @@ def _json_value(value: Any) -> Any:
         except json.JSONDecodeError:
             return value
     return value
+
+
+_DATA_URL_RE = re.compile(r"^data:(?P<mime>[^;,]+)(?:;[^,]*)*;base64,(?P<data>.*)$", re.S)
+_IMAGE_SUFFIXES = {
+    "image/gif": ".gif",
+    "image/jpeg": ".jpg",
+    "image/jpg": ".jpg",
+    "image/png": ".png",
+    "image/webp": ".webp",
+}
+
+
+def _media_references(value: Any) -> list[str]:
+    raw = _json_value(value)
+    if raw in (None, "", []):
+        return []
+    if isinstance(raw, str):
+        return [raw]
+    if isinstance(raw, dict):
+        raw = [raw]
+    if not isinstance(raw, list):
+        return []
+
+    references: list[str] = []
+    for item in raw:
+        if isinstance(item, str):
+            references.append(item)
+            continue
+        if not isinstance(item, dict):
+            continue
+        image_url = item.get("image_url")
+        if isinstance(image_url, dict) and isinstance(image_url.get("url"), str):
+            references.append(image_url["url"])
+        elif isinstance(image_url, str):
+            references.append(image_url)
+        elif isinstance(item.get("url"), str):
+            references.append(item["url"])
+        elif isinstance(item.get("path"), str):
+            references.append(item["path"])
+    return references
+
+
+def _local_media_candidates(reference: str, dataset: Path) -> list[Path]:
+    path = Path(reference).expanduser()
+    if path.is_absolute():
+        return [path]
+    return [
+        dataset.parent / path,
+        dataset.parent / "images" / path,
+        dataset.parent / "figures" / path,
+        dataset.parent.parent / "images" / path,
+        dataset.parent.parent / "figures" / path,
+        Path.cwd() / path,
+    ]
+
+
+def materialize_row_media(row: dict[str, Any], dataset: Path, directory: Path) -> tuple[list[Path], list[str]]:
+    """Write row media to image files usable by `codex exec --image`."""
+    paths: list[Path] = []
+    missing: list[str] = []
+    for column in ("graphs", "images"):
+        for index, reference in enumerate(_media_references(row.get(column))):
+            match = _DATA_URL_RE.match(reference)
+            if match:
+                mime = match.group("mime").lower()
+                suffix = _IMAGE_SUFFIXES.get(mime, ".img")
+                path = directory / f"{column}_{index + 1}{suffix}"
+                try:
+                    path.write_bytes(b64decode(match.group("data"), validate=False))
+                except (Base64Error, ValueError) as exc:
+                    missing.append(f"{column}[{index}]: invalid data URL ({exc})")
+                    continue
+                paths.append(path)
+                continue
+
+            if reference.startswith(("http://", "https://")):
+                missing.append(f"{column}[{index}]: URL media is not supported by codex --image")
+                continue
+
+            source = next((candidate for candidate in _local_media_candidates(reference, dataset)
+                           if candidate.is_file()), None)
+            if source is None:
+                missing.append(f"{column}[{index}]: missing local image {reference!r}")
+                continue
+            paths.append(source)
+    return paths, missing
+
+
+def _media_prompt(prompt: str, image_count: int) -> str:
+    if image_count == 0:
+        return prompt
+    noun = "image" if image_count == 1 else "images"
+    return (
+        f"{prompt}\n\nAttached media: {image_count} {noun} from the problem's "
+        "`graphs`/`images` columns. Use the attached media as part of the problem statement."
+    )
+
+
+def _complete_with_row_media(llm: LLM, prompt: str, *, system_prompt: str,
+                             dataset: Path, row: dict[str, Any], include_media: bool,
+                             schema: dict[str, Any] | None = None) -> tuple[Completion, int, list[str]]:
+    if not include_media:
+        return llm.complete(prompt, system_prompt=system_prompt, schema=schema), 0, []
+    with tempfile.TemporaryDirectory(prefix="eval-row-media-") as tmpdir:
+        image_paths, missing_media = materialize_row_media(row, dataset, Path(tmpdir))
+        completion = llm.complete(
+            _media_prompt(prompt, len(image_paths)),
+            system_prompt=system_prompt,
+            schema=schema,
+            image_paths=image_paths or None,
+        )
+    return completion, len(image_paths), missing_media
+
+
+def normalize_row(row: dict[str, Any]) -> dict[str, Any]:
+    """Accept older prepared parquet rows alongside finalized eval rows."""
+    normalized = dict(row)
+    if "question" not in normalized and "questions" in normalized:
+        normalized["question"] = normalized.get("questions")
+    if "solution" not in normalized and "solutions" in normalized:
+        normalized["solution"] = normalized.get("solutions")
+    if "ground_truths" not in normalized and "final_answers" in normalized:
+        answers = _json_value(normalized.get("final_answers"))
+        if isinstance(answers, list):
+            normalized["ground_truths"] = {
+                chr(ord("a") + index): answer
+                for index, answer in enumerate(answers)
+            }
+            normalized.setdefault("is_multi_part", len(answers) > 1)
+        elif isinstance(answers, dict):
+            normalized["ground_truths"] = answers
+            normalized.setdefault("is_multi_part", len(answers) > 1)
+    return normalized
 
 
 def load_ground_truths(row: dict[str, Any]) -> dict[str, str]:
@@ -92,6 +228,21 @@ def candidate_answers(row: dict[str, Any], response: dict[str, Any],
     if row.get("is_multi_part") is False and parts == ["a"] and len(supplied) == 1:
         return {"a": strip_part_label(str(next(iter(supplied.values()))))}
     return {str(part): str(answer) for part, answer in supplied.items()}
+
+
+def _merged_extracted_answer(response: dict[str, Any]) -> str:
+    boxes = response.get("boxes")
+    if isinstance(boxes, list):
+        return str(boxes[-1]) if boxes else ""
+    return str(response.get("extracted_answer") or "")
+
+
+def _merged_format_errors(response: dict[str, Any]) -> list[str]:
+    boxes = response.get("boxes")
+    if isinstance(boxes, list):
+        return [] if boxes else ["expected at least 1 box, found 0"]
+    errors = response.get("format_errors")
+    return errors if isinstance(errors, list) else []
 
 
 def _key(dataset: Path, row: dict[str, Any]) -> str:
@@ -210,6 +361,7 @@ class GenerationConfig:
     presence_penalty: float | None = None
     repetition_penalty: float | None = None
     extra_body: dict[str, Any] | None = None
+    include_media: bool = False
 
     def cache_tag(self) -> str:
         payload = json.dumps(asdict(self), sort_keys=True, separators=(",", ":"))
@@ -241,8 +393,10 @@ def artifact_dir(root: Path, dataset: Path, config: RunConfig) -> Path:
 
 
 def run(dataset: Path, output_root: Path, config: RunConfig, generator: LLM, judge: LLM) -> Path:
-    if config.mode not in {"merged", "separated"}:
-        raise ValueError("mode must be merged or separated")
+    if config.mode == "separated":
+        raise ValueError("separated mode is deprecated; use merged mode")
+    if config.mode != "merged":
+        raise ValueError("mode must be merged")
     if config.repeat < 1:
         raise ValueError("repeat must be at least 1")
     all_rows = read_rows(dataset)
@@ -282,17 +436,23 @@ def run(dataset: Path, output_root: Path, config: RunConfig, generator: LLM, jud
             truths = load_ground_truths(row)
             parts = detect_part_ids(truths)
         if key not in responses:
-            completion = generator.complete(generation_prompt(row["question"]), system_prompt=gen_system)
+            completion, media_count, missing_media = _complete_with_row_media(
+                generator, generation_prompt(row["question"]),
+                system_prompt=gen_system, dataset=dataset, row=row,
+                include_media=config.generation.include_media,
+            )
             boxes = extract_boxes(completion.text)
             record = {
                 "key": key, "dataset": str(dataset), "id": row.get("id"), "part_ids": parts,
                 "row_key": row_key, "attempt": attempt,
                 "response": completion.text, "boxes": boxes, "usage": completion.usage,
                 "created_at": datetime.now(timezone.utc).isoformat(),
+                "media_count": media_count,
+                "missing_media": missing_media,
             }
             if config.mode == "merged":
-                record["extracted_answer"] = boxes[-1] if len(boxes) == 1 else ""
-                record["format_errors"] = [] if len(boxes) == 1 else [f"expected 1 box, found {len(boxes)}"]
+                record["extracted_answer"] = _merged_extracted_answer(record)
+                record["format_errors"] = _merged_format_errors(record)
             else:
                 record["extracted_answers"], record["format_errors"] = map_separated_boxes(boxes, parts)
             with write_lock:
@@ -329,10 +489,13 @@ def run(dataset: Path, output_root: Path, config: RunConfig, generator: LLM, jud
             if failure_key in failures:
                 return
             try:
-                completion = judge.complete(
+                completion, media_count, missing_media = _complete_with_row_media(
+                    judge,
                     merged_judge_prompt(row["question"], str(row.get("solution") or ""),
-                                        response.get("extracted_answer", "")),
+                                        _merged_extracted_answer(response)),
                     system_prompt=MERGED_JUDGE_SYSTEM, schema=MERGED_SCHEMA,
+                    dataset=dataset, row=row,
+                    include_media=config.generation.include_media,
                 )
                 parsed = parse_json_object(completion.text)
             except Exception as exc:
@@ -364,7 +527,8 @@ def run(dataset: Path, output_root: Path, config: RunConfig, generator: LLM, jud
                         "score": score, "num_scored_parts": len(scored_parts),
                         "num_unscored_parts": len(parts) - len(scored_parts),
                         "judge_response": completion.text, "usage": completion.usage,
-                        "parts": per_part}
+                        "parts": per_part, "media_count": media_count,
+                        "missing_media": missing_media}
         else:
             truths, provenance = resolve_ground_truth(row, parts)
             answers = candidate_answers(row, response, parts)
@@ -444,12 +608,18 @@ def run(dataset: Path, output_root: Path, config: RunConfig, generator: LLM, jud
         "mean_score": (sum(x["score"] for x in scored_selected) / len(scored_selected)
                        if scored_selected else None),
         "num_unscored_rows": len(selected) - len(scored_selected),
-        "format_error_rows": sum(bool(item.get("format_errors"))
+        "format_error_rows": sum(bool(_merged_format_errors(item) if config.mode == "merged"
+                                      else item.get("format_errors"))
                                  for item in first_attempt_responses),
-        "format_error_attempts": sum(bool(item.get("format_errors"))
+        "format_error_attempts": sum(bool(_merged_format_errors(item) if config.mode == "merged"
+                                          else item.get("format_errors"))
                                      for item in selected_responses),
         "empty_final_rows": sum(not item.get("response") for item in first_attempt_responses),
         "empty_final_attempts": sum(not item.get("response") for item in selected_responses),
+        "media_rows": sum((item.get("media_count") or 0) > 0 for item in first_attempt_responses),
+        "media_attempts": sum((item.get("media_count") or 0) > 0 for item in selected_responses),
+        "missing_media_rows": sum(bool(item.get("missing_media")) for item in first_attempt_responses),
+        "missing_media_attempts": sum(bool(item.get("missing_media")) for item in selected_responses),
         "rows_at_token_cap": (sum(
             ((item.get("usage") or {}).get("completion_tokens", 0) or 0) >= token_cap
             for item in first_attempt_responses) if token_cap is not None else None),

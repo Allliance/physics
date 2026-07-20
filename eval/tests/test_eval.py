@@ -6,12 +6,14 @@ from tempfile import TemporaryDirectory
 from unittest.mock import patch
 
 from eval.llm import Completion, OpenAICompatibleLLM
+from utils.codex_cli import CodexLLM
 
 from eval.__main__ import resolve_dataset_path
 from eval.parsing import detect_part_ids, extract_boxes, map_separated_boxes, parse_json_object
 from eval.pipeline import (
-    MERGED_SCHEMA, SEPARATED_SCHEMA, GenerationConfig, RunConfig, _attempt_key, _key,
-    candidate_answers, load_ground_truths, model_artifact_dir, resolve_ground_truth, run,
+    MERGED_SCHEMA, GenerationConfig, RunConfig, _attempt_key, _key,
+    candidate_answers, load_ground_truths, model_artifact_dir, normalize_row,
+    resolve_ground_truth, run,
 )
 
 
@@ -21,6 +23,10 @@ class ParsingTests(unittest.TestCase):
         self.assertEqual(resolve_dataset_path("Physics", "validation").name, "validation.parquet")
         with self.assertRaisesRegex(ValueError, "no validation split"):
             resolve_dataset_path("FrontierPhysics", "validation")
+        with TemporaryDirectory() as directory:
+            dataset = Path(directory) / "custom.parquet"
+            dataset.touch()
+            self.assertEqual(resolve_dataset_path("Physics", "test", dataset), dataset)
 
     def test_parts_are_ground_truth_keys_in_order(self):
         self.assertEqual(detect_part_ids({"b": "one", "d": "two", "f": "three"}), ["b", "d", "f"])
@@ -99,6 +105,18 @@ class ParsingTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "missing parts"):
             resolve_ground_truth({"id": "partial", "ground_truths": '{"a":"x"}'}, ["a", "b"])
 
+    def test_legacy_prepared_row_is_normalized(self):
+        row = normalize_row({
+            "id": "legacy",
+            "questions": "(a) Q1 (b) Q2",
+            "solutions": "(a) A1 (b) A2",
+            "final_answers": '["A1", "A2"]',
+        })
+        self.assertEqual(row["question"], "(a) Q1 (b) Q2")
+        self.assertEqual(row["solution"], "(a) A1 (b) A2")
+        self.assertEqual(row["ground_truths"], {"a": "A1", "b": "A2"})
+        self.assertTrue(row["is_multi_part"])
+
 
 class FailingLLM:
     def complete(self, *args, **kwargs):
@@ -115,6 +133,19 @@ class SequenceLLM:
         if not self.texts:
             raise AssertionError("unexpected LLM call")
         return Completion(self.texts.pop(0), usage={"prompt_tokens": 1, "completion_tokens": 1})
+
+
+class MediaCheckingLLM(SequenceLLM):
+    def __init__(self, *texts):
+        super().__init__(*texts)
+        self.media_counts = []
+        self.media_paths_existed = []
+
+    def complete(self, *args, **kwargs):
+        image_paths = kwargs.get("image_paths") or []
+        self.media_counts.append(len(image_paths))
+        self.media_paths_existed.append(all(Path(path).is_file() for path in image_paths))
+        return super().complete(*args, **kwargs)
 
 
 class LLMTests(unittest.TestCase):
@@ -141,11 +172,16 @@ class LLMTests(unittest.TestCase):
         body = json.loads(request.call_args.args[0].data)
         self.assertEqual(body["chat_template_kwargs"], {"enable_thinking": False})
 
+    def test_codex_command_attaches_images(self):
+        client = CodexLLM(model="gpt-5.5")
+        cmd = client._build_command(Path("/tmp/work"), None, [Path("/tmp/one.png"), Path("/tmp/two.jpg")])
+        self.assertIn("--image", cmd)
+        self.assertEqual(cmd[cmd.index("--image") + 1], "/tmp/one.png")
+        self.assertEqual(cmd[cmd.index("--image", cmd.index("--image") + 1) + 1], "/tmp/two.jpg")
+
 
 class JudgmentCacheTests(unittest.TestCase):
     def test_judge_schemas_require_reasons(self):
-        self.assertEqual(set(SEPARATED_SCHEMA["properties"]), {"correct", "reason"})
-        self.assertEqual(set(SEPARATED_SCHEMA["required"]), {"correct", "reason"})
         part_schema = MERGED_SCHEMA["properties"]["parts"]["items"]
         self.assertEqual(set(part_schema["properties"]), {"part", "score", "reason"})
         self.assertEqual(set(part_schema["required"]), {"part", "score", "reason"})
@@ -156,24 +192,24 @@ class JudgmentCacheTests(unittest.TestCase):
         self.assertNotEqual(greedy.cache_tag(), sampled.cache_tag())
 
     def test_repeat_runs_generation_and_judgment_per_attempt(self):
-        row = {"id": "sample", "question": "question", "ground_truths": {"a": "yes"}}
+        row = {"id": "sample", "question": "question", "solution": "final answer yes"}
         with TemporaryDirectory() as directory:
             root = Path(directory)
             dataset = root / "Dataset" / "test.parquet"
             row_key = _key(dataset, row)
-            config = RunConfig(mode="separated", generation=GenerationConfig("generator"),
+            config = RunConfig(mode="merged", generation=GenerationConfig("generator"),
                                judge_name="judge", repeat=4, max_workers=1)
             generator = SequenceLLM(
-                r"\boxed{(a) yes}",
-                r"\boxed{(a) no}",
-                r"\boxed{(a) yes}",
-                r"\boxed{(a) yes}",
+                r"\boxed{yes}",
+                r"\boxed{no}",
+                r"\boxed{yes}",
+                r"\boxed{yes}",
             )
             judge = SequenceLLM(
-                '{"correct": true, "reason": "attempt 1"}',
-                '{"correct": false, "reason": "attempt 2"}',
-                '{"correct": true, "reason": "attempt 3"}',
-                '{"correct": true, "reason": "attempt 4"}',
+                '{"parts": [{"part": "a", "score": 1, "reason": "attempt 1"}]}',
+                '{"parts": [{"part": "a", "score": 0, "reason": "attempt 2"}]}',
+                '{"parts": [{"part": "a", "score": 1, "reason": "attempt 3"}]}',
+                '{"parts": [{"part": "a", "score": 1, "reason": "attempt 4"}]}',
             )
             with patch("eval.pipeline.read_rows", return_value=[row]):
                 result = run(dataset, root / "artifacts", config, generator, judge)
@@ -198,28 +234,67 @@ class JudgmentCacheTests(unittest.TestCase):
             self.assertEqual(summary["best_at_4"], 1.0)
             self.assertEqual(summary["num_rows_with_all_4_attempts_scored"], 1)
 
+    def test_merged_multimodal_run_attaches_row_media_to_generator_and_judge(self):
+        image_data_url = (
+            "data:image/png;base64,"
+            "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMB/6X"
+            "7q2sAAAAASUVORK5CYII="
+        )
+        row = {
+            "id": "sample",
+            "question": "Use the attached graph. What is shown?",
+            "solution": "final answer yes",
+            "graphs": json.dumps([{"image_url": {"url": image_data_url}}]),
+        }
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            dataset = root / "Dataset" / "test.parquet"
+            config = RunConfig(mode="merged",
+                               generation=GenerationConfig("generator", include_media=True),
+                               judge_name="judge", max_workers=1)
+            generator = MediaCheckingLLM(r"\boxed{yes}")
+            judge = MediaCheckingLLM(json.dumps({
+                "parts": [{"part": "a", "score": 1, "reason": "The answer matches."}]
+            }))
+            with patch("eval.pipeline.read_rows", return_value=[row]):
+                result = run(dataset, root / "artifacts", config, generator, judge)
+
+            self.assertEqual(generator.media_counts, [1])
+            self.assertEqual(judge.media_counts, [1])
+            self.assertEqual(generator.media_paths_existed, [True])
+            self.assertEqual(judge.media_paths_existed, [True])
+            response = json.loads(
+                (model_artifact_dir(root / "artifacts", dataset, config) / "responses.jsonl")
+                .read_text().splitlines()[-1]
+            )
+            summary = json.loads((result / "summary.json").read_text())
+            self.assertEqual(response["media_count"], 1)
+            self.assertEqual(response["missing_media"], [])
+            self.assertEqual(summary["media_rows"], 1)
+            self.assertEqual(summary["missing_media_rows"], 0)
+
     def test_repeat_reuses_legacy_first_attempt_cache(self):
-        row = {"id": "sample", "question": "question", "ground_truths": {"a": "yes"}}
+        row = {"id": "sample", "question": "question", "solution": "final answer yes"}
         with TemporaryDirectory() as directory:
             root = Path(directory)
             dataset = root / "Dataset" / "test.parquet"
             row_key = _key(dataset, row)
-            config = RunConfig(mode="separated", generation=GenerationConfig("generator"),
+            config = RunConfig(mode="merged", generation=GenerationConfig("generator"),
                                judge_name="judge", repeat=2, max_workers=1)
             out = model_artifact_dir(root / "artifacts", dataset, config)
             judge_out = out / "judge_judge"
             judge_out.mkdir(parents=True)
             (out / "responses.jsonl").write_text(json.dumps({
-                "key": row_key, "id": "sample", "part_ids": ["a"],
-                "extracted_answers": {"a": "yes"},
+                "key": row_key, "id": "sample", "part_ids": [],
+                "extracted_answer": "yes",
             }) + "\n")
             (judge_out / "judgments.jsonl").write_text(json.dumps({
                 "key": row_key, "id": "sample", "part_ids": ["a"],
                 "correct": ["a"], "score": 1.0,
-                "parts": {"a": {"correct": True, "reason": "cached first attempt"}},
+                "parts": {"a": {"score": 1, "reason": "cached first attempt"}},
             }) + "\n")
-            generator = SequenceLLM(r"\boxed{(a) no}")
-            judge = SequenceLLM('{"correct": false, "reason": "new second attempt"}')
+            generator = SequenceLLM(r"\boxed{no}")
+            judge = SequenceLLM('{"parts": [{"part": "a", "score": 0, "reason": "new second attempt"}]}')
             with patch("eval.pipeline.read_rows", return_value=[row]):
                 result = run(dataset, root / "artifacts", config, generator, judge)
 
@@ -233,84 +308,63 @@ class JudgmentCacheTests(unittest.TestCase):
             self.assertEqual(summary["mean@2"], 0.5)
             self.assertEqual(summary["best@2"], 1.0)
 
-    def test_cached_judgment_drops_null_parts_without_llm_call(self):
-        row = {"id": "sample", "question": "question", "ground_truths": {"a": "yes", "b": None}}
+    def test_separated_mode_is_deprecated(self):
+        row = {"id": "sample", "question": "question", "solution": "final answer yes"}
+        config = RunConfig(mode="separated", generation=GenerationConfig("generator"),
+                           judge_name="judge")
         with TemporaryDirectory() as directory:
             root = Path(directory)
             dataset = root / "Dataset" / "test.parquet"
-            key = _key(dataset, row)
-            config = RunConfig(mode="separated", generation=GenerationConfig("generator"),
-                               judge_name="judge")
-            out = model_artifact_dir(root / "artifacts", dataset, config)
-            judge_out = out / "judge_judge"
-            judge_out.mkdir(parents=True)
-            (out / "responses.jsonl").write_text(json.dumps({
-                "key": key, "id": "sample", "part_ids": ["a", "b"],
-                "extracted_answers": {"a": "yes", "b": ""},
-            }) + "\n")
-            (judge_out / "judgments.jsonl").write_text(json.dumps({
-                "key": key, "id": "sample", "part_ids": ["a", "b"],
-                "correct": ["a", "b"], "score": 1.0,
-                "parts": {
-                    "a": {"correct": True, "reason": "part a is correct"},
-                    "b": {"correct": True, "reason": "part b is correct"},
-                },
-            }) + "\n")
             with patch("eval.pipeline.read_rows", return_value=[row]):
-                result = run(dataset, root / "artifacts", config, FailingLLM(), FailingLLM())
-            migrated = json.loads((result / "judgments.jsonl").read_text().splitlines()[-1])
-            self.assertEqual(migrated["part_ids"], ["a"])
-            self.assertEqual(migrated["correct"], ["a"])
-            self.assertEqual(migrated["score"], 1.0)
-            self.assertEqual(list(migrated["parts"]), ["a"])
-            self.assertEqual(migrated["parts"]["a"]["reason"], "part a is correct")
-            summary = json.loads((result / "summary.json").read_text())
-            self.assertNotIn("correct_parts", summary)
-            self.assertNotIn("total_parts", summary)
-            self.assertNotIn("micro_part_score", summary)
+                with self.assertRaisesRegex(ValueError, "separated mode is deprecated"):
+                    run(dataset, root / "artifacts", config, FailingLLM(), FailingLLM())
 
     def test_reason_free_cached_judgment_is_refreshed(self):
-        row = {"id": "sample", "question": "question", "ground_truths": {"a": "yes"}}
+        row = {"id": "sample", "question": "question", "solution": "final answer yes"}
         with TemporaryDirectory() as directory:
             root = Path(directory)
             dataset = root / "Dataset" / "test.parquet"
             key = _key(dataset, row)
-            config = RunConfig(mode="separated", generation=GenerationConfig("generator"),
+            config = RunConfig(mode="merged", generation=GenerationConfig("generator"),
                                judge_name="judge")
             out = model_artifact_dir(root / "artifacts", dataset, config)
             judge_out = out / "judge_judge"
             judge_out.mkdir(parents=True)
             (out / "responses.jsonl").write_text(json.dumps({
-                "key": key, "id": "sample", "part_ids": ["a"],
-                "extracted_answers": {"a": "yes"},
+                "key": key, "id": "sample", "part_ids": [],
+                "extracted_answer": "yes",
             }) + "\n")
             (judge_out / "judgments.jsonl").write_text(json.dumps({
                 "key": key, "id": "sample", "part_ids": ["a"],
                 "correct": ["a"], "score": 1.0,
-                "parts": {"a": {"correct": True}},
+                "parts": {"a": {"score": 1}},
             }) + "\n")
-            judge = SequenceLLM('{"correct": true, "reason": "The answer matches the reference."}')
+            judge = SequenceLLM(json.dumps({
+                "parts": [{"part": "a", "score": 1, "reason": "The answer matches the reference."}]
+            }))
             with patch("eval.pipeline.read_rows", return_value=[row]):
                 result = run(dataset, root / "artifacts", config, FailingLLM(), judge)
             self.assertEqual(len(judge.calls), 1)
             refreshed = json.loads((result / "judgments.jsonl").read_text().splitlines()[-1])
             self.assertEqual(refreshed["parts"]["a"]["reason"], "The answer matches the reference.")
 
-    def test_separated_judgment_records_reason(self):
-        row = {"id": "sample", "question": "question", "ground_truths": {"a": "yes"}}
+    def test_merged_single_part_judgment_records_reason(self):
+        row = {"id": "sample", "question": "question", "solution": "final answer yes"}
         with TemporaryDirectory() as directory:
             root = Path(directory)
             dataset = root / "Dataset" / "test.parquet"
             key = _key(dataset, row)
-            config = RunConfig(mode="separated", generation=GenerationConfig("generator"),
+            config = RunConfig(mode="merged", generation=GenerationConfig("generator"),
                                judge_name="judge")
             out = model_artifact_dir(root / "artifacts", dataset, config)
             out.mkdir(parents=True)
             (out / "responses.jsonl").write_text(json.dumps({
-                "key": key, "id": "sample", "part_ids": ["a"],
-                "extracted_answers": {"a": "yes"},
+                "key": key, "id": "sample", "part_ids": [],
+                "extracted_answer": "yes",
             }) + "\n")
-            judge = SequenceLLM('{"correct": true, "reason": "The candidate states yes."}')
+            judge = SequenceLLM(json.dumps({
+                "parts": [{"part": "a", "score": 1, "reason": "The candidate states yes."}]
+            }))
             with patch("eval.pipeline.read_rows", return_value=[row]):
                 result = run(dataset, root / "artifacts", config, FailingLLM(), judge)
             judgment = json.loads((result / "judgments.jsonl").read_text().splitlines()[-1])
@@ -380,6 +434,70 @@ class JudgmentCacheTests(unittest.TestCase):
             judgment = json.loads((result / "judgments.jsonl").read_text().splitlines()[-1])
             self.assertEqual(judgment["part_ids"], ["a"])
             self.assertEqual(judgment["score"], 1.0)
+
+    def test_merged_generation_uses_last_box_without_format_error(self):
+        row = {
+            "id": "sample",
+            "question": "question",
+            "solution": "final answer yes",
+            "is_multi_part": False,
+        }
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            dataset = root / "Dataset" / "test.parquet"
+            config = RunConfig(mode="merged", generation=GenerationConfig("generator"),
+                               judge_name="judge", max_workers=1)
+            generator = SequenceLLM(r"work \boxed{no} more work \boxed{yes}")
+            judge = SequenceLLM(json.dumps({
+                "parts": [{"part": "a", "score": 1, "reason": "The candidate states yes."}]
+            }))
+            with patch("eval.pipeline.read_rows", return_value=[row]):
+                result = run(dataset, root / "artifacts", config, generator, judge)
+
+            response = json.loads(
+                (model_artifact_dir(root / "artifacts", dataset, config) / "responses.jsonl")
+                .read_text().splitlines()[-1]
+            )
+            judgment = json.loads((result / "judgments.jsonl").read_text().splitlines()[-1])
+            self.assertEqual(response["boxes"], ["no", "yes"])
+            self.assertEqual(response["extracted_answer"], "yes")
+            self.assertEqual(response["format_errors"], [])
+            self.assertEqual(judgment["score"], 1.0)
+
+    def test_merged_cached_multi_box_response_is_rejudged_with_last_box(self):
+        row = {
+            "id": "sample",
+            "question": "question",
+            "solution": "final answer yes",
+            "is_multi_part": False,
+        }
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            dataset = root / "Dataset" / "test.parquet"
+            key = _key(dataset, row)
+            config = RunConfig(mode="merged", generation=GenerationConfig("generator"),
+                               judge_name="judge", max_workers=1)
+            out = model_artifact_dir(root / "artifacts", dataset, config)
+            out.mkdir(parents=True)
+            (out / "responses.jsonl").write_text(json.dumps({
+                "key": key, "id": "sample", "part_ids": [],
+                "boxes": ["no", "yes"],
+                "extracted_answer": "",
+                "format_errors": ["expected 1 box, found 2"],
+            }) + "\n")
+            judge = SequenceLLM(json.dumps({
+                "parts": [{"part": "a", "score": 1, "reason": "The candidate states yes."}]
+            }))
+            with patch("eval.pipeline.read_rows", return_value=[row]):
+                result = run(dataset, root / "artifacts", config, FailingLLM(), judge)
+
+            prompt = judge.calls[0][0][0]
+            judgment = json.loads((result / "judgments.jsonl").read_text().splitlines()[-1])
+            summary = json.loads((result / "summary.json").read_text())
+            self.assertIn("Candidate final answer", prompt)
+            self.assertIn("yes", prompt)
+            self.assertEqual(judgment["score"], 1.0)
+            self.assertEqual(summary["format_error_rows"], 0)
 
     def test_merged_null_part_scores_are_excluded_from_denominator(self):
         row = {

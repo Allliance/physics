@@ -71,6 +71,7 @@ class CodexLLM:
         system_prompt: str | None = None,
         output_schema: Path | None = None,
         api_key: str | None = None,
+        image_paths: list[Path] | None = None,
     ) -> CodexLLMResult:
         last_error: CodexToolUseError | None = None
         max_attempts = 1 if not self.strict_no_tools else self.max_tool_retries + 1
@@ -81,6 +82,7 @@ class CodexLLM:
                     system_prompt=system_prompt,
                     output_schema=output_schema,
                     api_key=api_key,
+                    image_paths=image_paths,
                 )
                 result.attempts = attempt
                 return result
@@ -100,10 +102,11 @@ class CodexLLM:
         system_prompt: str | None,
         output_schema: Path | None,
         api_key: str | None,
+        image_paths: list[Path] | None,
     ) -> CodexLLMResult:
         for attempt in range(1, self.max_exec_retries + 2):
             with tempfile.TemporaryDirectory(prefix="codex-llm-") as tmpdir:
-                cmd = self._build_command(Path(tmpdir), output_schema)
+                cmd = self._build_command(Path(tmpdir), output_schema, image_paths or [])
                 env = os.environ.copy()
                 if api_key:
                     env["CODEX_API_KEY"] = api_key
@@ -130,7 +133,8 @@ class CodexLLM:
 
         return self._parse_jsonl(completed.stdout)
 
-    def _build_command(self, cwd: Path, output_schema: Path | None) -> list[str]:
+    def _build_command(self, cwd: Path, output_schema: Path | None,
+                       image_paths: list[Path]) -> list[str]:
         cmd = [
             self.codex_bin,
             "--ask-for-approval",
@@ -164,6 +168,8 @@ class CodexLLM:
             cmd.extend(["-c", f'model_reasoning_effort="{self.model_reasoning_effort}"'])
         if output_schema:
             cmd.extend(["--output-schema", str(output_schema)])
+        for image_path in image_paths:
+            cmd.extend(["--image", str(image_path)])
         cmd.append("-")
         return cmd
 
