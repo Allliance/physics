@@ -123,7 +123,7 @@ h2 {
 
 .controls {
   display: grid;
-  grid-template-columns: minmax(260px, 0.9fr) minmax(280px, 1.1fr) minmax(180px, 0.55fr);
+  grid-template-columns: minmax(240px, 0.85fr) minmax(260px, 1.05fr) minmax(160px, 0.55fr) minmax(150px, 0.5fr);
   gap: 14px;
   margin-bottom: 16px;
 }
@@ -244,6 +244,16 @@ textarea:focus {
   color: var(--accent-strong);
   font-size: 0.78rem;
   font-weight: 650;
+}
+
+.pill-danger {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.pill-success {
+  background: #dcfce7;
+  color: #166534;
 }
 
 .sample-question {
@@ -491,6 +501,7 @@ textarea:focus {
 }
 
 .field-original-question .field-value,
+.field-processed-question .field-value,
 .field-repaired-question .field-value {
   color: #121826;
   background: #ffffff;
@@ -513,6 +524,11 @@ textarea:focus {
   color: #0f4f4a;
 }
 
+.field-processed-question .field-name {
+  background: #e8f5ee;
+  color: #14532d;
+}
+
 .field-question {
   border-color: #9fc8c2;
   box-shadow: 0 14px 34px rgba(15, 118, 110, 0.12);
@@ -520,6 +536,10 @@ textarea:focus {
 
 .field-original-question {
   border-color: #cbd5e1;
+}
+
+.field-processed-question {
+  border-color: #b7d9c8;
 }
 
 .field-repaired-question {
@@ -535,6 +555,51 @@ textarea:focus {
 .field-extracted-ground-truths .field-value,
 .field-ground-truths .field-value {
   background: #f2fbf8;
+}
+
+.latest-evaluation {
+  display: grid;
+  gap: 14px;
+}
+
+.judge-part-list {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  background: #f8fafc;
+}
+
+.judge-part-card {
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-left-width: 5px;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.judge-part-card.part-correct {
+  border-left-color: #16a34a;
+}
+
+.judge-part-card.part-incorrect {
+  border-left-color: #dc2626;
+}
+
+.judge-part-card.part-unscored {
+  border-left-color: #64748b;
+}
+
+.judge-part-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.judge-part-reason {
+  color: #1f2937;
+  line-height: 1.6;
+  white-space: pre-wrap;
 }
 
 .answer-list {
@@ -682,6 +747,7 @@ textarea:focus {
 }
 
 .format-warning { padding: 14px 16px; border: 1px solid #fdba74; border-radius: 8px; background: #fff7ed; color: #9a3412; }
+.self-containment-warning { padding: 14px 16px; border: 1px solid #fca5a5; border-radius: 8px; background: #fef2f2; color: #991b1b; }
 .model-response { padding: 14px 16px; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
 .model-response summary { cursor: pointer; font-weight: 760; color: var(--accent-strong); }
 .model-response pre { overflow-x: auto; white-space: pre-wrap; line-height: 1.55; }
@@ -696,6 +762,12 @@ textarea:focus {
   margin: 0.75em 0;
   overflow-x: auto;
   overflow-y: hidden;
+}
+
+.attempt-block {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
 }
 
 @media (max-width: 800px) {

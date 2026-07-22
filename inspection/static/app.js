@@ -3,6 +3,7 @@ const state = {
   dataset: "",
   q: "",
   label: "",
+  scoreSort: "",
   offset: 0,
   limit: 50,
   total: 0,
@@ -13,6 +14,7 @@ const els = {
   datasetSelect: document.querySelector("#datasetSelect"),
   searchInput: document.querySelector("#searchInput"),
   labelSelect: document.querySelector("#labelSelect"),
+  scoreSortSelect: document.querySelector("#scoreSortSelect"),
   summary: document.querySelector("#summary"),
   resultMeta: document.querySelector("#resultMeta"),
   sampleList: document.querySelector("#sampleList"),
@@ -226,9 +228,11 @@ function renderSamples(items) {
   els.sampleList.innerHTML = items
     .map((item) => {
       const tags = item.labels && item.labels.length ? item.labels : [item.split, item.part].filter(Boolean);
-      const tagHtml = tags.map((tag) => `<span class="pill">${escapeHtml(tag)}</span>`).join("");
+      const tagHtml = tags
+        .map((tag) => `<span class="${pillClass(tag)}">${escapeHtml(tag)}</span>`)
+        .join("");
       const source = item.source_file ? `Source: ${escapeHtml(item.source_file)}` : "";
-      const score = item.score === null || item.score === undefined ? "" : `Score: ${Number(item.score).toFixed(3)}`;
+      const score = scoreLabel(item);
       const facts = [
         item.has_solution ? "Solution" : "",
         item.ground_truth_count ? `${item.ground_truth_count} extracted GT` : "",
@@ -256,12 +260,39 @@ function renderSamples(items) {
   renderMath(els.sampleList);
 }
 
+function sampleScore(sample) {
+  const value =
+    sample.latest_judge_score ??
+    sample.model_score ??
+    sample.score;
+  if (value === null || value === undefined || value === "") return null;
+  const numeric = Number(value);
+  return Number.isFinite(numeric) ? numeric : null;
+}
+
+function scoreLabel(sample) {
+  const score = sampleScore(sample);
+  return score === null ? "Score: unscored" : `Score: ${score.toFixed(3)}`;
+}
+
+function pillClass(tag) {
+  const normalized = text(tag).toLowerCase();
+  const classes = ["pill"];
+  if (normalized === "not self-contained" || normalized === "self-contained:no") {
+    classes.push("pill-danger");
+  } else if (normalized === "likely self-contained" || normalized === "self-contained:likely") {
+    classes.push("pill-success");
+  }
+  return classes.join(" ");
+}
+
 function renderPageMeta() {
   const start = state.total === 0 ? 0 : state.offset + 1;
   const end = Math.min(state.offset + state.limit, state.total);
   const filters = [];
   if (state.q) filters.push(`question contains "${state.q}"`);
   if (state.label) filters.push(`label "${state.label}"`);
+  if (state.scoreSort) filters.push(`score ${state.scoreSort === "asc" ? "lowest first" : "highest first"}`);
   els.resultMeta.textContent = `${start}-${end} of ${state.total} samples${filters.length ? ` matching ${filters.join(", ")}` : ""}`;
   els.prevButton.disabled = state.offset <= 0;
   els.nextButton.disabled = state.offset + state.limit >= state.total;
@@ -302,6 +333,7 @@ async function loadSamples() {
     dataset: state.dataset,
     q: state.q,
     label: state.label,
+    score_sort: state.scoreSort,
     offset: state.offset,
     limit: state.limit,
   });
@@ -331,6 +363,7 @@ async function openSample(rowIndex) {
     const payload = await getJson(`/api/sample?${params}`);
     const sample = payload.sample;
     const questionId = text(sample.id || sample.sample_id || sample.__line_number || rowIndex);
+    els.dialogEyebrow.textContent = `Sample ${rowIndex} · ${scoreLabel(sample)}`;
     els.dialogTitle.textContent = `${currentDatasetName()}:${questionId}`;
     renderFields(sample);
   } catch (error) {
@@ -354,6 +387,7 @@ function renderFields(sample) {
   }
   const label = text(sample.repair_status || sample.__part || sample.verdict || sample.part || sample.label || sample.domain || "unlabeled");
   const isRepairSample = "repaired_question" in sample || "original_question" in sample;
+  const hasProcessedQuestion = !isRepairSample && "processed_question" in sample;
   const answerKey = firstPresent(sample, ["ground_truths", "ground_truth", "final_answers", "answers"]);
   const sections = isRepairSample
     ? [
@@ -363,7 +397,8 @@ function renderFields(sample) {
         { title: "Solution", key: firstPresent(sample, ["solution", "solutions", "answer", "explanation"]), kind: "text" },
       ].filter((section) => section.key)
     : [
-        { title: "Question", key: firstPresent(sample, ["question", "questions", "statement", "problem", "prompt"]), kind: "text" },
+        { title: hasProcessedQuestion ? "Original Question" : "Question", key: firstPresent(sample, ["question", "questions", "statement", "problem", "prompt"]), kind: "text" },
+        { title: "Processed Question", key: firstPresent(sample, ["processed_question"]), kind: "text" },
         { title: groundTruthTitle(answerKey), key: answerKey, kind: "answers" },
         { title: "Solution", key: firstPresent(sample, ["solution", "solutions", "answer", "explanation"]), kind: "text" },
       ].filter((section) => section.key);
@@ -389,6 +424,8 @@ function renderFields(sample) {
     `;
   };
   const reviewNote = text(sample.review_note || "").trim();
+  const selfContainmentComment = text(sample.self_containment_comment || "").trim();
+  const latestEvaluation = latestEvaluationHtml(sample);
   const issueMeta = [
     sample.issue_type ? `issue: ${text(sample.issue_type)}` : "",
     sample.dataset ? `dataset: ${text(sample.dataset)}` : "",
@@ -399,11 +436,68 @@ function renderFields(sample) {
     ${labelBarHtml(label)}
     <div class="primary-fields${isRepairSample ? " repair-fields" : ""}">
       ${reviewNote ? `<div class="format-warning"><strong>Review note:</strong> ${escapeHtml(reviewNote)}</div>` : ""}
+      ${selfContainmentComment ? `<div class="self-containment-warning"><strong>Self-containment review:</strong> ${escapeHtml(selfContainmentComment)}</div>` : ""}
       ${issueMeta ? `<div class="judge-reason"><strong>Issue metadata</strong><span>${escapeHtml(issueMeta)}</span></div>` : ""}
       ${sections.map((section) => fieldHtml(section)).join("")}
+      ${latestEvaluation}
     </div>
   `;
   renderMath(els.dialogContent);
+}
+
+function latestEvaluationHtml(sample) {
+  const modelResponse = text(sample.latest_model_response || "").trim();
+  const extractedAnswer = text(sample.latest_extracted_answer || "").trim();
+  const judgeParts = parseMaybeJson(sample.latest_judge_parts || []);
+  const hasJudgeParts = Array.isArray(judgeParts) && judgeParts.length;
+  if (!modelResponse && !extractedAnswer && !hasJudgeParts) return "";
+
+  const score = sample.latest_judge_score === null || sample.latest_judge_score === undefined
+    ? "unscored"
+    : Number(sample.latest_judge_score).toFixed(3);
+  const meta = [
+    sample.latest_eval_model ? `model: ${text(sample.latest_eval_model)}` : "",
+    sample.latest_eval_mode ? `mode: ${text(sample.latest_eval_mode)}` : "",
+    sample.latest_eval_artifact ? `artifact: ${text(sample.latest_eval_artifact)}` : "",
+  ].filter(Boolean).join(" · ");
+
+  const judgeHtml = hasJudgeParts
+    ? `
+      <section class="field field-judge-judgments field-primary">
+        <div class="field-name">
+          <span>Judge Judgment By Part</span>
+          <span>score ${escapeHtml(score)}</span>
+        </div>
+        <div class="judge-part-list">
+          ${judgeParts.map((part) => judgePartHtml(part)).join("")}
+        </div>
+      </section>
+    `
+    : "";
+
+  return `
+    <div class="latest-evaluation">
+      <div class="judge-reason"><strong>Latest evaluation</strong><span>${escapeHtml(meta || `score ${score}`)}</span></div>
+      ${modelResponse ? `<details class="model-response" open><summary>Model response</summary><div class="rendered-text">${richTextHtml(modelResponse)}</div></details>` : ""}
+      ${extractedAnswer ? `<details class="model-response"><summary>Extracted boxed answer</summary><div class="rendered-text">${richTextHtml(extractedAnswer)}</div></details>` : ""}
+      ${judgeHtml}
+    </div>
+  `;
+}
+
+function judgePartHtml(part) {
+  const score = part && part.score !== undefined && part.score !== null ? Number(part.score) : null;
+  const tone = score === 1 ? "part-correct" : score === 0 ? "part-incorrect" : "part-unscored";
+  const scoreText = score === null ? "unscored" : String(score);
+  return `
+    <article class="judge-part-card ${tone}">
+      <div class="judge-part-head">
+        <span class="part-badge">(${escapeHtml(text(part.part || "?"))})</span>
+        <strong>Score ${escapeHtml(scoreText)}</strong>
+      </div>
+      <div class="judge-part-reason">${escapeHtml(text(part.reason || "(no reason)"))}</div>
+    </article>
+  `;
 }
 
 function renderEvaluationFields(sample) {
@@ -446,7 +540,21 @@ function renderEvaluationFields(sample) {
     .join("");
   const formatErrors = Array.isArray(sample.format_errors) ? sample.format_errors : parseMaybeJson(sample.format_errors);
   const reviewNote = text(sample.review_note || sample.manual_review_reason || "").trim();
+  const selfContainmentComment = text(sample.self_containment_comment || "").trim();
   const solution = text(sample.solution || "").trim();
+  const attempts = parseMaybeJson(sample.evaluation_attempts) || [];
+  const attemptsHtml = Array.isArray(attempts) && attempts.length
+    ? `<details class="model-response"><summary>All ${attempts.length} evaluations</summary>${attempts.map((attempt) => {
+        const attemptParts = attempt.part_scores ? JSON.stringify(attempt.part_scores, null, 2) : "";
+        return `
+          <section class="attempt-block">
+            <div class="judge-reason"><strong>Repeat ${escapeHtml(text(attempt.repeat))} · score ${escapeHtml(text(attempt.score))}</strong><span>${escapeHtml(attemptParts)}</span></div>
+            <details class="answer-source"><summary>Generated response</summary><div class="rendered-text">${richTextHtml(attempt.generated_response || "")}</div></details>
+            <details class="answer-source"><summary>Judge response</summary><pre>${escapeHtml(text(attempt.judge_response || ""))}</pre></details>
+          </section>
+        `;
+      }).join("")}</details>`
+    : "";
   const candidateMeta = [
     sample.source_file ? `source ${sample.source_file}` : "",
     sample.key ? `key ${sample.key}` : "",
@@ -456,6 +564,7 @@ function renderEvaluationFields(sample) {
     ${labelBarHtml(label)}
     <div class="primary-fields">
       ${reviewNote ? `<div class="format-warning"><strong>Review note:</strong> ${escapeHtml(reviewNote)}</div>` : ""}
+      ${selfContainmentComment ? `<div class="self-containment-warning"><strong>Self-containment review:</strong> ${escapeHtml(selfContainmentComment)}</div>` : ""}
       ${candidateMeta ? `<div class="judge-reason"><strong>Candidate metadata</strong><span>${escapeHtml(candidateMeta)}</span></div>` : ""}
       <section class="field field-question field-primary">
         <div class="field-name"><span>Question</span><span>${text(sample.question).length.toLocaleString()} chars</span></div>
@@ -465,6 +574,7 @@ function renderEvaluationFields(sample) {
       ${formatErrors && formatErrors.length ? `<div class="format-warning"><strong>Format errors:</strong> ${escapeHtml(formatErrors.join("; "))}</div>` : ""}
       ${solution ? `<details class="model-response" open><summary>Final solution</summary><div class="rendered-text">${richTextHtml(solution, { normalizeLatex: true })}</div></details>` : ""}
       <details class="model-response"><summary>Full model response</summary><div class="rendered-text">${richTextHtml(sample.full_model_response)}</div></details>
+      ${attemptsHtml}
     </div>`;
   renderMath(els.dialogContent);
 }
@@ -569,6 +679,12 @@ els.searchInput.addEventListener(
 
 els.labelSelect.addEventListener("change", () => {
   state.label = els.labelSelect.value;
+  state.offset = 0;
+  loadSamples();
+});
+
+els.scoreSortSelect.addEventListener("change", () => {
+  state.scoreSort = els.scoreSortSelect.value;
   state.offset = 0;
   loadSamples();
 });

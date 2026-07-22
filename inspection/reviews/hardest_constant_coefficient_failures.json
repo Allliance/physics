@@ -1,0 +1,500 @@
+[
+  {
+    "dataset": "FrontierPhysics",
+    "split": "train",
+    "id": "kinetic/3.10",
+    "mean_at_4": 0.5,
+    "best_at_4": 0.8,
+    "question": "Light and matter: In this problem we use kinetic theory to explore the equilibrium between atoms and radiation.\n\n(a) The atoms are assumed to be either in their ground state $a_0$, or in an excited state $a_1$ (energy higher by $\\epsilon$). By considering the atoms as a collection of $N$ fixed two-state systems of energy $E$ (ignoring coordinates and momenta), calculate the ratio $n_1/n_0$ of densities of atoms in the two states as a function of temperature $T$.\n\nConsider photons $\\gamma$ of frequency $\\omega = \\epsilon/\\hbar$ and momentum $|\\vec p| = \\hbar \\omega/c$, interacting via: (i) Spontaneous emission $a_1\\to a_0+\\gamma$; (ii) Absorption $a_0+\\gamma\\to a_1$; (iii) Stimulated emission $a_1+\\gamma\\to a_0+\\gamma+\\gamma$. Spontaneous emission has probability $\\sigma_{\\rm sp}$; absorption and stimulated emission have constant differential cross sections $\\sigma_{\\rm ad}/(4\\pi)$ and $\\sigma_{\\rm st}/(4\\pi)$, respectively.\n\n(b) Write the Boltzmann equation governing the density $f$ of the photon gas, treating the atoms as fixed scatterers of densities $n_0$ and $n_1$.\n\n(c) Find the equilibrium density $f_{\\rm eq}$ for photons of the above frequency.\n\n(d) According to Planck's law, the photon density at temperature $T$ is $f_{\\rm eq} = \\big[\\exp(\\hbar\\omega/(k_B T)) - 1\\big]^{-1}/h^3$. What does this imply about the above cross sections?\n\n(e) Consider light shining along the x axis on atoms occupying $x>0$. Adapt the Boltzmann equation for a uniform incoming flux of photons with momentum $\\vec p = (\\hbar\\omega/c)\\, \\hat x$. What is the penetration length across which the incoming flux decays?",
+    "solution": "(a) Two-state equilibrium gives the Boltzmann ratio $n_1/n_0 = e^{-\\epsilon/(k_B T)}$.\n\n(b) The photon Boltzmann equation with sources/sinks from interactions is\n$\\partial_t f + \\vec p\\cdot\\partial_{\\vec q} f = -\\sigma_{\\rm ad} n_0 c\\, f + \\sigma_{\\rm st} n_1 c\\, f + \\sigma_{\\rm sp} n_1$.\n\n(c) In uniform equilibrium, the streaming term vanishes, and\n$-(\\sigma_{\\rm ad} n_0 c) f_{\\rm eq} + (\\sigma_{\\rm st} n_1 c) f_{\\rm eq} + \\sigma_{\\rm sp} n_1 = 0$, so\n$\\displaystyle f_{\\rm eq} = \\frac{1}{c} \\frac{\\sigma_{\\rm sp}}{\\sigma_{\\rm ad} (n_0/n_1) - \\sigma_{\\rm st}} = \\frac{1}{c} \\frac{\\sigma_{\\rm sp}}{\\sigma_{\\rm ad} e^{\\epsilon/(k_B T)} - \\sigma_{\\rm st}}$.\n\n(d) Matching to Planck's $f_{\\rm eq} = [e^{\\hbar\\omega/(k_B T)}-1]^{-1}/h^3$ implies Einstein relations $\\sigma_{\\rm ad} = \\sigma_{\\rm st}$ and $\\sigma_{\\rm sp} = (c/h^3)\\, \\sigma_{\\rm st}$.\n\n(e) With $p_x=\\hbar\\omega/c$ and $x>0$ region containing atoms, the Boltzmann equation reduces to $p_x\\, \\partial_x f = \\sigma_{\\rm st} c\\,[(n_1 - n_0) f + n_1/h^3]\\, \\theta(x)$. The general solution for $x>0$ is $f(p_x,x) = f_{\\rm eq}(p_x) + A(p_x) e^{-a x/p_x}$ with decay rate $a = \\sigma_{\\rm st} c\\, (n_0 - n_1) > 0$. The penetration length is $d = p_x/a = (\\hbar\\omega/c) / (\\sigma_{\\rm st} c (n_0 - n_1))$.",
+    "constant_coefficient_hits": [
+      {
+        "repeat": 3,
+        "part": "c",
+        "score": 0.2,
+        "reason": "The equilibrium expression has an extra factor of 4pi in the denominator compared with the reference result."
+      }
+    ],
+    "num_constant_coefficient_hits": 1
+  },
+  {
+    "dataset": "FrontierPhysics",
+    "split": "train",
+    "id": "textbook/3.8.3",
+    "mean_at_4": 0.41666666666666663,
+    "best_at_4": 0.6666666666666666,
+    "question": "3.8.3 Depinning transition and bubble nucleation\n\nConsider a quantum elastic string embedded in a three-dimensional space and pinned by a columnar defect potential \\(V\\) oriented parallel to the z-axis. The corresponding Euclidean-time action is\n\\[S[\\mathbf{u}]=\\int dz\\,d\\tau\\,\\left(\\tfrac{1}{2}\\rho\\dot{\\mathbf{u}}^2+\\tfrac{1}{2}\\sigma(\\partial_z\\mathbf{u})^2+V(|\\mathbf{u}|)\\right),\\]\nwhere the two-dimensional vector field \\(\\mathbf{u}(z,\\tau)\\) denotes the string displacement in the \\(xy\\)-plane, \\(\\rho\\) is the density per unit length, and \\(\\sigma\\) is the tension. An external in-plane field \\(f\\) is imposed along \\(x\\): \\(S_{\\text{ext}}=-f\\int dz d\\tau\\, \\mathbf{u}\\cdot\\mathbf{e}_x\\). Determine the probability (per unit time and per unit length) for the string to detach from the defect.\n\n(a) Give a saddle-point equation in \\((z,\\tau)\\)-space. Rescaling the coordinates, give the equation of motion transformed to a problem with circular symmetry.\n\n![](_page_4_Figure_3.jpeg)\n\n(b) In the thin-wall (bubble) approximation, specify two regions of space–time where the string is either free or completely locked to the defect. In this approximation, find \\(\\mathbf{u}(z,\\tau)\\). (Hint: in either case of complete locking or complete freedom, the potential does not exert a net force on the string.)\n\n(c) With exponential accuracy, determine the detaching probability. You may assume that, for all \\(u_x\\) obtained in (b), \\(V(|u|)\\simeq V_0=\\) const.",
+    "solution": "(a) Varying the action with respect to \\(u_x\\) gives \\(\\rho\\ddot{u}_x+\\sigma\\partial_z^2 u_x=-f+V'(u)(u_x/u)\\), where \\(u=|\\mathbf{u}|\\). With rescaling \\(\\tau=(\\rho/\\sigma)^{1/4}\\tilde{\\tau}\\), \\(z=(\\sigma/\\rho)^{1/4}\\tilde{z}\\), the equation becomes \\(\\sqrt{\\sigma\\rho}\\,\\partial^2 u_x=-f+V'(u)(u_x/u)\\) with \\(\\partial^2=\\partial_{\\tilde{\\tau}}^2+\\partial_{\\tilde{z}}^2\\). Imposing circular symmetry in polar coordinates \\((r,\\phi)\\) in \\((\\tilde{z},\\tilde{\\tau})\\)-space, the field is piecewise defined: \\(u_x(r)=0\\) for \\(r>R\\) (locked) and \\(u_x(r)=g(r)\\) for \\(r<R\\) (detached).\n\n(b) In the thin-wall approximation, neglect \\(V'\\). Then \\(g(r)\\) solves \\(\\partial_r^2 g + r^{-1}\\partial_r g = -f/\\sqrt{\\sigma\\rho}\\). The regular solution with \\(g(R)=0\\) is quadratic: \\[g(r)=\\frac{(R^2-r^2) f}{\\sqrt{4\\sigma\\rho}}.\\]\n\n(c) The bounce action is\n\\[S_{\\text{bubble}}=\\int^{R} d^2 r\\,\\left(\\tfrac{\\sqrt{\\sigma\\rho}}{2}(\\tilde{\\partial} g)^2 + V_0 - f g\\right) = -\\pi R^2\\left(\\frac{3 f^2 R^2}{16 (\\sigma\\rho)^{1/2}} - V_0\\right).\\]\nMinimizing over \\(R\\) gives \\(R_*^2=\\frac{8 V_0 \\sqrt{\\sigma\\rho}}{3 f^2}\\). The detachment (tunneling) rate per unit time and length is then\n\\[W\\propto e^{-S(R_*)}=\\exp\\left(-\\frac{4\\pi V_0^2}{3 f^2}\\sqrt{\\sigma\\rho}\\right).\\]",
+    "constant_coefficient_hits": [
+      {
+        "repeat": 4,
+        "part": "c",
+        "score": 0.6666666666666666,
+        "reason": "The tunneling exponent and critical radius do not match the reference result: the candidate misses the factor of 1/3 in both the optimal radius/action relation and gives an exponent larger by a factor of 3."
+      }
+    ],
+    "num_constant_coefficient_hits": 1
+  },
+  {
+    "dataset": "FrontierPhysics",
+    "split": "train",
+    "id": "textbook/7.4",
+    "mean_at_4": 0.49999999999999994,
+    "best_at_4": 0.6666666666666666,
+    "question": "Freezing of He^3: At low temperatures He^3 can be converted from liquid to solid by application of pressure. A peculiar feature of its phase boundary is that $(dP/dT)_{\\text{melting}}$ is negative at temperatures below 0.3 K $[(dP/dT)_m \\approx -30\\,\\text{atm}\\,\\text{K}^{-1} \\text{ at } T \\approx 0.1\\,\\text{K}]$. We will use a simple model of liquid and solid phases of He^3 to account for this feature.\n\n(a) In the solid phase, the He^3 atoms form a crystal lattice. Each atom has nuclear spin of $\\tfrac{1}{2}$. Ignoring the interaction between spins, what is the entropy per particle $s_s$, due to the spin degrees of freedom?\n\n(b) Liquid He^3 is modelled as an ideal Fermi gas, with a volume of $46\\,\\text{\\AA}^3$ per atom. What is its Fermi temperature $T_F$, in degrees Kelvin?\n\n(c) Write down an expression for $C_V$ in terms of $N, T, k_B, T_F$, up to a numerical constant, that is valid for $T \\ll T_F$.\n\n(d) Using the result in (c), calculate the entropy per particle $s_{\\ell}$, in the liquid at low temperatures. For $T \\ll T_F$, which phase (solid or liquid) has the higher entropy?\n\nThe Clausius-Clapeyron equation is $\\left(\\frac{dP}{dT}\\right)_{\\text{melting}} = \\frac{s_{\\ell} - s_{s}}{v_{\\ell} - v_{s}}$, where $v_{\\ell}$ and $v_{s}$ are the volumes per particle in the liquid and solid phases respectively.\n\n(f) It is found experimentally that $v_{\\ell} - v_{s} = 3\\,\\text{\\AA}^3$ per atom. Using this information, plus the results obtained in previous parts, estimate $\\left(\\frac{dP}{dT}\\right)_{\\text{melting}}$ at $T \\ll T_F$.",
+    "solution": "(a) The spin entropy per particle (two states) is $s_s = k_B \\ln 2$.\n\n(b) With atomic volume $46\\,\\text{\\AA}^3$, treating liquid $^3$He as a free Fermi gas yields $T_F = \\varepsilon_F/k_B = \\dfrac{h^2}{2 m k_B} \\left(\\dfrac{3N}{8\\pi V}\\right)^{2/3} \\approx 9.2\\,$K (using $m\\approx 6.8\\times 10^{-27}$ kg).\n\n(c) The low-$T$ heat capacity is linear in $T$: $C_V = (\\pi^2/4) N k_B (T/T_F)$.\n\n(d) Using $C_V = T\\, dS/dT$, the entropy per particle in the liquid is $s_{\\ell} = (\\pi^2/4) k_B (T/T_F)$. As $T\\to 0$, $s_{\\ell}\\to 0$ while $s_s=k_B\\ln 2$ remains finite (in this independent-spin approximation); thus the solid has larger entropy at sufficiently low $T$.\n\n(e) At coexistence $\\mu_{\\ell}(T,P) = \\mu_s(T,P)$. Differentiating and using $\\left(\\partial \\mu/\\partial T\\right)_P = -S/N$ and $\\left(\\partial \\mu/\\partial P\\right)_T = V/N$ yields $\\left(\\dfrac{dP}{dT}\\right)_{\\text{melting}} = \\dfrac{s_{\\ell}-s_s}{v_{\\ell}-v_s}$.\n\n(f) With $v_{\\ell}-v_s = 3\\,\\text{\\AA}^3$ and $s_{\\ell}-s_s \\approx (\\pi^2/4) k_B (T/T_F) - k_B \\ln 2$ at $T\\ll T_F$, one finds a negative slope. For $T\\approx 0.1\\,$K, $T_F\\approx 9.2\\,$K, a typical estimate is $(dP/dT)_{\\text{melting}} \\approx -2.7\\times 10^6\\,\\text{Pa K}^{-1}$, consistent with experiment.",
+    "constant_coefficient_hits": [
+      {
+        "repeat": 1,
+        "part": "d",
+        "score": 0.5,
+        "reason": "The liquid entropy has the wrong numerical coefficient compared with the reference, though the qualitative comparison that the solid has higher entropy at sufficiently low temperature is correct."
+      },
+      {
+        "repeat": 4,
+        "part": "d",
+        "score": 0.3333333333333333,
+        "reason": "The candidate uses the wrong numerical coefficient for s_l compared with the reference result, although it correctly states that the solid has higher entropy at low T."
+      }
+    ],
+    "num_constant_coefficient_hits": 2
+  },
+  {
+    "dataset": "FrontierPhysics",
+    "split": "test",
+    "id": "cmft/5.6.1",
+    "mean_at_4": 0.5,
+    "best_at_4": 0.5,
+    "question": "Peierls instability.\n\nIn problem 2.4.3 we saw that the half-filled one-dimensional lattice system is unstable to the formation of a commensurate periodic lattice distortion. It turns out that this is a general phenomenon: at zero temperature, one-dimensional crystals comprising electrons and ions tend to spontaneously develop lattice distortions transforming them into dielectrics. This lattice instability is known as a Peierls distortion, and in this problem we study its nature.\n\nThe starting point of the theory is the Euclidean action for a one-dimensional gas of electrons,\n\\[\nS_{\\text{el}}[\\psi] = \\int d\\tau \\int dx \\, \\bar{\\psi} \\left( \\partial_{\\tau} - \\frac{\\partial_x^2}{2m} - \\mu \\right) \\psi,\n\\]\nwhere, for simplicity, we assume spinless electrons. Anticipating that the detailed nature of lattice vibrations may not be essential, we describe the lattice in terms of a harmonic Euclidean action (section 1.1),\n\\[\nS_{\\rm ph}[u] = \\frac{\\rho}{2} \\int d\\tau \\int dx \\left( (\\partial_\\tau u)^2 + c^2 (\\partial_x u)^2 \\right),\n\\]\nwhere \\(u(\\tau, x)\\) denotes the scalar bosonic displacement field. We couple the electron system to lattice distortions in the Fr\\\"ohlich deformation potential approximation,\n\\[\nS_{\\text{el-ph}}[\\psi, u] = g \\int d\\tau \\int dx \\; \\bar{\\psi} \\psi \\, \\partial_x u.\n\\]\nThe full Euclidean action \\(S = S_{\\text{el}} + S_{\\text{ph}} + S_{\\text{el-ph}}\\) represents an interacting theory. We analyze it perturbatively in \\(g\\) and then explore the stability of the ensuing effective theory by mean-field methods.\n\n(a) Give the effective action for the displacement field \\(u\\). Taking \\(g\\) small, give the action up to second order in \\(u\\):\n\\[\nS_{\\text{eff}}[u] \\simeq \\sum_{q,\\omega_m} \\left( \\frac{\\rho}{2} (\\omega_m^2 + c^2 q^2) - \\frac{g^2}{2} q^2 \n\\chi(q, \\omega_{m}) \\right) |u_{\\omega_m, q}|^2,\n\\]\nwhere \\(\\chi(q, \\omega_m) = -T L^{-1} \\sum_{p, \\omega_n} G_{0, p, \\omega_n} G_{0, p+q, \\omega_n + \\omega_m}\\) contains the Green functions of the free one-dimensional electron gas.\n\n(b) Determine the critical temperature \\(T_c\\) below which a static inhomogeneous solution of the form \\(u_0 \\cos(2 k_{\\mathrm F} x + \\varphi)\\) can have lower action than a homogeneous solution \\(u_0\\). Use the approximation \\(\\chi(2 k_{\\mathrm F}, 0) \\simeq \\ln(\\beta \\omega_{\\mathrm D}) / (4 \\pi v_{\\mathrm F})\\), where \\(\\omega_{\\mathrm D}\\) is the Debye frequency.",
+    "solution": "(a) Integrating out the electron degrees of freedom \\(\\psi\\),\n\\[\n\\int D\\psi\\, e^{-S_{\\text{el}}-S_{\\text{el-ph}}} = \\exp\\left( \\mathrm{tr}\\, \\ln \\left[ \\partial_{\\tau} - \\frac{\\partial_x^2}{2m} - \\mu + g \\, \\partial_x u \\right] \\right).\n\\]\nWith the bare electron Green function \\(G_0^{-1} = \\partial_\\tau - \\partial_x^2/(2m) - \\mu\\), a second-order expansion in \\(g\\) gives\n\\[\n\\mathrm{tr}\\, \\ln \\left[G_0^{-1} + g (\\partial_x u) \\right] \\simeq \\mathrm{tr}\\, \\ln G_0^{-1} - \\frac{g^2}{2} \\sum_{\\omega_m, q} q^2 \\, \\chi(q, \\omega_m) \\, |u_{\\omega_m, q}|^2,\n\\]\nwhere the first-order term vanishes by symmetry. Adding this to the free action of the displacement field yields\n\\[\nS_{\\text{eff}}[u] \\simeq \\sum_{q,\\omega_m} \\left( \\frac{\\rho}{2} (\\omega_m^2 + c^2 q^2) - \\frac{g^2}{2} q^2 \n\\chi(q, \\omega_{m}) \\right) |u_{\\omega_m, q}|^2.\n\\]\n\n(b) For a static periodic modulation,\n\\[\n u_{\\omega_m,q} = \\pi u_0 \\big[ e^{i\\varphi} \\delta(q - 2k_{\\mathrm F}) + e^{-i\\varphi} \\delta(q + 2k_{\\mathrm F}) \\big] \\, \\delta(\\omega_m),\n\\]\nwe obtain\n\\[\nS_{\\mathrm{eff}} = 4 \\pi^2 u_0^2 k_{\\mathrm F}^2 \\left[ \\rho c^2 - g^2 \\, \\chi(2 k_{\\mathrm F}, 0) \\right],\n\\]\nwhich must be compared to \\(S_{\\mathrm{eff}}[u_0]=0\\) for a static uniform mode. The transition occurs when\n\\[ \\rho c^2 < 4 \\pi^2 g^2 \\, \\chi(2 k_{\\mathrm F}, 0). \\]\nUsing \\(\\chi(2 k_{\\mathrm F},0) \\simeq \\ln(\\beta \\omega_{\\mathrm D})/(4\\pi v_{\\mathrm F})\\), one finds the critical temperature\n\\[\nT_c = \\omega_{\\mathrm D} \\, \\exp\\!\\left( - \\frac{4 \\pi^2 v_{\\mathrm F} \\rho c^2}{g^2} \\right).\n\\]",
+    "constant_coefficient_hits": [
+      {
+        "repeat": 3,
+        "part": "b",
+        "score": 0.5,
+        "reason": "The candidate gives a critical temperature with exponent -4π ρc^2 v_F/g^2, while the reference solution gives -4π^2 ρc^2 v_F/g^2. The missing factor of π is a material error."
+      }
+    ],
+    "num_constant_coefficient_hits": 1
+  },
+  {
+    "dataset": "FrontierPhysics",
+    "split": "test",
+    "id": "textbook/7.2",
+    "mean_at_4": 0.5,
+    "best_at_4": 0.5,
+    "question": "Generalized ideal gas: Consider a gas of non-interacting identical (spinless) quantum particles with an energy spectrum $\\varepsilon = |\\vec{p}/\\hbar|^s$, contained in a box of volume $V$ in $d$ dimensions.\n\n(a) Calculate the grand potential $\\mathcal{G}_{\\eta} = -k_B T \\ln \\mathcal{Q}_{\\eta}$, and the density $n = N/V$, at a chemical potential $\\mu$. Express your answers in terms of $s$, $d$, and $f_m^{\\eta}(z)$, where $z = e^{\\beta \\mu}$, and\n$\\displaystyle f_m^{\\eta}(z) = \\frac{1}{\\Gamma(m)} \\int_0^{\\infty} \\frac{dx\\, x^{m-1}}{z^{-1} e^x - \\eta}$.\n(Hint: Use integration by parts on the expression for $\\ln \\mathcal{Q}_\\eta$.)\n\n(b) Find the ratio $PV/E$.\n\n(c) For fermions, calculate the dependence of $E/N$, and $P$, on the density $n = N/V$, at zero temperature. (Hint: $f_m(z) \\to \\frac{(\\ln z)^m}{m!}$ as $z \\to \\infty$.)\n\n(d) For bosons, find the dimension $d_{\\ell}(s)$, below which there is no Bose condensation. Is there condensation for $s = 2$ at $d = 2$?",
+    "solution": "The grand partition function for fermions and bosons leads to\n$\\ln \\mathcal{Q}_{\\eta} = -\\eta \\sum_{\\nu} \\ln \\big[ 1 - \\eta e^{\\beta(\\mu - \\varepsilon_{\\nu})} \\big]$, with $\\eta=+1$ (bosons), $\\eta=-1$ (fermions).\nPassing to the continuum in $d$ dimensions: $\\sum_{\\nu} \\to \\dfrac{V S_d}{(2\\pi)^d} \\int k^{d-1}\\, dk$, where $S_d = \\dfrac{2\\pi^{d/2}}{\\Gamma(d/2)}$.\nFor $\\varepsilon = k^s$ one obtains, after a change of variables $x=\\beta k^s$ and an integration by parts,\n$\\ln \\mathcal{Q}_{\\eta} = \\dfrac{V S_d}{(2\\pi)^d}\\, \\beta^{-d/s}\\, \\Gamma\\!\\left(\\dfrac{d}{s}+1\\right)\\, f_{\\frac{d}{s}+1}^{\\eta}(z)$,\nwith $z=e^{\\beta \\mu}$.\nThe number density follows from $N = z\\, \\partial (\\ln \\mathcal{Q}_{\\eta})/\\partial z$;\n$n = \\dfrac{N}{V} = \\dfrac{S_d}{(2\\pi)^{d/s}} (k_B T)^{d/s} \\Gamma\\!\\left(\\dfrac{d}{s}\\right) f_{\\frac{d}{s}}^{\\eta}(z)$.\n\nThe pressure is $PV = k_B T \\ln \\mathcal{Q}_{\\eta}$. Since $\\ln \\mathcal{Q}_{\\eta} \\propto \\beta^{-d/s}$, the energy satisfies $E = -\\partial_{\\beta} \\ln \\mathcal{Q}_{\\eta}|_z = \\dfrac{d}{s} k_B T \\ln \\mathcal{Q}_{\\eta}$. Hence $\\dfrac{PV}{E} = \\dfrac{s}{d}$, identical to the classical result.\n\nFor fermions at $T=0$, with Fermi energy $\\varepsilon_F$, one finds\n$E = \\dfrac{V S_d}{(2\\pi)^d} \\dfrac{\\varepsilon_F^{\\frac{d}{s}+1}}{d}$, $\\quad PV = \\dfrac{V S_d}{(2\\pi)^d} \\dfrac{\\varepsilon_F^{\\frac{d}{s}+1}}{s}$, $\\quad n = \\dfrac{S_d}{(2\\pi)^d} \\dfrac{\\varepsilon_F^{\\frac{d}{s}}}{s}$.\nTherefore $E/N = (s/d)\\, \\varepsilon_F \\propto n^{s/d}$ and $P \\propto n^{1+s/d}$.\n\nFor bosons, Bose-Einstein condensation requires that the integral defining $f_{d/s}^+(1)$ be finite at $z=1$. The small-$x$ behavior gives $\\int_0 dx\\, x^{d/s-2}$, which converges for $d/s-2>-1$, i.e. $d>s$. Thus condensation occurs only for $d>d_{\\ell}(s)$ with $d_{\\ell}(s)=s$. For $s=2$ at $d=2$, the integral diverges (logarithmically), and there is no condensation.",
+    "constant_coefficient_hits": [
+      {
+        "repeat": 2,
+        "part": "a",
+        "score": 0.5,
+        "reason": "The candidate gives the correct functional dependence on f_{d/s+1} and f_{d/s}, but its prefactor C_{d,s}=S_{d-1}\u001b/(s(2π)^d) Γ(d/s) does not match the reference prefactors for the grand potential and density."
+      },
+      {
+        "repeat": 3,
+        "part": "a",
+        "score": 0.5,
+        "reason": "The density has the correct structure up to notation for the unit-sphere area, but the grand potential coefficient is missing a factor of d: the reference has Gamma(d/s+1)/(2pi)^d, equivalently (d/s)Gamma(d/s)/(2pi)^d, not Gamma(d/s)/(s(2pi)^d)."
+      }
+    ],
+    "num_constant_coefficient_hits": 2
+  },
+  {
+    "dataset": "FrontierPhysics",
+    "split": "test",
+    "id": "vi/2",
+    "mean_at_4": 0.7142857142857143,
+    "best_at_4": 0.7142857142857143,
+    "question": "Black hole thermodynamics: According to Bekenstein and Hawking, the entropy of a black hole is proportional to its area $A$, and given by\n\\[\nS=\\frac{k_B c^{3}}{4 G \\hbar}A.\n\\]\n(a) Calculate the escape velocity at a radius $R$ from a mass $M$ using classical mechanics. Find the relationship between the radius and mass of a black hole by setting this escape velocity to the speed of light $c$.\n\n(b) Does entropy increase or decrease when two black holes collapse into one? What is the entropy change for the universe (in equivalent number of bits of information), when two solar mass black holes $(M_{\\odot}\\approx 2\\times 10^{30}\\,\\text{kg})$ coalesce?\n\n(c) The internal energy of the black hole is given by the Einstein relation, $E=Mc^{2}$. Find the temperature of the black hole in terms of its mass.\n\n(d) A \"black hole\" actually emits thermal radiation due to pair creation processes on its event horizon. Find the rate of energy loss due to such radiation.\n\n(e) Find the amount of time it takes an isolated black hole to evaporate. How long is this time for a black hole of solar mass?\n\n(f) What is the mass of a black hole that is in thermal equilibrium with the current cosmic background radiation at $T=2.7\\,\\text{K}$?\n\n(g) Consider a spherical volume of space of radius $R$. According to the recently formulated Holographic Principle there is a maximum to the amount of entropy that this volume of space can have, independent of its contents! What is this maximal entropy?",
+    "solution": "(a) Equating kinetic and gravitational potential energies at the surface,\n\\[\n\\frac{1}{2}m v_E^2=\\frac{G M m}{R}\\;\\Rightarrow\\; v_E=\\sqrt{\\frac{2GM}{R}}.\n\\]\nSetting $v_E=c$ gives the Schwarzschild radius relation\n\\[\nR=\\frac{2GM}{c^2}.\n\\]\n\n(b) Using $S=(k_B c^3/4G\\hbar)A$ with $A=4\\pi R^2$ and $R=2GM/c^2$, $S(M)=\\dfrac{4\\pi k_B G}{\\hbar c}M^2$. For two black holes of mass $M$ merging to one of mass $2M$,\n\\[\n\\Delta S=S(2M)-2S(M)=\\frac{8\\pi G k_B}{\\hbar c}M^2>0.\n\\]\nFor two solar-mass black holes,\n\\[\n\\Delta S\\approx 3\\times 10^{54}\\,\\text{J/K},\\quad \\text{bits}\\;N_I=\\frac{\\Delta S\\,\\ln 2}{k_B}\\approx 1.5\\times 10^{77}.\n\\]\n\n(c) Using $1/T=\\partial S/\\partial E$ and $E=Mc^2$,\n\\[\n\\frac{1}{T}=\\frac{1}{c^2}\\frac{\\partial S}{\\partial M}=\\frac{8\\pi k_B G}{\\hbar c^3}M\\;\\Rightarrow\\; T=\\frac{\\hbar c^3}{8\\pi k_B G}\\frac{1}{M}.\n\\]\n\n(d) Treating the hole as a blackbody, the Stefan–Boltzmann law gives\n\\[\n\\frac{1}{A}\\frac{dE}{dt}=-\\sigma T^4,\\quad \\sigma=\\frac{\\pi^2 k_B^4}{60\\,\\hbar^3 c^2}.\n\\]\n\n(e) With $A=16\\pi G^2 M^2/c^4$, $E=Mc^2$, and $T=\\hbar c^3/(8\\pi k_B G M)$,\n\\[\n\\frac{d(Mc^2)}{dt}=-\\sigma A T^4\\;\\Rightarrow\\; M^2\\frac{dM}{dt}=-\\frac{\\hbar c^4}{15360\\,G^2}\\equiv -b.\n\\]\nSolving, $M(t)=(M_0^3-3bt)^{1/3}$, and the evaporation time is\n\\[\n\\tau=\\frac{M_0^3}{3b}\\approx 2.2\\times 10^{74}\\,\\text{s}\\quad \\text{for }M_0=M_{\\odot}.\n\\]\n\n(f) From $T=\\hbar c^3/(8\\pi k_B G M)$,\n\\[\nM=\\frac{\\hbar c^3}{8\\pi k_B G T}\\approx 4.5\\times 10^{22}\\,\\text{kg}\\quad (T=2.7\\,\\text{K}).\n\\]\n\n(g) The maximal entropy is that of a black hole that fits the volume (Holographic Principle):\n\\[\nS\\le S_{\\rm BH}=\\frac{k_B c^3}{4G\\hbar}A=\\frac{k_B c^3}{4G\\hbar}\\,(4\\pi R^2)=\\frac{\\pi k_B c^3}{G\\hbar}\\,R^2.\n\\]",
+    "constant_coefficient_hits": [
+      {
+        "repeat": 1,
+        "part": "e",
+        "score": 0.7142857142857143,
+        "reason": "The evaporation time includes an extra factor of pi relative to the reference and gives 6.7e74 s instead of the reference value about 2.2e74 s for a solar-mass black hole."
+      }
+    ],
+    "num_constant_coefficient_hits": 1
+  },
+  {
+    "dataset": "Physics",
+    "split": "train",
+    "id": "Quantum Mechanics/27-3",
+    "mean_at_4": 0.3333333333333333,
+    "best_at_4": 0.3333333333333333,
+    "question": "Consider a quantum system described by the Hamiltonian $H = H^0 + H'$, where $H^0 = \\frac{1}{2m}(p_x^2 + p_y^2) + \\frac{1}{2} m \\omega^2 (x^2 + y^2)$ is the two-dimensional harmonic oscillator Hamiltonian, and where the perturbing Hamiltonian is given by $H' = Kxy$. Here, $K$ is a constant. Evaluate, to the states whose unperturbed energy (i.e. energy if $K$ were zero) is $2 \\hbar \\omega$:\n(a) the first order energy corrections.\n(b) second order energy corrections.\n(c) first order wavefunction corrections.\n\n[Hint: Think parity and raising and lowering operators.] The following are some useful formulas $$ \\int_0^{\\infty} d x x^n e^{-\\alpha x}=n!/ \\alpha^{n+1} \\quad(\\alpha>0), \\quad \\int_{-\\infty}^{\\infty} e^{-x^2}=\\sqrt{\\pi} $$ For the one-dimensional simple harmonic oscillator, $$ \\begin{aligned} x & =\\sqrt{\\hbar / 2 m \\omega}\\left(a^{\\dagger}+a\\right), & p_x & =i \\sqrt{\\hbar m \\omega / 2}\\left(a^{\\dagger}-a\\right), \\\\ a^{\\dagger}|n\\rangle & =\\sqrt{n+1}|n+1\\rangle, & a|n\\rangle & =\\sqrt{n}|n-1\\rangle . \\end{aligned} $$",
+    "solution": "The unperturbed states are product states $|n_x n_y\\rangle$ with energies $E = \\hbar \\omega (n_x + n_y + 1)$. There are two states $|01\\rangle$ and $|10\\rangle$ both have energy $2 \\hbar \\omega$ (and are the only such ones). In the subspace spanned by these two states, $H'$ is not diagonal. Define $\\epsilon \\equiv hK/2m\\omega$, in terms of which the perturbation may be written\n\n$$\nH^{\\prime}=\\epsilon\\left(a_x^{\\dagger}+a_x\\right)\\left(a_y^{\\dagger}+a_y\\right) . \\tag{27.3.1}\n$$\n\n\nDefine $|1\\rangle \\equiv |01\\rangle$ and $|2\\rangle \\equiv |10\\rangle$, and $M_{ij} = \\langle i|H'|j\\rangle$. Then, it is easy to see that the matrix $M$ is $M = \\epsilon \\sigma_{x}$ where $\\sigma_{x}$ is the standard first Pauli matrix. The eigenvectors and eigenvalues are\n\n$$\n|\\pm \\rangle = \\frac{1}{\\sqrt{2}} (|1\\rangle \\pm |2\\rangle), \\quad \\text{eigenvalue } \\pm \\epsilon. \\tag{27.3.2}\n$$\n\n\nHence, the first order energy corrections are\n\n$$\nE_{\\pm} = 2 \\hbar \\omega \\pm \\frac{\\hbar K}{2m\\omega}. \\tag{27.3.3}\n$$\n\n\nDefine $\\epsilon = K / 2 m \\omega^2$ so that the above reads\n\n$$\nE_{\\pm} = E^{(0)} + E^{(1)} = (2 \\pm \\epsilon) \\hbar \\omega. \\tag{27.3.4}\n$$\n\n\nThe first order wavefunction correction is\n\n$$\n|\\pm\\rangle^{(1)} = \\sum_{\\substack{n_x, n_y \\\\ n_x + n_y \\neq 1}} \\frac{\\left|n_x n_y\\right\\rangle\\langle n_x n_y | H' | \\pm\\rangle^{(0)}}{E^{(0)}_{\\pm} - E(n_x, n_y)^{(0)}} . \\tag{27.3.5}\n$$\n\n\nOnly $|21\\rangle$ and $|12\\rangle$ can be connected $|\\pm\\rangle$ to this order:\n\n$$\n\\langle 12| H^{\\prime}|01\\rangle=\\sqrt{2} \\epsilon \\hbar \\omega,\n\\langle 21| H^{\\prime}|10\\rangle=\\sqrt{2} \\epsilon \\hbar \\omega. \\tag{27.3.6}\n$$\n\n\nThis implies\n\n$$\n\\langle 12| H^{\\prime}| \\pm\\rangle^{(0)}=\\epsilon \\hbar \\omega, \\quad\\langle 21| H^{\\prime}| \\pm\\rangle^{(0)}= \\pm \\epsilon \\hbar \\omega . \\tag{27.3.7}\n$$\nTherefore, we get\n\n$$\n|\\pm \\rangle = |\\pm \\rangle^{(0)} + \\frac{|12\\rangle \\, \\epsilon \\hbar \\omega}{2\\hbar \\omega - 3\\hbar \\omega} + \\frac{|21\\rangle \\, (\\pm \\epsilon \\hbar \\omega)}{2\\hbar \\omega - 3\\hbar \\omega} = |\\pm \\rangle^{(0)} - \\epsilon(|12\\rangle \\mp |21\\rangle).\n$$\n\n(27.3.8)\n\nThe second order energy correction is\n\n$$\n\\begin{aligned}\nE^{(2)} & =\\sum_{\\substack{n_x, n_y \\\\\nn_x+n_y \\neq 1}} \\frac{\\left.\\left|\\left\\langle n_x n_y\\right| H^{\\prime}\\right| \\pm\\right\\rangle\\left.^{(0)}\\right|^2}{E_{ \\pm}^{(0)}-E\\left(n_x, n_y\\right)^{(0)}} \\\\\n& =\\frac{|\\epsilon \\hbar \\omega|^2+| \\pm \\epsilon \\hbar \\omega|^2}{2 \\hbar \\omega-3 \\hbar \\omega} \\\\\n& =-2 \\epsilon^2 \\hbar \\omega .\n\\end{aligned}\n$$\n\n(27.3.9)\n\nThus, $$\n E_{\\pm} = (2 \\pm \\epsilon - 2\\epsilon^2) \\hbar \\omega. $$\n",
+    "constant_coefficient_hits": [
+      {
+        "repeat": 3,
+        "part": "b",
+        "score": 0.3333333333333333,
+        "reason": "The reference gives E_±^(2) = -2ε^2ℏω = -K^2ℏ/(2m^2ω^3). The candidate gives -K^2ℏ/(4m^2ω^3), smaller by a factor of 2."
+      },
+      {
+        "repeat": 3,
+        "part": "c",
+        "score": 0.3333333333333333,
+        "reason": "The reference gives first-order corrections with coefficient -ε = -K/(2mω^2) multiplying the coupled |12⟩ and |21⟩ states. The candidate uses -K/(4mω^2), smaller by a factor of 2, so the wavefunction corrections do not match the reference."
+      }
+    ],
+    "num_constant_coefficient_hits": 2
+  },
+  {
+    "dataset": "Physics",
+    "split": "train",
+    "id": "atomic/2-18",
+    "mean_at_4": 0.0,
+    "best_at_4": 0.0,
+    "question": "Consider the scattering of a 1-keV proton by a hydrogen atom.\n\n(b) Estimate the total cross section. Give a numerical answer in $cm^2$, $m^2$ or barns.",
+    "solution": "The differential cross section for elastic scattering is (Problem 2017)\n\n$$\n\\frac{d\\sigma}{d\\Omega} = \\frac{m^2 q^2 Q^2}{4 \\hbar^4 k_0^4} \\frac{1}{\\left( \\frac{a^2}{4k_0^2} + \\sin \\frac{\\theta}{2} \\right)^2}.\n$$\n\nFor proton and hydrogen nucleus $Q = q = e$. The screening length can be taken to be $\\alpha^{-1} \\approx R_0$, $R_0$ being the Bohr radius of a hydrogen atom. For an incident proton of 1 keV; The wavelength is\n\n$$\n\\lambda _0 = \\frac{\\hbar}{\\sqrt{2\\mu E}} = \\frac{c\\hbar}{\\sqrt{2\\mu c^2 E}} = \\frac{197}{\\sqrt{1 \\times 938 \\times 10^{-3} }} = 203 \\text{ fm}.\n$$\n\nWith $\\alpha^{-1} \\approx R_0 = 5.3 \\times 10^4 \\text{ fm}, \\; \\frac{\\alpha^2}{4k_0^2} = \\left( \\frac{\\lambda_0}{2\\alpha^{-1}} \\right)^2 \\ll 1$ and so\n\n$$\n\\frac{d\\sigma}{d\\Omega} \\approx \\frac{m^2 e^4}{4\\hbar^2 k_0^2} \\frac{1}{\\sin^4 \\frac{\\theta}{2}},\n$$\n\nwhich is the Rutherford scattering formula.\n\nThe scattering of 1-keV protons from hydrogen atom occurs mainly at small angles (see Fig. 2.1). The probability of large angle scattering (near head-on collision) is very small, showing that hydrogen atom has a very small nucleus.\n\n(b) As given in **Problem 2017**,\n\n$$\n\\sigma = \\frac{16\\pi m^2 e^4}{\\hbar^4 \\alpha^2 (4k_0^2 + \\alpha^3)} \\approx \\frac{16\\pi m^2 e^4}{\\hbar^4 \\alpha^2 4k_0^2}\n$$\n\n$$\n= 4\\pi \\left[ \\frac{mc^2 R_0 \\lambda_0}{\\hbar c} \\left( \\frac{e^2}{\\hbar c} \\right) \\right]^2 = 4\\pi \\left( \\frac{938 \\times 5.3 \\times 10^4 \\times 203}{197 \\times 137} \\right)^2\n$$\n\n$$\n= 1.76 \\times 10^{12} \\text{ fm}^2 = 1.76 \\times 10^{-14} \\text{ cm}^2.\n$$",
+    "constant_coefficient_hits": [
+      {
+        "repeat": 1,
+        "part": "a",
+        "score": 0.0,
+        "reason": "The reference gives \\(\\sigma \\approx 1.76\\times 10^{-14}\\,\\mathrm{cm^2}=1.76\\times 10^{-18}\\,\\mathrm{m^2}\\approx 1.76\\times 10^{10}\\) barns. The candidate's \\(5\\times 10^{-15}\\,\\mathrm{cm^2}\\) is smaller by a factor of about 3.5, which is beyond reasonable rounding for the stated numerical estimate."
+      }
+    ],
+    "num_constant_coefficient_hits": 1
+  },
+  {
+    "dataset": "Physics",
+    "split": "train",
+    "id": "atomic/3-36",
+    "mean_at_4": 0.375,
+    "best_at_4": 0.5,
+    "question": "(a) The principle of detailed balance rests on the validity of time reversal invariance and serves to relate the cross section for a given reaction $a + b \\to c + d$ to the cross section for the inverse reaction $c + d \\to a + b$. Let $\\sigma_I(W)$ be cross section for\n$$\n\\gamma + p \\to \\pi^+ + n\n$$\nat total center-of-mass energy $W$, where one integrates over scattering angle, sums over final spins, and averages over initial spins. Let $\\sigma_{II}(W)$ be the similarly defined cross section, at the same center-of-mass energy, for\n$$\n\\pi^+ + n \\to \\gamma + p.\n$$\n\nLet $\\mu$ be the pion mass, $m$ the nucleon mass (neglect the small difference between the $n$ and $p$ masses). Given $\\sigma_I(W)$, what does detailed balance predict for $\\sigma_{II}(W)$?\n\n(b) For reaction II, what is the threshold value $W_{\\text{thresh}}$ and how does $\\sigma_{II}(W)$ vary with $W$ just above threshold?",
+    "solution": "Solution:\n\n(a) For simplicity denote the state (a, b) by $\\alpha$ and the state (c, d) by $\\beta$. Let $\\sigma_{\\alpha\\beta}$ be the cross section of the process\n\n$$ a + b \\rightarrow c + d $$\n\nand $\\sigma_{\\beta\\alpha}$ be the cross section of the inverse process\n\n$$ c + d \\rightarrow a + b. $$\n\nIf $T$ invariance holds true, then when the forward and inverse reactions have the same energy $W$ in the center-of-mass frame, $\\sigma_{\\alpha\\beta}$ and $\\sigma_{\\beta\\alpha}$ are related by\n\n$$ \\frac{\\sigma_{\\alpha\\beta}}{\\sigma_{\\beta\\alpha}} = \\frac{P_{\\beta}^2 (2I_c + 1)(2I_d + 1)}{P_{\\alpha}^2 (2I_a + 1)(2I_b + 1)}, $$\n\nwhich is the principle of detailed balance. Here $P_{\\alpha}$ is the relative momentum of the incident channel of the reaction $a + b \\rightarrow c + d$, $P_{\\beta}$ is the relative momentum of the incident channel of the inverse reaction, $I_a$, $I_b$, $I_c$, $I_d$ are respectively the spins of $a, b, c, d$.\n\nFor the reaction $\\gamma + p \\rightarrow \\pi^+ + n$, in the center-of-mass frame of the incident channel let the momentum of the $\\gamma$ be $P_{\\gamma}$, the energy of the proton be $E_p$. Then $W = E_{\\gamma} + E_p$. As the $\\gamma$ has zero rest mass,\n\n$$ E_{\\gamma}^2 - P_{\\gamma}^2 = 0, $$\n\nor\n\n$$ (W - E_p)^2 - P_{\\gamma}^2 = 0. $$\n\nWith $P_{\\gamma} = P_p$, $E_p^2 - P_p^2 = m^2$, \n\n$$ E_p = \\frac{W^2 + m^2}{2W}. $$\n\nHence the relative momentum is\n\n$$ P_{\\alpha}^2 = P_{\\gamma}^2 = E_p^2 - m^2 = \\frac{W^2 - m^2}{2W}. $$\n\nFor the inverse reaction $\\pi^+ + n \\rightarrow \\gamma + p$, in the center-of-mass frame let the energy of $\\pi^+$ be $E_{\\pi}$, its momentum be $P_{\\pi}$, and the energy of the neutron be $E_n$, then as $W = E_{\\pi} + E_n$,\n\n$$ (W - E_n)^2 - E_{\\pi}^2 = 0. $$\n\nWith $P_\\pi = P_n$, $E^2_n = P^2_\\pi + m^2$, $E^2_\\pi = P^2_\\pi + \\mu^2$, we have\n\n$$\nE_n = \\frac{W^2 + m^2 - \\mu^2}{2W},\n$$\n\nand hence\n\n$$\nP^2_\\beta = P^2_\\pi = E^2_n - m^2 = \\frac{(W^2 + m^2 - \\mu^2)^2 - 4W^2m^2}{4W^2}.\n$$\n\nWe have $I_\\gamma = 1$, $I_p = 1/2$, $I_n = 1/2$, $I_\\pi = 0$. However as photon has only left and right circular polarizations, $2I_\\gamma +1$ should be replaced by 2. Hence\n\n$$\n\\frac{\\sigma_I (W)}{\\sigma_{II} (W)} = \\frac{P^2_\\beta (2I_\\pi + 1)(2I_n + 1)}{P^2_\\alpha (2I_\\gamma + 1)(2I_p + 1)} = \\frac{P^2_\\beta}{2P^2_\\alpha},\n$$\n\nor\n\n$$\n\\sigma_{II} (W) = \\frac{(W^2 - m^2)^2}{(W^2 + m^2 - \\mu^2)^2 - 4W^2m^2} \\sigma_I(W).\n$$\n\n(b) At threshold all the final particles are produced at rest in the center-of-mass frame. The energy of the center of mass is $W^{th*} = m + \\mu$. In the laboratory let the energy of the photon be $E_\\gamma$. As the proton is at rest, at the threshold\n\n$$\n(E_\\gamma + m)^2 - P^2_\\gamma = (m + \\mu)^2,\n$$\n\nor, since $E_\\gamma = P_\\gamma$,\n\n$$\nE^{th}_\\gamma = \\mu \\left(1 + \\frac{\\mu}{2m} \\right) = 150 \\ \\text{MeV}.\n$$\n\nWhen $E_\\gamma > E^{th}_\\gamma$, $\\sigma (\\gamma + p \\rightarrow \\pi^+ + n)$ increases rapidly with increasing $E_\\gamma$. When $E_\\gamma = 340 \\text{MeV}$, a wide resonance peak appears, corresponding to an invariant mass\n\n$$\nE^* = \\sqrt{(E_\\gamma + m_p)^2 - P^2_\\gamma} = \\sqrt{2m_p E_\\gamma + m^2_p} = 1232 \\ \\text{MeV}.\n$$\n\nIt is called the $\\Delta$ particle. The width $\\Gamma = 115$ MeV and $\\sigma \\approx 280$ $\\mu b$ at the peak.\n",
+    "constant_coefficient_hits": [
+      {
+        "repeat": 1,
+        "part": "a",
+        "score": 0.5,
+        "reason": "The candidate includes an extra factor of 2 relative to the reference solution's stated final expression for sigma_II(W)."
+      },
+      {
+        "repeat": 3,
+        "part": "a",
+        "score": 0.5,
+        "reason": "The candidate includes an extra factor of 2 in the detailed-balance relation compared with the reference final expression, which gives sigma_II = (W^2-m^2)^2 / ([W^2-(m+mu)^2][W^2-(m-mu)^2]) sigma_I."
+      }
+    ],
+    "num_constant_coefficient_hits": 2
+  },
+  {
+    "dataset": "Physics",
+    "split": "train",
+    "id": "electro/1_75",
+    "mean_at_4": 0.0,
+    "best_at_4": 0.0,
+    "question": "The potential at a distance $r$ from the axis of an infinite straight wire of radius $a$ carrying a charge per unit length $\\sigma$ is given by\n\n$$\n\\frac{\\sigma}{2\\pi} \\ln \\frac{1}{r} + \\text{const.}\n$$\n\nThis wire is placed at a distance $b \\gg a$ from an infinite metal plane, whose potential is maintained at zero. Find the capacitance per unit length of the wire of this system.",
+    "solution": "### Solution:\n\nIn order that the potential of the metal plane is maintained at zero, we imagine that an infinite straight wire with linear charge density $-\\sigma$ is symmetrically placed on the other side of the plane. Then the capacitance between the original wire and the metal plane is that between the two straight wires separated at $2b$.\n\nThe potential $\\varphi(r)$ at a point between the two wires at distance $r$ from the original wire (and at distance $2b - r$ from the image wire) is then\n\n$$\n\\varphi(r) = \\frac{\\sigma}{2\\pi} \\ln \\frac{1}{r} - \\frac{\\sigma}{2\\pi} \\ln \\frac{1}{2b - r}.\n$$\n\nSo the potential difference between the two wires is\n\n$$\nV = \\varphi(a) - \\varphi(2b - a) = \\frac{\\sigma}{\\pi} \\ln \\left( \\frac{2b - a}{a} \\right) \\approx \\frac{\\sigma}{\\pi} \\ln \\frac{2b}{a}.\n$$\n\nThus the capacitance of this system per unit length of the wire is\n\n$$\nC = \\frac{\\sigma}{V} = \\pi / \\ln \\frac{2b}{a}.\n$$",
+    "constant_coefficient_hits": [
+      {
+        "repeat": 3,
+        "part": "a",
+        "score": 0.0,
+        "reason": "The reference solution gives the capacitance per unit length as C = pi / ln(2b/a). The candidate gives 2pi / ln(2b/a), which is larger by a factor of 2."
+      },
+      {
+        "repeat": 4,
+        "part": "a",
+        "score": 0.0,
+        "reason": "The reference capacitance per unit length for the wire-plane system is C = pi / ln(2b/a). The candidate gives 2pi / ln(2b/a), which is larger by a factor of 2 and corresponds to the two-wire potential difference convention rather than the wire-to-plane capacitance in the reference."
+      }
+    ],
+    "num_constant_coefficient_hits": 2
+  },
+  {
+    "dataset": "Physics",
+    "split": "train",
+    "id": "electro/1_89",
+    "mean_at_4": 0.5,
+    "best_at_4": 0.5,
+    "question": "An electric dipole of moment $P$ is placed at a distance $r$ from a perfectly conducting, isolated sphere of radius $a$. The dipole is oriented in the direction radially away from the sphere. Assume that $r \\gg a$ and that the sphere carries no net charge.\n\n(a) What are the boundary conditions on the $E$ field at the surface of the sphere?\n\n(b) Find the approximate force on the dipole.",
+    "solution": "### Solution:\n\n(a) Use spherical coordinates with the $z$-axis along the direction of the dipole $P$ and the origin at the spherical center. The boundary conditions for $E$ on the surface of the sphere are\n\n$$\nE_n = \\frac{\\sigma}{\\varepsilon_0}, \\quad E_t = 0,\n$$\n\nwhere $\\sigma$ is the surface charge density.\n\n(b) The system of images is similar to that of the previous Problem 1088 and consists of an image dipole $P' = \\left( \\frac{a}{r} \\right)^3 P$ and an image charge $q' = -\\frac{aP}{r^2}, $ at $r' = \\frac{a^2}{r} e_z$. In addition, an image charge $q'' = -q'$ is to be added at the center of the sphere as the conducting sphere is isolated and uncharged. However, since $r \\gg a$, we can consider $q'$ and $q''$ as composing an image dipole of moment $P'' = \\frac{aP}{r^2} \\cdot \\frac{a^2}{r} = \\frac{a^3}{r^3} P$.\n\nAs $r \\gg a$, the image dipoles $P'$ and $P''$ may be considered as approximately located at the center of the sphere. That is, the total image dipole moment is\n\n$$\nP_{\\text{image}} = P' + P'' = 2 \\left(\\frac{a}{r}\\right)^3 P. \n$$\n\nThe problem is then to find the force exerted on $P$ by $P_{\\text{image}}$.\n\n\nThe potential at a point $r$ produced by $P_{\\text{image}}$ is\n\n$$\n\\varphi(r) = \\frac{1}{4 \\pi \\varepsilon_0} \\frac{P_{\\text{image}} \\cdot r}{r^3},\n$$\n\nand the corresponding electric field is\n\n$$\n\\mathbf{E}(r) = -\\nabla \\varphi(r) = \\frac{3(r \\cdot P_{\\text{image}})r - r^2 P_{\\text{image}}}{4 \\pi \\varepsilon_0 r^5}.\n$$\n\nAt the location of $P$, $r = r e_z$, the field produced by $P_{\\text{image}}$ is then\n\n$$\n\\mathbf{E} = \\frac{P_{\\text{image}}}{2 \\pi \\varepsilon_0 r^3} = \\frac{a^3 P}{\\pi \\varepsilon_0 r^6} e_z = -\\frac{a^3}{\\pi \\varepsilon_0 r^6} P.\n$$\n\nThe energy of $P$ in this field is\n\n$$\nW = -P \\cdot E = -\\frac{a^3 P^2}{\\pi \\varepsilon_0 r^6},\n$$\n\nwhich gives the force on $P$ as\n\n$$\n\\mathbf{F} = -\\nabla W = -\\frac{6 a^3 P^2}{\\pi \\varepsilon_0 r^7} e_z = \\frac{6 a^3 P P}{\\pi \\varepsilon_0 r^7}.\n$$",
+    "constant_coefficient_hits": [
+      {
+        "repeat": 1,
+        "part": "b",
+        "score": 0.5,
+        "reason": "The force is given as attractive with the correct r^{-7} dependence, but its coefficient is smaller by a factor of 2 than the reference result, which is -6 a^3 P^2/(pi epsilon_0 r^7) rhat."
+      },
+      {
+        "repeat": 2,
+        "part": "b",
+        "score": 0.5,
+        "reason": "The force is given as attractive with the correct r^-7 dependence, but its magnitude is smaller by a factor of 2 than the reference result, which is -6 a^3 P^2/(pi epsilon_0 r^7) in the radial direction toward the sphere."
+      }
+    ],
+    "num_constant_coefficient_hits": 2
+  },
+  {
+    "dataset": "Physics",
+    "split": "train",
+    "id": "mechanics/3_46",
+    "mean_at_4": 0.125,
+    "best_at_4": 0.5,
+    "question": "A particle of charge $e$, energy $E$, and velocity $v$ moves in a magnetic field generated by a magnetic dipole of strength $M$ located at the origin and directed along the $z$-axis. If the particle is initially in the $xy$-plane at a distance $R$ from the origin and moving radially outward, give:\n(a) the minimum radii it will reach.\n(b) maximum radii it will reach (assume the orbit is bounded).",
+    "solution": "A particle of charge $e$, rest mass $m$ and velocity $\\mathbf{u}$ moving in an electromagnetic field of scalar potential $\\Phi$ and vector potential $\\mathbf{A}$ has Lagrangian\n\n$$\nL = \\frac{-mc^2}{\\gamma} - e\\Phi + e\\mathbf{u} \\cdot \\mathbf{A} .\n$$\n\nwhere $\\gamma = \\frac{1}{\\sqrt{1-\\frac{u^2}{c^2}}}$. Since there is no electric field, $\\Phi = 0$. The vector potential due to a magnetic dipole of moment $\\mathbf{M}$ at the origin is\n\n$$\n\\mathbf{A} = -\\frac{\\mu_0}{4\\pi} \\mathbf{M} \\times \\nabla \\left( \\frac{1}{r} \\right) = \\frac{\\mu_0}{4\\pi} \\frac{\\mathbf{M} \\times \\mathbf{r}}{r^3} .\n$$\n\nIn spherical coordinates as shown in Fig. 3.26, we have\n\n$$\n\\mathbf{M} = (M \\cos \\theta, -M \\sin \\theta, 0),\n$$\n\n$$\n\\mathbf{r} = (r, 0, 0),\n$$\n\nso that\n\n$$\n\\mathbf{A} = \\frac{\\mu_0}{4\\pi} \\frac{M \\sin \\theta}{r^2} \\mathbf{i}_\\varphi.\n$$\n\nWith $\\mathbf{u} = (\\dot{r}, r\\dot{\\theta}, r\\dot{\\varphi}\\sin\\theta)$, the Lagrangian is\n\n$$\nL = \\frac{-mc^2}{\\gamma} + \\frac{\\mu_0}{4\\pi} \\frac{eM \\sin^2 \\theta}{r} \\dot{\\varphi}.\n$$\n\nNote that as $u^2 = \\dot{r}^2 + r^2 \\dot{\\theta}^2 + r^2 \\dot{\\varphi}^2 \\sin^2 \\theta$, $L$ does not depend on $\\varphi$ explicitly. Hence\n\n$$\np_{\\varphi} = \\frac{\\partial L}{\\partial \\dot{\\varphi}} = \\left( m\\gamma r^2 \\dot{\\varphi} + \\frac{\\mu_0}{4\\pi} \\frac{eM}{r} \\right) \\sin^2 \\theta = \\text{constant} .\n$$\n\nInitially the particle is at $r = R$ and moves with velocity $v = \\dot{r}$ in the $xy$-plane, i.e. $r = R$, $\\theta = \\frac{\\pi}{2}$, $\\dot{\\varphi} = 0$ initially, giving $\\frac{\\mu_0 eM}{4\\pi R}$ for the constant. Furthermore, as the only force on the particle is that due to the magnetic dipole at the origin whose magnetic lines of force at the $xy$-plane are perpendicular to the plane, the magnetic force is also in this plane and the motion is confined to the plane. Hence $\\dot{\\theta} = 0$, $\\theta = \\frac{\\pi}{2}$ at all times. Thus\n\n$$\nm \\gamma r^2 \\dot{\\varphi} + \\frac{\\mu_0 eM}{4\\pi r} = \\frac{\\mu_0 eM}{4\\pi R}.\n$$\n\nAt the maximum and minimum radii, $\\dot{r} = 0$ and $u = r \\dot{\\varphi}$. Since magnetic force does no work as\n\n$$\n\\mathbf{u} \\cdot \\mathbf{u} \\times (\\nabla \\times \\mathbf{A}) = 0,\n$$\n\nthe magnitude of $\\mathbf{u}$ is equal to the initial speed $v$, i.e. $r \\dot{\\varphi} = \\pm v$, and $\\gamma$ is a constant. Letting\n\n$$\n\\alpha = \\frac{\\mu_0 eM}{4\\pi m \\gamma v},\n$$\n\nwe have\n\n$$\n\\pm Rr^2 - \\alpha r + \\alpha R = 0.\n$$\n\nFor the upper sign the roots are\n\n$$\nr = \\frac{\\alpha}{2R} \\left(1 \\pm \\sqrt{1 - \\frac{4R^2}{\\alpha}}\\right).\n$$\n\nFor the lower sign the roots are\n\n\\[ \nr = \\frac{\\alpha}{2R} \\left( -1 \\pm \\sqrt{1 + \\frac{4R^2}{\\alpha}} \\right),\n\\]\n\nwhere the positive sign is to be used since \\( r \\) is positive. Examining these roots we find\n\n\\[\nr_{\\text{max}} = \\frac{\\alpha}{2R} \\left( 1 + \\sqrt{1 - \\frac{4R^2}{\\alpha}} \\right),\n\\]\n\n\\[\nr_{\\text{min}} = \\frac{\\alpha}{2R} \\left( -1 + \\sqrt{1 + \\frac{4R^2}{\\alpha}} \\right).\n\\]\n",
+    "constant_coefficient_hits": [
+      {
+        "repeat": 3,
+        "part": "a",
+        "score": 0.0,
+        "reason": "The algebraic form for r_min matches the reference only if eta is defined as R^2/alpha = 4*pi*p*R^2/(mu0*eM). The candidate defines eta as pcR^2/|eM|, omitting the mu0/4pi factor, adding an extra c, and using an absolute value/sign convention not supplied by the reference, so the answer is materially inconsistent."
+      }
+    ],
+    "num_constant_coefficient_hits": 1
+  },
+  {
+    "dataset": "Physics",
+    "split": "train",
+    "id": "optics/1-39",
+    "mean_at_4": 0.0,
+    "best_at_4": 0.0,
+    "question": "When the sun is overhead, a flat white surface has a certain luminous flux. A lens of radius $r$ and focal length $f$ is now used to focus the sun's image on the sheet. From the earth the diameter of the sun subtends about 0.01 radians. The only light in the image is through the lens.\n(a) How much greater is the flux in the image area?\n(b) For a given $r$, what must $f$ be so that the lens gives no increase in flux in the image?",
+    "solution": "﻿\nThe luminous flux reaching the earth is given by\n\n$$\n\\Phi = B\\sigma' d\\Omega\n$$\n\nwhere $B$ is the brightness of the sun, regarded as a Lambert radiator, $\\sigma'$ is the area illuminated on the earth, $d\\Omega$ is the solid angle subtended by the sun at $\\sigma'$ and is given by\n\n$$\nd\\Omega = \\pi \\alpha^2,\n$$\n\n$\\alpha$ being the angular aperture of the sun, equal to about 0.01 radians.\n\nThe luminous flux on the image area behind the lens is\n\n$$\n\\Phi' = \\pi B\\sigma' \\sin^2 u' = \\pi B\\sigma' \\left( \\frac{r}{f} \\right)^2\n$$\n\nwhere $u'$ is the semi-angular aperture of the lens, $r$ and $f$ are the radius and focal length of the lens respectively. Consider the ratio\n\n$$\n\\frac{\\Phi'}{\\Phi} = \\frac{\\pi B\\sigma' \\left( \\frac{r}{f} \\right)^2}{\\pi B\\sigma'(0.01)^2} = \\frac{10^4 r^2}{f^2},\n$$\n\nwhere we have taken the transparency of the lens glass to be unity. Thus the luminous flux on the image area is $10^4 r^2/f^2$ times that on a surface of the same area on the earth without the lens.\n\nFor $\\Phi'/\\Phi \\leq 1$, we have $f \\geq 10^2 r$. Hence, for $f \\geq 100r$ the lens will give no increase in flux in the image area.\n\n",
+    "constant_coefficient_hits": [
+      {
+        "repeat": 1,
+        "part": "a",
+        "score": 0.0,
+        "reason": "The reference gives an increase factor of 10^4 r^2/f^2. The candidate gives 4.0×10^4 r^2/f^2, which is larger by a factor of 4."
+      },
+      {
+        "repeat": 2,
+        "part": "a",
+        "score": 0.0,
+        "reason": "The reference gives the flux increase factor as 10^4 r^2/f^2 = (100r/f)^2, while the candidate gives (200r/f)^2, which is larger by a factor of 4."
+      },
+      {
+        "repeat": 4,
+        "part": "a",
+        "score": 0.0,
+        "reason": "The reference gives an increase factor of 10^4 r^2/f^2 = (100r/f)^2, while the candidate gives (200r/f)^2, larger by a factor of 4."
+      }
+    ],
+    "num_constant_coefficient_hits": 3
+  },
+  {
+    "dataset": "Physics",
+    "split": "train",
+    "id": "optics/2-2",
+    "mean_at_4": 0.0,
+    "best_at_4": 0.0,
+    "question": "﻿A point source $S$ located at the origin of a coordinate system emits a spherical sinusoidal wave in which the electric field $E_1$ is given by $E_1 = A(\\frac{D}{r}) \\cos(\\omega t - \\frac{2 \\pi r}{\\lambda})$, where $r$ is the distance from $S$. In addition, there is a plane wave propagating along the $x$-axis. This wave is given by\n\n$$\nE_2 = A \\cos \\left( \\omega t - \\frac{2 \\pi x}{\\lambda} \\right).\n$$\n\n(Note that we treat both $E_1$ and $E_2$ as scalar waves in this problem.) Both waves are incident on a flat screen perpendicular to the $x$-axis and at a distance $D$ from the origin, as shown in the figure (Fig. 2.1). Compute the resultant intensity $I$ at the screen as a function of the distance $y$ from the $x$-axis for values of $y$ small compared with $D$. Express $I$ in terms of $y, D, \\lambda$ and the intensity $I_0$ at $y = 0$.\n",
+    "solution": "﻿\nThe electric field $E$ at a point, distance $r$ from the origin, on the screen is given by\n\n$$\nE = E_1 + E_2 = A \\left[ \\frac{D}{r} \\cos \\left( \\omega t - \\frac{2\\pi r}{\\lambda} \\right) + \\cos \\left( \\omega t - \\frac{2\\pi x}{\\lambda} \\right) \\right]\n$$\n\n$$\n\\approx A \\left[ \\cos \\left( \\omega t - \\frac{2\\pi r}{\\lambda} \\right) + \\cos \\left( \\omega t - \\frac{2\\pi x}{\\lambda} \\right) \\right]\n$$\n\nwhere we have used the approximation $r \\approx D$.  \nFor $y \\ll D$, we have\n\n$$\nr = \\left( D^2 + y^2 \\right)^{\\frac{1}{2}} \\approx D \\left( 1 + \\frac{y^2}{2D^2} \\right)\n$$\n\nand thus\n\n$$\nE = A \\left[ \\cos \\left( \\omega t - \\frac{2\\pi D \\left( 1 + \\frac{y^2}{2D^2} \\right)}{\\lambda} \\right) + \\cos \\left( \\omega t - \\frac{2\\pi D}{\\lambda} \\right) \\right]\n$$\n\n$$\n= 2A \\cos \\frac{\\pi y^2}{D \\lambda} \\cdot \\cos \\left( \\omega t - \\frac{2\\pi D \\left( 1 + \\frac{y^2}{4D^2} \\right)}{\\lambda} \\right)\n$$\n\nHence\n\n$$\nI \\propto E^2 \\propto \\cos^2 \\frac{\\pi y^2}{D \\lambda}.\n$$\n\nLet $I = I_0$ at $y = 0$; we then have\n\n$$\nI = I_0 \\cos^2 \\left( \\frac{\\pi y^2}{D \\lambda} \\right).\n$$\n\nAs the distance from the centre increases, the fringes become closer. This is similar to Fresnel's zone plate.\n\n",
+    "constant_coefficient_hits": [
+      {
+        "repeat": 1,
+        "part": "a",
+        "score": 0.0,
+        "reason": "The required result is I = I0 cos^2(pi y^2/(D lambda)); the candidate has an extra factor of 1/2 in the phase argument, giving incorrect fringe positions."
+      },
+      {
+        "repeat": 2,
+        "part": "a",
+        "score": 0.0,
+        "reason": "The reference result is I = I0 cos^2(pi y^2/(D lambda)). The candidate has an extra factor of 1/2 in the cosine argument, which materially changes the fringe spacing."
+      },
+      {
+        "repeat": 3,
+        "part": "a",
+        "score": 0.0,
+        "reason": "The reference result is I = I0 cos^2(pi y^2/(D lambda)); the candidate has an extra factor of 1/2 in the phase argument, giving incorrect fringe spacing."
+      },
+      {
+        "repeat": 4,
+        "part": "a",
+        "score": 0.0,
+        "reason": "The required result is I = I0 cos^2(pi y^2/(D lambda)). The candidate has an extra factor of 1/2 in the argument, giving the wrong fringe spacing."
+      }
+    ],
+    "num_constant_coefficient_hits": 4
+  },
+  {
+    "dataset": "Physics",
+    "split": "train",
+    "id": "optics/3-1",
+    "mean_at_4": 0.4,
+    "best_at_4": 0.4,
+    "question": "A ruby laser emits light with a wavelength of 6943 Å, which to a very good approximation is a plane wave.  \n(b) What is the wavelength and frequency of this light as it passes through water (refractive index $n = 4/3$)?  \n(c) What fraction of each component of polarization of the laser light is reflected as the beam enters the water at 45° to the normal to the surface?  \n(d) What are the amplitudes of the electric and magnetic field vectors of this plane wave propagating through water, if the time-averaged power of the beam in the water is 100 milliwatts/cm²?  \n(e) What is the coherence length of the laser in vacuum (i.e., the distance over which the light stays coherent to 1/4 of a wavelength) if the bandwidth of the laser is $\\Delta \\nu = 30$ megahertz?",
+    "solution": "﻿\n(a) The ruby laser is an optically pumped, three-level system. A simplified energy-level diagram is shown in Fig. 3.1. As the ruby is irradiated with a high-intensity flash lamp, the atoms in the ground state $E_1$ are excited into level $E_3$, then rapidly relax into the metastable state $E_2$ by a non-radiative transition because the lifetime at $E_3$ is very short (about $10^{-9}$ second). As decay from $E_2$ is relatively slow, if the energy of the flash lamp is sufficiently intense and optical pumping is applied, a population inversion between $E_1$ and $E_2$ occurs. When this condition attains, amplification occurs at the wavelength corresponding to $E_2 - E_1$. Then as the atoms drop down from the level $E_2$ to the ground level $E_1$, the characteristic red fluorescent radiation of ruby at this wavelength is emitted as an intense pulse. The optical pumping is accomplished by using two flat mirrors placed at the two ends of the ruby to form a resonant cavity, which reflects to and fro, and amplifies continuously, those spectral modes which propagate along the axis and oscillate with the resonant frequencies of the cavity. These should fall within the frequency bandwidth of the spectral gain of the ruby.\n\n(b) The wavelength in water is\n\n$$\n\\lambda_{\\text{water}} = \\frac{\\lambda_{\\text{air}}}{n} = \\frac{6943}{\\frac{4}{3}} \\approx 5207 \\, \\overset{\\circ}{\\text{A}} .\n$$\n\n(c) The angle of refraction is given by Snell's law to be\n\n$$\n\\theta_2 = \\sin^{-1} \\left( \\frac{3}{4} \\sin 45^\\circ \\right) \\approx 32^\\circ .\n$$\n\nThe reflectance of the component polarized perpendicular to the plane of incidence is\n\n$$\nR_\\perp = \\left[ \\frac{\\sin(\\theta_1 - \\theta_2)}{\\sin(\\theta_1 + \\theta_2)} \\right]^2 \\approx 0.05,\n$$\n\nthat of the component polarized parallel to the plane of incidence is\n\n$$\nR_{\\parallel} = \\left[ \\frac{\\tan(\\theta_1 - \\theta_2)}{\\tan(\\theta_1 + \\theta_2)} \\right]^2 \\approx 0.0028.\n$$\n\n(d) For a plane electromagnetic wave, $\\sqrt{E E} = \\sqrt{\\mu H}$. The time-averaged power of the beam per unit cross-sectional area is its intensity\n\n$$\nI = \\langle EH \\rangle = \\sqrt{\\frac{\\varepsilon}{\\mu} \\langle E^2 \\rangle} = \\frac{1}{2} \\sqrt{\\frac{\\varepsilon}{\\mu} E_0^2} = \\frac{n}{2c\\mu} E_0^2,\n$$\n\nwhere $E_0$ is the amplitude of the electric field, $c$ the velocity of light in free space and $n$ the refractive index of water. The permeability of water is\n\n$$\n\\mu \\approx \\mu_0 = 4\\pi \\times 10^{-7} \\, \\text{H/m}.\n$$\n\nHence\n\n$$\nE_0 = \\sqrt{\\frac{2Ic\\mu}{n}} = 7.5 \\, \\text{V/m},\n$$\n\n$$\nB_0 = \\frac{E_0}{v} = \\frac{E_0 n}{c} = 3.3 \\times 10^{-8} \\, \\text{T},\n$$\n\n$B_0$ being the amplitude of the magnetic induction.\n\n(e) The uncertainty principle states that \n\n$$ \\Delta t \\cdot \\Delta \\nu \\sim 1 , $$\n\nwhere $\\Delta \\nu$ is the width of the spectrum line of the laser light, $\\Delta t$ is the time of coherence. Thus the length of coherence is \n\n$$ \\Delta l = \\frac{c}{\\Delta \\nu} = \\frac{3 \\times 10^8}{30 \\times 10^6} = 10 \\, \\text{m} . $$\n",
+    "constant_coefficient_hits": [
+      {
+        "repeat": 1,
+        "part": "d",
+        "score": 0.4,
+        "reason": "The reference gives E0 = 7.5 V/m and B0 = 3.3e-8 T; the candidate gives values larger by a factor of 100, so it does not match the reference answer."
+      }
+    ],
+    "num_constant_coefficient_hits": 1
+  },
+  {
+    "dataset": "Physics",
+    "split": "train",
+    "id": "quantum/4011",
+    "mean_at_4": 0.0,
+    "best_at_4": 0.0,
+    "question": "In a recent classic table-top experiment, a monochromatic neutron beam ($\\lambda = 1.445 \\, \\text{Å}$) was split by Bragg reflection at point $ A $ of an interferometer into two beams which were recombined (after another reflection) at point $ D $ (see Fig. 4.3). One beam passes through a region of transverse magnetic field of strength $\\mathbf B$ for a distance $\\mathbf l$. Assume that the two paths from $\\mathbf A$ to $\\mathbf D$ are identical except for the region of the field.\n\n\nFind the explicit expressions for the dependence of the intensity at point $\\mathbf D$ on $\\mathbf B$,  $\\mathbf l$, and the neutron wavelength, with the neutron polarized either parallel or anti-parallel to the magnetic field.",
+    "solution": "This is a problem on spinor interference. Consider a neutron in the beam. There is a magnetic field $\\mathbf B$ in the region where the Schrödinger equation for the (uncharged) neutron is\n\n$$\n\\left( -\\frac{\\hbar^2}{2m} \\nabla^2 - \\mu \\sigma \\cdot \\mathbf{B} \\right) \\psi = E \\psi.\n$$\n\nSupposing $\\mathbf B$ to be constant and uniform, we have\n\n$$\n\\psi(t_1) = \\exp \\left[ -i \\hat{H} (t_1 - t_0) / \\hbar \\right] \\psi(t_0),\n$$\n\nwhere $t_0, t_1$ are respectively the instants when the neutron enters and leaves the magnetic field.  \nWrite $\\psi(t) = \\psi(r, t) \\psi(s, t)$, where $\\psi(r, t)$ and $\\psi(s, t)$ are respectively the space and spin parts of $\\psi$. Then\n\n$$\n\\psi(r, t_1) = \\exp \\left[ \\frac{i}{\\hbar} \\left( -\\frac{\\hbar^2}{2m} \\nabla^2 \\right) (t_1 - t_0) \\right] \\psi(r, t_0),\n$$\n\nwhich is the same as the wave function of a free particle, and\n\n\n$$\n\\psi(s, t_1) = \\exp \\left[ \\frac{i}{\\hbar} \\mu \\sigma \\cdot \\mathbf{B} (t_1 - t_0) \\right] \\psi(s, t_0).\n$$\n\nThe interference arises from the action of $\\mathbf B$ on the spin wave function. As $\\psi(\\mathbf{r}, t)$ is the wave function of a free particle, we have $t_1 - t_0 = l/v = ml / \\hbar k$ and \n\n$$\n\\psi(s, t_1) = \\exp [i2\\pi \\mu ml\\lambda \\sigma \\cdot \\mathbf{B} / \\hbar^2] \\psi(s, t_0),\n$$\n\nwhere $k = \\frac{2\\pi}{\\lambda} = \\frac{mv}{\\hbar}$ is the wave number of the neutron. The intensity of the interference of the two beams at D is then proportional to\n\n$$\n| \\psi^{(1)}_D (r, t) \\psi^{(1)}_D (s, t) + \\psi^{(2)}_D (r, t) \\psi^{(2)}_D (s, t) |^2\n$$\n\n$$\n\\propto | \\psi^{(1)}_D (s, t) + \\psi^{(2)}_D (s, t) |^2 = | \\psi^{(2)} (s, t_0) + \\psi^{(2)} (s, t_1) |^2.\n$$\n\nAs\n\n$$\n\\exp \\left( i \\frac{2\\pi \\mu ml\\lambda}{\\hbar^2} \\sigma \\cdot \\mathbf{B} \\right) = \\cos \\frac{2\\pi \\mu ml\\lambda B}{\\hbar^2} + i \\sigma \\cdot \\frac{\\mathbf{B}}{B} \\times \\sin \\frac{2\\pi \\mu ml\\lambda B}{\\hbar^2},\n$$\n\nand $\\sigma \\cdot \\mathbf{B} = \\pm\\sigma B$ depending on whether $\\sigma$ is parallel or anti-parallel to $\\mathbf B$, we have\n\n$$\n| \\psi^{(2)} (s, t_0) + \\psi^{(2)} (s, t_1) |^2 =\n$$\n\n$$\n= \\left| 1 + \\exp \\left( i \\frac{2\\pi \\mu ml\\lambda}{\\hbar^2} \\sigma \\cdot \\mathbf{B} \\right) \\right|^2 | \\psi(s, t_0) |^2\n$$\n\n$$\n= \\left| 1 + \\cos \\frac{2\\pi \\mu ml\\lambda B}{\\hbar^2} \\pm i \\sigma \\sin \\frac{2\\pi \\mu ml\\lambda B}{\\hbar^2} \\right|^2\n$$\n\n$$\n= \\left( 1 + \\cos \\frac{2\\pi \\mu ml\\lambda B}{\\hbar^2} \\right)^2 + \\sin^2 \\frac{2\\pi \\mu ml\\lambda B}{\\hbar^2} = 4\\cos^2 \\frac{\\pi \\mu ml\\lambda B}{\\hbar^2}.\n$$\n\nTherefore, the interference intensity at $D \\propto \\cos^2 (\\pi \\mu ml\\lambda B / \\hbar^2)$, where $\\mu$ is the intrinsic magnetic moment of the neutron $(\\mu < 0)$.",
+    "constant_coefficient_hits": [
+      {
+        "repeat": 3,
+        "part": "a",
+        "score": 0.0,
+        "reason": "The candidate gives the correct qualitative result that the parallel and anti-parallel spin intensities are the same cos^2 dependence, but the phase coefficient is not the reference one. The reference has I_D proportional to cos^2(pi mu m l lambda B / hbar^2), while the candidate uses cos^2(m|mu|lambda Bl/(4 pi hbar^2)), differing by a material factor."
+      },
+      {
+        "repeat": 4,
+        "part": "a",
+        "score": 0.0,
+        "reason": "The reference answer gives an intensity proportional to cos^2(pi mu m l lambda B / hbar^2), equivalently a cosine with argument 2 pi mu m l lambda B / hbar^2 up to normalization, and the same dependence for parallel and anti-parallel spin. The candidate's weak-field expression uses h^2 in the denominator, giving a coefficient smaller by a factor of 4 pi^2 relative to the reference, and its stated exact k_s phase dependence is not the reference result."
+      }
+    ],
+    "num_constant_coefficient_hits": 2
+  },
+  {
+    "dataset": "Physics",
+    "split": "train",
+    "id": "quantum/5003",
+    "mean_at_4": 0.0,
+    "best_at_4": 0.0,
+    "question": "A particle of mass $m$ moves one-dimensionally in the oscillator potential $V(x) = \\frac{1}{2}m\\omega^2x^2$. In the nonrelativistic limit, where the kinetic energy $T$ and momentum $p$ are related by $T = p^2/2m$, the ground state energy is well known to be $\\frac{1}{2}\\hbar \\omega$.\n\nAllow for relativistic corrections in the relation between $T$ and $p$ and compute the ground state level shift $\\Delta E$ to order $\\frac{1}{c^2}$ ($c$ = speed of light).",
+    "solution": "In relativistic motion, the kinetic energy $T$ is\n\n$$\nT \\equiv E - mc^2 = \\sqrt{m^2c^4 + p^2c^2} - mc^2\n$$\n\n$$\n= mc^2 \\left( 1 + \\frac{p^2}{m^2c^2} \\right)^{\\frac{1}{2}} - mc^2\n$$\n\n$$\n\\approx mc^2 \\left( 1 + \\frac{p^2}{2m^2c^2} - \\frac{p^4}{8m^4c^4} \\right) - mc^2\n$$\n\n$$\n= \\frac{p^2}{2m} - \\frac{p^4}{8m^3c^2}\n$$\n\nto order $\\frac{1}{c^2}$. The $-\\frac{p^4}{8m^3c^2}$ term may be considered as a perturbation. Then the energy shift of the ground state is\n\n$$\n\\Delta E = \\left\\langle -\\frac{p^4}{8m^3c^2} \\right\\rangle = \\int_{-\\infty}^{\\infty} \\phi_0^* \\left( -\\frac{p^4}{8m^3c^2} \\right) \\phi_0 \\, dx\n$$\n\n$$\n= \\int_{-\\infty}^{\\infty} \\left( \\frac{m\\omega}{\\pi \\hbar} \\right)^{1/4} \\exp\\left[ -\\frac{m\\omega}{2\\hbar} x^2 \\right]\n$$\n\n$$\n\\times \\left( -\\frac{\\hbar^4}{8m^3c^2} \\frac{\\partial^4}{\\partial x^4} \\right) \\left( \\frac{m\\omega}{\\pi \\hbar} \\right)^{1/4} \\exp\\left[ -\\frac{m\\omega}{2\\hbar} x^2 \\right] \\, dx\n$$\n\n$$\n= -\\frac{15}{32} \\frac{(\\hbar \\omega)^2}{mc^2}.\n$$",
+    "constant_coefficient_hits": [
+      {
+        "repeat": 1,
+        "part": "a",
+        "score": 0.0,
+        "reason": "The candidate gives the correct sign and scaling but the coefficient is wrong: reference solution has \\(\\Delta E=-\\frac{15}{32}\\frac{(\\hbar\\omega)^2}{mc^2}\\), not \\(-\\frac{3}{32}\\frac{\\hbar^2\\omega^2}{mc^2}\\)."
+      }
+    ],
+    "num_constant_coefficient_hits": 1
+  },
+  {
+    "dataset": "Physics",
+    "split": "train",
+    "id": "quantum/5069",
+    "mean_at_4": 0.75,
+    "best_at_4": 0.75,
+    "question": "An atom with no permanent magnetic moment is said to be diamagnetic. In this problem the object is to calculate the induced diamagnetic moment for a hydrogen atom in a weak magnetic field $B$ ignoring the spins of the electron and proton.\n\n(a) Write down the nonrelativistic Hamiltonian for a particle of mass $m$ and charge $q$ in a combined vector and scalar electromagnetic field.\n\n(b) Using the fact that a satisfactory vector potential $\\mathbf{A}$ for a uniform magnetic field is $\\mathbf{A} = -\\frac{1}{2} \\mathbf{r} \\times \\mathbf{B}$, write down the steady-state Schrödinger equation for the hydrogen atom. Assume the proton to be infinitely massive so center of mass motion can be ignored.\n\n(c) Treat the terms arising from the magnetic field as a perturbation and calculate the shift in the ground state energy due to the existence of the magnetic field.\n\n(d) Calculate the induced diamagnetic moment per atom.",
+    "solution": "(a) A particle of mass $m$ and charge $q$ in an electromagnetic field of potentials $(\\phi, \\mathbf{A})$ has Hamiltonian\n\n$$\nH = \\frac{1}{2m} \\left( \\mathbf{p} - \\frac{q}{c} \\mathbf{A} \\right)^2 + q \\phi.\n$$\n\n(b) If the motion of the proton is neglected, the Schrödinger equation for a hydrogen atom in a uniform magnetic field $\\mathbf{B}$ is\n\n$$\n\\left[ \\frac{1}{2m_e} \\left( \\mathbf{p} + \\frac{e}{2c} \\mathbf{B} \\times \\mathbf{r} \\right)^2 - \\frac{e^2}{r} \\right] \\psi(\\mathbf{r}) = E\\psi(\\mathbf{r}),\n$$\n\nwhere $q = -e$ for an electron, or\n\n$$\n\\left\\{ \\frac{1}{2m_e} \\left[ \\mathbf{p}^2 + \\frac{e}{2c} \\mathbf{p} \\cdot \\mathbf{B} \\times \\mathbf{r} + \\frac{e}{2c} \\mathbf{B} \\times \\mathbf{r} \\cdot \\mathbf{p} + \\frac{e^2}{4c^2} (\\mathbf{B} \\times \\mathbf{r})^2 \\right] - \\frac{e^2}{r} \\right\\} \\psi(\\mathbf{r}) \\\\\n= E\\psi(\\mathbf{r}).\n$$\n\nAs\n\n$$\n\\mathbf{p} \\cdot \\mathbf{B} \\times \\mathbf{r} - \\mathbf{B} \\times \\mathbf{r} \\cdot \\mathbf{p} \\\\\n= -i\\hbar \\nabla \\cdot (\\mathbf{B} \\times \\mathbf{r}) = -i\\hbar (\\nabla \\times \\mathbf{B}) \\cdot \\mathbf{r} + i\\hbar \\mathbf{B} \\cdot \\nabla \\times \\mathbf{r} = 0\n$$\n\nbecause $\\mathbf{B}$ is uniform and $\\mathbf{V} \\times \\mathbf{r} = 0$, we have\n\n$$\n\\mathbf{p} \\cdot \\mathbf{B} \\times \\mathbf{r} = \\mathbf{B} \\times \\mathbf{r} \\cdot \\mathbf{p} = \\mathbf{B} \\cdot \\mathbf{r} \\times \\mathbf{p} = \\mathbf{B} \\cdot \\mathbf{L}.\n$$\n\nTaking the direction of the uniform magnetic field $\\mathbf{B}$ as the $z$ direction, we have $\\mathbf{B} = B\\hat{\\mathbf{e}}_z$, $\\mathbf{B} \\cdot \\mathbf{L} = BL_z = i\\hbar B \\frac{\\partial}{\\partial \\varphi}$ and\n\n$$\n(\\mathbf{B} \\times \\mathbf{r})^2 = (-B y \\hat{\\mathbf{e}}_x + Bx \\hat{\\mathbf{e}}_y)^2 = B^2(x^2 + y^2) = B^2r^2 \\sin^2 \\theta\n$$\n\nin spherical coordinates.  \n\nThe Schrodinger equation can then be written as\n$$\n\\left( -\\frac{\\hbar^2}{2m_e} \\nabla^2 - \\frac{e^2}{r} - \\frac{ieB\\hbar}{2m_ec} \\frac{\\partial}{\\partial \\varphi} 2m_ec ieB\\hbar \\frac{\\partial}{\\partial \\varphi} + \\frac{e^2B^2}{8m_ec^2} r^2 \\sin^2 \\theta \\right) \\psi(r, \\theta, \\varphi)\\\\\n= E\\psi(r, \\theta, \\varphi)\n$$\n\nin spherical coordinates. \n\n(c) Treat \n\n$$\nH' = \\frac{eB}{2m_ec} L_z + \\frac{e^2B^2}{8m_ec^2} r^2 \\sin^2 \\theta\n$$\n\nas a perturbation. The energy shift of the ground state is\n\n$$\n\\Delta E = \\langle 100|H'|100 \\rangle\n$$\n\nwith\n\n$$\n|100 \\rangle = R_{10}(r)Y_{00}(\\theta, \\varphi) = \\sqrt{\\frac{1}{\\pi a^3}} e^{-\\frac{r}{a}},\n$$\n\nwhere $a = \\frac{\\hbar^2}{m_ee^2}$. Thus\n\n$$\n\\Delta E = \\left[ 2\\pi \\int_0^{\\pi} \\sin \\theta d\\theta \\int_0^{\\infty} r^2 dr \\frac{1}{\\pi} \\left( \\frac{1}{a} \\right)^3 e^{-2r/a}r^2 \\sin^2 \\theta \\right] \\cdot \\frac{e^2B^2}{8m_ec^2} \\\\\n= \\frac{1}{a^3} \\int_a^{\\infty} r^4 e^{-2r/a} dr \\cdot \\frac{e^2B^2}{3m_ec^2} = \\frac{a^2e^2B^2}{4m_ec^2},\n$$\n\nNote that for the ground state, $l = 0$, $m_l = 0$, and the first term of $H'$ makes no contribution to $\\Delta E$.\n\n(d) The above energy shift is equal to the energy of a magnetic dipole in a magnetic field $B$,\n\n$$\n\\Delta E = - \\mu \\cdot \\mathbf{B},\n$$\n\nif the dipole moment is\n\n$$\n\\mu = - \\frac{e^2 a^2}{4 m_e c^2} \\mathbf{B}.\n$$\n\nThis can be considered as the dipole moment induced by the field. The atom is diamagnetic as $\\mu$ is antiparallel to $\\mathbf{B}$.",
+    "constant_coefficient_hits": [
+      {
+        "repeat": 1,
+        "part": "d",
+        "score": 0.75,
+        "reason": "The reference gives the induced moment as proportional to -e^2 a^2 B/(4mc^2) (or the SI-convention analogue with coefficient 1/4), while the candidate gives a coefficient larger by a factor of 2."
+      },
+      {
+        "repeat": 2,
+        "part": "d",
+        "score": 0.75,
+        "reason": "The reference solution gives the induced moment as μ=-(e^2 a^2/(4m_e c^2))B, or the SI-equivalent without c^2. The candidate gives a result larger by a factor of 2."
+      }
+    ],
+    "num_constant_coefficient_hits": 2
+  },
+  {
+    "dataset": "Physics",
+    "split": "validation",
+    "id": "Electricity and Magenetism/10-3",
+    "mean_at_4": 0.0,
+    "best_at_4": 0.0,
+    "question": "Beams of electromagnetic radiation eventually spread because of diffraction, among other things (e.g. scattering). Recall that a beam which propagates through a circular aperture of diameter $D$ spreads with a diffraction angle $\\theta_d=1.22 \\lambda_n / d$, where $\\lambda$ is the wavelength in a material with index of refraction $n$. In many dielectric media, the index of refraction increases in large electric fields and can be well represented by $n = n_0 + n_2 E^2$, where $n_2$ is some positive dimensionfull constant.\n\nCalculate the threshold power for the existence of a self-trapped beam. Assume the radiation to be plane waves.",
+    "solution": "In the region of the beam, the index of refraction is $n = n_0 + n_2 E^2$ while it is $n_0$ outside, so total internal reflection at the boundary of the beam is possible. Let the angle that a ray incident on the beam boundary makes with the normal to the boundary be $\\pi/2 - \\theta$, so that $\\theta$ is the angle relative to the boundary surface itself. Then, total internal reflection occurs if $n \\sin(\\pi/2 - \\theta) = n \\cos \\theta \\geq n_0$, or $n \\ge n_0 / \\cos \\theta$. If $\\theta_d$ is the Rayleigh diffraction angle, as drawn, then this ray hits the beam boundary at an angle $\\theta_d / 2$ with respect to the boundary surface itself. Thus, we require\n\n$$\n \nn = n_0 + n_2 E^2 \\geq \\frac{n_0}{\\cos(\\theta_d / 2)} \\implies E \\geq \\sqrt{\\frac{n_0}{n_2}\\left(\\frac{1}{\\cos(\\theta_d/2)} - 1\\right)}. \n\\tag{10.3.1}\n$$\n\n\nFor plane waves, the intensity (average Poynting vector) is\n\n$$\nI = \\langle S \\rangle = \\frac{1}{2} \\epsilon E^2 c_n = \\frac{1}{2} \\frac{\\epsilon}{\\mu} E^2, \n\\tag{10.3.2}\n$$\n\n\nwhere $c_n = 1 / \\sqrt{\\mu \\epsilon}$ is the speed of light in the medium.\n\nThe average power is just the intensity multiplied by the beam area:\n\n$$\nP=I \\pi D^2 / 4 \\geq \\frac{\\pi D^2}{4} \\cdot \\frac{1}{2} \\sqrt{\\frac{\\epsilon}{\\mu}} \\frac{n_0}{n_2}\\left(\\frac{1}{\\cos \\left(\\theta_d / 2\\right)}-1\\right)\n\\tag{10.3.3}\n$$\n\n\nAt threshold, equality holds and $n = n_0 / \\cos(\\theta_d/2)$. We can also relate $n$ with the permittivity and permeability: $c_n=1 / \\sqrt{\\mu \\epsilon} \\approx 1 / \\sqrt{\\mu_0 \\epsilon_0\\left(\\epsilon / \\epsilon_0\\right)}=c / \\sqrt{\\epsilon / \\epsilon_0}$ and so $n = \\sqrt{\\epsilon / \\epsilon_0}$. Finally, we write $\\sqrt{\\epsilon / \\epsilon_0} = \\epsilon_0 c$, where $c$ is the speed of light in vacuum. Then, we have the threshold or critical power:\n\n$$\nP_c=\\frac{\\pi \\epsilon_0 c D^2}{8} \\frac{n_0^2}{n_2} \\frac{1-\\cos \\left(\\theta_d / 2\\right)}{\\cos ^2\\left(\\theta_d / 2\\right)} .\n\\tag{10.3.4}\n$$\nNext, we expand the cosines and replace $ \\theta_d = 1.22 \\lambda_n / D $:\n\n$$\nP_c \\approx \\frac{\\pi \\epsilon_0 c D^2}{8} \\frac{n_0^2}{n_2} \\frac{\\left(\\theta_d / 2\\right)^2}{2}=\\frac{\\pi \\epsilon_0 c}{64} \\frac{n_0^2}{n_2}\\left(1.22 \\lambda_n\\right)^2 . \\tag{10.3.5}\n$$\n\n\nFinally, we recognize $ n_0 \\lambda_n $ as the wavelength, $ \\lambda $, in vacuum. Then,\n\n$$\nP_c \\approx \\frac{\\pi \\epsilon_0 c}{64 n_2} (1.22 \\lambda)^2. \\tag{10.3.6}\n$$\n",
+    "constant_coefficient_hits": [
+      {
+        "repeat": 1,
+        "part": "a",
+        "score": 0.0,
+        "reason": "The candidate gives the correct scaling with epsilon_0 c, n_0^2 lambda_n^2 (or vacuum lambda_0^2), and n_2, and the condition P >= P_th, but its numerical coefficient is wrong by a factor of 4. The reference result is P_c = pi(1.22)^2 epsilon_0 c n_0^2 lambda_n^2/(64 n_2), not with denominator 16."
+      },
+      {
+        "repeat": 2,
+        "part": "a",
+        "score": 0.0,
+        "reason": "The candidate gives the correct dependence on epsilon_0 c, n_0^2 lambda_n^2 (or lambda_0^2), and n_2, but the numerical prefactor is wrong: the reference threshold is pi(1.22)^2/64, not pi(1.22)^2/16."
+      },
+      {
+        "repeat": 3,
+        "part": "a",
+        "score": 0.0,
+        "reason": "The candidate gives the correct dependence on epsilon_0 c, n_0^2 lambda_n^2 (or lambda_0^2), and n_2, but the numerical prefactor is wrong. The reference threshold is (pi/64)(1.22)^2 epsilon_0 c n_0^2 lambda_n^2/n_2, while the candidate has pi/16, a factor of 4 too large."
+      },
+      {
+        "repeat": 4,
+        "part": "a",
+        "score": 0.0,
+        "reason": "The candidate gives the correct dependence on epsilon_0 c, lambda^2, and 1/n_2, but its numerical prefactor is wrong: the reference threshold is P_c = pi(1.22 lambda)^2 epsilon_0 c/(64 n_2), not with denominator 16. This is a material factor-of-4 error."
+      }
+    ],
+    "num_constant_coefficient_hits": 4
+  },
+  {
+    "dataset": "Physics",
+    "split": "validation",
+    "id": "Electricity and Magenetism/10-7",
+    "mean_at_4": 0.25,
+    "best_at_4": 0.5,
+    "question": "Two square slits of dimension _a_ and 3a are arranged along a horizontal line _L_ on an opaque screen. The separation between the edges of the two slits is equal to 2a. The slits are illuminated with collimated monochromatic light of wavelength λ and uniform intensity _I₀_ coming from infinity. A lens is placed on the right hand side of the screen to collect the diffracted light and focus the diffracted light onto a screen for viewing the diffraction pattern.  \n\n(a) Calculate the intensity distribution of the diffraction pattern due to the slit of dimension _a_ alone (as a function of the coordinates of the diffracted beam on the screen. Choose the origin of the coordinate system appropriately to simplify your answer!)  \n\n(b) Do the same, but now for both slits.  ",
+    "solution": "(a) Neglect the lens. All it does is justify the usual small angle approximation that parallel rays leaving the slits focus at a point on the observation screen.  \n\nLet $ẑ$ be the direction from the diffracting screen to the observation screen and let z be their separation. Let $(X, Y)$ be coordinates on the diffracting screen and let $(x, y)$ be coordinates on the observation screen. The general result is as follows: define the slit function _f(X)_ to be 1 at points $X = (X, Y)$ in the slits and 0 everywhere else. Define $q = \\frac{k}{z} (x, y)$, with _k = 2π/λ_. Let _I₀_ be the intensity at the origin of the observation screen.  \n\nThen, $I(q) ≈ (I₀|G(q)|)²$, where $G(q) = \\int f(X) e^{-iq·X} d²X / A$, where _A_ is the total slit area.  \n\nLet us see how this comes about. Consider the displacement vector from a point in the slits, $(X, Y)$, to an observation point, $(x, y)$. This is $r = (x - X, y - Y, z)$. Let  $R = [x² + y² + z²]^{1/2}$ be the distance from the origin to the point on the observation screen.  \n\nThen,  \n$$\n\\begin{aligned} r & =R\\left[1-\\frac{2}{R^2}(x X+y Y)+\\frac{1}{R^2}\\left(x^2+y^2\\right)\\right]^{1 / 2} \\\\ & \\approx R-\\frac{x}{R} X-\\frac{y}{R} Y .\\end{aligned}\n$$\n (10.7.1)  \n\nFurthermore, _z >> x, y_ (small angle) implies _R ≈ z_. I will only replace _R_ with _z_ when it appears anywhere except in the exponential. A little bit of surface area $d²X$ will contribute a spherical wave $d E=\\left(\\frac{\\varepsilon}{r}\\right) e^{i(k r-\\omega t)} d^2 X$\n$$\nd E \\approx\\left(\\frac{\\varepsilon e^{i(k R-\\omega t)}}{z}\\right) e^{-i(k / R)(x X+y Y)} d^2 X=\\left(\\frac{\\varepsilon e^{i(k R-\\omega t)}}{z}\\right) e^{-i \\mathbf{q} \\cdot \\mathbf{X}} d^2 X\n$$\n(10.7.2)  \n\nThe total electric field is an integral over the slits  \n$$\nE=\\left(\\frac{\\mathcal{E}^{i(k R-\\omega t)}}{z}\\right) \\int e^{-i \\mathbf{q} \\cdot \\mathbf{X}} d^2 X=\\left(\\frac{\\mathcal{E} A e^{\\mathrm{i}(k R-\\omega t)}}{z}\\right) G(\\mathbf{q})\n$$\n (10.7.3)  \n\n$\\left|\\frac{\\mathcal{E} A e^{i(k R-\\omega t)}}{z}\\right|^2$ is simply the intensity incident at `x = y = 0`, which is the center of the observation screen. This is what we called$I_0$. Hence,$I(\\mathbf{q})=I_0|G(\\mathbf{q})|^2$. This derivation is \n\nessentially the same as that in Hecht 10.2.4 pp.464.\n\nNow, let’s compute the integral.\n\n$$\nG(q) = \\frac{1}{a^2} \\int_{-a/2}^{a/2} \\int_{-a/2}^{a/2} dX \\, dY \\, e^{-i(2\\pi/\\lambda R)(xX + yY)}\n$$\n\n\n$$\n\\begin{aligned}\nG(\\mathbf{q}) & =\\frac{1}{a^2} \\int_{-a / 2}^{a / 2} d X d Y e^{-i(2 \\pi / \\lambda R)(x X+y Y)} \\\\\n& =\\left.\\left.\\frac{1}{a^2}\\left(-\\frac{\\lambda R}{2 \\pi i x}\\right)\\left(-\\frac{\\lambda R}{2 \\pi i y}\\right) e^{-i(2 \\pi / \\lambda R) x X}\\right|_{-a / 2} ^{a / 2} e^{-i(2 \\pi / \\lambda R) y Y}\\right|_{-a / 2} ^{a / 2} \\\\\n& =\\frac{-\\lambda^2 R^2}{4 \\pi^2 a^2 x y}\\left(e^{i(2 \\pi / \\lambda R)(a / 2) x}-e^{-i(2 \\pi / \\lambda R)(a / 2) x}\\right)\\left(e^{i(2 \\pi / \\lambda R)(a / 2) y}-e^{-i(2 \\pi / \\lambda R)(a / 2) y}\\right) \\\\\n& =\\left(\\frac{\\lambda R}{\\pi a x}\\right) \\sin \\left(\\frac{\\pi a x}{\\lambda R}\\right)\\left(\\frac{\\lambda R}{\\pi a y}\\right) \\sin \\left(\\frac{\\pi a y}{\\lambda R}\\right) \\\\\n& =\\sin \\alpha \\operatorname{sinc} \\beta,\n\\end{aligned}\n\\tag{10.7.4}\n$$\n\n\nwhere $\\alpha = \\frac{\\pi a x}{\\lambda R}$ and $\\beta = \\frac{\\pi a y}{\\lambda R}$. This is just the product of two single slit diffraction patterns, as is to be expected. Define $\\vartheta$ and $\\varphi$ such that $\\sin \\vartheta \\approx x/R$ and $\\sin \\varphi \\approx y/R$. Note that these are not the same as spherical angles. Then, $\\alpha = \\frac{\\pi a}{\\lambda} \\sin \\vartheta$ and $\\beta = \\frac{\\pi a}{\\lambda} \\sin \\varphi$. Hence, \n\n$$\nI(\\vartheta, \\varphi) = I_0 \\, \\text{sinc}^2 \\alpha \\, \\text{sinc}^2 \\beta. \n\\tag{10.7.5}\n$$\n\n\n(b) Now, we have \n\n$$\n\\begin{aligned}\nG(\\mathbf{q}) & =\\frac{1}{10 a^2}\\left[\\int_{-5 a / 2}^{-3 a / 2}+\\int_{a / 2}^{7 a / 2}\\right] d X \\int_{-a / 2}^{a / 2} d Y e^{-i(2 \\pi / \\lambda R)(x X+y Y)} \\\\\n& =\\left.\\frac{1}{10 a^2}\\left(-\\frac{\\lambda R}{2 \\pi i x}\\right)\\left(-\\frac{\\lambda R}{2 \\pi i y}\\right) e^{-i(2 \\pi / \\lambda R) x X}\\left[\\left.\\right|_{-5 a / 2} ^{-3 a / 2}+\\left.\\right|_{a / 2} ^{7 a / 2}\\right] e^{-i(2 \\pi / \\lambda R) y Y}\\right|_{-a / 2} ^{a / 2} \\\\\n& =\\frac{1}{10 \\alpha} \\frac{1}{2 i}\\left[e^{3 i \\alpha}-e^{5 i \\alpha}+e^{-7 i \\alpha}-e^{-i \\alpha}\\right] \\operatorname{sinc} \\beta\n\\end{aligned}\n\\tag{10.7.6}\n$$\n\nIt turns out that the square amplitude of this can be simplified significantly:\n\n$$\nI(\\vartheta, \\varphi) = \\frac{I_0}{100a^2} \\left[ \\sin^4(2\\alpha) + \\frac{1}{4} \\left(\\sin(4\\alpha) - 2\\sin(6\\alpha)\\right)^2 \\right] \\text{sinc}^2\\beta.\n\\tag{10.7.7}\n$$\n",
+    "constant_coefficient_hits": [
+      {
+        "repeat": 1,
+        "part": "a",
+        "score": 0.0,
+        "reason": "The sinc-squared shape for a square slit is correct, but the normalization is not the reference result. The reference gives I = I0 sinc^2(alpha) sinc^2(beta), with I0 the central observed intensity, while the candidate includes an extra a^4/(lambda f)^2 factor."
+      },
+      {
+        "repeat": 4,
+        "part": "a",
+        "score": 0.0,
+        "reason": "The sinc-squared dependence in the two transverse coordinates is the right square-aperture shape, but the normalization is not the reference result. In the reference, with its definition of I0, the answer is I0 sinc^2(pi a x/lambda R) sinc^2(pi a y/lambda R), so the extra factor a^4/(lambda f)^2 is a material mismatch."
+      }
+    ],
+    "num_constant_coefficient_hits": 2
+  },
+  {
+    "dataset": "Physics",
+    "split": "validation",
+    "id": "Quantum Mechanics/23-2",
+    "mean_at_4": 0.25,
+    "best_at_4": 0.5,
+    "question": "Let V be a two-step potential that goes (from left to right) from V₁ = 0 to V₂ > V₁ to V₃ > V₂. Let a be the width of the first step when V = V₂. Consider a system with energy E > V₃.\n(a) Calculate the scattering matrix, which relates the coefficients of the outgoing waves (in both directions) in terms of the incoming waves (in both directions).\n(b) For leftward scattering only, calculate the transmission coefficient.*",
+    "solution": "Let region j be when V = Vⱼ and define $k_j=\\frac{1}{\\hbar} \\sqrt{2 m\\left(E-V_j\\right)}$, which is real and positive since E > Vⱼ for all j. Schrödinger’s equation in region j reads $(\\frac{d^2}{dx^2} + k_j^2) \\psi_j (x) = 0$ whose solution is $A_j e^{ik_j x} + B_j e^{-ik_j x}$, where A is right-moving and B is left-moving.\n\nLet region 2 extend from x = -a to x = 0. Since the potential is finite everywhere, the wavefunction and its derivative must be continuous everywhere. This implies\n\n$$\nA_1 e^{-ik_1 a} + B_1 e^{ik_1 a} = A_2 e^{-ik_2 a} + B_2 e^{ik_2 a}, \\tag{23.2.1a}\n$$\n\n$$\nk_1 A_1 e^{-ik_1 a} - k_1 B_1 e^{ik_1 a} = k_2 A_2 e^{-ik_2 a} - k_2 B_2 e^{ik_2 a}, \\tag{23.2.1b}\n$$\n\n$$\nA_2 + B_2 = A_3 + B_3, \\tag{23.2.1c}\n$$\n\n$$\nk_2 A_2 - k_2 B_2 = k_3 A_3 - k_3 B_3. \\tag{23.2.1d}\n$$\n\nWe can use (23.2.1a) and (23.2.1b) to solve for A₂ and B₂ in terms of A₁ and B₁ or A₃ and B₃.\nThis is summarized in matrix form as\n\n$$\n\\binom{A_2}{B_2}=\\frac{1}{2 k_2}\\left(\\begin{array}{rr}\n\\left(k_1+k_2\\right) e^{-i\\left(k_1-k_2\\right) a} & -\\left(k_1-k_2\\right) e^{i\\left(k_1+k_2\\right) a} \\\\\n-\\left(k_1-k_2\\right) e^{-i\\left(k_1+k_2\\right) a} & \\left(k_1+k_2\\right) e^{i\\left(k_1-k_2\\right) a}\n\\end{array}\\right)\\binom{A_1}{B_1}, \\tag{23.2.2a}\n$$\n\n$$\n\\begin{pmatrix}\nA_2 \\\\\nB_2\n\\end{pmatrix}\n= \\frac{1}{2k_2}\n\\begin{pmatrix}\nk_2 + k_3 & k_2 - k_3 \\\\\nk_2 - k_3 & k_2 + k_3\n\\end{pmatrix}\n\\begin{pmatrix}\nA_3 \\\\\nB_3\n\\end{pmatrix}. \\tag{23.2.2b}\n$$\n\nSetting these two equal to each allows us to solve for A₃ and B₃ in terms of A₁ and B₁. After a lot of tedious algebra, we find $\\binom{A_3}{B_3}=\\mathbf{M}\\binom{A_1}{B_1}$, where\n\n$$\nM_{11}=M_{22}^*=\\frac{1}{2 k_2 k_3} e^{-i k_1 a}\\left[\\left(k_1+k_3\\right) k_2 \\cos \\left(k_2 a\\right)+i\\left(k_1 k_3+k_2^2\\right) \\sin \\left(k_2 a\\right)\\right], \\tag{23.2.3a}\n$$\n\n$$\nM_{12}=M_{21}^*=-\\frac{1}{2 k_2 k_3} e^{i k_1 a}\\left[\\left(k_1-k_3\\right) k_2 \\cos \\left(k_2 a\\right)+i\\left(k_1 k_3-k_2^2\\right) \\sin \\left(k_2 a\\right)\\right] . \\tag{23.2.3b}\n$$\n\nM is called the *transfer matrix* and relates the coefficients on the right of the region where V is changing to the coefficients on the left. We want $\\binom{B_1}{A_3}=\\mathrm{S}\\binom{A_1}{B_3}$. The two are related by simply writing out the equation involving M and solving for B₁ and A₃ in terms of A₁ and B₃ (in that order) instead. One finds\n\n$$\nS = \\frac{1}{M_{22}}\n\\begin{pmatrix}\n-M_{21} & 1 \\\\\n\\text{det } M & M_{12} \n\\end{pmatrix}. \\tag{23.2.3}\n$$\n\nAfter some algebra, one finds det M to be\n\n$$\n\\text{det } M = k_1 / k_3. \\tag{23.2.4}\n$$\n\nFor leftward scattering, B₃ = 0, and the transmission coefficient is\n\n$$\nT_l=\\frac{\\left|A_3\\right|^2}{\\left|A_1\\right|^2}=\\left|S_{21}\\right|^2=\\frac{4 k_1^2 k_2^2}{\\left(k_1+k_3\\right)^2 k_2^2 \\cos ^2\\left(k_2 a\\right)+\\left(k_1 k_3+k_2^2\\right)^2 \\sin ^2\\left(k_2 a\\right)} \\tag{23.2.5}\n$$\n",
+    "constant_coefficient_hits": [
+      {
+        "repeat": 2,
+        "part": "b",
+        "score": 0.5,
+        "reason": "The reference asks for the transmission coefficient with B3=0 and gives T = 4 k1^2 k2^2 / [((k1+k3)^2 k2^2 cos^2(k2 a) + (k1 k3+k2^2)^2 sin^2(k2 a))]. The candidate instead treats incidence from the right with A=0 and gives T = (k1/k3)|B/G|^2, so it does not answer the referenced part."
+      }
+    ],
+    "num_constant_coefficient_hits": 1
+  },
+  {
+    "dataset": "Physics",
+    "split": "test",
+    "id": "Statistical Mechanics/19-5",
+    "mean_at_4": 0.75,
+    "best_at_4": 0.75,
+    "question": "Find expressions as a function of temperature in the region $ \\tau < \\tau_E $ for a gas of $ N $ noninteracting bosons of spin zero confined to a volume $ V $:\n(a) the energy.\n(b) heat capacity.\n(c) entropy.\n(d) Put the definite integral in dimensionless form; it need not be evaluated.",
+    "solution": "As usual, we set the energy of the ground state equal to zero. Then, we must integrate the energy of the excited states. We will need the appropriate density of states. Assuming the gas to be nonrelativistic and confined to a cube of volume $ V = L^3 $, occupying the positive octant of coordinates, we require the state wavefunctions to vanish at the boundary, which gives the usual constraint on the wavelengths: $ \\lambda_j = 2L/n_j $ for $ j = x, y, z $. Since the wavevector is $ k = 2\\pi/\\lambda $, we have $ k_j = (\\pi/L)n_j $, and the energy is $ \\epsilon = \\frac{\\hbar^2 k^2}{2m} = \\frac{\\hbar^2 \\pi^2}{2m L^2} n^2 $, where $ n^2 = n_x^2 + n_y^2 + n_z^2 $. Let $ N(\\epsilon) $ be the number of states below energy $ \\epsilon $ (note: this point has nothing to do with whether or not these states are actually filled; we're just counting states here.) Then,  \n\n$$\nN(\\epsilon) = 1 \\times \\frac{1}{8} \\times \\frac{4\\pi n^3}{3} = \\frac{V}{6\\pi^2} \\left( \\frac{2m}{\\hbar^2} \\right)^{3/2} \\epsilon^{3/2},\n$$\n\n(19.5.1)\n\nwhere, since these particles have spin 0, we lose a factor of 2 relative to the Fermi case.  \nThe density of states is thus\n$$\nD(\\epsilon) = \\frac{dN(\\epsilon)}{d\\epsilon} = \\frac{V}{4\\pi^2} \\left( \\frac{2m}{\\hbar^2} \\right)^{3/2} \\epsilon^{1/2}.\n$$\n(19.5.2)\n\n\nThe energy is given by  \n\n$$\nU = \\int_0^{\\infty} \\epsilon D(\\epsilon) f(\\epsilon) d\\epsilon = \\frac{V}{4\\pi^2} \\left( \\frac{2m}{\\hbar^2} \\right)^{3/2} \\int_0^{\\infty} \\frac{\\epsilon^{3/2} d\\epsilon}{e^{(\\epsilon-\\mu)/\\tau} - 1}.\n$$\n\n(19.5.3)\n\n\nIn the degenerate case, the chemical potential is very much closer to the ground state energy than are any of the excited states. Hence, we may set $\\mu = 0$ for calculating the number of excited state particles or their energy (but not to calculate the number of ground state particles). Define $ x = \\epsilon/\\tau $, then\n$$\nU=\\frac{V}{4 \\pi^2}\\left(\\frac{2 m}{\\hbar^2}\\right)^{3 / 2} \\tau^{5 / 2} \\int_0^{\\infty} \\frac{x^{3 / 2} d x}{e^x-1}=\\frac{3 \\zeta\\left(\\frac{5}{2}\\right)}{16}\\left(\\frac{2 m}{\\pi \\hbar^2}\\right)^{3 / 2} V \\tau^{5 / 2}=\\frac{3 \\zeta\\left(\\frac{5}{2}\\right)}{2 \\zeta\\left(\\frac{3}{2}\\right)} \\frac{N \\tau^{5 / 2}}{\\tau_E^{3 / 2}}\n$$\n(19.5.4)\n\n\nThe heat capacity at constant volume is\n\n$$\nC_V=\\left(\\frac{\\partial U}{\\partial \\tau}\\right)_{V, N}=\\frac{15}{4} \\frac{\\zeta(5 / 2)}{\\zeta(3 / 2)} N\\left(\\tau / \\tau_E\\right)^{3 / 2}\n$$\n\n\nThe heat capacity is also given by\n\n$$\nC_V = \\tau \\left( \\frac{\\partial \\sigma}{\\partial \\tau} \\right)_{V,N},\n$$\n\n\nfrom which we get\n\n$$\n\\sigma = \\frac{3}{2} \\frac{\\zeta(5/2)}{\\zeta(3/2)} N (\\tau/\\tau_E)^{3/2}. \n$$\n\n",
+    "constant_coefficient_hits": [
+      {
+        "repeat": 1,
+        "part": "c",
+        "score": 0.75,
+        "reason": "Does not match the reference entropy. The reference gives sigma=(3/2)[zeta(5/2)/zeta(3/2)]N(tau/tau_E)^{3/2}, while the candidate gives a value larger by a factor of 5/3, with k_B included."
+      }
+    ],
+    "num_constant_coefficient_hits": 1
+  }
+]

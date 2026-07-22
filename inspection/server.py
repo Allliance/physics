@@ -5,6 +5,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import mimetypes
 import os
@@ -24,6 +25,19 @@ SPLIT_NAMES = {"train", "test", "validation", "val", "dev"}
 ORIGINAL_DATASET_DIRS = (
     PROJECT_ROOT / "original_datasets",
     PROJECT_ROOT / "backup" / "0_original_datasets",
+)
+VISIBLE_DATASET_PATHS = {
+    "final_datasets/hardest_filtered_full.parquet",
+}
+HARD_FILTERED_FULL_PATH = "final_datasets/hardest_filtered_full.parquet"
+HARD_FILTERED_FULL_EVAL_DIR = (
+    PROJECT_ROOT
+    / "eval"
+    / "artifacts"
+    / "final_datasets"
+    / "hardest_filtered_full"
+    / "merged"
+    / "model_gpt-5.5_gen_f2a55bc001"
 )
 
 
@@ -166,6 +180,19 @@ def discover_datasets() -> list[dict]:
             }
         )
 
+    final_datasets = PROJECT_ROOT / "final_datasets"
+    for parquet in sorted(final_datasets.glob("*.parquet")) if final_datasets.exists() else []:
+        relative = rel(parquet)
+        datasets.append(
+            {
+                "id": dataset_id("parquet-file", relative),
+                "label": f"Final dataset / {parquet.stem.replace('_', ' ')}",
+                "path": relative,
+                "type": "final dataset",
+                "files": 1,
+            }
+        )
+
     for original in unique_existing_dirs(ORIGINAL_DATASET_DIRS):
         for parquet in sorted(original.glob("prepared/*/test.parquet")):
             relative = rel(parquet)
@@ -193,7 +220,7 @@ def discover_datasets() -> list[dict]:
             }
         )
 
-    return datasets
+    return [dataset for dataset in datasets if dataset["path"] in VISIBLE_DATASET_PATHS]
 
 
 def safe_string(value) -> str:
@@ -202,6 +229,70 @@ def safe_string(value) -> str:
     if isinstance(value, str):
         return value
     return json.dumps(value, ensure_ascii=False, default=str)
+
+
+def eval_row_key(dataset: Path, row: dict) -> str:
+    identity = f"{dataset.resolve()}\0{row.get('id')}\0{row.get('question')}"
+    return hashlib.sha256(identity.encode()).hexdigest()[:20]
+
+
+def read_keyed_jsonl(path: Path, key: str = "key") -> dict[str, dict]:
+    if not path.exists():
+        return {}
+    rows = {}
+    with path.open("r", encoding="utf-8") as handle:
+        for line in handle:
+            if not line.strip():
+                continue
+            item = json.loads(line)
+            rows[item[key]] = item
+    return rows
+
+
+@lru_cache(maxsize=4)
+def hard_filtered_full_eval_records() -> tuple[dict[str, dict], dict[str, dict]]:
+    responses = read_keyed_jsonl(HARD_FILTERED_FULL_EVAL_DIR / "responses.jsonl")
+    judgments = read_keyed_jsonl(HARD_FILTERED_FULL_EVAL_DIR / "judge_gpt-5.5" / "judgments.jsonl")
+    return responses, judgments
+
+
+def enrich_hard_filtered_full_eval(path: Path, row: dict) -> dict:
+    if rel(path) != HARD_FILTERED_FULL_PATH:
+        return row
+    responses, judgments = hard_filtered_full_eval_records()
+    key = eval_row_key(path, row)
+    response = responses.get(key)
+    judgment = judgments.get(key)
+    if response is None and judgment is None:
+        return row
+
+    item = dict(row)
+    item["latest_eval_key"] = key
+    item["latest_eval_artifact"] = rel(HARD_FILTERED_FULL_EVAL_DIR / "judge_gpt-5.5")
+    item["latest_eval_model"] = "gpt-5.5 high"
+    item["latest_eval_mode"] = "merged"
+    if response is not None:
+        item["latest_model_response"] = response.get("response") or ""
+        item["latest_extracted_answer"] = response.get("extracted_answer") or ""
+        item["latest_format_errors"] = response.get("format_errors") or []
+        item["latest_response_usage"] = response.get("usage") or {}
+    if judgment is not None:
+        parts = []
+        for part_id, part in (judgment.get("parts") or {}).items():
+            if not isinstance(part, dict):
+                continue
+            parts.append(
+                {
+                    "part": part_id,
+                    "score": part.get("score"),
+                    "reason": part.get("reason", ""),
+                }
+            )
+        item["latest_judge_score"] = judgment.get("score")
+        item["latest_judge_parts"] = parts
+        item["latest_judge_response"] = judgment.get("judge_response") or ""
+        item["latest_judge_usage"] = judgment.get("usage") or {}
+    return item
 
 
 def read_parquet_file(path: Path) -> list[dict]:
@@ -216,6 +307,7 @@ def read_parquet_file(path: Path) -> list[dict]:
         elif path.stem in SPLIT_NAMES:
             row.setdefault("__split", path.stem)
             row.setdefault("__part", path.stem)
+        row.update(enrich_hard_filtered_full_eval(path, row))
     return rows
 
 
@@ -401,6 +493,31 @@ def count_ground_truths(value) -> int:
     return 1
 
 
+def row_score(row: dict):
+    for key in ("latest_judge_score", "model_score", "score"):
+        value = row.get(key)
+        if value in (None, ""):
+            continue
+        try:
+            return float(value)
+        except (TypeError, ValueError):
+            continue
+    return None
+
+
+def sort_rows_by_score(rows: list[dict], direction: str) -> list[dict]:
+    if direction not in {"asc", "desc"}:
+        return rows
+
+    def sort_key(row: dict):
+        score = row_score(row)
+        if score is None:
+            return (1, 0.0)
+        return (0, score if direction == "asc" else -score)
+
+    return sorted(rows, key=sort_key)
+
+
 def compact(text: str, limit: int = 260) -> str:
     text = " ".join(text.split())
     if len(text) <= limit:
@@ -421,7 +538,7 @@ def sample_summary(row: dict) -> dict:
         "split": safe_string(row.get("__split") or row.get("split")),
         "part": safe_string(row.get("__part") or row.get("verdict") or row.get("part")),
         "labels": label_values(row),
-        "score": row.get("score"),
+        "score": row_score(row),
         "has_solution": bool(safe_string(solution).strip()),
         "ground_truth_count": count_ground_truths(ground_truths),
         "field_count": len([key for key in row if not key.startswith("__")]),
@@ -482,11 +599,15 @@ class InspectionHandler(BaseHTTPRequestHandler):
             raise ValueError("Missing dataset")
         phrase = params.get("q", [""])[0]
         label = params.get("label", [""])[0]
+        score_sort = params.get("score_sort", [""])[0]
+        if score_sort not in {"", "asc", "desc"}:
+            raise ValueError("score_sort must be asc, desc, or empty")
         limit = max(1, min(200, int(params.get("limit", ["50"])[0])))
         offset = max(0, int(params.get("offset", ["0"])[0]))
 
         all_rows = list(load_dataset(dataset))
         rows = filtered_rows(dataset, phrase, label)
+        rows = sort_rows_by_score(rows, score_sort)
         page = rows[offset : offset + limit]
         fields = sorted({key for row in rows[:200] for key in row if not key.startswith("__")})
         self.send_json(
