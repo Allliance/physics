@@ -62,6 +62,8 @@ def main() -> int:
     parser.add_argument("--overwrite", action="store_true")
     parser.add_argument("--include-media", action="store_true",
                         help="attach row images/graphs to Codex generator and judge calls")
+    parser.add_argument("--judge-prompt", choices=["default", "strict-reference"], default="default",
+                        help="judge prompt policy")
     endpoint_args(parser, "generator")
     endpoint_args(parser, "judge")
     args = parser.parse_args()
@@ -103,7 +105,8 @@ def main() -> int:
                        overwrite=args.overwrite, max_workers=args.max_workers,
                        repeat=args.repeat,
                        judge_reasoning_effort=args.judge_reasoning_effort,
-                       judge_max_tokens=args.judge_max_tokens)
+                       judge_max_tokens=args.judge_max_tokens,
+                       judge_prompt=args.judge_prompt)
     print(run(dataset_path, args.output_root, config, generator, judge))
     return 0
 

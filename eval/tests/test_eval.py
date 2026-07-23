@@ -10,9 +10,10 @@ from utils.codex_cli import CodexLLM
 
 from eval.__main__ import resolve_dataset_path
 from eval.parsing import detect_part_ids, extract_boxes, map_separated_boxes, parse_json_object
+from eval.prompts import MERGED_JUDGE_SYSTEM
 from eval.pipeline import (
     MERGED_SCHEMA, GenerationConfig, RunConfig, _attempt_key, _key,
-    candidate_answers, load_ground_truths, model_artifact_dir, normalize_row,
+    artifact_dir, candidate_answers, load_ground_truths, model_artifact_dir, normalize_row,
     resolve_ground_truth, run,
 )
 
@@ -406,6 +407,130 @@ class JudgmentCacheTests(unittest.TestCase):
             self.assertEqual(judgment["parts"]["b"]["score"], 0)
             self.assertEqual(judgment["parts"]["a"]["reason"], "Part a matches.")
             self.assertEqual(judgment["parts"]["b"]["reason"], "Part b does not match.")
+
+    def test_merged_target_parts_are_prompted_and_used_as_denominator(self):
+        row = {
+            "id": "sample",
+            "question": "(a) answer yes. (b) answer no. (c) answer maybe.",
+            "solution": "(a) yes. (b) no. (c) See the book.",
+            "is_multi_part": True,
+            "target_parts": ["a", "c"],
+        }
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            dataset = root / "Dataset" / "test.parquet"
+            key = _key(dataset, row)
+            config = RunConfig(mode="merged", generation=GenerationConfig("generator"),
+                               judge_name="judge")
+            out = model_artifact_dir(root / "artifacts", dataset, config)
+            out.mkdir(parents=True)
+            (out / "responses.jsonl").write_text(json.dumps({
+                "key": key, "id": "sample", "part_ids": ["a", "c"],
+                "extracted_answer": "(a) yes; (b) no; (c) maybe",
+            }) + "\n")
+            judge = SequenceLLM(json.dumps({
+                "parts": [
+                    {"part": "a", "score": 1, "reason": "Part a matches."},
+                    {"part": "b", "score": 1, "reason": "Extra part should be ignored."},
+                    {"part": "c", "score": None, "reason": "Reference points to inaccessible material."},
+                ]
+            }))
+            with patch("eval.pipeline.read_rows", return_value=[row]):
+                result = run(dataset, root / "artifacts", config, FailingLLM(), judge)
+
+            prompt = judge.calls[0][0][0]
+            system_prompt = judge.calls[0][1]["system_prompt"]
+            judgment = json.loads((result / "judgments.jsonl").read_text().splitlines()[-1])
+            self.assertIn("Target parts to judge", prompt)
+            self.assertIn('["a", "c"]', prompt)
+            self.assertIn("Reference solution policy", prompt)
+            self.assertNotIn("target parts", system_prompt.lower())
+            self.assertEqual(judgment["part_ids"], ["a", "c"])
+            self.assertEqual(judgment["target_parts"], ["a", "c"])
+            self.assertEqual(judgment["score_denominator"], "target_parts")
+            self.assertEqual(judgment["score"], 0.5)
+            self.assertEqual(judgment["correct"], ["a"])
+            self.assertEqual(judgment["num_scored_parts"], 1)
+            self.assertEqual(judgment["num_unscored_parts"], 1)
+            self.assertEqual(set(judgment["parts"]), {"a", "c"})
+
+    def test_merged_target_parts_refresh_old_inferred_cache(self):
+        row = {
+            "id": "sample",
+            "question": "(a) answer yes. (b) answer no.",
+            "solution": "(a) yes. (b) no.",
+            "is_multi_part": True,
+            "target_parts": ["a"],
+        }
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            dataset = root / "Dataset" / "test.parquet"
+            key = _key(dataset, row)
+            config = RunConfig(mode="merged", generation=GenerationConfig("generator"),
+                               judge_name="judge")
+            out = model_artifact_dir(root / "artifacts", dataset, config)
+            judge_out = out / "judge_judge"
+            judge_out.mkdir(parents=True)
+            (out / "responses.jsonl").write_text(json.dumps({
+                "key": key, "id": "sample", "part_ids": [],
+                "extracted_answer": "(a) yes; (b) wrong",
+            }) + "\n")
+            (judge_out / "judgments.jsonl").write_text(json.dumps({
+                "key": key, "id": "sample", "part_ids": ["a", "b"],
+                "correct": ["a"], "score": 0.5,
+                "parts": {
+                    "a": {"score": 1, "reason": "cached part a"},
+                    "b": {"score": 0, "reason": "cached part b"},
+                },
+            }) + "\n")
+            judge = SequenceLLM(json.dumps({
+                "parts": [{"part": "a", "score": 1, "reason": "Targeted part a matches."}]
+            }))
+            with patch("eval.pipeline.read_rows", return_value=[row]):
+                result = run(dataset, root / "artifacts", config, FailingLLM(), judge)
+
+            self.assertEqual(len(judge.calls), 1)
+            judgments = [json.loads(line) for line in (result / "judgments.jsonl").read_text().splitlines()]
+            self.assertEqual(len(judgments), 2)
+            self.assertEqual(judgments[-1]["part_ids"], ["a"])
+            self.assertEqual(judgments[-1]["target_parts"], ["a"])
+            self.assertEqual(judgments[-1]["score"], 1.0)
+
+    def test_strict_reference_judge_prompt_uses_separate_artifact_dir(self):
+        row = {
+            "id": "sample",
+            "question": "question",
+            "solution": "reference answer",
+            "target_parts": ["a"],
+        }
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            dataset = root / "Dataset" / "test.parquet"
+            key = _key(dataset, row)
+            config = RunConfig(mode="merged", generation=GenerationConfig("generator"),
+                               judge_name="judge", judge_prompt="strict-reference")
+            out = model_artifact_dir(root / "artifacts", dataset, config)
+            out.mkdir(parents=True)
+            (out / "responses.jsonl").write_text(json.dumps({
+                "key": key, "id": "sample", "part_ids": ["a"],
+                "extracted_answer": "candidate answer",
+            }) + "\n")
+            judge = SequenceLLM(json.dumps({
+                "parts": [{"part": "a", "score": 0, "reason": "Does not match reference."}]
+            }))
+            with patch("eval.pipeline.read_rows", return_value=[row]):
+                result = run(dataset, root / "artifacts", config, FailingLLM(), judge)
+
+            prompt = judge.calls[0][0][0]
+            system_prompt = judge.calls[0][1]["system_prompt"]
+            judgment = json.loads((result / "judgments.jsonl").read_text().splitlines()[-1])
+            self.assertEqual(result, artifact_dir(root / "artifacts", dataset, config))
+            self.assertIn("prompt_strict-reference-gold", result.name)
+            self.assertIn("Reference solution policy", prompt)
+            self.assertIn("gold standard", prompt)
+            self.assertIn("Do not override", prompt)
+            self.assertEqual(system_prompt, MERGED_JUDGE_SYSTEM)
+            self.assertEqual(judgment["judge_prompt"], "strict-reference")
 
     def test_merged_judgment_does_not_require_ground_truths(self):
         row = {

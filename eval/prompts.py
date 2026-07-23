@@ -13,7 +13,24 @@ def generation_prompt(question: str) -> str:
     return f"Problem:\n{question}"
 
 
-def merged_judge_prompt(question: str, solution: str, answer: str) -> str:
+def merged_judge_prompt(question: str, solution: str, answer: str,
+                        target_parts: list[str] | None = None,
+                        strict_reference: bool = True) -> str:
+    prompt_suffix = ""
+    if target_parts is not None:
+        target_list = ", ".join(f'"{part}"' for part in target_parts)
+        prompt_suffix += (
+            "\nTarget parts to judge:\n"
+            f"[{target_list}]\n\n"
+            "Return exactly one judgment object for each target part above, in that order. "
+            "Do not infer, add, omit, merge, rename, or split parts.\n"
+        )
+    if strict_reference:
+        prompt_suffix += (
+            "\nReference solution policy:\n"
+            "Treat the reference solution as the gold standard. Do not override it with your "
+            "own correction if you suspect the reference solution is wrong or contains a typo.\n"
+        )
     return f"""Problem:
 {question}
 
@@ -22,6 +39,7 @@ Reference solution:
 
 Candidate final answer (the only candidate content you may grade):
 {answer}
+{prompt_suffix}
 
 Return JSON with a "parts" array containing one object per problem part, in problem order. Each object must have "part", "score", and "reason". Use score 1 for correct, 0 for incorrect, and null when the reference solution is not comprehensible enough to judge that part."""
 

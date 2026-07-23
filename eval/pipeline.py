@@ -202,6 +202,23 @@ def normalize_row(row: dict[str, Any]) -> dict[str, Any]:
     return normalized
 
 
+def target_part_ids(row: dict[str, Any]) -> list[str] | None:
+    """Return explicit merged-mode target parts supplied by the dataset, if any."""
+    if "target_parts" not in row:
+        return None
+    raw = _json_value(row.get("target_parts"))
+    if raw in (None, ""):
+        return None
+    if not isinstance(raw, list):
+        raise ValueError(f"Row {row.get('id')!r} target_parts must be a JSON array or list")
+    parts = [str(part).strip() for part in raw if part is not None and str(part).strip()]
+    if not parts:
+        raise ValueError(f"Row {row.get('id')!r} target_parts must contain at least one part")
+    if len(set(parts)) != len(parts):
+        raise ValueError(f"Row {row.get('id')!r} target_parts contains duplicate parts: {parts}")
+    return parts
+
+
 def load_ground_truths(row: dict[str, Any]) -> dict[str, str]:
     if "ground_truths" not in row or row["ground_truths"] is None:
         raise ValueError(f"Row {row.get('id')!r} has no ground_truths value")
@@ -290,6 +307,9 @@ def _usage_token_count(item: dict[str, Any], *names: str) -> int:
 def _judgment_has_reasons(judgment: dict[str, Any], mode: str, parts: list[str]) -> bool:
     per_part = judgment.get("parts")
     if mode == "merged":
+        if parts:
+            if not isinstance(per_part, dict) or set(per_part) != set(parts):
+                return False
         return (
             isinstance(per_part, dict)
             and bool(per_part)
@@ -347,6 +367,20 @@ def _merged_part_results(parsed: dict[str, Any], row: dict[str, Any]) -> dict[st
     return results
 
 
+def _targeted_merged_part_results(part_results: dict[str, dict[str, Any]],
+                                  target_parts: list[str]) -> dict[str, dict[str, Any]]:
+    targeted = {}
+    for part in target_parts:
+        result = part_results.get(part)
+        if result is None:
+            result = {
+                "score": 0,
+                "reason": "Judge did not return a judgment for this target part.",
+            }
+        targeted[part] = result
+    return targeted
+
+
 @dataclass
 class GenerationConfig:
     """Model-agnostic generation settings recorded with every evaluation."""
@@ -379,6 +413,7 @@ class RunConfig:
     judge_reasoning_effort: str | None = None
     judge_max_tokens: int | None = None
     repeat: int = 1
+    judge_prompt: str = "default"
 
 
 def model_artifact_dir(root: Path, dataset: Path, config: RunConfig) -> Path:
@@ -387,9 +422,25 @@ def model_artifact_dir(root: Path, dataset: Path, config: RunConfig) -> Path:
             / f"model_{model}_gen_{config.generation.cache_tag()}")
 
 
+def _judge_prompt_artifact_tag(judge_prompt: str) -> str:
+    if judge_prompt == "strict-reference":
+        return "strict-reference-gold"
+    return judge_prompt
+
+
 def artifact_dir(root: Path, dataset: Path, config: RunConfig) -> Path:
     judge = re.sub(r"[^A-Za-z0-9_.-]+", "_", config.judge_name)
+    if config.judge_prompt != "default":
+        prompt = re.sub(r"[^A-Za-z0-9_.-]+", "_",
+                        _judge_prompt_artifact_tag(config.judge_prompt))
+        judge = f"{judge}_prompt_{prompt}"
     return model_artifact_dir(root, dataset, config) / f"judge_{judge}"
+
+
+def _merged_judge_system(config: RunConfig) -> str:
+    if config.judge_prompt in {"default", "strict-reference"}:
+        return MERGED_JUDGE_SYSTEM
+    raise ValueError(f"unknown judge prompt: {config.judge_prompt}")
 
 
 def run(dataset: Path, output_root: Path, config: RunConfig, generator: LLM, judge: LLM) -> Path:
@@ -431,8 +482,10 @@ def run(dataset: Path, output_root: Path, config: RunConfig, generator: LLM, jud
         row_key = _key(dataset, row)
         key = _attempt_key(row_key, attempt)
         if config.mode == "merged":
-            parts = []
+            target_parts = target_part_ids(row)
+            parts = target_parts or []
         else:
+            target_parts = None
             truths = load_ground_truths(row)
             parts = detect_part_ids(truths)
         if key not in responses:
@@ -462,8 +515,15 @@ def run(dataset: Path, output_root: Path, config: RunConfig, generator: LLM, jud
         response = responses[key]
         cached_judgment = judgments.get(key)
         if cached_judgment is not None:
-            if config.mode == "merged" and _judgment_has_reasons(cached_judgment, config.mode, parts):
-                return
+            if config.mode == "merged":
+                if target_parts is None and _judgment_has_reasons(cached_judgment, config.mode, parts):
+                    return
+                if (target_parts is not None
+                        and cached_judgment.get("target_parts") == target_parts
+                        and cached_judgment.get("part_ids") == target_parts
+                        and cached_judgment.get("score_denominator") == "target_parts"
+                        and _judgment_has_reasons(cached_judgment, config.mode, target_parts)):
+                    return
             cached_parts = cached_judgment.get("part_ids", [])
             if (config.mode != "merged" and cached_parts == parts
                     and _judgment_has_reasons(cached_judgment, config.mode, parts)):
@@ -485,15 +545,19 @@ def run(dataset: Path, output_root: Path, config: RunConfig, generator: LLM, jud
                     judgments[key] = filtered
                 return
         if config.mode == "merged":
-            failure_key = f"{key}:merged:v2"
+            target_hash = (
+                hashlib.sha256(json.dumps(target_parts, separators=(",", ":")).encode()).hexdigest()[:10]
+                if target_parts is not None else "infer"
+            )
+            failure_key = f"{key}:merged:v3:{target_hash}"
             if failure_key in failures:
                 return
             try:
                 completion, media_count, missing_media = _complete_with_row_media(
                     judge,
                     merged_judge_prompt(row["question"], str(row.get("solution") or ""),
-                                        _merged_extracted_answer(response)),
-                    system_prompt=MERGED_JUDGE_SYSTEM, schema=MERGED_SCHEMA,
+                                        _merged_extracted_answer(response), target_parts),
+                    system_prompt=_merged_judge_system(config), schema=MERGED_SCHEMA,
                     dataset=dataset, row=row,
                     include_media=config.generation.include_media,
                 )
@@ -508,11 +572,16 @@ def run(dataset: Path, output_root: Path, config: RunConfig, generator: LLM, jud
                     failures[failure_key] = failure
                 return
             part_results = _merged_part_results(parsed, row)
+            if target_parts is not None:
+                part_results = _targeted_merged_part_results(part_results, target_parts)
             parts = list(part_results)
             scored_parts = [part for part in parts if part_results[part]["score"] is not None]
             correct = [part for part in scored_parts if part_results[part]["score"] == 1]
-            score = (sum(part_results[part]["score"] for part in scored_parts) / len(scored_parts)
-                     if scored_parts else None)
+            if target_parts is not None:
+                score = sum(1 for part in parts if part_results[part]["score"] == 1) / len(target_parts)
+            else:
+                score = (sum(part_results[part]["score"] for part in scored_parts) / len(scored_parts)
+                         if scored_parts else None)
             per_part = {
                 part: {
                     "score": part_results[part]["score"],
@@ -529,6 +598,9 @@ def run(dataset: Path, output_root: Path, config: RunConfig, generator: LLM, jud
                         "judge_response": completion.text, "usage": completion.usage,
                         "parts": per_part, "media_count": media_count,
                         "missing_media": missing_media}
+            if target_parts is not None:
+                judgment["target_parts"] = target_parts
+                judgment["score_denominator"] = "target_parts"
         else:
             truths, provenance = resolve_ground_truth(row, parts)
             answers = candidate_answers(row, response, parts)
@@ -565,6 +637,7 @@ def run(dataset: Path, output_root: Path, config: RunConfig, generator: LLM, jud
                         "parts": per_part}
         judgment["judge_reasoning_effort"] = config.judge_reasoning_effort
         judgment["judge_max_tokens"] = config.judge_max_tokens
+        judgment["judge_prompt"] = config.judge_prompt
         judgment["created_at"] = datetime.now(timezone.utc).isoformat()
         with write_lock:
             _append(judgments_path, judgment)

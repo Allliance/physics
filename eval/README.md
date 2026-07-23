@@ -46,10 +46,17 @@ with different reasoning or sampling settings from sharing a cache.
 The reusable generation cache is stored there as `responses.jsonl`. Judge-specific
 `judgments.jsonl`, `summary.json`, and `run_config.json` live inside its
 `judge_<judge>/` subdirectory. Judge rows include one reason and one score for
-every part inferred by the single merged judgment. Part scores are `1` for
-correct, `0` for incorrect, and `null` when the reference solution is not
-comprehensible enough to judge that part. The row score is the sum of non-null
-part scores divided by the number of non-null part scores.
+every part inferred by the single merged judgment. If a dataset row has a
+non-empty `target_parts` list, the merged judge is instead instructed to score
+exactly those parts, and the row score is the sum of those target part scores
+divided by the length of `target_parts`. For rows without `target_parts`, part
+scores are `1` for correct, `0` for incorrect, and `null` when the reference
+solution is not comprehensible enough to judge that part. The row score is the
+sum of non-null part scores divided by the number of non-null part scores. The
+default merged judge prompt treats the reference solution as the gold standard
+and tells the judge not to override it when it suspects the reference is wrong or
+contains a typo. `--judge-prompt strict-reference` preserves the same strict
+reference policy in a separate `prompt_strict-reference-gold` artifact directory.
 JSONL files append after every completion and are reused on restart. Use
 `--overwrite` for a fresh run. Rows run concurrently with 32 workers by default;
 use `--max-workers` to change the limit.
