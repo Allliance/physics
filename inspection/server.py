@@ -28,6 +28,7 @@ ORIGINAL_DATASET_DIRS = (
 )
 VISIBLE_DATASET_PATHS = {
     "final_datasets/hardest_filtered_full.parquet",
+    "inspection/reviews/hardest_filtered_gpt55_best_of_4.json",
 }
 HARD_FILTERED_FULL_PATH = "final_datasets/hardest_filtered_full.parquet"
 HARD_FILTERED_FULL_EVAL_DIR = (

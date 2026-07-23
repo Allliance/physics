@@ -560,6 +560,9 @@ function renderEvaluationFields(sample) {
     sample.key ? `key ${sample.key}` : "",
     sample.part_ids ? `judged parts ${text(sample.part_ids)}` : "",
   ].filter(Boolean).join(" · ");
+  const processedQuestion = text(sample.processed_question || sample.question);
+  const originalQuestion = text(sample.original_question || sample.unpartitioned_question || "").trim();
+  const hasDistinctOriginalQuestion = originalQuestion && originalQuestion !== processedQuestion.trim();
   els.dialogContent.innerHTML = `
     ${labelBarHtml(label)}
     <div class="primary-fields">
@@ -567,9 +570,10 @@ function renderEvaluationFields(sample) {
       ${selfContainmentComment ? `<div class="self-containment-warning"><strong>Self-containment review:</strong> ${escapeHtml(selfContainmentComment)}</div>` : ""}
       ${candidateMeta ? `<div class="judge-reason"><strong>Candidate metadata</strong><span>${escapeHtml(candidateMeta)}</span></div>` : ""}
       <section class="field field-question field-primary">
-        <div class="field-name"><span>Question</span><span>${text(sample.question).length.toLocaleString()} chars</span></div>
-        <div class="field-value">${escapeHtml(text(sample.question))}</div>
+        <div class="field-name"><span>${hasDistinctOriginalQuestion ? "Processed Question" : "Question"}</span><span>${processedQuestion.length.toLocaleString()} chars</span></div>
+        <div class="field-value">${escapeHtml(processedQuestion)}</div>
       </section>
+      ${hasDistinctOriginalQuestion ? `<details class="model-response"><summary>Original Question</summary><div class="rendered-text">${richTextHtml(originalQuestion)}</div></details>` : ""}
       <div class="evaluation-parts">${partHtml}</div>
       ${formatErrors && formatErrors.length ? `<div class="format-warning"><strong>Format errors:</strong> ${escapeHtml(formatErrors.join("; "))}</div>` : ""}
       ${solution ? `<details class="model-response" open><summary>Final solution</summary><div class="rendered-text">${richTextHtml(solution, { normalizeLatex: true })}</div></details>` : ""}
