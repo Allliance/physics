@@ -44,6 +44,9 @@ class CodexLLMResult:
     events: list[dict[str, Any]]
     usage: dict[str, Any] | None = None
     attempts: int = 1
+    #: Scratch files the agent wrote into its sandbox cwd, captured before the
+    #: temporary directory is torn down. Maps cwd-relative path -> file text.
+    workspace_files: dict[str, str] | None = None
 
 
 @dataclass
@@ -63,6 +66,17 @@ class CodexLLM:
     max_tool_retries: int = 3
     max_exec_retries: int = 6
     exec_retry_delay: float = 10.0
+    web_search: str = "disabled"
+    sandbox_mode: str = "read-only"
+    env_inherit: str = "none"
+    env_set: dict[str, str] | None = None
+    #: One of "auto", "concise", "detailed", "none". When set, Codex emits
+    #: `reasoning` items carrying the model's reasoning summaries.
+    reasoning_summary: str | None = None
+    #: Capture scratch files the agent wrote into its sandbox cwd.
+    capture_workspace: bool = False
+    #: Skip captured files larger than this (bytes); avoids slurping data dumps.
+    capture_max_bytes: int = 1_000_000
 
     def complete(
         self,
@@ -104,6 +118,7 @@ class CodexLLM:
         api_key: str | None,
         image_paths: list[Path] | None,
     ) -> CodexLLMResult:
+        workspace_files: dict[str, str] | None = None
         for attempt in range(1, self.max_exec_retries + 2):
             with tempfile.TemporaryDirectory(prefix="codex-llm-") as tmpdir:
                 cmd = self._build_command(Path(tmpdir), output_schema, image_paths or [])
@@ -120,6 +135,8 @@ class CodexLLM:
                     env=env,
                     check=False,
                 )
+                if self.capture_workspace:
+                    workspace_files = self._snapshot_workspace(Path(tmpdir))
 
             if completed.returncode == 0:
                 break
@@ -131,7 +148,25 @@ class CodexLLM:
                 f"stderr:\n{completed.stderr.strip()}"
             )
 
-        return self._parse_jsonl(completed.stdout)
+        result = self._parse_jsonl(completed.stdout)
+        result.workspace_files = workspace_files
+        return result
+
+    def _snapshot_workspace(self, cwd: Path) -> dict[str, str]:
+        """Read back scratch files the agent wrote, before the tmpdir is removed."""
+        files: dict[str, str] = {}
+        for path in sorted(cwd.rglob("*")):
+            if not path.is_file() or path.is_symlink():
+                continue
+            try:
+                if path.stat().st_size > self.capture_max_bytes:
+                    continue
+                files[str(path.relative_to(cwd))] = path.read_text(
+                    encoding="utf-8", errors="replace"
+                )
+            except OSError:
+                continue
+        return files
 
     def _build_command(self, cwd: Path, output_schema: Path | None,
                        image_paths: list[Path]) -> list[str]:
@@ -146,11 +181,11 @@ class CodexLLM:
             "--ignore-rules",
             "--skip-git-repo-check",
             "--sandbox",
-            "read-only",
+            self.sandbox_mode,
             "--cd",
             str(cwd),
             "-c",
-            'web_search="disabled"',
+            f'web_search="{self.web_search}"',
             "-c",
             "features.multi_agent=false",
             "-c",
@@ -158,14 +193,18 @@ class CodexLLM:
             "-c",
             "project_root_markers=[]",
             "-c",
-            'shell_environment_policy.inherit="none"',
+            f'shell_environment_policy.inherit="{self.env_inherit}"',
             "-c",
             "allow_login_shell=false",
         ]
+        for key, value in (self.env_set or {}).items():
+            cmd.extend(["-c", f'shell_environment_policy.set.{key}="{value}"'])
         if self.model:
             cmd.extend(["--model", self.model])
         if self.model_reasoning_effort:
             cmd.extend(["-c", f'model_reasoning_effort="{self.model_reasoning_effort}"'])
+        if self.reasoning_summary:
+            cmd.extend(["-c", f'model_reasoning_summary="{self.reasoning_summary}"'])
         if output_schema:
             cmd.extend(["--output-schema", str(output_schema)])
         for image_path in image_paths:
@@ -215,6 +254,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--model", default=os.getenv("CODEX_LLM_MODEL"))
     parser.add_argument("--model-reasoning-effort", default=os.getenv("CODEX_LLM_REASONING_EFFORT"))
     parser.add_argument("--codex-bin", default=os.getenv("CODEX_BIN", "codex"))
+    parser.add_argument("--web-search", default=os.getenv("CODEX_LLM_WEB_SEARCH", "disabled"))
     parser.add_argument("--timeout", type=float, default=120.0)
     parser.add_argument("--max-exec-retries", type=int, default=6)
     parser.add_argument("--exec-retry-delay", type=float, default=10.0)
@@ -235,6 +275,30 @@ def parse_args() -> argparse.Namespace:
         "--show-usage",
         action="store_true",
         help="Print token usage JSON to stderr after the response.",
+    )
+    parser.add_argument(
+        "--sandbox",
+        default="read-only",
+        choices=["read-only", "workspace-write", "danger-full-access"],
+        help="Codex sandbox mode for shell commands.",
+    )
+    parser.add_argument(
+        "--env-inherit",
+        default="none",
+        choices=["none", "core", "all"],
+        help="How much of the parent environment the sandboxed shell inherits.",
+    )
+    parser.add_argument(
+        "--env-set",
+        action="append",
+        default=[],
+        metavar="KEY=VALUE",
+        help="Set an env var inside the sandboxed shell; repeatable.",
+    )
+    parser.add_argument(
+        "--reasoning-summary",
+        choices=["auto", "concise", "detailed", "none"],
+        help="Ask Codex to emit reasoning-summary items in the event stream.",
     )
     return parser.parse_args()
 
@@ -257,6 +321,11 @@ def main() -> int:
         max_tool_retries=args.max_tool_retries,
         max_exec_retries=args.max_exec_retries,
         exec_retry_delay=args.exec_retry_delay,
+        web_search=args.web_search,
+        sandbox_mode=args.sandbox,
+        env_inherit=args.env_inherit,
+        env_set=dict(item.split("=", 1) for item in args.env_set),
+        reasoning_summary=args.reasoning_summary,
     )
     result = client.complete(
         prompt,
