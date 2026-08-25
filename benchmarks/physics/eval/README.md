@@ -34,10 +34,17 @@ stored in the same `responses.jsonl` and `judgments.jsonl` files with derived
 attempt keys plus `row_key` and `attempt` metadata, so repeat runs are
 resumable and can reuse existing first-attempt artifacts.
 
-Dataset files are resolved from `final_datasets/<dataset>/<split>.parquet`, next
-to the `eval` package. Supported datasets are `FrontierPhysics` and
-`Physics`; supported splits are `train`, `validation`, and `test`.
+Most dataset files are resolved from `final_datasets/<dataset>/<split>.parquet`,
+next to the `eval` package. `ScalePhysics` is self-contained under
+`benchmarks/scale-physics/`. Supported datasets are `FrontierPhysics`, `Physics`,
+and `ScalePhysics`; supported splits are `train`, `validation`, and `test`.
 `FrontierPhysics validation` is rejected because that split does not exist.
+
+Prepare the ScalePhysics test split with:
+
+```bash
+python benchmarks/scale-physics/prepare.py
+```
 
 Artifacts live under
 `eval/artifacts/<dataset>/<split>/<mode>/model_<generator>_gen_<config-hash>/`.

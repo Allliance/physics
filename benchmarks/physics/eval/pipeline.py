@@ -412,6 +412,13 @@ class RunConfig:
     max_workers: int = 32
     judge_reasoning_effort: str | None = None
     judge_max_tokens: int | None = None
+    judge_temperature: float | None = None
+    judge_top_p: float | None = None
+    judge_top_k: int | None = None
+    judge_min_p: float | None = None
+    judge_presence_penalty: float | None = None
+    judge_repetition_penalty: float | None = None
+    judge_extra_body: dict[str, Any] | None = None
     repeat: int = 1
     judge_prompt: str = "default"
 

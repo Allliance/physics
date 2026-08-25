@@ -8,9 +8,13 @@ from pathlib import Path
 from .llm import make_llm
 from .pipeline import GenerationConfig, RunConfig, run
 
-DATASETS = ("FrontierPhysics", "Physics")
+DATASETS = ("FrontierPhysics", "Physics", "ScalePhysics")
 SPLITS = ("train", "validation", "test")
-DATA_ROOT = Path(__file__).resolve().parent.parent / "final_datasets"
+BENCHMARK_ROOT = Path(__file__).resolve().parent.parent
+DATA_ROOT = BENCHMARK_ROOT / "final_datasets"
+DATASET_ROOTS = {
+    "ScalePhysics": BENCHMARK_ROOT.parent / "scale-physics/data",
+}
 
 
 def resolve_dataset_path(dataset: str, split: str, dataset_path: Path | None = None) -> Path:
@@ -21,7 +25,7 @@ def resolve_dataset_path(dataset: str, split: str, dataset_path: Path | None = N
         return path
     if dataset == "FrontierPhysics" and split == "validation":
         raise ValueError("FrontierPhysics has no validation split")
-    path = DATA_ROOT / dataset / f"{split}.parquet"
+    path = DATASET_ROOTS.get(dataset, DATA_ROOT / dataset) / f"{split}.parquet"
     if not path.is_file():
         raise ValueError(f"dataset split does not exist: {path}")
     return path
@@ -33,7 +37,7 @@ def endpoint_args(parser: argparse.ArgumentParser, prefix: str) -> None:
     parser.add_argument(f"--{prefix}-url")
     parser.add_argument(f"--{prefix}-api-key", default=os.getenv("OPENAI_API_KEY", "EMPTY"))
     parser.add_argument(f"--{prefix}-reasoning-effort",
-                        choices=["minimal", "low", "medium", "high", "xhigh"],
+                        choices=["none", "minimal", "low", "medium", "high", "xhigh"],
                         default="high" if prefix == "judge" else None)
     parser.add_argument(f"--{prefix}-max-tokens", type=int)
     parser.add_argument(f"--{prefix}-temperature", type=float)
@@ -50,7 +54,7 @@ def main() -> int:
     parser.add_argument("dataset", choices=DATASETS)
     parser.add_argument("split", choices=SPLITS)
     parser.add_argument("--dataset-path", type=Path,
-                        help="explicit parquet file to evaluate instead of final_datasets/<dataset>/<split>.parquet")
+                        help="explicit parquet file to evaluate instead of the registered dataset split")
     parser.add_argument("--mode", choices=["merged", "separated"], default="merged",
                         help="evaluation mode; separated is deprecated and rejected")
     parser.add_argument("--output-root", type=Path, default=Path("eval/artifacts"))
@@ -67,6 +71,10 @@ def main() -> int:
     endpoint_args(parser, "generator")
     endpoint_args(parser, "judge")
     args = parser.parse_args()
+    if args.generator_reasoning_effort == "none":
+        args.generator_reasoning_effort = None
+    if args.judge_reasoning_effort == "none":
+        args.judge_reasoning_effort = None
     if args.repeat < 1:
         parser.error("--repeat must be at least 1")
     if args.include_media and (args.generator_backend != "codex" or args.judge_backend != "codex"):
@@ -87,7 +95,12 @@ def main() -> int:
     judge = make_llm(backend=args.judge_backend, model=args.judge_model,
                      url=args.judge_url, api_key=args.judge_api_key,
                      timeout=args.timeout, reasoning_effort=args.judge_reasoning_effort,
-                     max_tokens=args.judge_max_tokens)
+                     max_tokens=args.judge_max_tokens,
+                     temperature=args.judge_temperature, top_p=args.judge_top_p,
+                     top_k=args.judge_top_k, min_p=args.judge_min_p,
+                     presence_penalty=args.judge_presence_penalty,
+                     repetition_penalty=args.judge_repetition_penalty,
+                     extra_body=args.judge_extra_body)
     judge_name = args.judge_model
     generation = GenerationConfig(model=args.generator_model,
                        reasoning_effort=args.generator_reasoning_effort,
@@ -106,6 +119,13 @@ def main() -> int:
                        repeat=args.repeat,
                        judge_reasoning_effort=args.judge_reasoning_effort,
                        judge_max_tokens=args.judge_max_tokens,
+                       judge_temperature=args.judge_temperature,
+                       judge_top_p=args.judge_top_p,
+                       judge_top_k=args.judge_top_k,
+                       judge_min_p=args.judge_min_p,
+                       judge_presence_penalty=args.judge_presence_penalty,
+                       judge_repetition_penalty=args.judge_repetition_penalty,
+                       judge_extra_body=args.judge_extra_body,
                        judge_prompt=args.judge_prompt)
     print(run(dataset_path, args.output_root, config, generator, judge))
     return 0

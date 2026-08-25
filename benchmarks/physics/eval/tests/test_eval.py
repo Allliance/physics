@@ -22,6 +22,10 @@ class ParsingTests(unittest.TestCase):
     def test_dataset_selection(self):
         self.assertEqual(resolve_dataset_path("FrontierPhysics", "test").name, "test.parquet")
         self.assertEqual(resolve_dataset_path("Physics", "validation").name, "validation.parquet")
+        scale_physics = resolve_dataset_path("ScalePhysics", "test")
+        self.assertEqual(scale_physics.name, "test.parquet")
+        self.assertEqual(scale_physics.parent.name, "data")
+        self.assertEqual(scale_physics.parent.parent.name, "scale-physics")
         with self.assertRaisesRegex(ValueError, "no validation split"):
             resolve_dataset_path("FrontierPhysics", "validation")
         with TemporaryDirectory() as directory:
@@ -172,6 +176,14 @@ class LLMTests(unittest.TestCase):
             ).complete("prompt", system_prompt="system")
         body = json.loads(request.call_args.args[0].data)
         self.assertEqual(body["chat_template_kwargs"], {"enable_thinking": False})
+
+    def test_judge_endpoint_options_are_supported_by_client(self):
+        client = OpenAICompatibleLLM(
+            "judge", "http://localhost", temperature=0.0,
+            extra_body={"chat_template_kwargs": {"enable_thinking": False}},
+        )
+        self.assertEqual(client.temperature, 0.0)
+        self.assertEqual(client.extra_body["chat_template_kwargs"], {"enable_thinking": False})
 
     def test_codex_command_attaches_images(self):
         client = CodexLLM(model="gpt-5.5")
