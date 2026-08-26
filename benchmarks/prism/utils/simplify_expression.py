@@ -117,6 +117,41 @@ def _flatten_text_macros(expr: str) -> str:
     return expr
 
 
+def _unwrap_presentation_macros(expr: str) -> str:
+    """Remove presentation-only wrappers while preserving nested LaTeX."""
+    macros = (r"\boxed", r"\fbox")
+    for macro in macros:
+        search_from = 0
+        while True:
+            start = expr.find(macro, search_from)
+            if start < 0:
+                break
+            brace = start + len(macro)
+            while brace < len(expr) and expr[brace].isspace():
+                brace += 1
+            if brace >= len(expr) or expr[brace] != "{":
+                search_from = brace
+                continue
+
+            depth = 0
+            end = brace
+            while end < len(expr):
+                if expr[end] == "{":
+                    depth += 1
+                elif expr[end] == "}":
+                    depth -= 1
+                    if depth == 0:
+                        break
+                end += 1
+            if depth != 0:
+                search_from = brace + 1
+                continue
+
+            expr = expr[:start] + expr[brace + 1:end] + expr[end + 1:]
+            search_from = start
+    return expr
+
+
 # -------------------------------------------------------------------
 # 6. Strip trailing punctuation
 # -------------------------------------------------------------------
@@ -270,6 +305,7 @@ def simplify_latex_expr(expr: str) -> str:
     expr = _remove_spacings_and_tildes(expr)
     expr = _remove_environments(expr)
     expr = _flatten_text_macros(expr)
+    expr = _unwrap_presentation_macros(expr)
     expr = _strip_trailing_punct(expr)
     expr = _replace_common_patterns(expr)
     
