@@ -1,4 +1,5 @@
 scratch/
+.DS_Store
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -222,5 +223,8 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
-# Generated evaluation responses and judgments
-benchmarks/physics/eval/artifacts/
+# Generated benchmark artifacts
+benchmarks/**/artifacts/
+benchmarks/critpt/results/
+benchmarks/hle/hle_eval/*.json
+benchmarks/prism/results_codex/

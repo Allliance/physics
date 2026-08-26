@@ -1,0 +1,16 @@
+#!/bin/bash
+set -euo pipefail
+
+if [[ "${CODEX_ISOLATED_NS:-}" != "1" ]]; then
+    exec unshare -Urmpf --mount-proc env CODEX_ISOLATED_NS=1 "$0" "$@"
+fi
+
+hidden_dir="$(mktemp -d -p /tmp codex-hidden-critpt-XXXXXX)"
+cleanup() {
+    umount /shared/data/home/aa3242/critpt 2>/dev/null || true
+    rmdir "$hidden_dir" 2>/dev/null || true
+}
+trap cleanup EXIT
+
+mount --bind "$hidden_dir" /shared/data/home/aa3242/critpt
+/shared/data/home/aa3242/.local/bin/codex "$@"
