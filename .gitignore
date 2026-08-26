@@ -1,5 +1,13 @@
+benchmarks/PhysReason
+
 scratch/
 .DS_Store
+
+# Generated benchmark evaluation outputs
+benchmarks/**/artifacts/
+benchmarks/**/results/
+benchmarks/**/results_codex/
+benchmarks/scale-physics/data/test_seed*_n*.parquet
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
