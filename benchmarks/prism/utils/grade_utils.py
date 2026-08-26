@@ -101,8 +101,18 @@ def match_equations_parallel(std_eqs, ans_eqs):
     logger.debug("Parallel match start", extra=extra)
     tasks = [(i, std_eq, ans_eqs) for i, std_eq in enumerate(std_eqs)]
 
+    # Respect scheduler/container CPU affinity instead of oversubscribing the
+    # host-visible CPU count (notably inside Slurm allocations).
+    affinity_cpus = (
+        len(os.sched_getaffinity(0))
+        if hasattr(os, "sched_getaffinity")
+        else mp.cpu_count()
+    )
+    slurm_cpus = int(os.environ.get("SLURM_CPUS_PER_TASK", affinity_cpus))
+    available_cpus = min(affinity_cpus, slurm_cpus)
+    pool_size = max(1, min(available_cpus, len(tasks)))
     with timed("pool_map_match", **extra):
-        with mp.Pool(mp.cpu_count()) as pool:
+        with mp.Pool(pool_size) as pool:
             results = pool.map(_worker_match, tasks)
 
     results.sort(key=lambda x: x[0])
