@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PHYBench Inspection</title>
+    <link rel="stylesheet" href="/vendor/katex/katex.min.css" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">GPT-5.6-Sol · High · Best of 5</p>
+          <h1>PHYBench Inspection</h1>
+        </div>
+        <div id="summary" class="summary">Loading evaluation…</div>
+      </header>
+
+      <section class="controls" aria-label="Filters">
+        <label><span>Question or ID</span><input id="searchInput" type="search" placeholder="Search questions…" /></label>
+        <label><span>Category</span><select id="tagSelect"><option value="">All categories</option></select></label>
+        <label><span>Status</span><select id="statusSelect"><option value="all">All</option><option value="unsolved">Unsolved</option><option value="solved">Solved</option></select></label>
+        <label><span>Audit verdict</span><select id="auditSelect"><option value="">All verdicts</option><option value="GRADER_FALSE_NEGATIVE">Grader false negative</option><option value="REFERENCE_ANSWER_ISSUE">Reference answer issue</option><option value="MODEL_WRONG">Model wrong</option><option value="UNCERTAIN">Uncertain</option><option value="NATIVE_SOLVED">Native solved</option></select></label>
+        <label><span>Best EED</span><select id="scoreSortSelect"><option value="">Dataset order</option><option value="asc">Lowest first</option><option value="desc">Highest first</option></select></label>
+      </section>
+
+      <section class="content">
+        <div class="list-head">
+          <div><h2>Questions</h2><p id="resultMeta">Loading…</p></div>
+          <div class="pager"><button id="prevButton">Prev</button><button id="nextButton">Next</button></div>
+        </div>
+        <div id="sampleList" class="sample-list"></div>
+      </section>
+    </main>
+
+    <dialog id="sampleDialog">
+      <div class="dialog-shell">
+        <header class="dialog-head">
+          <div><p id="dialogEyebrow" class="eyebrow">Question</p><h2 id="dialogTitle">Details</h2></div>
+          <button id="closeDialog" class="close-button" aria-label="Close">&times;</button>
+        </header>
+        <div id="dialogContent" class="dialog-content"></div>
+      </div>
+    </dialog>
+
+    <script src="/vendor/katex/katex.min.js"></script>
+    <script src="/vendor/katex/contrib/auto-render.min.js"></script>
+    <script src="/app.js"></script>
+  </body>
+</html>
