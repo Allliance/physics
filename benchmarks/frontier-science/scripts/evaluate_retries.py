@@ -5,10 +5,14 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from dataclasses import asdict
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
+
+BENCHMARK_ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(BENCHMARK_ROOT))
 
 import evaluate
 
@@ -68,11 +72,11 @@ def main() -> int:
     parser.add_argument("--judge-reasoning-effort", default="high")
     parser.add_argument(
         "--output-root", type=Path,
-        default=Path(__file__).resolve().parent / "artifacts" / "gpt-5.6-sol-high-best-of-5",
+        default=BENCHMARK_ROOT / "artifacts" / "gpt-5.6-sol-high-best-of-5",
     )
     parser.add_argument(
         "--first-round", type=Path,
-        default=Path(__file__).resolve().parent / "artifacts" / "gpt-5.6-sol-high",
+        default=BENCHMARK_ROOT / "artifacts" / "gpt-5.6-sol-high",
     )
     args = parser.parse_args()
     if args.rounds < 1:
@@ -81,7 +85,7 @@ def main() -> int:
         args.model, args.reasoning_effort, args.judge_model,
         args.judge_reasoning_effort, args.timeout,
     )
-    benchmark_root = Path(__file__).resolve().parent
+    benchmark_root = BENCHMARK_ROOT
     evaluate.download_data(benchmark_root / "data")
     args.output_root.mkdir(parents=True, exist_ok=True)
     round_one = args.output_root / "round-1"

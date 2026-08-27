@@ -4,13 +4,17 @@
 from __future__ import annotations
 
 import json
+import sys
 from pathlib import Path
 from typing import Any
+
+BENCHMARK_ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(BENCHMARK_ROOT))
 
 import evaluate
 
 
-ROOT = Path(__file__).resolve().parent
+ROOT = BENCHMARK_ROOT
 ARTIFACT_ROOT = ROOT / "artifacts" / "gpt-5.6-sol-high-best-of-5"
 OUTPUT = ARTIFACT_ROOT / "failed_questions_with_all_answers.jsonl"
 

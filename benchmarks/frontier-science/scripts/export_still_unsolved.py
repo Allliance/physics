@@ -8,7 +8,7 @@ from pathlib import Path
 from typing import Any
 
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parent.parent
 FIVE_ROUND_ROOT = ROOT / "artifacts" / "gpt-5.6-sol-high-best-of-5"
 TOOLS_ROOT = ROOT / "artifacts" / "gpt-5.6-sol-high-tools-on-five-round-failures"
 SOURCE = FIVE_ROUND_ROOT / "failed_questions_with_all_answers.jsonl"

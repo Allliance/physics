@@ -27,5 +27,5 @@ For sequential best-of-five evaluation, reusing the completed single-pass run as
 dropping successful problems before every later round:
 
 ```bash
-rtk python3 benchmarks/frontier-science/evaluate_retries.py --rounds 5
+rtk python3 benchmarks/frontier-science/scripts/evaluate_retries.py --rounds 5
 ```

@@ -7,7 +7,7 @@ import json
 from pathlib import Path
 
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parent.parent
 ARTIFACTS = ROOT / "artifacts" / "gpt-5.6-sol-high-tools-on-five-round-failures"
 
 

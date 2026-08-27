@@ -5,17 +5,21 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 import threading
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+BENCHMARK_ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(BENCHMARK_ROOT))
+
 import evaluate
 from utils.codex_cli import CodexLLM
 
 
-ROOT = Path(__file__).resolve().parent
+ROOT = BENCHMARK_ROOT
 SOURCE = ROOT / "artifacts" / "gpt-5.6-sol-high-best-of-5" / "failed_questions_with_all_answers.jsonl"
 DEFAULT_OUTPUT = ROOT / "artifacts" / "gpt-5.6-sol-high-tools-on-five-round-failures"
 TOOL_TYPES = {"command_execution", "file_change", "mcp_tool_call", "web_search"}
