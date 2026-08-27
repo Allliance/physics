@@ -7,11 +7,18 @@ from openai import OpenAI
 from dotenv import load_dotenv
 load_dotenv()
 
-# Initialize OpenAI client
-client = OpenAI(
-    base_url="https://api.openai.com/v1",
-    api_key=os.getenv("OPENAI_API_KEY")
-)
+client = None
+
+
+def _get_client():
+    """Initialize the fallback judge only when it is actually needed."""
+    global client
+    if client is None:
+        client = OpenAI(
+            base_url="https://api.openai.com/v1",
+            api_key=os.getenv("OPENAI_API_KEY"),
+        )
+    return client
 
 def timeout_handler(signum, frame):
     """Handler for timeout protection."""
@@ -50,21 +57,46 @@ def _standardize_expr(expr):
         signal.alarm(0)  # Cancel timeout
         raise ValueError(f"SymPy error: {e}")
 
-def call_llm_to_compare(expr1: str, expr2: str) -> bool:
+def call_llm_to_compare(
+    expr1: str,
+    expr2: str,
+    return_details: bool = False,
+) -> bool | dict:
     """Use an LLM to determine if two LaTeX expressions with text are equivalent."""
     try:
-        response = client.chat.completions.create(
+        response = _get_client().chat.completions.create(
             model="gpt-4o",
             messages=[
                 {"role": "system", "content": "You are an assistant that compares LaTeX expressions for equivalence."},
                 {"role": "user", "content": f"Compare the following LaTeX expressions and check if the numerical part are same meaning content:\n\nExpression 1:\n{expr1}\n\nExpression 2:\n{expr2}\n\n Return True if they are equivalent, otherwise return False. focus on numerical and mathematical content. If it's multiple choice answer like a b c d, focus only on the letters"}
             ]
         )
-        return "true" in response.choices[0].message.content.lower()
+        raw_response = response.choices[0].message.content
+        llm_result = "true" in raw_response.lower()
+        if return_details:
+            return {
+                "llm_result": llm_result,
+                "raw_response": raw_response,
+                "model": "gpt-4o",
+                "error": None,
+            }
+        return llm_result
     except Exception as e:
+        if return_details:
+            return {
+                "llm_result": False,
+                "raw_response": None,
+                "model": "gpt-4o",
+                "error": f"{type(e).__name__}: {e}",
+            }
         return False  # Default to False if LLM fails
 
-def is_equiv(expr1: str, expr2: str, verbose: bool = False) -> dict:
+def is_equiv(
+    expr1: str,
+    expr2: str,
+    verbose: bool = False,
+    use_llm_fallback: bool = True,
+) -> dict:
     """
     Compare two LaTeX expressions for equivalence and handle errors gracefully.
     """
@@ -78,9 +110,10 @@ def is_equiv(expr1: str, expr2: str, verbose: bool = False) -> dict:
     }
     
     try:
-        if "\text" in expr1 or "\text" in expr2:
-            result_data["llm_result"] = call_llm_to_compare(expr1, expr2)
-            result_data["final_result"] = result_data["llm_result"]
+        if "\\text" in expr1 or "\\text" in expr2:
+            if use_llm_fallback:
+                result_data["llm_result"] = call_llm_to_compare(expr1, expr2)
+                result_data["final_result"] = result_data["llm_result"]
             return result_data
         
         expr1_processed = _preprocess_latex(expr1)
@@ -112,7 +145,7 @@ def is_equiv(expr1: str, expr2: str, verbose: bool = False) -> dict:
         
         if sympy_result is not None and sympy_result:
             result_data["final_result"] = sympy_result
-        else:
+        elif use_llm_fallback:
             result_data["llm_result"] = call_llm_to_compare(expr1, expr2)
             result_data["final_result"] = result_data["llm_result"]
         

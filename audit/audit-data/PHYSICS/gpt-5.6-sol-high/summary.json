@@ -1,0 +1,62 @@
+{
+  "dataset": "benchmarks/physics-original/PHYSICS/PHYSICS-textonly/physics_textonly.jsonl",
+  "responses": "audit/all-responses/PHYSICS/gpt-5.6-sol-high.jsonl",
+  "problem_count": 999,
+  "completed_generation_count": 994,
+  "failed_generation_count": 3,
+  "missing_generation_count": 2,
+  "sympy_accuracy": 0.10385385385385386,
+  "sympy_accuracy_completed_generations": 0.10437625754527163,
+  "sympy_fully_accepted_count": 92,
+  "llm_judge_eligible_problem_count": 901,
+  "llm_judged_problem_count": 901,
+  "llm_judge_call_error_count": 0,
+  "combined_accuracy": 0.43667477000810334,
+  "combined_accuracy_completed_generations": 0.4388713231771582,
+  "scoring": "Mean per-problem fraction of extracted boxed answers matching any reference answer, preserving the supplied PHYSICS evaluator metric.",
+  "judge_model": "gpt-5.5",
+  "judge_reasoning_effort": "high",
+  "llm_judge_pending_problem_count": 0,
+  "judgment_record_count": 2337,
+  "successful_judgment_record_count": 2337,
+  "failed_judgment_record_count": 0,
+  "evaluation_file": "audit/audit-data/PHYSICS/gpt-5.6-sol-high/evaluation.jsonl",
+  "judgment_journal": "audit/audit-data/PHYSICS/gpt-5.6-sol-high/judgments-gpt-5.5-high.jsonl",
+  "judge_usage": {
+    "input_tokens": 24693680,
+    "cached_input_tokens": 22384128,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 409926,
+    "reasoning_output_tokens": 393567
+  },
+  "judge_pipeline": "Codex CLI with the supplied PHYSICS pairwise equivalence prompt; the verdict is True when the raw response contains 'true'.",
+  "judgment_journal_is_append_only": true,
+  "judge_updated_at": "2026-08-27T06:28:08.627862+00:00",
+  "judge_completed_at": "2026-08-27T06:28:08.627927+00:00",
+  "artifacts": {
+    "dataset": {
+      "path": "benchmarks/physics-original/PHYSICS/PHYSICS-textonly/physics_textonly.jsonl",
+      "sha256": "8af08dd01c717b10f3e35ff0062f169c252d6734b2da5608842dcb8db458f066",
+      "bytes": 2486494,
+      "line_count": 999
+    },
+    "responses": {
+      "path": "audit/all-responses/PHYSICS/gpt-5.6-sol-high.jsonl",
+      "sha256": "5c9ed9befb8b08ea39a8ff0013338c85a15c4fd07e01bb2ab22c6950415f1147",
+      "bytes": 2968735,
+      "line_count": 997
+    },
+    "evaluation": {
+      "path": "audit/audit-data/PHYSICS/gpt-5.6-sol-high/evaluation.jsonl",
+      "sha256": "c44438f580657e04a17b9d003db66452921a115e6666f3986144640338887ab7",
+      "bytes": 2541831,
+      "line_count": 999
+    },
+    "judgment_journal": {
+      "path": "audit/audit-data/PHYSICS/gpt-5.6-sol-high/judgments-gpt-5.5-high.jsonl",
+      "sha256": "e802bcdd328402f6a51b9eae6766c450d824ced4c883fa1b19caa7e613e1fbbf",
+      "bytes": 5709749,
+      "line_count": 2337
+    }
+  }
+}
