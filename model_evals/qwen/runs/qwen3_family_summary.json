@@ -1,0 +1,119 @@
+{
+  "policy": {
+    "samples_per_problem": 1,
+    "benchmark_failure_source": "audit/all-responses/<benchmark>/responses.jsonl",
+    "benchmark_failure_handling": "excluded before generation and from denominator",
+    "grader_failure_handling": "credit only GRADER_FAILURE verdicts from each model's own recent audit",
+    "evaluated_denominator": {
+      "phybench": 84,
+      "prism": 579,
+      "ugphysics": 670,
+      "aggregate": 1333
+    }
+  },
+  "models": {
+    "Qwen/Qwen3-8B": {
+      "sampling": {
+        "thinking": true,
+        "temperature": 0.6,
+        "top_p": 0.95,
+        "top_k": 20,
+        "min_p": 0.0,
+        "presence_penalty": 0.0,
+        "repetition_penalty": 1.0,
+        "max_tokens": 28672
+      },
+      "results": {
+        "phybench": {"native_correct": 3, "adjusted_correct": 4, "denominator": 84},
+        "prism": {"native_correct": 88, "adjusted_correct": 302, "denominator": 579},
+        "ugphysics": {"native_correct": 306, "adjusted_correct": 436, "denominator": 670},
+        "aggregate": {"native_correct": 397, "adjusted_correct": 742, "denominator": 1333, "native_accuracy": 0.2978244561140285, "adjusted_accuracy": 0.5566391597899475}
+      },
+      "completion_tokens": {"mean": 8716.91822955739, "median": 8010, "length_capped": 3},
+      "artifacts": {
+        "phybench": "benchmarks/phybench/artifacts/qwen3-8b-thinking-official-filtered",
+        "prism": "model_evals/qwen/runs/qwen3-8b-prism-thinking-official-filtered",
+        "ugphysics": "model_evals/qwen/runs/qwen3-8b-ugphysics-thinking-official-filtered"
+      }
+    },
+    "Qwen/Qwen3-4B": {
+      "sampling": {
+        "thinking": true,
+        "temperature": 0.6,
+        "top_p": 0.95,
+        "top_k": 20,
+        "min_p": 0.0,
+        "presence_penalty": 0.0,
+        "repetition_penalty": 1.0,
+        "max_tokens": 28672
+      },
+      "results": {
+        "phybench": {"native_correct": 5, "adjusted_correct": 6, "denominator": 84},
+        "prism": {"native_correct": 86, "adjusted_correct": 262, "denominator": 579},
+        "ugphysics": {"native_correct": 287, "adjusted_correct": 388, "denominator": 670},
+        "aggregate": {"native_correct": 378, "adjusted_correct": 656, "denominator": 1333, "native_accuracy": 0.2835708927231808, "adjusted_accuracy": 0.49212303075768943}
+      },
+      "completion_tokens": {"mean": 8326.834958739684, "median": 7433, "length_capped": 19},
+      "artifacts": {
+        "phybench": "benchmarks/phybench/artifacts/qwen3-4b-thinking-official-vllm011-filtered",
+        "prism": "model_evals/qwen/runs/qwen3-4b-prism-thinking-official-vllm011-filtered",
+        "ugphysics": "model_evals/qwen/runs/qwen3-4b-ugphysics-thinking-official-vllm011-filtered"
+      }
+    },
+    "Qwen/Qwen3-4B-Instruct-2507": {
+      "sampling": {
+        "thinking": false,
+        "temperature": 0.7,
+        "top_p": 0.8,
+        "top_k": 20,
+        "min_p": 0.0,
+        "presence_penalty": 1.5,
+        "repetition_penalty": 1.0,
+        "max_tokens": 8192,
+        "phybench_response_schema": false
+      },
+      "results": {
+        "phybench": {"native_correct": 2, "adjusted_correct": 5, "denominator": 84},
+        "prism": {"native_correct": 70, "adjusted_correct": 149, "denominator": 579},
+        "ugphysics": {"native_correct": 284, "adjusted_correct": 365, "denominator": 670},
+        "aggregate": {"native_correct": 356, "adjusted_correct": 519, "denominator": 1333, "native_accuracy": 0.2670667666916729, "adjusted_accuracy": 0.3893473368342086}
+      },
+      "completion_tokens": {"mean": 2639.662415603901, "median": 1498, "length_capped": 76},
+      "artifacts": {
+        "phybench": "benchmarks/phybench/artifacts/qwen3-4b-instruct-2507-stable-filtered",
+        "prism": "model_evals/qwen/runs/qwen3-4b-instruct-2507-prism-stable-filtered",
+        "ugphysics": "model_evals/qwen/runs/qwen3-4b-instruct-2507-ugphysics-stable-filtered"
+      }
+    },
+    "Qwen/Qwen3-4B-Thinking-2507": {
+      "sampling": {
+        "thinking": true,
+        "temperature": 0.6,
+        "top_p": 0.95,
+        "top_k": 20,
+        "min_p": 0.0,
+        "presence_penalty": 0.0,
+        "repetition_penalty": 1.0,
+        "max_tokens": 28672,
+        "phybench_response_schema": false
+      },
+      "results": {
+        "phybench": {"native_correct": 4, "adjusted_correct": 8, "denominator": 84},
+        "prism": {"native_correct": 101, "adjusted_correct": 307, "denominator": 579},
+        "ugphysics": {"native_correct": 299, "adjusted_correct": 414, "denominator": 670},
+        "aggregate": {"native_correct": 404, "adjusted_correct": 729, "denominator": 1333, "native_accuracy": 0.30307576894223553, "adjusted_accuracy": 0.5468867216804201}
+      },
+      "completion_tokens": {"mean": 9336.71567891973, "median": 8522, "length_capped": 2},
+      "artifacts": {
+        "phybench": "benchmarks/phybench/artifacts/qwen3-4b-thinking-2507-official-plain-filtered",
+        "prism": "model_evals/qwen/runs/qwen3-4b-thinking-2507-prism-official-filtered",
+        "ugphysics": "model_evals/qwen/runs/qwen3-4b-thinking-2507-ugphysics-official-filtered"
+      }
+    }
+  },
+  "invalid_runs_retained": [
+    "Qwen3-4B artifacts suffixed -INVALID-vllm019-triton (cross-replica corruption)",
+    "Qwen3-4B-Instruct-2507 artifacts suffixed -INVALID-degenerate (unpenalized repetition and guided-JSON whitespace loops)",
+    "benchmarks/phybench/artifacts/qwen3-4b-thinking-2507-official-filtered-INVALID-guided-json"
+  ]
+}

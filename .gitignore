@@ -9,6 +9,11 @@ benchmarks/**/artifacts/
 benchmarks/**/results/
 benchmarks/**/results_codex/
 
+# Generated Qwen evaluation outputs
+model_evals/qwen/logs/
+model_evals/qwen/runs/*
+!model_evals/qwen/runs/qwen3_family_summary.json
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
