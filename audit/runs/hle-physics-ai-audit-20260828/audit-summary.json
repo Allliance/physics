@@ -1,0 +1,29 @@
+{
+  "benchmark": "HLE Physics",
+  "completed_at": "2026-08-29T00:05:19.683100+00:00",
+  "total_rows": 230,
+  "failed_rows_audited": 114,
+  "passing_rows_unchanged": 116,
+  "two_pass_full_agreement": 100,
+  "adjudicated_disagreements": 14,
+  "verdict_counts": {
+    "benchmark_failure": 104,
+    "grader_failure": 2,
+    "model_failure": 8
+  },
+  "category_counts": {
+    "astronomy": 2,
+    "atomic, molecular, and optical physics": 9,
+    "classical mechanics": 18,
+    "condensed matter physics": 13,
+    "electrodynamics": 11,
+    "fluid mechanics": 4,
+    "high energy & nuclear": 20,
+    "others": 1,
+    "quantum mechanics": 21,
+    "relativity": 6,
+    "statistical physics & thermodynamics": 9
+  },
+  "output": "audit/all-responses/hle-physics/responses.jsonl",
+  "backup": "audit/runs/hle-physics-ai-audit-20260828/responses.before-ai-audit.jsonl"
+}
