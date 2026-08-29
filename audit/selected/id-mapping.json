@@ -1,0 +1,1300 @@
+{
+  "schema_version": 1,
+  "display_id_field": "display_id",
+  "indexing": "1-based global integer IDs",
+  "scope": "Rows in audit/selected with rule_based_binary_score == 0",
+  "ordering": {
+    "dataset_order": [
+      "phybench",
+      "prism",
+      "ugphysics",
+      "hle-physics"
+    ],
+    "within_dataset": "Existing order in each selected responses.jsonl file"
+  },
+  "total": 250,
+  "dataset_ranges": {
+    "phybench": {
+      "first_display_id": 1,
+      "last_display_id": 56,
+      "count": 56
+    },
+    "prism": {
+      "first_display_id": 57,
+      "last_display_id": 130,
+      "count": 74
+    },
+    "ugphysics": {
+      "first_display_id": 131,
+      "last_display_id": 152,
+      "count": 22
+    },
+    "hle-physics": {
+      "first_display_id": 153,
+      "last_display_id": 250,
+      "count": 98
+    }
+  },
+  "by_display_id": {
+    "1": {
+      "source_dataset": "phybench",
+      "source_problem_id": "285"
+    },
+    "2": {
+      "source_dataset": "phybench",
+      "source_problem_id": "674"
+    },
+    "3": {
+      "source_dataset": "phybench",
+      "source_problem_id": "83"
+    },
+    "4": {
+      "source_dataset": "phybench",
+      "source_problem_id": "10"
+    },
+    "5": {
+      "source_dataset": "phybench",
+      "source_problem_id": "41"
+    },
+    "6": {
+      "source_dataset": "phybench",
+      "source_problem_id": "332"
+    },
+    "7": {
+      "source_dataset": "phybench",
+      "source_problem_id": "250"
+    },
+    "8": {
+      "source_dataset": "phybench",
+      "source_problem_id": "409"
+    },
+    "9": {
+      "source_dataset": "phybench",
+      "source_problem_id": "336"
+    },
+    "10": {
+      "source_dataset": "phybench",
+      "source_problem_id": "88"
+    },
+    "11": {
+      "source_dataset": "phybench",
+      "source_problem_id": "617"
+    },
+    "12": {
+      "source_dataset": "phybench",
+      "source_problem_id": "497"
+    },
+    "13": {
+      "source_dataset": "phybench",
+      "source_problem_id": "457"
+    },
+    "14": {
+      "source_dataset": "phybench",
+      "source_problem_id": "284"
+    },
+    "15": {
+      "source_dataset": "phybench",
+      "source_problem_id": "55"
+    },
+    "16": {
+      "source_dataset": "phybench",
+      "source_problem_id": "419"
+    },
+    "17": {
+      "source_dataset": "phybench",
+      "source_problem_id": "206"
+    },
+    "18": {
+      "source_dataset": "phybench",
+      "source_problem_id": "204"
+    },
+    "19": {
+      "source_dataset": "phybench",
+      "source_problem_id": "478"
+    },
+    "20": {
+      "source_dataset": "phybench",
+      "source_problem_id": "71"
+    },
+    "21": {
+      "source_dataset": "phybench",
+      "source_problem_id": "259"
+    },
+    "22": {
+      "source_dataset": "phybench",
+      "source_problem_id": "766"
+    },
+    "23": {
+      "source_dataset": "phybench",
+      "source_problem_id": "310"
+    },
+    "24": {
+      "source_dataset": "phybench",
+      "source_problem_id": "110"
+    },
+    "25": {
+      "source_dataset": "phybench",
+      "source_problem_id": "256"
+    },
+    "26": {
+      "source_dataset": "phybench",
+      "source_problem_id": "112"
+    },
+    "27": {
+      "source_dataset": "phybench",
+      "source_problem_id": "505"
+    },
+    "28": {
+      "source_dataset": "phybench",
+      "source_problem_id": "331"
+    },
+    "29": {
+      "source_dataset": "phybench",
+      "source_problem_id": "498"
+    },
+    "30": {
+      "source_dataset": "phybench",
+      "source_problem_id": "636"
+    },
+    "31": {
+      "source_dataset": "phybench",
+      "source_problem_id": "420"
+    },
+    "32": {
+      "source_dataset": "phybench",
+      "source_problem_id": "228"
+    },
+    "33": {
+      "source_dataset": "phybench",
+      "source_problem_id": "450"
+    },
+    "34": {
+      "source_dataset": "phybench",
+      "source_problem_id": "708"
+    },
+    "35": {
+      "source_dataset": "phybench",
+      "source_problem_id": "649"
+    },
+    "36": {
+      "source_dataset": "phybench",
+      "source_problem_id": "143"
+    },
+    "37": {
+      "source_dataset": "phybench",
+      "source_problem_id": "115"
+    },
+    "38": {
+      "source_dataset": "phybench",
+      "source_problem_id": "65"
+    },
+    "39": {
+      "source_dataset": "phybench",
+      "source_problem_id": "131"
+    },
+    "40": {
+      "source_dataset": "phybench",
+      "source_problem_id": "423"
+    },
+    "41": {
+      "source_dataset": "phybench",
+      "source_problem_id": "333"
+    },
+    "42": {
+      "source_dataset": "phybench",
+      "source_problem_id": "50"
+    },
+    "43": {
+      "source_dataset": "phybench",
+      "source_problem_id": "221"
+    },
+    "44": {
+      "source_dataset": "phybench",
+      "source_problem_id": "121"
+    },
+    "45": {
+      "source_dataset": "phybench",
+      "source_problem_id": "648"
+    },
+    "46": {
+      "source_dataset": "phybench",
+      "source_problem_id": "603"
+    },
+    "47": {
+      "source_dataset": "phybench",
+      "source_problem_id": "140"
+    },
+    "48": {
+      "source_dataset": "phybench",
+      "source_problem_id": "653"
+    },
+    "49": {
+      "source_dataset": "phybench",
+      "source_problem_id": "139"
+    },
+    "50": {
+      "source_dataset": "phybench",
+      "source_problem_id": "106"
+    },
+    "51": {
+      "source_dataset": "phybench",
+      "source_problem_id": "58"
+    },
+    "52": {
+      "source_dataset": "phybench",
+      "source_problem_id": "412"
+    },
+    "53": {
+      "source_dataset": "phybench",
+      "source_problem_id": "43"
+    },
+    "54": {
+      "source_dataset": "phybench",
+      "source_problem_id": "45"
+    },
+    "55": {
+      "source_dataset": "phybench",
+      "source_problem_id": "654"
+    },
+    "56": {
+      "source_dataset": "phybench",
+      "source_problem_id": "89"
+    },
+    "57": {
+      "source_dataset": "prism",
+      "source_problem_id": "01_cleaned_dag:1013"
+    },
+    "58": {
+      "source_dataset": "prism",
+      "source_problem_id": "01_cleaned_dag:1070"
+    },
+    "59": {
+      "source_dataset": "prism",
+      "source_problem_id": "01_cleaned_dag:1071"
+    },
+    "60": {
+      "source_dataset": "prism",
+      "source_problem_id": "01_cleaned_dag:1075"
+    },
+    "61": {
+      "source_dataset": "prism",
+      "source_problem_id": "01_cleaned_dag:1142"
+    },
+    "62": {
+      "source_dataset": "prism",
+      "source_problem_id": "01_cleaned_dag:1267"
+    },
+    "63": {
+      "source_dataset": "prism",
+      "source_problem_id": "01_cleaned_dag:2016"
+    },
+    "64": {
+      "source_dataset": "prism",
+      "source_problem_id": "01_cleaned_dag:2037"
+    },
+    "65": {
+      "source_dataset": "prism",
+      "source_problem_id": "01_cleaned_dag:2056"
+    },
+    "66": {
+      "source_dataset": "prism",
+      "source_problem_id": "01_cleaned_dag:2066"
+    },
+    "67": {
+      "source_dataset": "prism",
+      "source_problem_id": "01_cleaned_dag:3010"
+    },
+    "68": {
+      "source_dataset": "prism",
+      "source_problem_id": "01_cleaned_dag:3031"
+    },
+    "69": {
+      "source_dataset": "prism",
+      "source_problem_id": "01_cleaned_dag:3052"
+    },
+    "70": {
+      "source_dataset": "prism",
+      "source_problem_id": "02_cleaned_dag:1012"
+    },
+    "71": {
+      "source_dataset": "prism",
+      "source_problem_id": "02_cleaned_dag:2021"
+    },
+    "72": {
+      "source_dataset": "prism",
+      "source_problem_id": "02_cleaned_dag:2039"
+    },
+    "73": {
+      "source_dataset": "prism",
+      "source_problem_id": "02_cleaned_dag:2053"
+    },
+    "74": {
+      "source_dataset": "prism",
+      "source_problem_id": "02_cleaned_dag:2055"
+    },
+    "75": {
+      "source_dataset": "prism",
+      "source_problem_id": "02_cleaned_dag:2076"
+    },
+    "76": {
+      "source_dataset": "prism",
+      "source_problem_id": "02_cleaned_dag:2089"
+    },
+    "77": {
+      "source_dataset": "prism",
+      "source_problem_id": "02_cleaned_dag:3034"
+    },
+    "78": {
+      "source_dataset": "prism",
+      "source_problem_id": "02_cleaned_dag:3038"
+    },
+    "79": {
+      "source_dataset": "prism",
+      "source_problem_id": "03_cleaned_dag:2029"
+    },
+    "80": {
+      "source_dataset": "prism",
+      "source_problem_id": "04_cleaned_dag:1049"
+    },
+    "81": {
+      "source_dataset": "prism",
+      "source_problem_id": "04_cleaned_dag:1084"
+    },
+    "82": {
+      "source_dataset": "prism",
+      "source_problem_id": "04_cleaned_dag:1104"
+    },
+    "83": {
+      "source_dataset": "prism",
+      "source_problem_id": "04_cleaned_dag:1139"
+    },
+    "84": {
+      "source_dataset": "prism",
+      "source_problem_id": "04_cleaned_dag:2002"
+    },
+    "85": {
+      "source_dataset": "prism",
+      "source_problem_id": "04_cleaned_dag:2010"
+    },
+    "86": {
+      "source_dataset": "prism",
+      "source_problem_id": "04_cleaned_dag:2045"
+    },
+    "87": {
+      "source_dataset": "prism",
+      "source_problem_id": "04_cleaned_dag:2074"
+    },
+    "88": {
+      "source_dataset": "prism",
+      "source_problem_id": "04_cleaned_dag:2119"
+    },
+    "89": {
+      "source_dataset": "prism",
+      "source_problem_id": "04_cleaned_dag:3081"
+    },
+    "90": {
+      "source_dataset": "prism",
+      "source_problem_id": "04_cleaned_dag:4002"
+    },
+    "91": {
+      "source_dataset": "prism",
+      "source_problem_id": "04_cleaned_dag:4013"
+    },
+    "92": {
+      "source_dataset": "prism",
+      "source_problem_id": "04_cleaned_dag:4027"
+    },
+    "93": {
+      "source_dataset": "prism",
+      "source_problem_id": "04_cleaned_dag:4030"
+    },
+    "94": {
+      "source_dataset": "prism",
+      "source_problem_id": "04_cleaned_dag:4037"
+    },
+    "95": {
+      "source_dataset": "prism",
+      "source_problem_id": "04_cleaned_dag:4051"
+    },
+    "96": {
+      "source_dataset": "prism",
+      "source_problem_id": "04_cleaned_dag:4060"
+    },
+    "97": {
+      "source_dataset": "prism",
+      "source_problem_id": "04_cleaned_dag:4101"
+    },
+    "98": {
+      "source_dataset": "prism",
+      "source_problem_id": "05_cleaned_dag:1070"
+    },
+    "99": {
+      "source_dataset": "prism",
+      "source_problem_id": "05_cleaned_dag:1077"
+    },
+    "100": {
+      "source_dataset": "prism",
+      "source_problem_id": "05_cleaned_dag:1080"
+    },
+    "101": {
+      "source_dataset": "prism",
+      "source_problem_id": "05_cleaned_dag:1083"
+    },
+    "102": {
+      "source_dataset": "prism",
+      "source_problem_id": "05_cleaned_dag:1127"
+    },
+    "103": {
+      "source_dataset": "prism",
+      "source_problem_id": "05_cleaned_dag:1137"
+    },
+    "104": {
+      "source_dataset": "prism",
+      "source_problem_id": "05_cleaned_dag:2032"
+    },
+    "105": {
+      "source_dataset": "prism",
+      "source_problem_id": "05_cleaned_dag:2037"
+    },
+    "106": {
+      "source_dataset": "prism",
+      "source_problem_id": "05_cleaned_dag:2054"
+    },
+    "107": {
+      "source_dataset": "prism",
+      "source_problem_id": "05_cleaned_dag:2055"
+    },
+    "108": {
+      "source_dataset": "prism",
+      "source_problem_id": "05_cleaned_dag:2067"
+    },
+    "109": {
+      "source_dataset": "prism",
+      "source_problem_id": "05_cleaned_dag:2071"
+    },
+    "110": {
+      "source_dataset": "prism",
+      "source_problem_id": "05_cleaned_dag:2072"
+    },
+    "111": {
+      "source_dataset": "prism",
+      "source_problem_id": "05_cleaned_dag:2102"
+    },
+    "112": {
+      "source_dataset": "prism",
+      "source_problem_id": "05_cleaned_dag:2105"
+    },
+    "113": {
+      "source_dataset": "prism",
+      "source_problem_id": "05_cleaned_dag:2137"
+    },
+    "114": {
+      "source_dataset": "prism",
+      "source_problem_id": "05_cleaned_dag:2139"
+    },
+    "115": {
+      "source_dataset": "prism",
+      "source_problem_id": "06_cleaned_dag:1059"
+    },
+    "116": {
+      "source_dataset": "prism",
+      "source_problem_id": "06_cleaned_dag:3046"
+    },
+    "117": {
+      "source_dataset": "prism",
+      "source_problem_id": "06_cleaned_dag:4009"
+    },
+    "118": {
+      "source_dataset": "prism",
+      "source_problem_id": "06_cleaned_dag:4010"
+    },
+    "119": {
+      "source_dataset": "prism",
+      "source_problem_id": "06_cleaned_dag:5008"
+    },
+    "120": {
+      "source_dataset": "prism",
+      "source_problem_id": "06_cleaned_dag:5057"
+    },
+    "121": {
+      "source_dataset": "prism",
+      "source_problem_id": "06_cleaned_dag:5058"
+    },
+    "122": {
+      "source_dataset": "prism",
+      "source_problem_id": "06_cleaned_dag:5060"
+    },
+    "123": {
+      "source_dataset": "prism",
+      "source_problem_id": "06_cleaned_dag:6001"
+    },
+    "124": {
+      "source_dataset": "prism",
+      "source_problem_id": "06_cleaned_dag:6003"
+    },
+    "125": {
+      "source_dataset": "prism",
+      "source_problem_id": "06_cleaned_dag:6004"
+    },
+    "126": {
+      "source_dataset": "prism",
+      "source_problem_id": "06_cleaned_dag:6058"
+    },
+    "127": {
+      "source_dataset": "prism",
+      "source_problem_id": "06_cleaned_dag:7002"
+    },
+    "128": {
+      "source_dataset": "prism",
+      "source_problem_id": "06_cleaned_dag:8008"
+    },
+    "129": {
+      "source_dataset": "prism",
+      "source_problem_id": "06_cleaned_dag:8009"
+    },
+    "130": {
+      "source_dataset": "prism",
+      "source_problem_id": "07_cleaned_dag:1065"
+    },
+    "131": {
+      "source_dataset": "ugphysics",
+      "source_problem_id": "StatisticalMechanics/en/386"
+    },
+    "132": {
+      "source_dataset": "ugphysics",
+      "source_problem_id": "SemiconductorPhysics/en/140"
+    },
+    "133": {
+      "source_dataset": "ugphysics",
+      "source_problem_id": "StatisticalMechanics/en/317"
+    },
+    "134": {
+      "source_dataset": "ugphysics",
+      "source_problem_id": "ClassicalMechanics/en/489"
+    },
+    "135": {
+      "source_dataset": "ugphysics",
+      "source_problem_id": "QuantumMechanics/en/1002"
+    },
+    "136": {
+      "source_dataset": "ugphysics",
+      "source_problem_id": "ClassicalMechanics/en/231"
+    },
+    "137": {
+      "source_dataset": "ugphysics",
+      "source_problem_id": "StatisticalMechanics/en/554"
+    },
+    "138": {
+      "source_dataset": "ugphysics",
+      "source_problem_id": "ClassicalElectromagnetism/en/328"
+    },
+    "139": {
+      "source_dataset": "ugphysics",
+      "source_problem_id": "ClassicalMechanics/en/267"
+    },
+    "140": {
+      "source_dataset": "ugphysics",
+      "source_problem_id": "Relativity/en/141"
+    },
+    "141": {
+      "source_dataset": "ugphysics",
+      "source_problem_id": "QuantumMechanics/en/827"
+    },
+    "142": {
+      "source_dataset": "ugphysics",
+      "source_problem_id": "QuantumMechanics/en/463"
+    },
+    "143": {
+      "source_dataset": "ugphysics",
+      "source_problem_id": "TheoreticalMechanics/en/185"
+    },
+    "144": {
+      "source_dataset": "ugphysics",
+      "source_problem_id": "AtomicPhysics/en/702"
+    },
+    "145": {
+      "source_dataset": "ugphysics",
+      "source_problem_id": "QuantumMechanics/en/128"
+    },
+    "146": {
+      "source_dataset": "ugphysics",
+      "source_problem_id": "QuantumMechanics/en/748"
+    },
+    "147": {
+      "source_dataset": "ugphysics",
+      "source_problem_id": "Electrodynamics/en/100"
+    },
+    "148": {
+      "source_dataset": "ugphysics",
+      "source_problem_id": "AtomicPhysics/en/228"
+    },
+    "149": {
+      "source_dataset": "ugphysics",
+      "source_problem_id": "ClassicalMechanics/en/1"
+    },
+    "150": {
+      "source_dataset": "ugphysics",
+      "source_problem_id": "AtomicPhysics/en/791"
+    },
+    "151": {
+      "source_dataset": "ugphysics",
+      "source_problem_id": "Solid-StatePhysics/en/81"
+    },
+    "152": {
+      "source_dataset": "ugphysics",
+      "source_problem_id": "SemiconductorPhysics/en/4"
+    },
+    "153": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "66e9032060abc895aedcf460"
+    },
+    "154": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "66e9100b48468f864f861b90"
+    },
+    "155": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "66eda111ea64e37f9218600c"
+    },
+    "156": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "66f28cc8b866ea3f1f4e95f5"
+    },
+    "157": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "66f2dee46721a56e35d20300"
+    },
+    "158": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "66f86bbb27a30cecdc2d6c7e"
+    },
+    "159": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "66f8cff8469c315e2c9ed2f6"
+    },
+    "160": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "66fb417395a8e2fc57e479d7"
+    },
+    "161": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "66fc56f5d90ebe461bfd0c9c"
+    },
+    "162": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "66fc6a20d90ebe461bfd0cc7"
+    },
+    "163": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "66fcbb1e2c2f679cc795985f"
+    },
+    "164": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "6702df0bf9b93417fbae272c"
+    },
+    "165": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "670402f0bae67686d8aef3e8"
+    },
+    "166": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "670fe03ef99389b3c7942186"
+    },
+    "167": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "6715f373a35b028a9e88c09f"
+    },
+    "168": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "671b14a6a05f8889abb23bf0"
+    },
+    "169": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "671bd4fb69d17f19519341dc"
+    },
+    "170": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "671ec6d8a695a5847b48c39a"
+    },
+    "171": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "671eefbfb6d7145231fa28e4"
+    },
+    "172": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "671f6889490be3e9a159f485"
+    },
+    "173": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "671feb0424e49a0a566a7883"
+    },
+    "174": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "672072c945e7bc8f5c2dd1ba"
+    },
+    "175": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "67208aa0563d776c82113daa"
+    },
+    "176": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "6720a9feec461e4c6a4e2c3a"
+    },
+    "177": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "6720c10ac6e0d9a4953b636f"
+    },
+    "178": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "6720fda3febecf1a8b9b083d"
+    },
+    "179": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "67213cb9043b1e724244a1c6"
+    },
+    "180": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "6721767ddb8105efc71a7d1b"
+    },
+    "181": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "67218f865b0747ce2231d48c"
+    },
+    "182": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "67225f3cf135fd983a87bc1f"
+    },
+    "183": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "6722809eb0e7186e733d6838"
+    },
+    "184": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "67229b1f5a95bf7d096a6319"
+    },
+    "185": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "67230d6e736f03c0e4c1adee"
+    },
+    "186": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "672333955d82e15ca8e37afb"
+    },
+    "187": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "672338c7348c6cb89bd6a7a4"
+    },
+    "188": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "6723daed271ddeec8bacb9be"
+    },
+    "189": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "67249cc8709ecff358139741"
+    },
+    "190": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "6725267ae9d3782179d4a5ff"
+    },
+    "191": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "6725280ff2e932808735b2e8"
+    },
+    "192": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "6725562814a5e4119e612733"
+    },
+    "193": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "67260355aaf7cd419fd01af6"
+    },
+    "194": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "6728c038c556bb2fdda61dd7"
+    },
+    "195": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "6728d1e3a8053eddd7a7f24a"
+    },
+    "196": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "6728e8d695a162eb76520086"
+    },
+    "197": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "672a26f8b4642f4105e02119"
+    },
+    "198": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "672a27f5d30d6f5584cde73d"
+    },
+    "199": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "672a28afb4642f4105e02122"
+    },
+    "200": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "672a29a8d30d6f5584cde745"
+    },
+    "201": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "672a30472091cee6de17ebd1"
+    },
+    "202": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "672a5c2bea4e7fa0183543ae"
+    },
+    "203": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "672a79431629c5c3d6933ca7"
+    },
+    "204": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "672d44d02a52b5a11753319c"
+    },
+    "205": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "672ddd9bff7bf1483f564046"
+    },
+    "206": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "672de1afed6de72b75b8c7e6"
+    },
+    "207": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "672dfdac63f8d9211905d385"
+    },
+    "208": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "672e09b50a85795d0ed2d36e"
+    },
+    "209": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "672f4434e9c13daba078d693"
+    },
+    "210": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "672fc00e13e5fbd332372f3f"
+    },
+    "211": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "672fec044673df044daa1f34"
+    },
+    "212": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "672ff8317b5ea0144d26c82d"
+    },
+    "213": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "67300670a8a3b9c5fe76c0b8"
+    },
+    "214": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "67319c16b68f5ac822e236b0"
+    },
+    "215": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "67325a61292f97f5175026dd"
+    },
+    "216": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "673347de7c5871632811feec"
+    },
+    "217": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "6734956467d2904eebed3a09"
+    },
+    "218": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "673497b017a9687889930ac4"
+    },
+    "219": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "6734989917a9687889930ac9"
+    },
+    "220": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "6735bafad86155d1e57160e7"
+    },
+    "221": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "67361730dba36cc0d595f422"
+    },
+    "222": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "67364c441758ad568a4a2ac6"
+    },
+    "223": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "673704af1c2083e9eaa6d732"
+    },
+    "224": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "67370aa83f0517b6e8a60769"
+    },
+    "225": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "673757b8673b15e8ce0a3755"
+    },
+    "226": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "67379aea6c946be458900f3f"
+    },
+    "227": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "6737d23a6a364decc45cc7ee"
+    },
+    "228": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "67380ecdb808e1bf292d214e"
+    },
+    "229": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "67381641a8513cd02a2937c3"
+    },
+    "230": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "67381812e4ea03183132a54e"
+    },
+    "231": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "67381f0835f9616e390e737a"
+    },
+    "232": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "67382f8535f9616e390e73ae"
+    },
+    "233": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "673909949318c3bbb1056f54"
+    },
+    "234": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "67390df48dfa3346e87f711a"
+    },
+    "235": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "6739674739118cf30f5f1075"
+    },
+    "236": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "67398780bcaf1e028b8576a2"
+    },
+    "237": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "67399a69c180d4d45680e434"
+    },
+    "238": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "673b4efb373d154ce855b23b"
+    },
+    "239": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "673c03d7048156c9e9c8cac6"
+    },
+    "240": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "673f8ff088d617494f21e0d2"
+    },
+    "241": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "67401245b9a033e63640df4b"
+    },
+    "242": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "67434c26e839fa1a02de4251"
+    },
+    "243": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "67440064abafa90f5b9d4da9"
+    },
+    "244": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "67487e955830790e3687a567"
+    },
+    "245": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "6748b7dfac494f3a05306206"
+    },
+    "246": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "6756844266c3ec0e7088bf9f"
+    },
+    "247": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "67770f6d9a59b3d9ca3a5f82"
+    },
+    "248": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "6750df74ca6713770c0671be"
+    },
+    "249": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "66ed86e620ed3db95f9901d3"
+    },
+    "250": {
+      "source_dataset": "hle-physics",
+      "source_problem_id": "6726119595fd0ad0b8ae2978"
+    }
+  },
+  "by_source": {
+    "phybench": {
+      "285": 1,
+      "674": 2,
+      "83": 3,
+      "10": 4,
+      "41": 5,
+      "332": 6,
+      "250": 7,
+      "409": 8,
+      "336": 9,
+      "88": 10,
+      "617": 11,
+      "497": 12,
+      "457": 13,
+      "284": 14,
+      "55": 15,
+      "419": 16,
+      "206": 17,
+      "204": 18,
+      "478": 19,
+      "71": 20,
+      "259": 21,
+      "766": 22,
+      "310": 23,
+      "110": 24,
+      "256": 25,
+      "112": 26,
+      "505": 27,
+      "331": 28,
+      "498": 29,
+      "636": 30,
+      "420": 31,
+      "228": 32,
+      "450": 33,
+      "708": 34,
+      "649": 35,
+      "143": 36,
+      "115": 37,
+      "65": 38,
+      "131": 39,
+      "423": 40,
+      "333": 41,
+      "50": 42,
+      "221": 43,
+      "121": 44,
+      "648": 45,
+      "603": 46,
+      "140": 47,
+      "653": 48,
+      "139": 49,
+      "106": 50,
+      "58": 51,
+      "412": 52,
+      "43": 53,
+      "45": 54,
+      "654": 55,
+      "89": 56
+    },
+    "prism": {
+      "01_cleaned_dag:1013": 57,
+      "01_cleaned_dag:1070": 58,
+      "01_cleaned_dag:1071": 59,
+      "01_cleaned_dag:1075": 60,
+      "01_cleaned_dag:1142": 61,
+      "01_cleaned_dag:1267": 62,
+      "01_cleaned_dag:2016": 63,
+      "01_cleaned_dag:2037": 64,
+      "01_cleaned_dag:2056": 65,
+      "01_cleaned_dag:2066": 66,
+      "01_cleaned_dag:3010": 67,
+      "01_cleaned_dag:3031": 68,
+      "01_cleaned_dag:3052": 69,
+      "02_cleaned_dag:1012": 70,
+      "02_cleaned_dag:2021": 71,
+      "02_cleaned_dag:2039": 72,
+      "02_cleaned_dag:2053": 73,
+      "02_cleaned_dag:2055": 74,
+      "02_cleaned_dag:2076": 75,
+      "02_cleaned_dag:2089": 76,
+      "02_cleaned_dag:3034": 77,
+      "02_cleaned_dag:3038": 78,
+      "03_cleaned_dag:2029": 79,
+      "04_cleaned_dag:1049": 80,
+      "04_cleaned_dag:1084": 81,
+      "04_cleaned_dag:1104": 82,
+      "04_cleaned_dag:1139": 83,
+      "04_cleaned_dag:2002": 84,
+      "04_cleaned_dag:2010": 85,
+      "04_cleaned_dag:2045": 86,
+      "04_cleaned_dag:2074": 87,
+      "04_cleaned_dag:2119": 88,
+      "04_cleaned_dag:3081": 89,
+      "04_cleaned_dag:4002": 90,
+      "04_cleaned_dag:4013": 91,
+      "04_cleaned_dag:4027": 92,
+      "04_cleaned_dag:4030": 93,
+      "04_cleaned_dag:4037": 94,
+      "04_cleaned_dag:4051": 95,
+      "04_cleaned_dag:4060": 96,
+      "04_cleaned_dag:4101": 97,
+      "05_cleaned_dag:1070": 98,
+      "05_cleaned_dag:1077": 99,
+      "05_cleaned_dag:1080": 100,
+      "05_cleaned_dag:1083": 101,
+      "05_cleaned_dag:1127": 102,
+      "05_cleaned_dag:1137": 103,
+      "05_cleaned_dag:2032": 104,
+      "05_cleaned_dag:2037": 105,
+      "05_cleaned_dag:2054": 106,
+      "05_cleaned_dag:2055": 107,
+      "05_cleaned_dag:2067": 108,
+      "05_cleaned_dag:2071": 109,
+      "05_cleaned_dag:2072": 110,
+      "05_cleaned_dag:2102": 111,
+      "05_cleaned_dag:2105": 112,
+      "05_cleaned_dag:2137": 113,
+      "05_cleaned_dag:2139": 114,
+      "06_cleaned_dag:1059": 115,
+      "06_cleaned_dag:3046": 116,
+      "06_cleaned_dag:4009": 117,
+      "06_cleaned_dag:4010": 118,
+      "06_cleaned_dag:5008": 119,
+      "06_cleaned_dag:5057": 120,
+      "06_cleaned_dag:5058": 121,
+      "06_cleaned_dag:5060": 122,
+      "06_cleaned_dag:6001": 123,
+      "06_cleaned_dag:6003": 124,
+      "06_cleaned_dag:6004": 125,
+      "06_cleaned_dag:6058": 126,
+      "06_cleaned_dag:7002": 127,
+      "06_cleaned_dag:8008": 128,
+      "06_cleaned_dag:8009": 129,
+      "07_cleaned_dag:1065": 130
+    },
+    "ugphysics": {
+      "StatisticalMechanics/en/386": 131,
+      "SemiconductorPhysics/en/140": 132,
+      "StatisticalMechanics/en/317": 133,
+      "ClassicalMechanics/en/489": 134,
+      "QuantumMechanics/en/1002": 135,
+      "ClassicalMechanics/en/231": 136,
+      "StatisticalMechanics/en/554": 137,
+      "ClassicalElectromagnetism/en/328": 138,
+      "ClassicalMechanics/en/267": 139,
+      "Relativity/en/141": 140,
+      "QuantumMechanics/en/827": 141,
+      "QuantumMechanics/en/463": 142,
+      "TheoreticalMechanics/en/185": 143,
+      "AtomicPhysics/en/702": 144,
+      "QuantumMechanics/en/128": 145,
+      "QuantumMechanics/en/748": 146,
+      "Electrodynamics/en/100": 147,
+      "AtomicPhysics/en/228": 148,
+      "ClassicalMechanics/en/1": 149,
+      "AtomicPhysics/en/791": 150,
+      "Solid-StatePhysics/en/81": 151,
+      "SemiconductorPhysics/en/4": 152
+    },
+    "hle-physics": {
+      "66e9032060abc895aedcf460": 153,
+      "66e9100b48468f864f861b90": 154,
+      "66eda111ea64e37f9218600c": 155,
+      "66f28cc8b866ea3f1f4e95f5": 156,
+      "66f2dee46721a56e35d20300": 157,
+      "66f86bbb27a30cecdc2d6c7e": 158,
+      "66f8cff8469c315e2c9ed2f6": 159,
+      "66fb417395a8e2fc57e479d7": 160,
+      "66fc56f5d90ebe461bfd0c9c": 161,
+      "66fc6a20d90ebe461bfd0cc7": 162,
+      "66fcbb1e2c2f679cc795985f": 163,
+      "6702df0bf9b93417fbae272c": 164,
+      "670402f0bae67686d8aef3e8": 165,
+      "670fe03ef99389b3c7942186": 166,
+      "6715f373a35b028a9e88c09f": 167,
+      "671b14a6a05f8889abb23bf0": 168,
+      "671bd4fb69d17f19519341dc": 169,
+      "671ec6d8a695a5847b48c39a": 170,
+      "671eefbfb6d7145231fa28e4": 171,
+      "671f6889490be3e9a159f485": 172,
+      "671feb0424e49a0a566a7883": 173,
+      "672072c945e7bc8f5c2dd1ba": 174,
+      "67208aa0563d776c82113daa": 175,
+      "6720a9feec461e4c6a4e2c3a": 176,
+      "6720c10ac6e0d9a4953b636f": 177,
+      "6720fda3febecf1a8b9b083d": 178,
+      "67213cb9043b1e724244a1c6": 179,
+      "6721767ddb8105efc71a7d1b": 180,
+      "67218f865b0747ce2231d48c": 181,
+      "67225f3cf135fd983a87bc1f": 182,
+      "6722809eb0e7186e733d6838": 183,
+      "67229b1f5a95bf7d096a6319": 184,
+      "67230d6e736f03c0e4c1adee": 185,
+      "672333955d82e15ca8e37afb": 186,
+      "672338c7348c6cb89bd6a7a4": 187,
+      "6723daed271ddeec8bacb9be": 188,
+      "67249cc8709ecff358139741": 189,
+      "6725267ae9d3782179d4a5ff": 190,
+      "6725280ff2e932808735b2e8": 191,
+      "6725562814a5e4119e612733": 192,
+      "67260355aaf7cd419fd01af6": 193,
+      "6728c038c556bb2fdda61dd7": 194,
+      "6728d1e3a8053eddd7a7f24a": 195,
+      "6728e8d695a162eb76520086": 196,
+      "672a26f8b4642f4105e02119": 197,
+      "672a27f5d30d6f5584cde73d": 198,
+      "672a28afb4642f4105e02122": 199,
+      "672a29a8d30d6f5584cde745": 200,
+      "672a30472091cee6de17ebd1": 201,
+      "672a5c2bea4e7fa0183543ae": 202,
+      "672a79431629c5c3d6933ca7": 203,
+      "672d44d02a52b5a11753319c": 204,
+      "672ddd9bff7bf1483f564046": 205,
+      "672de1afed6de72b75b8c7e6": 206,
+      "672dfdac63f8d9211905d385": 207,
+      "672e09b50a85795d0ed2d36e": 208,
+      "672f4434e9c13daba078d693": 209,
+      "672fc00e13e5fbd332372f3f": 210,
+      "672fec044673df044daa1f34": 211,
+      "672ff8317b5ea0144d26c82d": 212,
+      "67300670a8a3b9c5fe76c0b8": 213,
+      "67319c16b68f5ac822e236b0": 214,
+      "67325a61292f97f5175026dd": 215,
+      "673347de7c5871632811feec": 216,
+      "6734956467d2904eebed3a09": 217,
+      "673497b017a9687889930ac4": 218,
+      "6734989917a9687889930ac9": 219,
+      "6735bafad86155d1e57160e7": 220,
+      "67361730dba36cc0d595f422": 221,
+      "67364c441758ad568a4a2ac6": 222,
+      "673704af1c2083e9eaa6d732": 223,
+      "67370aa83f0517b6e8a60769": 224,
+      "673757b8673b15e8ce0a3755": 225,
+      "67379aea6c946be458900f3f": 226,
+      "6737d23a6a364decc45cc7ee": 227,
+      "67380ecdb808e1bf292d214e": 228,
+      "67381641a8513cd02a2937c3": 229,
+      "67381812e4ea03183132a54e": 230,
+      "67381f0835f9616e390e737a": 231,
+      "67382f8535f9616e390e73ae": 232,
+      "673909949318c3bbb1056f54": 233,
+      "67390df48dfa3346e87f711a": 234,
+      "6739674739118cf30f5f1075": 235,
+      "67398780bcaf1e028b8576a2": 236,
+      "67399a69c180d4d45680e434": 237,
+      "673b4efb373d154ce855b23b": 238,
+      "673c03d7048156c9e9c8cac6": 239,
+      "673f8ff088d617494f21e0d2": 240,
+      "67401245b9a033e63640df4b": 241,
+      "67434c26e839fa1a02de4251": 242,
+      "67440064abafa90f5b9d4da9": 243,
+      "67487e955830790e3687a567": 244,
+      "6748b7dfac494f3a05306206": 245,
+      "6756844266c3ec0e7088bf9f": 246,
+      "67770f6d9a59b3d9ca3a5f82": 247,
+      "6750df74ca6713770c0671be": 248,
+      "66ed86e620ed3db95f9901d3": 249,
+      "6726119595fd0ad0b8ae2978": 250
+    }
+  }
+}
