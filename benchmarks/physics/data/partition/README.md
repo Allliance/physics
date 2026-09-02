@@ -10,7 +10,7 @@ content.
 ## Smoke Test
 
 ```bash
-rtk /home/alliiance/.local/bin/uv run --with pyarrow python3 data/partition/partition_messy_questions.py \
+/home/alliiance/.local/bin/uv run --with pyarrow python3 data/partition/partition_messy_questions.py \
   --limit 5 \
   --workers 2 \
   --output scratch/multipart_analysis/messy_partition_smoke.jsonl \

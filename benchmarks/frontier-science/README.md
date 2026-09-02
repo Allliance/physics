@@ -10,7 +10,7 @@ binary equivalence judgment. Research questions receive 0–10 rubric points and
 at 7 points or higher. Runs append durable JSONL caches and safely resume.
 
 ```bash
-rtk python3 benchmarks/frontier-science/evaluate.py \
+python3 benchmarks/frontier-science/evaluate.py \
   --model gpt-5.6-sol --reasoning-effort high \
   --judge-model gpt-5.6-sol --judge-reasoning-effort high
 ```
@@ -27,5 +27,5 @@ For sequential best-of-five evaluation, reusing the completed single-pass run as
 dropping successful problems before every later round:
 
 ```bash
-rtk python3 benchmarks/frontier-science/scripts/evaluate_retries.py --rounds 5
+python3 benchmarks/frontier-science/scripts/evaluate_retries.py --rounds 5
 ```

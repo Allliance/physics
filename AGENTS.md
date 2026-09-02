@@ -13,13 +13,11 @@ helpers such as the Codex CLI wrapper. Keep one-off analysis in `scratch/` or
 
 ## Build, Test, and Development Commands
 
-- `rtk /home/alliiance/.local/bin/uv run --with pyarrow python -m eval FrontierPhysics test --mode merged --limit 1` runs a one-row evaluation smoke test.
-- `rtk python3 -m unittest discover -s eval/tests -p 'test_*.py'` runs evaluation unit tests.
-- `rtk python3 -m unittest discover -s data/extract_gt -p 'test_*.py'` runs ground-truth extraction tests.
-- `rtk python3 -m pip install -r data/filter/requirements.txt` installs filter pipeline dependencies.
-- `rtk /home/alliiance/.local/bin/uv run inspection/server.py` starts the inspection UI at `http://127.0.0.1:8765`.
-
-For Codex-managed shell work in this repository, prefix commands with `rtk`.
+- `/home/alliiance/.local/bin/uv run --with pyarrow python -m eval FrontierPhysics test --mode merged --limit 1` runs a one-row evaluation smoke test.
+- `python3 -m unittest discover -s eval/tests -p 'test_*.py'` runs evaluation unit tests.
+- `python3 -m unittest discover -s data/extract_gt -p 'test_*.py'` runs ground-truth extraction tests.
+- `python3 -m pip install -r data/filter/requirements.txt` installs filter pipeline dependencies.
+- `/home/alliiance/.local/bin/uv run inspection/server.py` starts the inspection UI at `http://127.0.0.1:8765`.
 
 ## Evaluation Mode Policy
 

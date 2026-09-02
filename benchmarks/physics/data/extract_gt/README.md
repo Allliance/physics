@@ -18,13 +18,13 @@ splits with the same mixture of problem structures.
 ## Tests
 
 ```bash
-rtk python3 -m unittest discover -s data/extract_gt -p 'test_*.py'
+python3 -m unittest discover -s data/extract_gt -p 'test_*.py'
 ```
 
 ## Dev-set run (only after approval)
 
 ```bash
-rtk /home/alliiance/.local/bin/uv run --with pyarrow python3 \
+/home/alliiance/.local/bin/uv run --with pyarrow python3 \
   data/extract_gt/extract_ground_truths.py --workers 2
 ```
 
