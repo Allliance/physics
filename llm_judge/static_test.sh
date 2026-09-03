@@ -55,7 +55,7 @@ PYTHONDONTWRITEBYTECODE=1 python3 -m llm_judge.eval \
     --api-key "$live_api_key" \
     --max-workers 100 \
     --timeout 600 \
-    --max-tokens 8192 \
+    --max-tokens 6144 \
     --temperature 0.6 \
     --top-p 0.95 \
     --extra-body '{"chat_template_kwargs":{"enable_thinking":true},"thinking_token_budget":4096,"top_k":20,"min_p":0.0}' \

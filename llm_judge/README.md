@@ -108,7 +108,9 @@ that every percentage-point change is an evaluator regression.
 `Qwen/Qwen3.5-27B` as four data-parallel vLLM replicas. It uses a collision-safe
 port, enables prefix caching and Qwen reasoning parsing, writes endpoint details
 under the gitignored `server_runs/<job-id>/` directory, and removes its Docker
-container when the job ends.
+container when the job ends. The default context limit is 16,384 tokens, while
+the evaluation command caps completions at 6,144 tokens; override the former
+with `JUDGE_SERVER_MAX_MODEL_LEN` if needed.
 
 Start the server from the repository root:
 
@@ -130,7 +132,7 @@ python3 -m llm_judge.eval \
   --base-url "$OPENAI_BASE_URL" \
   --api-key "$OPENAI_API_KEY" \
   --max-workers 100 \
-  --max-tokens 8192 \
+  --max-tokens 6144 \
   --temperature 0.6 \
   --top-p 0.95 \
   --extra-body '{"chat_template_kwargs":{"enable_thinking":true},"thinking_token_budget":4096,"top_k":20,"min_p":0.0}'
