@@ -1,0 +1,199 @@
+{
+  "benchmark": "CMT-Benchmark",
+  "scope": "The eight problems failed by the initial GPT-5.6-Sol High run.",
+  "generation_model": "gpt-5.6-sol",
+  "generation_reasoning_effort": "high",
+  "judge_model": "gpt-5.5",
+  "judge_reasoning_effort": "high",
+  "judge_prompt_fingerprint": "fa8cf024b6f3",
+  "problem_count": 8,
+  "maximum_attempts_per_problem": 5,
+  "retry_policy": "Stop retrying each problem immediately after its first success.",
+  "completion_count": 27,
+  "correct_completion_count": 6,
+  "completion_accuracy": 0.2222222222222222,
+  "cumulative": {
+    "pass@1": {
+      "passed": 0,
+      "total": 8,
+      "rate": 0.0
+    },
+    "pass@2": {
+      "passed": 3,
+      "total": 8,
+      "rate": 0.375
+    },
+    "pass@3": {
+      "passed": 5,
+      "total": 8,
+      "rate": 0.625
+    },
+    "pass@4": {
+      "passed": 5,
+      "total": 8,
+      "rate": 0.625
+    },
+    "pass@5": {
+      "passed": 6,
+      "total": 8,
+      "rate": 0.75
+    }
+  },
+  "full_reviewed_set_cumulative": {
+    "pass@1": {
+      "passed": 34,
+      "total": 42,
+      "rate": 0.8095238095238095
+    },
+    "pass@2": {
+      "passed": 37,
+      "total": 42,
+      "rate": 0.8809523809523809
+    },
+    "pass@3": {
+      "passed": 39,
+      "total": 42,
+      "rate": 0.9285714285714286
+    },
+    "pass@4": {
+      "passed": 39,
+      "total": 42,
+      "rate": 0.9285714285714286
+    },
+    "pass@5": {
+      "passed": 40,
+      "total": 42,
+      "rate": 0.9523809523809523
+    }
+  },
+  "passed_indices": [
+    1,
+    2,
+    28,
+    36,
+    37,
+    46
+  ],
+  "still_failed_indices": [
+    17,
+    18
+  ],
+  "active_indices": [],
+  "exhausted_indices": [
+    17,
+    18
+  ],
+  "per_problem": [
+    {
+      "index": 1,
+      "type": "HF",
+      "correction_state": "corrected",
+      "correct_attempts": [
+        5
+      ],
+      "first_correct_attempt": 5,
+      "passed_at_5": true,
+      "last_scored_attempt": 5,
+      "still_active": false
+    },
+    {
+      "index": 2,
+      "type": "HF",
+      "correction_state": "corrected",
+      "correct_attempts": [
+        2
+      ],
+      "first_correct_attempt": 2,
+      "passed_at_5": true,
+      "last_scored_attempt": 2,
+      "still_active": false
+    },
+    {
+      "index": 17,
+      "type": "Other",
+      "correction_state": "unchanged",
+      "correct_attempts": [],
+      "first_correct_attempt": null,
+      "passed_at_5": false,
+      "last_scored_attempt": 5,
+      "still_active": false
+    },
+    {
+      "index": 18,
+      "type": "QMC",
+      "correction_state": "corrected",
+      "correct_attempts": [],
+      "first_correct_attempt": null,
+      "passed_at_5": false,
+      "last_scored_attempt": 5,
+      "still_active": false
+    },
+    {
+      "index": 28,
+      "type": "DMRG",
+      "correction_state": "unchanged",
+      "correct_attempts": [
+        3
+      ],
+      "first_correct_attempt": 3,
+      "passed_at_5": true,
+      "last_scored_attempt": 3,
+      "still_active": false
+    },
+    {
+      "index": 36,
+      "type": "PEPS",
+      "correction_state": "corrected",
+      "correct_attempts": [
+        3
+      ],
+      "first_correct_attempt": 3,
+      "passed_at_5": true,
+      "last_scored_attempt": 3,
+      "still_active": false
+    },
+    {
+      "index": 37,
+      "type": "Other",
+      "correction_state": "unchanged",
+      "correct_attempts": [
+        2
+      ],
+      "first_correct_attempt": 2,
+      "passed_at_5": true,
+      "last_scored_attempt": 2,
+      "still_active": false
+    },
+    {
+      "index": 46,
+      "type": "SM",
+      "correction_state": "corrected",
+      "correct_attempts": [
+        2
+      ],
+      "first_correct_attempt": 2,
+      "passed_at_5": true,
+      "last_scored_attempt": 2,
+      "still_active": false
+    }
+  ],
+  "manual_adjudications": [
+    {
+      "index": 1,
+      "attempt": 2,
+      "final_correct": false,
+      "method": "manual_consistency_review",
+      "original_judge_correct": true,
+      "reason": "The candidate repeats the same linear-combination answer as failed attempt 1 instead of the four individual ground-truth bilinears; it must receive the same incorrect verdict."
+    },
+    {
+      "index": 1,
+      "attempt": 3,
+      "final_correct": false,
+      "method": "manual_consistency_review",
+      "original_judge_correct": true,
+      "reason": "The candidate again gives charge/spin linear combinations rather than the four individual bilinears in the authoritative ground truth."
+    }
+  ],
+  "updated_at": "2026-09-03T07:18:50.453656+00:00"
+}
