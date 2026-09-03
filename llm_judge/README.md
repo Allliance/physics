@@ -68,3 +68,25 @@ model and sampling options.
 Outputs are resumable JSONL files under the gitignored `judgements/` directory.
 Each model/prompt/configuration gets a distinct run ID and adjacent summary JSON
 with accuracy, balanced accuracy, class recalls, and a confusion matrix.
+
+## Judge agreement results
+
+The table below reports pairwise raw agreement on the meta-evaluation dataset.
+Each parenthesized value is the number of matching judgments divided by the
+number of rows with valid outputs from both judges. `Benchmark binary score`
+means the original `rule_based_binary_score`, before AI-audit corrections.
+
+| | Codex GPT-5.5 | Claude Opus 5 | Qwen3.5-27B (thinking enabled) | Benchmark binary score |
+|---|---:|---:|---:|---:|
+| **Codex GPT-5.5** | 100% | 99.22% (381/384) | 97.38% (372/382) | 73.18% (281/384) |
+| **Claude Opus 5** | 99.22% (381/384) | 100% | 97.64% (373/382) | 72.92% (280/384) |
+| **Qwen3.5-27B (thinking enabled)** | 97.38% (372/382) | 97.64% (373/382) | 100% | 72.51% (277/382) |
+| **Benchmark binary score** | 73.18% (281/384) | 72.92% (280/384) | 72.51% (277/382) | 100% |
+
+The three LLM judges are unanimous on 371 of their 382 shared valid rows
+(97.12%). Their lower agreement with the original benchmark score is expected:
+the meta-evaluation dataset deliberately retains audited `grader_failure`
+examples, where the original rule-based grader assigned an incorrect score.
+The dataset is also highly imbalanced—376 of 384 audit-corrected grades are
+positive—so these figures should be considered together with class-balanced
+metrics when assessing judge quality.
