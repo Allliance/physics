@@ -20,6 +20,20 @@ These exports use different schemas and label vocabularies. Analyses should
 normalize them explicitly rather than assuming that similarly named fields have
 the same meaning.
 
+### CritPt final grades
+
+The `final_grade` column in `CritPt/annotations.csv` uses three verdicts:
+
+- `correct`: the provided AI answer is mostly correct and can be graded fairly.
+- `problem_failure`: the original problem is incorrect or underspecified enough
+  that it cannot support a unique fair grade and should be excluded.
+- `model_failure`: the problem is valid, but the provided AI answer is
+  materially incorrect.
+
+When both the problem and the AI answer have material issues,
+`problem_failure` takes precedence because the example should be excluded from
+model evaluation.
+
 ## Directory layout
 
 ```text
