@@ -13,7 +13,7 @@ records, not necessarily unique problems or reviewers.
 | Source | Path | Format | Records | Description |
 | --- | --- | --- | ---: | --- |
 | CMT-Benchmark | `CMT-Benchmark/cmt_data_clean.json` | JSON | 50 | Audited problems, corrected prompts and solutions, issue types, and audit summaries |
-| CritPt | `CritPt/annotations.csv` | CSV | 62 | Expert review form responses, confidence ratings, notes, and supporting uploads |
+| CritPt | `CritPt/annotations.csv` | CSV | 59 | Expert review form responses, confidence ratings, notes, and supporting uploads |
 | PSet-Benchmarks | `PSet-Benchmarks/annotations.csv` | CSV | 285 | Problem-, model-, and grader-failure annotations across HLE Physics, PhyBench, PRISM, and UGPhysics |
 
 These exports use different schemas and label vocabularies. Analyses should
