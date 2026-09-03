@@ -16,6 +16,8 @@ helpers such as the Codex CLI wrapper. Keep one-off analysis in `scratch/` or
 - `/home/alliiance/.local/bin/uv run --with pyarrow python -m eval FrontierPhysics test --mode merged --limit 1` runs a one-row evaluation smoke test.
 - `python3 -m unittest discover -s eval/tests -p 'test_*.py'` runs evaluation unit tests.
 - `python3 -m unittest discover -s data/extract_gt -p 'test_*.py'` runs ground-truth extraction tests.
+- `./llm_judge/static_test.sh` runs the required network-free LLM judge
+  regression suite.
 - `python3 -m pip install -r data/filter/requirements.txt` installs filter pipeline dependencies.
 - `/home/alliiance/.local/bin/uv run inspection/server.py` starts the inspection UI at `http://127.0.0.1:8765`.
 
@@ -40,6 +42,8 @@ Tests use the standard `unittest` framework and should be named `test_*.py`.
 Add focused tests for parsing, cache/resume behavior, scoring summaries, and
 dataset path validation. For LLM or API workflows, keep a small `--limit` smoke
 command in the relevant README and avoid network calls in unit tests.
+Changes to `llm_judge/eval.py`, its prompts, dataset contract, tests, or server
+launcher must pass `./llm_judge/static_test.sh`.
 
 ## Commit & Pull Request Guidelines
 

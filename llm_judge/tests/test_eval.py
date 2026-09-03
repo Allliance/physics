@@ -1,3 +1,4 @@
+import hashlib
 import json
 import unittest
 from pathlib import Path
@@ -6,11 +7,13 @@ from tempfile import TemporaryDirectory
 from llm_judge.eval import (
     AnthropicJudge,
     Completion,
+    DEFAULT_DATASET,
     JUDGMENT_SCHEMA,
     JUDGMENT_SCHEMA_FINGERPRINT,
     RunConfig,
     classification_metrics,
     parse_judgment,
+    read_jsonl,
     run_evaluation,
     select_rows,
     _anthropic_messages_url,
@@ -111,6 +114,58 @@ class SelectionTests(unittest.TestCase):
         self.assertEqual(select_rows([first, second], {"two"}, 1), [second])
         with self.assertRaisesRegex(ValueError, "unknown dataset"):
             select_rows([first], {"missing"}, None)
+
+    def test_seeded_random_sample_is_reproducible(self):
+        rows = [sample_row(f"sample:{index}") for index in range(20)]
+        first = select_rows(rows, None, None, sample_size=6, sample_seed=123)
+        repeated = select_rows(rows, None, None, sample_size=6, sample_seed=123)
+        different = select_rows(rows, None, None, sample_size=6, sample_seed=456)
+        self.assertEqual(first, repeated)
+        self.assertNotEqual(first, different)
+        self.assertEqual(len(first), 6)
+        self.assertEqual(
+            [rows.index(row) for row in first],
+            sorted(rows.index(row) for row in first),
+        )
+
+    def test_random_sample_validates_size_and_limit_exclusivity(self):
+        rows = [sample_row(f"sample:{index}") for index in range(3)]
+        with self.assertRaisesRegex(ValueError, "exceeds 3 available"):
+            select_rows(rows, None, None, sample_size=4)
+        with self.assertRaisesRegex(ValueError, "mutually exclusive"):
+            select_rows(rows, None, 1, sample_size=1)
+
+
+class DatasetContractTests(unittest.TestCase):
+    def test_meta_evaluation_dataset_contract(self):
+        rows = read_jsonl(DEFAULT_DATASET)
+        selected = select_rows(rows, None, None)
+        self.assertEqual(len(selected), 384)
+        self.assertEqual(len({row["meta_eval_id"] for row in selected}), 384)
+        self.assertEqual(
+            {grade: sum(row["final_grade"] == grade for row in selected) for grade in (0, 1)},
+            {0: 8, 1: 376},
+        )
+        self.assertTrue(
+            all(
+                (row.get("AI_audit") or {}).get("verdict")
+                not in {"benchmark_failure", "problem_failure"}
+                for row in selected
+            )
+        )
+
+    def test_static_sample_contract(self):
+        rows = read_jsonl(DEFAULT_DATASET)
+        sampled = select_rows(
+            rows, None, None, sample_size=20, sample_seed=20260903
+        )
+        selection_hash = hashlib.sha256(
+            "\n".join(row["meta_eval_id"] for row in sampled).encode("utf-8")
+        ).hexdigest()
+        self.assertEqual(
+            selection_hash,
+            "7eaa8b4c964e3993cd9a0263dd04106e0e035498fc6da2216f49febbda28b0fa",
+        )
 
 
 class MetricsTests(unittest.TestCase):

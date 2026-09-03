@@ -1,0 +1,30 @@
+name: LLM judge static tests
+
+on:
+  push:
+    paths:
+      - ".github/workflows/llm-judge-static.yml"
+      - "llm_judge/**"
+  pull_request:
+    paths:
+      - ".github/workflows/llm-judge-static.yml"
+      - "llm_judge/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  static-tests:
+    name: LLM judge static tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+      - name: Run static regression suite
+        run: ./llm_judge/static_test.sh

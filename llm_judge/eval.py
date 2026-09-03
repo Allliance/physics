@@ -1,5 +1,10 @@
 """Run an LLM judge over the physics meta-evaluation dataset.
 
+Maintenance: after changing this module, run ``./llm_judge/static_test.sh``.
+When a Qwen judge server is available, also run ``static_test.sh --live``; that
+100-row accuracy check is a soft regression signal because generation is
+nondeterministic.
+
 Examples:
     python3 -m llm_judge.eval --backend codex --model gpt-5.5 --limit 5
     python3 -m llm_judge.eval --backend anthropic --model "Claude Opus 5" --limit 5
@@ -13,6 +18,7 @@ import argparse
 import hashlib
 import json
 import os
+import random
 import re
 import sys
 import tempfile
@@ -310,7 +316,11 @@ def validate_row(row: dict[str, Any]) -> None:
 
 
 def select_rows(
-    rows: list[dict[str, Any]], datasets: set[str] | None, limit: int | None
+    rows: list[dict[str, Any]],
+    datasets: set[str] | None,
+    limit: int | None,
+    sample_size: int | None = None,
+    sample_seed: int = 0,
 ) -> list[dict[str, Any]]:
     for row in rows:
         validate_row(row)
@@ -323,10 +333,23 @@ def select_rows(
         unknown = datasets - available
         if unknown:
             raise ValueError(f"unknown dataset(s): {', '.join(sorted(unknown))}")
+    if limit is not None and sample_size is not None:
+        raise ValueError("limit and sample_size are mutually exclusive")
     if limit is not None:
         if limit < 1:
             raise ValueError("limit must be at least 1")
         selected = selected[:limit]
+    if sample_size is not None:
+        if sample_size < 1:
+            raise ValueError("sample_size must be at least 1")
+        if sample_size > len(selected):
+            raise ValueError(
+                f"sample_size {sample_size} exceeds {len(selected)} available rows"
+            )
+        sampled_indices = sorted(
+            random.Random(sample_seed).sample(range(len(selected)), sample_size)
+        )
+        selected = [selected[index] for index in sampled_indices]
     if not selected:
         raise ValueError("no rows selected")
     return selected
@@ -466,7 +489,10 @@ def classification_metrics(records: list[dict[str, Any]]) -> dict[str, Any]:
 
 
 def build_summary(
-    rows: list[dict[str, Any]], records: dict[str, dict[str, Any]], config: RunConfig
+    rows: list[dict[str, Any]],
+    records: dict[str, dict[str, Any]],
+    config: RunConfig,
+    selection: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     selected_records = [
         records[row["meta_eval_id"]]
@@ -488,6 +514,7 @@ def build_summary(
         "expected_grade_counts": {
             str(grade): sum(row["final_grade"] == grade for row in rows) for grade in (0, 1)
         },
+        "selection": selection,
         "metrics": classification_metrics(completed),
         "metrics_by_dataset": by_dataset,
         "updated_at": datetime.now(timezone.utc).isoformat(),
@@ -508,6 +535,7 @@ def run_evaluation(
     output_path: Path,
     max_workers: int,
     overwrite: bool = False,
+    selection: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     if max_workers < 1:
         raise ValueError("max_workers must be at least 1")
@@ -533,7 +561,7 @@ def run_evaluation(
                         file=sys.stderr,
                     )
 
-    summary = build_summary(rows, records, config)
+    summary = build_summary(rows, records, config, selection=selection)
     summary_path = output_path.with_suffix(".summary.json")
     summary_path.write_text(json.dumps(summary, indent=2, ensure_ascii=False) + "\n")
     summary["output_path"] = str(output_path)
@@ -595,7 +623,16 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         action="append",
         help="only judge this source dataset; repeat to select multiple datasets",
     )
-    parser.add_argument("--limit", type=int, help="judge only the first N selected rows")
+    selection_group = parser.add_mutually_exclusive_group()
+    selection_group.add_argument(
+        "--limit", type=int, help="judge only the first N selected rows"
+    )
+    selection_group.add_argument(
+        "--sample-size", type=int, help="judge a seeded random sample of N rows"
+    )
+    parser.add_argument(
+        "--sample-seed", type=int, default=0, help="random seed for --sample-size"
+    )
     parser.add_argument(
         "--backend", choices=("anthropic", "codex", "openai"), default="codex"
     )
@@ -670,7 +707,21 @@ def main(argv: list[str] | None = None) -> int:
             read_jsonl(args.dataset_path.expanduser()),
             set(args.datasets) if args.datasets else None,
             args.limit,
+            sample_size=args.sample_size,
+            sample_seed=args.sample_seed,
         )
+        selection = {
+            "method": (
+                "random" if args.sample_size is not None else "head" if args.limit else "all"
+            ),
+            "datasets": sorted(args.datasets) if args.datasets else None,
+            "limit": args.limit,
+            "sample_size": args.sample_size,
+            "sample_seed": args.sample_seed if args.sample_size is not None else None,
+            "selected_ids_sha256": hashlib.sha256(
+                "\n".join(row["meta_eval_id"] for row in rows).encode("utf-8")
+            ).hexdigest(),
+        }
         config = RunConfig(
             backend=args.backend,
             model=args.model,
@@ -689,12 +740,17 @@ def main(argv: list[str] | None = None) -> int:
             ),
         )
         output_path = args.output.expanduser() if args.output else default_output_path(config)
+        if args.output is None and args.sample_size is not None:
+            output_path = output_path.with_name(
+                f"{output_path.stem}__sample{args.sample_size}-seed{args.sample_seed}.jsonl"
+            )
         if args.dry_run:
             system_prompt, user_prompt = prompt.render(rows[0])
             preview = {
                 "run_id": config.run_id,
                 "config": asdict(config),
                 "num_selected": len(rows),
+                "selection": selection,
                 "output_path": str(output_path),
                 "first_meta_eval_id": rows[0]["meta_eval_id"],
                 "system_prompt": system_prompt,
@@ -711,6 +767,7 @@ def main(argv: list[str] | None = None) -> int:
             output_path=output_path,
             max_workers=args.max_workers,
             overwrite=args.overwrite,
+            selection=selection,
         )
     except ValueError as error:
         print(f"error: {error}", file=sys.stderr)

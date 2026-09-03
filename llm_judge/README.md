@@ -69,6 +69,85 @@ Outputs are resumable JSONL files under the gitignored `judgements/` directory.
 Each model/prompt/configuration gets a distinct run ID and adjacent summary JSON
 with accuracy, balanced accuracy, class recalls, and a confusion matrix.
 
+Use `--sample-size N --sample-seed SEED` for a reproducibly random subset. The
+summary records the selection method, seed, and a SHA-256 hash of the selected
+IDs; sampled runs also receive a distinct filename suffix.
+
+## Required static tests
+
+Run the network-free regression suite after changing `eval.py`, `prompts.py`,
+the meta-evaluation dataset, tests, or the server launcher:
+
+```bash
+./llm_judge/static_test.sh
+```
+
+It validates the full dataset contract, runs all `llm_judge` unit tests,
+syntax-checks the server launcher, and checks a seeded 20-row dry-run selection
+against its pinned SHA-256 hash. Parsing the full dataset contract makes no API
+calls. `.github/workflows/llm-judge-static.yml` runs this network-free command
+automatically on pushes and pull requests that modify `llm_judge/`.
+
+After changing evaluator behavior, also run the soft live regression against a
+started four-GPU Qwen server:
+
+```bash
+source llm_judge/server_runs/<job-id>/endpoint.env
+./llm_judge/static_test.sh --live
+```
+
+Live mode judges a reproducibly random 100-row sample with seed `42`. It counts
+API and parsing failures as misses and passes at 95% whole-sample agreement with
+the audit-corrected grades. This threshold is deliberately soft because model
+generation is nondeterministic; investigate a failure rather than assuming
+that every percentage-point change is an evaluator regression.
+
+## Four-GPU Qwen judge server
+
+`start_judge_server.sh` submits a four-GPU Slurm job running
+`Qwen/Qwen3.5-27B` as four data-parallel vLLM replicas. It uses a collision-safe
+port, enables prefix caching and Qwen reasoning parsing, writes endpoint details
+under the gitignored `server_runs/<job-id>/` directory, and removes its Docker
+container when the job ends.
+
+Start the server from the repository root:
+
+```bash
+./llm_judge/start_judge_server.sh
+```
+
+Self-submission defaults to the Docker-enabled `mi355-gpu-36` host. Set
+`JUDGE_SERVER_NODE` to use another configured node.
+
+The command prints the Slurm job ID. Once the corresponding
+`server_runs/<job-id>/ready.txt` exists, load `endpoint.env` and run the judge:
+
+```bash
+source llm_judge/server_runs/<job-id>/endpoint.env
+python3 -m llm_judge.eval \
+  --backend openai \
+  --model "$OPENAI_MODEL" \
+  --base-url "$OPENAI_BASE_URL" \
+  --api-key "$OPENAI_API_KEY" \
+  --max-workers 100 \
+  --max-tokens 8192 \
+  --temperature 0.6 \
+  --top-p 0.95 \
+  --extra-body '{"chat_template_kwargs":{"enable_thinking":true},"thinking_token_budget":4096,"top_k":20,"min_p":0.0}'
+```
+
+Stop the server with `scancel <job-id>`.
+
+The four-GPU launcher was validated on 2026-09-03 using 100 concurrent,
+thinking-enabled judgments selected with `--sample-size 100 --sample-seed
+20260903`. The selection hash was
+`c07c94f601b686bdf059bbfda2440f919be74c0ed18a4acaa4f52e3557b4c542`.
+After resumable retries, all 100 rows had valid output and 98 agreed with the
+audit-corrected grade. The four-GPU and prior eight-GPU runs produced identical
+grades on all 100 selected rows. This particular random sample contained only
+positive audit-corrected grades, so it validates server equivalence and
+positive-class agreement, not negative-class recall.
+
 ## Judge agreement results
 
 The table below reports pairwise raw agreement on the meta-evaluation dataset.
