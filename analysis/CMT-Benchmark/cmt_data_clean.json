@@ -1,0 +1,766 @@
+[
+  {
+    "index": 0,
+    "prompt": "Consider a spinful electron system in a two-dimensional triangular lattice. We want to study the commensurate charge density wave in real space at half-particle per site, induced by Coulomb repulsion denoted by $U_0$, $U_1$ for the onsite and nearest-neighbor interaction. In the atomic limit, where the hopping parameter between sites is set to zero, assume $U_0>2U_1>0$. What is the ground state energy per site? Only present the final answer in a single $\\boxed{}$ LaTeX environment, Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{U_1/2}$",
+    "parameters": "$U_0;U_1$",
+    "functions": "",
+    "type": "HF",
+    "audit_status": "red",
+    "correction_state": "corrected",
+    "issue_types": [
+      "interaction_ratio_missing"
+    ],
+    "audit_summary": "The latest official prompt replaces 'half-filling' by 'half-particle per site', so the total density is now unambiguous. It still does not specify $U_0/U_1$. At density one-half in the atomic limit, a quarter of the sites can be doubly occupied without nearest-neighbor cost, giving $U_0/4$, whereas the no-doublon charge pattern gives $U_1/2$; the former wins when $U_0<2U_1$. The corrected problem therefore retains the latest density wording and adds only the atomic-limit interaction hierarchy required by the reference.",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  },
+  {
+    "index": 1,
+    "prompt": "We are interested in solving the self-consistency equation for Hartree-Fock mean-field theory on a 2D triangular lattice associated with the following mean-field Hamiltonian $H = H_{\\text{Kinetic}} + H_{\\text{Hartree}} +H_{\\text{Fock}}$, with $H_{\\text{Kinetic}} = \\sum_{s, k} E_s(k) c^\\dagger_s(k) c_s(k)$, where $E_s(k)=\\sum_{n} t_s(n) e^{-i k \\cdot n}$ with the spin index $s = \\{\\uparrow, \\downarrow\\}$ and momentum $k$. The mean-field terms are $H_{\\text{Hartree}} = \\frac{1}{N} \\sum_{s, s'} \\sum_{k_1, k_2} U(0) \\langle c_s^\\dagger(k_1) c_s(k_1) \\rangle c_{s'}^\\dagger(k_2) c_{s'}(k_2)$ $H_{\\text{Fock}} = -\\frac{1}{N} \\sum_{s, s'} \\sum_{k_1, k_2} U(k_1 - k_2) \\langle c_s^\\dagger(k_1) c_{s'}(k_1) \\rangle c_{s'}^\\dagger(k_2) c_s(k_2)$, where $U(k) = \\sum_{n} U_n e^{-i k \\cdot n}$ is the repulsive interaction strength ($U_n>0$) in the momentum basis. What are the possible order parameters that preserve translational symmetry for a Hartree-Fock mean-field Hamiltonian on a two-dimensional triangular lattice? Give all valid order parameters separate by a ; within a single $\\boxed{}$ environment. Print your answer using only the operators provided. Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{\\langle c_\\uparrow^\\dagger(k) c_\\uparrow(k) \\rangle; \\langle c_\\downarrow^\\dagger(k) c_\\downarrow(k) \\rangle; \\langle c_\\uparrow^\\dagger(k) c_\\downarrow(k) \\rangle; \\langle c_\\downarrow^\\dagger(k) c_\\uparrow(k) \\rangle}$",
+    "parameters": "$k;N; (c_s^\\dagger, NC); (c_s, NC)$",
+    "functions": "$ \\uparrow; \\downarrow$",
+    "type": "HF",
+    "audit_status": "red",
+    "correction_state": "corrected",
+    "issue_types": [
+      "reference_incomplete"
+    ],
+    "audit_summary": "The question is well-defined as written and its prompt is retained byte-for-byte. Translation symmetry fixes the two momentum labels to be equal but does not constrain the spin indices. The stated Fock sum explicitly includes $s\\ne s'$, so the reference omits the two spin-off-diagonal channels. Repulsive $U_n>0$ does not remove them: in a spin-rotation-invariant decoupling they represent transverse magnetization, and the two off-diagonal averages are related by Hermitian conjugation. The two-term reference would require an additional spin-diagonal ($z$-collinear) restriction that the question does not impose.",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  },
+  {
+    "index": 2,
+    "prompt": "Consider a two-dimensional triangular lattice with lattice constant $a = 1$. The first Brillouin zone is a regular hexagon, oriented so that two of its corners lie on the $k_x$ axis. Suppose a charge density wave forms with $\\sqrt{3} \\times \\sqrt{3}$ periodicity, resulting in a reduced Brillouin zone. What are the coordinates of the six Brillouin zone corners ($K$ and $K'$ points) in the reduced Brillouin zone? Express each coordinate as $(x, y)$, rounded to two decimal places, and present all six in a single $\\boxed{}$ LaTeX environment, separated by semicolons. Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{(2.09, 1.21); (0., 2.41); (-2.09, 1.21); (-2.09, -1.21); (0., -2.41); (2.09, -1.21)}$",
+    "parameters": "",
+    "functions": "",
+    "type": "HF",
+    "audit_status": "red",
+    "correction_state": "corrected",
+    "issue_types": [
+      "prompt_axis_inconsistent_with_reference"
+    ],
+    "audit_summary": "The latest official prompt removes the word 'original', so it now asks for the six corners of the reduced Brillouin zone itself rather than folded representatives of the original $K/K'$ points. For the conventional commensurate $\\sqrt{3}\\times\\sqrt{3}$ triangular-lattice supercell, the reduced hexagon is scaled by $1/\\sqrt{3}$ and rotated by $30^\\circ$ relative to the original zone. With the prompt's $k_y$-axis orientation, its vertices are $(\\pm2.42,0.00)$ and $(\\pm1.21,\\pm2.09)$, whereas the published reference is exactly the reduced-zone vertex set when the original hexagon has two corners on the $k_x$ axis. The minimal correction therefore changes only $k_y$ to $k_x$ and retains the published reference byte-for-byte.",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  },
+  {
+    "index": 3,
+    "prompt": "We are interested in solving the self-consistency equation for Hartree-Fock mean-field theory on a 2D triangular lattice associated with the following continuum mean-field Hamiltonian using a plane-wave basis containing $N_q$ momenta for each layer in each valley. The non-interacting term is \\begin{equation} \\hat{\\mathcal{H}}_0=\\sum_{\\tau={\\pm}} \\int d^2 \\bm{r} \\Psi_{\\tau}^\\dagger(\\bm{r}) H_{\\tau} \\Psi_{\\tau}(\\bm{r}), \\end{equation} \\begin{equation} H_{\\tau}=\\begin{pmatrix} -\\frac{\\hbar^2\\bm{k}^2}{2m_\\mathfrak{b}}+\\Delta_{\\mathfrak{b},\\tau}(\\bm{r}) & \\Delta_{\\text{T},\\tau}(\\bm{r})\\\\ \\Delta_{\\text{T},\\tau}^\\dag(\\bm{r}) & -\\frac{\\hbar^2\\left(\\bm{k}-\\tau \\bm{\\kappa}\\right)^2}{2m_\\mathfrak{t}}+ \\Delta_\\mathfrak{t,\\tau}(\\bm{r}) \\end{pmatrix}, \\end{equation} \\begin{equation} \\Psi_{+}(\\bm{r})=\\begin{pmatrix} \\psi_{\\mathfrak{b},\\uparrow,+}(\\bm{r}) \\\\ \\psi_{\\mathfrak{t},\\downarrow,+}(\\bm{r}) \\end{pmatrix}, \\quad \\Psi_{-}(\\bm{r})=\\begin{pmatrix} \\psi_{\\mathfrak{b},\\downarrow,-}(\\bm{r}) \\\\ \\psi_{\\mathfrak{t},\\uparrow,-}(\\bm{r}) \\end{pmatrix}, \\end{equation} where $\\tau=\\pm $ represents $\\pm K$ valleys, $\\hbar \\bm{k} = -i \\hbar \\partial_{\\bm{r}}$ is the momentum operator, $\\bm{\\kappa}=\\frac{4\\pi}{3a_M}\\left(1,0\\right)$ is at a corner of the moir\\'e Brillouin zone, and $a_M$ is the moir\\'e lattice constant. The spin index of the fermion operators $\\Psi_{\\tau}$ is both layer and valley dependent. $(m_{\\mathfrak{b}},m_{\\mathfrak{t}})=(0.65,0.35)m_e$ ($m_e$ is the rest electron mass) Here, we are only interested in the topmost valence bands from both layers with spin-valley locking. The interacting term is Coulomb repulsion. To solve the self-consistency equation numerically, combine both valleys into one full dense matrix at each $k$, without exploiting valley block diagonalization, Hermiticity, or sparsity. How many scalar matrix entries are required to represent the Hamiltonian? Only present the final answer in a single $\\boxed{}$ LaTeX environment Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{16N_q^2}$",
+    "parameters": "$N_q$",
+    "functions": "",
+    "type": "HF",
+    "audit_status": "red",
+    "correction_state": "corrected",
+    "issue_types": [
+      "complexity_measure_ambiguous",
+      "block_structure_omitted"
+    ],
+    "audit_summary": "At each reduced-zone momentum there are $2N_q$ layer/plane-wave basis states per valley and $4N_q$ states across both valleys. Thus the matrix dimension is $4N_q$, a single dense combined matrix contains $16N_q^2$ scalar entries, and exploiting the two independent valley blocks requires only $8N_q^2$ entries. The phrase 'spatial complexity' does not identify which quantity is requested, so the original reference is not uniquely determined.",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  },
+  {
+    "index": 4,
+    "prompt": "Given the following single-particle Hamiltonian in the second quantization formalism as \\begin{equation} \\hat{\\mathcal{H}}_0=\\sum_{\\tau={\\pm}} \\int d^2 \\bm{r} \\Psi_{\\tau}^\\dagger(\\bm{r}) H_{\\tau} \\Psi_{\\tau}(\\bm{r}), \\end{equation} \\begin{equation} H_{\\tau}=\\begin{pmatrix} -\\frac{\\hbar^2\\bm{k}^2}{2m_\\mathfrak{b}}+\\Delta_{\\mathfrak{b},\\tau}(\\bm{r}) & \\Delta_{\\text{T},\\tau}(\\bm{r})\\\\ \\Delta_{\\text{T},\\tau}^\\dag(\\bm{r}) & -\\frac{\\hbar^2\\left(\\bm{k}-\\tau \\bm{\\kappa}\\right)^2}{2m_\\mathfrak{t}}+ \\Delta_\\mathfrak{t,\\tau}(\\bm{r}) \\end{pmatrix}, \\end{equation} \\begin{equation} \\Psi_{+}(\\bm{r})=\\begin{pmatrix} \\psi_{\\mathfrak{b},\\uparrow,+}(\\bm{r}) \\\\ \\psi_{\\mathfrak{t},\\downarrow,+}(\\bm{r}) \\end{pmatrix}, \\quad \\Psi_{-}(\\bm{r})=\\begin{pmatrix} \\psi_{\\mathfrak{b},\\downarrow,-}(\\bm{r}) \\\\ \\psi_{\\mathfrak{t},\\uparrow,-}(\\bm{r}) \\end{pmatrix}, \\end{equation} where $\\tau=\\pm $ represents $\\pm K$ valleys, $\\hbar \\bm{k} = -i \\hbar \\partial_{\\bm{r}}$ is the momentum operator, $\\bm{\\kappa}=\\frac{4\\pi}{3a_M}\\left(1,0\\right)$ is at a corner of the moir\\'e Brillouin zone, and $a_M$ is the moir\\'e lattice constant. The spin index of the fermion operators $\\Psi_{\\tau}$ is both layer and valley dependent. $(m_{\\mathfrak{b}},m_{\\mathfrak{t}})=(0.65,0.35)m_e$ ($m_e$ is the rest electron mass) The periodic interlayer potential $\\Delta_{\\mathfrak{b}}(\\bm{r})$ is parametrized as \\begin{equation}\\label{eq:Delta_b} \\Delta_{\\mathfrak{b}}(\\bm{r})=2V_{\\mathfrak{b}}\\sum_{j=1,3,5} \\cos(\\bm{g}_j \\cdot \\bm{r}+\\psi_{\\mathfrak{b}}), \\end{equation} For the interlayer tunneling at $+K$ valley $\\Delta_{\\text{T},+}(\\bm{r})=w\\left(1+\\omega e^{i\\bm{g}_2\\cdot\\bm{r}}+\\omega^{2} e^{i\\bm{g}_3\\cdot\\bm{r}} \\right)$, we obtain the tunneling at $-K$ valley as $\\Delta_{\\text{T},-}(\\bm{r})=-w\\left(1+\\omega^{-1} e^{-i\\bm{g}_2\\cdot\\bm{r}}+\\omega^{-2} e^{-i\\bm{g}_3\\cdot\\bm{r}} \\right)$, where $\\omega=e^{i\\frac{2\\pi}{3}}$, and we assume $w$ takes a real value. Now consider the following symmetries:\\\\ 1. Time-reversal \\begin{equation}\\label{eq:Ham} \\hat{\\mathcal{T}} \\psi_{l,s,\\tau}(\\bm{r}) \\hat{\\mathcal{T}}^{-1} = - \\sum_{s'}\\epsilon_{ss'} \\psi_{l,s',-\\tau}(\\bm{r}),\\quad \\hat{\\mathcal{T}} \\psi_{l,s,\\tau}^{\\dagger}(\\bm{r}) \\hat{\\mathcal{T}}^{-1} = - \\sum_{s'}\\epsilon_{ss'} \\psi_{l,s',-\\tau}^{\\dagger}(\\bm{r}) ,\\quad \\hat{\\mathcal{T}}i\\hat{\\mathcal{T}}^{-1}=-i, \\end{equation} \\\\ 2. Layer-inversion $C_{2y}$ symmetry.\\\\ 3. Rotational $C_{3z}$ symmetry.\\\\ What are the correct symmetry manifested in the Hamiltonian $\\hat{\\mathcal{H}}_0$? Choose from the following options. Make sure to only present the final answer in a single $\\boxed{}$ LaTeX environment. E.g. $\\boxed{a}$ (a) Time-reversal $\\mathcal{T}$ symmetry, $C_{2y}$ symmetry, $C_{3z}$ symmetry.\\\\ (b) Time-reversal $\\mathcal{T}$ symmetry, $C_{2y}$ symmetry, no $C_{3z}$ symmetry.\\\\ (c) Time-reversal $\\mathcal{T}$ symmetry, no $C_{2y}$ symmetry, $C_{3z}$ symmetry.\\\\ (d) Time-reversal $\\mathcal{T}$ symmetry, no $C_{2y}$ symmetry, no $C_{3z}$ symmetry.\\\\ (e) No time-reversal $\\mathcal{T}$ symmetry, $C_{2y}$ symmetry, $C_{3z}$ symmetry.\\\\ (f) No time-reversal $\\mathcal{T}$ symmetry, $C_{2y}$ symmetry, no $C_{3z}$ symmetry.\\\\ (g) No time-reversal $\\mathcal{T}$ symmetry, no $C_{2y}$ symmetry, $C_{3z}$ symmetry.\\\\ (h) No time-reversal $\\mathcal{T}$ symmetry, no $C_{2y}$ symmetry, no $C_{3z}$ symmetry. Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{c}$",
+    "parameters": "$a;b;c;d;e;f;g;h$",
+    "functions": "",
+    "type": "HF",
+    "audit_status": "green",
+    "correction_state": "unchanged",
+    "issue_types": [],
+    "audit_summary": "Question and reference answer accepted as written.",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  },
+  {
+    "index": 5,
+    "prompt": "Consider a hamiltonian of fermions on an open one-dimensional chain of $L$ sites, $H = -t \\sum_{i,\\sigma} \\left( c^{\\dagger}_{i\\sigma} c_{i+1\\,\\sigma} + \\text{H.c.} \\right) + \\sum_i U\\, n_{i\\uparrow} n_{i\\downarrow} + \\sum_i h_i S^z_i$, where every unbounded site sum runs from $i=1$ to $L$, every nearest-neighbor hopping sum runs from $i=1$ to $L-1$, and every $h_i$ is real, which of the followings are good quantum numbers (multiple): (a) $\\hat{N}=\\sum_{i,\\sigma}n_{i\\sigma}$ (b) $S^z=\\sum_i S_i^z$ (c) $\\sum_{i,\\sigma} c^{\\dagger}_{i\\sigma} c_{i+1\\,\\sigma} $ (d) $\\eta^2 = \\frac{1}{2} \\left( \\eta^+ \\eta^- + \\eta^- \\eta^+ \\right) + (\\eta^z)^2, \\eta_{-} = \\sum_i (-1)^i c_{i\\uparrow} c_{i\\downarrow}, \\quad \\eta_{+} = \\eta_{-}^\\dagger, \\quad \\eta^z = \\frac{1}{2} (\\hat{N} - L)$ (e) $\\sum_i n_{i\\uparrow} n_{i\\downarrow} $ Return your answer in a $\\boxed{}$ latex environment consisting of a list of the appropriate choices (a,b,c, d, or e) separated by a ;. Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{a; b; d}$",
+    "parameters": "$a;b;c;d;e$",
+    "functions": "",
+    "type": "ED",
+    "audit_status": "red",
+    "correction_state": "corrected",
+    "issue_types": [
+      "boundary_condition_missing",
+      "pseudospin_notation_typo",
+      "operator_definition_ambiguous"
+    ],
+    "audit_summary": "The reference answer is correct on an open chain or an even periodic chain, but the original question does not specify the boundary condition. Exact full-Fock-space Mathematica calculations give $[H,\\hat N]=[H,S^z]=[H,\\eta^2]=0$ while the option-(c) hopping operator and double occupancy have nonzero commutators on an open four-site chain; $[H,\\eta^2]$ also vanishes on an even four-site ring but is nonzero on an odd three-site ring. In addition, the original definition uses $(\\eta^z)^2$ and then defines $\\eta_0$ instead of $\\eta^z$, while $N$ and $S^z$ are left implicit as operators. The corrected prompt minimally specifies an open $L$-site chain and defines the intended operators; the reference answer remains unchanged.",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  },
+  {
+    "index": 6,
+    "prompt": "Given a wavefunction $\\psi(x)$ ansatz on 2d heisenberg J1-J2 model which breaks rotation symmetry, please select among the following ways that construct a wavefunction ansatz that restores the C4 rotation symmetry with the rotation operator $R$. Let $R^4=1$, let every sum or product over $n$ run over $n=0,1,2,3$, and require strict invariance under $R$, not invariance only up to an overall phase: (a) $\\sum_n \\psi(R^n x)$ (b) $\\prod_n \\psi(R^n x)$ (c) $\\sum_n \\psi(R x)$ (d) $\\sum_n (-1)^n \\psi(R^n x)$ (e) $\\sum_n e^{i\\pi n^2} \\psi(R^n x)$, Return your answer in a $\\boxed{}$ latex environment consisting of a list of the appropriate choices (a,b,c,d or e) separated by a ;. Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{a; b}$",
+    "parameters": "$a;b;c;d;e$",
+    "functions": "",
+    "type": "VMC",
+    "audit_status": "red",
+    "correction_state": "corrected",
+    "issue_types": [
+      "reference_internally_inconsistent",
+      "symmetry_criterion_ambiguous"
+    ],
+    "audit_summary": "Options (d) and (e) are identical because $e^{i\\pi n^2}=(-1)^n$ for integer $n$. They transform with eigenvalue $-1$ rather than being strictly invariant. A periodic $4\\times4$ square-lattice $J_1$-$J_2$ Heisenberg calculation at $J_2/J_1=0.5$, using an explicitly nematic Jastrow seed in the complete 12,870-state $S^z=0$ space, gives normalized $R=+1$ residuals $3.65\\times10^{-17}$ and $6.84\\times10^{-17}$ for (a) and (b), an $R=+1$ residual $0.235$ for (c), and normalized $R=-1$ residuals below $3.2\\times10^{-15}$ for (d) and (e). Independent Metropolis VMC energies agree with exhaustive variational energies within blocking errors. On-the-fly VMC without Hilbert-space enumeration, using four chains and 65,536 measurements per choice, gives the same sectors on $8\\times8$ and $12\\times12$: the sampled rotation residual is zero to machine precision for (a), (b), and the $-1$ test of (d)/(e), while the $+1$ residual of (c) is $0.439$ and $0.629$, respectively. Thus a physical-ray convention gives (a), (b), (d), and (e), whereas strict amplitude invariance gives only (a) and (b); the original reference is inconsistent under either convention. The corrected problem explicitly asks for eigenvalue $+1$.",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  },
+  {
+    "index": 7,
+    "prompt": "Consider a two dimensional gappless quantum system with system size $L x L$ whose ground-state entanglement entropy across a straight cut scales as $cL\\log L$. Assume DMRG uses a snake-like matrix-product state whose cut crosses one virtual bond, whereas the PEPS cut crosses order $L$ virtual bonds. If one wants to solve the ground state of such system using DMRG and PEPS, what is the minimum asymptotic scaling of the bond dimension with the system size respectively? The answer is expressed in terms of $L$ and nonzero constant c, $\\alpha$: (a) $\\chi_\\text{DMRG}(L) \\sim \\exp(\\alpha L), \\; \\chi_\\text{PEPS}(L) \\sim L^{c}$ (b) $\\chi_\\text{DMRG}(L) \\sim L^{c}, \\; \\chi_\\text{PEPS}(L) \\sim \\exp(c L)$ (c) $\\chi_\\text{DMRG}(L) \\sim \\exp(cL \\log L), \\; \\chi_\\text{PEPS}(L) \\sim L^{c} \\log L$ (d) $\\chi_\\text{DMRG}(L) \\sim (L^{L})^c, \\; \\chi_\\text{PEPS}(L) \\sim L^{c}$ (e) $\\chi_\\text{DMRG}(L) \\sim \\exp(\\alpha \\log^2 L), \\; \\chi_\\text{PEPS}(L) \\sim \\log^{c} L$ . Return your answer in a $\\boxed{}$ latex environment consisting of a list of the appropriate choices (a,b,c,d or e) separated by a ;. Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{d}$",
+    "parameters": "$a;b;c;d;e$",
+    "functions": "",
+    "type": "DMRG",
+    "audit_status": "red",
+    "correction_state": "corrected",
+    "issue_types": [
+      "entanglement_scaling_missing",
+      "reference_not_generic"
+    ],
+    "audit_summary": "Gaplessness alone does not fix the required tensor-network bond dimension. Ordinary $2+1$-dimensional critical points can obey an area law $S\\sim L$, whereas a state with a codimension-one Fermi surface has $S\\sim L\\log L$. Only the latter scaling yields the reference choice: a snake-like MPS cut requires $\\log\\chi_{\\mathrm{DMRG}}\\gtrsim cL\\log L$, while a PEPS cut crosses order-$L$ bonds and requires $\\log\\chi_{\\mathrm{PEPS}}\\gtrsim c\\log L$.",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  },
+  {
+    "index": 8,
+    "prompt": "Consider the transverse field ising model with antiferromagnetic interactions on the triangular lattice. Consider also the same model on the 4-8 lattice with both antiferromagnetic bonds as well as strong ferromagnetic bonds arrange such that every plaquette has a $\\pi$ flux. Which of the following statements is true: a. The triangular lattice model has only one Kosterlitz-Thouless transition with emergent U(1) symmetry and the 4-8 lattice has an Ising transition at finite temperature. b. The 4-8 model has two Kosterlitz-Thouless transitions with emergent U(1) symmetry and the triangular lattice has two Kosterlitz-Thouless transitions at finite temperature with emergent U(1) symmetry. c. The 4-8 model has two Kosterlitz-Thouless transitions with emergent U(1) symmetry and the triangular lattice has an Ising transition at finite temperature. d. The 4-8 model has an Ising transition at finite temperature and the triangular lattice has an Ising transition at finite temperature. e. The 4-8 model has only one Kosterlitz-Thouless transition with emergent U(1) symmetry and the triangular lattice has an Ising transition at finite temperature. f. Both models exhibit order-by-disorder at zero temperature and a 3D Ising transition at high transverse field. g. Only the triangular model exhibits a transition to a spin liquid at high transverse field at zero temperature. h. No magnetically ordered phase arises in both models at zero temperature due to frustration. i. Both models have ordered phases at zero temperature. Return your answer in a $\\boxed{}$ latex environment consisting of a list of the appropriate choices (a,b,c,d,e,f,g,h, or i) separated by a ;. Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{b;i}$",
+    "parameters": "$a;b;c;d;e;f;g;h;i$",
+    "functions": "",
+    "type": "QMC",
+    "audit_status": "red",
+    "correction_state": "corrected",
+    "issue_types": [
+      "reference_wrong"
+    ],
+    "audit_summary": "The reference incorrectly included option (f). The high-field quantum critical point has emergent $U(1)$ behavior in the 3D XY universality class, not 3D Ising behavior. The two finite-temperature Kosterlitz-Thouless transitions and the zero-temperature ordered phases make (b) and (i) the correct choices.",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  },
+  {
+    "index": 9,
+    "prompt": "Consider the following Hamiltonian $\\mathcal{H}= \\sum\\limits_{\\langle \\boldsymbol{r} \\boldsymbol{r}' \\rangle} \\Big[ {J}_{z} S^{z}_{\\boldsymbol{r}} S^{z}_{\\boldsymbol{r}'} + { \\frac{J_{\\pm\\pm}}{2}}( S^{+}_{\\boldsymbol{r}} S^{+}_{\\boldsymbol{r}'} + h.c. ) \\Big] -h\\sum\\limits_{\\boldsymbol{r} }S^{z}_{\\boldsymbol{r}}$ defined on the square and kagome lattices. Now consider their simulation via the stochastic series expansion (SSE) quantum Monte Carlo at some finite inverse temperature $\\beta$. Which of the following statements are true? Select all that apply: a. On the square lattice, the Hamiltonian has a sign problem. b. On the square lattice, the problem does not have a sign problem. c. On the kagome lattice, the model has a sign problem. d. Both on the square and kagome lattices, the model has a sign problem. e. Both on the square and kagome lattices, the model does not have a sign problem. Return your answer in a $\\boxed{}$ latex environment consisting of a list of the appropriate choices (a,b,c,d or e) separated by a ;. You must comply with the formatting guidelines or be marked incorrect. Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{b;e}$",
+    "parameters": "$a;b;c;d$",
+    "functions": "",
+    "type": "QMC",
+    "audit_status": "red",
+    "correction_state": "corrected",
+    "issue_types": [
+      "prompt_typos",
+      "multi_select_instruction_missing"
+    ],
+    "audit_summary": "A uniform on-site spin rotation changes the sign of every pair-flip matrix element on either lattice, so both the square-only statement (b) and the combined statement (e) are true under the question's multi-select answer format. Logical overlap does not make either true statement invalid, and the original reference $\\boxed{b;e}$ is retained. The corrected prompt explicitly says to select all that apply and also fixes the duplicated word 'on' and the phrase 'does not have as a sign problem'.",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  },
+  {
+    "index": 10,
+    "prompt": "Consider the transverse field Ising model $d=1$ lattice and on the 4-8 lattice with both antiferromagnetic bonds as well as strong ferromagnetic bonds arranged such that every plaquette has a $\\pi$ flux. For a large number of spins (i.e., more than $200$ spins) which of options have a provably efficient method for calculating the ground state properties of the models? a. DMRG for $d=1$ and QMC $d=2$ because QMC has no sign problem. b. Jordan-Wigner transformation for $d=1$ and QMC for $d=2$. c. No provably efficient method known in because QMC has sign problem $d=2$ and Jordan-Wigner transformation in $d=1$ d. QMC for $d=2$ because absence of sign problem and Jordan-Wigner transformation for $d=1$ e. Jastrow wavefunction for $d=1$ and no provably efficient method known in $d=2$. f. DMRG for $d=1$ and $d=2$. g. The Jordan-Wigner transformation is provably efficient for $d=1$, while no provably efficient QMC method for $d=2$ follows merely from absence of a sign problem because a polynomial mixing-time guarantee is not given. h. No provably efficient method known QMC sign problem at low temperatures in $d=2$ and transfer matrix approach in $d=1$. Return your answer in a $\\boxed{}$ latex environment consisting of a list of the appropriate choices (a,b,c,d,e,f,g, or h) separated by a ; Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{g}$",
+    "parameters": "$a;b;c;d;e;f;g;h$",
+    "functions": "",
+    "type": "QMC",
+    "audit_status": "red",
+    "correction_state": "corrected",
+    "issue_types": [
+      "duplicated_options",
+      "complexity_claim_ambiguous"
+    ],
+    "audit_summary": "The one-dimensional transverse-field Ising chain has an exact polynomial-time free-fermion solution through the Jordan-Wigner transformation. For the two-dimensional sign-free model, absence of negative weights does not by itself prove polynomial Markov-chain mixing or a polynomial-time ground-state algorithm. The original options mix the two claims, options (b) and (d) are duplicates, and option (g) can be read as denying the known one-dimensional algorithm. The minimal correction changes only option (g) to state both conclusions accurately.",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  },
+  {
+    "index": 11,
+    "prompt": "Consider a peculiar example of Kitaev alternating chain, whose Hamiltonian is given by $H=-\\sum_{i=1}^{N/2}\\sigma^x_{2i-1}\\sigma^x_{2i}-\\sum_{i=1}^{N/2-1}\\sigma^y_{2i}\\sigma^y_{2i+1}$, where $\\sigma^x_i$ and $\\sigma^y_i$ are Pauli matrices on site $i$, and $N$ is an even number of sites. Calculate its ground state degeneracy for open chain in terms of $N$ and the value of central charge $c$. Denote these degenercies as a function of $N$ and the value of central charge $c$, and return your answer in LaTeX as $\\boxed{}$. Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{2^{N/2}; c=1/2}$",
+    "parameters": "$N$",
+    "functions": "",
+    "type": "DMRG",
+    "audit_status": "red",
+    "correction_state": "corrected",
+    "issue_types": [
+      "reference_wrong",
+      "open_boundary_sum_malformed"
+    ],
+    "audit_summary": "The open-chain Hamiltonian needs one fewer $y$ bond than $x$ bonds. With that boundary condition, exact small-size spectra give degeneracy $2^{N/2}$, not $2^{N/2-1}$, while the central charge remains $c=1/2$.",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  },
+  {
+    "index": 12,
+    "prompt": "Consider an antiferromagnetic Heisenberg model with nearest-neighbor coupling $J$ on a finite width $W$ and length $L$ cylinder on the square lattice with model Hamiltonian $H=J\\sum_{\\langle i,j\\rangle } \\vec{S}_i.\\vec{S}_j$, where $i$ and $j$ are site indices, $\\vec{S}_i$ is the spin operator on site $i$. The cylinder has open boundary condition along the length $L$ direction and periodic boundary condition along the width $W$ direction. Now let us compute the spin-spin correlation length in two different ways. First way is to directly calculate the spin-spin correlation function in the bulk of the system and extract the correlation length $\\xi_1$ by using an exponential decaying function to fit the spin-spin correlation. Second way is to apply a small but finite staggered Zeeman pinning field (that is consistent with the antiferromagnetic pattern of the spin correlations) at the open boundary, and calculate how the absolute value of induced local staggered spin moment decays from the boundary to bulk using an exponential decaying function and extract the corresponding correlation length $\\xi_2$. Assume $L$ is much larger than the correlation length, both fits are performed away from the boundaries, the pinning field is in the linear-response regime, and both observables couple to the same lowest bulk spin channel. Now the question is when both width $W$ and length $L$ are finite and even numbers, what is the relation between $\\xi_1$ or $\\xi_2$? Choose from the following and return your answer in a $\\boxed{}$ latex environment consisting of a list of the appropriate choices (a,b,c, or d) separated by a ;. For example $\\boxed{a;b}$ a. $\\xi_1>\\xi_2$ b. $\\xi_1\\approx\\xi_2$ c. $\\xi_1<\\xi_2$ d. It depends on how quantum mechanical $\\vec{S}$ is Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{b}$",
+    "parameters": "$a;b;c;d$",
+    "functions": "",
+    "type": "DMRG",
+    "audit_status": "red",
+    "correction_state": "corrected",
+    "issue_types": [
+      "reference_wrong",
+      "asymptotic_regime_missing"
+    ],
+    "audit_summary": "The latest official reference removes the nonexistent option (e), but its remaining choice (c) is still not universal. At finite length and finite pinning strength, fitted effective lengths can satisfy either ordering because the two observables can contain different mixtures of transfer-matrix channels and boundary corrections. In the weak-pinning, long-cylinder regime specified below, both procedures probe the same lowest bulk spin channel and yield the same asymptotic correlation length, giving (b).",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  },
+  {
+    "index": 13,
+    "prompt": "Suppose you model a wavefunction of a quantum system with a recurrent neural network (RNN) out of which unbiased samples can be obtained. Within the framework of variational Monte Carlo, it is possible to estimate both the variational energy and the gradients of the energy with respect to the parameters $\\lambda$ in the recurrent neural network wavefunction. The gradients of the energy are given by $\\partial_{\\lambda} E = 2\\mathfrak{Re}\\sum_{{\\sigma},{\\sigma'}} [\\partial_{\\lambda}\\psi^{*}_\\lambda({\\sigma})] H_{\\sigma,\\sigma'} \\psi^{}_\\lambda({\\sigma'})$ A Monte Carlo estimator of the energy gradient is given by: $\\partial_{\\lambda} E \\approx \\frac{2}{N_S} \\mathfrak{Re} \\left ( \\sum_{i=1}^{N_S} \\frac{\\partial_{\\lambda}\\psi^{*}_\\lambda({\\sigma^{(i)}})}{\\psi^{*}_\\lambda({\\sigma^{(i)}})} E_{loc}({\\sigma^{(i)}}) \\right)$ where $N_s$ is the number of samples $\\sigma^{(i)}$ drawn from the amplitude square of the RNN wavefunction. Which of the following statements is true: a. The gradient estimator is unbiased. b. The gradient estimator is biased because it misses a baseline involving the average energy. c. The gradient estimator is unbiased but has high variance. d. The gradient estimator is biased because in general the RNN and its gradients may have non-identical support in the computational basis. e. The gradient estimator is biased and has high variance. Return your answer in a $\\boxed{}$ latex environment consisting of a list of the appropriate choices (a,b,c,d or e) separated by a ;. For example $\\boxed{a;b}$ Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{d}$",
+    "parameters": "$a;b;c;d;e$",
+    "functions": "",
+    "type": "VMC",
+    "audit_status": "red",
+    "correction_state": "corrected",
+    "issue_types": [
+      "reference_overselected",
+      "gradient_formula_malformed",
+      "variance_claim_not_guaranteed"
+    ],
+    "audit_summary": "A mismatch between the support of the wavefunction and its parameter derivative can bias the log-derivative estimator. High variance is not a necessary consequence and can even be zero, so option (e) is not generally valid.",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  },
+  {
+    "index": 14,
+    "prompt": "Consider spin-polarized electrons in a lowest Landau level of a finite system with square aspect ratio and periodic boundary conditions that is penetrated by $4N$ quanta of magnetic flux at quarter filling, that interact via the Coulomb interaction. We are interested in the scaling of the spacing between consecutive energy levels with $N$ as $N$ becomes large. Which of the following scaling relations can be found among the 20 lowest energy eingenvalues? (a) $O(1)$, (b) $O(1/N)$, (c) $O(1/N^2)$, (d) $O(e^-N)$, (e) exact degeneracy? Return your answer in a $\\boxed{}$ LaTeX environment consisting of a list of the appropriate choices (a,b,c, or d) separated by a ;. Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{b; e}$",
+    "parameters": "$a; b; c; d; e$",
+    "functions": "",
+    "type": "ED",
+    "audit_status": "red",
+    "correction_state": "original_retained",
+    "issue_types": [
+      "answer_format_inconsistent",
+      "level_spacing_definition_ambiguous",
+      "prompt_typo"
+    ],
+    "audit_summary": "Option (e) is offered but omitted from the list of permitted answer labels. More importantly, exact center-of-mass magnetic-translation partners and nonzero spacings between distinct multiplets are mixed together. At filling $1/4$, magnetic translations enforce exact fourfold multiplets. Under the compressible finite-density-of-states assumption intended by the reference, the typical nonzero spacing between distinct low-energy multiplets is proportional to inverse area, hence $1/N$.",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  },
+  {
+    "index": 15,
+    "prompt": "Consider the following Hamiltonian $\\hat{H}=t \\sum_{\\sigma=\\uparrow, \\downarrow} ( \\hat{c}^\\dagger_{1,\\sigma}\\hat{c}_{2,\\sigma}+ \\hat{c}^\\dagger_{2,\\sigma}\\hat{c}_{3,\\sigma}+ \\hat{c}^\\dagger_{3,\\sigma}\\hat{c}_{4,\\sigma}+ \\hat{c}^\\dagger_{4,\\sigma}\\hat{c}_{1,\\sigma})+\\mathrm{h.c.}+U\\sum_{i=1}^4\\hat{n}_{i,\\uparrow}\\hat{n}_{i,\\downarrow}$, that is, a fermionic Hubbard model on a 4-site ring with nearest-neighbor hopping. Here, $\\hat{c}^\\dagger_{i,\\sigma}$ and $\\hat{c}_{i,\\sigma}$ are the second-quantized operators that create and annihilate an electron with spin $\\sigma=\\uparrow, \\downarrow$ on site $i=1,2,3,4$. Further, the associated spin-resolved density operator is $\\hat{n}_{i,\\sigma}=\\hat{c}^\\dagger_{i,\\sigma}\\hat{c}_{i,\\sigma}$. Which statement(s) about the ground state at half filling (4 electrons) is correct for generic values of $t,U>0$? (a) the ground state is nondegenerate and adiabatically connectable to the ground state of some noninteracting Hamiltonian on this ring. (b) the ground state is nondegenerate and not adiabatically connectable to the ground state of some noninteracting Hamiltonian on this ring. (c) the ground state is nondegenerate and adiabatically connectable to the ground state of some noninteracting Hamiltonian on this ring when time-reversal and fourfold rotation symmetry are to be preserved under along the adiabatic deformation. (d) the ground state is nondegenerate and not adiabatically connectable to the ground state of some noninteracting Hamiltonian on this ring when time-reversal and fourfold rotation symmetry are to be preserved under along the adiabatic deformation. (e) the ground state is degenerate. Return your answer in a $\\boxed{}$ LaTeX environment consisting of a list of the appropriate choices (a,b,c, d, or e) separated by a ;. Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{a; d}$",
+    "parameters": "$a;b;c;d;e$",
+    "functions": "",
+    "type": "ED",
+    "audit_status": "green",
+    "correction_state": "unchanged",
+    "issue_types": [],
+    "audit_summary": "Question and reference answer accepted as written.",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  },
+  {
+    "index": 16,
+    "prompt": "Consider a two-dimensional lattice system with 3x3 unit cells, where each unit cell consists of one site that can be empty, occupied by a spin-1/2 electron with either spin, or doubly occupied with two electrons of opposite spin. The system has periodic boundary conditions in both directions. The system has translation symmetry, time-reversal symmetry and fourfold rotation symmetry. We use all these symmetries (and no other) to block-diagonalize the Hamiltonian. How-many symmetry-distinct blocks exist, i.e., those not related to each other by a symmetry? Print your answer in a $\\boxed{}$ LaTeX environment. Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{7}$",
+    "parameters": "",
+    "functions": "",
+    "type": "ED",
+    "audit_status": "yellow",
+    "correction_state": "needs_review",
+    "issue_types": [
+      "under_specified_symmetry_representation",
+      "ambiguous_block_count"
+    ],
+    "audit_summary": "The number of blocks is not uniquely determined without fixing the particle-number sector, whether $C_4$ rotates physical spin, the value and use of $T^2$, and whether antiunitary-related irreducible representations are counted as one corepresentation. A conventional orbital-only treatment suggests five rather than seven blocks, but the missing conventions prevent a final corrected reference.",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  },
+  {
+    "index": 17,
+    "prompt": "Consider the Fermi-Hubbard Hamiltonian with nearest-neighbor hopping $t$ in its particle-hole symmetric form on a bipartite lattice with a chemical potential term. Express the Hamiltonian after the following transformation: $c^{\\dagger}_{i,\\uparrow}=p^{\\dagger}_{i,\\uparrow}$ and $c^{\\dagger}_{i,\\downarrow}=\\pm p_{i,\\downarrow}$, depending on whether $i$ is on the A sublattice or the B sublattice, taking $m_{i,\\sigma}$ to be the new density operator. The answer will take the form of $H = \\sum_{\\left<i,j\\right>,\\sigma} f_{i,j,\\sigma} + \\sum_i g_i$, where the only operators in $f_{i,j,\\sigma}$ are the $p$ operators and the only operators in $g_i$ are the $m$ operators. Return the expression for $f_{i,j,\\sigma}+g_i$ in a $\\boxed{}$ LaTeX environment. Your answer should not include any $\\sum$ notation or the Hermitian conjugate (H.c.) abbreviation. Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{-t (p^{\\dagger}_{i,\\sigma}p_{j,\\sigma}+p^{\\dagger}_{j,\\sigma}p_{i,\\sigma})-U (m_{i,\\uparrow}-\\frac{1}{2})(m_{i,\\downarrow}-\\frac{1}{2})-\\mu (m_{i,\\uparrow}-m_{i,\\downarrow}) -\\mu}$",
+    "parameters": "$t;U;\\mu;m_{i,\\uparrow};m_{i,\\downarrow};(p^{\\dagger}_{i,\\sigma},NC);(p_{j,\\sigma},NC);(p^{\\dagger}_{j,\\sigma},NC);(p_{i,\\sigma},NC)$",
+    "functions": "",
+    "type": "Other",
+    "audit_status": "green",
+    "correction_state": "unchanged",
+    "issue_types": [],
+    "audit_summary": "Question and reference answer accepted as written.",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  },
+  {
+    "index": 18,
+    "prompt": "Consider the Hamiltonian for spinless fermions on a bipartite 2D lattice at half-filling, with real nearest-neighbor hopping only between opposite sublattices, $H=-t \\sum_{\\langle i j\\rangle}\\left[c_i^{\\dagger} c_j+H . c .\\right] + V \\sum_{\\langle i j\\rangle}\\left(n_i-\\frac{1}{2}\\right)\\left(n_j-\\frac{1}{2}\\right)$ where $c_i^{\\dagger}$ and $c_i$ are the creation and annihilation operators at site $i$, respectively, $n_i=c_i^{\\dagger} c_i$ is the number operator and the sum $\\langle i j \\rangle$ runs over nearest-neighbor pairs of sites. Within the standard Majorana hopping-channel auxiliary-field construction, which of the following are correct? a. There is no sign problem for $V>0$. b. There is no sign problem for $V<0$. c. There is sign problem for $V>0$. d. There is sign problem for $V<0$. Return your answer in a $\\boxed{}$ LaTeX environment consisting of a list of the correct choices (a,b,c, or d) separated by a ;. For example $\\boxed{a;b}$ Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{a}$",
+    "parameters": "$a;b;c;d$",
+    "functions": "",
+    "type": "QMC",
+    "audit_status": "red",
+    "correction_state": "corrected",
+    "issue_types": [
+      "lattice_geometry_missing",
+      "algorithm_unspecified",
+      "reference_wrong"
+    ],
+    "audit_summary": "A generic two-dimensional lattice need not be bipartite, so half filling does not supply the particle-hole structure used by sign-free algorithms. On a bipartite lattice with nearest-neighbor bonds joining opposite sublattices, the Majorana hopping-channel construction has nonnegative weights for repulsive $V>0$. Its sign condition is not satisfied by nearest-neighbor attractive $V<0$, contrary to the reference selecting both signs.",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  },
+  {
+    "index": 19,
+    "prompt": "Consider a noninteracting time-reversal symmetric system of spin-1/2 fermions with a unique gapped ground state that has also four-fold rotation symmetry. Which rotation eigenvalues could the ground state have? (a) $+1$, (b) $e^{i \\pi/4}$, (c) $i$, (d) $e^{i 3\\pi/4}$, (e) $-1$, (f) $e^{-i 3 \\pi/4}$, (g) $-i$, (h) $e^{-i \\pi/4}$. Return your answer in a $\\boxed{}$ latex environment consisting of a list of the appropriate choices (a,b,c, or d) separated by a ;. Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{a}$",
+    "parameters": "$a;b;c;d;e;f;g;h$",
+    "functions": "",
+    "type": "ED",
+    "audit_status": "green",
+    "correction_state": "unchanged",
+    "issue_types": [],
+    "audit_summary": "Question and reference answer accepted as written.",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  },
+  {
+    "index": 20,
+    "prompt": "The following systems have degenerate ground states in the thermodynamic limit. Which of them have exactly degenerate ground states even in finite size systems? (a) Heisenberg ferromagnet, (b) Heisenberg antiferromagnet, (c) Laughlin states from Coulomb interaction in the lowest Landau level on the torus geometry, (d) Moore-Read states from Coulomb interaction in the second Landau level on the torus geometry, (e) Transverse field Ising model in the ferromagnetic phase. Return your answer in a $\\boxed{}$ latex environment consisting of a list of the appropriate choices (a,b,c, d or e) separated by a ;. Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{a; c}$",
+    "parameters": "$a;b;c;d;e$",
+    "functions": "",
+    "type": "ED",
+    "audit_status": "red",
+    "correction_state": "original_retained",
+    "issue_types": [
+      "reference_incomplete",
+      "center_of_mass_convention_missing"
+    ],
+    "audit_summary": "The reference overlooks exact center-of-mass magnetic-translation degeneracy for the half-filled Landau level. At $\\nu=1/2$, the two many-body magnetic translations anticommute, enforcing an exact finite-size doublet for every eigenvalue of a translation-invariant projected Coulomb Hamiltonian. Although the three Moore-Read topological sectors are only nearly degenerate for Coulomb interactions, the exact center-of-mass doublet makes option (d) true under the literal question.",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  },
+  {
+    "index": 21,
+    "prompt": "Starting from the iPEPS with a tensor A which approximates the ground state of a given model, we modify the state by replacing one of the ground-state $A$ tensors by a different tensor $B$ at a location $x = (i,j)$ such that $\\left|\\Psi_0(A)\\right\\rangle \\rightarrow\\left|\\Phi(A, B)_{{x}}\\right\\rangle$. The excited state with momentum $(k_x,k_y)$ is given by $\\left|\\Phi(B)_k\\right\\rangle=\\sum_{{x}} e^{i {k} \\cdot {x}}\\left|\\Phi(B)_{{x}}\\right\\rangle$. The variational parameters in $B$ can be found by solving the eigenvalue problem $H_k B= \\omega_k f $. Find the form of $f$ in terms of $N_k=\\langle \\Phi(B)_k|\\Phi(B)_k\\rangle$ Usin the variables $N_k$ and $B$ only, present the your answer in a $\\boxed{}$ LaTeX environment. Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{N_k B}$",
+    "parameters": "$N_k;B;B*$",
+    "functions": "",
+    "type": "PEPS",
+    "audit_status": "red",
+    "correction_state": "original_retained",
+    "issue_types": [
+      "norm_object_misdefined",
+      "generalized_eigenproblem_malformed"
+    ],
+    "audit_summary": "The question defines $N_k$ as the scalar norm $\\langle\\Phi(B)_k|\\Phi(B)_k\\rangle$, which is quadratic in $B$. A generalized eigenproblem requires a linear effective norm matrix: $\\langle\\Phi(B')_k|\\Phi(B)_k\\rangle=B'^\\dagger N_k B$. Multiplying the scalar norm by $B$ is not generally the same as applying that matrix.",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  },
+  {
+    "index": 22,
+    "prompt": "Suppose that we want to perform exact diagonalization of a Hamiltonian for a kagome lattice model with only nearest-neighbor interactions and local terms. What is the maximum number of isomorphically distinct connected 5-site clusters that can be considered? Give the final answer in a $\\boxed{}$ LaTeX environment. Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{4}$",
+    "parameters": "",
+    "functions": "",
+    "type": "ED",
+    "audit_status": "green",
+    "correction_state": "unchanged",
+    "issue_types": [],
+    "audit_summary": "Question and reference answer accepted as written.",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  },
+  {
+    "index": 23,
+    "prompt": "Consider the following Hamiltonian: $H=-J\\sum_{j,\\sigma}c_{2j,\\sigma}^{\\dagger}c_{2j+1,\\sigma}-J'\\sum_{j,\\sigma}c_{2j+1,\\sigma}^{\\dagger}c_{2j+2,\\sigma}+h.c.+g\\sum_{j}n_{j\\uparrow}n_{j\\downarrow}$. The electron filling is $n=1/5$ per site. Take the translation-invariant charge ground state in the thermodynamic limit. In the limit $g\\rightarrow\\infty$, and setting $J'=2J/3$, compute the equal time density-density correlation function $\\langle n_{j}n_{j+r}\\rangle$ for $j$ even and $r=0,1,2,3,4$. Give the answer with three digit accuracy. Return your answer as a row vector in parenthesis inside a $\\boxed{}$ LaTeX environment using float numbers. Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{(0.200,0.003,0.017,0.027,0.038)}$",
+    "parameters": "",
+    "functions": "",
+    "type": "Other",
+    "audit_status": "red",
+    "correction_state": "corrected",
+    "issue_types": [
+      "thermodynamic_limit_missing",
+      "boundary_conditions_missing"
+    ],
+    "audit_summary": "The reference values are obtained from the thermodynamic charge ground state, where the $U=\\infty$ one-dimensional Hubbard charge sector maps to a partially filled spinless SSH band. A finite chain depends on its length, boundary condition, and allowed momenta, none of which are given, so the requested three-decimal vector is not unique as written.",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  },
+  {
+    "index": 24,
+    "prompt": "Consider the following two-band Hamiltonian: $H=\\sum_{k,\\sigma}\\varepsilon_{c,k}c_{k\\sigma}^{\\dagger}c_{k\\sigma}+\\sum_{k,\\sigma}\\varepsilon_{d,k}d_{k\\sigma}^{\\dagger}d_{k\\sigma}+\\sum_{r}\\left[U\\left(n_{c,r}^{2}+n_{d,r}^{2}\\right)+Vn_{c,r}n_{d,r}\\right]+\\left[\\sum_{k,\\sigma}ig_{1}c_{k\\sigma}^{\\dagger}d_{k\\sigma}+\\sum_{k}ig_{2}\\left(c_{k\\uparrow}^{\\dagger}d_{k\\downarrow}+c_{k\\downarrow}^{\\dagger}d_{k\\uparrow}\\right)+h.c.\\right]$, where $n_{c,r}=\\sum_{\\sigma}c_{r\\sigma}^{\\dagger}c_{r\\sigma}$, $n_{d,r}=\\sum_{\\sigma}d_{r\\sigma}^{\\dagger}d_{r\\sigma}$. For which of the following parameter values is the model sign problem free within determinant quantum Monte Carlo? a. $U=1,V=1/3$, $g_{1}=0$, $g_{2}>0$. b. $U=1,V=2/3$, $g_{1}=g_{2}=0$. c. $U=-1,V=-3/2$, $g_{1}=g_{2}=0$ d. $U=-1,V=1/3$, $g_{1}>0,g_{2}=0$, e. $U=-1,V=-1/2$, $g_{1}=0$, $g_{2}<0$. Return your answer in a $\\boxed{}$ latex environment consisting of a list of the appropriate choices (a,b,c,d or e) separated by a ; (E.g. $\\boxed{a; b}$). Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{c; d; e}$",
+    "parameters": "$a;b;c;d;e$",
+    "functions": "",
+    "type": "QMC",
+    "audit_status": "green",
+    "correction_state": "unchanged",
+    "issue_types": [],
+    "audit_summary": "Question and reference answer accepted as written.",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  },
+  {
+    "index": 25,
+    "prompt": "Consider a tight binding model on a square lattice, whose sites are labeled by integers $x,y$. The Hamiltonian is given by $H=-t\\sum_{x,y}c_{x,y}^{\\dagger}c_{x,y+1}-t\\sum_{x,y}e^{\\frac{2i\\pi y}{n}}c_{x,y}^{\\dagger}c_{x+1,y}-t'\\sum_{x,y}ie^{\\frac{2i\\pi y}{n}}\\left(c_{x,y}^{\\dagger}c_{x+1,y+1}+c_{x,y}^{\\dagger}c_{x+1,y-1}\\right)+h.c.$ with $n>1$ and real $t, t'$. Which of the following statements is true in the limit of an infinite system? a) The minimum of the lowest energy band is non-degenerate. b) The minimum of the lowest energy band is at least $n$ fold degenerate. c) The expectation value $\\langle n_{x,y}\\rangle$ of the density at site $x,y$ in the ground state with filling of $1/n$ particles per site is independent on $x,y$. d) The expectation value $\\langle c^\\dagger_{x,y} c_{x+1,y+1} \\rangle$ is independent on $x,y$. e) The expectation value $\\langle c^\\dagger_{x,y} c_{x,y+1} \\rangle$ is independent on $x,y$. Return your answer in a $\\boxed{}$ latex environment consisting of a list of the appropriate choices (a,b, c, d, or e) separated by a ;. Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{b; c; e}$",
+    "parameters": "$a;b;c;d;e$",
+    "functions": "",
+    "type": "ED",
+    "audit_status": "red",
+    "correction_state": "original_retained",
+    "issue_types": [
+      "ground_state_nonunique",
+      "band_isolation_missing",
+      "hopping_parameters_unrestricted"
+    ],
+    "audit_summary": "The unrestricted real parameters include $t=t'=0$, for which the one-particle Hamiltonian is flat and every filling-$1/n$ Slater determinant is a ground state. A localized choice then has nonuniform density and bond correlators, directly contradicting (c) and (e). Those statements follow only after requiring an isolated lowest magnetic band and choosing the unique magnetic-translation-invariant state that completely fills it. The $n$-fold minimum count also uses the ordinary Brillouin-zone convention rather than quotienting magnetic-translation partners.",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  },
+  {
+    "index": 26,
+    "prompt": "Consider the following expansion for a thermodynamic property per site of a lattice model (e.g., energy per site for a model with finite-range interactions) in the thermodynamic limit: $O_n = \\sum_c M_c R_c$, where the sum is over all distinct clusters, with up to $n$ sites, that can be embedded on the lattice, $M_c$ is the number of ways per site cluster $c$ can be embedded on the lattice, and $R_c$ is the reduced property, defined using the inclusion-exclusion principle as $R_c = E_c - \\sum_s R_s$, where the sum is over all the sub-clusters of $c$ (all the clusters smaller than $c$ that can be embedded in $c$, counted with their embedding multiplicities), and $E_c$ is the property calculated for cluster $c$. Consider a one-dimensional lattice, for which $c$ simply indicates the number of sites in a finite open chain of sites, $E_c$ is its total property, and $M_c=1$ for every connected chain. Find an expression for $O_n$ in terms of properties $E_n$. Return your answer in a $\\boxed{}$ LaTeX environment as an equation. Do not use aligning for equations in the LaTeX environment. Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{O_n=E_n-E_{n-1}}$",
+    "parameters": "$O_n;E_n;E_{n-1}$",
+    "functions": "",
+    "type": "Other",
+    "audit_status": "red",
+    "correction_state": "corrected",
+    "issue_types": [
+      "normalization_ambiguous",
+      "cluster_boundary_condition_missing"
+    ],
+    "audit_summary": "The prompt calls the target extensive but gives energy per site as its example, and it never says whether $E_n$ is a total open-cluster property or a per-site quantity. The reference telescoping identity holds when $E_n$ is the total property of the connected open $n$-site chain and each embedded subchain is counted with multiplicity. If $E_n$ denotes a per-site value, the formula changes.",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  },
+  {
+    "index": 27,
+    "prompt": "We consider a model of electrons on a square lattice with nearest-neighbor hopping and long-range interactions. The Hamiltonian is given by: $H=-\\sum_{i,j,\\sigma}t_{ij}c_{i\\sigma}^{\\dagger}c_{j\\sigma}+\\sum_{i,j}V(\\bm{r}_{i}-\\bm{r}_{j})\\left(n_{i}-\\overline{n}\\right)\\left(n_{j}-\\overline{n}\\right)-h\\sum_{j}(c_{j\\uparrow}^{\\dagger}c_{j\\uparrow}-c_{j\\downarrow}^{\\dagger}c_{j\\downarrow})$, with $V(\\bm{r})=\\int\\frac{d^{2}q}{(2\\pi)^{2}}e^{i\\bm{q}\\cdot\\bm{r}}V_{\\bm{q}}$, $V_{\\bm{q}}\\ge0$. The hopping matrix elements are $t_{ij}=t>0$ for nearest-neighbor sites $i,j$, and $t_{ij}=t'\\left(\\delta_{\\bm{r}_{j},\\bm{r}_{i}+(a,a)}+\\delta_{\\bm{r}_{j},\\bm{r}_{i}+(a,-a)}\\right)+\\left(t'\\right)^{*}\\left(\\delta_{\\bm{r}_{j}+(a,a),\\bm{r}_{i}}+\\delta_{\\bm{r}_{j}+(a,-a),\\bm{r}_{i}}\\right)$ for next-nearest neighbor sites (where $a$ is the lattice spacing, $\\delta_{\\bm{r},\\bm{r}'}$ is a Kronecker delta, and $\\bm{r}_{i}$ is the position of site $i$). $n_{i}=\\sum_{\\sigma}c_{i\\sigma}^{\\dagger}c_{i\\sigma}$ is the site density and $\\langle n_{i}\\rangle=\\overline{n}$ is the filling. Can the model be simulated using determinant quantum Monte Carlo without a sign problem for the following parameter sets: a) $\\overline{n}=1.2$, $h=0$, $t'=0$. b) $\\overline{n}=1$, $h=0$, $t'=0.5t$. c) $\\overline{n}=1$, $h>0$, $t'=0.5it$. d) $\\overline{n}=1$, $h<0$, $t'=0$. e) $\\overline{n}=0.9$, $h<0$, $t'=0$. f) $\\overline{n}=0.9$, $h=0$, $t'=0$. g) $\\overline{n}=1,h=0,t'=0$. Return your answer in a \\$\\textbackslash boxed\\{\\}\\$ latex environment consisting of a list of the appropriate choices (a,b,c,d,e, f, or g) separated by a ;. For example: $\\boxed{a;b;c}$. Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{c; d; g}$",
+    "parameters": "$a;b;c;d;e;f;g$",
+    "functions": "",
+    "type": "QMC",
+    "audit_status": "red",
+    "correction_state": "corrected",
+    "issue_types": [
+      "reference_incomplete",
+      "index_typo"
+    ],
+    "audit_summary": "The down-spin index in the Zeeman term was inconsistent. After correcting it to a local Zeeman coupling, a purely imaginary same-sublattice hopping preserves the particle-hole pairing that makes the determinant nonnegative, so option (c) must be included.",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  },
+  {
+    "index": 28,
+    "prompt": "Consider a single-band fermionic spinful Hubbard model on a two-leg ladder on the square lattice, with model Hamiltonian $H=-\\sum_{\\langle ij\\rangle,\\sigma} t_{ij} (c_{i\\sigma}^+.c_{j\\sigma}+h.c.) + U\\sum_i n_{i,\\uparrow}n_{i,\\downarrow}$, where $U>0$ is the on-site coulomb repulsion, $i$ and $j$ are site indices, $\\sigma$ is the spin of an electron. $t_{ij}$ is the nearest-neighbor electron hopping integral, and takes the value $t_{ij}=t$ along the chain direction, and $t_{ij}=2t$ perpendicular to the chain direction. Now consider a case with electron filling $n=7/8$ per site, and $U=8t$, choose which one is its ground state from the options below (a) Luttinger liquid; (b) Luther-Emery liquid; (c) spin liquid; (d) non-Luttinger liquid. Return your choice in a $\\boxed{}$ LaTeX environment, such as $\\boxed{a}$. Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{a}$",
+    "parameters": "$a;b; c; d$",
+    "functions": "",
+    "type": "DMRG",
+    "audit_status": "green",
+    "correction_state": "unchanged",
+    "issue_types": [],
+    "audit_summary": "Question and reference answer accepted as written.",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  },
+  {
+    "index": 29,
+    "prompt": "Consider a classical Ising model with the following Hamiltonian: $H= - \\frac{1}{2}\\sum_{i\\ne j}J(|i-j|)\\sigma_{i}\\sigma_{j}$, where $J(n)=|J_{0}|/(1+n^2)^{\\alpha}$. Which of the following statements are correct? Indicate all that apply. a) For $\\alpha=2$, there is a non-zero critical temperature $T_{c}$. b) For $\\alpha=1$, at sufficiently low temperature, $\\langle\\sigma_{j}\\sigma_{j+n}\\rangle\\rightarrow m^{2}>0$ as $n\\rightarrow\\infty$. c) For $\\alpha=1$, there is a temperature for which $\\langle\\sigma_{j}\\sigma_{j+n}\\rangle-\\langle\\sigma_{j}\\rangle\\langle\\sigma_{j+n}\\rangle$ decays as the inverse of the logarithm of distance. d) For $\\alpha=4$, $\\langle\\sigma_{j}\\sigma_{j+n}\\rangle$ decays exponentially with distance. e) For $\\alpha=2$, $\\langle\\sigma_{j}\\sigma_{j+n}\\rangle$ decays exponentially with distance. Return your answer in a $\\boxed{}$ latex environment consisting of a list of the appropriate choices (a,b, c, d, or e) separated by a ;. Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{b;c}$",
+    "parameters": "$a;b;c;d;e$",
+    "functions": "",
+    "type": "Other",
+    "audit_status": "green",
+    "correction_state": "unchanged",
+    "issue_types": [],
+    "audit_summary": "Question and reference answer accepted as written.",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  },
+  {
+    "index": 30,
+    "prompt": "Consider a triangular lattice model for hardcore bosons with charge $e$ and the following nearest-neighbor Hamiltonian: $H=-\\sum_{ij}t_{ij}(b^{\\dagger}_{i}b_{j}+\\textrm{H.c.})+V\\sum_{ij} n_{i}n_{j}-\\mu \\sum_i n_i$, where $b^{\\dagger}_{i}$ ($b_{i}$) creates (annihilates) a boson on site $i$, $n_{i}=b^{\\dagger}_{i}b_{i}$ is the number operator, $t_{ij}=t$ is the amplitude of the hopping between nearest-neighbor sites $i$ and $j$, and $V$ is finite for nearest-neighbor sites. Which of the following statements are correct? Indicate all that apply. a) The above model has a resistivity much larger than $h/e^2$ at high temperatures when $V\\gg t$ at any filling b) The charge compressibilty at $1/2$ filling for $V\\ggt$ is proportional to $1/T$ at low temperatures c) For temperatures $T\\gg t, V$, the derivative of the boson resistivity with respect to temperature is a constant at any filling d) The $T=0$ ground state at incommensurate boson fillings is a superfluid for any value of $t/V\\geq0$ Return your answer in a $\\boxed{}$ latex environment consisting of a list of the appropriate choices (a,b, c, or d) separated by a ;. Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{a;b;c}$",
+    "parameters": "$a;b;c;d$",
+    "functions": "",
+    "type": "Other",
+    "audit_status": "red",
+    "correction_state": "original_retained",
+    "issue_types": [
+      "temperature_regime_ambiguous",
+      "classical_limit_omitted",
+      "transport_assumption_omitted"
+    ],
+    "audit_summary": "At finite hopping, the phrase 'low temperatures' includes the coherent $T\\to0$ superfluid or supersolid regime, where the classical $1/T$ compressibility cannot be extrapolated. That divergence is an interaction-only result, or an intermediate-window result above the hopping-induced coherence scale. In addition, the stated boson resistivity claims use a leading-hopping incoherent approximation whose direct calculation was performed for the related spinless-fermion model and assumes that particle statistics are irrelevant in this regime.",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  },
+  {
+    "index": 31,
+    "prompt": "Consider a one-dimensional quantum Ising chain at zero temperature, with each nearest-neighbor bond counted once, with the following Hamiltonian: $H=-\\sum_{i,j}\\sigma^z_i\\sigma^z_j + h\\sum_i \\sigma^x_i + g\\sum_i \\sigma^z_i$. Unless explicitly defined as connected, the correlation functions below are ordinary correlators. Which of the following statements are correct? Indicate all that apply. a) At $h=1$ and $g=0$, the excitation energy vanishes. b) At $g=0$, there is a symmetry breaking transition at a finite value of $h$. c) At $h=10$ and $g=1$, the connected correlation function $\\langle\\sigma^z_{i}\\sigma^z_{j}\\rangle-\\langle\\sigma^z_{i}\\rangle\\langle\\sigma^z_{j}\\rangle$ vanishes exponentially as a function of $|i-j|$. d) At $h=0.1$ and $g=1$, $\\langle\\sigma^x_{i}\\sigma^x_{j}\\rangle$ vanishes as a power-law for a large $|i-j|$. Return your answer in a $\\boxed{}$ latex environment consisting of a list of the appropriate choices (a,b, c, or d) separated by a ;. Your solution must comply with this formatting guideline or it will be marked incorrect. Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{a;b;c}$",
+    "parameters": "$a;b;c;d$",
+    "functions": "",
+    "type": "Other",
+    "audit_status": "red",
+    "correction_state": "corrected",
+    "issue_types": [
+      "reference_wrong",
+      "dimension_missing",
+      "correlator_definition_ambiguous"
+    ],
+    "audit_summary": "The value $h=1$ assumes the standard one-dimensional normalization, which was not stated. The original option (c) displayed an ordinary correlator, which approaches a nonzero product of one-point functions when $g\\ne0$, although its intended connected correlator does decay exponentially. The original reference also omitted the $g=0$ symmetry-breaking transition in option (b).",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  },
+  {
+    "index": 32,
+    "prompt": "For the fermion Hamiltonian \\[ H = \\sum_{i=1}^4\\left[\\left(-tc_{i}^\\dagger e^{iqa_{i,i+1}}c_{i+1}+h.c.\\right)-\\mu BS^z_i\\right] \\] where we have suppressed the spin index, $S^z_i$ is the usual spin operator for fermions, and $B = a_{12}+a_{23}+a_{34}+a_{41}$ is the magnetic field with $a_{i,i+1}$ classical parameters. We consider the case where $\\mu > qt$ and $B>0$. What is the expected measured total magnetization $M^z$ in an experiment at zero temperature and half filling in linear response to the applied magnetic field $B$? Using the variables $B$, $q$, $t$ and $\\mu$, present your answer in a single $\\boxed{}$ LaTex environment. Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{\\mu-tq^2B/4}$",
+    "parameters": "$q;\\mu;t;B$",
+    "functions": "",
+    "type": "Other",
+    "audit_status": "green",
+    "correction_state": "unchanged",
+    "issue_types": [],
+    "audit_summary": "Question and reference answer accepted as written.",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  },
+  {
+    "index": 33,
+    "prompt": "Consider a two-dimensional model with attractive on-site interactions with the following Hamiltonian: $H=-\\sum_{ij\\sigma}t_{ij}(c^{\\dagger}_{i\\sigma}c_{j\\sigma}+\\textrm{H.c.}) - |U|\\sum_i (n_{i\\uparrow}-\\frac{1}{2})(n_{i\\downarrow}-\\frac{1}{2})-\\mu \\sum_i n_i$, where $c^{\\dagger}_{i\\sigma}$ ($c_{i\\sigma}$) creates (annihilates) a fermion with spin $\\sigma$ on site $i$, $n_{i\\sigma}=c^{\\dagger}_{i\\sigma}c_{i\\sigma}$ is the number operator, $t_{ij}$ is the amplitude of the hopping between sites $i$ and $j$ ($i\\neq j$), $|U|>0$ is the strength of attraction between fermions on the same site, $\\mu$ is the chemical potential, and $n_i=(n_{i\\uparrow}+n_{i\\downarrow})$ is the total particle number operator on site $i$. Assume that the electron filling is $\\langle n\\rangle=0.12$. Which of the following statements are correct? Indicate all that apply. a) The ground-state at $T=0$ is always a superconductor regardless of ratio of $t/U$. b) For $|U|\\gg t$, the superconducting transition temperature behaves as $t$. c) For $|U|\\gg t$, the superconducting transition temperature behaves as $t^2/|U|$. d) For $|U|\\ll t$, the superconducting transition temperature behaves as $|U|$. Return your answer in a $\\boxed{}$ latex environment consisting of a list of the appropriate choices (a,b, c, or d) separated by a ;. Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{c}$",
+    "parameters": "$a;b;c;d$",
+    "functions": "$(c_s^\\dagger, NC); (c_s, NC), (s,\\uparrow,\\downarrow)$",
+    "type": "Other",
+    "audit_status": "red",
+    "correction_state": "original_retained",
+    "issue_types": [
+      "endpoint_ambiguity",
+      "lattice_assumptions_missing"
+    ],
+    "audit_summary": "The model response incorrectly included option (a). Although finite connected hopping gives a superconducting ground state across the BCS--BEC crossover, the word 'always' also includes the zero-hopping and infinite-coupling endpoints, where the pair phase stiffness vanishes. Moreover, the stated generic hopping matrix need not describe a clean connected square lattice. Thus option (a) is not universally true as written, and the original reference answer should be retained.",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  },
+  {
+    "index": 34,
+    "prompt": "Consider a two-dimensional model on a square lattice at zero temperature with the following nearest-neighbor Hamiltonian: $H=-\\sum_{ij}t_{ij}(b^{\\dagger}_{i}b_{j}+\\textrm{H.c.})+\\frac{U}{2}\\sum_i n_{i}(n_{i}-1)-\\mu \\sum_i n_i$, where $b^{\\dagger}_{i}$ ($b_{i}$) creates (annihilates) a boson on site $i$, $n_{i}=b^{\\dagger}_{i}b_{i}$ is the number operator, $t_{ij}=t$ is the amplitude of the hopping between nearest-neighbor sites $i$ and $j$ , $U$ is the strength of the repulsion between bosons on the same site, and $\\mu$ is the chemical potential. Assume that we are working at an average filling of two bosons per site. Which of the following statements are correct? Indicate all that apply. a) There exists a value of $t/U$ across which $\\langle \\sum_i b_i\\rangle$ becomes non-zero with emergent Lorentz invariance. b) For $U=30t$, the boson conductivity vanishes at all frequency. c) For $U=0.001t$, the boson conductivity diverges at zero frequency. d) By tuning either $t/U$ or the filling, we can realize a theory with emergent Lorentz invariance. Return your answer in a $\\boxed{}$ latex environment consisting of a list of the appropriate choices (a,b, c, or d) separated by a ;. Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{a;c}$",
+    "parameters": "$a;b;c;d$",
+    "functions": "",
+    "type": "Other",
+    "audit_status": "green",
+    "correction_state": "unchanged",
+    "issue_types": [],
+    "audit_summary": "Question and reference answer accepted as written.",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  },
+  {
+    "index": 35,
+    "prompt": "Consider a $S=1$ Hamiltonian on a honeycomb lattice, $\\mathbf{H}=-\\sum_{\\langle i, j\\rangle_x} \\mathbf{S}_i^x \\mathbf{S}_j^x- \\sum_{\\langle i, j\\rangle_y} \\mathbf{S}_i^y \\mathbf{S}_j^y- \\sum_{\\langle i, j\\rangle_z} \\mathbf{S}_i^z \\mathbf{S}_j^z$ and an unitary operator $\\mathbf{U}^\\gamma=e^{i \\pi \\mathbf{S}^{\\gamma }}$. Consider an operator defined on a plaquette $p$, $W_p=(-1)^{2 S} \\mathbf{U}_1^z \\mathbf{U}_2^x \\mathbf{U}_3^y \\mathbf{U}_4^z \\mathbf{U}_5^x \\mathbf{U}_6^y$ where the subscripts indicate the sites on the hexagonal plaquette $p$. $W_p$ commutes the Hamiltonian. Also consider an operator defined on a loop $LG$, $Q_{\\mathrm{LG}}=\\operatorname{tTr} \\prod_\\alpha Q_{k_\\alpha i_\\alpha j_\\alpha}^{s s^{\\prime}}|s\\rangle\\left\\langle s^{\\prime}\\right|$, where $s$ and $s^\\prime$ are spin indices and $k_\\alpha, i_\\alpha, j_\\alpha\\in\\{0,1\\}$ are virtual bond indices. Fix the local-tensor convention as follows. The first, second, and third virtual indices $(k,i,j)$ correspond, respectively, to the $z$-, $x$-, and $y$-type virtual legs, with the same ordering at every site. Define $\\mathbf{Q}_{kij}=(\\mathbf{U}^z)^{1-k}(\\mathbf{U}^x)^{1-i}(\\mathbf{U}^y)^{1-j}$ when $k+i+j$ is even and $\\mathbf{Q}_{kij}=0$ when $k+i+j$ is odd. This definition fixes the local-tensor normalization, virtual gauge, and phases; no additional local or sublattice-dependent rephasing is to be applied. $Q_{\\mathrm{LG}}$ is a projector satisfying $W_p Q_{\\mathrm{LG}}=Q_{\\mathrm{LG}} W_p=Q_{\\mathrm{LG}}$. Which of the following are correct? Select all that apply. (a) $\\mathbf{Q}_{000}=\\mathbf{I}$ (b) $\\mathbf{Q}_{011}=\\mathbf{U}^z$ (c) $\\mathbf{Q}_{101}=i\\mathbf{U}^x$, (d) $ \\mathbf{Q}_{110}=i\\mathbf{U}^y$, (e) $\\mathbf{Q}_{111}=\\mathbf{U}^z$, (f) $\\mathbf{Q}_{001}= -i\\mathbf{U}^x$. Return your answer in a $\\boxed{}$ latex environment consisting of a list of the appropriate choices (a, b, c, d, e, or f) separated by a ;. You must comply with the formatting guidelines or be marked incorrect. Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{a;b}$",
+    "parameters": "$a;b;c;d;e;f$",
+    "functions": "",
+    "type": "Other",
+    "audit_status": "red",
+    "correction_state": "corrected",
+    "issue_types": [
+      "missing_tensor_definition",
+      "gauge_phase_ambiguity"
+    ],
+    "audit_summary": "The global projector identity alone does not determine individual local tensor entries. The corrected problem supplies the published even-parity local tensor, identifies $(k,i,j)$ with the $(z,x,y)$ virtual legs, and fixes its normalization, gauge, and phases. For spin 1, $U^zU^xU^y=I$, so $Q_{000}=I$, $Q_{011}=U^z$, $Q_{101}=U^x$, and $Q_{110}=U^y$, while odd-parity components vanish. Thus the original reference answer $a;b$ is retained, and the model response incorrectly adds (c) and (d).",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  },
+  {
+    "index": 36,
+    "prompt": "Suppose that we are considering a classical spin model in two dimension. We want to find the scaling dimension of the primary field of the corresponding CFT. The calculation may involve some of the following operations: (a) analyze the singular value spectrum; (b) iteratively coarse-grain a tensor network until convergence; (c) build a transfer matrix; (d) analyze the eigenvalue spectrum; (e) perform a real time evolution; (f) compute the specific heat; (g) compute the magnetic susceptibility; (h) compute the order parameter; (i) do not make further operations. Choose the operations in the correct sequence. Return your answer in a $\\boxed{}$ latex environment consisting of a list of the appropriate choices (a, b, c, ..., i) separated by a `;`, e.g., $\\boxed{a;b}$ Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{b;c;d}$",
+    "parameters": "$a;b;c;d;e;f;g;h;i$",
+    "functions": "",
+    "type": "PEPS",
+    "audit_status": "red",
+    "correction_state": "corrected",
+    "issue_types": [
+      "duplicate_option_label",
+      "reference_wrong"
+    ],
+    "audit_summary": "The option label (g) appeared twice, making the reference meaningless. The standard tensor-network procedure is to coarse-grain to a fixed point, build the transfer matrix, and analyze its eigenvalue spectrum.",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  },
+  {
+    "index": 37,
+    "prompt": "Consider a classical O(3) spin Hamiltonian in two spatial dimensions on a triangular lattice: $H = - \\sum_{i,j} J_{ij} S_i \\cdot S_j$, where $J_{ij}=J$ for x-directed bonds and $J_{ij}=J'$ otherwise. At $T=0$, find the number of gapless Goldstone modes, $n_{FM}$, for ferromagnetic couplings ($J>0,J>J'>0$), and $n_{AF}$, for antiferromagnetic couplings ($J<0,J<J'<0$). Return $n_{FM}$ and $n_{AF}$ in a $\\boxed{}$ latex environment separated by a ;. Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{1; 3}$",
+    "parameters": "",
+    "functions": "",
+    "type": "Other",
+    "audit_status": "green",
+    "correction_state": "unchanged",
+    "issue_types": [],
+    "audit_summary": "Question and reference answer accepted as written.",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  },
+  {
+    "index": 38,
+    "prompt": "For the fermion Hamiltonian \\[ H = \\sum_{i=1}^n\\left[\\left(-tc_{i}^\\dagger e^{iqa_{i,i+1}}c_{i+1}+h.c.\\right)-\\mu BS^z_i\\right] \\] Work in the sector containing exactly one fermion with fixed $S^z=+1/2$ and no spin-flip processes, so the spin index is suppressed and $S_i^z=c_i^\\dagger c_i/2$. Take $n\\geq3$, $t>0$, $\\mu>0$, and $q>0$. Let $B$ be the single external control parameter appearing in both couplings, fix the uniform link parameters $a_{i,i+1}=B/n$, and impose periodic boundary conditions with increasing site index $i\\to i+1$ defined as the clockwise direction. Define the magnetization by $M(B)=-\\partial E_0(B)/\\partial B$ and the positive current direction as clockwise. Work on the nondegenerate $k=0$ ground-state branch with $|qB|<\\pi$, and define the linear-in-$B$ contribution as the coefficient of $B$ in the Taylor expansion of $M(B)$ about $B=0$, taking $B\\to0$ before examining its dependence on $q$ or $\\mu$. Choose from the following options. Select all that apply. Make sure to only present the final answer in a single $\\boxed{}$ LaTeX environment. E.g. $\\boxed{a;c;f}$: a) The magnetization is not proportional to $B$. b) The linear-in-$B$ contribution to the magnetization is independent of $q$. c) The linear-in-$B$ contribution to the magnetization is proportional to $q$ for large $q$. d) The linear-in-$B$ contribution to the magnetization is proportional to $q^2$ for large $q$. e) The linear-in-$B$ contribution to the magnetization is independent of $t$. f) The linear-in-$B$ contribution to the magnetization is proportional to $\\mu$ for large $\\mu$. g) The linear-in-$B$ contribution to the magnetization is proportional to $\\mu^2$ for large $\\mu$. h) There are no currents in the system. i) There are currents in the system and they circulate clockwise if $B>0$ and $q>0$. j) There are currents in the system and they circulate counterclockwise if $B>0$ and $q>0$. Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{a;d;i}$",
+    "parameters": "$a;b;c;d;e;f;g;h;i;j$",
+    "functions": "",
+    "type": "Other",
+    "audit_status": "red",
+    "correction_state": "corrected",
+    "issue_types": [
+      "malformed_hamiltonian",
+      "missing_particle_sector",
+      "conflated_field_and_flux",
+      "response_limit_ambiguous"
+    ],
+    "audit_summary": "The original problem did not specify the spinful particle sector, the relation between the Zeeman field and total Peierls phase, or the ground-state branch and order of limits. The corrected problem fixes one spin-up fermion, uniform link phases, the clockwise current convention, and the nondegenerate small-field branch. It then gives $E_0(B)=-2t\\cos(qB/n)-\\mu B/2$ and $M(B)=\\mu/2-(2tq/n)\\sin(qB/n)=\\mu/2-(2tq^2/n^2)B+O(B^3)$. Thus the linear coefficient is proportional to $q^2$ and independent of $\\mu$, the small positive-field current is clockwise, and the original reference answer $a;d;i$ is retained.",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  },
+  {
+    "index": 39,
+    "prompt": "Consider a half filled fermionic system with Hamiltonian \\[ H = -t_1\\sum_{i=1}^n (c^\\dagger_{2i-1}c_{2i} + h.c.) -t_2\\sum_{i=1}^{n-1} ( c^\\dagger_{2i}c_{2i+1} + h.c.). \\] What is the leading contribution to the energy gap between the lowest excited state and the ground state of a chain as $n\\to\\infty$ when $t_2>t_1>0$? Using only the variables $t_1$, $t_2$, and $n$, present the final answer in a single $\\boxed{}$ LaTeX environment. Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{2t_2\\left[1-\\left(\\frac{t_1}{t_2}\\right)^2\\right]\\left(\\frac{t_1}{t_2}\\right)^n}$",
+    "parameters": "$t_1;t_2;n$",
+    "functions": "",
+    "type": "Other",
+    "audit_status": "red",
+    "correction_state": "corrected",
+    "issue_types": [
+      "reference_wrong"
+    ],
+    "audit_summary": "The reference omitted the correct prefactor for the overlap of the two SSH end modes. At fixed half filling, the lowest many-body gap is twice the positive end-mode energy.",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  },
+  {
+    "index": 40,
+    "prompt": "Consider the fermionic Hamiltonian \\[ H = -t_1\\sum_{i=1}^{N_u} (c^\\dagger_{2i-1}c_{2i} + h.c.) -t_2\\sum_{i=1}^{N_u-1} ( c^\\dagger_{2i}c_{2i+1} + h.c.) \\] For $t_2>t_1>0$, and at half filling, which of the following are true: a) This model has a topologically protected mode in the large-$N_u$ limit b) This model is topologically trivial in the large-$N_u$ limit c) The energy gap is of order $t_2(t_1/t_2)^2$ for small $t_1/t_2$ d) The energy gap is of order $t_1(t_2/t_1)^{N_u}$ for small $t_1/t_2$ e) The leading excitation is an \"\"end state\"\" localized on the end of the system f) The leading excitation is a \"\"bulk state\"\" that evenly occupies most sites of the system. Provide your answer in a $\\boxed{}$ latex environment with a list of a subset of the letters a, b, c, d, e, and f, separated by a semicolon ;. For example $\\boxed{a}$ Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{a;e}$",
+    "parameters": "$a;b;c;d;e;f$",
+    "functions": "",
+    "type": "Other",
+    "audit_status": "red",
+    "correction_state": "corrected",
+    "issue_types": [
+      "reference_wrong"
+    ],
+    "audit_summary": "The question is well-defined as written, so its prompt and all distractors are retained byte-for-byte. The reference incorrectly selected option (d), whose proposed gap grows exponentially with system size when $t_2>t_1$. The topological phase instead has exponentially localized end modes whose splitting decays with length, making (a) and (e) the correct choices.",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  },
+  {
+    "index": 41,
+    "prompt": "Consider the AC spin conductivity of the Fermi-Hubbard model $\\sigma({\\bf q},\\omega)$ in terms of the spin current operator $j_x$. Find $\\alpha$ in terms of $\\omega$ and the inverse temperature $\\beta$ such that $\\textrm{Re } \\sigma({\\bf q},\\omega)=\\alpha \\int_0^\\infty dt\\,\\cos(\\omega t)\\,\\textrm{Re } \\left< j_x(-{\\bf q},t)j_x({\\bf q},0) \\right>$. Make sure to only present the final answer in a single $\\boxed{}$ LaTeX environment. Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{\\frac{2\\tanh(\\frac{\\beta \\omega}{2})}{\\omega}}$",
+    "parameters": "$\\omega;\\beta;\\hbar;V$",
+    "functions": "",
+    "type": "Other",
+    "audit_status": "red",
+    "correction_state": "corrected",
+    "issue_types": [
+      "complex_rhs_for_real_quantity",
+      "transform_convention_missing"
+    ],
+    "audit_summary": "The left side is real, but the displayed one-sided transform with $e^{i\\omega t}$ is generally complex even after taking the real part of the time-domain correlator. The stated prefactor is correct for the cosine transform of the real correlator, equivalently one half of the full symmetrized spectrum, but not for the literal complex integral.",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  },
+  {
+    "index": 42,
+    "prompt": "Consider the following two-dimensional chiral active Ornstein-Uhlenbeck process with inertia: $m \\mathbf{\\dot v} = -\\gamma \\mathbf{v} + \\gamma v_0 \\mathbf{f} + \\sqrt{2T}\\boldsymbol{\\xi}$, where the self propulsion speed $\\mathbf{f}$ evolves according to $\\mathbf{\\dot f} = -\\mathbf{f}/\\tau + \\Omega \\mathbf{A}\\mathbf{f} +\\sqrt{2/\\tau}\\boldsymbol{\\chi}$, where $\\mathbf{A}=\\begin{bmatrix} 0&-1\\\\1&0\\end{bmatrix}$ is an antisymmetric matrix. Compute the odd diffusion constant of this process. Do not use other symbols than $v_0$, $\\tau$, $\\Omega$, $m$ and $\\gamma$ and, if needed, the ratio $\\rho \\equiv \\frac{\\gamma \\tau}{m}$. Note that not all symbols might be needed. Make srue to only return the expression of the odd diffusivity $D_o$ enclosed in a \"$\\boxed{}$\" Latex environment. Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{D_o = \\frac{\\tau^2 \\rho v_0^2 \\Omega (2+\\rho)}{[(1+\\rho)^2 + (\\Omega \\tau)^2][1+(\\Omega \\tau)^2]}}$",
+    "parameters": "$D_o;\\gamma;v_0;m;\\rho;\\tau;\\Omega$",
+    "functions": "",
+    "type": "SM",
+    "audit_status": "red",
+    "correction_state": "corrected",
+    "issue_types": [
+      "dimensionally_inconsistent_ratio",
+      "parameter_definition_wrong"
+    ],
+    "audit_summary": "The reference formula is the result of the linear Ornstein-Uhlenbeck covariance calculation only when the dimensionless inertial ratio is $\\rho=\\gamma\\tau/m$. The prompt instead defines $\\rho=\\gamma/(m\\tau)$, which is not dimensionless and does not reproduce the covariance result when inserted into the reference. The corrected problem fixes that ratio; the displayed diffusivity then agrees exactly.",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  },
+  {
+    "index": 43,
+    "prompt": "Consider the dynamics in two dimensions of the following modified active Brownian particle: $\\mathbf{\\dot x} = v_0 \\mathbf{u}$, where $v_0$ is a positive constant, and $\\mathbf{u}$ is a vector of unit norm, whose orientation $\\theta$ with respect to the $x$ axis evolves according to the overdamped dynamics: $\\dot\\theta = -\\frac{v_0}{T} \\nabla V \\cdot \\mathbf{A}\\mathbf{u} + \\chi(t)$, where $\\chi$ is zero-mean Gaussian white noise with $\\langle\\chi(t)\\chi(t')\\rangle=2\\delta(t-t')$, and $V(\\mathbf{x})$ is a smooth confining external potential that depends only on $\\mathbf{x}$, and $T$ is a positive constant. The matrix $\\mathbf{A}=\\begin{bmatrix} 0&-1\\\\ 1 & 0\\end{bmatrix}$ is a fully antisymmetric two-dimensional matrix. Under time reversal, take both $\\mathbf{x}$ and the internal polarity $\\mathbf{u}$ to be even, leave $\\theta$ unchanged, and hold $v_0$ fixed. Consider a perturbation of the potential $V\\to V + h(t)\\phi(\\mathbf{x})$. Consider the steady state linear response function $R(s) =\\langle \\frac{\\delta \\phi(\\mathbf{x}(t+s))}{\\delta h(t)}\\rangle$ and the steady state autocorrelation function $C(s) = \\langle \\phi(\\mathbf{x}(t))\\phi(\\mathbf{x}(t+s))\\rangle$. With the plus-sign convention $V\\to V+h(t)\\phi$, define the equilibrium-form fluctuation-dissipation theorem as $R(s)=T^{-1}\\,dC(s)/ds$ for $s>0$. Is this fluctuation-dissipation theorem violated? Choose one of the following options: (a) Yes, because the dynamics has a positive entropy production rate. (b) No, because the dynamics is time-reversible. (c) No, because for this conjugate potential perturbation the Boltzmann stationary distribution yields the stated fluctuation-dissipation relation. (d) Yes, because there is a nonzero self-propulsion speed. Return your choice among the options \"a\",\"b\",\"c\" and \"d\" enclosed in a $\\boxed{}$ LaTex environment. Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{c}$",
+    "parameters": "$a;b;c;d$",
+    "functions": "",
+    "type": "SM",
+    "audit_status": "red",
+    "correction_state": "corrected",
+    "issue_types": [
+      "noise_and_time_reversal_conventions_missing",
+      "fdt_sign_convention_missing",
+      "prompt_typos"
+    ],
+    "audit_summary": "The original prompt omitted the angular-noise normalization, confinement, the time-reversal parity of the propulsion orientation, and the FDT sign convention. The corrected problem treats the propulsion direction as a time-even internal polarity and holds $v_0$ fixed, so the lifted dynamics is irreversible at fixed $v_0$. Its steady density is nevertheless $P_{\\rm ss}(\\mathbf{x},\\theta)\\propto e^{-V(\\mathbf{x})/T}$. For the specific perturbation $V\\to V+h\\phi$, integration by parts in $\\theta$ gives $R(s)=-T^{-1}\\langle(\\mathcal L\\phi)(0)\\phi(s)\\rangle=T^{-1}dC(s)/ds$. Thus this potential-response FDT holds despite irreversibility, and the original reference answer (c) is retained. A Boltzmann stationary density alone would not establish a dynamical FDT for an arbitrary process; the special perturbation structure is essential.",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  },
+  {
+    "index": 44,
+    "prompt": "Consider two coupled systems, made respectively by $N$ soft spins $x_i$ and $N$ soft spins $y_i$. The dynamics of the systems is $\\dot x_i = -\\lambda(\\mathbf{x})x_i + N^{-1} \\sum_{j,k} J_{i}^{jk} x_j x_k + K(y_i -x_i)$ and $\\dot y_i = -\\lambda(\\mathbf{y})y_i + N^{-1} \\sum_{j,k} J_{i}^{jk} y_j y_k + K(x_i -y_i)$. The function $\\lambda$ is defined as $\\lambda(\\mathbf{x}) = N^{-1}|\\mathbf{x}^2| - \\gamma$, with $\\gamma$ a positive parameter. The tensor $J_i^{jk}$ is jointly Gaussian, symmetric in its upper indices, with $\\mathbb E[J_i^{jk}]=0$ and $\\mathbb E[J_i^{jk}J_a^{bc}]=\\sigma^2\\delta_{ia}(\\delta_{jb}\\delta_{kc}+\\delta_{jc}\\delta_{kb})$. The coupling constant $K$ is positive. Take the limit $N\\to\\infty$ before the steady-state limit and consider the stationary paramagnetic chaotic branch reached from generic isotropic initial conditions. The synchronous manifold $\\mathbf{x}=\\mathbf{y}$ is invariant. In this problem, define its stability by the instantaneous frozen-Jacobian criterion: freeze the transverse Jacobian at a typical stationary configuration on this branch and require the rightmost edge of its continuous eigenvalue spectrum to have negative real part, ignoring isolated eigenvalues produced by finite-rank terms. What is the critical value of $K$, $K_c$, at which this bulk spectral edge crosses zero? Return the critical value of K as a function of $\\gamma$ and $\\sigma^2$. Only present the expression of $K_c$ inside a $\\boxed{}$ Latex environment. Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{K_c = \\sigma [1 - \\frac{1}{\\sqrt{3}}]\\sqrt{\\gamma + \\frac{2\\sigma^2}{3}(1 + \\sqrt{1 + \\frac{3\\gamma}{\\sigma^2}})}}$",
+    "parameters": "$K_c;\\gamma;\\sigma$",
+    "functions": "",
+    "type": "SM",
+    "audit_status": "red",
+    "correction_state": "corrected",
+    "issue_types": [
+      "missing_ensemble_assumptions",
+      "stability_criterion_ambiguity"
+    ],
+    "audit_summary": "The original prompt specified only entrywise moments and described pathwise synchronization, whereas its reference uses the bulk spectral edge of a frozen instantaneous Jacobian. The corrected problem therefore specifies the jointly Gaussian covariance, the stationary paramagnetic chaotic branch reached from generic isotropic initial conditions, the order of limits, and the frozen-Jacobian bulk-edge criterion, with finite-rank outliers excluded. Dynamic mean-field theory gives $q_*-\\gamma=2\\sigma\\sqrt{q_*}/\\sqrt{3}$, while the transverse bulk edge is $-2K-(q_*-\\gamma)+2\\sigma\\sqrt{q_*}$. Its zero crossing reproduces the original reference answer. This deliberately differs from genuine pathwise synchronization, which is controlled by the largest long-time transverse Lyapunov exponent.",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  },
+  {
+    "index": 45,
+    "prompt": "Consider a liquid composed by diatomic classical molecules in $d$ dimensions. Consider the problem of deriving an effective equation for the motion of one molecule In the limit $d\\to\\infty$. What is the appropriate cavity variable to be considered? Choose among the following: a - One tagged atom of a molecule b - One tagged molcule c - One tagged degree of freedom of the atom of a molecule. d - One tagged degree of freedom of the atom of a molecule, and one tagged degree of freedom of the partner atom in the same molecule. e - A cluster of molecules. f - None of the above. Return your answer among a,b,c,d and f in a $\\boxed{}$ LaTex environment Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{d}$",
+    "parameters": "$a;b;c;d;e;f$",
+    "functions": "",
+    "type": "SM",
+    "audit_status": "green",
+    "correction_state": "unchanged",
+    "issue_types": [],
+    "audit_summary": "Question and reference answer accepted as written.",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  },
+  {
+    "index": 46,
+    "prompt": "Consider the overdamped Langevin dynamics $\\dot x = -x^3 + x^2 \\eta(t)$, where $\\eta$ is a zero-mean Gaussian white noise with $\\langle\\eta(t)\\eta(t')\\rangle=2\\delta(t-t')$. Using the Stratonovich midpoint discretization for the dynamics and the endpoint normalization factor $\\prod_k[\\sqrt{4\\pi\\Delta t}\\,|x_{k+1}^2|]^{-1}$, write an expression for the Onsager-Machlup action away from $x=0$. Return as an answer the integrand that contributes to the action. Use $p$ to denote $\\dot x$. Your answer should be enclosed in a $\\boxed{}$ LaTex environment. Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{\\frac{(p + x^3)^2}{4 x^4} + x^2}$",
+    "parameters": "$p;x$",
+    "functions": "",
+    "type": "SM",
+    "audit_status": "red",
+    "correction_state": "corrected",
+    "issue_types": [
+      "reference_wrong",
+      "discretization_measure_under_specified",
+      "prompt_typo"
+    ],
+    "audit_summary": "The reference coefficient $+4x^2$ is inconsistent with the standard Stratonovich action using endpoint normalization. The original wording did not state the discrete path measure explicitly, which made it easy to confuse this action with a different covariant representation.",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  },
+  {
+    "index": 47,
+    "prompt": "Consider a two-dimensional tight-binding model on the square lattice with a single orbital at each site. The lattice vectors are along $x$ and $y$ directions. Label each site by its coordinate $\\vec{r}=(n_x,n_y)$ with two integers $n_x,n_y$. The model has nearest neighbor hopping $t_1$ along $x$ direction. Along $y$ direction the nearest neighbor hopping is $t_2$ for $n_x+n_y$ even, and $t_2e^{i\\theta}$ for $n_x+n_y$ odd. For $t_1=t_2=1,\\theta=\\pi/3$, and chemical potential $\\mu=0.1,0.3,1.2$, how many connected segments are there in the fermi surface, respectively? Present the final answer of the three integers in a single $\\boxed{}$ LaTeX environment. For example: $\\boxed{1,2,3}$. Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{2,2,1}$",
+    "parameters": "",
+    "functions": "",
+    "type": "Other",
+    "audit_status": "green",
+    "correction_state": "unchanged",
+    "issue_types": [],
+    "audit_summary": "Question and reference answer accepted as written.",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  },
+  {
+    "index": 48,
+    "prompt": "We want to build infinite two-dimensional tensor network wavefunction for a systems of spin-1 moments on square lattice interacting with SU(2)-symmetric interactions. We choose infinite projected entangled-pair state as the TN. We want to guarantee, that our TN respects i) translational symmetry of the lattice, ii) SU(2) symmetry of the interactions, and iii) symmetry of the lattice under rotations, C_4. A simplest choice is to generate the TN from a single 5-dimensional tensor $T_{puldr}$, with one physical index, $p$, corresponding to spin-1 physical degree of freedom and four virtual spaces V, labeled by indices $u$, $l$, $d$, and $r$, associated the up, left, down, and right directions on the lattice. We want tensor T to be invariant under the action of both spin-SU(2) and lattice rotations. Let's describe the action of SU(2) symmetry and lattice rotations: The SU(2) group acts on the tensors as $g(T) \\rightarrow W(g)_{pp'} U(g)_{uu'} U(g)_{ll'} U(g)_{dd'} U(g)_{rr'} T_{p'u'l'd'r'} = T_{puldr}$ with U and W being appropriate matrix representations of SU(2) group. The group of lattice rotations acts on T by permutation (clockwise or anticlockwise) of its virtual indices, i.e. rotation by 90 degrees clockwise corresponds to $R(-\\pi/2})(T_{puldr}) = T_{pruld}$. We choose the virtual spaces (indexed by u,l,d, and r) to be all identical and each composed from a direct sum of $V= 0 \\oplus 1$ i.e. a direct sum of trivial irrep of SU(2) and spin-1 irrep of SU(2). How many (real-valued) variational parameters would our TN wavefunction have ? That is, how many independent tensors T_{puldr}, transforming under A irrep of the C_4 group of rotations and invariant under SU(2) group do we need to consider ? Return your answer as a number in $\\boxed{}$ environment. Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{6}$",
+    "parameters": "",
+    "functions": "",
+    "type": "PEPS",
+    "audit_status": "green",
+    "correction_state": "unchanged",
+    "issue_types": [],
+    "audit_summary": "Question and reference answer accepted as written.",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  },
+  {
+    "index": 49,
+    "prompt": "We are interested in counting fully packed dimer configurations on honeycomb lattice. Dimer can be placed on any of the nearest-neighbor bonds of the lattice and each site has to be a member of exactly one dimer. This is one of the ways to count ground state configurations of classical antiferromagnetic Ising model on triangular lattice. In particular, we want to consider a horizontal cylinder geometry, with the periodic boundary condition in vertical direction and zig-zag open edges. Here is an example of such geometry, given as an illustration in LateX's verbatim environment \\begin{verbatim} \\ / \\ / A--B A--B / \\ / \\ B A--B A \\ / \\ / A--B A--B / \\ / \\ B A--B A \\ / \\ / A--B A--B / \\ / \\ B A--B A \\end{verbatim} This is an XC-6 cylinder with width W=6, W being the number of sites in the vertical direction, and length L=3, again L being the number of honeycomb lattice unit cells in the horizontal direction. Let's call the number of \"empty\" sites divided by the total number of sites on the edge the \"defect density\". Answer following two questions. First, In the limit of wide cylinders, what defect density leads to the highest number of packed dimer configurations ? Second, for XC-11 cylinder, what is the defect density which gives the second highest number of packed dimer configurations ? Return your answer as two numbers, separated by a comma, in $\\boxed{}$ environment, rounded to 2 decimal places Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{0.33, 0.27}$",
+    "parameters": "",
+    "functions": "",
+    "type": "SM",
+    "audit_status": "yellow",
+    "correction_state": "needs_review",
+    "issue_types": [
+      "length_limit_missing",
+      "boundary_defect_sector_undefined",
+      "counting_convention_ambiguous"
+    ],
+    "audit_summary": "The number of matchings depends on the cylinder length, yet no length or $L\\to\\infty$ growth-rate prescription is supplied. The question also does not define whether defects occur on one or both open edges, whether opposite-edge defect numbers or positions are constrained, or whether configurations are summed over defect placements or compared at fixed placements. These conventions can change which defect density maximizes the count, so neither decimal is determined by the prompt.",
+    "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
+  }
+]

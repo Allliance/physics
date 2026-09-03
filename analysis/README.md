@@ -13,8 +13,8 @@ records, not necessarily unique problems or reviewers.
 | Source | Path | Format | Records | Description |
 | --- | --- | --- | ---: | --- |
 | CMT-Benchmark | `CMT-Benchmark/cmt_data_clean.json` | JSON | 50 | Audited problems, corrected prompts and solutions, issue types, and audit summaries |
-| CritPt | `CritPt/CritPt Evaluation Form.csv.zip` | Zipped CSV | 62 | Expert review form responses, confidence ratings, notes, and supporting uploads |
-| PSet-Benchmarks | `PSet-Benchmarks/physics-audit-2026-09-02.csv` | CSV | 285 | Problem-, model-, and grader-failure annotations across HLE Physics, PhyBench, PRISM, and UGPhysics |
+| CritPt | `CritPt/annotations.csv` | CSV | 62 | Expert review form responses, confidence ratings, notes, and supporting uploads |
+| PSet-Benchmarks | `PSet-Benchmarks/annotations.csv` | CSV | 285 | Problem-, model-, and grader-failure annotations across HLE Physics, PhyBench, PRISM, and UGPhysics |
 
 These exports use different schemas and label vocabularies. Analyses should
 normalize them explicitly rather than assuming that similarly named fields have
@@ -41,9 +41,7 @@ The source files can be inspected with the Python standard library:
 
 ```python
 import csv
-import io
 import json
-import zipfile
 from pathlib import Path
 
 root = Path("analysis")
@@ -52,14 +50,12 @@ cmt_rows = json.loads(
     (root / "CMT-Benchmark" / "cmt_data_clean.json").read_text()
 )
 
-with zipfile.ZipFile(root / "CritPt" / "CritPt Evaluation Form.csv.zip") as archive:
-    csv_name = archive.namelist()[0]
-    with archive.open(csv_name) as raw_file:
-        critpt_rows = list(
-            csv.DictReader(io.TextIOWrapper(raw_file, encoding="utf-8-sig"))
-        )
+with (root / "CritPt" / "annotations.csv").open(
+    encoding="utf-8-sig", newline=""
+) as csv_file:
+    critpt_rows = list(csv.DictReader(csv_file))
 
-with (root / "PSet-Benchmarks" / "physics-audit-2026-09-02.csv").open(
+with (root / "PSet-Benchmarks" / "annotations.csv").open(
     encoding="utf-8-sig", newline=""
 ) as csv_file:
     pset_rows = list(csv.DictReader(csv_file))
