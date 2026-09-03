@@ -15,8 +15,7 @@ set -euo pipefail
 script_path=$(readlink -f "${BASH_SOURCE[0]}")
 
 if [[ -z "${SLURM_JOB_ID:-}" ]]; then
-    preferred_node=${JUDGE_SERVER_NODE:-mi355-gpu-36}
-    exec sbatch --nodelist="$preferred_node" "$script_path"
+    exec sbatch "$script_path"
 fi
 
 repo_root=${JUDGE_SERVER_REPO_ROOT:-/shared/data/home/aa3242/physics}

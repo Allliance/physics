@@ -60,10 +60,9 @@ The Anthropic backend defaults to an 8,192-token completion ceiling because
 reasoning models can consume several thousand internal thinking tokens before
 emitting the structured judgment.
 
-Use `--prompt strict-reference` to select the alternative prompt in
-`prompts.py`, `--dataset prism` to filter rows, and `--dry-run` to inspect the
-fully rendered first prompt without making a model call. Run `--help` for all
-model and sampling options.
+Use `--dataset prism` to filter rows and `--dry-run` to inspect the fully
+rendered first prompt without making a model call. Run `--help` for all model
+and sampling options.
 
 Outputs are resumable JSONL files under the gitignored `judgements/` directory.
 Each model/prompt/configuration gets a distinct run ID and adjacent summary JSON

@@ -18,7 +18,7 @@ from llm_judge.eval import (
     select_rows,
     _anthropic_messages_url,
 )
-from llm_judge.prompts import get_prompt
+from llm_judge.prompts import PROMPTS, get_prompt
 
 
 def sample_row(meta_eval_id="sample:0", final_grade=1):
@@ -47,6 +47,11 @@ class FakeJudge:
 
 
 class PromptTests(unittest.TestCase):
+    def test_only_default_prompt_is_available(self):
+        self.assertEqual(set(PROMPTS), {"default"})
+        with self.assertRaisesRegex(ValueError, "choose one of: default"):
+            get_prompt("strict-reference")
+
     def test_prompt_does_not_leak_meta_evaluation_labels(self):
         system, user = get_prompt("default").render(sample_row())
         self.assertNotIn("final_grade", system + user)
