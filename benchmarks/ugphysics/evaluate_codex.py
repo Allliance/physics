@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import multiprocessing
 import random
 import sys
 import threading
@@ -86,6 +87,13 @@ def append_jsonl(path: Path, item: dict[str, Any], lock: threading.Lock) -> None
         handle.flush()
 
 
+def write_jsonl(path: Path, items: list[dict[str, Any]]) -> None:
+    path.write_text(
+        "".join(json.dumps(item, ensure_ascii=False) + "\n" for item in items),
+        encoding="utf-8",
+    )
+
+
 def download_dataset(data_dir: Path) -> None:
     for subject in SUBJECTS:
         for language in LANGUAGES:
@@ -116,7 +124,11 @@ def dataset_digest(rows: list[dict[str, Any]]) -> str:
 
 
 def select_sample(
-    rows: list[dict[str, Any]], sample_path: Path, size: int, seed: int
+    rows: list[dict[str, Any]],
+    sample_path: Path,
+    size: int,
+    seed: int,
+    base_sample: list[dict[str, Any]] | None = None,
 ) -> list[dict[str, Any]]:
     if sample_path.exists():
         sample = read_jsonl(sample_path)
@@ -128,12 +140,38 @@ def select_sample(
         return sample
     if size > len(rows):
         raise ValueError(f"Cannot sample {size} rows from a dataset of {len(rows)}")
-    sample = random.Random(seed).sample(rows, size)
-    sample_path.write_text(
-        "".join(json.dumps(row, ensure_ascii=False) + "\n" for row in sample),
-        encoding="utf-8",
-    )
+    base_sample = base_sample or []
+    row_by_id = {row["_eval_id"]: row for row in rows}
+    base_ids = [row["_eval_id"] for row in base_sample]
+    if len(base_ids) != len(set(base_ids)):
+        raise ValueError("Base sample contains duplicate IDs")
+    missing_ids = sorted(set(base_ids) - set(row_by_id))
+    if missing_ids:
+        raise ValueError(f"Base sample IDs are missing from the dataset: {missing_ids[:5]}")
+    if len(base_ids) > size:
+        raise ValueError(
+            f"Base sample has {len(base_ids)} rows, but --sample-size is only {size}"
+        )
+    remaining = [row for row in rows if row["_eval_id"] not in set(base_ids)]
+    extension = random.Random(seed).sample(remaining, size - len(base_ids))
+    sample = [row_by_id[item_id] for item_id in base_ids] + extension
+    write_jsonl(sample_path, sample)
     return sample
+
+
+def seed_artifact_from_base(
+    base_run_dir: Path, output_dir: Path, filename: str, sample_ids: set[str]
+) -> None:
+    target = output_dir / filename
+    if target.exists():
+        return
+    items = [
+        item
+        for item in read_jsonl(base_run_dir / filename)
+        if item.get("id") in sample_ids
+    ]
+    if items:
+        write_jsonl(target, items)
 
 
 def generate(row: dict[str, Any], config: Config) -> dict[str, Any]:
@@ -163,6 +201,58 @@ def score(row: dict[str, Any], generation: dict[str, Any], judger: Judger) -> di
         "correct": correct,
         "reference_answer": row["answers"],
         "extracted_answer": judger.extract_ans(generation["completion"]),
+        "created_at": datetime.now(timezone.utc).isoformat(),
+    }
+
+
+def score_in_subprocess(
+    connection: Any,
+    row: dict[str, Any],
+    generation: dict[str, Any],
+    judger: Judger,
+) -> None:
+    try:
+        connection.send(("ok", score(row, generation, judger)))
+    except BaseException as exc:
+        connection.send(("error", f"{type(exc).__name__}: {exc}"))
+    finally:
+        connection.close()
+
+
+def score_with_timeout(
+    row: dict[str, Any],
+    generation: dict[str, Any],
+    judger: Judger,
+    timeout: float,
+) -> dict[str, Any]:
+    context = multiprocessing.get_context("fork")
+    receiver, sender = context.Pipe(duplex=False)
+    process = context.Process(
+        target=score_in_subprocess,
+        args=(sender, row, generation, judger),
+        daemon=True,
+    )
+    process.start()
+    sender.close()
+    status: str | None = None
+    payload: Any = None
+    if receiver.poll(timeout):
+        status, payload = receiver.recv()
+    if process.is_alive():
+        process.terminate()
+    process.join()
+    receiver.close()
+    if status == "ok":
+        return payload
+    error = payload if status == "error" else f"timeout after {timeout:g} seconds"
+    return {
+        "id": row["_eval_id"],
+        "subject": row["subject"],
+        "language": row["language"],
+        "correct": False,
+        "reference_answer": row["answers"],
+        "extracted_answer": None,
+        "automatic_error": error,
         "created_at": datetime.now(timezone.utc).isoformat(),
     }
 
@@ -207,15 +297,28 @@ def main() -> int:
     parser.add_argument("--max-workers", type=int, default=8)
     parser.add_argument("--timeout", type=float, default=1800)
     parser.add_argument(
+        "--score-timeout",
+        type=float,
+        default=30,
+        help="Hard timeout in seconds for each deterministic scoring subprocess.",
+    )
+    parser.add_argument(
         "--output-dir",
         type=Path,
         default=BENCHMARK_ROOT / "artifacts" / "gpt-5.6-sol-high-random-100",
+    )
+    parser.add_argument(
+        "--base-run-dir",
+        type=Path,
+        help="Preserve the sample, generations, and scores from an earlier run.",
     )
     args = parser.parse_args()
     if args.sample_size < 1:
         parser.error("--sample-size must be positive")
     if args.max_workers < 1:
         parser.error("--max-workers must be positive")
+    if args.score_timeout <= 0:
+        parser.error("--score-timeout must be positive")
 
     config = Config(
         args.model, args.reasoning_effort, args.sample_size, args.seed, args.timeout
@@ -225,8 +328,30 @@ def main() -> int:
     rows = load_dataset(data_dir)
     digest = dataset_digest(rows)
     args.output_dir.mkdir(parents=True, exist_ok=True)
+    if args.base_run_dir and args.base_run_dir.resolve() == args.output_dir.resolve():
+        parser.error("--base-run-dir and --output-dir must be different")
+    base_sample = (
+        read_jsonl(args.base_run_dir / "sample.jsonl") if args.base_run_dir else []
+    )
     sample = select_sample(
-        rows, args.output_dir / "sample.jsonl", args.sample_size, args.seed
+        rows,
+        args.output_dir / "sample.jsonl",
+        args.sample_size,
+        args.seed,
+        base_sample,
+    )
+    if args.base_run_dir:
+        sample_ids = {row["_eval_id"] for row in sample}
+        for filename in ("generations.jsonl", "scores.jsonl"):
+            seed_artifact_from_base(
+                args.base_run_dir, args.output_dir, filename, sample_ids
+            )
+    sampling = (
+        f"Preserved {len(base_sample)} rows from {args.base_run_dir}; sampled "
+        f"{len(sample) - len(base_sample)} additional rows uniformly without "
+        f"replacement from the remaining English problems using seed {args.seed}."
+        if args.base_run_dir
+        else "Uniform without replacement over the 5,520 released English problems."
     )
     manifest = {
         "benchmark": "UGPhysics/ugphysics",
@@ -234,6 +359,7 @@ def main() -> int:
         "dataset_rows": len(rows),
         "dataset_id_digest": digest,
         "config": asdict(config),
+        "sampling": sampling,
         "sample_ids": [row["_eval_id"] for row in sample],
     }
     (args.output_dir / "manifest.json").write_text(
@@ -260,13 +386,16 @@ def main() -> int:
         item_id = row["_eval_id"]
         if item_id in existing_scores:
             continue
-        item = score(row, generations[item_id], judger)
+        item = score_with_timeout(
+            row, generations[item_id], judger, args.score_timeout
+        )
         existing_scores[item_id] = item
         append_jsonl(score_path, item, lock)
         print(f"scored {item_id}: {item['correct']}", flush=True)
 
     ordered_scores = [existing_scores[row["_eval_id"]] for row in sample]
     summary = summarize(rows, ordered_scores, config, digest)
+    summary["sampling"] = sampling
     (args.output_dir / "summary.json").write_text(
         json.dumps(summary, indent=2) + "\n", encoding="utf-8"
     )
