@@ -1,0 +1,11 @@
+Repository: https://github.com/verl-project/verl.git
+Commit: 4eff9ae30a23b59554758fa0ca93940605ae5cdf
+Describe: v0.8.0-389-g4eff9ae3
+Vendored: 2026-09-02
+
+The upstream .git directory was removed after cloning so this directory is a
+normal folder owned by the physics repository.
+
+Local compatibility patch:
+- Normalize ROCm GPU visibility aliases in async vLLM server actors so Ray
+  data-parallel workers can use non-contiguous Slurm GPU allocations.
