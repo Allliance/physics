@@ -32,17 +32,37 @@ run_root="$runs_root/$SLURM_JOB_ID"
 
 mkdir -p "$run_root"
 
+container_group_args=(--group-add=video)
 if sudo -n docker info >/dev/null 2>&1; then
-    docker_command=(sudo -n docker)
+    container_command=(sudo -n docker)
+    container_runtime=docker
 elif docker info >/dev/null 2>&1; then
-    docker_command=(docker)
+    container_command=(docker)
+    container_runtime=docker
+elif command -v podman >/dev/null 2>&1; then
+    # A login-session runtime can retain a stale rootless-Podman pause process
+    # after Slurm tears down an earlier allocation. Isolate runtime state per job.
+    export XDG_RUNTIME_DIR=/tmp/llm-judge-runtime-$UID-${SLURM_JOB_ID}
+    mkdir -p "$XDG_RUNTIME_DIR"
+    chmod 700 "$XDG_RUNTIME_DIR"
+    if ! podman info >/dev/null 2>&1; then
+        echo "Podman is installed but unavailable for the current user on $(hostname)" >&2
+        exit 1
+    fi
+    container_command=(podman)
+    container_runtime=podman
+    container_group_args=(--group-add=keep-groups)
 else
-    echo "Docker is unavailable for the current user on $(hostname)" >&2
+    echo "No usable Docker or Podman runtime is available on $(hostname)" >&2
     exit 1
+fi
+container_image=$image
+if [[ "$container_runtime" == podman && "$container_image" != *.*/* ]]; then
+    container_image="docker.io/$container_image"
 fi
 
 cleanup() {
-    "${docker_command[@]}" rm -f "$container" >/dev/null 2>&1 || true
+    "${container_command[@]}" rm -f "$container" >/dev/null 2>&1 || true
 }
 trap cleanup EXIT INT TERM
 
@@ -51,6 +71,7 @@ trap cleanup EXIT INT TERM
     echo "node=$(hostname)"
     echo "started_at=$(date -Is)"
     echo "image=$image"
+    echo "container_runtime=$container_runtime"
     echo "model=$model"
     echo "port=$port"
     echo "data_parallel_size=4"
@@ -59,18 +80,18 @@ trap cleanup EXIT INT TERM
 } >"$run_root/allocation.txt"
 
 rocm-smi --showproductname >"$run_root/gpus.txt" 2>&1
-if ! "${docker_command[@]}" image inspect "$image" >/dev/null 2>&1; then
-    "${docker_command[@]}" pull "$image"
+if ! "${container_command[@]}" image inspect "$container_image" >/dev/null 2>&1; then
+    "${container_command[@]}" pull "$container_image"
 fi
-"${docker_command[@]}" rm -f "$container" >/dev/null 2>&1 || true
+"${container_command[@]}" rm -f "$container" >/dev/null 2>&1 || true
 
-"${docker_command[@]}" run --detach \
+"${container_command[@]}" run --detach \
     --name "$container" \
     --network host \
     --ipc host \
     --device=/dev/kfd \
     --device=/dev/dri \
-    --group-add=video \
+    "${container_group_args[@]}" \
     --cap-add=SYS_PTRACE \
     --security-opt seccomp=unconfined \
     --volume /shared/data/home/aa3242/.cache/huggingface:/root/.cache/huggingface:ro \
@@ -80,7 +101,7 @@ fi
     --env HIP_VISIBLE_DEVICES="$visible_devices" \
     --env CUDA_VISIBLE_DEVICES="$visible_devices" \
     --entrypoint "$vllm_entrypoint" \
-    "$image" \
+    "$container_image" \
     serve \
     "$model" \
     --host 0.0.0.0 \
@@ -99,7 +120,7 @@ fi
     --trust-remote-code \
     >"$run_root/container-id.txt"
 
-"${docker_command[@]}" logs --follow "$container" >"$run_root/vllm.log" 2>&1 &
+"${container_command[@]}" logs --follow "$container" >"$run_root/vllm.log" 2>&1 &
 logger_pid=$!
 ready=0
 for _ in $(seq 1 180); do
@@ -112,10 +133,10 @@ for _ in $(seq 1 180); do
             break
         fi
     fi
-    if ! "${docker_command[@]}" inspect --format '{{.State.Running}}' "$container" \
+    if ! "${container_command[@]}" inspect --format '{{.State.Running}}' "$container" \
         2>/dev/null | grep -qx true; then
         echo "vLLM container exited during startup" >&2
-        "${docker_command[@]}" logs "$container" >&2 || true
+        "${container_command[@]}" logs "$container" >&2 || true
         exit 1
     fi
     sleep 5
@@ -148,7 +169,7 @@ echo "server ready at $base_url"
 echo "endpoint environment: $run_root/endpoint.env"
 
 while true; do
-    if ! "${docker_command[@]}" inspect --format '{{.State.Running}}' "$container" \
+    if ! "${container_command[@]}" inspect --format '{{.State.Running}}' "$container" \
         2>/dev/null | grep -qx true; then
         echo "vLLM container stopped unexpectedly" >&2
         wait "$logger_pid" || true

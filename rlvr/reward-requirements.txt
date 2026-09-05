@@ -1,0 +1,4 @@
+# Grader-only packages, installed into an isolated target directory. Do not
+# install ANTLR globally: verl's Hydra/OmegaConf stack requires version 4.9.
+antlr4-python3-runtime==4.11.*
+chardet>=5,<6

@@ -1,0 +1,29 @@
+{
+  "seed": 20260904,
+  "split_strategy": "deterministic_sha256_90_10",
+  "validation_fraction": 0.1,
+  "train_rows": 4088,
+  "validation_rows": 454,
+  "prism_ood_validation_rows": 579,
+  "prism_ood_schedule": "final_only",
+  "counts": {
+    "audited_seed_rows": 1000,
+    "seed_benchmark_failures_excluded": 330,
+    "seed_rows_kept": 670,
+    "new_rows_judged": 4520,
+    "new_rows_rejected": 648,
+    "new_rows_kept": 3872,
+    "combined_rows": 4542
+  },
+  "prism_counts": {
+    "raw": 1401,
+    "multimodal": 549,
+    "native_filtered": 19,
+    "audited_failure": 254
+  },
+  "provenance_sha256": {
+    "audit": "76d69108893f6ccb137e883d7f6cbc05ffd00d573776f54975681f4821d02701",
+    "sample": "6125ddafae1e4022cab1d619643c64ec66670b62e14bad174b934c7177c186a9",
+    "judgments": "296b5c719beb6256ace72c8262597e33686bb3cf9bbf00a1ab5e0a209af34a82"
+  }
+}

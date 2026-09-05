@@ -4,6 +4,11 @@ benchmarks/scale-physics/
 scratch/
 .DS_Store
 
+# RLVR generated data, checkpoints, logs, and W&B local state
+rlvr/data/
+rlvr/runs/
+wandb/
+
 # Generated benchmark evaluation outputs
 benchmarks/**/artifacts/
 benchmarks/**/results/
