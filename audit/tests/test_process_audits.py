@@ -8,7 +8,7 @@ import tempfile
 import unittest
 
 
-SCRIPT = Path(__file__).resolve().parents[1] / "process_audits.py"
+SCRIPT = Path(__file__).resolve().parents[1] / "scripts" / "process_audits.py"
 SPEC = importlib.util.spec_from_file_location("process_audits", SCRIPT)
 audit = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(audit)

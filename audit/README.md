@@ -3,12 +3,12 @@
 Run from the repository root after updating `audits.csv` or the overrides:
 
 ```sh
-python3 audit/process_audits.py
+python3 audit/scripts/process_audits.py
 ```
 
 The script leaves `audits.csv` and `audit-overrides.json` unchanged and regenerates
 `audit/audits_processed.csv` and `audit/conflicts.json`. It prints the number of
-problems still needing manual review. Paths default to the script's directory,
+problems still needing manual review. Paths default to the `audit/` directory,
 so it also works from other working directories. Custom paths can be supplied
 with `--input`, `--output`, `--conflicts`, and `--overrides`.
 
@@ -69,3 +69,54 @@ Run the network-free tests with:
 ```sh
 python3 -m unittest discover -s audit/tests -p 'test_*.py'
 ```
+
+## Expert review PDF
+
+Regenerate the conflicts after any audit or override updates, then build the report:
+
+```sh
+python3 audit/scripts/process_audits.py
+python3 audit/scripts/build_conflict_report.py
+```
+
+The separate report script reads `audit/conflicts.json` and includes only entries
+with `status: "unresolved"`. It writes `audit/reports/unresolved_conflicts.pdf`,
+plus `.tex` source and a `.json` companion containing all source text and a mapping
+from report question numbers (Q1, Q2, …) to dataset and source problem IDs. Question
+numbers are assigned by numeric display ID and may change as conflicts are resolved;
+use the companion JSON to match expert decisions to the correct override keys.
+
+Each problem includes its question, reference solution, model response, every
+human audit pass and note, the stored AI audit when available, scoring metadata,
+and space for the expert's final label and explanation. Records are joined to
+`audit/selected/*/responses.jsonl` by dataset and source problem ID. Missing or
+duplicate response records raise errors rather than silently omitting problems.
+An empty review queue produces a report stating that there are zero unresolved
+problems.
+
+The layout and math renderer are adapted from the original PSet disagreement
+report and are self-contained under `audit/scripts/`. Stored mathematics is
+typeset where possible. If a section contains invalid TeX, the script prints a
+notice and preserves that section as wrapped source text; the JSON companion
+lists these sections in `source_text_sections`. Failed builds leave existing
+reports intact, and temporary LaTeX files are cleaned up automatically.
+
+Python uses only the standard library. PDF generation requires `xelatex`, the
+TeX packages used by the original report, and DejaVu fonts. On Debian/Ubuntu:
+
+```sh
+sudo apt-get install texlive-xetex texlive-latex-extra fonts-dejavu-core
+```
+
+Custom paths are supported from any working directory:
+
+```sh
+python3 audit/scripts/build_conflict_report.py \
+  --conflicts audit/conflicts.json \
+  --selected-dir audit/selected \
+  --output audit/reports/unresolved_conflicts.pdf
+```
+
+The script uses the conflict statuses as supplied; it does not rerun audit
+processing or read overrides itself. The generated reports can be reproduced
+from the conflict file and selected response records.

@@ -10,7 +10,7 @@ from collections import defaultdict
 from pathlib import Path
 
 
-AUDIT_DIR = Path(__file__).resolve().parent
+AUDIT_DIR = Path(__file__).resolve().parents[1]
 DROP_COLUMNS = {
     "review_time_seconds", "review_timer_started_at",
     "review_tracking_expected_at", "reviewer_id", "assigned_at", "submitted_at",
