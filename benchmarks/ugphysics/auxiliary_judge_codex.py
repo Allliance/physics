@@ -51,6 +51,13 @@ def append_jsonl(path: Path, item: dict[str, Any], lock: threading.Lock) -> None
         handle.flush()
 
 
+def write_jsonl(path: Path, items: list[dict[str, Any]]) -> None:
+    path.write_text(
+        "".join(json.dumps(item, ensure_ascii=False) + "\n" for item in items),
+        encoding="utf-8",
+    )
+
+
 def extracted_answers(judger: Judger, text: str) -> list[str]:
     answer = judger.extract_ans(text)
     if not answer:
@@ -121,6 +128,11 @@ def judge_one(
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--run-dir", type=Path, default=DEFAULT_RUN_DIR)
+    parser.add_argument(
+        "--base-run-dir",
+        type=Path,
+        help="Preserve auxiliary judgments from an earlier run.",
+    )
     parser.add_argument("--judge-model", default="gpt-5.6-sol")
     parser.add_argument("--judge-reasoning-effort", default="high")
     parser.add_argument("--max-workers", type=int, default=8)
@@ -135,6 +147,15 @@ def main() -> int:
         raise ValueError("Sample, generations, and automatic scores do not contain identical IDs")
 
     output_path = args.run_dir / "auxiliary_judgments.jsonl"
+    if args.base_run_dir and not output_path.exists():
+        sample_ids = set(rows)
+        base_items = [
+            item
+            for item in read_jsonl(args.base_run_dir / "auxiliary_judgments.jsonl")
+            if item.get("id") in sample_ids
+        ]
+        if base_items:
+            write_jsonl(output_path, base_items)
     auxiliary = {item["id"]: item for item in read_jsonl(output_path)}
     pending = [
         rows[item_id]
@@ -144,6 +165,7 @@ def main() -> int:
     template = JUDGE_PROMPT_PATH.read_text(encoding="utf-8")
     lock = threading.Lock()
     print(f"automatic passes: {sum(x['correct'] for x in automatic.values())}; auxiliary pending: {len(pending)}", flush=True)
+    automatic_failures = sum(not item["correct"] for item in automatic.values())
     with ThreadPoolExecutor(max_workers=args.max_workers) as pool:
         futures = {
             pool.submit(
@@ -161,7 +183,11 @@ def main() -> int:
             item = future.result()
             auxiliary[item["id"]] = item
             append_jsonl(output_path, item, lock)
-            print(f"auxiliary {item['id']}: {item['correct']} ({len(auxiliary)}/70)", flush=True)
+            print(
+                f"auxiliary {item['id']}: {item['correct']} "
+                f"({len(auxiliary)}/{automatic_failures})",
+                flush=True,
+            )
 
     automatic_passes = sum(item["correct"] for item in automatic.values())
     auxiliary_passes = sum(item["correct"] for item in auxiliary.values())
