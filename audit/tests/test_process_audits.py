@@ -96,6 +96,55 @@ class ProcessAuditsTests(unittest.TestCase):
         self.assertEqual(output, rows)
         self.assertEqual(report['summary']['problems'], 2)
 
+    def test_override_takes_precedence_over_every_automatic_selection(self):
+        cases = [
+            [row(1, note='original')],
+            [row(2, note='only pass two')],
+            [row(1), row(2, note='longer')],
+            [row(1), row(2), row(3, 'GRADER_FAILURE')],
+            [row(1), row(2, 'PROBLEM_FAILURE'), row(3)],
+        ]
+        override = {'label': 'GRADER_FAILURE', 'note': 'Manual decision'}
+        for rows in cases:
+            with self.subTest(passes=[r['pass'] for r in rows]):
+                originals = [dict(r) for r in rows]
+                output, report = self.process(rows, {('test', 'q1'): override})
+                self.assertEqual(len(output), 1)
+                self.assertEqual(output[0]['label'], 'GRADER_FAILURE')
+                self.assertEqual(output[0]['note'], 'Manual decision')
+                self.assertEqual(rows, originals)
+                self.assertEqual(report['summary']['unresolved_conflicts'], 0)
+                self.assertEqual(report['summary']['resolved_conflicts'], 1)
+                self.assertEqual(report['conflicts'][0]['resolved_audit'], output[0])
+                self.assertEqual(report['conflicts'][0]['override'], override)
+                self.assertEqual(report['conflicts'][0]['audits'], rows)
+
+    def test_automatic_case_override_keeps_matching_note_or_clears_stale_note(self):
+        rows = [row(1, note='short'), row(2, note='longer original note')]
+        output, _ = self.process(rows, {('test', 'q1'): {'label': 'MODEL_FAILURE'}})
+        self.assertEqual(output, [rows[1]])
+        output, _ = self.process(rows, {('test', 'q1'): {'label': 'PROBLEM_FAILURE'}})
+        self.assertEqual(output[0]['annotation_id'], rows[0]['annotation_id'])
+        self.assertEqual(output[0]['label'], 'PROBLEM_FAILURE')
+        self.assertEqual(output[0]['note'], '')
+        output, _ = self.process(rows, {('test', 'q1'): {'label': 'MODEL_FAILURE', 'note': ''}})
+        self.assertEqual(output[0]['note'], '')
+
+    def test_override_only_affects_matching_dataset_and_existing_problem(self):
+        rows = [row(1), row(1, dataset='other')]
+        output, report = self.process(rows, {
+            ('test', 'q1'): {'label': 'PROBLEM_FAILURE'},
+            ('test', 'absent'): {'label': 'GRADER_FAILURE'},
+        })
+        self.assertEqual(output[0]['label'], 'PROBLEM_FAILURE')
+        self.assertEqual(output[1], rows[1])
+        self.assertEqual(report['summary']['problems'], 2)
+        self.assertEqual(report['summary']['resolved_conflicts'], 1)
+
+    def test_override_does_not_bypass_duplicate_pass_validation(self):
+        with self.assertRaisesRegex(ValueError, 'same pass'):
+            self.process([row(1), row(1)], {('test', 'q1'): {'label': 'PROBLEM_FAILURE'}})
+
     def test_missing_early_passes_and_duplicate_pass(self):
         output, report = self.process([row(2), row(3, 'PROBLEM_FAILURE')])
         self.assertEqual(len(output), 2)

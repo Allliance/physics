@@ -17,6 +17,8 @@ The processed CSV drops the six fields `review_time_seconds`,
 `assigned_at`, and `submitted_at`. Problems are grouped by `(dataset,
 source_problem_id)` in first-occurrence order. Selection rules:
 
+- A manual override always takes precedence, including for a lone audit,
+  agreeing passes, or disagreements already resolved by pass 3.
 - Matching pass 1 and pass 2 labels: keep the audit with the longest note.
   Pass 3 is only consulted when passes 1 and 2 disagree.
 - Disagreeing pass 1 and pass 2 labels: if pass 3 matches either label, choose
@@ -32,14 +34,16 @@ same problem and pass, or pass numbers outside 1–3, raise an error for inspect
 
 `conflicts.json` contains counts in `summary` and a `conflicts` list. Unresolved
 problems come first, followed by problems resolved through overrides. Each entry
-contains all original audits with the six excluded columns removed. Automatically
-resolved pass 3 disagreements are not manual conflicts and do not appear here.
+contains all original audits with the six excluded columns removed. Every applied
+override appears as a resolved entry, even when the passes had no unresolved
+disagreement; `summary.resolved_conflicts` counts all such overridden problems.
+Automatically resolved pass 3 disagreements without an override do not appear here.
 
 ## Manual overrides
 
-An absent or empty `audit-overrides.json` means no overrides. To resolve a
-conflict, use a JSON list with one entry per problem, copying its dataset and
-source problem ID from `conflicts.json`:
+An absent or empty `audit-overrides.json` means no overrides. To set a manual
+verdict, use a JSON list with one entry per problem, copying its dataset and
+source problem ID from `audits.csv` or `conflicts.json`:
 
 ```json
 [
@@ -53,9 +57,10 @@ source problem ID from `conflicts.json`:
 ```
 
 Allowed override labels are `PROBLEM_FAILURE`, `GRADER_FAILURE`, and
-`MODEL_FAILURE`. `note` is optional. Overrides apply only to manual conflicts.
-An entry for a problem absent from the current export or already resolved by
-the pass rules is ignored.
+`MODEL_FAILURE`. `note` is optional. Overrides always set the processed verdict
+for the matching `(dataset, source_problem_id)`, regardless of the pass labels
+or number of audits. Only entries for problems absent from the current export
+are ignored. Invalid input records still raise errors before output is written.
 
 For an override, the script selects the longest original note with the chosen
 label, using input order to break ties, then replaces its note if one is supplied.

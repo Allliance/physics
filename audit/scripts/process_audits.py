@@ -108,17 +108,17 @@ def process_audits(
         else:
             reason = "Available passes disagree, and pass 1 or pass 2 is missing."
 
-        if reason is None:
+        override = overrides.get(key)
+        if reason is None and override is None:
             output.append(clean(preferred(candidates)))
             continue
 
-        override = overrides.get(key)
         conflict = {
             "dataset": key[0],
             "source_problem_id": key[1],
             "display_id": group[0]["display_id"],
             "status": "resolved" if override else "unresolved",
-            "reason": reason,
+            "reason": reason or "Manual override applied; no unresolved pass disagreement.",
             "audits": [clean(row) for row in group],
         }
         if override:
