@@ -19,3 +19,5 @@ We audited the 98 problems GPT-5.6-Sol failed to solve in the earlier run used f
 | Grader failure | 2 (2.04%) |
 | Actual model failure | 9 (9.18%) |
 | **Total** | **98 (100%)** |
+
+Of the 115 retained questions, 104 are unaudited. The two grader-failure questions remain included; their labels apply to earlier audited responses, and current saved judgments are unchanged.

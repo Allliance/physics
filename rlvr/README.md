@@ -25,9 +25,9 @@ uv run --with pyarrow --with chardet python -m rlvr.prepare_data all
 ```
 
 Generated files live under `rlvr/data/{prism,ugphysics}/`. Rows already marked
-`benchmark_failure` in `audit/all-responses/` and PRISM multimodal rows are
+`benchmark_failure` in `audit/initial_data/all-responses/` and PRISM multimodal rows are
 excluded by default. The UGPhysics population is collected directly from
-`audit/all-responses/ugphysics/responses.jsonl`; it is not sampled from the
+`audit/initial_data/all-responses/ugphysics/responses.jsonl`; it is not sampled from the
 larger upstream corpus. `prism/train.parquet` contains every eligible PRISM
 row, and `ugphysics/validation.parquet` contains exactly 200 audited rows
 selected by a seeded SHA-256 ordering (`--seed` and `--validation-size` control

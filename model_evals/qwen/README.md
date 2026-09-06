@@ -13,7 +13,7 @@ previously mixed into `audit/`.
 - `logs/` contains Slurm logs from historical Qwen runs.
 
 The filtered evaluations intentionally read reference verdicts from
-`audit/all-responses/`. They exclude rows whose older reference verdict is
+`audit/initial_data/all-responses/`. They exclude rows whose older reference verdict is
 `benchmark_failure`, but the generated model artifacts belong here rather than
 under `audit/`.
 

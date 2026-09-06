@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Run Qwen through vLLM on audited PRISM or UGPhysics rows.
 
-Rows labelled ``benchmark_failure`` in ``audit/all-responses`` are excluded
+Rows labelled ``benchmark_failure`` in ``audit/initial_data/all-responses`` are excluded
 before generation.  Each benchmark is scored with its released deterministic
 grader, and all artifacts are resumable JSONL files.
 """
@@ -29,7 +29,7 @@ from typing import Any
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
-AUDIT_ROOT = REPO_ROOT / "audit" / "all-responses"
+AUDIT_ROOT = REPO_ROOT / "audit" / "initial_data" / "all-responses"
 SYSTEM_PROMPT = """Solve the supplied physics problem yourself without tools, files, web search, or external context.
 Think carefully in the model's private reasoning section. In the final response, give a rigorous,
 self-contained solution and obey the problem's requested answer format. Put every requested final

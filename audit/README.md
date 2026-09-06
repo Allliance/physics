@@ -1,5 +1,9 @@
 # Audit post-processing
 
+Original response exports and selection metadata live under `audit/initial_data/`.
+The current label summary is `audit/reports/audit_label_summary.md`; detailed
+review exports are generated on demand with the script below.
+
 Run from the repository root after updating `audits.csv` or the overrides:
 
 ```sh
@@ -94,7 +98,7 @@ use the companion JSON to match expert decisions to the correct override keys.
 Each problem includes its question, reference solution, model response, every
 human audit pass and note, the stored AI audit when available, scoring metadata,
 and space for the expert's final label and explanation. Records are joined to
-`audit/selected/*/responses.jsonl` by dataset and source problem ID. Missing or
+`audit/initial_data/selected/*/responses.jsonl` by dataset and source problem ID. Missing or
 duplicate response records raise errors rather than silently omitting problems.
 An empty review queue produces a report stating that there are zero unresolved
 problems.
@@ -118,7 +122,7 @@ Custom paths are supported from any working directory:
 ```sh
 python3 audit/scripts/build_conflict_report.py \
   --conflicts audit/conflicts.json \
-  --selected-dir audit/selected \
+  --selected-dir audit/initial_data/selected \
   --output audit/reports/unresolved_conflicts.pdf
 ```
 

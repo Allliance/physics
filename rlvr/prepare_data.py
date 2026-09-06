@@ -15,7 +15,7 @@ from typing import Any, Callable, Iterable
 REPO_ROOT = Path(__file__).resolve().parents[1]
 PRISM_ROOT = REPO_ROOT / "benchmarks" / "prism"
 DEFAULT_OUTPUT = REPO_ROOT / "rlvr" / "data"
-AUDIT_ROOT = REPO_ROOT / "audit" / "all-responses"
+AUDIT_ROOT = REPO_ROOT / "audit" / "initial_data" / "all-responses"
 
 PRISM_SOURCE = "physics/prism"
 UGPHYSICS_SOURCE = "physics/ugphysics"

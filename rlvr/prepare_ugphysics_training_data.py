@@ -12,7 +12,7 @@ from rlvr.prepare_data import _prism_rows, _split_exact
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_AUDIT = REPO_ROOT / "audit" / "all-responses" / "ugphysics" / "responses.jsonl"
+DEFAULT_AUDIT = REPO_ROOT / "audit" / "initial_data" / "all-responses" / "ugphysics" / "responses.jsonl"
 
 
 def _read_jsonl(path: Path) -> list[dict[str, Any]]:

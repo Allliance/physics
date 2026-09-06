@@ -200,7 +200,7 @@ def compile_pdf(tex: str, directory: Path) -> Path:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--conflicts", type=Path, default=AUDIT_DIR / "conflicts.json")
-    parser.add_argument("--selected-dir", type=Path, default=AUDIT_DIR / "selected")
+    parser.add_argument("--selected-dir", type=Path, default=AUDIT_DIR / "initial_data" / "selected")
     parser.add_argument("--output", type=Path, default=AUDIT_DIR / "reports" / "unresolved_conflicts.pdf")
     args = parser.parse_args()
     if args.output.suffix.lower() != ".pdf":

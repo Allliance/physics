@@ -60,7 +60,7 @@ def source_rows(benchmark: str) -> dict[str, dict[str, Any]]:
             }
             for item in json.loads(path.read_text(encoding="utf-8"))
         }
-    path = REPO_ROOT / "audit" / "all-responses" / benchmark / "responses.jsonl"
+    path = REPO_ROOT / "audit" / "initial_data" / "all-responses" / benchmark / "responses.jsonl"
     return {str(item["problem_id"]): item for item in read_jsonl(path)}
 
 

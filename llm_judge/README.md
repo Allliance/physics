@@ -1,7 +1,7 @@
 # LLM judge experiments
 
 `meta_evaluation_dataset.jsonl` is a deterministic sample of up to 100 eligible
-rows from each dataset in `audit/all-responses/`.
+rows from each dataset in `audit/initial_data/all-responses/`.
 
 A row is ineligible only when `AI_audit.verdict` is `benchmark_failure` or
 `problem_failure`. Rows without an `AI_audit` field remain eligible. Every
