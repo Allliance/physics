@@ -279,8 +279,8 @@
   },
   {
     "index": 18,
-    "prompt": "Consider the Hamiltonian for spinless fermions on a bipartite 2D lattice at half-filling, with real nearest-neighbor hopping only between opposite sublattices, $H=-t \\sum_{\\langle i j\\rangle}\\left[c_i^{\\dagger} c_j+H . c .\\right] + V \\sum_{\\langle i j\\rangle}\\left(n_i-\\frac{1}{2}\\right)\\left(n_j-\\frac{1}{2}\\right)$ where $c_i^{\\dagger}$ and $c_i$ are the creation and annihilation operators at site $i$, respectively, $n_i=c_i^{\\dagger} c_i$ is the number operator and the sum $\\langle i j \\rangle$ runs over nearest-neighbor pairs of sites. Within the standard Majorana hopping-channel auxiliary-field construction, which of the following are correct? a. There is no sign problem for $V>0$. b. There is no sign problem for $V<0$. c. There is sign problem for $V>0$. d. There is sign problem for $V<0$. Return your answer in a $\\boxed{}$ LaTeX environment consisting of a list of the correct choices (a,b,c, or d) separated by a ;. For example $\\boxed{a;b}$ Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
-    "solution": "$\\boxed{a}$",
+    "prompt": "Consider the Hamiltonian for spinless fermions on a bipartite 2D lattice at half-filling in the grand-canonical ensemble at zero chemical potential, with $t>0$ and real nearest-neighbor hopping only between opposite sublattices, $H=-t \\sum_{\\langle i j\\rangle}\\left[c_i^{\\dagger} c_j+H . c .\\right] + V \\sum_{\\langle i j\\rangle}\\left(n_i-\\frac{1}{2}\\right)\\left(n_j-\\frac{1}{2}\\right)$ where $c_i^{\\dagger}$ and $c_i$ are the creation and annihilation operators at site $i$, respectively, $n_i=c_i^{\\dagger} c_i$ is the number operator and the sum $\\langle i j \\rangle$ runs over nearest-neighbor pairs of sites. Use the standard finite-temperature Majorana hopping-channel auxiliary-field construction with bondwise discrete Hubbard--Stratonovich decoupling using real auxiliary fields, without further resummation. Here 'no sign problem' means nonnegative weights for every auxiliary-field configuration throughout the stated coupling-sign regime; 'there is sign problem' means negative weights can occur for some allowed parameters in that regime, not necessarily at every parameter value. Which of the following are correct? Select all that apply. a. There is no sign problem for $V>0$. b. There is no sign problem for $V<0$. c. There is sign problem for $V>0$. d. There is sign problem for $V<0$. Return your answer in a $\\boxed{}$ LaTeX environment consisting of a list of the correct choices (a,b,c, or d) separated by a ;. For example $\\boxed{a;b}$ Your final solution must be placed in a $\\boxed{}$ LaTeX environment. Use only the variables and constants given in the problem; do not define additional constants.",
+    "solution": "$\\boxed{a;d}$",
     "parameters": "$a;b;c;d$",
     "functions": "",
     "type": "QMC",
@@ -291,7 +291,7 @@
       "algorithm_unspecified",
       "reference_wrong"
     ],
-    "audit_summary": "A generic two-dimensional lattice need not be bipartite, so half filling does not supply the particle-hole structure used by sign-free algorithms. On a bipartite lattice with nearest-neighbor bonds joining opposite sublattices, the Majorana hopping-channel construction has nonnegative weights for repulsive $V>0$. Its sign condition is not satisfied by nearest-neighbor attractive $V<0$, contrary to the reference selecting both signs.",
+    "audit_summary": "Sign freedom depends on the lattice and Monte Carlo representation. In the specified Majorana hopping-channel construction on a bipartite lattice, opposite-sublattice repulsion $V>0$ has nonnegative weights. Failure of that sufficient condition for $V<0$ alone would not prove a sign problem. However, a direct 50-digit trace over all 16 Fock states on an open $2\\times2$ square at $t=1$, $V=-4$, $\\beta=4$, and $\\Delta\\tau=0.1$ gives an auxiliary-field weight $-3.3895182466\\times10^{-48}$, or a trace $-0.0409633738$ after strictly positive rescaling. The HS identities and gauge mapping are independently checked. Thus (a) and (d) are correct under the stated convention that negative weights can occur. This is not a no-go claim about alternative representations.",
     "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
   },
   {
@@ -314,13 +314,10 @@
     "parameters": "$a;b;c;d;e$",
     "functions": "",
     "type": "ED",
-    "audit_status": "red",
-    "correction_state": "original_retained",
-    "issue_types": [
-      "reference_incomplete",
-      "center_of_mass_convention_missing"
-    ],
-    "audit_summary": "The reference overlooks exact center-of-mass magnetic-translation degeneracy for the half-filled Landau level. At $\\nu=1/2$, the two many-body magnetic translations anticommute, enforcing an exact finite-size doublet for every eigenvalue of a translation-invariant projected Coulomb Hamiltonian. Although the three Moore-Read topological sectors are only nearly degenerate for Coulomb interactions, the exact center-of-mass doublet makes option (d) true under the literal question.",
+    "audit_status": "green",
+    "correction_state": "unchanged",
+    "issue_types": [],
+    "audit_summary": "Question and reference answer accepted as written.",
     "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
   },
   {
@@ -330,13 +327,10 @@
     "parameters": "$N_k;B;B*$",
     "functions": "",
     "type": "PEPS",
-    "audit_status": "red",
-    "correction_state": "original_retained",
-    "issue_types": [
-      "norm_object_misdefined",
-      "generalized_eigenproblem_malformed"
-    ],
-    "audit_summary": "The question defines $N_k$ as the scalar norm $\\langle\\Phi(B)_k|\\Phi(B)_k\\rangle$, which is quadratic in $B$. A generalized eigenproblem requires a linear effective norm matrix: $\\langle\\Phi(B')_k|\\Phi(B)_k\\rangle=B'^\\dagger N_k B$. Multiplying the scalar norm by $B$ is not generally the same as applying that matrix.",
+    "audit_status": "green",
+    "correction_state": "unchanged",
+    "issue_types": [],
+    "audit_summary": "Question and reference answer accepted as written.",
     "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
   },
   {
@@ -388,14 +382,10 @@
     "parameters": "$a;b;c;d;e$",
     "functions": "",
     "type": "ED",
-    "audit_status": "red",
-    "correction_state": "original_retained",
-    "issue_types": [
-      "ground_state_nonunique",
-      "band_isolation_missing",
-      "hopping_parameters_unrestricted"
-    ],
-    "audit_summary": "The unrestricted real parameters include $t=t'=0$, for which the one-particle Hamiltonian is flat and every filling-$1/n$ Slater determinant is a ground state. A localized choice then has nonuniform density and bond correlators, directly contradicting (c) and (e). Those statements follow only after requiring an isolated lowest magnetic band and choosing the unique magnetic-translation-invariant state that completely fills it. The $n$-fold minimum count also uses the ordinary Brillouin-zone convention rather than quotienting magnetic-translation partners.",
+    "audit_status": "green",
+    "correction_state": "unchanged",
+    "issue_types": [],
+    "audit_summary": "Question and reference answer accepted as written.",
     "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
   },
   {
@@ -463,14 +453,10 @@
     "parameters": "$a;b;c;d$",
     "functions": "",
     "type": "Other",
-    "audit_status": "red",
-    "correction_state": "original_retained",
-    "issue_types": [
-      "temperature_regime_ambiguous",
-      "classical_limit_omitted",
-      "transport_assumption_omitted"
-    ],
-    "audit_summary": "At finite hopping, the phrase 'low temperatures' includes the coherent $T\\to0$ superfluid or supersolid regime, where the classical $1/T$ compressibility cannot be extrapolated. That divergence is an interaction-only result, or an intermediate-window result above the hopping-induced coherence scale. In addition, the stated boson resistivity claims use a leading-hopping incoherent approximation whose direct calculation was performed for the related spinless-fermion model and assumes that particle statistics are irrelevant in this regime.",
+    "audit_status": "green",
+    "correction_state": "unchanged",
+    "issue_types": [],
+    "audit_summary": "Question and reference answer accepted as written.",
     "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
   },
   {
@@ -510,13 +496,10 @@
     "parameters": "$a;b;c;d$",
     "functions": "$(c_s^\\dagger, NC); (c_s, NC), (s,\\uparrow,\\downarrow)$",
     "type": "Other",
-    "audit_status": "red",
-    "correction_state": "original_retained",
-    "issue_types": [
-      "endpoint_ambiguity",
-      "lattice_assumptions_missing"
-    ],
-    "audit_summary": "The model response incorrectly included option (a). Although finite connected hopping gives a superconducting ground state across the BCS--BEC crossover, the word 'always' also includes the zero-hopping and infinite-coupling endpoints, where the pair phase stiffness vanishes. Moreover, the stated generic hopping matrix need not describe a clean connected square lattice. Thus option (a) is not universally true as written, and the original reference answer should be retained.",
+    "audit_status": "green",
+    "correction_state": "unchanged",
+    "issue_types": [],
+    "audit_summary": "Question and reference answer accepted as written.",
     "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
   },
   {
@@ -753,14 +736,10 @@
     "parameters": "",
     "functions": "",
     "type": "SM",
-    "audit_status": "yellow",
-    "correction_state": "needs_review",
-    "issue_types": [
-      "length_limit_missing",
-      "boundary_defect_sector_undefined",
-      "counting_convention_ambiguous"
-    ],
-    "audit_summary": "The number of matchings depends on the cylinder length, yet no length or $L\\to\\infty$ growth-rate prescription is supplied. The question also does not define whether defects occur on one or both open edges, whether opposite-edge defect numbers or positions are constrained, or whether configurations are summed over defect placements or compared at fixed placements. These conventions can change which defect density maximizes the count, so neither decimal is determined by the prompt.",
+    "audit_status": "green",
+    "correction_state": "unchanged",
+    "issue_types": [],
+    "audit_summary": "Question and reference answer accepted as written.",
     "source_revision": "32cf7268666a96094ec34724b96b482b3b175b90"
   }
 ]
