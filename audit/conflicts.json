@@ -4,7 +4,7 @@
     "problems": 250,
     "output_audits": 279,
     "unresolved_conflicts": 29,
-    "resolved_conflicts": 26
+    "resolved_conflicts": 27
   },
   "conflicts": [
     {
@@ -1995,6 +1995,40 @@
         "source_problem_id": "67382f8535f9616e390e73ae",
         "dataset": "hle-physics",
         "category": "quantum mechanics",
+        "pass": "1",
+        "label": "PROBLEM_FAILURE",
+        "note": ""
+      }
+    },
+    {
+      "dataset": "hle-physics",
+      "source_problem_id": "672ddd9bff7bf1483f564046",
+      "display_id": "205",
+      "status": "resolved",
+      "reason": "Manual override applied; no unresolved pass disagreement.",
+      "audits": [
+        {
+          "annotation_id": "cmtoty5fh00y7y8lcuiephe2m",
+          "display_id": "205",
+          "source_problem_id": "672ddd9bff7bf1483f564046",
+          "dataset": "hle-physics",
+          "category": "high energy & nuclear",
+          "pass": "1",
+          "label": "GRADER_FAILURE",
+          "note": ""
+        }
+      ],
+      "override": {
+        "dataset": "hle-physics",
+        "source_problem_id": "672ddd9bff7bf1483f564046",
+        "label": "PROBLEM_FAILURE"
+      },
+      "resolved_audit": {
+        "annotation_id": "cmtoty5fh00y7y8lcuiephe2m",
+        "display_id": "205",
+        "source_problem_id": "672ddd9bff7bf1483f564046",
+        "dataset": "hle-physics",
+        "category": "high energy & nuclear",
         "pass": "1",
         "label": "PROBLEM_FAILURE",
         "note": ""

@@ -2,7 +2,7 @@
 
 **440 audit records covering 250 distinct problems.** Audit records by benchmark: HLE-Physics 182, PhyBench 100, PRISM 123, UGPhysics 35.
 
-Pass breakdown: **248 first-pass**, **192 second-pass**, **0 third-pass** audits. Of the 250 problems, **190 have two audits** and **60 have one**. Manual overrides resolve **26 conflicts**, including all 18 recently reviewed HLE conflicts; **29 remain unresolved**.
+Pass breakdown: **248 first-pass**, **192 second-pass**, **0 third-pass** audits. Of the 250 problems, **190 have two audits** and **60 have one**. Manual overrides apply to **27 problems**, including all 18 recently reviewed HLE conflicts; **29 remain unresolved**.
 
 ## Labels by benchmark
 
@@ -10,13 +10,13 @@ Pass breakdown: **248 first-pass**, **192 second-pass**, **0 third-pass** audits
 
 | Benchmark | No. samples included | Problem failure rate | Grader failure rate | Model failure rate |
 |---|---:|---:|---:|---:|
-| HLE-Physics | 98 | 87.76% | 3.06% | 9.18% |
+| HLE-Physics | 98 | 88.78% | 2.04% | 9.18% |
 | PhyBench | 56 | 21.43% | 67.86% | 10.71% |
 | PRISM | 74 | 29.73% | 70.27% | 0.00% |
 | UGPhysics | 22 | 81.82% | 13.64% | 4.55% |
-| **Aggregated** | **250** | **55.20%** | **38.40%** | **6.40%** |
+| **Aggregated** | **250** | **55.60%** | **38.00%** | **6.40%** |
 
-Aggregated counts: **138 problem failures**, **96 grader failures**, **16 model failures**. Aggregate rates are weighted by sample count; percentages are rounded to two decimal places.
+Aggregated counts: **139 problem failures**, **95 grader failures**, **16 model failures**. Aggregate rates are weighted by sample count; percentages are rounded to two decimal places.
 
 ## All remaining conflicts
 
