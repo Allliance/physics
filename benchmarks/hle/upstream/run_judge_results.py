@@ -4,6 +4,7 @@ import copy
 import math
 import argparse
 import asyncio
+from pathlib import Path
 import numpy as np
 from typing import Literal
 from pydantic import BaseModel
@@ -158,7 +159,8 @@ def dump_metrics(predictions, n):
 def main(args):
     assert args.num_workers > 1, "num_workers must be 2 or greater"
 
-    output_filepath = f"judged_{os.path.basename(args.predictions)}.json"   
+    output_filepath = Path(__file__).resolve().parents[1] / "artifacts" / f"judged_{os.path.basename(args.predictions)}.json"
+    output_filepath.parent.mkdir(parents=True, exist_ok=True)
     dataset = load_dataset(args.dataset, split="test").to_dict() 
     # convert to list of json for async parallelism
     questions = [dict(zip(dataset.keys(), values)) for values in zip(*dataset.values())]

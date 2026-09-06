@@ -2,6 +2,7 @@ import os
 import json
 import argparse
 import asyncio
+from pathlib import Path
 from datasets import load_dataset
 from openai import AsyncOpenAI
 from tqdm.asyncio import tqdm_asyncio
@@ -74,7 +75,8 @@ def main(args):
     if args.max_samples:
         questions = questions[:args.max_samples]
     
-    output_filepath = f"hle_{os.path.basename(args.model)}.json"   
+    output_filepath = Path(__file__).resolve().parents[1] / "artifacts" / f"hle_{os.path.basename(args.model)}.json"
+    output_filepath.parent.mkdir(parents=True, exist_ok=True)
 
 
     # load only questions without responses

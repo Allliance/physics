@@ -1,0 +1,11 @@
+Judge whether the following [response] to [question] is correct or not based on the precise and unambiguous [correct_answer] below.
+
+[question]: {question}
+
+[response]: {response}
+
+Extract the response's final exact answer. Use "None" if there is no exact final answer.
+
+[correct_answer]: {correct_answer}
+
+Explain only whether the extracted answer matches the supplied correct answer. Mark correct as "yes" only if they match, allowing a small margin of error for numerical answers; otherwise mark it "no". Extract the response's confidence from 0 to 100, or use 100 if none is present. Set strict to true.
