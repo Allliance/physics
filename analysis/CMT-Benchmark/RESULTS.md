@@ -18,6 +18,22 @@ Tools included live web search and computation, with search encouraged. The
 model chose when to use them: web search occurred in 49/176 retained Clean
 attempts and 85/200 Original attempts.
 
+**Audit breakdown (50 problems):** 35 problems (**70%**) were marked faulty:
+29 were repaired and 6 are excluded as unrepairable.
+
+| Audit category | Meaning | Problems | Share |
+| --- | --- | ---: | ---: |
+| Clean | Problem and reference are good; no repair needed (`green`, `unchanged`). | 14 | 28% |
+| Repairable | Faulty problem or reference was corrected; the repaired version is used (`red`, `corrected`). | 29 | 58% |
+| Unrepairable | Faulty problem retained without repair and excluded (`red`, `original_retained`). | 6 | 12% |
+| Pending review | Audit classification is not finalized (`yellow`, `needs_review`). | 1 | 2% |
+| **Total** | | **50** | **100%** |
+
+Problem **49** is pending review and remains included under the current
+exclusion rule. Thus, the evaluated **44-problem Clean dataset** contains
+14 clean, 29 repaired, and 1 pending-review problem; its name does not mean
+that all 44 problems were originally fault-free.
+
 **Clean exclusions:** remove problems with both `audit_status = red` **and**
 `correction_state = original_retained`, designated faulty and not repairable.
 The following six dataset indices are excluded from all Clean metrics above:
