@@ -17,7 +17,9 @@ After role normalization, source attachments stay in supporting/ and the
 reviewed problem.tex, solution.tex and final_answer.tex files are refreshed.
 Each challenge's expert_review.txt includes all form questions and responses,
 including multiple submissions; it also refreshes with --annotations-only.
-Unchanged, checksum-verified files are reused. Old files are retained.
+When supporting-folder cleanup is enabled, uploads are downloaded again as
+needed for normalization, then removed; required TeX figures/bibliographies stay.
+Otherwise unchanged, checksum-verified source files are reused.
 Use --annotations-only to skip attachments. --dry-run checks metadata/access
 without downloading or writing files. Reference originals remain unchanged.
 """

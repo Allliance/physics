@@ -100,6 +100,16 @@ def normalize_roles(directory, records=None, dry_run=False):
 
     for number in range(71):
         folder = directory / f"{number:02d}"
+        # Cleaned challenges have canonical files only. Preserve them until fresh
+        # uploads are downloaded; this also preserves the public example (00).
+        if manifest.get("remove_supporting") and not (folder / "supporting").exists():
+            row = next(row for row in previous["challenges"] if row["challenge"] == f"{number:02d}")
+            for item in row["files"].values():
+                path = directory / item["path"]
+                if not path.is_file() or digest(path.read_bytes()) != item["sha256"]:
+                    raise ValueError(f"Canonical file was edited; review before regenerating: {path}")
+            report.append(row)
+            continue
         source_root = folder / "supporting" if (folder / "supporting").is_dir() else folder
         files = sorted(source_root.rglob("*.tex")) if source_root.exists() else []
         selected = {}
@@ -273,7 +283,9 @@ magnetic field. See solution.tex for the geometry and literature qualifications.
         report.append(row)
 
     payload = {"challenges": report, "complete_challenges": sum(not row["missing"] for row in report),
-               "canonical_files": len(plans), "source_policy": "Original submissions preserved under each challenge's supporting/ directory."}
+               "canonical_files": sum(len(row["files"]) for row in report),
+               "source_policy": previous.get("source_policy") if manifest.get("remove_supporting") else
+               "Original submissions preserved under each challenge's supporting/ directory."}
     if dry_run:
         return payload
 
@@ -283,6 +295,8 @@ magnetic field. See solution.tex for the geometry and literature qualifications.
         folder.mkdir(parents=True, exist_ok=True)
         supporting = folder / "supporting"
         if not supporting.exists():
+            if manifest.get("remove_supporting"):
+                continue
             children = [child for child in folder.iterdir() if child.name != "expert_review.txt"]
             if children:
                 supporting.mkdir()
@@ -312,6 +326,9 @@ magnetic field. See solution.tex for the geometry and literature qualifications.
     for row in report:
         writer.writerows((row["challenge"], note) for note in row["exceptions"])
     atomic_write(exceptions_path, output.getvalue().encode())
+    if manifest.get("remove_supporting"):
+        from remove_supporting import remove_supporting
+        remove_supporting(directory, payload)
     return payload
 
 
