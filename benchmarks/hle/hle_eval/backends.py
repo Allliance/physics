@@ -58,6 +58,10 @@ def parse_fable_response(response: dict, api_model: str) -> dict:
         raise ValueError("Unexpected tool use in no-tool Fable response.")
     stop = response.get("stop_reason")
     text = "\n".join(b["text"] for b in blocks if b.get("type") == "text").strip()
+    if stop == "max_tokens":
+        from .errors import GenerationLimitError
+
+        raise GenerationLimitError("Fable exhausted --max-output-tokens (stop_reason='max_tokens').")
     if stop not in {"end_turn", "refusal"}:
         raise ValueError(f"Incomplete Fable response (stop_reason={stop!r}); rerun to retry.")
     # A refusal is an evaluated outcome, never silently replaced by Opus.

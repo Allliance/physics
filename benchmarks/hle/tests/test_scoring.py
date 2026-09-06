@@ -223,6 +223,13 @@ class JudgeBackendTests(unittest.TestCase):
             with self.subTest(content=content), self.assertRaises(ValueError):
                 hle_scoring.validate_judgment(content)
 
+    def test_limit_exhaustion_scores_zero_without_model_call(self):
+        judge, client = self.fable_judge(self.message())
+        result = judge({"question": "2+2?"},
+                       {"response": "[No completed answer]", "limit_exhausted": True}, "4")
+        self.assertEqual(result["correct"], "no")
+        client.messages.stream.assert_not_called()
+
 
 if __name__ == "__main__":
     unittest.main()

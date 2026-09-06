@@ -58,6 +58,8 @@ is rejected. Reference answers are supplied only to the judge.
 | --- | --- | --- |
 | `--use-tools` | false | Enable computation and search tools for either model. |
 | `--rounds N` | 1 | Generate and judge N independent attempts for every selected question. |
+| `--round-workers N` | 1 | Overlap rounds, dividing the total `--num-workers` budget between active rounds. |
+| `--limit-policy retry` or `incorrect` | retry | Retry exhausted generation budgets, or count them as incorrect under fixed limits. |
 | `--aggregation mean` or `max` | mean | Aggregate correctness per question across rounds, then average across questions. |
 | `--exclude-ids-file FILE.json` | none | Exclude the IDs in a JSON list. `--exclude-ids` is an alias. |
 | `--include-images` | false | Include image questions as well as text-only questions. |
@@ -113,6 +115,12 @@ Write, and Edit. WebSearch and WebFetch are also enabled unless
 MCP servers, and saved conversations; only the selected question and optional
 image are supplied. Tool calls and results are saved for inspection.
 Tool-enabled runs permit tool use; the model decides whether a tool is needed.
+Sessions use `--safe-mode`: `--bare` silently restricts available tools to
+Bash, Edit, and Read in the installed CLI. Requested tool availability is
+validated against the session's initialization event, and available tools and
+auxiliary model usage are retained in predictions. Safe-mode runs require a
+new output path when resuming older tool checkpoints. Native web tools may use
+the CLI's auxiliary model to retrieve or summarize search results.
 
 `--web-search` defaults to `live` when tools are enabled, otherwise `disabled`.
 Sol also supports `cached`; Fable supports `live` or `disabled`.
@@ -163,6 +171,9 @@ The default filename contains the model, effort, category, and modality, plus
 - `run.json`, `run.round2.json`, etc.: predictions for each round, in the
   existing question-ID-keyed format.
 - `run.judged.json`, `run.round2.judged.json`, etc.: judgments for each round.
+- `run.failures.json`, `run.round2.failures.json`, etc.: pending generation
+  failures, distinguishing exhausted token/turn budgets from execution errors.
+  Successful retries clear the corresponding entries.
 - `run.summary.json`: selected aggregation, final score in [0, 1], percentage,
   both mean/max scores, per-round scores, and per-question round scores.
 - `run.run.json` and `.meta.json` sidecars: settings and input hashes used to
@@ -183,6 +194,15 @@ questions and rounds have judgments. Failures are not silently dropped from
 the denominator. A failed generation or judgment produces a nonzero exit
 status; rerunning retries the missing work. No model calls are made by
 `--list-categories`.
+
+With `--limit-policy incorrect`, token/turn exhaustion (and the total
+`--timeout` wall-clock budget or platform 32MB request-size limit for Fable tool sessions) is recorded as an
+explicit failed outcome and scored zero without a judge call. Its response
+field is labeled as a placeholder, not model-generated text. Transport and
+other execution errors still remain pending. Existing per-round limit failure
+records can be scored this way without regenerating completed answers. A run
+containing scored limit outcomes must retain this policy when resumed; use a
+new output to retry those outcomes. The summary records the policy and count.
 
 `evaluate.py` is the sole entry point for the local pipeline. The redundant
 `run_codex_predictions.py` and `run_codex_judge.py` entry points have been

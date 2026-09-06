@@ -16,6 +16,7 @@ import urllib.request
 from pathlib import Path
 
 from .backends import TOOL_PATH, make_predictor, resolve_fable_model
+from .errors import GenerationLimitError
 from .prompts import SYSTEM_PROMPT, TOOLS_SYSTEM_PROMPT
 from .scoring import aggregate_scores, judge_backend_config, judge_round, load_answers
 
@@ -41,6 +42,10 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--reasoning-effort", default="high",
                         choices=["low", "medium", "high", "xhigh", "max"])
     parser.add_argument("--num-workers", type=int, default=4)
+    parser.add_argument("--round-workers", type=int, default=1,
+                        help="Rounds to overlap, sharing the --num-workers budget (default: 1).")
+    parser.add_argument("--limit-policy", choices=["retry", "incorrect"], default="retry",
+                        help="Retry budget-exhausted attempts or score them incorrect (default: retry).")
     parser.add_argument("--max-samples", type=int)
     parser.add_argument("--timeout", type=float, default=1800.0)
     parser.add_argument("--use-tools", "--allow-tools", dest="use_tools",
@@ -70,7 +75,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     if args.judge_model is not None and args.judge_model != expected_judge:
         parser.error(f"Cross-model judging requires --judge-model {expected_judge} for {args.model}.")
     args.judge_model = expected_judge
-    if (args.num_workers < 1 or args.timeout <= 0 or
+    if (args.num_workers < 1 or args.round_workers < 1 or args.timeout <= 0 or
             (args.max_output_tokens is not None and args.max_output_tokens < 1)):
         parser.error("Workers, timeout, and output token budget must be positive.")
     if args.max_samples is not None and args.max_samples < 1:
@@ -174,6 +179,28 @@ def load_checkpoint(output: Path, manifest: dict) -> dict:
 
 def run_generation_round(args, questions: list[dict], output: Path, manifest: dict) -> dict:
     predictions = load_checkpoint(output, manifest)
+    failure_path = output.with_name(f"{output.stem}.failures{output.suffix}")
+    failure_records = json.loads(failure_path.read_text()) if failure_path.exists() else {}
+    by_id = {q["id"]: q for q in questions}
+    if not isinstance(failure_records, dict) or set(failure_records) - set(by_id):
+        raise ValueError("Failure checkpoint contains unexpected question IDs.")
+    if args.limit_policy == "retry" and any(p.get("limit_exhausted") for p in predictions.values()):
+        raise ValueError("Scored limit outcomes require --limit-policy incorrect; use a new output to retry them.")
+
+    def limit_prediction(qid, error):
+        return {"model": args.model, "backend": manifest["backend"],
+                "reasoning_effort": args.reasoning_effort, "category": by_id[qid]["category"],
+                "has_image": bool(by_id[qid].get("image")), "actual_model": None,
+                "response": "[No completed answer: configured generation limit exhausted.]",
+                "response_is_placeholder": True, "limit_exhausted": True,
+                "generation_error": error, "tool_events": []}
+
+    if args.limit_policy == "incorrect":
+        for qid, failure in failure_records.items():
+            if qid not in predictions and failure.get("limit_exhausted"):
+                predictions[qid] = limit_prediction(qid, failure["error"])
+        if predictions:
+            write_json(output, predictions)
     pending = [q for q in questions if q["id"] not in predictions]
     print(f"Selected {len(questions)} {args.category!r} rows "
           f"({sum(bool(q.get('image')) for q in questions)} with images); "
@@ -197,11 +224,22 @@ def run_generation_round(args, questions: list[dict], output: Path, manifest: di
             try:
                 question_id, prediction = future.result()
             except Exception as exc:
+                qid = futures[future]
+                failure_records[qid] = {"error": str(exc), "limit_exhausted": isinstance(exc, GenerationLimitError)}
+                write_json(failure_path, failure_records)
+                if isinstance(exc, GenerationLimitError) and args.limit_policy == "incorrect":
+                    predictions[qid] = limit_prediction(qid, str(exc))
+                    write_json(output, predictions)
+                    print(f"Recorded limit-exhausted {qid} (round {manifest['round']}) as incorrect", flush=True)
+                    continue
                 failures += 1
-                print(f"Error on {futures[future]}: {exc}", file=sys.stderr, flush=True)
+                print(f"Error on {qid} (round {manifest['round']}): {exc}", file=sys.stderr, flush=True)
                 continue
             predictions[question_id] = prediction
             write_json(output, predictions)
+            if question_id in failure_records:
+                del failure_records[question_id]
+                write_json(failure_path, failure_records)
             print(f"Saved {question_id} ({len(predictions)}/{len(questions)})", flush=True)
     print(f"Saved {len(predictions)} predictions; {failures} failed. Rerun the same command to retry failures.")
     return predictions
@@ -255,6 +293,8 @@ def main(argv: list[str] | None = None) -> int:
         "judge_model": args.judge_model, "judge_reasoning_effort": args.judge_reasoning_effort,
     }
     manifest.update(judge_backend_config(args))
+    if backend == "claude-cli":
+        manifest["claude_launch_mode"] = "safe-mode"
     if args.use_tools and backend == "codex":
         manifest["tool_environment"] = {"PATH": TOOL_PATH}
     run_config = output.with_suffix(".run.json")
@@ -271,6 +311,9 @@ def main(argv: list[str] | None = None) -> int:
     def save_summary():
         summary = aggregate_scores(manifest["question_ids"], judged_rounds, args.aggregation)
         summary.update({"model": args.model, "use_tools": args.use_tools,
+                        "generation_limit_policy": args.limit_policy,
+                        "limit_exhausted_attempts": sum(bool(p.get("limit_exhausted"))
+                                                        for r in judged_rounds for p in r.values()),
                         "include_images": args.include_images, "excluded_ids": sorted(set(excluded)),
                         "judge_model": args.judge_model,
                         "prediction_files": [str(round_path(output, r)) for r in range(1, args.rounds + 1)]})
@@ -279,13 +322,22 @@ def main(argv: list[str] | None = None) -> int:
 
     # Invalidate any old final score before starting additional/missing rounds.
     save_summary()
-    for index in range(1, args.rounds + 1):
+    active_rounds = min(args.round_workers, args.rounds, args.num_workers)
+    round_args = argparse.Namespace(**vars(args))
+    round_args.num_workers = args.num_workers // active_rounds
+
+    def evaluate_round(index):
         path = round_path(output, index)
         print(f"Round {index}/{args.rounds}", flush=True)
-        predictions = run_generation_round(args, questions, path, {**manifest, "round": index})
+        predictions = run_generation_round(round_args, questions, path, {**manifest, "round": index})
         judged_path = path.with_name(f"{path.stem}.judged{path.suffix}")
-        judged_rounds[index - 1] = judge_round(args, questions, answers, predictions, judged_path, write_json)
-        summary = save_summary()
+        return judge_round(round_args, questions, answers, predictions, judged_path, write_json)
+
+    with concurrent.futures.ThreadPoolExecutor(max_workers=active_rounds) as pool:
+        futures = {pool.submit(evaluate_round, index): index for index in range(1, args.rounds + 1)}
+        for future in concurrent.futures.as_completed(futures):
+            judged_rounds[futures[future] - 1] = future.result()
+            summary = save_summary()
     if summary["complete"]:
         print(f"Final {args.aggregation} score: {summary['final_score_percent']:.2f}% "
               f"({len(questions)} questions, {args.rounds} rounds); summary={summary_path}", flush=True)

@@ -67,6 +67,9 @@ def make_judge(args):
         )
 
     def judge(question: dict, prediction: dict, answer: str) -> dict:
+        if prediction.get("limit_exhausted"):
+            return {"correct_answer": answer, "model_answer": "None", "correct": "no",
+                    "confidence": 0, "reasoning": "The attempt exhausted its configured generation limit."}
         # Refusals are failures, never a successful match to a missing answer.
         if prediction.get("refused"):
             return {"correct_answer": answer, "model_answer": "None", "correct": "no",

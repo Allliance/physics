@@ -7,6 +7,7 @@ import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from hle_eval.claude import parse_events
+from hle_eval.errors import GenerationLimitError
 
 
 class ClaudeToolTests(unittest.TestCase):
@@ -30,6 +31,29 @@ class ClaudeToolTests(unittest.TestCase):
         for kwargs in [{"model": "claude-opus-5"}, {"subtype": "error_max_turns"}, {"stop": "max_tokens"}]:
             with self.subTest(kwargs=kwargs), self.assertRaises(ValueError):
                 parse_events(self.events(**kwargs), "gateway fable")
+
+    def test_rejects_unavailable_requested_web_tools(self):
+        init = {"type": "system", "subtype": "init", "tools": ["Bash", "Edit", "Read"]}
+        events = json.dumps(init) + "\n" + self.events()
+        with self.assertRaisesRegex(ValueError, "WebSearch"):
+            parse_events(events, "gateway fable", expected_tools=["Bash", "WebSearch"])
+
+    def test_records_available_web_tools_even_when_unused(self):
+        tools = ["Bash", "WebSearch", "WebFetch"]
+        init = {"type": "system", "subtype": "init", "tools": tools}
+        result = parse_events(json.dumps(init) + "\n" + self.events(), "gateway fable", tools)
+        self.assertEqual(result["available_tools"], tools)
+        self.assertEqual(result["tool_events"], ["Bash"])
+
+    def test_request_size_limit_is_distinct_from_transport_errors(self):
+        for message, error_type in [("Request too large (max 32MB).", GenerationLimitError),
+                                    ("Claude's response exceeded the 32768 output token maximum.", GenerationLimitError),
+                                    ("The response stopped arriving.", ValueError)]:
+            events = [json.loads(line) for line in self.events().splitlines()]
+            events[-1].update(is_error=True, subtype="error_during_execution", result=message)
+            with self.assertRaises(error_type) as caught:
+                parse_events("\n".join(json.dumps(e) for e in events), "gateway fable")
+            self.assertEqual(type(caught.exception), error_type)
 
 
 if __name__ == "__main__":

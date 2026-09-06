@@ -161,10 +161,62 @@ class CheckpointTests(unittest.TestCase):
         self.assertEqual(retry.call_count, 1)
         self.assertEqual(retry.call_args.args[0]["id"], "text2")
 
+    def test_failure_records_distinguish_limits_and_clear_on_success(self):
+        from hle_eval.errors import GenerationLimitError
+
+        def predict(q, image):
+            if q["id"] == "text":
+                raise GenerationLimitError("token budget exhausted")
+            raise RuntimeError("transport failed")
+
+        self.assertEqual(self.run_main(self.args, predict)[0], 1)
+        path = self.output.with_name("predictions.failures.json")
+        failures = json.loads(path.read_text())
+        self.assertTrue(failures["text"]["limit_exhausted"])
+        self.assertFalse(failures["text2"]["limit_exhausted"])
+        self.assertEqual(self.run_main(self.args, lambda q, image: {"response": "Answer: 4"})[0], 0)
+        self.assertEqual(json.loads(path.read_text()), {})
+
+    def test_fixed_limit_policy_reuses_failure_without_regenerating(self):
+        from hle_eval.errors import GenerationLimitError
+
+        exhausted = MagicMock(side_effect=GenerationLimitError("token budget exhausted"))
+        self.assertEqual(self.run_main(self.args, exhausted)[0], 1)
+        unused = MagicMock(side_effect=AssertionError("Retried a fixed-budget failure"))
+        self.assertEqual(self.run_main(self.args + ["--limit-policy", "incorrect"], unused)[0], 0)
+        unused.assert_not_called()
+        data = json.loads(self.output.read_text())
+        self.assertTrue(all(row["limit_exhausted"] and row["response_is_placeholder"] for row in data.values()))
+        with self.assertRaisesRegex(ValueError, "Scored limit outcomes"):
+            self.run_main(self.args, unused)
+
     def test_legacy_output_without_manifest_is_not_silently_reused(self):
         runner.write_json(self.output, {"text": {"model": "other", "response": "Answer: 4"}})
         with self.assertRaisesRegex(ValueError, "no run manifest"):
             self.run_main(self.args, MagicMock())
+
+    def test_overlapping_rounds_keep_independent_checkpoints_and_resume(self):
+        import threading
+
+        barrier = threading.Barrier(2)
+
+        def predict(question, image):
+            barrier.wait(timeout=5)
+            return {"response": "Answer: 4"}
+
+        args = self.args + ["--rounds", "2", "--round-workers", "2",
+                            "--num-workers", "2", "--max-samples", "1"]
+        self.assertEqual(self.run_main(args, predict)[0], 0)
+        for index in [1, 2]:
+            path = runner.round_path(self.output, index)
+            self.assertEqual(set(json.loads(path.read_text())), {"text"})
+            self.assertEqual(json.loads(path.with_suffix(".json.meta.json").read_text())["round"], index)
+        summary = json.loads(self.output.with_suffix(".summary.json").read_text())
+        self.assertTrue(summary["complete"])
+        self.assertEqual(summary["per_question"]["text"]["round_scores"], [1, 1])
+        unused = MagicMock(side_effect=AssertionError("Regenerated a saved attempt"))
+        self.assertEqual(self.run_main(args + ["--round-workers", "1"], unused)[0], 0)
+        unused.assert_not_called()
 
 
 if __name__ == "__main__":

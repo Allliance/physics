@@ -4,25 +4,39 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import signal
 import subprocess
 import tempfile
 
+from .errors import GenerationLimitError
 
-def parse_events(stdout: str, api_model: str) -> dict:
+
+def parse_events(stdout: str, api_model: str, expected_tools: list[str] | None = None) -> dict:
     events = [json.loads(line) for line in stdout.splitlines() if line.strip()]
     results = [e for e in events if e.get("type") == "result"]
     if not results:
         raise ValueError("Claude CLI returned no completion result.")
     result = results[-1]
+    if result.get("subtype") == "error_max_turns":
+        raise GenerationLimitError("Claude CLI exhausted --max-tool-turns (error_max_turns).")
     if result.get("is_error") or result.get("subtype") != "success":
+        if re.search(r"response exceeded the \d+ output token maximum", str(result.get("result", ""))):
+            raise GenerationLimitError("Claude CLI exhausted --max-output-tokens (output token maximum).")
+        if "Request too large (max 32MB)" in str(result.get("result", "")):
+            raise GenerationLimitError("Claude CLI exceeded the platform's 32MB request-size limit.")
         raise ValueError(f"Claude CLI failed: {result.get('result', result.get('subtype'))}")
+    available_tools = next((e.get("tools", []) for e in events
+                            if e.get("type") == "system" and e.get("subtype") == "init"), [])
+    missing_tools = set(expected_tools or []) - set(available_tools)
+    if missing_tools:
+        raise ValueError(f"Claude CLI did not expose requested tools: {sorted(missing_tools)}")
     assistants = [e["message"] for e in events if e.get("type") == "assistant"]
     models = {m.get("model") for m in assistants}
     if not models or not models <= {api_model, "claude-fable-5"}:
         raise ValueError(f"Expected Fable 5; Claude CLI used {sorted(str(m) for m in models)}.")
     if any(m.get("stop_reason") == "max_tokens" for m in assistants):
-        raise ValueError("Claude CLI returned a truncated response.")
+        raise GenerationLimitError("Claude CLI exhausted --max-output-tokens (max_tokens).")
     text = result.get("result", "").strip()
     if not text:
         raise ValueError("Claude CLI returned no answer text.")
@@ -34,19 +48,22 @@ def parse_events(stdout: str, api_model: str) -> dict:
             "attempts": 1, "stop_reason": result.get("stop_reason"),
             "refused": any(m.get("stop_reason") == "refusal" for m in assistants),
             "tool_events": [b["name"] for b in calls], "tool_calls": calls,
-            "tool_results": tool_results, "num_turns": result.get("num_turns")}
+            "tool_results": tool_results, "num_turns": result.get("num_turns"),
+            "available_tools": available_tools, "model_usage": result.get("modelUsage", {})}
 
 
 def make_predictor(args, api_model: str, system_prompt: str, image_block):
     def predict(question, image):
         env = os.environ.copy()
-        # --bare uses explicit API credentials and skips user hooks/memory/plugins.
+        # --bare restricts tools to Bash/Edit/Read, even with explicit --tools.
+        # Safe mode disables customizations while retaining built-in web tools.
         key = env.get("ANTHROPIC_AUTH_TOKEN") or env.get("ANTHROPIC_API_KEY") or env.get("CLAUDE_API_KEY")
         if not key:
             raise ValueError("Fable tools require Anthropic API/gateway credentials.")
         env["ANTHROPIC_API_KEY"] = key
         env["CLAUDE_CODE_MAX_OUTPUT_TOKENS"] = str(args.max_output_tokens)
         env.pop("CLAUDECODE", None)
+        env.pop("CLAUDE_CODE_SIMPLE", None)
         tools = ["Bash", "Read", "Write", "Edit"]
         if args.web_search == "live":
             tools += ["WebSearch", "WebFetch"]
@@ -55,7 +72,7 @@ def make_predictor(args, api_model: str, system_prompt: str, image_block):
         settings = {"modelOverrides": {"claude-fable-5": api_model},
                     "env": {"ANTHROPIC_DEFAULT_FABLE_MODEL": api_model}}
         command = [
-            args.claude_bin, "--bare", "-p", "--model", api_model,
+            args.claude_bin, "--safe-mode", "-p", "--model", api_model,
             "--effort", args.reasoning_effort, "--max-turns", str(args.max_tool_turns),
             "--system-prompt", system_prompt, "--input-format", "stream-json",
             "--output-format", "stream-json", "--verbose", "--no-session-persistence",
@@ -73,11 +90,11 @@ def make_predictor(args, api_model: str, system_prompt: str, image_block):
             except subprocess.TimeoutExpired:
                 os.killpg(process.pid, signal.SIGKILL)
                 process.communicate()
-                raise TimeoutError("Fable tool session exceeded --timeout.") from None
+                raise GenerationLimitError("Fable tool session exhausted the --timeout wall-clock budget.") from None
         if process.returncode:
             # Parse the structured error first; stderr alone can omit API errors.
             if stdout.strip():
                 parse_events(stdout, api_model)
             raise ValueError(f"Claude CLI exited {process.returncode}: {stderr[-2000:]}")
-        return parse_events(stdout, api_model)
+        return parse_events(stdout, api_model, expected_tools=tools)
     return predict
