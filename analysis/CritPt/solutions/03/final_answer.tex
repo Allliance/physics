@@ -1,0 +1,32 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,xcolor,geometry,hyperref,booktabs}
+\geometry{margin=1in}
+\newcommand{\chg}[1]{\textcolor{blue}{#1}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\arctanh}{\operatorname{arctanh}}
+\newcommand{\arccosh}{\operatorname{arccosh}}
+\newcommand{\Pf}{\operatorname{Pf}}
+\title{Challenge 3: Geodesic in AdS/BCFT of a black hole \\ \large Solution (independent derivation)}
+\date{}
+\title{Challenge 03: Final answer}
+\author{}
+\begin{document}
+\maketitle
+\begin{equation}
+\langle\mathcal O(x)\rangle\;\simeq\;\mathcal N_{\mathcal O}\,e^{-m L_{\rm ren}},
+\label{eq:wkb}
+\end{equation}
+\section{Renormalisation and result}
+Near the boundary $ds^2\simeq r^2d\tau_E^2+dr^2/r^2$, so $z=1/r$ is the Fefferman--Graham coordinate and the cutoff is $r_\epsilon=1/\epsilon$. Using $\arccosh(r_\epsilon/r_0)=\ln(2r_\epsilon/r_0)+O(r_\epsilon^{-2})$ and subtracting the universal divergence $\ln(1/\epsilon)=\ln r_\epsilon$,
+\begin{equation}
+L_{\rm ren}=\ln\frac{2}{r_0}+\arctanh\eta=\ln\frac{2}{r_0}+\frac12\ln\frac{1+\eta}{1-\eta}.
+\end{equation}
+Inserting into (\ref{eq:wkb}),
+\begin{equation}
+\boxed{\;\langle\mathcal O(x)\rangle\;\simeq\;\mathcal N_{\mathcal O}\Big(\frac{r_0}{2}\Big)^{m}e^{-m\arctanh\eta}
+=\mathcal N_{\mathcal O}\Big(\frac{r_0}{2}\Big)^{m}\Big(\frac{1-\eta}{1+\eta}\Big)^{m/2}
+=\mathcal N_{\mathcal O}\Big(\frac{\pi}{\beta}\Big)^{m}\Big(\frac{1-\eta}{1+\eta}\Big)^{m/2}\;}
+\end{equation}
+The result is independent of the position $x$ (i.e.\ of $\phi$) by rotational symmetry. Its dependence on the data is: a power law $r_0^{m}$ in the horizon radius (equivalently $T^{m}$ in the temperature, $T=r_0/2\pi$), and a suppression $\big(\frac{1-\eta}{1+\eta}\big)^{m/2}=e^{-m\arctanh\eta}$ in the tension, which decreases monotonically from $1$ at $\eta\to0$ to $0$ at $\eta\to1^-$ (the brane recedes to infinity). The mass enters only through the exponent, $e^{-mL_{\rm ren}}$; beyond leading WKB order one should replace $m\to\Delta=1+\sqrt{1+m^2}\simeq m$.
+\end{document}

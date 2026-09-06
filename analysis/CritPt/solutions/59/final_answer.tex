@@ -1,0 +1,93 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=0.82in]{geometry}
+\usepackage{amsmath,amssymb,bm}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{booktabs}
+
+\newcommand{\e}{\epsilon}
+\newcommand{\ii}{\mathrm{i}}
+\newcommand{\bG}{\mathbf{G}}
+\newcommand{\bQ}{\mathbf{Q}}
+\newcommand{\bK}{\mathbf{K}}
+\newcommand{\bk}{\mathbf{k}}
+\newcommand{\br}{\mathbf{r}}
+\newcommand{\bu}{\mathbf{u}}
+\newcommand{\cO}{\mathcal{O}}
+
+\title{\vspace{-1.2cm}Charge-Density-Wave Diffraction from a Commensurate Supercell}
+\author{}
+\date{}
+
+\title{Challenge 59: Final answer}
+\author{}
+\begin{document}
+\maketitle
+Thus
+\begin{equation}
+    F(\bk)=F_0(\bk)+F_1(\bk)+\cO(\e^2),
+\end{equation}
+with
+\begin{align}
+F_0(\bk)
+&=f\sum_{j=0}^{M-1}e^{\ii k_xja},\\
+F_1(\bk)
+&=\ii f(\bk\cdot\bm{\e})
+  \sum_{j=0}^{M-1}e^{\ii k_xja}
+  \sin\!\left(\frac{2\pi j}{M}\right).
+\end{align}
+
+Index the supercell reciprocal points along $x$ by
+\begin{equation}
+    k_x=\frac{2\pi}{Ma}n_x.
+\end{equation}
+Then
+\begin{equation}
+F_0=f\sum_{j=0}^{M-1}e^{\ii2\pi n_xj/M}
+=
+\begin{cases}
+Mf,&n_x=0\pmod M,\\
+0,&\text{otherwise}.
+\end{cases}
+\end{equation}
+Hence the ordinary cubic Bragg peaks occur at $n_x=mM$; in the lowest nonzero zone the parent peak is $n_x=M$.
+
+
+Around the parent peak $n_x=M$, the only first-order CDW satellites are therefore
+\begin{equation}
+    \boxed{n_x=M-1\quad\text{and}\quad n_x=M+1},
+\end{equation}
+or equivalently
+\begin{equation}
+    \boxed{\bk=\bG-\bQ\quad\text{and}\quad\bk=\bG+\bQ}.
+\end{equation}
+
+Their structure factors are
+\begin{equation}
+    \boxed{
+    F(\bG-\bQ)
+    \simeq
+    +\frac{Mf}{2}(\bk\cdot\bm{\e})
+    },
+\end{equation}
+\begin{equation}
+    \boxed{
+    F(\bG+\bQ)
+    \simeq
+    -\frac{Mf}{2}(\bk\cdot\bm{\e})
+    },
+\end{equation}
+up to the global Fourier-sign convention. Since $\bm{\e}\parallel\hat{\mathbf{x}}$,
+\begin{equation}
+    \bk\cdot\bm{\e}=k_x\e.
+\end{equation}
+Consequently the leading satellite intensity is
+\begin{equation}
+    \boxed{I_{\pm Q}\propto |F_1|^2\propto(\bk\cdot\bm{\e})^2\propto\e^2.}
+\end{equation}
+
+So the $M$-site supercell sum cancels all new reciprocal points to first order except the two roots-of-unity conditions $n_x=M\pm1$, giving the CDW satellites $\bG\pm\bQ$ with amplitude $\pm(Mf/2)(\bk\cdot\bm{\e})$ and intensity proportional to $\e^2$.
+\end{document}

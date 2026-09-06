@@ -1,0 +1,56 @@
+Expert review — Challenge 05
+Form submissions: 1
+
+========================================================================
+Submission 1 (annotations.csv row 4)
+========================================================================
+
+Question: Timestamp
+Answer:
+8/21/2026 19:13:42
+
+Question: Email Address
+Answer:
+kangle.cai@yale.edu
+
+Question: Enter the challenge ID you are contributing to (a number between 1 and 70)
+Answer:
+5
+
+Question: What did you do for this challenge? Select all that apply
+Answer:
+Checked the challenge for well-definedness and technical correctness, Solved from scratch, Verified the existing solution
+
+Question: Is the challenge well-defined and technically correct? If not, please specify the issue in "Other"
+Answer:
+Yes
+
+Question: Solution review notes
+Answer:
+1. This question is more mathematical than physical. Although the Marchenko–Pastur distribution originates in random-matrix theory and has many applications in physics, the task itself is the evaluation of a parameter derivative of a hypergeometric function.
+
+2. The problem is standard in the literature, and the same logarithmic moment can be found in multiple references. In particular, it is treated in the Mathematics Stack Exchange discussion [*Integration over the Marchenko-Pastur distribution*](https://math.stackexchange.com/questions/2250884/integration-over-the-marchenko-pastur-distribution), where the hypergeometric differential equation is used.
+
+3. The presented final answer has been verified to be correct. The step-by-step solution has also been checked and is mathematically correct. Its path is logically direct: it applies Euler's integral representation, differentiates under the integral sign, and evaluates the resulting logarithmic integral. However, this route is long and requires a substantial amount of algebra and integral computation.
+
+4. There is a shorter derivation. A quadratic transformation simplifies the target function to
+\[
+   f(n,\alpha)={}_2F_1(1-n,-n;2;\alpha).
+\]
+Its Gauss series can be differentiated termwise, and the resulting elementary series can be summed directly. I therefore provide this approach as an alternative solution. One could instead adopt the differential-equation route described in the Mathematics Stack Exchange answer, provided that the commutation of the \(n\)- and \(\alpha\)-derivatives is justified.
+
+Question: File uploads
+Answer:
+https://drive.google.com/open?id=1xHfJEa7-6vqq_yRPZQje5iTRHwUS1T2s, https://drive.google.com/open?id=1RbuGo_DFjkrlIp9u-9E1YYUhl9loQ7KN
+
+Question: Level of confidence
+Answer:
+3: high confidence (thoroughly checked)
+
+Question: If you selected “1: low confidence,” you must briefly explain why.
+Answer:
+[No answer provided]
+
+Question: Attestation
+Answer:
+I agree to the attestation above.

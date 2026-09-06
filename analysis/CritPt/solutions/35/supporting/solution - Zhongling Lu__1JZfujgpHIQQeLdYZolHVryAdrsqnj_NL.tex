@@ -1,0 +1,116 @@
+\subsubsection*{Solution}
+\paragraph*{Symmetry-compatible Hamiltonians}
+
+Write the Hermitian ansatz as
+
+\[
+H=\sum_{\alpha=1}^{225}c_\alpha P_\alpha,
+\qquad c_\alpha\in\mathbb R,
+\]
+
+where the $P_\alpha$ are the listed Pauli strings. Introduce the
+Jordan--Wigner Majoranas $a_r=A_r$ and $b_r=B_r$. They satisfy
+
+\[
+\{a_r,a_s\}=\{b_r,b_s\}=2\delta_{rs},
+\qquad \{a_r,b_s\}=0.
+\]
+
+Reducing $[H,O_1]=[H,O_2]=0$ with the Pauli algebra gives a
+13-dimensional real null space. A convenient basis consists of
+
+\[
+K_r=\sech(1)(Z_r+Z_{r+1})+X_rX_{r+1}+Y_rY_{r+1}
+-\tanh(1)(X_rY_{r+1}+Y_rX_{r+1}),
+\]
+
+for $r=0,\ldots,10$, together with
+
+\[
+L_X=X_{10}Z_{11}-\cosh(1)X_{11}-\sinh(1)Y_{11},
+\]
+
+\[
+L_Y=Y_{10}Z_{11}-\sinh(1)X_{11}-\cosh(1)Y_{11}.
+\]
+
+Hence every symmetry-compatible Hamiltonian in the prescribed ansatz is
+
+\[
+H=\sum_{r=0}^{10}J_rK_r+\lambda_XL_X+\lambda_YL_Y.
+\]
+
+The required normalization fixes $J_0=1$, because the coefficient of
+$Y_0Y_1$ in $K_0$ is one.
+
+\paragraph*{Use of the partial amplitudes}
+
+Although the table does not give all $4096$ amplitudes, it contains exactly
+the amplitudes needed to evaluate the eigenvalue equation on the 20 rows
+$b=0,\ldots,19$. For any listed one- or two-site Pauli string $P_\alpha$,
+
+\[
+\langle b|P_\alpha|\psi\rangle
+=\eta_\alpha(b)\,\psi_{b\mathbin{\mathrm{xor}}m_\alpha},
+\]
+
+where $m_\alpha$ flips the bits acted on by $X$ or $Y$, and
+$\eta_\alpha(b)\in\{\pm1,\pm i\}$. Every required amplitude on the right is
+present in the supplied table for each of these 20 rows. Site 0 is the
+leftmost, most-significant bit of the displayed 12-bit strings.
+
+Substitution into
+
+\[
+\langle b|(H-E)|\psi\rangle=0,
+\qquad b=0,\ldots,19,
+\]
+
+therefore gives 20 complex linear equations for the 13 remaining real
+unknowns $J_1,\ldots,J_{10},\lambda_X,\lambda_Y,E$. The real system has full
+column rank 13, so the requested normalized Hamiltonian is uniquely fixed by
+the partial data.
+
+An unrestricted least-squares solve gives
+
+\[
+\lambda_X=-7.2\times10^{-9},
+\qquad
+\lambda_Y=2.5\times10^{-8},
+\]
+
+which are numerical reconstruction noise. Setting these coefficients to zero
+and refitting gives
+
+\[
+\begin{aligned}
+(J_0,\ldots,J_5)&=(1.0000000000,\ 0.9386591485,\ 1.0027396990,\
+1.1141144481,\ 0.9800671234,\ 0.9479031767),\\
+(J_6,\ldots,J_{10})&=(0.8625373142,\ 1.0476183427,\ 1.1166616336,\
+1.0616533227,\ 1.0569949950).
+\end{aligned}
+\]
+
+The fitted eigenvalue is $E=0.9980670429$. On the 20 closed rows, the
+Euclidean residual is $2.53\times10^{-7}$ and the largest complex row residual
+is $1.33\times10^{-7}$, consistent with the numerical precision of the
+supplied state.
+
+\paragraph*{Expansion in the requested order}
+
+The 225-vector returned by \texttt{answer.py} is the direct expansion of the
+Hamiltonian above. Explicitly, its only nonzero entries are
+
+\[
+\begin{aligned}
+c(Z_0)&=\sech(1)J_0,\\
+c(Z_r)&=\sech(1)(J_{r-1}+J_r), &&1\le r\le10,\\
+c(Z_{11})&=\sech(1)J_{10},\\
+c(X_rX_{r+1})=c(Y_rY_{r+1})&=J_r, &&0\le r\le10,\\
+c(X_rY_{r+1})=c(Y_rX_{r+1})&=-\tanh(1)J_r, &&0\le r\le10.
+\end{aligned}
+\]
+
+All other one-site, adjacent-pair, and distance-two coefficients vanish.
+Because every $K_r$ commutes with both symmetries, the two requested normalized
+commutator norms are zero in exact arithmetic.

@@ -1,0 +1,13 @@
+\subsection[Challenge 17: Zero temperature entropy in Sachdev-Ye-Kitaev models]{Challenge 17: Zero temperature entropy in Sachdev-Ye-Kitaev models}
+\textbf{Problem ID:} \texttt{Challenge\_17\_main}\\
+\textbf{Primary inferred discipline:} High Energy \& Nuclear Physics\\
+\textbf{Secondary inferred disciplines:} Condensed Matter Physics, Mathematical Physics\\
+\textbf{Python implementation:} \texttt{challenges/17/answer.py}
+
+\subsubsection*{Problem}
+\paragraph*{Problem setup}
+Consider the following Hamiltonian: $H=-\frac{1}{2}\sum_{a=1}^N\sum_{i,j,k,l=1}^N C_{ij}^a C_{kl}^a\chi_i\chi_j\chi_k\chi_l$, where $\chi$ are Majorana fermions and $N^2\langle C_{ij}^a C_{kl}^b\rangle=J\delta_{ab}(\delta_{ik}\delta_{jl}-\delta_{il}\delta_{jk})$. Consider the large $N$ limit. Define the zero-temperature entropy as $S= - \lim_{T\to 0}\frac{\partial F}{\partial T}$, where $F$ is the free energy of the system.
+
+\paragraph*{Main problem}
+
+Calculate the numerical value of $S/N$ to four decimal places.

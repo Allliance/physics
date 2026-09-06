@@ -1,0 +1,18 @@
+\subsection[Challenge 68: Quantum f-divergence]{Challenge 68: Quantum $f$-divergence}
+\textbf{Problem ID:} \texttt{Challenge\_68\_main}\\
+\textbf{Primary inferred discipline:} Quantum Information, Science \& Technology\\
+\textbf{Secondary inferred disciplines:} Mathematical Physics\\
+\textbf{Python implementation:} \texttt{challenges/68/answer.py}
+
+\subsubsection*{Problem}
+\paragraph*{Problem setup}
+
+Let $\rho$ and $\sigma$ be density operators on a finite-dimensional Hilbert space, and assume that $\sigma>0$. The quantum $f$-divergence is defined by 
+\begin{align*}
+    D^{\mathrm{std}}_f(\rho \|\sigma) =  \int_0^\infty \mathrm{tr}\bigl[ (\rho - \sigma) \frac{1}{L_\rho + s R_\sigma}(\rho-\sigma) \bigr] d\mu(s),
+\end{align*}
+where $\mu$ is a positive measure on $(0,\infty)$ such that $\int_0^\infty \frac{1}{1+s} d\mu(s) < \infty$. We study the derivatives of the $f$-divergence. Let $\rho_t = \sigma + t(\rho - \sigma)$.
+
+\paragraph*{Main problem}
+
+Calculate $\frac{d}{dt} D^{\mathrm{std}}_f(\rho_t \|\sigma)$ at $t = 0.5$. Please be as accurate as possible.

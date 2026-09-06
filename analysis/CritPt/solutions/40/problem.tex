@@ -1,0 +1,66 @@
+\subsection[Challenge 40: Hydrodynamic modes in Schwinger-Keldysh]{Challenge 40: Hydrodynamic modes in Schwinger-Keldysh}
+\textbf{Problem ID:} \texttt{Challenge\_40\_main}\\
+\textbf{Primary inferred discipline:} Statistical Physics \& Thermodynamics\\
+\textbf{Secondary inferred disciplines:} Condensed Matter Physics\\
+\textbf{Python implementation:} \texttt{challenges/40/answer.py}
+
+\subsubsection*{Problem}
+
+\begin{quote}
+\color{blue}
+\textbf{Reviewer clarification.}
+The original symmetry-breaking pattern does not by itself determine a unique
+infrared theory: different choices of local multipole densities and Goldstone
+fields can produce different spectra. The additions in blue specify the
+minimal one-dimensional quadrupole analogue of the dipole-condensate
+hydrodynamics discussed by
+\href{https://arxiv.org/abs/2303.09573}{Stahl et al.}; the non-uniqueness of
+Goldstone realizations for partial multipole breaking is discussed by
+\href{https://arxiv.org/abs/2111.08041}{Stahl, Lake, and Nandkishore}.
+\end{quote}
+
+\paragraph*{Problem setup}
+Effective field theory is a powerful tool used to construct phenomenological
+models via symmetries. The method has recently been extended to dissipative
+systems via the Schwinger-Keldysh formalism. In this problem we will study the
+dissipative effective field theory associated to spontaneous symmetry breaking
+of multipolar $U(1)$ symmetries.
+
+{\color{blue}
+Consider a $1d$ system with a conserved charge
+\[
+N=\int_{-\infty}^{\infty}\mathrm{d}x\,\rho(t,x),
+\]
+a conserved dipole moment
+\[
+D=\int_{-\infty}^{\infty}\mathrm{d}x\,x\rho(t,x),
+\]
+and a conserved quadrupole moment
+\[
+Q=\int_{-\infty}^{\infty}\mathrm{d}x\,x^2\rho(t,x).
+\]
+Assume that these are the only conserved quantities in the system.
+}
+
+Suppose that the quadrupole $Q$ generator is spontaneously broken, and the
+charge $N$ and dipole $D$ generators are unbroken.
+
+{\color{blue}
+Work to linear order about a homogeneous equilibrium state at fixed
+temperature. Write $n=\delta\rho$ for a localized density fluctuation and let
+$\mu$ be its conjugate chemical potential. Let $\theta$ be the Goldstone field
+associated with the broken quadrupole symmetry. Take $n$ and $\theta$ to be the
+only independent hydrodynamic fields.
+
+Let $\chi$ be the charge susceptibility and $\kappa$ the quadrupole superfluid
+stiffness. Let $\sigma$ be the Onsager coefficient in the rank-two current
+$J^{(2)}$ associated with Goldstone relaxation; assume that the rank-three
+current $J^{(3)}$ has no independent dissipative contribution. You may assume
+all other EFT coefficients are zero.
+}
+
+\paragraph*{Main problem}
+
+Compute the spectrum of hydrodynamic modes $\omega(k)$.
+
+Express your answer in terms of $\chi$, $\kappa$, and $\sigma$.

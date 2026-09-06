@@ -1,0 +1,67 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage[colorlinks=true,linkcolor=blue!55!black,citecolor=blue!55!black,
+            urlcolor=blue!55!black]{hyperref}
+
+\newcommand{\ket}[1]{\lvert #1\rangle}
+\newcommand{\bra}[1]{\langle #1\rvert}
+\newcommand{\ketbra}[2]{\lvert #1\rangle\langle #2\rvert}
+\newcommand{\rhoc}{\hat\rho_{c}}
+\newcommand{\ii}{\mathrm{i}}
+\newcommand{\ee}{\mathrm{e}}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\Had}{\circ}
+
+\title{\bfseries Challenge 39: Alteration of cavity field coherences\\[2pt]
+\large Steady-state cavity coherences $\bra{n'}\hat\rho_{c,\rm ss}\ket{n}$,
+with a squeezed-input bonus}
+\author{}
+\date{}
+
+\title{Challenge 39: Problem}
+\author{}
+\begin{document}
+\maketitle
+\section{Statement}
+
+A three-level atom with ground states $\ket b,\ket d$ and excited state $\ket e$
+sits in a lossless cavity resonant with the bright transition
+$\ket b\!\leftrightarrow\!\ket e$.  With $\hbar=1$,
+\begin{equation}
+  \hat H=\frac{g}{2}\left(\ketbra{b}{e}\hat a^{\dagger}
+                         +\ketbra{e}{b}\hat a\right),
+  \qquad
+  \hat J=\sqrt{\gamma}\,\ketbra{d}{e},
+  \qquad
+  \dot{\hat\rho}=-\ii[\hat H,\hat\rho]
+  +\hat J\hat\rho\hat J^{\dagger}
+  -\tfrac12\{\hat J^{\dagger}\hat J,\hat\rho\},
+  \label{eq:me}
+\end{equation}
+and $\hat\rho_0=\ketbra{b}{b}\otimes\ketbra{\alpha}{\alpha}$.  We want
+$\bra{n'}\hat\rho_{c,\rm ss}\ket{n}$.
+
+\begin{tcolorbox}[colback=red!5,colframe=red!55!black,
+  title=\textbf{Careful: $\mathcal L\hat\rho=0$ does not determine the answer}]
+The Liouvillian of Eq.~\eqref{eq:me} has a massively degenerate kernel: every
+$\ketbra{d}{d}\otimes\hat\sigma$ with arbitrary cavity state $\hat\sigma$ is
+stationary, and so is $\ketbra{b,0}{b,0}$.  Setting the left-hand side to zero
+therefore gives a family of solutions, and the physical steady state is
+selected by the \emph{initial condition}.  The clean way to impose ``LHS
+$=0$'' is to integrate Eq.~\eqref{eq:me} over all time,
+\begin{equation}
+  \int_0^{\infty}\!\dd t\,\dot{\hat\rho}=\hat\rho(\infty)-\hat\rho(0),
+  \label{eq:integrate}
+\end{equation}
+which turns the equations of motion into an \emph{algebraic} linear system for
+the time integrals $\hat M_{xy}=\int_0^{\infty}\hat\rho_{xy}(t)\,\dd t$.  That
+is the derivation below.  (In the same vein, \texttt{qutip.steadystate()}
+returns an arbitrary kernel element here and must not be used --- the numerics
+in the accompanying detailed solution propagate to long times instead.)
+\end{tcolorbox}
+\end{document}

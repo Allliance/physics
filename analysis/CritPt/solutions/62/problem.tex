@@ -1,0 +1,93 @@
+\subsection[Challenge 62: Quantum games in multi-slit interference]{Challenge 62: Quantum games in multi-slit interference}
+\textbf{Problem ID:} \texttt{Challenge\_62\_main}\\
+\textbf{Primary inferred discipline:} Quantum Information, Science \& Technology\\
+\textbf{Python implementation:} \texttt{challenges/62/answer.py}
+
+\subsubsection*{Problem}
+\paragraph*{Problem setup}
+The quantum superposition of a single particle can be demonstrated by the
+interference pattern in a double-slit experiment. Although quantum mechanics
+has no genuine third-order interference, an $N$-path experiment can still
+reveal nonclassical correlations through a violation of the following
+inequality:
+
+\[
+p(0\mid \mathbf{0})
++ \sum_{i=1}^N p(1\mid \mathbf{a}^{(i)}) \leq N.
+\]
+
+Here $\mathbf{0}=(0,\ldots,0)$,
+$\mathbf{a}^{(i)}=(0,\ldots,0,1,0,\ldots,0)$ has its only nonzero entry in
+position $i$, and $p(b\mid\mathbf{a})$ is the probability of obtaining output
+$b\in\{0,1\}$ when the parties receive the input string
+$\mathbf{a}=(a_1,\ldots,a_N)\in\{0,1\}^N$. A classical model that permits
+interference among at most $N-1$ paths cannot violate this inequality.
+
+A single particle is coherently delocalized over $N$ orthogonal paths in the
+state
+
+\[
+|\Psi_N\rangle=\frac{1}{\sqrt{N}}\sum_{i=1}^N|e_i\rangle,
+\qquad
+|e_i\rangle
+=|0\rangle_{A_1}\cdots|1\rangle_{A_i}\cdots|0\rangle_{A_N}.
+\]
+
+Party $i$ encodes its input $a_i$ by applying the local phase gate
+
+\[
+U_i\!\left(\phi_i(a_i)\right)
+=|0\rangle\!\langle0|_{A_i}
++e^{i\phi_i(a_i)}|1\rangle\!\langle1|_{A_i}.
+\]
+
+Thus, with
+$U_{\mathbf a}=\bigotimes_{i=1}^N U_i\!\left(\phi_i(a_i)\right)$, the encoded
+state is
+
+\[
+\sigma_{\mathbf a}
+=U_{\mathbf a}|\Psi_N\rangle\!\langle\Psi_N|U_{\mathbf a}^{\dagger}.
+\]
+
+For a chosen encoding, the receiver uses one fixed binary positive-operator
+valued measure (POVM) $\{\Pi_0,\Pi_1\}$ for all input strings, where
+$\Pi_0,\Pi_1\succeq0$ and $\Pi_0+\Pi_1=I$. The conditional probabilities are
+
+\[
+p(b\mid\mathbf a)=\operatorname{Tr}(\Pi_b\sigma_{\mathbf a}).
+\]
+
+Consider the following encoding for an odd number of paths,
+$N=2k+1$. For every $i$, set $\phi_i(0)=0$, and set
+
+\[
+\phi_i(1)=
+\begin{cases}
+\phi, & 1\leq i\leq k,\\
+\pi, & i=k+1,\\
+-\phi, & k+2\leq i\leq 2k+1,
+\end{cases}
+\qquad 0\leq\phi\leq\pi.
+\]
+
+For fixed $k$ and $\phi$, define the violation by optimizing
+over the receiver's binary POVM:
+
+\[
+\delta
+=\max_{\Pi_0,\Pi_1}
+\left[
+p(0\mid\mathbf0)
++\sum_{i=1}^N p(1\mid\mathbf a^{(i)})-N
+\right].
+\]
+
+\paragraph*{Main problem}
+
+(1) For $k=1$ (and hence $N=3$), determine $\delta$ as a
+function of $\phi$.
+
+(2) Determine the range of $\phi$ for which a quantum violation occurs, denoted as $T$, where $T \subseteq [0, \pi]$ is a function of $k$.
+
+(3) Determine the value of $\phi$ at which the maximal quantum violation occurs, denoted as $\phi_{\max}$, as a function of $k$.

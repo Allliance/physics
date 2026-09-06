@@ -1,0 +1,29 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{physics}
+\usepackage{booktabs}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+
+\title{Exact solution for the momentum-diagonal interacting Chern insulator at quarter filling}
+\author{Solution to Challenge 16}
+\date{}
+
+\title{Challenge 16: Final answer}
+\author{}
+\begin{document}
+\maketitle
+Thus the exact critical interaction strength is
+\begin{equation}
+\boxed{
+U_c = 28 - 18\sqrt2 \approx 2.544155877
+}
+\end{equation}
+in the units of the hopping amplitude used in the problem.
+
+\section{Discussion}
+
+The critical interaction \(U_c=28-18\sqrt2\) is the value at which the momentum-space single-occupation phase becomes thermodynamically stable against the formation of empty and doubly occupied \(k\)-blocks. This phase is an insulator with one electron per \(k\)-point, but it is not a conventional real-space Hubbard ferromagnet; the transition is driven by the competition between the kinetic energy gain of double occupation and the repulsive interaction within each momentum block.
+
+If the interaction term in the original problem is interpreted literally as a momentum-diagonal density-density repulsion, this is the exact answer. If, instead, the notation is intended as a shorthand for a real-space on-site Hubbard interaction, the model is different and the present \(U_c\) does not apply.
+\end{document}

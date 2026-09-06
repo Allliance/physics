@@ -1,0 +1,46 @@
+Expert review — Challenge 23
+Form submissions: 1
+
+========================================================================
+Submission 1 (annotations.csv row 23)
+========================================================================
+
+Question: Timestamp
+Answer:
+8/25/2026 13:13:08
+
+Question: Email Address
+Answer:
+dpoland@gmail.com
+
+Question: Enter the challenge ID you are contributing to (a number between 1 and 70)
+Answer:
+23
+
+Question: What did you do for this challenge? Select all that apply
+Answer:
+Checked the challenge for well-definedness and technical correctness, Verified the existing solution
+
+Question: Is the challenge well-defined and technically correct? If not, please specify the issue in "Other"
+Answer:
+I fixed a number of issues in the problem statement: metric and loop momentum were written in 4d even though we are in general d, nu range went up to d rather than (d-1), collinear divergence definition involved dividing by singular p^2 = 0, it wasn't specified that the energy p^z was positive. The corrected version should fix these. 
+
+Question: Solution review notes
+Answer:
+I didn't see a need to change the solution .tex, it looked fully correct. I corrected the answer.py file to say O(\eps^0) rather than O(\eps_{UV}^0). Additional care would be needed in the final answer PDF at precisely x=1 but the problem statement didn't ask for this.
+
+Question: File uploads
+Answer:
+https://drive.google.com/open?id=15jBzSMysPMC0NzcgfdA2HmFuLET1Yqsl, https://drive.google.com/open?id=1O_B5VjM8cAgxy0s7LUC0c-2n24ekmI01, https://drive.google.com/open?id=1v256FeVPkhXelL_Y0JMdXC1yT9pUJ3MX, https://drive.google.com/open?id=1VdmI9gUheLaCk6PNf8T0jWY5KyLKBs2W
+
+Question: Level of confidence
+Answer:
+2: reasonably confident
+
+Question: If you selected “1: low confidence,” you must briefly explain why.
+Answer:
+[No answer provided]
+
+Question: Attestation
+Answer:
+I agree to the attestation above.

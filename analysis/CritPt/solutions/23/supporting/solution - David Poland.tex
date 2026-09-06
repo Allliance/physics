@@ -1,0 +1,207 @@
+\subsubsection*{Solution}
+Assume $p^z>0$ and the Feynman prescription $k^2\to k^2+i0$. The calculation follows the standard on-shell dimensional-regularization treatment of quasi-distributions; see, e.g., \href{\detokenize{https://arxiv.org/abs/1709.04933}}{Stewart and Zhao}. The reduced master integral used below agrees with the one quoted in Appendix C of this \href{\detokenize{https://scoap3-prod-backend.s3.cern.ch/media/files/49725/10.1007/JHEP09%282019%29037_a.pdf}}{one-loop quasi-beam calculation}.
+
+\paragraph*{1. Superficial divergences}
+
+For a uniformly large loop momentum $k^\mu\sim Q$,
+
+\[
+\frac{k^0+k^z} {k^2(p-k)^2(p^z-k^z)} \sim \frac{Q}{Q^2Q^2Q} =\frac{1}{Q^4}.
+\]
+
+Thus, at $d=4$, the untransformed diagram has logarithmic UV SDD,
+
+\[
+\omega_{\rm UV}=d-4=0.
+\]
+
+In the soft region $k^\mu\sim Q\to0$,
+
+\[
+k^2\sim Q^2,\qquad (p-k)^2=-2p\cdot k+O(Q^2)\sim Q,
+\]
+
+and therefore
+
+\[
+\frac{k^0+k^z}{k^2(p-k)^2(p^z-k^z)} \sim\frac{Q}{Q^2Q\,p^z} \sim Q^{-2}.
+\]
+
+Since $d^4k\sim Q^3dQ$, the soft integral behaves as $\int dQ\,Q$, so there is no soft divergence.
+
+A collinear singularity occurs when $k^\mu\to\lambda p^\mu$, $0<\lambda<1$, because both $k^2$ and $(p-k)^2$ vanish. It will appear below for $0<x<1$.
+
+\paragraph*{2. Fourier integration}
+
+Write $P\equiv p^z>0$. The $z$ integral gives
+
+\[
+\int_{-\infty}^{\infty}\frac{dz}{2\pi} e^{i(xP-k^z)z} =\delta(xP-k^z).
+\]
+
+Consequently $k^z=xP$, and
+
+\[
+\adjustbox{max width=\linewidth}{$\displaystyle \widetilde q_{\rm sail} = \left(\mu^2\right)^\epsilon \frac{e^{\epsilon\gamma_E}}{(4\pi)^\epsilon} \int\frac{dk^0\,d^{d-2}\boldsymbol{k}_\perp}{(2\pi)^d} \frac{k^0+xP} {\left[(k^0)^2-\boldsymbol{k}_\perp^2-x^2P^2+i0\right] \left[(P-k^0)^2-\boldsymbol{k}_\perp^2-(1-x)^2P^2+i0\right] P(1-x)}.$}
+\]
+
+The remaining integration is $(d-1)$-dimensional, with one time and $d-2$ transverse components.
+
+\paragraph*{3. Feynman parametrization}
+
+Using
+
+\[
+\frac1{AB}=\int_0^1 da\,\frac1{[aB+(1-a)A]^2},
+\]
+
+and shifting
+
+\[
+q^0=k^0-aP,
+\]
+
+one finds
+
+\[
+aB+(1-a)A = (q^0)^2-\boldsymbol{k}_\perp^2-P^2(x-a)^2+i0.
+\]
+
+The numerator becomes
+
+\[
+k^0+xP=q^0+(x+a)P.
+\]
+
+The term odd in $q^0$ integrates to zero, and the factor $P$ cancels the eikonal denominator $P(1-x)$. Hence
+
+\[
+\widetilde q_{\rm sail} = \left(\mu^2\right)^\epsilon \frac{e^{\epsilon\gamma_E}}{(4\pi)^\epsilon} \frac1{1-x} \int_0^1da\,(x+a) \int\frac{dq^0\,d^{d-2}\boldsymbol{k}_\perp}{(2\pi)^d} \frac1{\left[(q^0)^2-\boldsymbol{k}_\perp^2-P^2(x-a)^2+i0\right]^2}.
+\]
+
+For $n=d-1=3-2\epsilon$,
+
+\[
+\int\frac{d^nq}{(2\pi)^n} \frac1{(q^2-M^2+i0)^2} = \frac{i}{(4\pi)^{n/2}} \Gamma\left(2-\frac n2\right) (M^2)^{n/2-2}.
+\]
+
+Because the original measure has $(2\pi)^{-d}$ rather than $(2\pi)^{-n}$, there is one additional factor $1/(2\pi)$. Therefore,
+
+\[
+\int\frac{dq^0\,d^{d-2}\boldsymbol{k}_\perp}{(2\pi)^d} \frac1{(q^2-M^2+i0)^2} = \frac{i}{16\pi^2} \frac{(4\pi)^\epsilon}{\sqrt{\pi}} \Gamma\left(\frac12+\epsilon\right) M^{-1-2\epsilon}.
+\]
+
+Taking $M=P|x-a|$ gives
+
+\[
+{ \widetilde q_{\rm sail} = \frac{i}{16\pi^2P} \frac{e^{\epsilon\gamma_E}\Gamma(\frac12+\epsilon)}{\sqrt{\pi}} \left(\frac{\mu^2}{P^2}\right)^\epsilon F(x,\epsilon) }
+\]
+
+with
+
+\[
+F(x,\epsilon) = \frac1{1-x}\int_0^1da\, (x+a)|x-a|^{-1-2\epsilon}.
+\]
+
+\paragraph*{4. Parameter integral in the three regions}
+
+\subparagraph*{Region $x<0$}
+
+Here $|x-a|=a-x$. Direct integration gives
+
+\[
+F_{<}(x,\epsilon) = \frac1{1-x} \left[ \frac{(1-x)^{1-2\epsilon}-(-x)^{1-2\epsilon}} {1-2\epsilon} -\frac{x}{\epsilon} \left((1-x)^{-2\epsilon}-(-x)^{-2\epsilon}\right) \right].
+\]
+
+Although this contains explicit $1/\epsilon$, the difference in parentheses is $O(\epsilon)$; hence there is no pole at fixed $x$. Expanding,
+
+\[
+F_{<}(x,0) = \frac{1+2x\ln\left(\frac{1-x}{-x}\right)}{1-x}.
+\]
+
+\subparagraph*{Region $0<x<1$}
+
+Split the integral at $a=x$:
+
+\[
+\begin{aligned}
+(1-x)F_0(x,\epsilon)
+&=
+\int_0^x da\,(x+a)(x-a)^{-1-2\epsilon}
+\\
+&\quad+
+\int_x^1 da\,(x+a)(a-x)^{-1-2\epsilon}.
+\end{aligned}
+\]
+
+Setting $u=x-a$ in the first integral and $u=a-x$ in the second gives
+
+\[
+F_0(x,\epsilon) = \frac1{1-x} \left[ -\frac{x}{\epsilon} \left(x^{-2\epsilon}+(1-x)^{-2\epsilon}\right) + \frac{(1-x)^{1-2\epsilon}-x^{1-2\epsilon}} {1-2\epsilon} \right].
+\]
+
+The integral near $a=x$ is proportional to
+
+\[
+\int_0du\,u^{-1-2\epsilon},
+\]
+
+which converges for $\epsilon=\epsilon_{\rm IR}<0$. Expanding,
+
+\[
+F_0(x,\epsilon_{\rm IR}) = \frac1{1-x} \left[ -\frac{2x}{\epsilon_{\rm IR}} +2x\ln\bigl(x(1-x)\bigr) +1-2x \right] +O(\epsilon_{\rm IR}).
+\]
+
+\subparagraph*{Region $x>1$}
+
+Now $|x-a|=x-a$, so
+
+\[
+F_{>}(x,\epsilon) = \frac1{1-x} \left[ -\frac{x}{\epsilon} \left(x^{-2\epsilon}-(x-1)^{-2\epsilon}\right) -\frac{x^{1-2\epsilon}-(x-1)^{1-2\epsilon}} {1-2\epsilon} \right].
+\]
+
+Again the apparent $1/\epsilon$ is canceled by the difference in parentheses. Thus
+
+\[
+F_{>}(x,0) = \frac{2x\ln\left(\frac{x}{x-1}\right)-1}{1-x}.
+\]
+
+\paragraph*{5. $\overline{\rm MS}$ expansion}
+
+The common prefactor expands as
+
+\[
+\frac{e^{\epsilon\gamma_E}\Gamma(\frac12+\epsilon)} {\sqrt{\pi}} \left(\frac{\mu^2}{P^2}\right)^\epsilon = 1+\epsilon \left[ \gamma_E+\psi\left(\frac12\right) +\ln\frac{\mu^2}{P^2} \right]+O(\epsilon^2).
+\]
+
+Using
+
+\[
+\psi\left(\frac12\right)=-\gamma_E-2\ln2,
+\]
+
+this becomes
+
+\[
+1+\epsilon\ln\frac{\mu^2}{4P^2}+O(\epsilon^2).
+\]
+
+Only the $0<x<1$ region contains a pole, so only there does the $O(\epsilon)$ part of the prefactor contribute at $O(\epsilon^0)$:
+
+\[
+-\frac{2x}{\epsilon_{\rm IR}} \left(1+\epsilon_{\rm IR}\ln\frac{\mu^2}{4P^2}\right) = -\frac{2x}{\epsilon_{\rm IR}} -2x\ln\frac{\mu^2}{4P^2} +O(\epsilon_{\rm IR}).
+\]
+
+Combining logarithms,
+
+\[
+2x\ln[x(1-x)] -2x\ln\frac{\mu^2}{4P^2} = 2x\ln\frac{4x(1-x)P^2}{\mu^2}.
+\]
+
+At fixed $x$, the outer regions have no explicit UV pole. The logarithmic UV SDD of the original integral instead appears in the large-$|x|$ behavior,
+
+\[
+\widetilde q_{\rm sail}(x)\sim-\frac{i}{16\pi^2P}\frac1{|x|}, \qquad |x|\to\infty.
+\]
+
+Thus its integral over all $x$ requires $\epsilon_{\rm UV}>0$ or an appropriate distributional prescription. No such prescription or Wilson-line subtraction term was included in the stated integral.

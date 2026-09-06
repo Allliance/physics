@@ -1,0 +1,234 @@
+\subsubsection*{Solution}
+\paragraph*{Step-by-Step Derivation}
+
+Let
+
+\[
+m=\frac{M}{2}.
+\]
+
+For $M=200$,
+
+\[
+m=100, \qquad N=m(m+1)=100(101)=10100.
+\]
+
+This graph is the first-order truncated simplex lattice. Its symmetry reduces the dynamics to a seven-dimensional invariant subspace. The continuous-time search on this graph uses two critical values of $\gamma$, with one discrete switch between them. This reduction and the two-stage search are derived in \href{\detokenize{https://link.aps.org/accepted/10.1103/PhysRevLett.114.110503}}{Meyer and Wong, \emph{Connectivity is a Poor Indicator of Fast Quantum Search}}.
+
+\subparagraph*{1. Reduced Hamiltonian}
+
+Group identically evolving vertices into normalized states
+
+\[
+\{|a\rangle,|b\rangle,|c\rangle,|d\rangle, |e\rangle,|f\rangle,|g\rangle\},
+\]
+
+whose class sizes are
+
+\[
+1,\quad m-1,\quad 1,\quad m-1,\quad m-1,\quad m-1, \quad (m-1)(m-2).
+\]
+
+Thus,
+
+\[
+|s\rangle
+=
+\frac{1}{\sqrt{m(m+1)}}
+\begin{pmatrix}
+1\\
+\sqrt{m-1}\\
+1\\
+\sqrt{m-1}\\
+\sqrt{m-1}\\
+\sqrt{m-1}\\
+\sqrt{(m-1)(m-2)}
+\end{pmatrix}.
+\]
+
+In this basis the reduced adjacency matrix is
+
+\[
+A_{\mathrm{red}}=
+\begin{pmatrix}
+0&\sqrt{m-1}&1&0&0&0&0\\
+\sqrt{m-1}&m-2&0&0&1&0&0\\
+1&0&0&\sqrt{m-1}&0&0&0\\
+0&0&\sqrt{m-1}&m-2&0&1&0\\
+0&1&0&0&0&1&\sqrt{m-2}\\
+0&0&0&1&1&0&\sqrt{m-2}\\
+0&0&0&0&\sqrt{m-2}&\sqrt{m-2}&m-2
+\end{pmatrix},
+\]
+
+and
+
+\[
+H(\gamma)=-\gamma A_{\mathrm{red}} -\operatorname{diag}(1,0,0,0,0,0,0).
+\]
+
+The square-root matrix elements arise from converting between normalized equal superpositions over different vertex classes. The same seven-dimensional Hamiltonian is given explicitly in the primary derivation cited above.
+
+{\color{blue}
+	The analysis below is incorrect because the problem implies that $\gamma$ should be a fixed value throughout the evolution, while the proposed solution changes it in the middle of the evolution (presumably because it is following the method in the linked paper). Additionally, even if $\gamma$ was allowed to be time dependent, in my understanding, the linked paper does not provide a proof that their strategy is optimal for maximizing $|\braket{a}{\psi(t)}|$. In fact, the numerics provided already showed that $P$ can be increased by choosing slightly different values of $t_1, t_2, \gamma_1, \gamma_2$ than in the next sections.
+	
+	
+}
+
+\subparagraph*{2. First stage: move amplitude into the marked clique}
+
+The first critical jumping rate is
+
+\[
+\gamma_1=\frac{2}{m}.
+\]
+
+At this value, the two relevant eigenstates have the approximate relations
+
+\[
+|s\rangle\simeq \frac{|\psi_0\rangle+|\psi_1\rangle}{\sqrt2}, \qquad |b\rangle\simeq \frac{|\psi_0\rangle-|\psi_1\rangle}{\sqrt2},
+\]
+
+with energy gap
+
+\[
+\Delta E_1=E_1-E_0\simeq\frac{4}{m^{3/2}}.
+\]
+
+Under Schrödinger evolution,
+
+\[
+|\psi(t)\rangle = \frac{e^{-iE_0t}|\psi_0\rangle+ e^{-iE_1t}|\psi_1\rangle}{\sqrt2}.
+\]
+
+To change the relative phase from $+1$ to $-1$, require
+
+\[
+\Delta E_1t_1=\pi.
+\]
+
+Therefore,
+
+\[
+t_1=\frac{\pi}{\Delta E_1} =\frac{\pi m^{3/2}}{4}.
+\]
+
+For $m=100$,
+
+\[
+\gamma_1=\frac{2}{100}=0.02,
+\]
+
+and
+
+\[
+t_1=\frac{\pi(100)^{3/2}}{4} =250\pi =785.398163397.
+\]
+
+The critical rate and runtime $\gamma_1=2/m$ and $t_1=\pi m^{3/2}/4$ are also reported directly in the \href{\detokenize{https://link.aps.org/accepted/10.1103/PhysRevLett.114.110503}}{published analysis}.
+
+\subparagraph*{3. Second stage: move amplitude to the marked vertex}
+
+After the first stage, change the jumping rate to
+
+\[
+\gamma_2=\frac{1}{m}.
+\]
+
+Now,
+
+\[
+|b\rangle\simeq \frac{|\psi_0\rangle+|\psi_3\rangle}{\sqrt2}, \qquad |a\rangle\simeq \frac{|\psi_0\rangle-|\psi_3\rangle}{\sqrt2},
+\]
+
+with energy gap
+
+\[
+\Delta E_2=E_3-E_0\simeq\frac{2}{\sqrt m}.
+\]
+
+Hence,
+
+\[
+t_2=\frac{\pi}{\Delta E_2} =\frac{\pi\sqrt m}{2}.
+\]
+
+For $m=100$,
+
+\[
+\gamma_2=\frac{1}{100}=0.01,
+\]
+
+and
+
+\[
+t_2=\frac{\pi\sqrt{100}}{2} =5\pi =15.7079632679.
+\]
+
+The source explicitly identifies this second critical value and the corresponding transfer time \href{\detokenize{https://link.aps.org/accepted/10.1103/PhysRevLett.114.110503}}{here}.
+
+\subparagraph*{4. Total evolution time}
+
+Therefore,
+
+\[
+T=t_1+t_2 = \frac{\pi m^{3/2}}{4} +\frac{\pi\sqrt m}{2}.
+\]
+
+For $m=100$,
+
+\[
+T=250\pi+5\pi =255\pi =801.106126665.
+\]
+
+Thus, to the nearest integer,
+
+\[
+T=801.
+\]
+
+Time is measured in natural units with $\hbar=1$ and with the oracle energy coefficient normalized to $1$.
+
+\subparagraph*{5. Finite-size success probability}
+
+The asymptotic two-level analysis gives $P\to1$. For the requested finite value $m=100$, propagate the exact reduced Hamiltonians:
+
+\[
+|\psi_f\rangle = e^{-iH(\gamma_2)t_2} e^{-iH(\gamma_1)t_1}|s\rangle.
+\]
+
+Diagonalizing each matrix as
+
+\[
+H(\gamma_j)=V_jD_jV_j^\dagger
+\]
+
+gives
+
+\[
+e^{-iH(\gamma_j)t_j} = V_j\,\operatorname{diag} \left(e^{-iE_{jk}t_j}\right)V_j^\dagger.
+\]
+
+Exact numerical evaluation of the seven-dimensional system gives
+
+\[
+\langle a|\psi_f\rangle = 0.944419154152-0.301060928577\,i,
+\]
+
+so
+
+\[
+P = |\langle a|\psi_f\rangle|^2 = 0.982565221444.
+\]
+
+To two decimal places,
+
+\[
+P=0.98.
+\]
+
+{\color{blue} To find the optimal values of $T$ and $\gamma$ when $\gamma$ is fixed, we can numerically optimize the overlap $P = |\braket{a}{\psi(T)}|$, which is already in the Python code provided. For $T\le 10000$, this gives
+\[
+(T, P) = (794, 0.04)
+\]
+}

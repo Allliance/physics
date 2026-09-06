@@ -1,0 +1,50 @@
+Expert review — Challenge 69
+Form submissions: 1
+
+========================================================================
+Submission 1 (annotations.csv row 33)
+========================================================================
+
+Question: Timestamp
+Answer:
+8/26/2026 18:21:17
+
+Question: Email Address
+Answer:
+evmckinney9@gmail.com
+
+Question: Enter the challenge ID you are contributing to (a number between 1 and 70)
+Answer:
+69
+
+Question: What did you do for this challenge? Select all that apply
+Answer:
+Checked the challenge for well-definedness and technical correctness, Verified the existing solution
+
+Question: Is the challenge well-defined and technically correct? If not, please specify the issue in "Other"
+Answer:
+Yes
+
+Question: Solution review notes
+Answer:
+The reported value appears numerically correct under that conjectured formula. The solution cites arXiv:2411.19890, and Peixue Wu is an author of both that preprint and CritPt, so the benchmark problem appears closely connected to that work. The paper defines the relevant contraction coefficients in Eqs. (1) and (4), and in Sec. 7 gives the one-dimensional amplitude-damping formula used here, while explicitly conjecturing that it equals the full contraction coefficient. Given the preprint, the benchmark value is obtained essentially by specializing that formula to the identity comparison channel (\(\gamma_2=0\)) and numerically maximizing it for the three requested values of \(\gamma\).
+
+However, most of Sections 1 and 2 are ancillary: they derive coarse bounds and show that \(1-\gamma\) is not tight, neither of which is needed to obtain the final value. The actual computation occurs only in Section 3, where the conjectured formula is introduced and numerically evaluated.
+
+I did not independently rederive or verify the claims from the cited preprint; I only checked that the submitted calculation is internally consistent and gives the stated value assuming the conjectured claims in the paper hold.
+
+Question: File uploads
+Answer:
+https://drive.google.com/open?id=1408vofY-_nY0VMGPhBv3BZDeYwTrDTCl, https://drive.google.com/open?id=1LiQ48pIfkVwdAd4vSrZf9_ruqogBseFo
+
+Question: Level of confidence
+Answer:
+3: high confidence (thoroughly checked)
+
+Question: If you selected “1: low confidence,” you must briefly explain why.
+Answer:
+[No answer provided]
+
+Question: Attestation
+Answer:
+I agree to the attestation above.

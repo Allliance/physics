@@ -1,0 +1,46 @@
+Expert review — Challenge 61
+Form submissions: 1
+
+========================================================================
+Submission 1 (annotations.csv row 26)
+========================================================================
+
+Question: Timestamp
+Answer:
+8/25/2026 17:26:45
+
+Question: Email Address
+Answer:
+shouzhen.gu@yale.edu
+
+Question: Enter the challenge ID you are contributing to (a number between 1 and 70)
+Answer:
+61
+
+Question: What did you do for this challenge? Select all that apply
+Answer:
+Checked the challenge for well-definedness and technical correctness, Verified the existing solution, Corrected the existing solution
+
+Question: Is the challenge well-defined and technically correct? If not, please specify the issue in "Other"
+Answer:
+The problem states that the vertices of a graph are replaced with complete graphs, but it is not clear how the complete graphs are then connected to each other. I gave the solution the benefit of the doubt and changed the problem to the connectivity it assumed.
+
+Question: Solution review notes
+Answer:
+The proposed solution essentially uses the method in another paper, but that assumes that gamma can be made time dependent, which is not the case in this problem. I modified the solution so that it directly optimizes the overlap. The code to numerically do this was already provided.
+
+Question: File uploads
+Answer:
+https://drive.google.com/open?id=18CdNA0anXY8s1loDVW-OiZ9g-uooBOu6, https://drive.google.com/open?id=1aWB2AbHCBPWaFjbmsYSgKllW6tFXSNZC, https://drive.google.com/open?id=1p4XmG2Qv_zJuRD2Fo-K_om-POyH4tFuS
+
+Question: Level of confidence
+Answer:
+3: high confidence (thoroughly checked)
+
+Question: If you selected “1: low confidence,” you must briefly explain why.
+Answer:
+[No answer provided]
+
+Question: Attestation
+Answer:
+I agree to the attestation above.

@@ -1,0 +1,110 @@
+\subsubsection*{Solution}
+The problem, as written, has no real physical solution. Consequently, the requested scaling exponents and $s$ are undefined.
+
+\subparagraph*{1. Physical domain}
+
+Because the equations contain
+
+\[
+\log_{10}v,\qquad \log_{10}z,\qquad \log_{10}(v/w),\qquad \ln z,
+\]
+
+a real-valued physical solution requires
+
+\[
+v>0,\qquad w>0,\qquad z>0,
+\]
+
+with $d,f,g,\alpha,\beta,\gamma,\eta,\xi\in\mathbb R$.
+
+\subparagraph*{2. Contradiction in the fourth constraint}
+
+Define
+
+\[
+Q=\frac14(\log_{10}z+1)^3+9+\ln(e^3) =\frac14(\log_{10}z+1)^3+12.
+\]
+
+For real $z>0$, $Q\in\mathbb R$, and hence
+
+\[
+Q^4\geq 0.
+\]
+
+Therefore,
+
+\[
+Q^4+2^8\geq 2^8>0
+\]
+
+and
+
+\[
+\left(Q^4+2^8\right)^8\geq (2^8)^8=2^{64}>0.
+\]
+
+For every finite real $d$,
+
+\[
+1249e^{-d}>0.
+\]
+
+Thus the left-hand side obeys
+
+\[
+\left(Q^4+2^8\right)^8+1249e^{-d} >2^{64}>0,
+\]
+
+so it can never equal zero. The seven-equation constraint system therefore has no real solution.
+
+\subparagraph*{3. Crystallization criterion}
+
+For reference, a fractional kinetic operator of order $p$ has Fourier symbol proportional to $\lvert k\rvert^p$, so at length scale $r$ its kinetic energy scales as $r^{-p}$ \href{\detokenize{https://arxiv.org/abs/2311.07814}}{fractional-Laplacian reference}. Crystallization is conventionally expected when repulsive interaction energy dominates kinetic energy \href{\detokenize{https://www.nature.com/articles/s42005-022-01095-8}}{Communications Physics}.
+
+For the $A$ particles,
+
+\[
+K_A(r)\sim \frac{v}{r^\alpha}, \qquad U_{AA}(r)\sim \frac{z}{r^\gamma}.
+\]
+
+Equating these scales would give
+
+\[
+\frac{v}{r_o^\alpha}\sim\frac{z}{r_o^\gamma} \quad\Longrightarrow\quad r_o\sim v^{\frac1{\alpha-\gamma}} z^{-\frac1{\alpha-\gamma}}.
+\]
+
+For the $B$ and $C$ particles,
+
+\[
+K_{B,C}(r)\sim\frac{w}{r^\beta}, \qquad U_{BB,CC}(r)\sim\frac{z}{r^\eta},
+\]
+
+and hence
+
+\[
+r_o\sim w^{\frac1{\beta-\eta}} z^{-\frac1{\beta-\eta}}.
+\]
+
+Even if the inconsistent fourth equation were corrected, $\gamma$ appears in none of the seven constraints. Therefore the $A$-particle exponent $1/(\alpha-\gamma)$ could not be determined uniquely.
+
+Moreover, the premise says the transition occurs for
+
+\[
+r<r_o,
+\]
+
+while the question asks which particles crystallize for
+
+\[
+r>r_o.
+\]
+
+Taken literally, the stipulated transition criterion selects no particles in that regime.
+
+Finally, a proportionality
+
+\[
+r_o\propto v^a w^b z^c
+\]
+
+does not specify the multiplicative constant. Thus a numerical bound $r_o\geq 10^s$ cannot uniquely determine $s$ without an additional normalization or a definition such as $s=\lfloor\log_{10}r_o\rfloor$.

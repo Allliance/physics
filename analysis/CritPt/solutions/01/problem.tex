@@ -1,0 +1,44 @@
+\section{High Energy \& Nuclear Physics}
+\subsection[Challenge 1: Holographic Weyl anomaly]{Challenge 1: Holographic Weyl anomaly}
+\textbf{Problem ID:} \texttt{Challenge\_1\_main}\\
+\textbf{Primary inferred discipline:} High Energy \& Nuclear Physics\\
+\textbf{Secondary inferred disciplines:} Gravitation, Cosmology \& Astrophysics, Mathematical Physics\\
+\textbf{Python implementation:} \texttt{challenges/01/answer.py}
+
+\section*{Problem setup}
+Consider a quantum field theory with holographic dual. Under a Weyl transformation, the boundary metric transforms as $\gamma^{(0)}_{\mu\nu}\to\mathcal B^{-2}(x)\gamma^{(0)}_{\mu\nu}$. The Weyl anomaly $\mathcal A_k$ of the theory in $2k$ dimensions appears in the transformation of the partition function:
+\begin{equation}
+Z[\gamma^{(0)}_{\mu\nu}]\to e^{-\mathcal A_k}Z[\mathcal B(x)^{-2}\gamma^{(0)}]\;\chg{,\qquad\text{to be read as}\qquad Z[\gamma^{(0)}]=e^{-\mathcal A_k}\,Z[\mathcal B^{-2}\gamma^{(0)}].}
+\label{eq:1}
+\end{equation}
+This can be computed by evaluating the on-shell action of the bulk gravitational theory.
+
+The holographic Weyl anomaly in $d\leqslant8$ can be expressed using the following quantities:
+\begin{align}
+P_{\mu\nu}&=R^{(0)}_{\mu\nu}-\frac{R^{(0)}}{2(d-1)}\gamma^{(0)}_{\mu\nu},\label{eq:2}\\
+B_{\mu\nu}&=\frac{1}{d-2}\Big(\nabla^{(0)}_\rho\nabla^\rho_{(0)}P_{\mu\nu}-\nabla^{(0)}_\rho\nabla^{(0)}_\nu P_\mu{}^\rho-W^{(0)}_{\rho\nu\mu\sigma}P^{\sigma\rho}\Big),\label{eq:3}\\
+O_{\mu\nu}&=\nabla^\lambda_{(0)}\nabla^{(0)}_\lambda B_{\mu\nu}-2W^{(0)}_{\rho\nu\mu\lambda}B^{\lambda\rho}-\frac{4}{d-2}B_{\mu\nu}P^\mu{}_\mu+\frac{2(d-4)}{(d-2)^2}\Big(2P^{\rho\lambda}\nabla^{(0)}_\lambda C_{(\mu\nu)\rho}\nonumber\\
+&\qquad+\nabla^{(0)}_\lambda P\,C_{(\mu\nu)}{}^\lambda-C^\rho{}_\mu{}^\lambda C_{\lambda\nu\rho}+\nabla^\lambda_{(0)}P^\rho{}_{(\mu}C_{\nu)\rho\lambda}-W^{(0)}_{\rho\mu\nu\lambda}P^\lambda{}_\sigma P^{\sigma\rho}\Big),\label{eq:4}\\
+\Omega_{\mu\nu}&=\nabla^\lambda_{(0)}\nabla^{(0)}_\lambda B_{\mu\nu}-2W^{(0)}_{\rho\nu\mu\lambda}B^{\lambda\rho}-4B_{\mu\nu}P^\mu{}_\mu+2(d-4)\Big(2P^{\rho\lambda}\nabla^{(0)}_\lambda C_{(\mu\nu)\rho}\nonumber\\
+&\qquad+\nabla^{(0)}_\lambda P\,C_{(\mu\nu)}{}^\lambda-C^\rho{}_\mu{}^\lambda C_{\lambda\nu\rho}+\nabla^\lambda_{(0)}P^\rho{}_{(\mu}C_{\nu)\rho\lambda}-W^{(0)}_{\rho\mu\nu\lambda}P^\lambda{}_\sigma P^{\sigma\rho}\Big)+P_{\mu\rho}P^{\rho\sigma}P_{\sigma\nu},\label{eq:6}
+\end{align}
+where $R^{(0)}_{\mu\nu}$ is the Ricci tensor for the boundary metric $\gamma^{(0)}_{\mu\nu}$, $\nabla^{(0)}_\mu$ is the covariant derivative associated with $\gamma^{(0)}_{ij}$ on the boundary, $W^{(0)}_{\rho\nu\mu\sigma}$ is the Weyl tensor on the boundary, and $C_{\mu\nu\rho}=\nabla^{(0)}_\rho P_{\mu\nu}-\nabla^{(0)}_\nu P_{\mu\rho}$. \chg{Here $P\equiv P^\mu{}_\mu$ inside $O$ and $\Omega$, indices are moved with $\gamma^{(0)}$, $T_{(\mu\nu)}=\frac12(T_{\mu\nu}+T_{\nu\mu})$, and $\tr(XY\cdots)$ denotes the matrix trace $X_\mu{}^\nu Y_\nu{}^\rho\cdots$.}
+
+The final expression will have the form
+\begin{equation}
+\mathcal A_4=-\frac{L^7}{8\pi G}\int d^8x\sqrt{-\det\gamma^{(0)}}\,X^{(4)}\ln\mathcal B,
+\label{eq:8}
+\end{equation}
+where $X^{(4)}$ may contain the following terms: $\tr(P^4)$, $\tr(P^3)$, $\tr(P^3)\tr(P)$, $\tr(BP)$, $\tr(BP^2)$, $\tr(B^2)$, $\tr(B^2P)$, $\tr(OP)$, $\tr(OP^2)$, $\tr(\Omega)$, $\tr(\Omega P)$\chg{, and---since the list above is not complete---also $(\tr P^2)^2$, $\tr(P^2)(\tr P)^2$, $(\tr P)^4$ and $\tr(BP)\tr(P)$}.
+
+\section*{Main problem}
+Determine the coefficients of these terms in $X^{(4)}$.
+
+\section*{\chg{Issues found in the statement and how they are handled}}
+\chg{\begin{enumerate}
+\item \emph{Sign convention of the anomaly.} Eq.~(\ref{eq:1}) as printed is ambiguous (it could mean that the transformed partition function equals $e^{-\mathcal A}$ times the old one, or the converse). The source of this problem [Jia--Karydas, Phys.\ Rev.\ D 104 (2021) 126031, eq.~(46)] defines $Z[\gamma^{(0)}]=e^{-\mathcal A}Z[\gamma^{(0)}/\mathcal B^2]$; this reading is adopted (blue text in (\ref{eq:1})). With the opposite reading every coefficient of $X^{(4)}$ changes sign. This convention reproduces the standard results $\mathcal A_1=-\frac{L}{16\pi G}\int\sqrt{\gamma}\,R\ln\mathcal B$ and $\mathcal A_2=-\frac{L^3}{8\pi G}\int\sqrt\gamma\,\frac18\big(R_{\mu\nu}R^{\mu\nu}-\frac13R^2\big)\ln\mathcal B$ in $d=2,4$.
+\item \emph{Curvature conventions.} The result depends on the sign convention for the Riemann tensor (terms odd in the total number of $P$, $B$, $O$ factors flip sign). Standard (MTW) conventions are used: $R^\rho{}_{\sigma\mu\nu}=\partial_\mu\Gamma^\rho_{\nu\sigma}-\cdots$, $R_{\mu\nu}=R^\rho{}_{\mu\rho\nu}$, round spheres have $R>0$; the boundary metric is taken Euclidean (the $\sqrt{-\det}$ in (\ref{eq:8}) plays no role).
+\item \emph{Normalisation of $P$.} The $P_{\mu\nu}$ of (\ref{eq:2}) is $(d-2)$ times the usual Schouten tensor $S_{\mu\nu}=\frac{1}{d-2}\big(R_{\mu\nu}-\frac{R}{2(d-1)}\gamma_{\mu\nu}\big)$. With this rescaling, (\ref{eq:3}) is exactly the standard Bach tensor and (\ref{eq:4}) is exactly the six-dimensional obstruction tensor $O^{(6)}_{\mu\nu}$ of the literature (the factors $\frac{1}{d-2}$, $\frac{4}{d-2}$, $\frac{2(d-4)}{(d-2)^2}$ compensate the rescaling). This is a consistent convention and is kept as printed.
+\item \emph{The tensor $\Omega_{\mu\nu}$.} As defined in (\ref{eq:6}), $\Omega_{\mu\nu}$ is \emph{not} Graham's extended obstruction tensor $\Omega^{(2)}_{\mu\nu}=\frac{1}{(d-4)(d-6)}O_{\mu\nu}$, nor any other tensor that appears in the Fefferman--Graham expansion: relative to $O_{\mu\nu}$ it has different numerical coefficients and an extra cubic term (and, as one checks, $\tr\Omega=\tr P^3$ identically). It is nevertheless a well-defined tensor, so the problem remains answerable: it is taken literally, and its coefficient in $X^{(4)}$ turns out to be zero. (If $\Omega$ had been intended to denote $\Omega^{(2)}$, the $\tr(OP)$ term could equivalently be written as $\frac{1}{144}\tr(\Omega^{(2)}P)$.)
+\item \emph{Incomplete list of terms.} The eleven candidate terms do not span $X^{(4)}$: the terms $(\tr P^2)^2$, $\tr(P^2)(\tr P)^2$, $(\tr P)^4$ and $\tr(BP)\tr P$ appear with nonzero coefficients. The list has therefore been completed (blue text above); the coefficients of the eleven printed terms are reported in the printed order, together with the four additional ones. Terms of the wrong Weyl weight ($\tr P^3$, $\tr BP$, $\tr B^2P$, $\tr OP^2$, $\tr\Omega$; weights $6,6,10,10,6$ against the required $8$) necessarily have coefficient $0$.
+\end{enumerate}}

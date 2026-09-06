@@ -1,0 +1,16 @@
+\subsection[Challenge 67: Quantum capacity for quantum channels]{Challenge 67: Quantum capacity for quantum channels}
+\textbf{Problem ID:} \texttt{Challenge\_67\_main}\\
+\textbf{Primary inferred discipline:} Quantum Information, Science \& Technology\\
+\textbf{Python implementation:} \texttt{challenges/67/answer.py}
+
+\subsubsection*{Problem}
+\paragraph*{Problem setup}
+We study the fundamental limit of a quantum channel called the private channel. To be more specific, the Choi operator of the channel is given by the private state, with the input space given by the private system and shield system. Our channel is determined by the following Werner state: \[
+q |\psi_+\rangle \langle \psi_+|^{a_0b_0} \otimes \frac{1}{d_{\text{sym}}} P_{\mathrm{sym}}^{A_0B_0} + (1-q) |\psi_-\rangle \langle \psi_-|^{a_0b_0} \otimes \frac{1}{d_{\mathrm{asym}}} P_{\mathrm{asym}}^{A_0B_0},\ q\in [0,1],
+\]
+where $a_0,b_0$ have dimension 2 and $A_0,B_0$ have dimension $d$. $P_{\mathrm{sym}}$ is the projection onto the symmetric subspace.
+
+
+\paragraph*{Main problem}
+
+Assuming the Spin Alignment Conjecture, what is the quantum capacity of this channel when $q = \frac{d+1}{2d}$?

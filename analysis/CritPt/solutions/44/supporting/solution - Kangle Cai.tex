@@ -1,0 +1,204 @@
+\subsubsection*{Solution}
+\paragraph*{Step-by-Step Derivation}
+
+I use the standard Pauli-matrix normalization
+
+\[
+H=-\sum_{\langle ij\rangle_x}\sigma_i^x\sigma_j^x -\sum_{\langle ij\rangle_y}\sigma_i^y\sigma_j^y -\sum_{\langle ij\rangle_z}\sigma_i^z\sigma_j^z, \qquad J_x=J_y=J_z=1.
+\]
+
+The reduction to free Majorana fermions in a static $\mathbb Z_2$ gauge field follows Kitaev's original solution. \href{\detokenize{https://arxiv.org/abs/cond-mat/0506438}}{Kitaev, \emph{Anyons in an exactly solved model and beyond}}
+
+\subparagraph*{1. Finite lattice}
+
+A $3\times2$ Bravais lattice has
+
+\[
+N_{\mathrm{cell}}=3\cdot2=6
+\]
+
+unit cells and two spins per cell, hence
+
+\[
+N=12,\qquad \dim\mathcal H=2^{12}=4096.
+\]
+
+Label a cell by $(m,n)$ and its two sublattice sites by $A_{m,n}$ and $B_{m,n}$. One convenient periodic bond convention is
+
+\[
+\begin{aligned}
+z &: A_{m,n}\longleftrightarrow B_{m,n},\\
+x &: A_{m,n}\longleftrightarrow B_{m-1,n},\\
+y &: A_{m,n}\longleftrightarrow B_{m,n-1},
+\end{aligned}
+\]
+
+where $m$ is understood modulo $3$ and $n$ modulo $2$.
+
+\subparagraph*{2. Flux operators}
+
+For the hexagon associated with $(m,n)$, take
+
+\[
+\begin{aligned}
+W_{m,n}={}&
+\sigma^x_{A_{m,n}}
+\sigma^y_{B_{m,n}}
+\sigma^z_{A_{m+1,n}}
+\sigma^x_{B_{m+1,n-1}}\\
+&\times
+\sigma^y_{A_{m+1,n-1}}
+\sigma^z_{B_{m,n-1}} .
+\end{aligned}
+\]
+
+These satisfy
+
+\[
+W_{m,n}^2=1,\qquad [W_{m,n},W_{m',n'}]=0,\qquad [W_{m,n},H]=0.
+\]
+
+Thus every energy eigenstate can be assigned flux eigenvalues
+
+\[
+W_p=w_p,\qquad w_p=\pm1.
+\]
+
+With this convention, the flux-free sector is
+
+\[
+w_p=+1\quad\text{for all six plaquettes}.
+\]
+
+On the torus,
+
+\[
+\prod_{p=1}^{6}W_p=1,
+\]
+
+so the number of plaquettes with $w_p=-1$ must be even.
+
+\subparagraph*{3. Exact diagonalization in the physical spin space}
+
+Working directly in the $4096$-dimensional spin Hilbert space automatically enforces the physical-state constraint. This is important because, on a finite torus, some Majorana vacua have the wrong fermion parity and must be projected out; this finite-size projection is discussed explicitly by \href{\detokenize{https://arxiv.org/abs/1105.4573}}{Pedrocchi, Chesi, and Loss}.
+
+For a computational-basis state
+
+\[
+|s\rangle=|b_0b_1\cdots b_{11}\rangle,\qquad z_i=(-1)^{b_i},
+\]
+
+let $s_{ij}$ denote the bit string obtained by flipping bits $i$ and $j$. The Pauli identities
+
+\[
+\sigma_i^x\sigma_j^x|s\rangle=|s_{ij}\rangle,
+\]
+
+\[
+\sigma_i^y\sigma_j^y|s\rangle=-z_i z_j|s_{ij}\rangle,
+\]
+
+and
+
+\[
+\sigma_i^z\sigma_j^z|s\rangle=z_i z_j|s\rangle
+\]
+
+give
+
+\[
+H|s\rangle = -\sum_{\langle ij\rangle_z}z_i z_j|s\rangle -\sum_{\langle ij\rangle_x}|s_{ij}\rangle +\sum_{\langle ij\rangle_y}z_i z_j|s_{ij}\rangle.
+\]
+
+Sparse diagonalization gives the bottom of the physical spectrum as
+
+\[
+\begin{aligned}
+E_0&=-9.80028270024312
+&&\text{(multiplicity $4$)},\\
+E_1&=-9.371115440566\ldots
+&&\text{(next distinct energy)}.
+\end{aligned}
+\]
+
+Therefore the total ground-state degeneracy is exactly four.
+
+\subparagraph*{4. Distribution among flux sectors}
+
+Let $Q$ be a $4096\times4$ matrix whose columns span the ground-state subspace. Project the sum of plaquette fluxes into this subspace:
+
+\[
+\mathcal W_{\mathrm{GS}} = Q^\dagger\left(\sum_{p=1}^{6}W_p\right)Q.
+\]
+
+The four eigenvalues are
+
+\[
+\operatorname{spec}\mathcal W_{\mathrm{GS}} = \{6,-2,-2,-2\}.
+\]
+
+Because each $w_p=\pm1$,
+
+\[
+\sum_{p=1}^{6}w_p=6-2N_\pi,
+\]
+
+where $N_\pi$ is the number of plaquettes with $w_p=-1$. Consequently,
+
+\[
+\begin{array}{c|c|c}
+\text{Multiplicity}&\sum_p w_p&N_\pi\\ \hline
+1&6&0\\
+3&-2&4
+\end{array}
+\]
+
+Hence exactly one ground state is flux-free. The other three degenerate ground states lie in fluxful sectors containing four $w_p=-1$ plaquettes. This is a small-torus finite-size degeneracy, not four flux-free topological states.
+
+\subparagraph*{5. Ground-state energy in closed form}
+
+In the flux-free Wilson-loop sector that supplies the physical ground state, the matter-Majorana momenta are antiperiodic in both directions:
+
+\[
+k_1=\frac{2\pi}{3}\left(m+\frac12\right), \quad m=0,1,2,
+\]
+
+\[
+k_2=\pi\left(n+\frac12\right), \quad n=0,1.
+\]
+
+At the isotropic point the single-particle function is
+
+\[
+f(\mathbf k)=1+e^{ik_1}+e^{ik_2}.
+\]
+
+For the six allowed momenta,
+
+\[
+\{|f(\mathbf k)|\} = \left\{ 1,1, \sqrt{4+\sqrt3},\sqrt{4+\sqrt3}, \sqrt{4-\sqrt3},\sqrt{4-\sqrt3} \right\}.
+\]
+
+Thus
+
+\[
+\begin{aligned}
+E_0
+&=-\sum_{\mathbf k}|f(\mathbf k)|\\
+&=-2-2\left(\sqrt{4+\sqrt3}+\sqrt{4-\sqrt3}\right).
+\end{aligned}
+\]
+
+Since
+
+\[
+\left(\sqrt{4+\sqrt3}+\sqrt{4-\sqrt3}\right)^2 =8+2\sqrt{13},
+\]
+
+the exact energy is
+
+\[
+E_0=-2-2\sqrt{8+2\sqrt{13}} =-9.80028270024311\ldots .
+\]
+
+As an independent normalization check, the official $12$-site HPhi example reports $-2.4500706750607777$ using spin operators $S^\alpha=\sigma^\alpha/2$; multiplying by four gives the Pauli-normalized value above. \href{\detokenize{https://issp-center-dev.github.io/HPhi/manual/develop/tutorial/en/html/finite_temperature/Kitaev.html}}{HPhi Kitaev-cluster tutorial}

@@ -1,0 +1,165 @@
+\subsubsection*{Solution}
+\paragraph*{Step-by-Step Derivation}
+
+Work in natural units, $\hbar=c=1$, and assume:
+
+\begin{itemize}[leftmargin=*]
+\item canonical local density $\rho_{\rm DM}=0.4\,{\rm GeV\,cm^{-3}}$;
+\item LIGO arm length $L=4\,{\rm km}$;
+\item optimal projection of the vector force along the doped arm;
+\item fully coherent matched-filter integration for $T=13$ years.
+\end{itemize}
+
+The density and force conventions follow the LIGO dark-photon analysis, which gives $A_0=\sqrt{2\rho_{\rm DM}}/m_A$ and $a=\epsilon e(Q_D/M)\dot A$ \href{\detokenize{https://arxiv.org/abs/1905.04316}}{Guo et al.}. LIGO's arms are each $4\,{\rm km}$ long \href{\detokenize{https://www.ligo.caltech.edu/page/ligo-gw-interferometer}}{LIGO Laboratory}.
+
+\subparagraph*{1. Dark electric-field amplitude}
+
+Write the nonrelativistic vector field as
+
+\[
+\mathbf A(t)=\mathbf A_0\cos(m_A t).
+\]
+
+Its energy density is
+
+\[
+\rho_{\rm DM}=\frac12 m_A^2 A_0^2,
+\]
+
+so
+
+\[
+A_0=\frac{\sqrt{2\rho_{\rm DM}}}{m_A}.
+\]
+
+The oscillating dark electric field has amplitude
+
+\[
+E_{D,0}=|\dot{\mathbf A}|_0=m_AA_0 =\sqrt{2\rho_{\rm DM}}.
+\]
+
+\subparagraph*{2. Differential acceleration}
+
+The inner and doped outer mirrors have
+
+\[
+\left(\frac{Q_D}{M}\right)_{\rm inner} =\frac{0.5}{m_n},
+\]
+
+\[
+\left(\frac{Q_D}{M}\right)_{\rm outer} =\frac{0.5+\delta q}{m_n}.
+\]
+
+Therefore the common $0.5/m_n$ contribution cancels, leaving
+
+\[
+\Delta\!\left(\frac{Q_D}{M}\right)=\frac{\delta q}{m_n}.
+\]
+
+Thus the differential acceleration amplitude is
+
+\[
+\Delta a_0 =\epsilon_{B-L}e\,\frac{\delta q}{m_n} \sqrt{2\rho_{\rm DM}}.
+\]
+
+\subparagraph*{3. Displacement and strain}
+
+For a freely suspended mirror driven at angular frequency $\omega=m_A$,
+
+\[
+\Delta x_0=\frac{\Delta a_0}{m_A^2}.
+\]
+
+The resulting strain is
+
+\[
+h_0=\frac{\Delta x_0}{L} =\epsilon_{B-L}\delta q\, \frac{e\sqrt{2\rho_{\rm DM}}} {m_n m_A^2L}.
+\]
+
+At $f=250\,{\rm Hz}$,
+
+\[
+m_A=hf =(4.135667696\times10^{-24}\,{\rm GeV\,s})(250\,{\rm s^{-1}}) =1.033916924\times10^{-21}\,{\rm GeV}.
+\]
+
+Using
+
+\[
+1\,{\rm cm}=5.06773071616\times10^{13}\,{\rm GeV^{-1}},
+\]
+
+we obtain
+
+\[
+\rho_{\rm DM} =\frac{0.4}{(5.06773071616\times10^{13})^3} =3.07340223055\times10^{-42}\,{\rm GeV^4}.
+\]
+
+Also,
+
+\[
+m_n=0.93956542194\,{\rm GeV}, \qquad e=\sqrt{4\pi\alpha}=0.302822120769,
+\]
+
+with the neutron mass and fundamental constants taken from \href{\detokenize{https://physics.nist.gov/cuu/pdf/all.pdf}}{NIST CODATA}, and
+
+\[
+L=4000\,{\rm m} =2.02709228646\times10^{19}\,{\rm GeV^{-1}}.
+\]
+
+Consequently,
+
+\[
+\frac{e\sqrt{2\rho_{\rm DM}}}{m_nm_A^2L} =36.8757159102,
+\]
+
+so the signal strain is
+
+\[
+h_0=36.8757159102\,\epsilon_{B-L}\delta q.
+\]
+
+\subparagraph*{4. Coherent strain threshold}
+
+For a monochromatic signal and one-sided strain noise amplitude spectral density $S_h^{1/2}$,
+
+\[
+{\rm SNR}^2=\frac{h_0^2T}{S_h}.
+\]
+
+At ${\rm SNR}=1$,
+
+\[
+h_{0,\min}=\frac{S_h^{1/2}}{\sqrt T}.
+\]
+
+The observation time is
+
+\[
+T=13(365.25)(86400) =410248800\,{\rm s}.
+\]
+
+Therefore,
+
+\[
+h_{0,\min} =\frac{3\times10^{-24}}{\sqrt{410248800}} =1.48114506204\times10^{-28}.
+\]
+
+Solving for the minimum coupling,
+
+\[
+\epsilon_{B-L,\min} =\frac{h_{0,\min}} {36.8757159102\,\delta q}.
+\]
+
+This gives
+
+\[
+\begin{array}{c|c}
+\delta q & \epsilon_{B-L,\min}\\
+\hline
+0.074 & 5.42781972291\times10^{-29}\\
+6\times10^{-3} & 6.69431099159\times10^{-28}\\
+5\times10^{-4} & 8.03317318991\times10^{-27}
+\end{array}
+\]
+
+The fully coherent 13-year assumption is idealized: virialized vector dark matter near $250\,{\rm Hz}$ has a coherence time of only approximately $10^3$-$10^4\,{\rm s}$, as discussed in the LIGO analysis. A realistic phase-incoherent search would therefore have a weaker, analysis-dependent reach.

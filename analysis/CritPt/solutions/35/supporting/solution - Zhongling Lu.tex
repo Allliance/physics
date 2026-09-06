@@ -1,0 +1,68 @@
+\subsubsection*{Solution}
+\paragraph*{Identify the low-rank ensemble}
+
+Define the Hermitian random bilinears
+
+\[
+Q_a=i\sum_{i,j=1}^{N}C_{ij}^{a}\chi_i\chi_j.
+\]
+
+Then the Hamiltonian can be written as
+
+\[
+H=\frac12\sum_{a=1}^{N}Q_a^2.
+\]
+
+In the conventional low-rank SYK notation
+
+\[
+H=-\frac12\sum_{a=1}^{R}\lambda_a Q_a^2,
+\]
+
+this means that $R=N$ and every nonzero coupling-matrix eigenvalue is
+$\lambda_a=-1$. Thus the rescaled rank is $\gamma=R/N=1$, and the model is
+the Class-IV low-rank SYK fixed point, rather than the ordinary SYK$_4$
+fixed point. This sign and rank identification is essential
+(\href{https://arxiv.org/abs/1910.10173}{Kim, Cao, and Altman}).
+
+\paragraph*{Infrared scaling dimension}
+
+For Class IV, the fermion scaling dimension $\Delta\in(0,1/4)$ obeys
+
+\[
+\gamma=
+\frac{(2\Delta-1)\bigl(\sec(2\pi\Delta)-1\bigr)}{8\Delta-2}.
+\]
+
+At $\gamma=1$, this equation is solved exactly by
+
+\[
+\Delta=\frac16,
+\]
+
+because $\sec(2\pi\Delta)=\sec(\pi/3)=2$. The same $M/N=1$ saddle was
+identified with the cubic $\mathcal N=1$ supersymmetric SYK saddle by
+\href{https://arxiv.org/abs/1701.07081}{Bi et al.}; in the supersymmetric
+notation the odd supercharge order is $\widehat q=3$ and
+$\Delta=1/(2\widehat q)$.
+
+\paragraph*{Residual entropy}
+
+The large-$N$ residual entropy of this saddle is
+\href{https://arxiv.org/abs/1610.08917}{Fu, Gaiotto, Maldacena, and Sachdev}
+
+\[
+\frac{S_0}{N}
+=\frac12\ln\!\left[2\cos(\pi\Delta)\right]
+=\frac12\ln\!\left[2\cos\!\left(\frac{\pi}{6}\right)\right]
+=\frac14\ln 3.
+\]
+
+Numerically,
+
+\[
+\frac{S_0}{N}=0.274653072167\ldots,
+\]
+
+which rounds to $0.2747$ at four decimal places. The scale $J$ only sets the
+energy and temperature units and does not change this dimensionless entropy.

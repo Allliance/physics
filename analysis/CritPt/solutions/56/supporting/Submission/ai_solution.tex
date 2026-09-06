@@ -1,0 +1,160 @@
+\subsubsection*{Solution}
+\paragraph*{Step-by-Step Derivation}
+
+The scalar field amplitude and beamsplitter differential-displacement response are \href{\detokenize{https://link.aps.org/accepted/10.1103/PhysRevD.105.103035}}{given in the interferometer dark-matter literature}:
+
+\[
+\phi(t)=\phi_0\cos(2\pi f t), \qquad \phi_0=\frac{\sqrt{2\rho_{\rm DM}}}{m_\phi}
+\]
+
+in natural units $\hbar=c=1$, and, when only the photon coupling is nonzero,
+
+\[
+\delta(L_x-L_y) \simeq \Lambda_\gamma^{-1}\,n l\,\phi_0\cos(2\pi f t).
+\]
+
+Thus the peak strain amplitude is
+
+\[
+h_0=\frac{\delta(L_x-L_y)}{L} =\Lambda_\gamma^{-1}\frac{nl}{L}\phi_0.
+\]
+
+The finite field coherence time and the sensitivity scalings used below agree with the single-interferometer treatment in \href{\detokenize{https://arxiv.org/pdf/1906.06193}}{Grote and Stadnik}: sensitivity scales as $T^{-1/2}$ for $T\lesssim\tau_c$, and as $(T\tau_c)^{-1/4}$ for $T\gtrsim\tau_c$.
+
+\subparagraph*{1. Dark-matter density and mass}
+
+The overdense density is
+
+\[
+\rho_{\rm DM}=178(0.4) =71.2\ {\rm GeV\,cm^{-3}}.
+\]
+
+Using
+
+\[
+1\ {\rm cm}=5.06773071616\times10^{13}\ {\rm GeV^{-1}},
+\]
+
+we obtain
+
+\[
+\rho_{\rm DM} = \frac{71.2}{(5.06773071616\times10^{13})^3} = 5.47065597038\times10^{-40}\ {\rm GeV^4}.
+\]
+
+At $f=200\,{\rm Hz}$,
+
+\[
+m_\phi c^2=hf,
+\]
+
+so in energy units,
+
+\[
+m_\phi = (4.135667696\times10^{-24}\ {\rm GeV\,s})(200\ {\rm s^{-1}}) = 8.27133539200\times10^{-22}\ {\rm GeV}.
+\]
+
+Therefore,
+
+\[
+\phi_0 = \frac{\sqrt{2\rho_{\rm DM}}}{m_\phi} = \frac{\sqrt{2(5.47065597038\times10^{-40})}} {8.27133539200\times10^{-22}} = 39.9907057704\ {\rm GeV}.
+\]
+
+\subparagraph*{2. Strain per unit coupling}
+
+For
+
+\[
+n=3.5,\qquad l=0.06\ {\rm m},\qquad L=4.00\times10^4\ {\rm m},
+\]
+
+the strain amplitude is
+
+\[
+h_0 = \Lambda_\gamma^{-1} \left(\frac{3.5(0.06)}{4.00\times10^4}\right) (39.9907057704\ {\rm GeV}),
+\]
+
+or
+
+\[
+h_0 = \left(2.09951205295\times10^{-4}\ {\rm GeV}\right) \Lambda_\gamma^{-1}.
+\]
+
+Here $\Lambda_\gamma^{-1}$ is expressed in ${\rm GeV^{-1}}$.
+
+\subparagraph*{3. Coherence time}
+
+The virialized scalar field has a fractional linewidth of order $(v/c)^2$, giving
+
+\[
+\tau_c \simeq \frac{1}{f(v/c)^2}.
+\]
+
+With $v=230\,{\rm km\,s^{-1}}$,
+
+\[
+\frac{v}{c} = \frac{230}{299792.458} = 7.67197\times10^{-4},
+\]
+
+and hence
+
+\[
+\tau_c = \frac{1} {200(230/299792.458)^2} = 8494.85046065\ {\rm s}.
+\]
+
+For a one-sided strain amplitude spectral density
+
+\[
+\sqrt{S_h}=2.00\times10^{-25}\ {\rm Hz^{-1/2}},
+\]
+
+the unit-SNR strain threshold is
+
+\[
+h_{\min}=
+\begin{cases}
+\dfrac{\sqrt{S_h}}{\sqrt{T_{\rm obs}}},
+& T_{\rm obs}\leq\tau_c,\\[8pt]
+\dfrac{\sqrt{S_h}}{(T_{\rm obs}\tau_c)^{1/4}},
+& T_{\rm obs}>\tau_c.
+\end{cases}
+\]
+
+\subparagraph*{4. Observation for $1000\,{\rm s}$}
+
+Since
+
+\[
+1000\ {\rm s}<\tau_c,
+\]
+
+the observation is coherent:
+
+\[
+h_{\min} = \frac{2.00\times10^{-25}}{\sqrt{1000}} = 6.32455532034\times10^{-27}.
+\]
+
+Equating $h_0=h_{\min}$ gives
+
+\[
+(\Lambda_\gamma^{-1})_{\min} = \frac{6.32455532034\times10^{-27}} {2.09951205295\times10^{-4}\ {\rm GeV}} = 3.01239295648\times10^{-23}\ {\rm GeV^{-1}}.
+\]
+
+\subparagraph*{5. Observation for $0.7\,{\rm yr}$}
+
+Using $1\,{\rm yr}=365.25$ days,
+
+\[
+T_{\rm obs} = 0.7(365.25)(86400) = 2.2090320\times10^7\ {\rm s}.
+\]
+
+Because $T_{\rm obs}\gg\tau_c$, the field phases cannot be added coherently over the full observation:
+
+\[
+h_{\min} = \frac{2.00\times10^{-25}} {\left[(2.2090320\times10^7)(8494.85046065)\right]^{1/4}} = 3.03871912597\times10^{-28}.
+\]
+
+Consequently,
+
+\[
+(\Lambda_\gamma^{-1})_{\min} = \frac{3.03871912597\times10^{-28}} {2.09951205295\times10^{-4}\ {\rm GeV}} = 1.44734540662\times10^{-24}\ {\rm GeV^{-1}}.
+\]

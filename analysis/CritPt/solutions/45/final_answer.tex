@@ -1,0 +1,110 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,bm}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{booktabs}
+
+\newcommand{\kb}{k_{\mathrm B}}
+\newcommand{\mcx}{m_{c,x}}
+\newcommand{\mcy}{m_{c,y}}
+\newcommand{\mvx}{m_{v,x}}
+\newcommand{\mvy}{m_{v,y}}
+\newcommand{\malphaC}{m_{c,\alpha}}
+\newcommand{\malphaV}{m_{v,\alpha}}
+\newcommand{\tauel}{\tau_e}
+\newcommand{\tauh}{\tau_h}
+
+\title{\vspace{-1.2cm}Goniopolar Thermopower in an Anisotropic Intrinsic Semiconductor}
+\author{}
+\date{}
+
+\title{Challenge 45: Final answer}
+\author{}
+\begin{document}
+\maketitle
+\begin{equation}
+\eta\equiv\frac{\mu}{\kb T}
+=\frac14\ln\!\left(
+\frac{m_{v,x}m_{v,y}}
+     {m_{c,x}m_{c,y}}
+\right).
+\label{eq:eta}
+\end{equation}
+\begin{equation}
+A\equiv \frac{\Delta}{2\kb T}+2.
+\label{eq:A}
+\end{equation}
+\begin{equation}
+\boxed{
+S_\alpha
+=\frac{\kb}{e}
+\left[
+\eta
++A\frac{m_{c,\alpha}-m_{v,\alpha}}
+        {m_{c,\alpha}+m_{v,\alpha}}
+\right].
+}
+\label{eq:Salpha}
+\end{equation}
+\section*{4. Condition for goniopolarity}
+
+Goniopolarity requires
+\begin{equation}
+\boxed{S_xS_y<0.}
+\end{equation}
+Using Eq.~\eqref{eq:Salpha}, the exact condition within the assumptions of the problem is
+\begin{equation}
+\boxed{
+\left[
+\eta+A\frac{m_{c,x}-m_{v,x}}{m_{c,x}+m_{v,x}}
+\right]
+\left[
+\eta+A\frac{m_{c,y}-m_{v,y}}{m_{c,y}+m_{v,y}}
+\right]<0.
+}
+\label{eq:exactcondition}
+\end{equation}
+Equivalently, define
+\begin{equation}
+R(T)\equiv\frac{A-\eta}{A+\eta}.
+\end{equation}
+Then
+\begin{equation}
+S_\alpha>0
+\quad\Longleftrightarrow\quad
+\frac{m_{c,\alpha}}{m_{v,\alpha}}>R(T),
+\end{equation}
+and the goniopolar condition can be written compactly as
+\begin{equation}
+\boxed{
+\left[
+\frac{m_{c,x}}{m_{v,x}}-R(T)
+\right]
+\left[
+\frac{m_{c,y}}{m_{v,y}}-R(T)
+\right]<0.
+}
+\label{eq:Rcondition}
+\end{equation}
+
+For an ordinary nondegenerate semiconductor with $\Delta/(2\kb T)\gg1$, one has $A\gg|\eta|$ and hence $R(T)\simeq1$. The criterion reduces to the particularly transparent form
+\begin{equation}
+\boxed{
+(m_{c,x}-m_{v,x})(m_{c,y}-m_{v,y})<0.
+}
+\label{eq:simplecondition}
+\end{equation}
+For example,
+\begin{equation}
+\boxed{
+ m_{c,x}<m_{v,x},
+ \qquad
+ m_{c,y}>m_{v,y},
+}
+\end{equation}
+or the reverse. In words: the electron must be relatively more mobile than the hole along one crystallographic direction, while the hole is relatively more mobile than the electron along the orthogonal direction. The conductivity weighting then makes one direction electron-like ($S<0$) and the other hole-like ($S>0$).
+\end{document}

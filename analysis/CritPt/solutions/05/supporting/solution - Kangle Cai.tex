@@ -1,0 +1,397 @@
+\subsubsection*{Solution}
+\paragraph*{Step-by-Step Derivation}
+
+Define
+
+\[
+z=\frac{4\alpha}{(1+\alpha)^2}, \qquad H(n,z)={}_2F_1\left(\frac{1-n}{2},1-\frac n2;2;z\right),
+\]
+
+so that
+
+\[
+f(n,\alpha)=(1+\alpha)^{n-1}H(n,z).
+\]
+
+We first treat $0<\alpha<1$, for which $0<z<1$.
+
+\subparagraph*{1. Euler integral representation}
+
+Euler's integral representation of the Gaussian hypergeometric function is given in \href{\detokenize{https://dlmf.nist.gov/15.6.E1}}{DLMF Section 15.6.1}. Here it gives
+
+\[
+H(n,z) = \frac{1}{ \Gamma\left(1-\frac n2\right) \Gamma\left(1+\frac n2\right)} \int_0^1 t^{-n/2}(1-t)^{n/2}(1-zt)^{-(1-n)/2}\,dt.
+\]
+
+Let
+
+\[
+P(n)= \frac{1}{ \Gamma\left(1-\frac n2\right) \Gamma\left(1+\frac n2\right)}.
+\]
+
+Using $\psi(x)=\Gamma'(x)/\Gamma(x)$,
+
+\[
+\frac{P'(n)}{P(n)} = \frac12\psi\left(1-\frac n2\right) -\frac12\psi\left(1+\frac n2\right).
+\]
+
+Consequently,
+
+\[
+P(0)=1, \qquad P'(0)=0.
+\]
+
+For the integrand,
+
+\[
+\Phi(n,t)=t^{-n/2}(1-t)^{n/2}(1-zt)^{-(1-n)/2},
+\]
+
+and hence
+
+\[
+\frac{\partial}{\partial n}\log\Phi(n,t) = -\frac12\log t +\frac12\log(1-t) +\frac12\log(1-zt).
+\]
+
+At $n=0$,
+
+\[
+\Phi(0,t)=\frac1{\sqrt{1-zt}}.
+\]
+
+Therefore,
+
+\[
+H_n'(0,z) = \frac12\int_0^1 \frac{ \log\left(\dfrac{(1-t)(1-zt)}{t}\right) }{ \sqrt{1-zt} }\,dt. \tag{1}
+\]
+
+Differentiation under the integral is justified because, in a neighborhood of $n=0$, the integrand and its $n$-derivative are bounded by integrable functions proportional to
+
+\[
+t^{-\varepsilon}(1-t)^{-\varepsilon} \left(1+|\log t|+|\log(1-t)|\right),
+\]
+
+while $1-zt\geq 1-z>0$.
+
+\subparagraph*{2. Evaluate $H(0,z)$}
+
+At $n=0$,
+
+\[
+H(0,z) = \int_0^1\frac{dt}{\sqrt{1-zt}} = \frac{2(1-\sqrt{1-z})}{z}.
+\]
+
+Now
+
+\[
+1-z = 1-\frac{4\alpha}{(1+\alpha)^2} = \frac{(1-\alpha)^2}{(1+\alpha)^2}.
+\]
+
+Because $0\leq\alpha\leq1$,
+
+\[
+\sqrt{1-z}=\frac{1-\alpha}{1+\alpha}.
+\]
+
+Thus, for $\alpha>0$,
+
+\[
+H(0,z) = \frac{ 2\left(1-\dfrac{1-\alpha}{1+\alpha}\right) }{ \dfrac{4\alpha}{(1+\alpha)^2} } =1+\alpha. \tag{2}
+\]
+
+It follows that $f(0,\alpha)=1$.
+
+\subparagraph*{3. Evaluate the logarithmic integral}
+
+Introduce
+
+\[
+q=\sqrt{1-z}=\frac{1-\alpha}{1+\alpha}, \qquad z=1-q^2.
+\]
+
+In (1), set
+
+\[
+s=\sqrt{1-zt}, \qquad t=\frac{1-s^2}{z}, \qquad dt=-\frac{2s}{z}\,ds.
+\]
+
+The endpoints become
+
+\[
+t=0\Longrightarrow s=1, \qquad t=1\Longrightarrow s=q.
+\]
+
+Moreover,
+
+\[
+1-t=\frac{s^2-q^2}{z}, \qquad 1-zt=s^2.
+\]
+
+Therefore,
+
+\[
+\frac{(1-t)(1-zt)}{t} = \frac{s^2(s^2-q^2)}{1-s^2}.
+\]
+
+Equation (1) becomes
+
+\[
+H_n'(0,z) = \frac1z \int_q^1 \log\left( \frac{s^2(s^2-q^2)}{1-s^2} \right)ds. \tag{3}
+\]
+
+Write the integral in (3) as
+
+\[
+A(q)= 2\int_q^1\log s\,ds +\int_q^1\log(s-q)\,ds +\int_q^1\log(s+q)\,ds -\int_q^1\log(1-s)\,ds -\int_q^1\log(1+s)\,ds.
+\]
+
+Using
+
+\[
+\int \log x\,dx=x\log x-x,
+\]
+
+the individual terms are
+
+\[
+2\int_q^1\log s\,ds = -2-2q\log q+2q,
+\]
+
+\[
+\int_q^1\log(s-q)\,ds = (1-q)\log(1-q)-(1-q),
+\]
+
+\[
+\int_q^1\log(s+q)\,ds = (1+q)\log(1+q)-(1+q)-2q\log(2q)+2q,
+\]
+
+\[
+-\int_q^1\log(1-s)\,ds = -(1-q)\log(1-q)+(1-q),
+\]
+
+and
+
+\[
+-\int_q^1\log(1+s)\,ds = -2\log2+2+(1+q)\log(1+q)-(1+q).
+\]
+
+Adding and simplifying,
+
+\[
+A(q) = 2\left[ q-1 +(1+q)\log\left(\frac{1+q}{2}\right) -2q\log q \right]. \tag{4}
+\]
+
+Since
+
+\[
+q-1=-\frac{2\alpha}{1+\alpha}, \qquad 1+q=\frac{2}{1+\alpha}, \qquad \frac{1+q}{2}=\frac1{1+\alpha},
+\]
+
+equation (4) becomes
+
+\[
+A(q) = -\frac4{1+\alpha} \left[ \alpha+\log(1+\alpha) +(1-\alpha)\log\left(\frac{1-\alpha}{1+\alpha}\right) \right]. \tag{5}
+\]
+
+Because $H_n'(0,z)=A(q)/z$ and
+
+\[
+z=\frac{4\alpha}{(1+\alpha)^2},
+\]
+
+we obtain
+
+\[
+\frac{H_n'(0,z)}{1+\alpha} = -\frac1\alpha \left[ \alpha+\log(1+\alpha) +(1-\alpha)\log\left(\frac{1-\alpha}{1+\alpha}\right) \right]. \tag{6}
+\]
+
+\subparagraph*{4. Differentiate $f(n,\alpha)$}
+
+The product rule gives
+
+\[
+g(\alpha) = \frac1{1+\alpha} \left[ \log(1+\alpha)H(0,z)+H_n'(0,z) \right].
+\]
+
+Using $H(0,z)=1+\alpha$ from (2),
+
+\[
+g(\alpha) = \log(1+\alpha)+\frac{H_n'(0,z)}{1+\alpha}.
+\]
+
+Substituting (6),
+
+\[
+g(\alpha) = \log(1+\alpha) -\frac1\alpha \left[ \alpha+\log(1+\alpha) +(1-\alpha)\log\left(\frac{1-\alpha}{1+\alpha}\right) \right].
+\]
+
+Expanding the last logarithm,
+
+\[
+\log\left(\frac{1-\alpha}{1+\alpha}\right) = \log(1-\alpha)-\log(1+\alpha),
+\]
+
+all terms involving $\log(1+\alpha)$ cancel, leaving
+
+\[
+g(\alpha) = -1-\frac{1-\alpha}{\alpha}\log(1-\alpha), \qquad 0<\alpha<1. \tag{7}
+\]
+
+{\color{blue}
+\paragraph*{Alternative derivation for $0<\alpha<1$}
+
+The quadratic transformation in
+\href{\detokenize{https://dlmf.nist.gov/15.8.E15}}{DLMF Section 15.8.15} is
+
+\[
+{}_2F_1(a,b;a-b+1;x)
+=(1+x)^{-a}{}_2F_1\left(\frac a2,\frac{a+1}{2};a-b+1;
+\frac{4x}{(1+x)^2}\right),
+\qquad |x|<1.
+\]
+
+Taking $a=1-n$, $b=-n$, and $x=\alpha$ gives
+
+\[
+f(n,\alpha)={}_2F_1(1-n,-n;2;\alpha).
+\]
+
+By the Gauss series,
+
+\[
+f(n,\alpha)=\sum_{k=0}^{\infty}c_k(n)\alpha^k,
+\qquad
+c_k(n)=\frac{(1-n)_k(-n)_k}{(2)_k\,k!}.
+\]
+
+Termwise differentiation with respect to $n$ is justified as follows. For
+fixed $\alpha\in(0,1)$ and $\delta>0$, the recurrence for $c_k$ gives
+
+\[
+\left|c_{k+1}(n)\alpha^{k+1}\right|
+\leq \left|c_k(n)\alpha^k\right|
+\alpha\frac{(k+1+\delta)(k+\delta)}{(k+2)(k+1)},
+\qquad |n|\leq\delta,
+\]
+
+and the last factor tends uniformly to $\alpha<1$. The uniform ratio test
+therefore gives locally uniform convergence in $n$. Since every $c_k$ is
+entire, the Weierstrass theorem and Cauchy's integral formula imply that the
+sum is holomorphic near $n=0$ and may be differentiated term by term there.
+
+For $k\geq1$,
+
+\[
+(-n)_k=(-n)(1-n)\cdots(k-1-n),
+\]
+
+and hence
+
+\[
+\left.\frac{d}{dn}(-n)_k\right|_{n=0}=-(k-1)!,
+\qquad
+(1-n)_k\big|_{n=0}=k!.
+\]
+
+Since $(-n)_k|_{n=0}=0$, the derivative of $(1-n)_k$ does not contribute.
+Using $(2)_k=(k+1)!$, we obtain
+
+\[
+c_0'(0)=0,
+\qquad
+c_k'(0)=-\frac{1}{k(k+1)},\qquad k\geq1.
+\]
+
+It follows that
+
+\[
+g(\alpha)=-\sum_{k=1}^{\infty}\frac{\alpha^k}{k(k+1)}.
+\]
+
+Finally, using $1/[k(k+1)]=1/k-1/(k+1)$ and
+$-\log(1-\alpha)=\sum_{k=1}^{\infty}\alpha^k/k$, with both series
+absolutely convergent for $0<\alpha<1$, gives
+
+\[
+\sum_{k=1}^{\infty}\frac{\alpha^k}{k(k+1)}
+=1+\frac{1-\alpha}{\alpha}\log(1-\alpha).
+\]
+
+Therefore,
+
+\[
+g(\alpha)=-1-\frac{1-\alpha}{\alpha}\log(1-\alpha),
+\qquad 0<\alpha<1,
+\]
+
+in agreement with (7).
+}
+\subparagraph*{5. Endpoint $\alpha=0$}
+
+When $\alpha=0$, the hypergeometric argument is zero. Therefore,
+
+\[
+f(n,0) = 1^{n-1}\,{}_2F_1\left(\frac{1-n}{2},1-\frac n2;2;0\right) =1.
+\]
+
+Hence
+
+\[
+g(0)=0.
+\]
+
+This also agrees with the continuous limit because
+
+\[
+\log(1-\alpha)=-\alpha+O(\alpha^2),
+\]
+
+so
+
+\[
+-1-\frac{1-\alpha}{\alpha}\log(1-\alpha) =O(\alpha)\longrightarrow0.
+\]
+
+\subparagraph*{6. Endpoint $\alpha=1$}
+
+At $\alpha=1$, the hypergeometric argument is $z=1$. Gauss's summation theorem, stated in \href{\detokenize{https://dlmf.nist.gov/15.4.E20}}{DLMF Section 15.4.20}, gives
+
+\[
+f(n,1) = 2^{n-1} \frac{ \Gamma\left(\frac12+n\right) }{ \Gamma\left(\frac{3+n}{2}\right) \Gamma\left(1+\frac n2\right) }.
+\]
+
+Since $f(0,1)=1$, logarithmic differentiation yields
+
+\[
+g(1) = \log2+\psi\left(\frac12\right) -\frac12\psi\left(\frac32\right) -\frac12\psi(1).
+\]
+
+The special values are
+
+\[
+\psi(1)=-\gamma, \qquad \psi\left(\frac12\right)=-\gamma-2\log2,
+\]
+
+as listed in \href{\detokenize{https://dlmf.nist.gov/5.4.E12}}{DLMF Section 5.4}, and the recurrence
+
+\[
+\psi(z+1)=\psi(z)+\frac1z
+\]
+
+from \href{\detokenize{https://dlmf.nist.gov/5.5.E2}}{DLMF Section 5.5.2} gives
+
+\[
+\psi\left(\frac32\right) = \psi\left(\frac12\right)+2.
+\]
+
+Consequently,
+
+\[
+g(1)=-1.
+\]
+
+This agrees with (7) under the standard limiting convention
+
+\[
+\lim_{x\to0^+}x\log x=0.
+\]

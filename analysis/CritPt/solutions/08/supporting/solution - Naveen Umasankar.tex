@@ -1,0 +1,110 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,xcolor,geometry,hyperref,booktabs}
+\geometry{margin=1in}
+\newcommand{\chg}[1]{\textcolor{blue}{#1}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\arctanh}{\operatorname{arctanh}}
+\newcommand{\arccosh}{\operatorname{arccosh}}
+\newcommand{\Pf}{\operatorname{Pf}}
+\title{Challenge 8: Scalar spectrum in Nieh--Yan gravity \\ \large Solution (independent derivation)}
+\date{}
+\begin{document}\maketitle
+
+\section{Strategy}
+The requested expression is a product of four ratios that are each fixed by the constraint equations of the scalar sector. The most economical and most reliable way to obtain them is to notice that the spin connection enters the action algebraically, so that torsion can be integrated out \emph{exactly} and covariantly. The result is Einstein gravity plus a scalar with a rescaled kinetic term. All background and linear-perturbation relations then follow from standard single-field inflation, and the specific tetrad/torsion variables of the problem are recovered by writing the covariant solution in the Lorentz frame adapted to $d\vartheta$. Conventions: $(+,-,-,-)$, $\epsilon_{0123}=1$, $M\equiv M_{Pl}$, $\mathcal S_{EH}=-\frac{M^2}{4}\int\epsilon_{ABCD}e^Ae^BR^{CD}$, $\mathcal S_\vartheta=\int[\frac12\star d\vartheta\wedge d\vartheta-\frac{1}{3!}\epsilon_{ABCD}e^Ae^Be^Ce^DV]$, $S_{NY}=-nf\int d\vartheta\wedge T^A\wedge e_A$.
+
+\section{Integrating out torsion exactly}
+Write $\omega^{AB}=\bar\omega^{AB}(e)+K^{AB}$ with $\bar\omega$ the Levi-Civita connection ($de^A+\bar\omega^A{}_Be^B=0$) and $K^{AB}=K^{AB}{}_Ce^C$ the contortion, so that $T^A=K^A{}_B\wedge e^B$ and
+\begin{equation}
+R^{AB}=\bar R^{AB}+\bar DK^{AB}+K^A{}_C\wedge K^{CB}.
+\end{equation}
+Since $\bar De^A=0$, the term $\epsilon_{ABCD}e^Ae^B\bar DK^{CD}=d(\epsilon_{ABCD}e^Ae^BK^{CD})$ is a total derivative. Using $e^Ae^Be^Ce^D=\epsilon^{0123}\epsilon^{ABCD}\,\varepsilon$ with $\varepsilon=e^0e^1e^2e^3=\sqrt{-g}\,d^4x$, and the Lorentzian identities $\epsilon_{ABCD}\epsilon^{ABFG}=-2(\delta^F_C\delta^G_D-\delta^F_D\delta^G_C)$, $\epsilon_{ABCD}\epsilon^{ABCE}=-6\delta^E_D$, one finds
+\begin{align}
+\mathcal S_{EH}&=-\frac{M^2}{2}\int\sqrt{-g}\,\bar R+\frac{M^2}{2}\int\sqrt{-g}\big(K^C{}_{EC}K^{ED}{}_D-K_{CED}K^{EDC}\big),\\
+S_{NY}&=-nf\int\sqrt{-g}\,\epsilon^{DABC}\partial_D\vartheta\,K_{ABC},
+\end{align}
+where $\bar R$ is the Ricci scalar in the convention in which $\bar R=-6(\dot H+2H^2)$ on FRW, so that $-\frac{M^2}{2}\int\sqrt{-g}\bar R$ is the correctly normalised Einstein--Hilbert action in $(+,-,-,-)$ (the overall orientation sign is common to all three terms and drops out; the relative sign between the gravitational and scalar kinetic terms is fixed by positivity of energy, and this fixes everything else). The Nieh--Yan term sources only the totally antisymmetric part of $K$, and the quadratic form is non-degenerate and block diagonal on the irreducible parts, so the solution is totally antisymmetric:
+\begin{equation}
+K_{ABC}=\kappa\,\epsilon_{ABCD}\partial^D\vartheta\quad\Rightarrow\quad
+K_{CED}K^{CED}=-6\kappa^2(\partial\vartheta)^2,\qquad \epsilon^{DABC}\partial_D\vartheta K_{ABC}=6\kappa(\partial\vartheta)^2 .
+\end{equation}
+The torsion-dependent Lagrangian is $\sqrt{-g}\,(-3M^2\kappa^2-6nf\kappa)(\partial\vartheta)^2$, extremised at
+\begin{equation}
+\kappa=-\frac{nf}{M^2},\qquad \mathcal L_{\rm torsion}\big|_{\rm on-shell}=+\frac{3n^2f^2}{M^2}\sqrt{-g}\,(\partial\vartheta)^2 .
+\end{equation}
+Hence the exact effective theory is
+\begin{equation}
+\boxed{\;S_{\rm eff}=\int\sqrt{-g}\Big[-\frac{M^2}{2}\bar R+\frac{K}{2}(\partial\vartheta)^2-V(\vartheta)\Big],\qquad K\equiv1+\frac{6n^2f^2}{M^2}\;}
+\label{eq:Seff}
+\end{equation}
+i.e.\ GR with a canonical scalar $\chi=\sqrt K\,\vartheta$. The sign of the correction is convention independent (it is $-(\text{linear})^2/4(\text{quadratic})$ with the quadratic coefficient tied to the sign of the Einstein--Hilbert term).
+
+\paragraph{Torsion in the adapted frame.} In the Lorentz frame in which $e^0\propto d\vartheta$ (so $\partial^A\vartheta=|d\vartheta|\,\delta^A_0$, $|d\vartheta|=\sqrt{g^{\mu\nu}\partial_\mu\vartheta\partial_\nu\vartheta}$), $K_{abc}=\kappa\epsilon_{abc0}|d\vartheta|=-\kappa\,\epsilon_{abc}|d\vartheta|$, and $K^{0a}=0$. Comparing with the problem's parametrisation $\tilde\omega^{ab}=\phi\,\epsilon^{ab}{}_ce^c$, $\tilde\omega^{0a}=h\,e^a$ (equivalently $T^i=h\,e^0e^i-\phi\,\epsilon^i{}_{jk}e^je^k$):
+\begin{equation}
+h=0,\qquad \phi=\frac{nf}{M^2}\,|d\vartheta| .
+\label{eq:phi}
+\end{equation}
+On the background, $|d\vartheta|=\dot\vartheta$, reproducing $\phi=nf\dot\vartheta/M^2$, $h=0$.
+
+\section{Background}
+From (\ref{eq:Seff}) with $\vartheta=\vartheta(t)$:
+\begin{equation}
+3M^2H^2=\frac K2\dot\vartheta^2+V,\qquad \ddot\vartheta+3H\dot\vartheta+\frac1K\frac{dV}{d\vartheta}=0,\qquad \epsilon_H=-\frac{\dot H}{H^2}=\frac{K\dot\vartheta^2}{2M^2H^2},
+\end{equation}
+in agreement with eqs.\ (3.22)--(3.27) of the source. For $V=\Lambda^4[1-\cos(\vartheta/f)]$ the slow-roll parameters are those of natural inflation with $f\to f\sqrt K$: $\epsilon_V=\frac{M^2}{2Kf^2}\cot^2\frac{\vartheta}{2f}$, $N(\vartheta)=\frac{2Kf^2}{M^2}\ln\frac{\cos(\vartheta_{\rm end}/2f)}{\cos(\vartheta/2f)}$.
+
+With the given numbers, $n^2f^2=0.7225$, $K=5.335$, and starting from $\vartheta=5$ the slow-roll estimate gives $N\simeq70.5$ e-folds; a direct numerical integration of the background equations from $\vartheta(0)=5$, $\dot\vartheta(0)=0$ to $\epsilon_H=1$ gives $72.4$ e-folds, and at $N_e=60$ before the end one has $\vartheta=4.838$, $\dot\vartheta=-1.80\times10^{-7}$, $H=1.106\times10^{-5}$, $\epsilon_H=7\times10^{-4}$. The evaluation point therefore exists, lies in the slow-roll phase, and has $\dot\vartheta\neq0$, so all ratios below are well defined there. ($a(0)=10$ only fixes the origin of $\ln a$.)
+
+\section{Linear scalar perturbations}
+\paragraph{Torsion constraints.} Equation (\ref{eq:phi}) holds for the perturbed tetrad as well, provided the frame is adapted to $d\vartheta$. With $e^0=a[(1+A)d\eta+\partial_i\beta\,dx^i]$ and $d\vartheta=\vartheta'd\eta+\partial_i\delta\vartheta\,dx^i$, the condition $d\vartheta\propto e^0$ at linear order is
+\begin{equation}
+\beta=\frac{\delta\vartheta}{\vartheta'}=\frac{\delta\vartheta}{a\dot\vartheta}\qquad\Longrightarrow\qquad \frac{\beta a\dot\vartheta}{\delta\vartheta}=1 .
+\end{equation}
+This is precisely what the spin-connection equations of the restricted ansatz impose (the ansatz $\tilde\omega^{0a}=he^a$, $\tilde\omega^{ab}=\phi\epsilon^{ab}{}_ce^c$ is not boost covariant, so the boost parameter $\beta$ is fixed by the torsion equation rather than being pure gauge), and it gives $\delta h=0$. Expanding the norm with $g^{00}=a^{-2}(1-2A)$ (the $g^{0i}\partial_i\delta\vartheta$ term is second order),
+\begin{equation}
+|d\vartheta|=\frac{\vartheta'}{a}(1-A)+\frac{\delta\vartheta'}{a}=\dot\vartheta+\delta\dot\vartheta-\dot\vartheta A
+\quad\Longrightarrow\quad
+\delta\phi=\frac{nf}{M^2}\big(\delta\dot\vartheta-\dot\vartheta A\big),
+\end{equation}
+so that
+\begin{equation}
+\frac{\delta\phi}{nf\,\delta\dot\vartheta-nf\,\dot\vartheta A}=\frac{1}{M^2}=1,\qquad
+\frac{\delta\phi}{\delta\dot\vartheta-\dot\vartheta A}=\frac{nf}{M^2}=0.5\times1.7=0.85 .
+\end{equation}
+\paragraph{Momentum constraint.} For the canonical field $\chi=\sqrt K\vartheta$ in spatially flat gauge, the $0i$ Einstein equation (unaffected by the shift $B$ at linear order) gives the standard lapse relation $A=\dot\chi\,\delta\chi/(2HM^2)$, i.e.
+\begin{equation}
+A=\frac{K\,\dot\vartheta\,\delta\vartheta}{2HM^2}\qquad\Longrightarrow\qquad
+\frac{2AH}{\dot\vartheta\,\delta\vartheta}=\frac{K}{M^2}=1+6n^2f^2=1+6(0.7225)=5.335 ,
+\end{equation}
+in agreement with eq.\ (C.10) of the source, $A=(1+6n^2f^2)\vartheta'\delta\vartheta/2\mathcal H$ (with $\vartheta'=a\dot\vartheta$, $\mathcal H=aH$).
+
+\paragraph{Power spectrum.} The Mukhanov--Sasaki variable is $v=a\,\delta\chi=a\sqrt K\,\delta\vartheta$ (up to sign), obeying $v''+[k^2-(\nu^2-\frac14)/\eta^2]v=0$ with the $\nu$ of the problem. Bunch--Davies normalisation, $v=\frac{1}{\sqrt{2k}}\sqrt{\frac\pi2}e^{i(\nu+\frac12)\frac\pi2}\sqrt{-k\eta}\,H^{(1)}_\nu(-k\eta)$, and the small-argument form $|H^{(1)}_\nu(x)|\to\sqrt{2/\pi}\,2^{\nu-3/2}\frac{\Gamma(\nu)}{\Gamma(3/2)}x^{-\nu}$ give $|v|^2\to\frac{1}{2k}2^{2\nu-3}\big|\frac{\Gamma(\nu)}{\Gamma(3/2)}\big|^2(-k\eta)^{1-2\nu}$. With $\mathcal R=-\frac{H}{\dot\vartheta}\delta\vartheta$, $a=-1/(H\eta)$ and $-k\eta=1$ at horizon crossing,
+\begin{equation}
+P_{\mathcal R}=\frac{k^3}{2\pi^2}\frac{H^2}{\dot\vartheta^2}\frac{|v|^2}{a^2K}
+=\frac1K\,\frac{H^2}{4\pi^2M^2}\Big(\frac{H}{\dot\vartheta}\Big)^2 2^{2\nu-3}\Big|\frac{\Gamma(\nu)}{\Gamma(\frac32)}\Big|^2\equiv\frac{D}{K},
+\end{equation}
+which is eq.\ (4.54) of the source (in $M=1$ units, where $H^2/M^2$ and $H^2$ are indistinguishable). Hence $P_{\mathcal R}/D=1/K$.
+
+\section{Assembling the requested quantity}
+\begin{equation}
+E=\frac{P_{\mathcal R}(1+3n^2f^2)}{D}\times\frac{2AH}{\dot\vartheta\delta\vartheta}\times\frac{\beta a\dot\vartheta}{\delta\vartheta}\times\frac{\delta\phi}{nf\delta\dot\vartheta-nf\dot\vartheta A}
+=\frac{1+3n^2f^2}{K}\times K\times1\times1=1+3n^2f^2 .
+\end{equation}
+Every dependence on $H$, $\dot\vartheta$, $\nu$, $\Lambda$, $a$ and on the mode amplitudes cancels identically, so the value at horizon crossing 60 e-folds before the end of inflation is simply
+\begin{equation}
+\boxed{E=1+3(0.5)^2(1.7)^2=1+3(0.7225)=3.1675},\qquad
+\boxed{\frac{\delta\phi}{\delta\dot\vartheta-\dot\vartheta A}=nf=0.85},\qquad
+\boxed{\frac{2AH}{\dot\vartheta\delta\vartheta}=1+6n^2f^2=5.335}.
+\end{equation}
+Remark: $E$ does not depend on the kinetic coefficient $K$ at all, since the first and second factors carry $1/K$ and $K$. If the factor $(1+3n^2f^2)$ in the problem was meant to be the actual kinetic coefficient $1+6n^2f^2$, the value would instead be $E=5.335$; the answer above is for the expression exactly as printed.
+
+\section{Comparison with the provided solution and corrections}
+The provided solution obtains the same three numbers ($3.1675$, $0.85$, $5.335$). \chg{The following points are corrected or completed here:
+\begin{enumerate}
+\item The provided solution quotes the background and constraint relations from the source (its ``Eqs.\ (3.22)--(3.28), (C.7)--(C.10), (4.54)'') without derivation. Section 2 gives a self-contained derivation: torsion is integrated out exactly, yielding $K=1+6n^2f^2/M^2$; the constraint relations $\delta h=0$, $\delta\phi=nf(\delta\dot\vartheta-\dot\vartheta A)/M^2$, $\beta=\delta\vartheta/\vartheta'$ are shown to be the adapted-frame form of the covariant solution $K_{ABC}=-\frac{nf}{M^2}\epsilon_{ABCD}\partial^D\vartheta$, and $A$ and $P_{\mathcal R}$ follow from standard single-field results for the canonical field $\sqrt K\vartheta$.
+\item The sign of $\phi/(nf\dot\vartheta)$ (hence of the third answer's sign convention) is convention dependent; the conventions under which it is $+1$ are stated explicitly in the revised problem statement. The values of $K$ and of $E$ are convention independent.
+\item The existence of the evaluation point was checked here by a full numerical integration of the background (72.4 e-folds; $\dot\vartheta\neq0$ at $N_e=60$), not only by the slow-roll estimate.
+\item It is pointed out that $E$ is independent of $K$ and that the printed factor $1+3n^2f^2$ differs from the true kinetic coefficient $1+6n^2f^2$; the answer is given for the expression as printed, with the alternative value noted.
+\end{enumerate}}
+\end{document}

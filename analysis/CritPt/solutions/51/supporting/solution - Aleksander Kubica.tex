@@ -1,0 +1,324 @@
+\subsubsection*{Solution}
+\paragraph*{Step-by-Step Derivation}
+
+\subparagraph*{1. State-space reduction}
+
+Use the following counting convention, directly suggested by the problem:
+
+\begin{itemize}[leftmargin=*]
+\item A composite hop has weight $\lambda$.
+\item A simultaneous step of the two constituents has weight $1$.
+\item A splitting or recombination transition has weight $1$.
+\item Every split has $g$ possible channels, so each complete split episode receives one factor of $g$.
+\end{itemize}
+
+When the particles are separated, let $x_L\leq x_R$ denote the positions of the left and right constituents, and define
+
+\[
+c=\frac{x_L+x_R}{2}, \qquad n=\frac{x_R-x_L}{2}.
+\]
+
+Immediately after splitting,
+
+\[
+x_L=c-1,\qquad x_R=c+1,
+\]
+
+so $n=1$.
+The particles recombine before they can cross; recombination corresponds to $n=0$.
+
+For $n\geq 1$, the four simultaneous constituent moves give
+
+\[
+\begin{array}{ccl}
+(+1,+1)&:&(c,n)\longrightarrow(c+1,n),\\
+(-1,-1)&:&(c,n)\longrightarrow(c-1,n),\\
+(-1,+1)&:&(c,n)\longrightarrow(c,n+1),\\
+(+1,-1)&:&(c,n)\longrightarrow(c,n-1).
+\end{array}
+\]
+
+At $n=1$, the last transition reaches $n=0$ and therefore recombines the particles into a composite at $c$.
+
+Thus the original process becomes a walk on the half-plane
+
+\[
+(c,n)\in\mathbb Z\times\mathbb Z_{\geq0},
+\]
+
+with boundary rules
+
+\[
+(c,0)\longrightarrow(c\pm1,0) \quad\text{with weight }\lambda,
+\]
+
+and
+
+\[
+(c,0)\longrightarrow(c,1) \quad\text{with total weight }g.
+\]
+
+The downward recombination transition has weight $1$.
+
+\subparagraph*{2. Transfer-matrix representation}
+
+Let $T$ be the weighted one-step transfer matrix, with $\langle s'|T|s\rangle$ equal to the weight of the transition $s\to s'$. Then
+
+\[
+Z(t)=\langle 0,0|T^t|0,0\rangle,
+\]
+
+and hence
+
+\[
+\Omega(x,g,\lambda) = \left\langle 0,0\left| \frac{1}{I-xT} \right|0,0\right\rangle.
+\]
+
+Fourier transform the unrestricted center coordinate:
+
+\[
+|q,n\rangle = \sum_{c\in\mathbb Z}e^{iqc}|c,n\rangle, \qquad -\pi\leq q\leq\pi,
+\]
+
+with inverse transform
+
+\[
+|c,n\rangle=\frac{1}{2\pi}\int_{-\pi}^{\pi}e^{-iqc}|q,n\rangle\,dq.
+\]
+
+A horizontal constituent-pair step then contributes
+
+\[
+e^{iq}+e^{-iq}=2\cos q,
+\]
+
+while a composite horizontal step contributes
+
+\[
+2\lambda\cos q.
+\]
+
+Indeed, the moves $c\to c+1$ and $c\to c-1$ multiply a Fourier mode by $e^{-iq}$ and $e^{iq}$, respectively, whose sum is $2\cos q$; the composite result has the additional factor $\lambda$ because each composite hop has weight $\lambda$.
+
+Let $T_q$ be the fixed-momentum transfer matrix acting on $n\geq0$, and define its boundary resolvent by
+
+\[
+G_0(q,x)=\left[(I-xT_q)^{-1}\right]_{0,0}.
+\]
+
+Translation invariance makes different momentum sectors decouple:
+
+\[
+\left\langle q',0\left|(I-xT)^{-1}\right|q,0\right\rangle
+=2\pi\delta(q-q')G_0(q,x).
+\]
+
+Since the inverse-transform phase equals $1$ at $c=0$, substituting the inverse transform for both endpoint states and using this delta function gives
+
+\[
+\Omega(x,g,\lambda) = \frac{1}{2\pi}\int_{-\pi}^{\pi}G_0(q,x)\,dq.
+\]
+
+\subparagraph*{3. Integrating out the split sector}
+
+At this stage, all paths that enter the split states $n\geq1$, wander there, and return to $n=1$ are summarized by a single boundary Green function $R(q,x)$. This replaces the entire infinite split sector by its exact effective contribution to the composite state.
+
+Let
+
+\[
+R(q,x) = \left[(I-xB_q)^{-1}\right]_{1,1},
+\]
+
+where $B_q$ is the transfer matrix restricted to $n\geq1$. In this sector, every site has diagonal Fourier weight $2\cos q$ and nearest-neighbor couplings in $n$ equal to $1$.
+
+Define
+
+\[
+a(q,x)=1-2x\cos q.
+\]
+
+Then
+
+\[
+I-xB_q=
+\begin{pmatrix}
+a&-x&0&0&\cdots\\
+-x&a&-x&0&\cdots\\
+0&-x&a&-x&\ddots\\
+0&0&-x&a&\ddots\\
+\vdots&\vdots&\ddots&\ddots&\ddots
+\end{pmatrix}.
+\]
+
+Removing the first row and column leaves an identical semi-infinite matrix. Therefore the Schur-complement formula gives
+
+\[
+R(q,x) = \frac{1}{a(q,x)-x^2R(q,x)}.
+\]
+
+Therefore
+
+\[
+x^2R^2-aR+1=0.
+\]
+
+Solving the quadratic,
+
+\[
+R(q,x) = \frac{a(q,x)\pm\sqrt{a(q,x)^2-4x^2}}{2x^2}.
+\]
+
+The resolvent element $R(q,x)$ must be analytic at $x=0$ and satisfy $R(q,0)=1$. Consequently, the required branch is
+
+\[
+R(q,x) = \frac{ 1-2x\cos q - \sqrt{\left(1-2x\cos q\right)^2-4x^2} }{2x^2}.
+\]
+
+This square-root structure is the same one arising in the Catalan generating function; see the \href{\detokenize{https://dlmf.nist.gov/26.5.E2}}{NIST DLMF Catalan generating function}.
+
+\subparagraph*{4. Boundary Schur complement}
+
+A split leaves the composite sector with total weight $g$, propagates through the split sector, and recombines with weight $1$. Including one factor of $x$ for each transition into and out of the split sector, its self-energy is
+
+\[
+\Sigma(q,x)=(gx)R(q,x)x=g x^2R(q,x).
+\]
+
+Indeed, in the basis $n=0,1,2,\ldots$,
+
+\[
+I-xT_q=
+\begin{pmatrix}
+1-2\lambda x\cos q&-x&0&\cdots\\
+-gx&a&-x&\cdots\\
+0&-x&a&\ddots\\
+\vdots&\vdots&\ddots&\ddots
+\end{pmatrix}.
+\]
+
+Taking the Schur complement of the $n\geq1$ block gives the fixed-momentum composite resolvent
+
+\[
+G_0(q,x) = \frac{1}{ 1-2\lambda x\cos q-gx^2R(q,x) }.
+\]
+
+Substituting the expression for $R$ gives
+
+\[
+G_0(q,x) = \frac{1}{ 1-2\lambda x\cos q -\dfrac{g}{2} \left[ 1-2x\cos q -\sqrt{\left(1-2x\cos q\right)^2-4x^2} \right] }.
+\]
+
+Equivalently,
+
+\[
+G_0(q,x) = \frac{1}{ 1-\dfrac g2 +(g-2\lambda)x\cos q +\dfrac g2 \sqrt{\left(1-2x\cos q\right)^2-4x^2} }.
+\]
+
+Consequently,
+
+\[
+{ \Omega(x,g,\lambda) = \frac{1}{2\pi} \int_{-\pi}^{\pi} \frac{dq}{ 1-\dfrac g2 +(g-2\lambda)x\cos q +\dfrac g2 \sqrt{\left(1-2x\cos q\right)^2-4x^2} } }.
+\]
+
+The square root is the branch satisfying
+
+\[
+\sqrt{\left(1-2x\cos q\right)^2-4x^2} =1+O(x).
+\]
+
+The result holds as a formal power series and analytically for sufficiently small $|x|$.
+
+\subparagraph*{5. Low-order verification}
+
+Every allowed transition changes the parity of $c+n$, so a return to $(c,n)=(0,0)$ is possible only after an even number of steps. Directly from the transfer rules,
+
+\[
+Z(0)=1,
+\]
+
+and at two steps one can either make two composite hops and return, or split and immediately recombine:
+
+\[
+Z(2)=2\lambda^2+g.
+\]
+
+At four steps,
+
+\[
+Z(4) = 6\lambda^4 +6g\lambda^2 +4g\lambda +g^2+3g.
+\]
+
+Thus
+
+\[
+\Omega(x,g,\lambda) = 1+(2\lambda^2+g)x^2 + \left( 6\lambda^4+6g\lambda^2+4g\lambda+g^2+3g \right)x^4 +O(x^6),
+\]
+
+which follows from the integral formula as well.
+
+\subparagraph*{6. No elementary closed form valid for all parameters}
+
+There is no elementary expression valid for all admissible values of $g$ and $\lambda$. This follows already from the allowed specialization
+
+\[
+g=2,\qquad \lambda=1.
+\]
+
+For these values the denominator simplifies to
+
+\[
+\sqrt{\left(1-2x\cos q\right)^2-4x^2},
+\]
+
+so
+
+\[
+\Omega(x,2,1) = \frac{1}{2\pi} \int_{-\pi}^{\pi} \frac{dq}{ \sqrt{\left(1-2x\cos q\right)^2-4x^2} }.
+\]
+
+For real $|x|<1/4$, the identity
+
+\[
+\frac{1}{\sqrt{a^2-b^2}} = \frac{1}{2\pi} \int_{-\pi}^{\pi} \frac{dp}{a-b\cos p},
+\qquad a>|b|,
+\]
+
+holds with the square-root branch positive at $x=0$; the resulting equality also holds as a formal power series near $x=0$. Taking $a=1-2x\cos q$ and $b=2x$ gives
+
+\[
+\Omega(x,2,1) = \frac{1}{(2\pi)^2} \int_{-\pi}^{\pi}\int_{-\pi}^{\pi} \frac{dp\,dq}{ 1-2x(\cos p+\cos q) }.
+\]
+
+This is the square-lattice return Green function, i.e. the generating function for closed walks on $\mathbb Z^2$. Expanding the denominator geometrically and integrating over $p$ and $q$ selects zero net displacement. If a $2n$-step closed walk has $k$ right and $k$ left steps, it has $n-k$ up and $n-k$ down steps, and hence
+
+\[
+N_{2n}=\sum_{k=0}^{n}\frac{(2n)!}{k!^2(n-k)!^2}
+=\binom{2n}{n}\sum_{k=0}^{n}\binom{n}{k}^2
+=\binom{2n}{n}^2.
+\]
+
+Odd-length closed walks do not exist. Therefore
+
+\[
+\Omega(x,2,1) = \sum_{n=0}^{\infty} \binom{2n}{n}^{\!2}x^{2n}.
+\]
+
+The NIST identity
+
+\[
+K(k) = \frac{\pi}{2}\, {}_2F_1\left(\frac12,\frac12;1;k^2\right)
+\]
+
+for the complete elliptic integral of the first kind is given in the \href{\detokenize{https://dlmf.nist.gov/15.9.E24}}{NIST DLMF}. Since
+
+\[
+\frac{(1/2)_n}{n!}=\frac{1}{4^n}\binom{2n}{n},
+\]
+
+the preceding series is ${}_2F_1(\frac12,\frac12;1;16x^2)$, and hence
+
+\[
+\Omega(x,2,1)=\frac{2}{\pi}K(4x), \qquad |x|<\frac14.
+\]
+
+The complete elliptic integral $K$ is a classical non-elementary function. Thus this admissible specialization rules out an elementary expression valid for all $g$ and $\lambda$.

@@ -1,0 +1,39 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage[colorlinks=true,linkcolor=blue!55!black,citecolor=blue!55!black,
+            urlcolor=blue!55!black]{hyperref}
+
+\newcommand{\ket}[1]{\lvert #1\rangle}
+\newcommand{\bra}[1]{\langle #1\rvert}
+\newcommand{\ketbra}[2]{\lvert #1\rangle\langle #2\rvert}
+\newcommand{\rhoc}{\hat\rho_{c}}
+\newcommand{\ii}{\mathrm{i}}
+\newcommand{\ee}{\mathrm{e}}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\Had}{\circ}
+
+\title{\bfseries Challenge 39: Alteration of cavity field coherences\\[2pt]
+\large Steady-state cavity coherences $\bra{n'}\hat\rho_{c,\rm ss}\ket{n}$,
+with a squeezed-input bonus}
+\author{}
+\date{}
+
+\title{Challenge 39: Final answer}
+\author{}
+\begin{document}
+\maketitle
+\begin{equation}
+  \boxed{\;
+  \bra{n'}\rhoc^{\rm ss}\ket{n}
+  =\ee^{-|\alpha|^{2}}\left[\delta_{n0}\delta_{n'0}
+  +\frac{2\,|\alpha|^{2}\,\alpha^{n'}(\alpha^{*})^{n}}
+  {\sqrt{n!\,n'!}\;\left[\dfrac{g^{2}}{2\gamma^{2}}(n-n')^{2}+n+n'+2\right]}
+  \right]\;}
+  \label{eq:coherent}
+\end{equation}
+\end{document}

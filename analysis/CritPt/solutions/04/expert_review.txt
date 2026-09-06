@@ -1,0 +1,48 @@
+Expert review — Challenge 04
+Form submissions: 1
+
+========================================================================
+Submission 1 (annotations.csv row 39)
+========================================================================
+
+Question: Timestamp
+Answer:
+8/27/2026 15:00:18
+
+Question: Email Address
+Answer:
+haoyu.wei@yale.edu
+
+Question: Enter the challenge ID you are contributing to (a number between 1 and 70)
+Answer:
+4
+
+Question: What did you do for this challenge? Select all that apply
+Answer:
+Checked the challenge for well-definedness and technical correctness, Solved from scratch, Verified the existing solution, Corrected the existing solution
+
+Question: Is the challenge well-defined and technically correct? If not, please specify the issue in "Other"
+Answer:
+The challenge is not quite well defined. The challenge asks for "the OAM of the 23rd harmonic order and associated helicity". However, according to the physical setting, the 23rd harmonic order should be an optical pulse that is a function of time, and at each given time point the field is a superposition of OAM and SAM eigenstates. The question did not specify whether to solve for the possible eigenstates (as interpreted by the provided solution), the distribution of eigenstates as a function of time, or the time-integrated energy distribution in these eigenstates.
+
+Question: Solution review notes
+Answer:
+1. I updated problem.tex to eliminate the ambiguity in the problem statement which now matches the AI's interpretation. [Reason for change: As stated above, the challenge statement did not specify the level of detail in the answer it expects. If interpreted as "all possible OAM/SAM eigenstates that can appear in the pulse", then the solution given by AI is perfect, even including a statement that the actual pulse will be a superposition of the answer it gives, clarifying the level of detail of its own answer. ]
+2. I added a citation in solution.tex to cite a more primary source [Budil, Salières, L'Huillier, Ditmire, Perry, Phys. Rev. A 48, R3437–R3440 (1993)]
+3. I made cosmetic changes (grammar, typesetting, typo) to problem.tex and solution.tex. 
+
+Question: File uploads
+Answer:
+https://drive.google.com/open?id=1uVqK7eoOySvOx3XB78hHMzdC7lriOTUz, https://drive.google.com/open?id=1k3-jf0gVYpx57ftQrSqlMrsiIU1xWMak, https://drive.google.com/open?id=15GZGkQnRDeROcS_AXrtQPFl_SO4tEJ9C
+
+Question: Level of confidence
+Answer:
+3: high confidence (thoroughly checked)
+
+Question: If you selected “1: low confidence,” you must briefly explain why.
+Answer:
+[No answer provided]
+
+Question: Attestation
+Answer:
+I agree to the attestation above.

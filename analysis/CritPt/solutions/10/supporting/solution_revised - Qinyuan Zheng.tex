@@ -1,0 +1,247 @@
+\subsubsection*{Solution}
+\paragraph*{Step-by-Step Derivation}
+
+\subparagraph*{1. Action and background equations}
+
+Using the signature $ds^2=dt^2-a^2(t)d\mathbf{x}^2$, the total first-order action is
+
+\[
+\mathcal S = \mathcal S_{\rm EH} + \mathcal S_{\vartheta} + \mathcal S_{\rm CS},
+\]
+
+where
+
+\[
+\mathcal S_{\rm EH} = -\frac{M_{\rm Pl}^2}{4} \int_{\mathcal M} \epsilon_{ABCD}\, e^A\wedge e^B\wedge R^{CD},
+\]
+
+\textcolor{blue}{and, for the pseudoscalar,}
+
+\[
+{\color{blue}
+\mathcal S_{\vartheta} = \int_{\mathcal M} \left[ \frac12 \star d\vartheta\wedge d\vartheta \;-\; \frac{1}{4!}\,\epsilon_{ABCD}\, e^A\wedge e^B\wedge e^C\wedge e^D\; V(\vartheta) \right],}
+\]
+
+\textcolor{blue}{where $\star$ denotes the Hodge dual. Since $\tfrac{1}{4!}\epsilon_{ABCD}\,e^A\wedge e^B\wedge e^C\wedge e^D=\sqrt{-g}\,d^4x$ is the spacetime volume form, this is equivalently, in coordinate notation,}
+
+\[
+\mathcal S_{\vartheta} = \int d^4x\,\sqrt{-g} \left[ \frac12 g^{\mu\nu}\partial_\mu\vartheta\partial_\nu\vartheta -V(\vartheta) \right].
+\]
+
+The potential is interpreted exactly as printed in the problem,
+
+\[
+V(\vartheta)=\frac12m\vartheta^2,\qquad V_{,\vartheta}=m\vartheta,
+\]
+
+rather than as the frequently used convention $V=\frac12m^2\vartheta^2$.
+
+These conventions and the resulting torsionful FLRW equations are given in the primary treatment of this model, \href{\detokenize{https://inspirehep.net/files/eb3973db1bbed05a53c1b06c37b78a17}}{Adshead, Brahma and Das, JCAP 03 (2026) 057}.
+
+For
+
+\[
+e^0=dt,\qquad e^i=a(t)dx^i,
+\]
+
+the torsion ansatz gives the spin-connection components
+
+\[
+\bar\omega^{i0}=H e^i,\qquad \widetilde\omega^{0i}=h e^i,\qquad \widetilde\omega^{ij}=\phi\,\epsilon^{ij}{}_k e^k.
+\]
+
+Defining
+
+\[
+X\equiv H+h,
+\]
+
+the curvature components are
+
+\[
+R^{0i} = \left(\dot X+HX\right)e^0\wedge e^i + \phi X\,\epsilon^i{}_{jk}e^j\wedge e^k,
+\]
+
+\[
+R^{ij} = \left(X^2-\phi^2\right)e^i\wedge e^j + (\dot\phi+H\phi)\epsilon^{ij}{}_k e^k\wedge e^0.
+\]
+
+Variation of the action then produces the background system [equations (3.12)-(3.16) in the cited paper]:
+
+\[
+X^2-\phi^2 = \frac{1}{3M_{\rm Pl}^2} \left(\frac12\dot\vartheta^2+V\right),
+\]
+
+\[
+2(\dot X+HX)+X^2-\phi^2 = -\frac{1}{M_{\rm Pl}^2} \left(\frac12\dot\vartheta^2-V\right),
+\]
+
+\[
+\phi = \frac{\alpha\dot\vartheta}{2M_{\rm Pl}^2} \left(X^2-\phi^2\right),
+\]
+
+\[
+h = -\frac{\alpha\dot\vartheta\,\phi X}{M_{\rm Pl}^2},
+\]
+
+and
+
+\[
+\ddot\vartheta+3H\dot\vartheta+V_{,\vartheta} = -3\alpha \left[ \dot\phi(X^2-\phi^2) +2\phi X\dot X +3H\phi X^2-H\phi^3 \right].
+\]
+
+\subparagraph*{2. Algebraic elimination of torsion}
+
+Set $M_{\rm Pl}=1$, $u=\dot\vartheta$, and
+
+\[
+E(\vartheta,u) \equiv \frac13\left(\frac12u^2+\frac12m\vartheta^2\right).
+\]
+
+The constraint equations give
+
+\[
+X^2-\phi^2=E,
+\]
+
+\[
+\phi=\frac{\alpha u}{2}E.
+\]
+
+Consequently,
+
+\[
+X=\sqrt{E+\phi^2},
+\]
+
+where the positive root selects the expanding solution. Defining
+
+\[
+q\equiv\alpha u\phi =\frac{\alpha^2u^2E}{2},
+\]
+
+the remaining torsion equation gives
+
+\[
+h=-qX.
+\]
+
+Since $X=H+h$,
+
+\[
+H=X-h=(1+q)X.
+\]
+
+Thus the Hubble parameter used in the numerical integration is
+
+\[
+{ H(\vartheta,u) = \left(1+\frac{\alpha^2u^2E}{2}\right) \sqrt{ E+\frac{\alpha^2u^2E^2}{4} } }.
+\]
+
+\subparagraph*{3. Explicit scalar evolution equation}
+
+Because $\phi$ and $X$ depend on $(\vartheta,u)$,
+
+\[
+\dot\phi=\phi_{,\vartheta}u+\phi_{,u}\dot u, \qquad \dot X=X_{,\vartheta}u+X_{,u}\dot u.
+\]
+
+The required derivatives are
+
+\[
+E_{,\vartheta}=\frac{m\vartheta}{3}, \qquad E_{,u}=\frac{u}{3},
+\]
+
+\[
+\phi_{,\vartheta} = \frac{\alpha u}{2}E_{,\vartheta}, \qquad \phi_{,u} = \frac{\alpha}{2}\left(E+uE_{,u}\right),
+\]
+
+\[
+X_{,z} = \frac{E_{,z}+2\phi\phi_{,z}}{2X}, \qquad z\in\{\vartheta,u\}.
+\]
+
+Writing
+
+\[
+B_0 = u\left(\phi_{,\vartheta}E+2\phi X X_{,\vartheta}\right) + H\phi(3X^2-\phi^2),
+\]
+
+\[
+B_1 = \phi_{,u}E+2\phi X X_{,u},
+\]
+
+the Klein-Gordon equation becomes explicitly
+
+\[
+{ \dot u = \frac{-3Hu-m\vartheta-3\alpha B_0} {1+3\alpha B_1} }.
+\]
+
+The number of e-folds satisfies
+
+\[
+\dot N=H, \qquad N(0)=0,
+\]
+
+so that
+
+\[
+N(t)=\ln\frac{a(t)}{a(0)} =\int_0^t H(t')\,dt'.
+\]
+
+\subparagraph*{4. Initial conditions}
+
+Using
+
+\[
+\alpha=10^{-4},\quad m=10^{-6},\quad \vartheta(0)=15,\quad u(0)=0.1,
+\]
+
+gives
+
+\[
+V(15)=\frac12(10^{-6})(15)^2 =1.125\times10^{-4},
+\]
+
+\[
+E(0) = \frac{0.0051125}{3} = 0.00170416666666667,
+\]
+
+\[
+\phi(0) = 8.52083333333333\times10^{-9},
+\]
+
+\[
+H(0) = 0.0412815535883405.
+\]
+
+\subparagraph*{5. Numerical integration}
+
+I integrated the system
+
+\[
+\dot\vartheta=u,\qquad \dot u=F(\vartheta,u),\qquad \dot N=H(\vartheta,u)
+\]
+
+with the adaptive eighth-order DOP853 method. Tightening the relative tolerance and reducing the maximum step verifies the quoted digits.
+
+At $t=25000$, the solution is
+
+\[
+\vartheta=0.0486840706823,
+\]
+
+\[
+\dot\vartheta = 2.25506937363\times10^{-4},
+\]
+
+\[
+H = 9.41837897738\times10^{-5},
+\]
+
+and
+
+\[
+N(25000) = 75.1009281083.
+\]
+
+Thus the accumulated logarithmic scale-factor growth at the requested endpoint is $75.1009281083$ e-folds.

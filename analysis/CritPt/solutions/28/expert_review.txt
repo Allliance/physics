@@ -1,0 +1,46 @@
+Expert review — Challenge 28
+Form submissions: 1
+
+========================================================================
+Submission 1 (annotations.csv row 45)
+========================================================================
+
+Question: Timestamp
+Answer:
+8/28/2026 15:47:21
+
+Question: Email Address
+Answer:
+mateo.cardeneswuttig@yale.edu
+
+Question: Enter the challenge ID you are contributing to (a number between 1 and 70)
+Answer:
+28
+
+Question: What did you do for this challenge? Select all that apply
+Answer:
+Checked the challenge for well-definedness and technical correctness, Verified the existing solution, Corrected the existing solution
+
+Question: Is the challenge well-defined and technically correct? If not, please specify the issue in "Other"
+Answer:
+Not fully as written, but repairable. At \omega=0, both inelastic scattering rates vanish, so a k_F-exponent is not defined unless the problem asks for the coefficient of the leading \omega^2\-term. I revised the problem.tex document to define  A_qp(k_F)= \lim_{\omega -> 0^+}\Gamma_qp/\omega^2 and A_tr analogously, and to state that the conductivity is the intensive response per unit four-dimensional spatial volume.
+
+Question: Solution review notes
+Answer:
+Independently checked the low-density expansion and the second-order scaling. The AI's final tuple is correct under the intended sequential limit n\propto k_F^4 and \varepsilon_F \propto k_F^2, giving A_qp \propto k_F^2. The first non-Galilean term in the lattice velocity gives an additional a·k_F^4 transport suppression, so A_tr \propto k_F^6. Multiplying by the optical weight K_y \propto k_F^4 gives \delta Re \sigma_{yy}^{reg}(0^+) \propto k_F^10. I rewrote the problem and solution to make the limiting convention explicit and removed the redundant division of an already intensive conductivity by V. The corrected final answer is (\gamma_{\sigma},\gamma_{qp},\gamma_{tr})=(10,2,6).
+
+Question: File uploads
+Answer:
+https://drive.google.com/open?id=1CWjYzvxSpOVY-olkm_LmxcAxYoNp4R3y, https://drive.google.com/open?id=1fMtxUGMdMvrW0f-pgAuP2sOGNfmdscEK, https://drive.google.com/open?id=1GXoupmIdlZzTVLK8ktnj14-v1fYvxQCv
+
+Question: Level of confidence
+Answer:
+3: high confidence (thoroughly checked)
+
+Question: If you selected “1: low confidence,” you must briefly explain why.
+Answer:
+[No answer provided]
+
+Question: Attestation
+Answer:
+I agree to the attestation above.

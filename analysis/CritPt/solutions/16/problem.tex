@@ -1,0 +1,69 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{physics}
+\usepackage{booktabs}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+
+\title{Exact solution for the momentum-diagonal interacting Chern insulator at quarter filling}
+\author{Solution to Challenge 16}
+\date{}
+
+\title{Challenge 16: Problem}
+\author{}
+\begin{document}
+\maketitle
+\section{Problem statement and interpretation}
+
+We are given the Hamiltonian
+\begin{equation}
+\label{eq:Hfull}
+H = H_0 - \mu \sum_{k\sigma}\left(c_{1k\sigma}^{\dagger}c_{1k\sigma}+c_{2k\sigma}^{\dagger}c_{2k\sigma}\right)
++ H_U,
+\end{equation}
+where the non-interacting part is
+\begin{equation}
+H_0 = 2\sum_{k\sigma}(\cos k_x-\cos k_y)
+\left(c_{1k\sigma}^{\dagger}c_{1k\sigma}-c_{2k\sigma}^{\dagger}c_{2k\sigma}\right)
++ \sum_{k\sigma}\left[f(k)c_{1k\sigma}^{\dagger}c_{2k\sigma}+f^*(k)c_{2k\sigma}^{\dagger}c_{1k\sigma}\right],
+\end{equation}
+with
+\begin{equation}
+f(k)=\sqrt{2}\left[e^{i\pi/4}\left(1+e^{i(k_y-k_x)}\right)
++e^{-i\pi/4}\left(e^{-ik_x}+e^{ik_y}\right)\right],
+\end{equation}
+and the interaction term
+\begin{equation}
+\label{eq:HU_original}
+H_U = U\sum_{k}\left(
+c_{1k\uparrow}^{\dagger}c_{1k\uparrow}
+c_{1k\downarrow}^{\dagger}c_{1k\downarrow}
++
+c_{2k\uparrow}^{\dagger}c_{2k\uparrow}
+c_{2k\downarrow}^{\dagger}c_{2k\downarrow}
+\right)
+= U\sum_k\left(n_{1k\uparrow}n_{1k\downarrow}+n_{2k\uparrow}n_{2k\downarrow}\right).
+\end{equation}
+
+\textbf{Important observation.}  
+The interaction in \eqref{eq:HU_original} is \emph{not} the Fourier transform of an on-site Hubbard repulsion. It is diagonal in momentum and does not contain any momentum transfer:
+\[
+H_U = U\sum_k \sum_{a=1,2} n_{a,k,\uparrow} n_{a,k,\downarrow}.
+\]
+Consequently the total Hamiltonian is a sum of independent \(k\)-space blocks:
+\begin{equation}
+H = \sum_k H_k,
+\qquad
+H_k = \sum_{\sigma} c_{k\sigma}^{\dagger} h(k) c_{k\sigma}
++ U\left(n_{1k\uparrow}n_{1k\downarrow}+n_{2k\uparrow}n_{2k\downarrow}\right)
+- \mu \sum_{a,\sigma} n_{a,k,\sigma},
+\end{equation}
+where \(h(k)\) is the single-particle Bloch Hamiltonian.
+
+We will solve this model exactly as written. This is the only literal interpretation of the problem. The standard real-space Hubbard model would require a momentum-transfer interaction and is analysed elsewhere.
+
+
+
+
+Calculate the critical interaction strength $U_c$ that causes a phase transition at quarter-filling of the system. Please be as accurate as possible.
+\end{document}

@@ -1,0 +1,91 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,xcolor,geometry,hyperref,booktabs}
+\geometry{margin=1in}
+\newcommand{\chg}[1]{\textcolor{blue}{#1}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\arctanh}{\operatorname{arctanh}}
+\newcommand{\arccosh}{\operatorname{arccosh}}
+\newcommand{\Pf}{\operatorname{Pf}}
+\title{Challenge 53: Extended obstruction tensors \\ \large Solution (independent derivation)}
+\date{}
+\begin{document}\maketitle
+
+\section{Notation and strategy}
+Write $g_{ij}(\rho)\equiv\gamma_{ij}(x,\rho)$, primes for $\partial_\rho$ at fixed $x$, $g^{ij}$ for the inverse of $g_{ij}(\rho)$, and $g^{[m]}_{ij}\equiv\partial_\rho^mg_{ij}|_{\rho=0}=m!\,\gamma^{(m)}_{ij}$. Indices are moved with $\gamma^{(0)}$ once we set $\rho=0$. The plan is: (i) compute the ambient Christoffel symbols and the component $\tilde R_{\rho ij\rho}$ exactly in $\rho$; (ii) use the $ij$ component of ambient Ricci flatness at $\rho=0$ to get $\gamma^{(1)}$; (iii) express $g''$ and $g'''$ at $\rho=0$ through $\Omega^{(1)}$, $\Omega^{(2)}$ and $\gamma^{(1)}$; (iv) read off the residues and the remainders.
+
+\section{Ambient connection and $\tilde R_{\rho ij\rho}$}
+Coordinates $(t,\rho,x^i)$. The nonzero metric components are $\tilde g_{tt}=2\rho$, $\tilde g_{t\rho}=t$, $\tilde g_{ij}=t^2g_{ij}$, and the inverse has $\tilde g^{tt}=0$, $\tilde g^{t\rho}=1/t$, $\tilde g^{\rho\rho}=-2\rho/t^2$, $\tilde g^{ij}=t^{-2}g^{ij}$. Directly from $\tilde\Gamma^A_{BC}=\frac12\tilde g^{AD}(\partial_B\tilde g_{DC}+\partial_C\tilde g_{DB}-\partial_D\tilde g_{BC})$:
+\begin{equation}
+\tilde\Gamma^A_{\rho\rho}=0,\qquad \tilde\Gamma^l_{\rho i}=\tfrac12g^{lm}g'_{mi},\qquad \tilde\Gamma^t_{\rho i}=\tilde\Gamma^\rho_{\rho i}=0,\qquad \tilde\Gamma^t_{ij}=-\tfrac t2g'_{ij},\qquad \tilde\Gamma^t_{\rho t}=\tilde\Gamma^t_{\rho\rho}=0 .
+\end{equation}
+Since $\tilde g_{\rho E}$ is nonzero only for $E=t$,
+\begin{equation}
+\tilde R_{\rho ij\rho}=t\,\tilde R^t{}_{ij\rho}=t\big(\partial_j\tilde\Gamma^t_{\rho i}-\partial_\rho\tilde\Gamma^t_{ji}+\tilde\Gamma^t_{jF}\tilde\Gamma^F_{\rho i}-\tilde\Gamma^t_{\rho F}\tilde\Gamma^F_{ji}\big)
+=t^2\Big(\tfrac12g''_{ij}-\tfrac14g'_{ik}g^{kl}g'_{lj}\Big).
+\end{equation}
+At $t=1$, and for all $\rho$,
+\begin{equation}
+\Lambda^{(1)}_{ij}\equiv\tilde R_{\rho ij\rho}\big|_{t=1}=\tfrac12g''_{ij}-\tfrac14\,(g'g^{-1}g')_{ij}.
+\label{eq:L1}
+\end{equation}
+Because $\tilde\Gamma^A_{\rho\rho}=0$ and $\tilde\Gamma^t_{\rho i}=\tilde\Gamma^\rho_{\rho i}=0$, the covariant $\rho$-derivative only picks up the tangential connection:
+\begin{equation}
+\Lambda^{(2)}_{ij}\equiv\tilde R_{\rho ij\rho;\rho}\big|_{t=1}=\partial_\rho\Lambda^{(1)}_{ij}-\tilde\Gamma^l_{\rho i}\Lambda^{(1)}_{lj}-\tilde\Gamma^l_{\rho j}\Lambda^{(1)}_{il}
+=\partial_\rho\Lambda^{(1)}_{ij}-g^{lm}g'_{m(i}\Lambda^{(1)}_{j)l}.
+\label{eq:L2}
+\end{equation}
+By definition $\Omega^{(1)}_{ij}=\Lambda^{(1)}_{ij}|_{\rho=0}$ and $\Omega^{(2)}_{ij}=\Lambda^{(2)}_{ij}|_{\rho=0}$. (Ricci flatness also gives $\tilde R_{\rho\rho}=t^{-2}g^{ij}\tilde R_{\rho ij\rho}=0$, so $g^{ij}\Lambda^{(1)}_{ij}=0$ for all $\rho$ and, by metric compatibility, all $\Omega^{(k)}$ are trace free.)
+
+\section{First order: $\gamma^{(1)}=2P$}
+The $ij$ component of the ambient Ricci tensor is (Fefferman--Graham, \emph{The ambient metric}, eq.\ (3.17); I re-derived it and, independently, verified that it is equivalent to the $\mu\nu$ Einstein equation of the associated Poincar\'e metric $r^{-2}(dr^2+g_{-r^2/2})$, which I checked by exact computer algebra on random metrics)
+\begin{equation}
+\tilde R_{ij}=\rho g''_{ij}-\rho(g'g^{-1}g')_{ij}+\tfrac12\rho\,\tr(g^{-1}g')\,g'_{ij}-\tfrac{d-2}{2}g'_{ij}-\tfrac12\tr(g^{-1}g')\,g_{ij}+R_{ij}[g_\rho].
+\end{equation}
+At $\rho=0$: $R_{ij}-\frac{d-2}{2}g^{[1]}_{ij}-\frac12\tr(g^{[1]})\gamma^{(0)}_{ij}=0$. The trace gives $\tr g^{[1]}=R/(d-1)$, hence
+\begin{equation}
+g^{[1]}_{ij}=\frac{2}{d-2}\Big(R_{ij}-\frac{R}{2(d-1)}\gamma^{(0)}_{ij}\Big)=2P_{ij},\qquad \gamma^{(1)}_{ij}=2P_{ij}.
+\end{equation}
+
+\section{$k=2$}
+From (\ref{eq:L1}) at $\rho=0$,
+\begin{equation}
+g^{[2]}_{ij}=2\Omega^{(1)}_{ij}+\tfrac12 g^{[1]}_{ik}\gamma_{(0)}^{kl}g^{[1]}_{lj}=2\Omega^{(1)}_{ij}+2P_i{}^kP_{kj}
+\quad\Longrightarrow\quad
+\gamma^{(2)}_{ij}=\Omega^{(1)}_{ij}+P_i{}^kP_{kj}.
+\end{equation}
+$P_i{}^kP_{kj}$ is regular at $d=4$ (its only pole is the $d=2$ pole of $P$), so $\Res_{d=4}\gamma^{(2)}=\Res_{d=4}\Omega^{(1)}$, i.e.
+\begin{equation}
+A_2=1,\qquad \gamma^{(2)}_{ij}-A_2\Omega^{(1)}_{ij}=1\cdot P^k{}_iP_{kj}.
+\end{equation}
+As a check, comparing with the known Fefferman--Graham result $\gamma^{(2)}_{ij}=P_i{}^kP_{kj}-\frac{1}{d-4}B_{ij}$ gives $\Omega^{(1)}_{ij}=-\frac{1}{d-4}B_{ij}$, which is Graham's expression for the first extended obstruction tensor (pole at $d=4$ with residue $-B_{ij}$).
+
+\section{$k=3$}
+Differentiate $g''=2\Lambda^{(1)}+\frac12S$ with $S\equiv g'g^{-1}g'$:
+\begin{equation}
+g'''=2\partial_\rho\Lambda^{(1)}+\tfrac12S',\qquad S'=g''g^{-1}g'+g'g^{-1}g''-g'g^{-1}g'g^{-1}g' .
+\end{equation}
+At $\rho=0$, with $g'=2P$ and $g''=2\Omega^{(1)}+2P^2$ (matrix notation, indices moved with $\gamma^{(0)}$):
+\begin{equation}
+\tfrac12S'\big|_0=\tfrac12\big[(2\Omega^{(1)}+2P^2)2P+2P(2\Omega^{(1)}+2P^2)-8P^3\big]=2(\Omega^{(1)}P+P\Omega^{(1)})=4P^k{}_{(i}\Omega^{(1)}_{j)k},
+\end{equation}
+the cubic terms cancelling identically. From (\ref{eq:L2}), $\partial_\rho\Lambda^{(1)}|_0=\Omega^{(2)}+g^{lm}g'_{m(i}\Omega^{(1)}_{j)l}=\Omega^{(2)}_{ij}+2P^k{}_{(i}\Omega^{(1)}_{j)k}$. Therefore
+\begin{equation}
+g^{[3]}_{ij}=2\Omega^{(2)}_{ij}+8P^k{}_{(i}\Omega^{(1)}_{j)k},\qquad
+\gamma^{(3)}_{ij}=\frac{1}{3}\Omega^{(2)}_{ij}+\frac{4}{3}P^k{}_{(i}\Omega^{(1)}_{j)k}.
+\end{equation}
+The second term has its only pole at $d=4$, so it is regular at $d=6$; hence $\Res_{d=6}\gamma^{(3)}=\frac13\Res_{d=6}\Omega^{(2)}$, i.e.\ $A_3=\frac13$, and using $\Omega^{(1)}_{ij}=-\frac{1}{d-4}B_{ij}$,
+\begin{equation}
+\gamma^{(3)}_{ij}-A_3\Omega^{(2)}_{ij}=\frac{4}{3}P^k{}_{(i}\Omega^{(1)}_{j)k}=-\frac{4}{3(d-4)}\,B_{k(i}P^k{}_{j)}=\frac{4}{3(4-d)}\,B_{k(i}P^k{}_{j)} .
+\end{equation}
+At the critical dimension $d=6$ the coefficient equals $-\frac23$.
+
+\section{Checks}
+\begin{itemize}
+\item \emph{Trace.} Since $\Omega^{(2)}$ is trace free, $\tr\gamma^{(3)}=-\frac{4}{3(d-4)}\tr(BP)$. The associated Poincar\'e metric $r^{-2}(dr^2+g_{-r^2/2})$ has $z^6$ coefficient $g_{(6)}=-\frac18\gamma^{(3)}$, so $\tr g_{(6)}=\frac{1}{6(d-4)}\tr(BP)$, which is exactly what the $zz$ Einstein equation (the trace constraint) gives; I verified this identity numerically (exact modular arithmetic on random metrics in $d=8$), together with $g_{(4)}=\frac14(P^2-\frac{B}{d-4})$ and the full tensor $g_{(6)}=-\frac{1}{24(d-6)(d-4)}O^{(6)}+\frac{1}{6(d-4)}B_{k(i}P^k{}_{j)}$ with $O^{(6)}=(d-4)(d-6)\Omega^{(2)}$ the explicit six-dimensional obstruction tensor. In particular the coefficient $-\frac{4}{3(d-4)}$ evaluates to $-\frac13$ at $d=8$, in agreement with the numerical check.
+\item \emph{Structure.} The recursion $g^{[k]}=2\Omega^{(k-1)}+(\text{lower order})$ implies in general $\gamma^{(k)}=\frac{2}{k!}\Omega^{(k-1)}+\cdots$, consistent with $A_2=1$, $A_3=\frac13$.
+\end{itemize}
+
+\section{Comparison with the provided solution}
+The provided solution follows the same steps and obtains the same results ($A_2=1$, coefficient $1$; $A_3=\frac13$, coefficient $\frac{4}{3(4-d)}$, equal to $-\frac23$ at $d=6$). I found no errors. \chg{The only additions here are the explicit derivation of the ambient Christoffel symbols and of $\tilde R_{\rho ij\rho}$ (the provided solution quotes them), the statement of the curvature conventions in which $\gamma^{(1)}=+2P$ and $\Omega^{(1)}=-B/(d-4)$ hold, and the independent numerical verification.}
+\end{document}

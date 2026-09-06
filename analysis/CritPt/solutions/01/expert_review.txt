@@ -1,0 +1,49 @@
+Expert review — Challenge 01
+Form submissions: 1
+
+========================================================================
+Submission 1 (annotations.csv row 17)
+========================================================================
+
+Question: Timestamp
+Answer:
+8/25/2026 0:57:39
+
+Question: Email Address
+Answer:
+naveen.umasankar@yale.edu
+
+Question: Enter the challenge ID you are contributing to (a number between 1 and 70)
+Answer:
+1
+
+Question: What did you do for this challenge? Select all that apply
+Answer:
+Checked the challenge for well-definedness and technical correctness, Solved from scratch, Verified the existing solution, Corrected the existing solution, Edited the problem statement to make it well-posed.
+
+Question: Is the challenge well-defined and technically correct? If not, please specify the issue in "Other"
+Answer:
+Not all statements in the challenge are well-defined. There is a sign convention of the anomaly in Eq (1) and an incomplete list of terms for the final solution. I have explained all of this explicitly.
+
+Question: Solution review notes
+Answer:
+(1)  The provided solution does not derive the formula it quotes, nor does it fix the overall sign from the problem's own definitions. Sections~2--5 supply a first-principles derivation; in particular, the sign is shown to follow from reading eq.~(1) of the problem as $Z[\gamma]=e^{-\mathcal A}Z[\mathcal B^{-2}\gamma]$ (the source's convention), and the reader is warned that the opposite reading flips all signs.
+(2) The provided solution asserts the relations $\Omega^{(1)}=-\frac14B$, $\Omega^{(2)}=\frac18O$ ``from Graham''. These are correct, but only because the problem's $O_{\mu\nu}$ (with its modified $\frac{1}{d-2}$ factors) is exactly $O^{(6)}$; this is established here analytically (through $g_{(6)}$) and verified exactly by computer algebra, which also confirms the problem's $B_{\mu\nu}$ (eq.~(3)) as the Bach tensor.
+(3) The provided solution silently ignores the problem's $\Omega_{\mu\nu}$. Here it is pointed out that $\Omega_{\mu\nu}$ as printed is not the extended obstruction tensor, that $\tr\Omega=\tr P^3$ identically, and that the vanishing of the $\tr(\Omega P)$ coefficient is nonetheless unambiguous (full-rank linear independence).
+(4)  The complete density, including the four terms missing from the printed list, is given explicitly and verified.
+
+Question: File uploads
+Answer:
+https://drive.google.com/open?id=1HlIe4-eOLHJKtLCpHXeSjUTwI-HfBwp6
+
+Question: Level of confidence
+Answer:
+3: high confidence (thoroughly checked)
+
+Question: If you selected “1: low confidence,” you must briefly explain why.
+Answer:
+[No answer provided]
+
+Question: Attestation
+Answer:
+I agree to the attestation above.

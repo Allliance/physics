@@ -1,0 +1,46 @@
+Expert review — Challenge 60
+Form submissions: 1
+
+========================================================================
+Submission 1 (annotations.csv row 31)
+========================================================================
+
+Question: Timestamp
+Answer:
+8/26/2026 12:12:52
+
+Question: Email Address
+Answer:
+hh612@cam.ac.uk
+
+Question: Enter the challenge ID you are contributing to (a number between 1 and 70)
+Answer:
+60
+
+Question: What did you do for this challenge? Select all that apply
+Answer:
+Checked the challenge for well-definedness and technical correctness, Verified the existing solution, Corrected the existing solution
+
+Question: Is the challenge well-defined and technically correct? If not, please specify the issue in "Other"
+Answer:
+Yes
+
+Question: Solution review notes
+Answer:
+The original solution introduced two parameters: centroid and seperation of u1,u2  and also assuming the source separation is fixed. The agent log shows gpt consulted related superresolution literature,  but this constraint is not stated here. I therefore treat u1 and u2 as unknown parameters and compute from the multiparameter QFI matrix. However, for the record, the gpt did discuss this situation, but didn't use this as final solution for some unknown reason (or some information I'm missing here)
+
+Question: File uploads
+Answer:
+https://drive.google.com/open?id=1c60G8ire0NBbPNSdx6QDgvRTnKM3iRfh, https://drive.google.com/open?id=12bjynI9PahpA_aUvKrKFAuzneoX1jsSd
+
+Question: Level of confidence
+Answer:
+2: reasonably confident
+
+Question: If you selected “1: low confidence,” you must briefly explain why.
+Answer:
+[No answer provided]
+
+Question: Attestation
+Answer:
+I agree to the attestation above.

@@ -1,0 +1,47 @@
+Expert review — Challenge 57
+Form submissions: 1
+
+========================================================================
+Submission 1 (annotations.csv row 60)
+========================================================================
+
+Question: Timestamp
+Answer:
+8/30/2026 1:08:01
+
+Question: Email Address
+Answer:
+btc34@yale.edu
+
+Question: Enter the challenge ID you are contributing to (a number between 1 and 70)
+Answer:
+57
+
+Question: What did you do for this challenge? Select all that apply
+Answer:
+Checked the challenge for well-definedness and technical correctness, Solved from scratch, Verified the existing solution, Corrected the existing solution, Wrote an independent assessment of the AI solution, its numerics.py and the challenge statement (PDF pp. 9–12, source assessment_57.tex); the AI text and script are reproduced verbatim in its Appendices A and B, with its agent-log evidence quoted in full.
+
+Question: Is the challenge well-defined and technically correct? If not, please specify the issue in "Other"
+Answer:
+Solvable only after supplying five inputs the statement omits: the local dark-matter density (0.4 GeV/cm³ adopted; 0.3 gives +15.5%), the dark-matter velocity (230 km/s; sets the coherence time, ε_min ∝ v^½), the arm length (3994.5 m; 0.13%), the mirror material (enters the undoped light-travel-time signal, 18% at δq = 5e-4) and the detection statistic for a 13-yr record of a field coherent for 6800 s (semicoherent power threshold of the source literature adopted; amplitude variant −8.5%). "13 years" is an idealization of continuous data at fixed sensitivity. The answer is determined to about 20%, not to three figures. The doped-mirror configuration has no published precedent but is well defined. Details: PDF p. 6 ("Is the problem well posed?", Table 1 p. 5) and p. 9 ("The challenge statement"). problem.tex was left untouched; assumptions are stated in solution.tex.
+
+Question: Solution review notes
+Answer:
+The AI solution was replaced in full (blue note at the top of solution.tex). The reference solution (PDF pp. 2–6, script challenge57.py) was derived from scratch before reading the AI text: exact round-trip signal with doping, finite light-travel time and field gradient (reducing to Morisaki et al. 2021 Eqs. 23–24 at zero doping), isotropic average over polarization and both arms, semicoherent power threshold ⟨h²⟩ = S_h/√(τT). Result: ε_min = 1.47e-27, 1.78e-26, 1.79e-25 for δq = 0.074, 6e-3, 5e-4 (doping-only 1.47e-27, 1.82e-26, 2.18e-25; final_answer.tex, template.py).
+The AI solution (codex gpt-5.6, web search on, fetched Michimura et al. 2020) gives 5.43e-29, 6.69e-28, 8.03e-27, overstating the reach by factors 27, 27, 22. Causes, each reproduced exactly by adopting its assumptions: (1) fully coherent 13-yr threshold √(S_h/T) instead of semicoherent (factor 15.7): a genuine error, not hidden curriculum; the coherence limit is in Pierce et al. 2018 and Guo et al. 2019, which it cites, its own last paragraph calls the coherent assumption idealized, and its agent log had adopted T_eff = √(τT) and computed semicoherent values within a factor 2.3–2.8 of the reference before the delivered text switched to the idealization without any recorded decision; (2) "optimal projection along the doped arm" (stated; factor √3): unphysical over 13 yr, the literature averages; (3) light-travel-time term of the undoped baseline omitted (18% at the smallest δq); (4) L = 4000 m (0.13%). Field amplitude, force, displacement, units and constants correct; numerics.py reproduces its box but encodes the same idealization. Item-by-item table with classification: PDF pp. 10–11; agent-log evidence pp. 11–12; rubric with reference values and tolerance bands p. 12.
+
+Question: File uploads
+Answer:
+https://drive.google.com/open?id=1CEHZ0KC6ONVJ3JYI_Hp0l0NLhvPeP3No, https://drive.google.com/open?id=1cJabFkoSjXMw6yfzx6m1ldec9qx3Co-U, https://drive.google.com/open?id=1jmxjxlcKhD0j3DglNSqiLiiV7eMKowZS
+
+Question: Level of confidence
+Answer:
+3: high confidence (thoroughly checked)
+
+Question: If you selected “1: low confidence,” you must briefly explain why.
+Answer:
+[No answer provided]
+
+Question: Attestation
+Answer:
+I agree to the attestation above.

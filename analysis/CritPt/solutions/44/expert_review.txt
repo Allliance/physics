@@ -1,0 +1,46 @@
+Expert review — Challenge 44
+Form submissions: 1
+
+========================================================================
+Submission 1 (annotations.csv row 5)
+========================================================================
+
+Question: Timestamp
+Answer:
+8/21/2026 21:16:24
+
+Question: Email Address
+Answer:
+kangle.cai@yale.edu
+
+Question: Enter the challenge ID you are contributing to (a number between 1 and 70)
+Answer:
+44
+
+Question: What did you do for this challenge? Select all that apply
+Answer:
+Checked the challenge for well-definedness and technical correctness, Solved from scratch, Verified the existing solution, Corrected the existing solution
+
+Question: Is the challenge well-defined and technically correct? If not, please specify the issue in "Other"
+Answer:
+The original problem statement has a material normalization ambiguity because it does not write the Hamiltonian or distinguish Pauli matrices $\sigma^\alpha$ from spin operators $S^\alpha=\sigma^\alpha/2$. Both conventions are common. They give ground-state energies that differ by a factor of four. An automated checker expecting a unique numerical energy could therefore reject a physically valid answer. I revised `problem.tex` to state the Hamiltonian, including its sign, explicitly.
+
+Question: Solution review notes
+Answer:
+The proposed solution is perfect. It not only works out the answers using numerical methods, but also derived the analytic expression for the ground state energy using Majorana basis. I made a very small correction in the final answer by rounding the ground state energy to $-9.800$. This is because the problem asks for it with three decimal precision.
+
+Question: File uploads
+Answer:
+https://drive.google.com/open?id=1aRJwsMRXh2YCYKU-xg3R4_A_kN2nMxN2, https://drive.google.com/open?id=1s_3yWyrlBoMuKUmDQaYpdYMlIo4MZGhq, https://drive.google.com/open?id=1ty9VU_pdUKIU-C_JYDQEwmq0g1Z3bxwQ
+
+Question: Level of confidence
+Answer:
+3: high confidence (thoroughly checked)
+
+Question: If you selected “1: low confidence,” you must briefly explain why.
+Answer:
+[No answer provided]
+
+Question: Attestation
+Answer:
+I agree to the attestation above.

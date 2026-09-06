@@ -1,0 +1,75 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage[colorlinks=true,linkcolor=blue!55!black,citecolor=blue!55!black,
+            urlcolor=blue!55!black]{hyperref}
+
+\newcommand{\dalpha}{\Delta\alpha}
+\newcommand{\ReG}{\operatorname{Re}G_{\perp}}
+\newcommand{\ee}{\mathrm{e}}
+\newcommand{\ii}{\mathrm{i}}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\unit}[1]{\,\mathrm{#1}}
+
+\title{\bfseries Challenge 20: Torsional levitated optomechanics\\[2pt]
+\large Derivation of the librational frequency $\omega_t$ and of the
+light--induced torsion--torsion coupling $g$}
+\author{}
+\date{}
+
+\title{Challenge 20: Final answer}
+\author{}
+\begin{document}
+\maketitle
+\begin{equation}
+  \alpha_j=\frac{\epsilon_0V(\epsilon_r-1)}{1+L_j(\epsilon_r-1)},
+  \qquad V=\frac{4\pi}{3}ab^{2},
+  \label{eq:alpha}
+\end{equation}
+
+\begin{equation}
+  L_{\parallel}=\frac{1-e^{2}}{e^{3}}
+  \left[\frac{1}{2}\ln\!\frac{1+e}{1-e}-e\right],
+  \qquad
+  L_{\perp}=\frac{1-L_{\parallel}}{2}.
+  \label{eq:L}
+\end{equation}
+
+\begin{equation}
+  \dalpha\equiv\alpha_{\parallel}-\alpha_{\perp}
+  =\epsilon_0V(\epsilon_r-1)^{2}
+   \frac{L_{\perp}-L_{\parallel}}
+        {\bigl[1+L_{\parallel}(\epsilon_r-1)\bigr]
+         \bigl[1+L_{\perp}(\epsilon_r-1)\bigr]}>0 .
+  \label{eq:dalpha}
+\end{equation}
+
+\begin{equation}
+  I=\frac{m\left(a^{2}+b^{2}\right)}{5}
+   =\frac{4\pi}{15}\rho\,ab^{2}\left(a^{2}+b^{2}\right),
+  \label{eq:inertia}
+\end{equation}
+
+\begin{equation}
+  \boxed{\;
+  \omega_t=\sqrt{\frac{\dalpha\,I_0}{\epsilon_0 c\,I}}
+         =\sqrt{\frac{2\,\dalpha\,P_0}{\pi\epsilon_0 c\,w_0^{2}\,I}}
+         =\sqrt{\frac{15\,\dalpha\,P_0}
+                     {2\pi^{2}\epsilon_0c\,\rho\,w_0^{2}ab^{2}(a^{2}+b^{2})}}\;}
+  \label{eq:omegat}
+\end{equation}
+
+\begin{equation}
+  \boxed{\;
+  g=-\,C\,\frac{\dalpha^{2}E_0^{2}\,\ReG}{2I\omega_t}
+   =-\,C\,\frac{\dalpha^{2}P_0
+     \left[\left(k^{2}R^{2}-1\right)\cos kR-kR\sin kR\right]}
+     {2\pi^{2}\epsilon_0^{2}c\,w_0^{2}R^{3}\,I\,\omega_t}\;}
+  \label{eq:g}
+\end{equation}
+$E_0^2=4P_0/(\pi w_0^2\epsilon_0c)$; $C=\tfrac12$ for the cycle-averaged convention, or $C=1$ in the cited paper's convention.
+\end{document}
