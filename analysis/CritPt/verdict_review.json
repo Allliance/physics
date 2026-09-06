@@ -1,0 +1,812 @@
+{
+  "schema_version": 1,
+  "policy": {
+    "basis": "Manual adjudication of all 62 form submissions for 59 challenges, using submitted statements/solutions where needed. Legacy final_grade is not used as a verdict.",
+    "problem": "Judge the original task. clean includes manageable issues correctly resolved by the model; repairable requires a documented expert-provided substantive correction; unrepairable requires an explicit expert conclusion that no unambiguous repair is possible.",
+    "model": "Judge the original AI answer, not the expert replacement. clean requires correct or incorrect; repairable and unrepairable require the literal string none.",
+    "ambiguity": "Cases without a supported final pair have no verdict and are excluded from verdicts.json. They remain fully accounted for here and in verdict_ambiguities.csv.",
+    "duplicates": "Read all submissions; later explicit clarification by the same expert takes precedence over an earlier generic response (challenge 31).",
+    "unreviewed": "Challenge 00 and all other challenges without form submissions are excluded."
+  },
+  "source_sha256": {
+    "annotations.csv": "3a4d5caf5243ff2245c72442e9725e8708c505658969906f04124fc5ce7797d5",
+    "original_challenges.jsonl": "cb42915fbd44d20035af24a01c0480b4a7cee4333486a088ff475f60d5c33548",
+    "solution_normalization_report.json": "0953a227fc129519d948f27d4461bbda3943a899b09dbd21b807999b5c313201",
+    "solutions/01/expert_review.txt": "11e5cfd133a3aca74afd2db76f6df8fae43069108ed7c2497d11e9c997b3a2cb",
+    "solutions/02/expert_review.txt": "da05cd949da5a0eae6414a5292046eb511dfe8501f3bbf7bd575d98b1b7a674a",
+    "solutions/03/expert_review.txt": "fe50043d72d571409ded6cc696d1b7c7d4d173354d492e99f887784cb91cb821",
+    "solutions/04/expert_review.txt": "e4bbe5897be6b046ef8db65feda6ed876ca140d9215f84948db72f6f0f81f648",
+    "solutions/05/expert_review.txt": "b39180c33fd7fbfc1e59a35ca895335387cd5ab4fe45cb0eff78dd160acddcc8",
+    "solutions/06/expert_review.txt": "28039cb25f39baa5524a1c418e8457dd1eb9ea119e08281d1a24f6c68c362524",
+    "solutions/07/expert_review.txt": "6c265ac93a368adbc6a4db066c65119bfe803466dde2b3edd46187664eef04dc",
+    "solutions/08/expert_review.txt": "b68b938b0ed1b6092226cb82cf58f6d26d9d95dd45401bc4e337e539828ac12b",
+    "solutions/09/expert_review.txt": "0f5bd1022ceb9e35b8951b63e568fff4171ef63ed29f71873500ae95f7980dc5",
+    "solutions/10/expert_review.txt": "8bb52ef64f3753cc034379d4899aa472bd4f0208635bbbde35842f1ae282c92b",
+    "solutions/11/expert_review.txt": "8ed74ff83c6f37f9045da6bd73f98f3cfbc91e64f74d0c9856325f523d6ef501",
+    "solutions/12/expert_review.txt": "f0cd010bb8ae13309b61132c705ed1e5008f27a465f603550686abedfcae5454",
+    "solutions/13/expert_review.txt": "0fa0a395df6152d093d31d8881a8bdf36769abeef1c019abc6b1a7c1f123d8c4",
+    "solutions/14/expert_review.txt": "cba05895278e29ce7fb7c79a2e4615294b319f9f3241def5d0932139f5940127",
+    "solutions/16/expert_review.txt": "725bfae4c9415fd63fa1feb9e98221390d6c74ab1c52cdfa655ea974f7b2bb08",
+    "solutions/17/expert_review.txt": "eb458cfcad1124d0077562086c38e8c486614ef07cf769de88bfbcbf2d85f2bb",
+    "solutions/18/expert_review.txt": "58da97df3bd745e5dfe361092ba39bebea0176cafda3595b97fd81749debecfd",
+    "solutions/19/expert_review.txt": "03f932781aff6e597663c12e5b1fd368e9205052785a513ad7029de4b871b59e",
+    "solutions/20/expert_review.txt": "ea5c26c3da1083ba76b53242c61666d01026a0cc1f15df92be618cf3f34631b4",
+    "solutions/22/expert_review.txt": "645fcc2934cb0b017dd0c8ec3e62d8b1600502ff2b80aea5232d92dbadba7d25",
+    "solutions/23/expert_review.txt": "3189ae2a52013ca34e6749c2594342108f4db45a90dcc9ff417e2cb777734ce4",
+    "solutions/26/expert_review.txt": "92777edd3db7ed3760ac5d2b463041ef231101b561f777912a3e993ae816f804",
+    "solutions/28/expert_review.txt": "8458b458418829f5463e225bff55a7c64864aedd998b4b06b53fbfaa22007e3b",
+    "solutions/29/expert_review.txt": "3c86af44ab132f2d4bc71b12ee8ca0707213d6f918262c2174540b9530dce4d6",
+    "solutions/30/expert_review.txt": "85b4f66863894778f96c495e2a5707d15b757acabaa69d9d5cf111aba7fedcc4",
+    "solutions/31/expert_review.txt": "bb0fbc6894905cea97243864952b42aca2647353de4847b07ed45d36a13fde39",
+    "solutions/32/expert_review.txt": "8dd251dbb5f838cd256aa388396c7cd388a1250357e5bec662fdd2995f8cb889",
+    "solutions/33/expert_review.txt": "fc498dd404f4e681df02ae04ab37288483ca8a66b34db4809dedf4797abad2ec",
+    "solutions/35/expert_review.txt": "d41949b20e267bc0a176395611620ab4c80a812e5f46069568a8972602e655f7",
+    "solutions/38/expert_review.txt": "754b40bbcb76bd59e1acaf8f93cee90bd08cae438774b2b432de00f384f006d7",
+    "solutions/39/expert_review.txt": "a85810a097c43fc42b8d3157c8ad9b729dd08f2012444c87d2fbe9c1fa84fa28",
+    "solutions/40/expert_review.txt": "150214bb757115d33cf3f1fc24b732a4831c7d64cc74564b7be1222d8d1fa57b",
+    "solutions/41/expert_review.txt": "864087876f2f877fed6266fc4fc8334fd90eaa61e9e478019d7677326d90065c",
+    "solutions/42/expert_review.txt": "e0c4c5003a816d20d3eeda827abaa8b0d8054008c15151b884abc9d8792a93dd",
+    "solutions/44/expert_review.txt": "6cdc676e71656f192fb6b67170975714b1095af88aad5660c33928c16e1405f8",
+    "solutions/45/expert_review.txt": "d54126648e90a89026c6add797c337516bca5437b48778b23eda325a38be9cac",
+    "solutions/46/expert_review.txt": "9dce101bbb88dfbcaa5b4950aa0177dcee9380ec6966f61ab3cb12b9439af48c",
+    "solutions/47/expert_review.txt": "35caeced0fd0fe117232588a890cc4af11a9fe5cfe3e3b1317b9d4f5dd5191f2",
+    "solutions/48/expert_review.txt": "ba9c9bb342ee3120c6d4820c6e14876c29760f26e68180ead7d062c0c9c80c05",
+    "solutions/49/expert_review.txt": "16c9745d6de03ae9c2bc894fe383ca6b217aab02bf6ede9dd63d2e2b5b6f8427",
+    "solutions/50/expert_review.txt": "decce8ec3306fcbad7cb986142ce106c79525dae175acd9b9b64e40e6a0a4e40",
+    "solutions/51/expert_review.txt": "8bdba16cc40e50ce92b337e04d585f89af991f684de17e39f04dd6df2239c729",
+    "solutions/53/expert_review.txt": "784fb45a250cc3670254ac999c4a0c365df5bd845d239d44db46a483283256b6",
+    "solutions/54/expert_review.txt": "750306a1b54ccc50816c5172d1e861a940d0b792712b8861f8fda42f8ede0f46",
+    "solutions/55/expert_review.txt": "5245125f998eaf144890a0cfb51d1e3df3915cf822eeb065814058e748efb12d",
+    "solutions/56/expert_review.txt": "83ca7834331c8b6b0bdf09c68e43027ee796d4319095ad6fed583514da6faee8",
+    "solutions/57/expert_review.txt": "e875b334d3223090ebc46c9d3e30714ca0e2486301d2a929154839265e53db06",
+    "solutions/58/expert_review.txt": "4d8c6e3f79db33cd959f8ced7e1a0ac8749425b7a81da6b0d6ff54a6b8f361c8",
+    "solutions/59/expert_review.txt": "11aaed254bdd5ce693b156e75708a30242e4421c789d7693e2197312e58a05dd",
+    "solutions/60/expert_review.txt": "d1f8e6f649c425c164027d370d202c6f63705eb0fa88be1d2e6da1b0fa6fe45a",
+    "solutions/61/expert_review.txt": "61e633df73dc8aa8aaec8c3ba564e1c0e720ed7a8f503cebbb0693c7c988867e",
+    "solutions/62/expert_review.txt": "c23f6adc9cd70031a9ddc6917ea30bfc622106ef0ee95fe6b2e289d1382ed9ed",
+    "solutions/64/expert_review.txt": "94a2c3388ca2308f71d5e6e8ac9c94295bbd5b691476d17d2d1e5ff5e58bf51a",
+    "solutions/65/expert_review.txt": "f1a6bea50967425726c76f81e49e0b9c34e24eca2b149c754038ede16f2af62f",
+    "solutions/66/expert_review.txt": "be7b980443e48514f96915b5f76da598c76b8a5bc87b3aed023520b41756d332",
+    "solutions/67/expert_review.txt": "06c2f34f9396008b4c35f2dd38d05a827801c505210359e20f73729ff5a05633",
+    "solutions/68/expert_review.txt": "1e12c445da548e8ddf6676e340e26883aa03c79b4303a314192492a6c95bff81",
+    "solutions/69/expert_review.txt": "b33ddf56f0043919e68cb2b7e8437129cb09d0ca2247d8eee124c52d6c077696",
+    "solutions/70/expert_review.txt": "05bb8937e41e2108ad0a0df98bfcae50e3457a185769fa2b022b4146aa4a0ef0",
+    "solutions/00/final_answer.tex": "65233982a0267a1896351868653f65572c538b56598ccb29b5066495b938d62f",
+    "solutions/00/problem.tex": "50979f948e75e5b8c2aafbbfb21b89ab8c6be878d0158bd0997ef464737cddc8",
+    "solutions/00/solution.tex": "47a99c96c9a0c767350d0c15131571572255725698eb1b2a364ad3f52a610d9e",
+    "solutions/01/final_answer.tex": "e47426eb2dfc62e26b1a4b9d199b00296758eb37424dd8106badb08e18774692",
+    "solutions/01/problem.tex": "64cbe5a01a6edbfc61a576419e7c7a251a300fd82853e4691706a972cb27b6ec",
+    "solutions/01/solution.tex": "051275da3925728181918c99614a04e81b6adc7ffeb3f65e41bf6bd55ae94f8c",
+    "solutions/02/final_answer.tex": "41a342d83081dbffe54ad0f942e2f9b8750d8bd307a39cb5bf9723f15cadba45",
+    "solutions/02/problem.tex": "79affb52d5306e89c757829afa9a303b818b907a09bf1b09bb06d09d19c14dbf",
+    "solutions/02/solution.tex": "2a37b31e95fffbc22e5126d90b96f17586e89a323f395d62ea6dc7f6d9c452d8",
+    "solutions/03/final_answer.tex": "4a1451ff36bc8d16c020a7443731aa7d83ccd5fc715f565a167cedc126d9034d",
+    "solutions/03/solution.tex": "ad57963abf2f38481b30267140e22b438c7049b13165a211681db51273b10ac6",
+    "solutions/04/final_answer.tex": "42c29f640d92e836239570f12c4a2938daa3e269a7a208d19a6971fbeaa88717",
+    "solutions/04/problem.tex": "7799f6c9f6440c355284bc1e1ab9e9289c5a051e81880ec3190a716e143933a2",
+    "solutions/04/solution.tex": "ed4a6c1541bb163c7f336126bd26214acd397ae9a01149124a4886d737968d7f",
+    "solutions/05/final_answer.tex": "9dfcf6412252862b1f27706616bb9c3f98ef1a6c62d5c4e703050747d5f1f7ad",
+    "solutions/05/solution.tex": "5605e4909a18a4cf5d348e9c5b708c7f7532610d4f0d743985034c76aa167ec5",
+    "solutions/06/final_answer.tex": "0a85284fccd3d0e7cf4a32aa2b7866bc0865971b350e62000fc9a3b85b88c354",
+    "solutions/06/solution.tex": "461741a24153e220fefd2e6d7c3fe9100b36b63ae1b350da9c15ec6cc7ed77e2",
+    "solutions/07/final_answer.tex": "8ad3ed1f38e9538074621d780f3457a135b3a9658480fd7996ddebd53dd49fcf",
+    "solutions/07/problem.tex": "8625782cdec9a03eb1d2a766d3074a634eace8d0ab9c6b4fcc6f56b5118afcb8",
+    "solutions/07/solution.tex": "c7bb4e7e16aaedbd2c71a2e4e2310725aac4167d5d38c5018cd3d92a6048a38d",
+    "solutions/08/final_answer.tex": "c57c890f4072951e93de9ad3d9500dab01ad118617c6f0a63fde5a604c902c19",
+    "solutions/08/problem.tex": "3859feecbfc19079d7073ed29f0f5200b6652e22f2a5a555e057a68c08e9d2f5",
+    "solutions/08/solution.tex": "6db94fd188060e541b243816ea16cafcd3fa3fdd0957c4f414d732b93bca5b8c",
+    "solutions/10/final_answer.tex": "e3e5cdef217e261147a10841527701d933743c5e2375162a7873e3d43a141815",
+    "solutions/10/problem.tex": "4b70db2bbd3755645cd19c75083f818ee49f3178bb9f89a176949f8c08546406",
+    "solutions/10/solution.tex": "55e7b6c90f259c1427be923ad7e071d8583482cb2e7e5c21d2f99c264d919219",
+    "solutions/16/final_answer.tex": "1cc34b86eb5410043549e537e2480b38114175972b5e6f3fdff91fddf83f50f3",
+    "solutions/16/problem.tex": "d20cdbd800291a5a252867d9358219b6c8f3d1cb674b190da7f9c95b9663d1f2",
+    "solutions/16/solution.tex": "6ea3fae4b588058822b9d9c560c331e4f953e9fbd34cba5d72b1205224b8ed55",
+    "solutions/17/final_answer.tex": "62677c75489299b229edd2b749ed7d040da2b07e6cd86f10eaae61be4a85e190",
+    "solutions/17/problem.tex": "609682aa31e25bc0560fd7ca3767403d333686eca27970d14f442cd7a98e62ea",
+    "solutions/17/solution.tex": "3d336d2277ed3975acdc98981ffb7ddaeaa69c1d772cd8d098eb2c3c3c77a685",
+    "solutions/18/final_answer.tex": "335dd43a975b54c5548f7b4cdde55403612ebf659d0e4b6809d1a5455a7fd0c8",
+    "solutions/18/solution.tex": "3f05be529c8a6595af7fc05b03c20e3c91f93f2ca4cd26e68d5bcc419045ffc0",
+    "solutions/19/final_answer.tex": "0dd8fef5481e44ebb5f8b521de6e38a35181e0c06826093edb006782754519d0",
+    "solutions/19/solution.tex": "312b5ffe37be616c20c6b20eed3553f0d1b7eb55fafeda7de46a965429a7d628",
+    "solutions/20/final_answer.tex": "6b4c36e02460eda91f4159bae4498868e2911d97dab4b53aa86fa2e77c112f23",
+    "solutions/20/problem.tex": "3fbd63cc48f6dc94fed44f40ce07d460b09038683369916023c27bc7d8c112ab",
+    "solutions/20/solution.tex": "b3b92428f7a67ff5c5c5a11223cb1bc7c3c76dad68ab644309a1d6283513bf7b",
+    "solutions/22/final_answer.tex": "fae1269a365e06c3b66b6374177d9fa3da74ae2fa0170b78a84453def1eba777",
+    "solutions/22/problem.tex": "004ebf2d4c67d16d8fb1d676e4051d733ad4226f6a087f7c69a910647270560a",
+    "solutions/22/solution.tex": "6352f0a8fdd6f097713172518a65a9a59f0e6493781911ee7b1bc398507d2dd8",
+    "solutions/23/final_answer.tex": "3df161385c0c730b26548f1727490a2aebe678ed71553ccaa9f800a367d7881b",
+    "solutions/23/problem.tex": "9ef9949a1c0a721fa05160397cbb94f10df1263f8109692a0223ade7b46a9bcb",
+    "solutions/23/solution.tex": "327e161093d5d34370e23474889738221088a59a1406a30a631224809bef4d2e",
+    "solutions/26/problem.tex": "6ae98e7d6c5d5f8e1870a8ff2d8c5a185cf52702a52f333adb7f87da400752f3",
+    "solutions/28/final_answer.tex": "a4405681433cc48c9a1223cf42815b03e66c928ece19854b0ce52e9d1e24865b",
+    "solutions/28/problem.tex": "1d8b5b475affd488700a5fd1bd8a29738c7f80bac2792f8227c49a2ec7881819",
+    "solutions/28/solution.tex": "ea6a5a9b6abfc2c67e767bbfad90afe1c91ac6c09c17a432a348d58c67f87710",
+    "solutions/29/final_answer.tex": "5c3ae70d08013b82c02a51644a34fde193b52b4c0936148a84e5c7552adfe27b",
+    "solutions/29/solution.tex": "88555debe322c1c1b45de873bd6f90b73e4e269d9821d07795cf4109fe04917f",
+    "solutions/30/final_answer.tex": "1bf0feb4ce3f055a6437a03b889dcf020e51cea437c135832ab2dae091c59f5f",
+    "solutions/30/solution.tex": "2235b10e1286ed1704f9bbde2df63761e2ffd5a69b552ebdd9814b50e09bb684",
+    "solutions/31/final_answer.tex": "0aa451a6015d89608f0e2bcb2fa79067bfd22e2a2843f5a6e0bb58f150f5b52c",
+    "solutions/31/problem.tex": "1021549fd59fbe15d7f0b2c045818fe96fe22672c93b9456c13077922ae66ca4",
+    "solutions/31/solution.tex": "686204f3183a8f390684d76b524e6853fbe7b7136819c08be55f307e3b2cd84e",
+    "solutions/32/problem.tex": "5d1f871322057104fada4019ee13daaf2628f1d353700c139330ee1758de02e8",
+    "solutions/33/final_answer.tex": "015772a70e72bd92fb526ce1e073e7c5e27007c8d552b4c9a6e69da445c9279f",
+    "solutions/33/problem.tex": "0407e6ed70c229266d6cd71c122f8be4b2b2afcfbcd917b9732d430ee62b7231",
+    "solutions/33/solution.tex": "9539db453c415c7b26102938dd0fc82082c58ece2cce0b7287c5029740fb9e73",
+    "solutions/35/final_answer.tex": "190c2a75ccfc1037ac7524b164be872f8ad99fb534c31a2c203c7caffb656dab",
+    "solutions/35/solution.tex": "5af1e2d4614e3fdb9d3d8c2734c1275afed90062311eec566962183a64743db5",
+    "solutions/39/final_answer.tex": "53773ec92a04fc8c1f04696cd1c8671b2ddedd9e5308b727efc1b61347216866",
+    "solutions/39/problem.tex": "74f5ecdcac2db1efd8bee682c3982cddfc154cc35939acc4bf201eda7e5e277a",
+    "solutions/39/solution.tex": "552bed59a8a5922434dfff5e265c75da56af52432a4070a783a5ff004c7b1100",
+    "solutions/40/final_answer.tex": "36963380362e3c1cf35ebfe2b529d67aea2fddf1e719e9f265c20b8a76eb2b14",
+    "solutions/40/problem.tex": "3adc676ce383718d311efbb57617cc1012940eae7e3306b9591c5024c3988ddd",
+    "solutions/40/solution.tex": "a069a59d92d6a4f7ea2f2b6a20051e520245ccc12c1138b09e515e9d80b37d94",
+    "solutions/42/final_answer.tex": "ff5b8c2553048c3b4f8e94d915f597f6c71dd37af1cab696f3eaa18975555ef6",
+    "solutions/42/solution.tex": "b9976064881c2effd66521f51ecdd137be7d76ad42d6c7ced0cee824197b5d7b",
+    "solutions/44/final_answer.tex": "4466323c5ac4223a9929df224b186a6ffa16ca5c7c09575bd74da472fda53836",
+    "solutions/44/problem.tex": "cd03b855c03c9393b53801eb2fae4dec2b6018dccd986a1366957a5a3cd068e9",
+    "solutions/44/solution.tex": "11a49afe75457ab6eb2e2a98fb671b03f0a87dc26e2367a95e5d2808d8bf62ea",
+    "solutions/45/final_answer.tex": "5f440f9a2299474132c128bcd19a3288f2bc26493d9ec15ce959061af457ab47",
+    "solutions/45/problem.tex": "5e50b7c65ec2b02df184e09fdf50ebfeaef848bd80f81bee9a788f41d321501e",
+    "solutions/45/solution.tex": "a42098efca3f186319f9257e0b24cb018295d06309130eb2776539ce8697ea21",
+    "solutions/47/final_answer.tex": "210053ba704478a85fe4f5b1fc3257996461b02216df43140c7d329f285d65a4",
+    "solutions/47/solution.tex": "153e522698586b50cdd11d9e6925c521de15d3c5441c80703fe96d53fa65d6b5",
+    "solutions/48/final_answer.tex": "d717d87a3f104cef9aa14e45c0ad46b2591806a3a860912c53291e3491ee9102",
+    "solutions/48/problem.tex": "d5f189952508d2d488a6335e6d3417e7822bac08c94cec0cdbabce9858b8550f",
+    "solutions/48/solution.tex": "3632dde016640ae537308e025a3791acffe7b2a5d29270aa5666a89c3c6ac54d",
+    "solutions/49/final_answer.tex": "c9fe1db4ba128a1e4e057579618659a8f9df268f4838dc0b828671208bff39f1",
+    "solutions/49/solution.tex": "80886587da5954fb8c66dfa167dc3734aefeb2e88c9a1dc3e4c46928b09ac29e",
+    "solutions/50/problem.tex": "f0eeaafdedcd64779996123446f78aa30097dd8f86bdd0fc6397d9e4476af226",
+    "solutions/51/final_answer.tex": "0a0f5102d47fe2f232c2b1f4280c8b85593443dc5784bca2bd7b9f5a53202d94",
+    "solutions/51/problem.tex": "d9171f092075f0743181714181dfb5d79eacdd7ac7c38f49ce4c26b7c812fa14",
+    "solutions/51/solution.tex": "270f2a5c995d8f02257aa22eee612c15502ef6c454613f7383b2b3709e0f4e28",
+    "solutions/53/final_answer.tex": "50e8c03f91aac1f82e5d64c35a4d035a613c6c5de4307248e2968254ae820314",
+    "solutions/53/solution.tex": "4b8d33e52832d114703d7a39d636923eb1fc5b982f60c2384d6ccdf65b63ee8c",
+    "solutions/54/final_answer.tex": "b6e3e17bbb1ce83004edcf38b0698d4c67293f199368a7100b5b5e354b116f10",
+    "solutions/54/solution.tex": "5ef6f2f91eb951f5df2742fea6170927926955e30d5d5ecfd23d8cf50f92bd80",
+    "solutions/56/final_answer.tex": "5521c7f5c0b31ab6cb4bf40fd26575bb8ac57194501aea41441c72b6bebe6e97",
+    "solutions/56/problem.tex": "8e032ba46780fbbd770e17e38333859194a0c2b89117e286f0759f87e16586b0",
+    "solutions/56/solution.tex": "30457cd731488c79fc9bd7edbe1213979cf8fd0e5ffaa2a0df242c0f1556886b",
+    "solutions/57/final_answer.tex": "ad091948d2bc0a22c5e063715ff50073b7422488beb3191f9b8ea0b70168969e",
+    "solutions/57/problem.tex": "9afdb110fa49986e57cf4e01df0c625a88f5859dfe8d5307b2454cac7b823c78",
+    "solutions/57/solution.tex": "21349f7b1092204e717c94523298f1c2b5b8571cedc9fb001c83e7d3357c1c09",
+    "solutions/58/final_answer.tex": "58ab8acde23ef69e67671e643a4585564b437837dd432cfab9fc48b9a42b6ae1",
+    "solutions/58/solution.tex": "5d30f593a21dd9744a9712ab7809adcd9cabd99ec57b0776e285687278614b13",
+    "solutions/59/final_answer.tex": "3f8c47abad15f597bbfcfb8e80029f9dba232c139f97ce1d80c7c6d96f829ad7",
+    "solutions/59/solution.tex": "884b20e73e4dc1482a2e24d57afafcda90bc3a50da7d955a6532acfa10588239",
+    "solutions/60/final_answer.tex": "d6e4f083dd5bb11a5c8eefffbc12d21348f023816ab3d23fec065ea371ef57dd",
+    "solutions/60/solution.tex": "4fc47e9c3b26f3b6d3e57353fe5b3767a1198e6036bfc7c9abe69869cc54d3ce",
+    "solutions/61/final_answer.tex": "6fb9879913c3959b10346acc9b5c1d4e0e2723b5c7184e33e51084ccda8699c1",
+    "solutions/61/problem.tex": "55213f9e87895289bc0afae6daa13e07d854c48728143002dbcbdbc065553f40",
+    "solutions/61/solution.tex": "4aa736a4c8c6ea3e207dafba76161b24bb76d9e1a373d4a9cd6cd3128e6f74bb",
+    "solutions/62/final_answer.tex": "f533874abd15bf922c95e8b08ef20ab634f744bd96b26de749cf65f3b21cd6e7",
+    "solutions/62/problem.tex": "c429c902eda9f881034d5bb04578a7e727c2e4e8f2ac73231f610df9c3f6b79e",
+    "solutions/62/solution.tex": "4e2ad7769422ba8c66a885ec3df357d3283c57dcfaa5460fee240c1148f4398d",
+    "solutions/64/final_answer.tex": "9f33cf33bacdc262f2428ba8dc90f0ead06be622ff0de39cb66025ef57aaf746",
+    "solutions/64/solution.tex": "1d947f1e9e994e0a73e3d1bf5329ccb66b2230d491e19ff9a7c1f2462833df6a",
+    "solutions/66/final_answer.tex": "3537e33d552241447730612af01781ec1e30e36029432a9164b2b2c9d1be4303",
+    "solutions/66/problem.tex": "0c4881456159e682f113427d5f357253118f140d0fbd678aff807ee8e9ab560d",
+    "solutions/66/solution.tex": "127ec1340367270d4aa24b646bd94f1fd29e807d729898730f18040ab4ed6524",
+    "solutions/67/final_answer.tex": "5669298d6d2b82213f838be8dde713b0cb15e3b8f471ca7f1fb79032333aa91c",
+    "solutions/67/problem.tex": "735cd4cbb90734102ac9dd8efb2b166965fd1bba4e821464b72a7f112a9caec4",
+    "solutions/67/solution.tex": "a83f249ac32126cc58906bb3dd5a2ec4a3d7e71f06d95c75fc3838415666c693",
+    "solutions/68/final_answer.tex": "59aabc0b259052dd617353017dd7956f79b82c1a0aec1629a4011b8bf6550b78",
+    "solutions/68/problem.tex": "b432c192d779ce49eb04e1a5ba63f22e087fd3f522ed4b728147d7dd9ef30d43",
+    "solutions/68/solution.tex": "f2298d47396b9ad63f05d1117131f23d59967e2dc8ece495b55e17cc66d5c16d",
+    "solutions/69/final_answer.tex": "c30ba5002eab66afd12ca411727fe1a383be7feaf3f018dd2f81541537d2d001",
+    "solutions/69/solution.tex": "5307a715d208a16f5df78ff7219fd0169203499daa35b2539e25b76ef5319972",
+    "solutions/70/final_answer.tex": "625df52439578d7c4fabb9687b9f8a029a41296323552bc8991480b238756af0",
+    "solutions/70/solution.tex": "1aad7d0a6f5a02bb70727fdc36cf6f8e3a7e91e5d9b14f481a9a21961a440541"
+  },
+  "challenges": {
+    "01": {
+      "submission_rows": [
+        17
+      ],
+      "expert_review": "solutions/01/expert_review.txt",
+      "verdict": {
+        "problem": "repairable",
+        "model": "none"
+      },
+      "reason": "The expert explicitly edited the statement to fix the anomaly sign convention and supply missing density terms; the corrected problem is provided."
+    },
+    "02": {
+      "submission_rows": [
+        29
+      ],
+      "expert_review": "solutions/02/expert_review.txt",
+      "verdict": {
+        "problem": "clean",
+        "model": "correct"
+      },
+      "reason": "The expert says the problem is well-defined and the existing solution was verified."
+    },
+    "03": {
+      "submission_rows": [
+        18
+      ],
+      "expert_review": "solutions/03/expert_review.txt",
+      "verdict": {
+        "problem": "clean",
+        "model": "correct"
+      },
+      "reason": "The expert confirms well-definedness and describes the additions as remarks rather than corrections; the extra normalization and geodesic arguments do not overturn the accepted answer."
+    },
+    "04": {
+      "submission_rows": [
+        39
+      ],
+      "expert_review": "solutions/04/expert_review.txt",
+      "verdict": {
+        "problem": "clean",
+        "model": "correct"
+      },
+      "reason": "Apply the manageable-ambiguity exception: the expert calls the AI answer perfect for the possible OAM/SAM eigenstates and explicitly says the AI clarified that its answer gives components of a superposition. The revised wording adopts that already-stated scope."
+    },
+    "05": {
+      "submission_rows": [
+        4
+      ],
+      "expert_review": "solutions/05/expert_review.txt",
+      "verdict": {
+        "problem": "clean",
+        "model": "correct"
+      },
+      "reason": "The expert verified both the final answer and the complete derivation; the new upload offers a shorter alternative."
+    },
+    "06": {
+      "submission_rows": [
+        49
+      ],
+      "expert_review": "solutions/06/expert_review.txt",
+      "reason": "The expert reports both a missing square on hbar and a factor-of-two error, but only endorses the AI result under a partial correction. No corrected problem was uploaded.",
+      "question_for_expert": "Should the numerical convention be hbar^2/(2 m_e) = 7619.96423, or should the factor of two also be corrected? Under the intended convention, is the original AI answer correct? If a substantive repair is required, please provide the corrected statement; if no unambiguous repair is possible, say so."
+    },
+    "07": {
+      "submission_rows": [
+        6
+      ],
+      "expert_review": "solutions/07/expert_review.txt",
+      "reason": "The expert calls the fidelity assumption ambiguous and unchallenged by the AI, but says its conditional derivation is correct and that the problem is not unsolvable. problem.tex contains discussion and an alternative approach rather than an unambiguous replacement statement.",
+      "question_for_expert": "Is the original fidelity assumption acceptable as a manageable convention, making the AI answer correct, or is a revised problem necessary? If revised, please provide the exact intended density matrix and definitions of F and k in a corrected statement."
+    },
+    "08": {
+      "submission_rows": [
+        30
+      ],
+      "expert_review": "solutions/08/expert_review.txt",
+      "verdict": {
+        "problem": "repairable",
+        "model": "none"
+      },
+      "reason": "The submitted problem explicitly supplies previously unstated action normalizations and orientation/sign conventions that affect a requested signed quantity. This is a documented repair, beyond the harmless numbering and tetrad-label fixes."
+    },
+    "09": {
+      "submission_rows": [
+        34
+      ],
+      "expert_review": "solutions/09/expert_review.txt",
+      "verdict": {
+        "problem": "clean",
+        "model": "correct"
+      },
+      "reason": "The expert confirms well-definedness and verifies the existing solution."
+    },
+    "10": {
+      "submission_rows": [
+        48
+      ],
+      "expert_review": "solutions/10/expert_review.txt",
+      "verdict": {
+        "problem": "clean",
+        "model": "correct"
+      },
+      "reason": "The expert calls the statement technically correct and the numerical answer correct; proposed changes concern readability, coherence and a minor convention."
+    },
+    "11": {
+      "submission_rows": [
+        40
+      ],
+      "expert_review": "solutions/11/expert_review.txt",
+      "reason": "The expert flags a title/theory mismatch and a confusing target variable. Tree-level reasoning is correct, but the one-loop result is described only as sketchy and qualitatively right; no explicit final correctness verdict or corrected prompt is supplied.",
+      "question_for_expert": "Are the title and x/K wording merely minor issues, and is the complete original AI answer quantitatively correct at one loop? If a substantive statement repair is needed, please provide it or confirm that the intended task cannot be repaired unambiguously."
+    },
+    "12": {
+      "submission_rows": [
+        41
+      ],
+      "expert_review": "solutions/12/expert_review.txt",
+      "reason": "The expert says the four-stage tunneling process is unclear and that the solution supplies the correct context, but rejects its independence without stating whether that affects correctness. No corrected statement or explicit unrepairability assessment is supplied.",
+      "question_for_expert": "Does the AI's ground-state-projection interpretation correctly resolve a manageable wording issue, or does the task require new information? Please state the original answer's correctness separately from its independence, and provide a corrected statement if necessary."
+    },
+    "13": {
+      "submission_rows": [
+        42
+      ],
+      "expert_review": "solutions/13/expert_review.txt",
+      "reason": "The geometry/finite-size convention is unspecified. The expert accepts the AI answer under a natural interpretation, but does not say whether alternative geometries materially change the requested result or require a corrected statement.",
+      "question_for_expert": "Is the geometry a manageable standard convention that makes the original AI answer correct, or an essential missing condition? If essential, please provide the corrected geometry/limit in the problem statement or confirm that no unambiguous repair is possible."
+    },
+    "14": {
+      "submission_rows": [
+        11
+      ],
+      "expert_review": "solutions/14/expert_review.txt",
+      "verdict": {
+        "problem": "clean",
+        "model": "correct"
+      },
+      "reason": "The expert confirms well-definedness and verifies the existing solution."
+    },
+    "16": {
+      "submission_rows": [
+        3
+      ],
+      "expert_review": "solutions/16/expert_review.txt",
+      "reason": "The form says Yes for well-definedness and solution notes, while selecting both verified and corrected. The new exact solution does not explicitly identify the original AI error. The local legacy model_failure label is not independent expert evidence.",
+      "question_for_expert": "Is the original AI answer correct or incorrect for the Hamiltonian literally printed in the prompt? If incorrect, please identify the incorrect result or assumption and confirm the corrected critical U. Does the alternative real-space-Hubbard interpretation require any prompt repair?"
+    },
+    "17": {
+      "submission_rows": [
+        12
+      ],
+      "expert_review": "solutions/17/expert_review.txt",
+      "verdict": {
+        "problem": "clean",
+        "model": "correct"
+      },
+      "reason": "The missing entropy minus sign is explicitly identified by the AI itself. The reviewer removes discussion of that typo after fixing the prompt, so the user's minor-issue exception applies."
+    },
+    "18": {
+      "submission_rows": [
+        55,
+        58
+      ],
+      "expert_review": "solutions/18/expert_review.txt",
+      "verdict": {
+        "problem": "clean",
+        "model": "incorrect"
+      },
+      "reason": "Both submissions agree: the statement is well-defined but the AI assumes real polarizabilities without authorization and omits the general complex case."
+    },
+    "19": {
+      "submission_rows": [
+        38
+      ],
+      "expert_review": "solutions/19/expert_review.txt",
+      "verdict": {
+        "problem": "clean",
+        "model": "correct"
+      },
+      "reason": "The expert explicitly verifies the solution and endorses its reasonable input/phase/transmissivity conventions, requesting acceptance of convention-equivalent answers. Treat those acknowledged conventions as manageable clarifications."
+    },
+    "20": {
+      "submission_rows": [
+        24
+      ],
+      "expert_review": "solutions/20/expert_review.txt",
+      "verdict": {
+        "problem": "clean",
+        "model": "correct"
+      },
+      "reason": "The expert verifies the solution and calls its additional optical-binding term a good correction, not a model error."
+    },
+    "22": {
+      "submission_rows": [
+        9
+      ],
+      "expert_review": "solutions/22/expert_review.txt",
+      "reason": "The expert and AI use different meanings of x. The supplied problem.tex retains the scalar optimization question but appends an interpretation in which x is not a scalar; it does not establish one internally consistent corrected task.",
+      "question_for_expert": "What exactly are the scalar x and function f in the intended maximization? Please provide a consistent corrected statement, or confirm the original is clean and explicitly grade the AI answer; if neither interpretation is an unambiguous repair, say so."
+    },
+    "23": {
+      "submission_rows": [
+        23
+      ],
+      "expert_review": "solutions/23/expert_review.txt",
+      "verdict": {
+        "problem": "clean",
+        "model": "correct"
+      },
+      "reason": "The expert says the unchanged solution is fully correct. The dimensional-index notation, collinear-definition wording and positive-energy clarification are manageable statement fixes; the solution already states the positive-momentum assumption. The requested x intervals exclude the endpoint caveat."
+    },
+    "26": {
+      "submission_rows": [
+        52
+      ],
+      "expert_review": "solutions/26/expert_review.txt",
+      "verdict": {
+        "problem": "clean",
+        "model": "correct"
+      },
+      "reason": "The undefined a_+ in the axial oscillator term is a recoverable operator-label typo: the same statement defines a_z as the axial operator. The expert verifies the solution and makes no solution changes; a_z replaces a_+ in the uploaded prompt."
+    },
+    "28": {
+      "submission_rows": [
+        45
+      ],
+      "expert_review": "solutions/28/expert_review.txt",
+      "verdict": {
+        "problem": "repairable",
+        "model": "none"
+      },
+      "reason": "The expert explicitly calls the original repairable and provides a revised prompt defining the leading omega-squared coefficients and an intensive conductivity; literal zero-frequency rates do not have the requested exponents."
+    },
+    "29": {
+      "submission_rows": [
+        47
+      ],
+      "expert_review": "solutions/29/expert_review.txt",
+      "verdict": {
+        "problem": "clean",
+        "model": "correct"
+      },
+      "reason": "The expert verifies the unchanged solution and specifically notes that the AI identified the needed mutual-incoherence assumption."
+    },
+    "30": {
+      "submission_rows": [
+        10
+      ],
+      "expert_review": "solutions/30/expert_review.txt",
+      "verdict": {
+        "problem": "clean",
+        "model": "correct"
+      },
+      "reason": "The expert marks the problem well-defined and selects verification of the existing solution, with affirmative solution notes."
+    },
+    "31": {
+      "submission_rows": [
+        61,
+        62
+      ],
+      "expert_review": "solutions/31/expert_review.txt",
+      "verdict": {
+        "problem": "repairable",
+        "model": "none"
+      },
+      "reason": "The same reviewer's later submission (8/30/2026 15:39:12) explicitly supersedes the earlier generic Yes: the model must be specified and has been revised. The provided prompt adds the three-dimensional geometry and Boussinesq approximation."
+    },
+    "32": {
+      "submission_rows": [
+        63
+      ],
+      "expert_review": "solutions/32/expert_review.txt",
+      "verdict": {
+        "problem": "repairable",
+        "model": "none"
+      },
+      "reason": "The expert says the model must be specified and supplies an edited problem explicitly defining the Boussinesq approximation. The correction is present in the uploaded statement even though no solution file was uploaded."
+    },
+    "33": {
+      "submission_rows": [
+        28,
+        36
+      ],
+      "expert_review": "solutions/33/expert_review.txt",
+      "verdict": {
+        "problem": "clean",
+        "model": "correct"
+      },
+      "reason": "Both submissions agree that the problem is well-defined and the existing solution was verified; describing it as trivial does not change correctness."
+    },
+    "35": {
+      "submission_rows": [
+        14
+      ],
+      "expert_review": "solutions/35/expert_review.txt",
+      "verdict": {
+        "problem": "clean",
+        "model": "correct"
+      },
+      "reason": "The expert confirms well-definedness and states that no solution changes were needed. The known misfiled challenge-17 attachments are not used to judge this Hamiltonian-reconstruction challenge."
+    },
+    "38": {
+      "submission_rows": [
+        15
+      ],
+      "expert_review": "solutions/38/expert_review.txt",
+      "reason": "The review refers to explanation.txt for both the ambiguity analysis and solution, but no attachment was submitted. The available text does not determine the problem class or AI correctness.",
+      "question_for_expert": "Please supply the referenced explanation.txt and explicitly state whether the original problem is clean, substantively repaired with a corrected statement, or unrepairable. If clean, is the original AI answer correct?"
+    },
+    "39": {
+      "submission_rows": [
+        25
+      ],
+      "expert_review": "solutions/39/expert_review.txt",
+      "verdict": {
+        "problem": "clean",
+        "model": "correct"
+      },
+      "reason": "The expert explicitly calls the solution correct and reports an equivalent optical-Bloch derivation and independent numerical cross-check."
+    },
+    "40": {
+      "submission_rows": [
+        35
+      ],
+      "expert_review": "solutions/40/expert_review.txt",
+      "verdict": {
+        "problem": "repairable",
+        "model": "none"
+      },
+      "reason": "The expert explicitly says the original is ambiguous and provides the corrected assignment of sigma to the rank-two dissipative current while excluding the independent rank-three contribution."
+    },
+    "41": {
+      "submission_rows": [
+        46
+      ],
+      "expert_review": "solutions/41/expert_review.txt",
+      "verdict": {
+        "problem": "unrepairable",
+        "model": "none"
+      },
+      "reason": "The expert explicitly says the finite-size prescription cannot be corrected unambiguously from the wording and that no unique solution can be reviewed. Reproducing one value under additional conventions is not a repair."
+    },
+    "42": {
+      "submission_rows": [
+        56
+      ],
+      "expert_review": "solutions/42/expert_review.txt",
+      "reason": "The expert says the gate must be much larger than xi and that domain is confusing, while calling their solution essentially the same. No complete corrected problem is supplied, and the materiality of those assumptions is not stated.",
+      "question_for_expert": "Are the gate-size and domain issues manageable standard assumptions already handled correctly by the AI, or essential missing information? Please confirm the original AI answer's correctness if clean; otherwise provide a corrected problem or state why it is unrepairable."
+    },
+    "44": {
+      "submission_rows": [
+        5
+      ],
+      "expert_review": "solutions/44/expert_review.txt",
+      "verdict": {
+        "problem": "repairable",
+        "model": "none"
+      },
+      "reason": "The expert explicitly identifies a material factor-of-four normalization ambiguity and supplies the Hamiltonian and sign in the revised prompt. The separate rounding correction is minor, but the Hamiltonian ambiguity is not."
+    },
+    "45": {
+      "submission_rows": [
+        44
+      ],
+      "expert_review": "solutions/45/expert_review.txt",
+      "reason": "The expert requires equal electron/hole transport lifetimes but does not clearly supply a complete corrected statement. The normalized problem.tex was assembled from the solution during normalization, so its existence alone does not establish an expert-submitted repair.",
+      "question_for_expert": "Is equal electron/hole transport lifetime an essential missing assumption or an acceptable standard simplification already made by the AI? If essential, please explicitly approve/provide the corrected problem statement including that assumption; otherwise confirm whether the original answer is correct."
+    },
+    "46": {
+      "submission_rows": [
+        7
+      ],
+      "expert_review": "solutions/46/expert_review.txt",
+      "verdict": {
+        "problem": "unrepairable",
+        "model": "none"
+      },
+      "reason": "The expert says no threshold or labeling criterion uniquely identifies the scar states; specifying the primary parent tower would introduce new authorial intent rather than unambiguously correct the original."
+    },
+    "47": {
+      "submission_rows": [
+        50
+      ],
+      "expert_review": "solutions/47/expert_review.txt",
+      "verdict": {
+        "problem": "clean",
+        "model": "correct"
+      },
+      "reason": "The problem is confirmed well-defined. The reviewer adds a missing limiting-case discussion and explicitly states that it does not change the conclusion."
+    },
+    "48": {
+      "submission_rows": [
+        2
+      ],
+      "expert_review": "solutions/48/expert_review.txt",
+      "verdict": {
+        "problem": "repairable",
+        "model": "none"
+      },
+      "reason": "The expert identifies nonunique analytic continuation; the supplied revised prompt prescribes Z_can near n=1 and asks for its derivative. Identifying the original nonuniqueness does not itself supply the requested unique numerical target."
+    },
+    "49": {
+      "submission_rows": [
+        54
+      ],
+      "expert_review": "solutions/49/expert_review.txt",
+      "verdict": {
+        "problem": "clean",
+        "model": "correct"
+      },
+      "reason": "The expert explicitly verifies the final answer and all formulas; the added arguments fill explanatory gaps without changing the answer."
+    },
+    "50": {
+      "submission_rows": [
+        32
+      ],
+      "expert_review": "solutions/50/expert_review.txt",
+      "verdict": {
+        "problem": "clean",
+        "model": "correct"
+      },
+      "reason": "The expert marks the statement well-defined and verifies the unchanged solution. The uploaded statement's minor combinatorial wording correction does not override that explicit assessment."
+    },
+    "51": {
+      "submission_rows": [
+        51
+      ],
+      "expert_review": "solutions/51/expert_review.txt",
+      "verdict": {
+        "problem": "clean",
+        "model": "correct"
+      },
+      "reason": "The reviewer characterizes the prompt changes as a few tiny modifications and the solution as pretty much correct. The already-used transition/weight assumptions are made explicit; small explanatory corrections retain the solution."
+    },
+    "53": {
+      "submission_rows": [
+        19
+      ],
+      "expert_review": "solutions/53/expert_review.txt",
+      "verdict": {
+        "problem": "clean",
+        "model": "correct"
+      },
+      "reason": "The expert marks the problem well-defined and describes only added derivations, convention statements and independent verification."
+    },
+    "54": {
+      "submission_rows": [
+        27
+      ],
+      "expert_review": "solutions/54/expert_review.txt",
+      "reason": "The expert flags unspecified trapping geometry, mixed experimental conditions and an incomplete wavelength list, but neither provides a corrected problem nor explicitly states that the task is unrepairable.",
+      "question_for_expert": "Can the problem be repaired unambiguously by specifying trapping geometry and a calculational model? If so, please provide that corrected statement; otherwise explicitly confirm unrepairability. If these are only manageable conventions, is the original four-wavelength answer actually correct and exhaustive?"
+    },
+    "55": {
+      "submission_rows": [
+        16
+      ],
+      "expert_review": "solutions/55/expert_review.txt",
+      "verdict": {
+        "problem": "clean",
+        "model": "correct"
+      },
+      "reason": "The objection is to decimal-place wording. The expert explicitly calls the AI solution flawless, including its compliance with the requested precision."
+    },
+    "56": {
+      "submission_rows": [
+        59
+      ],
+      "expert_review": "solutions/56/expert_review.txt",
+      "reason": "The expert says the three-digit answer is underdetermined, leaves problem.tex unchanged, and calls the AI differences nonconsequential. This does not resolve clean under relaxed tolerance versus a substantive repair versus unrepairability.",
+      "question_for_expert": "Should the original AI answer be accepted as correct under the prompt's actual three-significant-digit requirement? If missing inputs require repair, please provide a corrected statement fixing material/wavelength, velocity, statistic and SNR convention; if these cannot be fixed unambiguously, explicitly confirm unrepairability."
+    },
+    "57": {
+      "submission_rows": [
+        60
+      ],
+      "expert_review": "solutions/57/expert_review.txt",
+      "reason": "The expert identifies genuine large AI errors but also five essential omitted inputs, leaves problem.tex unchanged, and never explicitly labels the problem unrepairable. Model correctness cannot be used to force a clean problem verdict.",
+      "question_for_expert": "Is this a clean problem with an incorrect AI answer despite the omitted inputs, or a problem requiring substantive repair? If repair is possible, please supply the corrected density, velocity, arm length, mirror material and detection statistic in a problem statement; otherwise explicitly confirm unrepairability."
+    },
+    "58": {
+      "submission_rows": [
+        57
+      ],
+      "expert_review": "solutions/58/expert_review.txt",
+      "verdict": {
+        "problem": "clean",
+        "model": "incorrect"
+      },
+      "reason": "The expert confirms well-definedness but replaces the AI's no-solution conclusion: a permitted uniform magnetization component yields valid magnetic space groups."
+    },
+    "59": {
+      "submission_rows": [
+        43
+      ],
+      "expert_review": "solutions/59/expert_review.txt",
+      "verdict": {
+        "problem": "clean",
+        "model": "correct"
+      },
+      "reason": "The expert confirms well-definedness and verifies the solution; additions explain nonlinearity and experimental context."
+    },
+    "60": {
+      "submission_rows": [
+        31
+      ],
+      "expert_review": "solutions/60/expert_review.txt",
+      "verdict": {
+        "problem": "clean",
+        "model": "incorrect"
+      },
+      "reason": "The expert confirms well-definedness but identifies the AI's unsupported fixed-separation restriction. The submitted answer omits the required two-unknown-parameter treatment even though the agent considered it."
+    },
+    "61": {
+      "submission_rows": [
+        26
+      ],
+      "expert_review": "solutions/61/expert_review.txt",
+      "verdict": {
+        "problem": "repairable",
+        "model": "none"
+      },
+      "reason": "The expert explicitly changes the unspecified connectivity of the complete subgraphs to the connectivity assumed by the solution and provides the corrected prompt."
+    },
+    "62": {
+      "submission_rows": [
+        53
+      ],
+      "expert_review": "solutions/62/expert_review.txt",
+      "verdict": {
+        "problem": "repairable",
+        "model": "none"
+      },
+      "reason": "The expert explicitly says the problem was corrected and clarified. The revised prompt supplies a valid local phase unitary and, materially, optimizes over a binary POVM; otherwise the requested answer is measurement-dependent."
+    },
+    "64": {
+      "submission_rows": [
+        20
+      ],
+      "expert_review": "solutions/64/expert_review.txt",
+      "verdict": {
+        "problem": "clean",
+        "model": "correct"
+      },
+      "reason": "The expert confirms well-definedness and reports only added independent derivation and numerical confirmation of both configurations."
+    },
+    "65": {
+      "submission_rows": [
+        21
+      ],
+      "expert_review": "solutions/65/expert_review.txt",
+      "verdict": {
+        "problem": "clean",
+        "model": "correct"
+      },
+      "reason": "The expert confirms well-definedness and verifies the existing solution."
+    },
+    "66": {
+      "submission_rows": [
+        13
+      ],
+      "expert_review": "solutions/66/expert_review.txt",
+      "verdict": {
+        "problem": "clean",
+        "model": "correct"
+      },
+      "reason": "The expert verifies the solution. Suggested changes concern the R-charge name and representation wording, not the stated charge assignments or computation."
+    },
+    "67": {
+      "submission_rows": [
+        37
+      ],
+      "expert_review": "solutions/67/expert_review.txt",
+      "verdict": {
+        "problem": "repairable",
+        "model": "none"
+      },
+      "reason": "The expert says the solution depends on the unproved Spin Alignment Conjecture and that this must be explicit. The uploaded prompt adds that assumption, turning the task into a conditional one."
+    },
+    "68": {
+      "submission_rows": [
+        8
+      ],
+      "expert_review": "solutions/68/expert_review.txt",
+      "verdict": {
+        "problem": "repairable",
+        "model": "none"
+      },
+      "reason": "The expert identifies the ill-defined inverse for singular sigma and explicitly adds sigma > 0 to the supplied statement. The AI's quoted caveat says additional support conditions are needed rather than completing the unrestricted singular case; this is a domain restriction, not just a typographical fix."
+    },
+    "69": {
+      "submission_rows": [
+        33
+      ],
+      "expert_review": "solutions/69/expert_review.txt",
+      "reason": "The expert checks numerical/internal consistency only conditional on a conjectured contraction formula and explicitly does not verify that conjecture. No unconditional model-correctness conclusion follows.",
+      "question_for_expert": "Does the original AI answer establish the full contraction coefficient requested by the problem, or only a conjectured value? Please explicitly grade the original answer as correct/incorrect, or provide a corrected problem that makes the conjecture an allowed assumption."
+    },
+    "70": {
+      "submission_rows": [
+        22
+      ],
+      "expert_review": "solutions/70/expert_review.txt",
+      "verdict": {
+        "problem": "clean",
+        "model": "correct"
+      },
+      "reason": "The expert verifies the existing solution and offers a more efficient method without disputing correctness."
+    }
+  }
+}
