@@ -8,12 +8,13 @@
     "duplicates": "Read all submissions; later explicit clarification by the same expert takes precedence over an earlier generic response (challenge 31).",
     "unreviewed": "Challenge 00 and all other challenges without form submissions are excluded.",
     "follow_up": "User-relayed expert clarification authorizes the listed statement repairs and ground truths. The model label continues to judge the original AI answer.",
-    "model_policy_authority": "User instruction: a repairable problem does not necessarily mean that the model solution should be none; explicitly label challenge 32 repairable/correct and audit analogous cases."
+    "model_policy_authority": "User instruction: a repairable problem does not necessarily mean that the model solution should be none; explicitly label challenge 32 repairable/correct and audit analogous cases.",
+    "original_export": "All 71 original statements, with zero-padded challenge_id, problem and ground_truth only. References are the audited answers used in the corrected dataset, which may depend on repairs; null denotes an unavailable or unresolved reference. The official example answer is included for 00. Original source notebooks retain metadata and templates."
   },
   "source_sha256": {
     "annotations.csv": "3a4d5caf5243ff2245c72442e9725e8708c505658969906f04124fc5ce7797d5",
-    "expert_clarifications.json": "40198e64c885483412fc18d0149eae8272dcaa4afd4b03489f49c5bd8878226a",
-    "original_challenges.jsonl": "cb42915fbd44d20035af24a01c0480b4a7cee4333486a088ff475f60d5c33548",
+    "expert_clarifications.json": "47ab9eba26d59d786b2cdc05bd07ca84b0b5c21528e69d02d2890b7a43e75e7e",
+    "original_challenges.jsonl": "be6bb5b071cbc7fb86e29b3fe45346f6f76dc1b3195c78ec4b7ecad021b156cd",
     "solutions/00/final_answer.tex": "65233982a0267a1896351868653f65572c538b56598ccb29b5066495b938d62f",
     "solutions/00/problem.tex": "50979f948e75e5b8c2aafbbfb21b89ab8c6be878d0158bd0997ef464737cddc8",
     "solutions/00/solution.tex": "47a99c96c9a0c767350d0c15131571572255725698eb1b2a364ad3f52a610d9e",
@@ -108,6 +109,7 @@
     "solutions/31/problem.tex": "1021549fd59fbe15d7f0b2c045818fe96fe22672c93b9456c13077922ae66ca4",
     "solutions/31/solution.tex": "686204f3183a8f390684d76b524e6853fbe7b7136819c08be55f307e3b2cd84e",
     "solutions/32/expert_review.txt": "8dd251dbb5f838cd256aa388396c7cd388a1250357e5bec662fdd2995f8cb889",
+    "solutions/32/final_answer.tex": "50bf5e50790995a02abd8686eb6505750a00d0f110cbf632f9f0457c5086c928",
     "solutions/32/problem.tex": "5d1f871322057104fada4019ee13daaf2628f1d353700c139330ee1758de02e8",
     "solutions/33/expert_review.txt": "fc498dd404f4e681df02ae04ab37288483ca8a66b34db4809dedf4797abad2ec",
     "solutions/33/final_answer.tex": "015772a70e72bd92fb526ce1e073e7c5e27007c8d552b4c9a6e69da445c9279f",

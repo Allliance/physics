@@ -3888,13 +3888,26 @@
           "problem": {
             "path": "32/problem.tex",
             "sha256": "5d1f871322057104fada4019ee13daaf2628f1d353700c139330ee1758de02e8"
+          },
+          "final_answer": {
+            "source": "/shared/data/home/aa3242/critpt-sol/challenges/32/final_answer.tex",
+            "source_sha256": "50bf5e50790995a02abd8686eb6505750a00d0f110cbf632f9f0457c5086c928",
+            "action": "Imported verbatim from the expert-verified original model answer.",
+            "path": "32/final_answer.tex",
+            "sha256": "50bf5e50790995a02abd8686eb6505750a00d0f110cbf632f9f0457c5086c928"
           }
         },
         "missing": [
-          "solution.tex",
-          "final_answer.tex"
+          "solution.tex"
         ],
-        "exceptions": []
+        "exceptions": [
+          "Missing: solution.tex.",
+          "Final answer imported from the expert-verified original model response; the problem retains the expert Boussinesq repair."
+        ],
+        "curation": {
+          "source": "expert_clarifications.json",
+          "authority": "Expert clarification relayed by the user in this conversation"
+        }
       },
       {
         "challenge": "33",
@@ -4609,7 +4622,7 @@
       }
     ],
     "source_policy": "Removed source uploads; canonical hashes retained in the manifest.",
-    "canonical_files": 140,
+    "canonical_files": 141,
     "complete_challenges": 33
   }
 }

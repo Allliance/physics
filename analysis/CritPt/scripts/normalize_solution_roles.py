@@ -52,7 +52,7 @@ def excerpt_document(text, body, number, role):
 
 
 def original_problem_tex(record):
-    text = record["problem_description"]
+    text = record.get("problem", record.get("problem_description"))
     text = text.replace("# Problem setup:", r"\section*{Problem setup}")
     text = text.replace("# Main problem:", r"\section*{Main problem}")
     text = re.sub(r"\$\$(.*?)\$\$", lambda m: "\\[" + m[1] + "\\]", text, flags=re.S)
@@ -175,7 +175,7 @@ def normalize_roles(directory, records=None, dry_run=False):
             source = find("detailed_solution.tex")
             add("solution", source, note="renamed official detailed solution")
             selected["problem"] = {"source": "../original_challenges.jsonl#Challenge_0",
-                                   "source_sha256": digest(originals[0]["problem_description"].encode()),
+                                   "source_sha256": digest(originals[0].get("problem", originals[0].get("problem_description")).encode()),
                                    "action": "converted official example statement; not a reviewer revision",
                                    "content": original_problem_tex(originals[0]).encode()}
             exceptions.append("Official example, not a reviewer submission; problem.tex is the supplied original statement.")

@@ -20,7 +20,8 @@
     "26": "Use the model final_answer.tex supplied in /shared/data/home/aa3242/critpt-sol/challenges; the expert verified the model answer as correct.",
     "50": "Use the model final_answer.tex supplied in /shared/data/home/aa3242/critpt-sol/challenges; the expert verified the model answer as correct.",
     "55": "Use the model final_answer.tex supplied in /shared/data/home/aa3242/critpt-sol/challenges; the expert verified the model answer as correct.",
-    "65": "Use the model final_answer.tex supplied in /shared/data/home/aa3242/critpt-sol/challenges; the expert verified the model answer as correct."
+    "65": "Use the model final_answer.tex supplied in /shared/data/home/aa3242/critpt-sol/challenges; the expert verified the model answer as correct.",
+    "32": "Import the original model final answer verified by the expert, following the user-confirmed repairable/correct verdict, for the corrected evaluation dataset."
   },
   "review_appendices": {
     "06": "Source: expert clarification relayed by the user.\nInstruction: just fix the problem's typo according to expert's response",
@@ -254,6 +255,13 @@
       "source": "/shared/data/home/aa3242/critpt-sol/challenges/65/final_answer.tex",
       "source_sha256": "1333275b462bd3581b4b726d952757a0d10904318401af7370940ef807eea84b",
       "action": "copied the expert-verified original model final answer byte-for-byte at the user's request"
+    },
+    "solutions/32/final_answer.tex": {
+      "before_sha256": null,
+      "content": "\\subsubsection*{Final Answer}\n\n\\[\n\\boxed{\n\\begin{gathered}\nRa_c=17.6536526097729,\\qquad\nk_c=1.74986116307449,\\\\\n\\left.\\dfrac{w(z)}{T(z)}\\right|_{z=0.67365}=9.61548007716335\n\\end{gathered}\n}\n\\]\n",
+      "source": "/shared/data/home/aa3242/critpt-sol/challenges/32/final_answer.tex",
+      "source_sha256": "50bf5e50790995a02abd8686eb6505750a00d0f110cbf632f9f0457c5086c928",
+      "action": "Imported verbatim from the expert-verified original model answer."
     }
   },
   "artifact_notes": {
@@ -307,6 +315,9 @@
     ],
     "65": [
       "Final answer supplied from the original model response; accepted by the expert and explicitly selected by the user."
+    ],
+    "32": [
+      "Final answer imported from the expert-verified original model response; the problem retains the expert Boussinesq repair."
     ]
   },
   "decisions": {

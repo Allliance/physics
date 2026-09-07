@@ -1,4 +1,10 @@
-"""Aggregate challenges 0-70; challenge 0 uses the supplied main-example JSON."""
+"""Export all 71 original prompts as challenge_id/problem/ground_truth.
+
+Audited references match corrected_challenge.jsonl, including references that
+depend on repairs. The original prompts remain unchanged. Challenge 00 uses its
+official example answer. Unknown or unresolved references are JSON null.
+The source notebooks retain all original metadata and code templates.
+"""
 
 import hashlib
 import json
@@ -81,7 +87,7 @@ def build_example_record():
     }
 
 
-def main():
+def build_source_records():
     public_dir = DATA_DIR / "public_test_challenges"
     expected = {f"Challenge_{i}.ipynb" for i in range(1, 71)}
     actual = {p.name for p in public_dir.glob("*.ipynb")}
@@ -113,13 +119,54 @@ def main():
     assert [r["challenge_id"] for r in records] == [f"Challenge_{i}" for i in range(71)]
     assert all(list(record) == list(records[1]) for record in records)
 
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    return records
+
+
+def project_original_records(records, ground_truths):
+    return [{"challenge_id": f"{int(record['challenge_id'].split('_')[-1]):02d}",
+             "problem": record["problem_description"].strip(),
+             "ground_truth": ground_truths.get(f"{int(record['challenge_id'].split('_')[-1]):02d}")}
+            for record in records]
+
+
+def main():
+    from build_corrected_challenges import build_corrected_challenges, text_body
+    from update_annotations import atomic_write
+
+    records = build_source_records()
+    rows, _, _ = build_corrected_challenges(OUTPUT_DIR)
+    ground_truths = {row["challenge_id"]: row["ground_truth"] for row in rows}
+    example_path = OUTPUT_DIR / "solutions/00/final_answer.tex"
+    if example_path.is_file():
+        # The official example has already been verified against its website.
+        ground_truths["00"] = text_body(example_path.read_text())
+    projected = project_original_records(records, ground_truths)
     jsonl_path = OUTPUT_DIR / "original_challenges.jsonl"
-    with jsonl_path.open("w", encoding="utf-8") as output:
-        for record in records:
-            output.write(json.dumps(record, ensure_ascii=False) + "\n")
-    print(f"Aggregated {len(records)} distinct challenges from {len(represented)} notebooks")
-    print(jsonl_path)
+    current = {}
+    for line in jsonl_path.read_text().splitlines():
+        record = json.loads(line)
+        challenge = f"{int(record['challenge_id'].split('_')[-1]):02d}"
+        current[challenge] = record.get("problem", record.get("problem_description", "")).strip()
+    if current != {row["challenge_id"]: row["problem"] for row in projected}:
+        raise ValueError("Original source statements changed; review before replacing the archive")
+
+    data = "".join(json.dumps(row, ensure_ascii=False) + "\n" for row in projected).encode()
+    # This is a schema-only migration of the reviewed original prompts. Keep the
+    # audit's integrity snapshot in sync without blessing unrelated source edits.
+    # build_corrected_challenges validated every reviewed source before this write.
+    review_path = OUTPUT_DIR / "verdict_review.json"
+    review = json.loads(review_path.read_text())
+    review["source_sha256"]["original_challenges.jsonl"] = hashlib.sha256(data).hexdigest()
+    review["policy"]["original_export"] = (
+        "All 71 original statements, with zero-padded challenge_id, problem and ground_truth only. "
+        "References are the audited answers used in the corrected dataset, which may depend on "
+        "repairs; null denotes an unavailable or unresolved reference. The official example "
+        "answer is included for 00. Original source notebooks retain metadata and templates."
+    )
+    atomic_write(jsonl_path, data)
+    atomic_write(review_path, (json.dumps(review, indent=2, ensure_ascii=False) + "\n").encode())
+    available = sum(row["ground_truth"] is not None for row in projected)
+    print(f"Wrote {len(projected)} original challenges; {available} references, {len(projected)-available} null: {jsonl_path}")
 
 
 if __name__ == "__main__":
