@@ -1,44 +1,20 @@
 \documentclass[11pt]{article}
-
 \usepackage[margin=1in]{geometry}
-\usepackage{amsmath,amssymb,bm}
-\usepackage{microtype}
-\usepackage[hidelinks]{hyperref}
-\usepackage{enumitem}
-\usepackage{xcolor}
-\usepackage{booktabs}
-
-\newcommand{\kb}{k_{\mathrm B}}
-\newcommand{\mcx}{m_{c,x}}
-\newcommand{\mcy}{m_{c,y}}
-\newcommand{\mvx}{m_{v,x}}
-\newcommand{\mvy}{m_{v,y}}
-\newcommand{\malphaC}{m_{c,\alpha}}
-\newcommand{\malphaV}{m_{v,\alpha}}
-\newcommand{\tauel}{\tau_e}
-\newcommand{\tauh}{\tau_h}
-
-\title{\vspace{-1.2cm}Goniopolar Thermopower in an Anisotropic Intrinsic Semiconductor}
-\author{}
-\date{}
-
-\title{Challenge 45: Problem}
-\author{}
+\usepackage{amsmath,amssymb,bm,braket}
+\usepackage{hyperref}
 \begin{document}
-\maketitle
-Consider a two-band, two-dimensional intrinsic semiconductor with anisotropic parabolic bands
-\begin{align}
-E_c(\mathbf{k})
-&=\frac{\Delta}{2}
-+\frac{\hbar^2k_x^2}{2m_{c,x}}
-+\frac{\hbar^2k_y^2}{2m_{c,y}},\\
-E_v(\mathbf{k})
-&=-\frac{\Delta}{2}
--\frac{\hbar^2k_x^2}{2m_{v,x}}
--\frac{\hbar^2k_y^2}{2m_{v,y}}.
-\end{align}
-The relaxation times of electrons and holes are taken to be equal and energy independent, as specified in the problem. We use $e>0$ for the magnitude of the electron charge.
+\paragraph*{Problem setup:}
+In goniopolar materials, the thermal power can be n-type in one direction and p-type in another direction.
+
+\paragraph*{Main problem:}
+Consider a two-band 2D intrinsic semiconductor under temperature $T$. The conduction band has a dispersion $E_c= \Delta/2+\sum_{\alpha=x,y}\frac{\hbar^2k_{\alpha}^2}{2m_{c,\alpha}}$, and the valence band has a dispersion $E_v= -\Delta/2-\sum_{\alpha=x,y}\frac{\hbar^2k_{\alpha}^2}{2m_{v,\alpha}}$, where $\Delta$ is the size of band gap. We further assume that the relaxation time of the electrons and holes are the same. What condition should the effective mass $m_{c/v,\alpha}$, with $ \alpha=x,y$, satisfy to exhibit goniopolarity?
 
 
-What condition should the effective masses $m_{c/v,\alpha}$, $\alpha=x,y$, satisfy to exhibit goniopolarity?
+
+\paragraph*{Transport regime}
+The equal electron and hole relaxation times already specified above are
+energy independent. Use the nondegenerate semiclassical Boltzmann regime,
+with intrinsic carrier neutrality and constant relaxation time. Distinguish
+the condition valid throughout this regime from a further large-gap
+approximation $\Delta\gg k_BT$; if that approximation is used, state it.
 \end{document}

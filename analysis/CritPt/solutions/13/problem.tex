@@ -1,0 +1,21 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,bm,braket}
+\usepackage{hyperref}
+\begin{document}
+\paragraph*{Problem setup:}
+Consider a (1+1)-D CFT on a torus that consists of right- and left-moving edges of a Moore-Read state at filling fraction $\nu=1/k$. The primary fields are labeled by $(j_L,n_L,j_R,n_R)$, where $j_{L/R}=0,1/2,1$, $n_{L/R}\in Z_{2k}$  and the electron operators in the theory are $(1,2k,0,0)$ and $(0,0,1,2k)$.
+
+\paragraph*{Main problem:}
+Given $k=2$, find the expectation values of Verlinde lines assuming the identity operator has expectation value 1. Return your answer as a tuple $(j_L,n_L,j_R,n_R,\lambda_{(j_L,n_L,j_R,n_R)})$, where $\lambda_{(j_L,n_L,j_R,n_R)}$ is the expectation value.
+
+\paragraph*{Geometry and sector convention}
+Evaluate the action of each Verlinde line on the identity vacuum sector in
+the vacuum-channel (zero-temperature, long-cylinder) limit of the torus.
+This is the eigenvalue on the vacuum, with the identity line normalized to
+one, rather than a finite-temperature trace over all torus sectors.
+Use independent left- and right-moving sectors and retain the labels as
+listed, without making additional identifications of representatives.
+For $k=2$, keep only sectors local with respect to the electron:
+$2j_L+n_L\equiv2j_R+n_R\equiv0\pmod2$, with $n_L,n_R\in\mathbb Z_4$.
+\end{document}

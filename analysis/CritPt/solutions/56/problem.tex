@@ -11,3 +11,27 @@ Consider a scalar field $\phi$ linearly coupled to the standard model electromag
 \paragraph*{Main problem}
 
 If there is an overdensity of dark matter at the device that is $178$ times the local dark matter density (take the local dark matter density to be $0.4\,\text{GeV}/\text{cm}^3$ and velocity to be $230\,\text{km}/\text{s}$), what is the smallest $\Lambda_\gamma^{-1}$ the Cosmic Explorer can probe at $200\,\text{Hz}$ with a signal-to-noise ratio of 1 and with an observation time of $1000\,\text{s}$ or $0.7\,\text{yrs}$, respectively? Keep at least three significant digits in the final result.
+
+
+\paragraph*{Reference-model assumptions}
+Use the simple-Michelson response with no arm-cavity or signal-recycling gain.
+Model a freely suspended, centered, 45-degree silicon beamsplitter at 295 K
+with a 2-micrometre laser, retaining the specified $n=3.5$ and $l=6$ cm.
+Include Snell refraction, the motion of both surfaces about the plate center,
+and finite arm light-travel times. Fix the photon-only response by
+$\delta m_e=0$, $\delta l/l=-\delta\alpha/\alpha$ and
+$\delta n/n=-0.0442\,\delta\alpha/\alpha$; omit relativistic lattice corrections.
+Use both halo dispersion and streaming speed equal to 230 km/s, held constant,
+and keep the stated overdensity fixed. Treat the given sensitivity as a
+one-sided strain amplitude spectral density. With $\omega=2\pi(200\,\mathrm{Hz})$,
+$v=230$ km/s, $\tau_c=[(v/c)^2\omega]^{-1}$, define the correlation envelope
+and the amplitude threshold at SNR one by
+\[
+A(\tau)=\frac{\exp[-x^2/(2(1+x^2))]}{(1+x^2)^{3/4}},\quad x=\tau/\tau_c,
+\qquad h_{\min}(T)=\sqrt{S_h/T}\left[
+\frac{T/3}{\int_0^T(1-\tau/T)^2A(\tau)^2\,d\tau}\right]^{1/4}.
+\]
+Use Julian years and report $\Lambda_\gamma^{-1}$ in $\mathrm{GeV}^{-1}$.
+The target is the primary finite-coherence reference calculation, not the
+separate sharp two-regime approximation or a forecast for an unspecified
+full Cosmic Explorer optical configuration.

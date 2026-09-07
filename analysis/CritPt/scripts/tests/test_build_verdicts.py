@@ -45,7 +45,8 @@ class BuildVerdictsTests(unittest.TestCase):
             base = Path(temporary)
             data = self.fixture(base)
             for problem, model in (("clean", "none"), ("clean", None),
-                                   ("repairable", "correct"), ("unrepairable", "incorrect")):
+                                   ("repairable", "unknown"), ("repairable", None),
+                                   ("unrepairable", "correct"), ("unrepairable", "incorrect")):
                 data["challenges"]["01"]["verdict"] = {"problem": problem, "model": model}
                 (base / "verdict_review.json").write_text(json.dumps(data))
                 with self.subTest(problem=problem, model=model), self.assertRaisesRegex(ValueError, "combination"):
@@ -54,6 +55,22 @@ class BuildVerdictsTests(unittest.TestCase):
             (base / "verdict_review.json").write_text(json.dumps(data))
             with self.assertRaisesRegex(ValueError, "corrected statement"):
                 build_verdicts(base)
+
+    def test_repaired_problem_does_not_determine_model_correctness(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            base = Path(temporary)
+            data = self.fixture(base)
+            statement = base / "solutions/01/problem.tex"
+            statement.parent.mkdir(parents=True)
+            statement.write_text("Expert's corrected statement")
+            for model in ("correct", "incorrect", "none"):
+                with self.subTest(model=model):
+                    expected = {"problem": "repairable", "model": model}
+                    data["challenges"]["01"]["verdict"] = expected
+                    (base / "verdict_review.json").write_text(json.dumps(data))
+                    verdicts, _, pending = build_verdicts(base)
+                    self.assertEqual(verdicts["01"], expected)
+                    self.assertEqual(pending, 1)
 
     def test_requires_complete_reviewed_challenge_coverage(self):
         with tempfile.TemporaryDirectory() as temporary:

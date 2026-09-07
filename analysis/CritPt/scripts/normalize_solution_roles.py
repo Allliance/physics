@@ -92,7 +92,8 @@ def normalize_roles(directory, records=None, dry_run=False):
     for entry in manifest["files"]:
         for path in entry_paths(entry):
             path_stamps[path] = stamps.get(entry["file_id"], datetime.min)
-    previous = json.loads(report_path.read_text()) if report_path.exists() else {"challenges": []}
+    previous = (json.loads(report_path.read_text()) if report_path.exists()
+                else manifest.get("normalization", {"challenges": []}))
     previous_hashes = {item["path"]: item["sha256"] for row in previous["challenges"]
                        for item in row["files"].values()}
     plans = []
@@ -100,6 +101,17 @@ def normalize_roles(directory, records=None, dry_run=False):
 
     for number in range(71):
         folder = directory / f"{number:02d}"
+        curated = next((row for row in previous["challenges"]
+                        if row["challenge"] == f"{number:02d}" and row.get("curation")), None)
+        if curated is not None:
+            # User-adjudicated revisions must survive an ordinary attachment sync.
+            # Fresh uploads still download, but replacing these requires review.
+            for item in curated["files"].values():
+                path = directory / item["path"]
+                if not path.is_file() or digest(path.read_bytes()) != item["sha256"]:
+                    raise ValueError(f"Curated file was edited; review before regenerating: {path}")
+            report.append(curated)
+            continue
         # Cleaned challenges have canonical files only. Preserve them until fresh
         # uploads are downloaded; this also preserves the public example (00).
         if manifest.get("remove_supporting") and not (folder / "supporting").exists():
@@ -318,14 +330,18 @@ magnetic field. See solution.tex for the geometry and literature qualifications.
     for destination, data in plans:
         atomic_write(destination, data)
     if manifest_path.exists():
+        if not report_path.exists() and manifest.get("remove_supporting"):
+            manifest["normalization"] = payload
         atomic_write(manifest_path, (json.dumps(manifest, indent=2) + "\n").encode())
-    atomic_write(report_path, (json.dumps(payload, indent=2) + "\n").encode())
+    if report_path.exists() or not manifest.get("remove_supporting"):
+        atomic_write(report_path, (json.dumps(payload, indent=2) + "\n").encode())
     output = io.StringIO(newline="")
     writer = csv.writer(output, lineterminator="\n")
     writer.writerow(["challenge", "exception"])
     for row in report:
         writer.writerows((row["challenge"], note) for note in row["exceptions"])
-    atomic_write(exceptions_path, output.getvalue().encode())
+    if exceptions_path.exists() or not manifest.get("remove_supporting"):
+        atomic_write(exceptions_path, output.getvalue().encode())
     if manifest.get("remove_supporting"):
         from remove_supporting import remove_supporting
         remove_supporting(directory, payload)

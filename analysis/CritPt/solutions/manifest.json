@@ -3240,5 +3240,1376 @@
   ],
   "source_subdirectory": "supporting",
   "normalize_roles": true,
-  "remove_supporting": true
+  "remove_supporting": true,
+  "normalization": {
+    "challenges": [
+      {
+        "challenge": "00",
+        "files": {
+          "problem": {
+            "path": "00/problem.tex",
+            "sha256": "50979f948e75e5b8c2aafbbfb21b89ab8c6be878d0158bd0997ef464737cddc8"
+          },
+          "solution": {
+            "path": "00/solution.tex",
+            "sha256": "47a99c96c9a0c767350d0c15131571572255725698eb1b2a364ad3f52a610d9e"
+          },
+          "final_answer": {
+            "path": "00/final_answer.tex",
+            "sha256": "65233982a0267a1896351868653f65572c538b56598ccb29b5066495b938d62f"
+          }
+        },
+        "missing": [],
+        "exceptions": []
+      },
+      {
+        "challenge": "01",
+        "files": {
+          "problem": {
+            "path": "01/problem.tex",
+            "sha256": "64cbe5a01a6edbfc61a576419e7c7a251a300fd82853e4691706a972cb27b6ec"
+          },
+          "solution": {
+            "path": "01/solution.tex",
+            "sha256": "051275da3925728181918c99614a04e81b6adc7ffeb3f65e41bf6bd55ae94f8c"
+          },
+          "final_answer": {
+            "path": "01/final_answer.tex",
+            "sha256": "e47426eb2dfc62e26b1a4b9d199b00296758eb37424dd8106badb08e18774692"
+          }
+        },
+        "missing": [],
+        "exceptions": []
+      },
+      {
+        "challenge": "02",
+        "files": {
+          "problem": {
+            "path": "02/problem.tex",
+            "sha256": "79affb52d5306e89c757829afa9a303b818b907a09bf1b09bb06d09d19c14dbf"
+          },
+          "solution": {
+            "path": "02/solution.tex",
+            "sha256": "2a37b31e95fffbc22e5126d90b96f17586e89a323f395d62ea6dc7f6d9c452d8"
+          },
+          "final_answer": {
+            "path": "02/final_answer.tex",
+            "sha256": "41a342d83081dbffe54ad0f942e2f9b8750d8bd307a39cb5bf9723f15cadba45"
+          }
+        },
+        "missing": [],
+        "exceptions": []
+      },
+      {
+        "challenge": "03",
+        "files": {
+          "solution": {
+            "path": "03/solution.tex",
+            "sha256": "ad57963abf2f38481b30267140e22b438c7049b13165a211681db51273b10ac6"
+          },
+          "final_answer": {
+            "path": "03/final_answer.tex",
+            "sha256": "4a1451ff36bc8d16c020a7443731aa7d83ccd5fc715f565a167cedc126d9034d"
+          }
+        },
+        "missing": [
+          "problem.tex"
+        ],
+        "exceptions": []
+      },
+      {
+        "challenge": "04",
+        "files": {
+          "problem": {
+            "path": "04/problem.tex",
+            "sha256": "7799f6c9f6440c355284bc1e1ab9e9289c5a051e81880ec3190a716e143933a2"
+          },
+          "solution": {
+            "path": "04/solution.tex",
+            "sha256": "ed4a6c1541bb163c7f336126bd26214acd397ae9a01149124a4886d737968d7f"
+          },
+          "final_answer": {
+            "path": "04/final_answer.tex",
+            "sha256": "42c29f640d92e836239570f12c4a2938daa3e269a7a208d19a6971fbeaa88717"
+          }
+        },
+        "missing": [],
+        "exceptions": []
+      },
+      {
+        "challenge": "05",
+        "files": {
+          "solution": {
+            "path": "05/solution.tex",
+            "sha256": "5605e4909a18a4cf5d348e9c5b708c7f7532610d4f0d743985034c76aa167ec5"
+          },
+          "final_answer": {
+            "path": "05/final_answer.tex",
+            "sha256": "9dfcf6412252862b1f27706616bb9c3f98ef1a6c62d5c4e703050747d5f1f7ad"
+          }
+        },
+        "missing": [
+          "problem.tex"
+        ],
+        "exceptions": []
+      },
+      {
+        "challenge": "06",
+        "files": {
+          "solution": {
+            "path": "06/solution.tex",
+            "sha256": "461741a24153e220fefd2e6d7c3fe9100b36b63ae1b350da9c15ec6cc7ed77e2"
+          },
+          "final_answer": {
+            "path": "06/final_answer.tex",
+            "sha256": "0a85284fccd3d0e7cf4a32aa2b7866bc0865971b350e62000fc9a3b85b88c354"
+          },
+          "problem": {
+            "source": "original_challenges.jsonl#Challenge_6 + expert_clarifications.json",
+            "source_sha256": "56f9a6fbd22895b3195eb281d4212e0abd3242e5ce0c67d058bda6859676e05f",
+            "action": "corrected hbar square and erroneous factor of two using the expert's full typo correction",
+            "path": "06/problem.tex",
+            "sha256": "5f51cccc1626cdafcedffb5f4ea6b9c5ba6c99956abb033246e3b1d3d30a2141"
+          }
+        },
+        "missing": [],
+        "exceptions": [
+          "Corrected both hbar notation and factor of two; the original AI numerical answer used the partially corrected kinetic coefficient."
+        ],
+        "curation": {
+          "source": "expert_clarifications.json",
+          "authority": "Expert clarification relayed by the user in this conversation"
+        }
+      },
+      {
+        "challenge": "07",
+        "files": {
+          "problem": {
+            "source": "https://drive.google.com/file/d/1Sk3kpDy1QWY7DRjFxlrfXRzONugYxCsf/view",
+            "source_sha256": "8625782cdec9a03eb1d2a766d3074a634eace8d0ab9c6b4fcc6f56b5118afcb8",
+            "action": "accepted expert upload as ground truth per follow-up",
+            "path": "07/problem.tex",
+            "sha256": "8625782cdec9a03eb1d2a766d3074a634eace8d0ab9c6b4fcc6f56b5118afcb8"
+          },
+          "solution": {
+            "source": "https://drive.google.com/file/d/11KV27gF5NibeYcorcyewYGNrTwo8aZwS/view",
+            "source_sha256": "c7bb4e7e16aaedbd2c71a2e4e2310725aac4167d5d38c5018cd3d92a6048a38d",
+            "action": "accepted expert upload as ground truth per follow-up",
+            "path": "07/solution.tex",
+            "sha256": "c7bb4e7e16aaedbd2c71a2e4e2310725aac4167d5d38c5018cd3d92a6048a38d"
+          },
+          "final_answer": {
+            "source": "https://drive.google.com/file/d/11Lj66r8oFv7mPZLtZjnEfuIh1wZJWrfI/view",
+            "source_sha256": "8ad3ed1f38e9538074621d780f3457a135b3a9658480fd7996ddebd53dd49fcf",
+            "action": "accepted expert upload as ground truth per follow-up",
+            "path": "07/final_answer.tex",
+            "sha256": "8ad3ed1f38e9538074621d780f3457a135b3a9658480fd7996ddebd53dd49fcf"
+          }
+        },
+        "missing": [],
+        "exceptions": [
+          "Uploaded problem includes the reviewer's comments and independent approach; retained verbatim as explicitly authorized."
+        ],
+        "curation": {
+          "source": "expert_clarifications.json",
+          "authority": "Expert clarification relayed by the user in this conversation"
+        }
+      },
+      {
+        "challenge": "08",
+        "files": {
+          "problem": {
+            "path": "08/problem.tex",
+            "sha256": "3859feecbfc19079d7073ed29f0f5200b6652e22f2a5a555e057a68c08e9d2f5"
+          },
+          "solution": {
+            "path": "08/solution.tex",
+            "sha256": "6db94fd188060e541b243816ea16cafcd3fa3fdd0957c4f414d732b93bca5b8c"
+          },
+          "final_answer": {
+            "path": "08/final_answer.tex",
+            "sha256": "c57c890f4072951e93de9ad3d9500dab01ad118617c6f0a63fde5a604c902c19"
+          }
+        },
+        "missing": [],
+        "exceptions": []
+      },
+      {
+        "challenge": "09",
+        "files": {
+          "final_answer": {
+            "source": "/shared/data/home/aa3242/critpt-sol/challenges/09/final_answer.tex",
+            "source_sha256": "f6b8c76c47a6fa96401149e1caefdd68d9ff0e4828fa77aadb02b010bdc25a56",
+            "action": "copied the expert-verified original model final answer byte-for-byte at the user's request",
+            "path": "09/final_answer.tex",
+            "sha256": "f6b8c76c47a6fa96401149e1caefdd68d9ff0e4828fa77aadb02b010bdc25a56"
+          }
+        },
+        "missing": [
+          "problem.tex",
+          "solution.tex"
+        ],
+        "exceptions": [
+          "Missing: problem.tex, solution.tex.",
+          "Final answer supplied from the original model response; accepted by the expert and explicitly selected by the user."
+        ],
+        "curation": {
+          "source": "expert_clarifications.json",
+          "authority": "Expert clarification relayed by the user in this conversation"
+        }
+      },
+      {
+        "challenge": "10",
+        "files": {
+          "problem": {
+            "path": "10/problem.tex",
+            "sha256": "4b70db2bbd3755645cd19c75083f818ee49f3178bb9f89a176949f8c08546406"
+          },
+          "solution": {
+            "path": "10/solution.tex",
+            "sha256": "55e7b6c90f259c1427be923ad7e071d8583482cb2e7e5c21d2f99c264d919219"
+          },
+          "final_answer": {
+            "path": "10/final_answer.tex",
+            "sha256": "e3e5cdef217e261147a10841527701d933743c5e2375162a7873e3d43a141815"
+          }
+        },
+        "missing": [],
+        "exceptions": []
+      },
+      {
+        "challenge": "11",
+        "files": {},
+        "missing": [
+          "problem.tex",
+          "solution.tex",
+          "final_answer.tex"
+        ],
+        "exceptions": []
+      },
+      {
+        "challenge": "12",
+        "files": {
+          "problem": {
+            "source": "original_challenges.jsonl#Challenge_12 + expert_clarifications.json",
+            "source_sha256": "d8565ad4563791284c721b7c262c14a2cceca9ac9b8e97dca7158958dfdf4ac3",
+            "action": "specified the ground-space projection protocol, phase gauge and geometric-phase target of the expert-accepted AI solution",
+            "path": "12/problem.tex",
+            "sha256": "39ddc0e23fd4677395f72cc3ea95a8a359b411c772c74aa7bb5ecb04ff9cd90b"
+          },
+          "solution": {
+            "source": "benchmarks/critpt/results/codex_cli_tools_web/gpt-5.6-sol/high/0/Challenge_12_main.json",
+            "source_sha256": "bbcf78565a25723e0c70112f7ca8206029ab14078cfad812626175b145262815",
+            "action": "original AI solution accepted as ground truth by the follow-up; converted Markdown to TeX",
+            "path": "12/solution.tex",
+            "sha256": "7a8b6f09433c6db798cbe8b6eecf7e5bcda7874790a1df11989964487885f245"
+          },
+          "final_answer": {
+            "source": "benchmarks/critpt/results/codex_cli_tools_web/gpt-5.6-sol/high/0/Challenge_12_main.json",
+            "source_sha256": "bbcf78565a25723e0c70112f7ca8206029ab14078cfad812626175b145262815",
+            "action": "designated final-answer section of the expert-accepted original AI solution",
+            "path": "12/final_answer.tex",
+            "sha256": "4d63a3b234f66b08bf1201670e7d5abbfe110adc58e4206388030c9fd89c0285"
+          }
+        },
+        "missing": [],
+        "exceptions": [
+          "The original AI response is ground truth by the user-relayed expert clarification."
+        ],
+        "curation": {
+          "source": "expert_clarifications.json",
+          "authority": "Expert clarification relayed by the user in this conversation"
+        }
+      },
+      {
+        "challenge": "13",
+        "files": {
+          "problem": {
+            "source": "original_challenges.jsonl#Challenge_13 + expert_clarifications.json",
+            "source_sha256": "1a57c531d6fb825dea89921f6d8d003270017cf5a554f5f869b9fee1461331a7",
+            "action": "specified the vacuum-channel geometry and sector-label convention used in the accepted AI solution",
+            "path": "13/problem.tex",
+            "sha256": "fe16f32c920cf6241e04b220fb8377ad6f6bf2b21f628ae3c9f8272dad7d5204"
+          },
+          "solution": {
+            "source": "benchmarks/critpt/results/codex_cli_tools_web/gpt-5.6-sol/high/0/Challenge_13_main.json",
+            "source_sha256": "7692962e6a24cd86ade401b66f12fc50fdd1c7a4063d71488c7ea5806a78d82e",
+            "action": "original AI solution accepted as ground truth by the follow-up; converted Markdown to TeX",
+            "path": "13/solution.tex",
+            "sha256": "4e73f4bab0eebc62d37faca99b75ebcddab437b73ae673c97f23210c97fc2897"
+          },
+          "final_answer": {
+            "source": "benchmarks/critpt/results/codex_cli_tools_web/gpt-5.6-sol/high/0/Challenge_13_main.json",
+            "source_sha256": "7692962e6a24cd86ade401b66f12fc50fdd1c7a4063d71488c7ea5806a78d82e",
+            "action": "designated final-answer section of the expert-accepted original AI solution",
+            "path": "13/final_answer.tex",
+            "sha256": "c51db47f9a75fb5877fe0ea35a6cddba218782e1215505dfb15f62c8eede46da"
+          }
+        },
+        "missing": [],
+        "exceptions": [
+          "The original AI response is ground truth by the user-relayed expert clarification."
+        ],
+        "curation": {
+          "source": "expert_clarifications.json",
+          "authority": "Expert clarification relayed by the user in this conversation"
+        }
+      },
+      {
+        "challenge": "14",
+        "files": {
+          "final_answer": {
+            "source": "/shared/data/home/aa3242/critpt-sol/challenges/14/final_answer.tex",
+            "source_sha256": "6df9c159c13e9fe441827c188846753808e1209e1f1889d82e105dfd483fd1c5",
+            "action": "copied the expert-verified original model final answer byte-for-byte at the user's request",
+            "path": "14/final_answer.tex",
+            "sha256": "6df9c159c13e9fe441827c188846753808e1209e1f1889d82e105dfd483fd1c5"
+          }
+        },
+        "missing": [
+          "problem.tex",
+          "solution.tex"
+        ],
+        "exceptions": [
+          "Missing: problem.tex, solution.tex.",
+          "Final answer supplied from the original model response; accepted by the expert and explicitly selected by the user."
+        ],
+        "curation": {
+          "source": "expert_clarifications.json",
+          "authority": "Expert clarification relayed by the user in this conversation"
+        }
+      },
+      {
+        "challenge": "15",
+        "files": {},
+        "missing": [
+          "problem.tex",
+          "solution.tex",
+          "final_answer.tex"
+        ],
+        "exceptions": []
+      },
+      {
+        "challenge": "16",
+        "files": {
+          "problem": {
+            "path": "16/problem.tex",
+            "sha256": "d20cdbd800291a5a252867d9358219b6c8f3d1cb674b190da7f9c95b9663d1f2"
+          },
+          "solution": {
+            "source": "https://drive.google.com/file/d/1mrDAStRl69BaWVHlralKNaYVKKfwZde9/view",
+            "source_sha256": "6ea3fae4b588058822b9d9c560c331e4f953e9fbd34cba5d72b1205224b8ed55",
+            "action": "accepted literal momentum-diagonal Hamiltonian solution and designated final result",
+            "path": "16/solution.tex",
+            "sha256": "6ea3fae4b588058822b9d9c560c331e4f953e9fbd34cba5d72b1205224b8ed55"
+          },
+          "final_answer": {
+            "source": "https://drive.google.com/file/d/1mrDAStRl69BaWVHlralKNaYVKKfwZde9/view",
+            "source_sha256": "6ea3fae4b588058822b9d9c560c331e4f953e9fbd34cba5d72b1205224b8ed55",
+            "action": "accepted literal momentum-diagonal Hamiltonian solution and designated final result",
+            "path": "16/final_answer.tex",
+            "sha256": "1cc34b86eb5410043549e537e2480b38114175972b5e6f3fdff91fddf83f50f3"
+          }
+        },
+        "missing": [],
+        "exceptions": [],
+        "curation": {
+          "source": "expert_clarifications.json",
+          "authority": "Expert clarification relayed by the user in this conversation"
+        }
+      },
+      {
+        "challenge": "17",
+        "files": {
+          "problem": {
+            "path": "17/problem.tex",
+            "sha256": "609682aa31e25bc0560fd7ca3767403d333686eca27970d14f442cd7a98e62ea"
+          },
+          "solution": {
+            "path": "17/solution.tex",
+            "sha256": "3d336d2277ed3975acdc98981ffb7ddaeaa69c1d772cd8d098eb2c3c3c77a685"
+          },
+          "final_answer": {
+            "path": "17/final_answer.tex",
+            "sha256": "62677c75489299b229edd2b749ed7d040da2b07e6cd86f10eaae61be4a85e190"
+          }
+        },
+        "missing": [],
+        "exceptions": []
+      },
+      {
+        "challenge": "18",
+        "files": {
+          "solution": {
+            "path": "18/solution.tex",
+            "sha256": "3f05be529c8a6595af7fc05b03c20e3c91f93f2ca4cd26e68d5bcc419045ffc0"
+          },
+          "final_answer": {
+            "path": "18/final_answer.tex",
+            "sha256": "335dd43a975b54c5548f7b4cdde55403612ebf659d0e4b6809d1a5455a7fd0c8"
+          }
+        },
+        "missing": [
+          "problem.tex"
+        ],
+        "exceptions": []
+      },
+      {
+        "challenge": "19",
+        "files": {
+          "solution": {
+            "path": "19/solution.tex",
+            "sha256": "312b5ffe37be616c20c6b20eed3553f0d1b7eb55fafeda7de46a965429a7d628"
+          },
+          "final_answer": {
+            "path": "19/final_answer.tex",
+            "sha256": "0dd8fef5481e44ebb5f8b521de6e38a35181e0c06826093edb006782754519d0"
+          }
+        },
+        "missing": [
+          "problem.tex"
+        ],
+        "exceptions": []
+      },
+      {
+        "challenge": "20",
+        "files": {
+          "problem": {
+            "path": "20/problem.tex",
+            "sha256": "3fbd63cc48f6dc94fed44f40ce07d460b09038683369916023c27bc7d8c112ab"
+          },
+          "solution": {
+            "path": "20/solution.tex",
+            "sha256": "b3b92428f7a67ff5c5c5a11223cb1bc7c3c76dad68ab644309a1d6283513bf7b"
+          },
+          "final_answer": {
+            "path": "20/final_answer.tex",
+            "sha256": "6b4c36e02460eda91f4159bae4498868e2911d97dab4b53aa86fa2e77c112f23"
+          }
+        },
+        "missing": [],
+        "exceptions": []
+      },
+      {
+        "challenge": "21",
+        "files": {},
+        "missing": [
+          "problem.tex",
+          "solution.tex",
+          "final_answer.tex"
+        ],
+        "exceptions": []
+      },
+      {
+        "challenge": "22",
+        "files": {
+          "problem": {
+            "source": "https://drive.google.com/file/d/1n5AjExaFsuI-TfsrIGllkurVuMvTmz6h/view",
+            "source_sha256": "004ebf2d4c67d16d8fb1d676e4051d733ad4226f6a087f7c69a910647270560a",
+            "action": "accepted expert upload as ground truth per follow-up",
+            "path": "22/problem.tex",
+            "sha256": "004ebf2d4c67d16d8fb1d676e4051d733ad4226f6a087f7c69a910647270560a"
+          },
+          "solution": {
+            "source": "https://drive.google.com/file/d/1GrFM2mu_UuBZDfo1Bu0txwwdIwFEXGNs/view",
+            "source_sha256": "6352f0a8fdd6f097713172518a65a9a59f0e6493781911ee7b1bc398507d2dd8",
+            "action": "accepted expert upload as ground truth per follow-up",
+            "path": "22/solution.tex",
+            "sha256": "6352f0a8fdd6f097713172518a65a9a59f0e6493781911ee7b1bc398507d2dd8"
+          },
+          "final_answer": {
+            "source": "https://drive.google.com/file/d/1dZVygSzSsxENMNz7dGgoQuTH-18RwirS/view",
+            "source_sha256": "fae1269a365e06c3b66b6374177d9fa3da74ae2fa0170b78a84453def1eba777",
+            "action": "accepted expert upload as ground truth per follow-up",
+            "path": "22/final_answer.tex",
+            "sha256": "fae1269a365e06c3b66b6374177d9fa3da74ae2fa0170b78a84453def1eba777"
+          }
+        },
+        "missing": [],
+        "exceptions": [
+          "The uploaded problem, solution and final answer are accepted together by explicit adjudication; original embedded reviewer discussion is retained."
+        ],
+        "curation": {
+          "source": "expert_clarifications.json",
+          "authority": "Expert clarification relayed by the user in this conversation"
+        }
+      },
+      {
+        "challenge": "23",
+        "files": {
+          "problem": {
+            "path": "23/problem.tex",
+            "sha256": "9ef9949a1c0a721fa05160397cbb94f10df1263f8109692a0223ade7b46a9bcb"
+          },
+          "solution": {
+            "path": "23/solution.tex",
+            "sha256": "327e161093d5d34370e23474889738221088a59a1406a30a631224809bef4d2e"
+          },
+          "final_answer": {
+            "path": "23/final_answer.tex",
+            "sha256": "3df161385c0c730b26548f1727490a2aebe678ed71553ccaa9f800a367d7881b"
+          }
+        },
+        "missing": [],
+        "exceptions": []
+      },
+      {
+        "challenge": "24",
+        "files": {},
+        "missing": [
+          "problem.tex",
+          "solution.tex",
+          "final_answer.tex"
+        ],
+        "exceptions": []
+      },
+      {
+        "challenge": "25",
+        "files": {},
+        "missing": [
+          "problem.tex",
+          "solution.tex",
+          "final_answer.tex"
+        ],
+        "exceptions": []
+      },
+      {
+        "challenge": "26",
+        "files": {
+          "problem": {
+            "path": "26/problem.tex",
+            "sha256": "6ae98e7d6c5d5f8e1870a8ff2d8c5a185cf52702a52f333adb7f87da400752f3"
+          },
+          "final_answer": {
+            "source": "/shared/data/home/aa3242/critpt-sol/challenges/26/final_answer.tex",
+            "source_sha256": "1731025abaf47a5b3ecff67a75e379b8fe3c7f671408b8961642d4a533cb0b5e",
+            "action": "copied the expert-verified original model final answer byte-for-byte at the user's request",
+            "path": "26/final_answer.tex",
+            "sha256": "1731025abaf47a5b3ecff67a75e379b8fe3c7f671408b8961642d4a533cb0b5e"
+          }
+        },
+        "missing": [
+          "solution.tex"
+        ],
+        "exceptions": [
+          "Missing: solution.tex.",
+          "Final answer supplied from the original model response; accepted by the expert and explicitly selected by the user."
+        ],
+        "curation": {
+          "source": "expert_clarifications.json",
+          "authority": "Expert clarification relayed by the user in this conversation"
+        }
+      },
+      {
+        "challenge": "27",
+        "files": {},
+        "missing": [
+          "problem.tex",
+          "solution.tex",
+          "final_answer.tex"
+        ],
+        "exceptions": []
+      },
+      {
+        "challenge": "28",
+        "files": {
+          "problem": {
+            "path": "28/problem.tex",
+            "sha256": "1d8b5b475affd488700a5fd1bd8a29738c7f80bac2792f8227c49a2ec7881819"
+          },
+          "solution": {
+            "path": "28/solution.tex",
+            "sha256": "ea6a5a9b6abfc2c67e767bbfad90afe1c91ac6c09c17a432a348d58c67f87710"
+          },
+          "final_answer": {
+            "path": "28/final_answer.tex",
+            "sha256": "a4405681433cc48c9a1223cf42815b03e66c928ece19854b0ce52e9d1e24865b"
+          }
+        },
+        "missing": [],
+        "exceptions": []
+      },
+      {
+        "challenge": "29",
+        "files": {
+          "solution": {
+            "path": "29/solution.tex",
+            "sha256": "88555debe322c1c1b45de873bd6f90b73e4e269d9821d07795cf4109fe04917f"
+          },
+          "final_answer": {
+            "path": "29/final_answer.tex",
+            "sha256": "5c3ae70d08013b82c02a51644a34fde193b52b4c0936148a84e5c7552adfe27b"
+          }
+        },
+        "missing": [
+          "problem.tex"
+        ],
+        "exceptions": []
+      },
+      {
+        "challenge": "30",
+        "files": {
+          "solution": {
+            "path": "30/solution.tex",
+            "sha256": "2235b10e1286ed1704f9bbde2df63761e2ffd5a69b552ebdd9814b50e09bb684"
+          },
+          "final_answer": {
+            "path": "30/final_answer.tex",
+            "sha256": "1bf0feb4ce3f055a6437a03b889dcf020e51cea437c135832ab2dae091c59f5f"
+          }
+        },
+        "missing": [
+          "problem.tex"
+        ],
+        "exceptions": []
+      },
+      {
+        "challenge": "31",
+        "files": {
+          "problem": {
+            "path": "31/problem.tex",
+            "sha256": "1021549fd59fbe15d7f0b2c045818fe96fe22672c93b9456c13077922ae66ca4"
+          },
+          "solution": {
+            "path": "31/solution.tex",
+            "sha256": "686204f3183a8f390684d76b524e6853fbe7b7136819c08be55f307e3b2cd84e"
+          },
+          "final_answer": {
+            "path": "31/final_answer.tex",
+            "sha256": "0aa451a6015d89608f0e2bcb2fa79067bfd22e2a2843f5a6e0bb58f150f5b52c"
+          }
+        },
+        "missing": [],
+        "exceptions": []
+      },
+      {
+        "challenge": "32",
+        "files": {
+          "problem": {
+            "path": "32/problem.tex",
+            "sha256": "5d1f871322057104fada4019ee13daaf2628f1d353700c139330ee1758de02e8"
+          }
+        },
+        "missing": [
+          "solution.tex",
+          "final_answer.tex"
+        ],
+        "exceptions": []
+      },
+      {
+        "challenge": "33",
+        "files": {
+          "problem": {
+            "path": "33/problem.tex",
+            "sha256": "0407e6ed70c229266d6cd71c122f8be4b2b2afcfbcd917b9732d430ee62b7231"
+          },
+          "solution": {
+            "path": "33/solution.tex",
+            "sha256": "9539db453c415c7b26102938dd0fc82082c58ece2cce0b7287c5029740fb9e73"
+          },
+          "final_answer": {
+            "path": "33/final_answer.tex",
+            "sha256": "015772a70e72bd92fb526ce1e073e7c5e27007c8d552b4c9a6e69da445c9279f"
+          }
+        },
+        "missing": [],
+        "exceptions": []
+      },
+      {
+        "challenge": "34",
+        "files": {},
+        "missing": [
+          "problem.tex",
+          "solution.tex",
+          "final_answer.tex"
+        ],
+        "exceptions": []
+      },
+      {
+        "challenge": "35",
+        "files": {
+          "solution": {
+            "path": "35/solution.tex",
+            "sha256": "5af1e2d4614e3fdb9d3d8c2734c1275afed90062311eec566962183a64743db5"
+          },
+          "final_answer": {
+            "path": "35/final_answer.tex",
+            "sha256": "190c2a75ccfc1037ac7524b164be872f8ad99fb534c31a2c203c7caffb656dab"
+          }
+        },
+        "missing": [
+          "problem.tex"
+        ],
+        "exceptions": []
+      },
+      {
+        "challenge": "36",
+        "files": {},
+        "missing": [
+          "problem.tex",
+          "solution.tex",
+          "final_answer.tex"
+        ],
+        "exceptions": []
+      },
+      {
+        "challenge": "37",
+        "files": {},
+        "missing": [
+          "problem.tex",
+          "solution.tex",
+          "final_answer.tex"
+        ],
+        "exceptions": []
+      },
+      {
+        "challenge": "38",
+        "files": {},
+        "missing": [
+          "problem.tex",
+          "solution.tex",
+          "final_answer.tex"
+        ],
+        "exceptions": [
+          "Missing: problem.tex, solution.tex, final_answer.tex.",
+          "Retrieved the previously missing expert explanation and included it in expert_review.txt. It recommends an incorrect-model verdict but does not supply a complete corrected finite-temperature solution or prefactor; no final_answer.tex was invented."
+        ],
+        "curation": {
+          "source": "expert_clarifications.json",
+          "authority": "Expert clarification relayed by the user in this conversation"
+        }
+      },
+      {
+        "challenge": "39",
+        "files": {
+          "problem": {
+            "path": "39/problem.tex",
+            "sha256": "74f5ecdcac2db1efd8bee682c3982cddfc154cc35939acc4bf201eda7e5e277a"
+          },
+          "solution": {
+            "path": "39/solution.tex",
+            "sha256": "552bed59a8a5922434dfff5e265c75da56af52432a4070a783a5ff004c7b1100"
+          },
+          "final_answer": {
+            "path": "39/final_answer.tex",
+            "sha256": "53773ec92a04fc8c1f04696cd1c8671b2ddedd9e5308b727efc1b61347216866"
+          }
+        },
+        "missing": [],
+        "exceptions": []
+      },
+      {
+        "challenge": "40",
+        "files": {
+          "problem": {
+            "path": "40/problem.tex",
+            "sha256": "3adc676ce383718d311efbb57617cc1012940eae7e3306b9591c5024c3988ddd"
+          },
+          "solution": {
+            "path": "40/solution.tex",
+            "sha256": "a069a59d92d6a4f7ea2f2b6a20051e520245ccc12c1138b09e515e9d80b37d94"
+          },
+          "final_answer": {
+            "path": "40/final_answer.tex",
+            "sha256": "36963380362e3c1cf35ebfe2b529d67aea2fddf1e719e9f265c20b8a76eb2b14"
+          }
+        },
+        "missing": [],
+        "exceptions": []
+      },
+      {
+        "challenge": "41",
+        "files": {},
+        "missing": [
+          "problem.tex",
+          "solution.tex",
+          "final_answer.tex"
+        ],
+        "exceptions": []
+      },
+      {
+        "challenge": "42",
+        "files": {
+          "solution": {
+            "path": "42/solution.tex",
+            "sha256": "b9976064881c2effd66521f51ecdd137be7d76ad42d6c7ced0cee824197b5d7b"
+          },
+          "final_answer": {
+            "path": "42/final_answer.tex",
+            "sha256": "ff5b8c2553048c3b4f8e94d915f597f6c71dd37af1cab696f3eaa18975555ef6"
+          },
+          "problem": {
+            "source": "original_challenges.jsonl#Challenge_42 + expert_clarifications.json",
+            "source_sha256": "68885cf2afd86a976ff42f158b972f56092661f6fd64e15cfcf7fed1ebf70195",
+            "action": "specified large-gate geometry, screening regions and fixed-capacitance scaling from the expert response and corrected solution",
+            "path": "42/problem.tex",
+            "sha256": "4f1c252b533b0e3eafdc7db133e0f709f67868346f8a8ef3ababbe20aaa4f1e5"
+          }
+        },
+        "missing": [],
+        "exceptions": [],
+        "curation": {
+          "source": "expert_clarifications.json",
+          "authority": "Expert clarification relayed by the user in this conversation"
+        }
+      },
+      {
+        "challenge": "43",
+        "files": {},
+        "missing": [
+          "problem.tex",
+          "solution.tex",
+          "final_answer.tex"
+        ],
+        "exceptions": []
+      },
+      {
+        "challenge": "44",
+        "files": {
+          "problem": {
+            "path": "44/problem.tex",
+            "sha256": "cd03b855c03c9393b53801eb2fae4dec2b6018dccd986a1366957a5a3cd068e9"
+          },
+          "solution": {
+            "path": "44/solution.tex",
+            "sha256": "11a49afe75457ab6eb2e2a98fb671b03f0a87dc26e2367a95e5d2808d8bf62ea"
+          },
+          "final_answer": {
+            "path": "44/final_answer.tex",
+            "sha256": "4466323c5ac4223a9929df224b186a6ffa16ca5c7c09575bd74da472fda53836"
+          }
+        },
+        "missing": [],
+        "exceptions": []
+      },
+      {
+        "challenge": "45",
+        "files": {
+          "problem": {
+            "source": "original_challenges.jsonl#Challenge_45 + expert_clarifications.json",
+            "source_sha256": "710bcbb9ea5a6ffab9d8249ce3f8f2d1c05b401e2de3bce44a6eb64878f55e13",
+            "action": "retained the original equal-lifetime assumption and clarified the transport regime of the expert solution",
+            "path": "45/problem.tex",
+            "sha256": "ac2004ccf590f523a5aa531774d20143b60dd4fa1b9d2b3790dc75b3295150b4"
+          },
+          "solution": {
+            "path": "45/solution.tex",
+            "sha256": "a42098efca3f186319f9257e0b24cb018295d06309130eb2776539ce8697ea21"
+          },
+          "final_answer": {
+            "path": "45/final_answer.tex",
+            "sha256": "5f440f9a2299474132c128bcd19a3288f2bc26493d9ec15ce959061af457ab47"
+          }
+        },
+        "missing": [],
+        "exceptions": [
+          "The original prompt already required equal lifetimes. Added only the transport-regime clarification used by the accepted solution."
+        ],
+        "curation": {
+          "source": "expert_clarifications.json",
+          "authority": "Expert clarification relayed by the user in this conversation"
+        }
+      },
+      {
+        "challenge": "46",
+        "files": {},
+        "missing": [
+          "problem.tex",
+          "solution.tex",
+          "final_answer.tex"
+        ],
+        "exceptions": []
+      },
+      {
+        "challenge": "47",
+        "files": {
+          "solution": {
+            "path": "47/solution.tex",
+            "sha256": "153e522698586b50cdd11d9e6925c521de15d3c5441c80703fe96d53fa65d6b5"
+          },
+          "final_answer": {
+            "path": "47/final_answer.tex",
+            "sha256": "210053ba704478a85fe4f5b1fc3257996461b02216df43140c7d329f285d65a4"
+          }
+        },
+        "missing": [
+          "problem.tex"
+        ],
+        "exceptions": []
+      },
+      {
+        "challenge": "48",
+        "files": {
+          "problem": {
+            "path": "48/problem.tex",
+            "sha256": "d5f189952508d2d488a6335e6d3417e7822bac08c94cec0cdbabce9858b8550f"
+          },
+          "solution": {
+            "path": "48/solution.tex",
+            "sha256": "3632dde016640ae537308e025a3791acffe7b2a5d29270aa5666a89c3c6ac54d"
+          },
+          "final_answer": {
+            "path": "48/final_answer.tex",
+            "sha256": "d717d87a3f104cef9aa14e45c0ad46b2591806a3a860912c53291e3491ee9102"
+          }
+        },
+        "missing": [],
+        "exceptions": []
+      },
+      {
+        "challenge": "49",
+        "files": {
+          "solution": {
+            "path": "49/solution.tex",
+            "sha256": "80886587da5954fb8c66dfa167dc3734aefeb2e88c9a1dc3e4c46928b09ac29e"
+          },
+          "final_answer": {
+            "path": "49/final_answer.tex",
+            "sha256": "c9fe1db4ba128a1e4e057579618659a8f9df268f4838dc0b828671208bff39f1"
+          }
+        },
+        "missing": [
+          "problem.tex"
+        ],
+        "exceptions": []
+      },
+      {
+        "challenge": "50",
+        "files": {
+          "problem": {
+            "path": "50/problem.tex",
+            "sha256": "f0eeaafdedcd64779996123446f78aa30097dd8f86bdd0fc6397d9e4476af226"
+          },
+          "final_answer": {
+            "source": "/shared/data/home/aa3242/critpt-sol/challenges/50/final_answer.tex",
+            "source_sha256": "5ba4be9ea669ef6c29dd42b250cd293dd853dd76c359f75ca9f0ccaba13ae2ca",
+            "action": "copied the expert-verified original model final answer byte-for-byte at the user's request",
+            "path": "50/final_answer.tex",
+            "sha256": "5ba4be9ea669ef6c29dd42b250cd293dd853dd76c359f75ca9f0ccaba13ae2ca"
+          }
+        },
+        "missing": [
+          "solution.tex"
+        ],
+        "exceptions": [
+          "Missing: solution.tex.",
+          "Final answer supplied from the original model response; accepted by the expert and explicitly selected by the user."
+        ],
+        "curation": {
+          "source": "expert_clarifications.json",
+          "authority": "Expert clarification relayed by the user in this conversation"
+        }
+      },
+      {
+        "challenge": "51",
+        "files": {
+          "problem": {
+            "path": "51/problem.tex",
+            "sha256": "d9171f092075f0743181714181dfb5d79eacdd7ac7c38f49ce4c26b7c812fa14"
+          },
+          "solution": {
+            "path": "51/solution.tex",
+            "sha256": "270f2a5c995d8f02257aa22eee612c15502ef6c454613f7383b2b3709e0f4e28"
+          },
+          "final_answer": {
+            "path": "51/final_answer.tex",
+            "sha256": "0a0f5102d47fe2f232c2b1f4280c8b85593443dc5784bca2bd7b9f5a53202d94"
+          }
+        },
+        "missing": [],
+        "exceptions": []
+      },
+      {
+        "challenge": "52",
+        "files": {},
+        "missing": [
+          "problem.tex",
+          "solution.tex",
+          "final_answer.tex"
+        ],
+        "exceptions": []
+      },
+      {
+        "challenge": "53",
+        "files": {
+          "solution": {
+            "path": "53/solution.tex",
+            "sha256": "4b8d33e52832d114703d7a39d636923eb1fc5b982f60c2384d6ccdf65b63ee8c"
+          },
+          "final_answer": {
+            "path": "53/final_answer.tex",
+            "sha256": "50e8c03f91aac1f82e5d64c35a4d035a613c6c5de4307248e2968254ae820314"
+          }
+        },
+        "missing": [
+          "problem.tex"
+        ],
+        "exceptions": []
+      },
+      {
+        "challenge": "54",
+        "files": {
+          "solution": {
+            "path": "54/solution.tex",
+            "sha256": "5ef6f2f91eb951f5df2742fea6170927926955e30d5d5ecfd23d8cf50f92bd80"
+          },
+          "final_answer": {
+            "path": "54/final_answer.tex",
+            "sha256": "b6e3e17bbb1ce83004edcf38b0698d4c67293f199368a7100b5b5e354b116f10"
+          },
+          "problem": {
+            "source": "original_challenges.jsonl#Challenge_54 + expert_clarifications.json",
+            "source_sha256": "6f7ce071a4a0943c231f1d4db832844260769d29a643cf962942224eed6dbf1b",
+            "action": "repaired the scope to the reported/inferred cases actually provided by the reviewed solution, with source-specific geometries and no exhaustiveness claim",
+            "path": "54/problem.tex",
+            "sha256": "ab25e0282708648d205630ed1f3e810eee0d9d0c2d8cabae8442eb0fa8640685"
+          }
+        },
+        "missing": [],
+        "exceptions": [
+          "problem.tex is an unconfirmed draft that narrows the requested calculation to selected literature cases. Challenge 54 is excluded from verdicts.json pending clarification of scope, geometry and completeness."
+        ],
+        "curation": {
+          "source": "expert_clarifications.json",
+          "authority": "Expert clarification relayed by the user in this conversation"
+        }
+      },
+      {
+        "challenge": "55",
+        "files": {
+          "final_answer": {
+            "source": "/shared/data/home/aa3242/critpt-sol/challenges/55/final_answer.tex",
+            "source_sha256": "f31c52d045e4086da2be5e0def6956b149af9323a5be5fbf2269f43178d7c13f",
+            "action": "copied the expert-verified original model final answer byte-for-byte at the user's request",
+            "path": "55/final_answer.tex",
+            "sha256": "f31c52d045e4086da2be5e0def6956b149af9323a5be5fbf2269f43178d7c13f"
+          }
+        },
+        "missing": [
+          "problem.tex",
+          "solution.tex"
+        ],
+        "exceptions": [
+          "Missing: problem.tex, solution.tex.",
+          "Final answer supplied from the original model response; accepted by the expert and explicitly selected by the user."
+        ],
+        "curation": {
+          "source": "expert_clarifications.json",
+          "authority": "Expert clarification relayed by the user in this conversation"
+        }
+      },
+      {
+        "challenge": "56",
+        "files": {
+          "problem": {
+            "source": "original_challenges.jsonl#Challenge_56 + expert_clarifications.json",
+            "source_sha256": "2dfd4533100f71a5a4ca2eb95570aa22194329c089fe9255bf2f7cf34cc66084",
+            "action": "promoted the expert solution's primary physical/statistical assumptions to the problem statement",
+            "path": "56/problem.tex",
+            "sha256": "4982aec698ba3dbd24adecb9c56af652ead33b7e0269d817b0afc0db6f7948ae"
+          },
+          "solution": {
+            "source": "https://drive.google.com/file/d/13vqeVDohk_BWpS8u0q080dtKxVC9G7z_/view",
+            "source_sha256": "30457cd731488c79fc9bd7edbe1213979cf8fd0e5ffaa2a0df242c0f1556886b",
+            "action": "accepted reviewer replacement from direct upload, cross-checked against ZIP bundle; preserved TeX asset paths",
+            "path": "56/solution.tex",
+            "sha256": "30457cd731488c79fc9bd7edbe1213979cf8fd0e5ffaa2a0df242c0f1556886b"
+          },
+          "final_answer": {
+            "source": "https://drive.google.com/file/d/16zOvbZiTL-T5PN6rAyz7VF3Qi1kSPxuG/view",
+            "source_sha256": "5521c7f5c0b31ab6cb4bf40fd26575bb8ac57194501aea41441c72b6bebe6e97",
+            "action": "accepted reviewer replacement from direct upload, cross-checked against ZIP bundle; preserved TeX asset paths",
+            "path": "56/final_answer.tex",
+            "sha256": "5521c7f5c0b31ab6cb4bf40fd26575bb8ac57194501aea41441c72b6bebe6e97"
+          }
+        },
+        "missing": [],
+        "exceptions": [
+          "Primary expert ZIP/direct-upload solution and final answer retained. The revised problem now fixes the primary reference conventions; alternative statistic conventions in the solution remain alternatives."
+        ],
+        "curation": {
+          "source": "expert_clarifications.json",
+          "authority": "Expert clarification relayed by the user in this conversation"
+        }
+      },
+      {
+        "challenge": "57",
+        "files": {
+          "problem": {
+            "source": "original_challenges.jsonl#Challenge_57 + expert_clarifications.json",
+            "source_sha256": "48a60fa822ddb140e58f6f956204ddf597fc0fb6e8a09d1671d714fad851d483",
+            "action": "promoted the expert solution's primary physical/statistical assumptions to the problem statement",
+            "path": "57/problem.tex",
+            "sha256": "65e47e5c5c007fefded67a095d833da601bba4c2f54ad36eaf87ed6a8b60acbe"
+          },
+          "solution": {
+            "source": "https://drive.google.com/file/d/1jmxjxlcKhD0j3DglNSqiLiiV7eMKowZS/view",
+            "source_sha256": "21349f7b1092204e717c94523298f1c2b5b8571cedc9fb001c83e7d3357c1c09",
+            "action": "accepted reviewer replacement from direct upload, cross-checked against ZIP bundle; preserved TeX asset paths",
+            "path": "57/solution.tex",
+            "sha256": "21349f7b1092204e717c94523298f1c2b5b8571cedc9fb001c83e7d3357c1c09"
+          },
+          "final_answer": {
+            "source": "https://drive.google.com/file/d/1cJabFkoSjXMw6yfzx6m1ldec9qx3Co-U/view",
+            "source_sha256": "ad091948d2bc0a22c5e063715ff50073b7422488beb3191f9b8ea0b70168969e",
+            "action": "accepted reviewer replacement from direct upload, cross-checked against ZIP bundle; preserved TeX asset paths",
+            "path": "57/final_answer.tex",
+            "sha256": "ad091948d2bc0a22c5e063715ff50073b7422488beb3191f9b8ea0b70168969e"
+          }
+        },
+        "missing": [],
+        "exceptions": [
+          "Primary expert ZIP/direct-upload solution and final answer retained; model/statistic assumptions promoted to the problem."
+        ],
+        "curation": {
+          "source": "expert_clarifications.json",
+          "authority": "Expert clarification relayed by the user in this conversation"
+        }
+      },
+      {
+        "challenge": "58",
+        "files": {
+          "solution": {
+            "path": "58/solution.tex",
+            "sha256": "5d30f593a21dd9744a9712ab7809adcd9cabd99ec57b0776e285687278614b13"
+          },
+          "final_answer": {
+            "path": "58/final_answer.tex",
+            "sha256": "58ab8acde23ef69e67671e643a4585564b437837dd432cfab9fc48b9a42b6ae1"
+          }
+        },
+        "missing": [
+          "problem.tex"
+        ],
+        "exceptions": []
+      },
+      {
+        "challenge": "59",
+        "files": {
+          "solution": {
+            "path": "59/solution.tex",
+            "sha256": "884b20e73e4dc1482a2e24d57afafcda90bc3a50da7d955a6532acfa10588239"
+          },
+          "final_answer": {
+            "path": "59/final_answer.tex",
+            "sha256": "3f8c47abad15f597bbfcfb8e80029f9dba232c139f97ce1d80c7c6d96f829ad7"
+          }
+        },
+        "missing": [
+          "problem.tex"
+        ],
+        "exceptions": []
+      },
+      {
+        "challenge": "60",
+        "files": {
+          "solution": {
+            "path": "60/solution.tex",
+            "sha256": "4fc47e9c3b26f3b6d3e57353fe5b3767a1198e6036bfc7c9abe69869cc54d3ce"
+          },
+          "final_answer": {
+            "path": "60/final_answer.tex",
+            "sha256": "d6e4f083dd5bb11a5c8eefffbc12d21348f023816ab3d23fec065ea371ef57dd"
+          }
+        },
+        "missing": [
+          "problem.tex"
+        ],
+        "exceptions": []
+      },
+      {
+        "challenge": "61",
+        "files": {
+          "problem": {
+            "path": "61/problem.tex",
+            "sha256": "55213f9e87895289bc0afae6daa13e07d854c48728143002dbcbdbc065553f40"
+          },
+          "solution": {
+            "path": "61/solution.tex",
+            "sha256": "4aa736a4c8c6ea3e207dafba76161b24bb76d9e1a373d4a9cd6cd3128e6f74bb"
+          },
+          "final_answer": {
+            "path": "61/final_answer.tex",
+            "sha256": "6fb9879913c3959b10346acc9b5c1d4e0e2723b5c7184e33e51084ccda8699c1"
+          }
+        },
+        "missing": [],
+        "exceptions": []
+      },
+      {
+        "challenge": "62",
+        "files": {
+          "problem": {
+            "path": "62/problem.tex",
+            "sha256": "c429c902eda9f881034d5bb04578a7e727c2e4e8f2ac73231f610df9c3f6b79e"
+          },
+          "solution": {
+            "path": "62/solution.tex",
+            "sha256": "4e2ad7769422ba8c66a885ec3df357d3283c57dcfaa5460fee240c1148f4398d"
+          },
+          "final_answer": {
+            "path": "62/final_answer.tex",
+            "sha256": "f533874abd15bf922c95e8b08ef20ab634f744bd96b26de749cf65f3b21cd6e7"
+          }
+        },
+        "missing": [],
+        "exceptions": []
+      },
+      {
+        "challenge": "63",
+        "files": {},
+        "missing": [
+          "problem.tex",
+          "solution.tex",
+          "final_answer.tex"
+        ],
+        "exceptions": []
+      },
+      {
+        "challenge": "64",
+        "files": {
+          "solution": {
+            "path": "64/solution.tex",
+            "sha256": "1d947f1e9e994e0a73e3d1bf5329ccb66b2230d491e19ff9a7c1f2462833df6a"
+          },
+          "final_answer": {
+            "path": "64/final_answer.tex",
+            "sha256": "9f33cf33bacdc262f2428ba8dc90f0ead06be622ff0de39cb66025ef57aaf746"
+          }
+        },
+        "missing": [
+          "problem.tex"
+        ],
+        "exceptions": []
+      },
+      {
+        "challenge": "65",
+        "files": {
+          "final_answer": {
+            "source": "/shared/data/home/aa3242/critpt-sol/challenges/65/final_answer.tex",
+            "source_sha256": "1333275b462bd3581b4b726d952757a0d10904318401af7370940ef807eea84b",
+            "action": "copied the expert-verified original model final answer byte-for-byte at the user's request",
+            "path": "65/final_answer.tex",
+            "sha256": "1333275b462bd3581b4b726d952757a0d10904318401af7370940ef807eea84b"
+          }
+        },
+        "missing": [
+          "problem.tex",
+          "solution.tex"
+        ],
+        "exceptions": [
+          "Missing: problem.tex, solution.tex.",
+          "Final answer supplied from the original model response; accepted by the expert and explicitly selected by the user."
+        ],
+        "curation": {
+          "source": "expert_clarifications.json",
+          "authority": "Expert clarification relayed by the user in this conversation"
+        }
+      },
+      {
+        "challenge": "66",
+        "files": {
+          "problem": {
+            "path": "66/problem.tex",
+            "sha256": "0c4881456159e682f113427d5f357253118f140d0fbd678aff807ee8e9ab560d"
+          },
+          "solution": {
+            "path": "66/solution.tex",
+            "sha256": "127ec1340367270d4aa24b646bd94f1fd29e807d729898730f18040ab4ed6524"
+          },
+          "final_answer": {
+            "path": "66/final_answer.tex",
+            "sha256": "3537e33d552241447730612af01781ec1e30e36029432a9164b2b2c9d1be4303"
+          }
+        },
+        "missing": [],
+        "exceptions": []
+      },
+      {
+        "challenge": "67",
+        "files": {
+          "problem": {
+            "path": "67/problem.tex",
+            "sha256": "735cd4cbb90734102ac9dd8efb2b166965fd1bba4e821464b72a7f112a9caec4"
+          },
+          "solution": {
+            "path": "67/solution.tex",
+            "sha256": "a83f249ac32126cc58906bb3dd5a2ec4a3d7e71f06d95c75fc3838415666c693"
+          },
+          "final_answer": {
+            "path": "67/final_answer.tex",
+            "sha256": "5669298d6d2b82213f838be8dde713b0cb15e3b8f471ca7f1fb79032333aa91c"
+          }
+        },
+        "missing": [],
+        "exceptions": []
+      },
+      {
+        "challenge": "68",
+        "files": {
+          "problem": {
+            "path": "68/problem.tex",
+            "sha256": "b432c192d779ce49eb04e1a5ba63f22e087fd3f522ed4b728147d7dd9ef30d43"
+          },
+          "solution": {
+            "path": "68/solution.tex",
+            "sha256": "f2298d47396b9ad63f05d1117131f23d59967e2dc8ece495b55e17cc66d5c16d"
+          },
+          "final_answer": {
+            "path": "68/final_answer.tex",
+            "sha256": "59aabc0b259052dd617353017dd7956f79b82c1a0aec1629a4011b8bf6550b78"
+          }
+        },
+        "missing": [],
+        "exceptions": []
+      },
+      {
+        "challenge": "69",
+        "files": {
+          "solution": {
+            "source": "benchmarks/critpt/results/codex_cli_tools_web/gpt-5.6-sol/high/0/Challenge_69_main.json + https://drive.google.com/file/d/1LiQ48pIfkVwdAd4vSrZf9_ruqogBseFo/view",
+            "source_sha256": "32c8753eaed0185c46724ddf933cb1fe60f8b35d83ff586557a20213f7a0a473",
+            "action": "preserved the complete original AI solution and appended the uploaded expert presentation verbatim; retained conjectural qualification",
+            "path": "69/solution.tex",
+            "sha256": "0ae9536768c598cfc67f20cbf62ffa014c73096859edcd120dc0a923477cf10f"
+          },
+          "final_answer": {
+            "path": "69/final_answer.tex",
+            "sha256": "c30ba5002eab66afd12ca411727fe1a383be7feaf3f018dd2f81541537d2d001"
+          }
+        },
+        "missing": [
+          "problem.tex"
+        ],
+        "exceptions": [
+          "Missing: problem.tex.",
+          "Appended the expert upload after the full original AI answer. The two presentations overlap substantially; the original conjectural qualification is preserved."
+        ],
+        "curation": {
+          "source": "expert_clarifications.json",
+          "authority": "Expert clarification relayed by the user in this conversation"
+        }
+      },
+      {
+        "challenge": "70",
+        "files": {
+          "solution": {
+            "path": "70/solution.tex",
+            "sha256": "1aad7d0a6f5a02bb70727fdc36cf6f8e3a7e91e5d9b14f481a9a21961a440541"
+          },
+          "final_answer": {
+            "path": "70/final_answer.tex",
+            "sha256": "625df52439578d7c4fabb9687b9f8a029a41296323552bc8991480b238756af0"
+          }
+        },
+        "missing": [
+          "problem.tex"
+        ],
+        "exceptions": []
+      }
+    ],
+    "source_policy": "Removed source uploads; canonical hashes retained in the manifest.",
+    "canonical_files": 140,
+    "complete_challenges": 33
+  }
 }

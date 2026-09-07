@@ -7,6 +7,7 @@ refreshes these files. All submissions remain in spreadsheet row order.
 
 import argparse
 import csv
+import json
 from pathlib import Path
 
 from solution_layout import challenge_folder
@@ -46,7 +47,13 @@ def build_expert_reviews(headers, records):
 def write_expert_reviews(directory, reviews):
     from update_annotations import atomic_write
 
+    clarification_path = directory.parent / "expert_clarifications.json"
+    appendices = (json.loads(clarification_path.read_text()).get("review_appendices", {})
+                  if clarification_path.exists() else {})
     for folder, data in reviews.items():
+        if folder in appendices:
+            data += ("\n" + "=" * 72 + "\nFollow-up expert clarification\n"
+                     + "=" * 72 + "\n" + appendices[folder].rstrip("\n") + "\n").encode()
         destination = directory / folder / "expert_review.txt"
         destination.parent.mkdir(parents=True, exist_ok=True)
         atomic_write(destination, data)

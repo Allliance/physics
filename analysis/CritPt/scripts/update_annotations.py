@@ -20,6 +20,8 @@ including multiple submissions; it also refreshes with --annotations-only.
 When supporting-folder cleanup is enabled, uploads are downloaded again as
 needed for normalization, then removed; required TeX figures/bibliographies stay.
 Otherwise unchanged, checksum-verified source files are reused.
+User-adjudicated canonical files are preserved until explicitly reviewed again;
+form exports include the saved follow-up comments and recovered explanation.
 Use --annotations-only to skip attachments. --dry-run checks metadata/access
 without downloading or writing files. Reference originals remain unchanged.
 """

@@ -1,0 +1,39 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,bm,braket}
+\usepackage{hyperref}
+\begin{document}
+\paragraph*{Problem setup:}
+Consider $Z_N$ ($N$ is any integer) parafermion zero-mode operators on four sites $\alpha_i$ with $i=1,2,3,4$ and a four-stage tunneling process described by
+
+$
+H_{34}\rightarrow H_{23} \rightarrow H_{12}\rightarrow H_{13}\rightarrow H_{34},
+$
+
+where
+$
+H_{ij}=t\left(e^{-i\phi_{ij}/N}\alpha_i^\dagger\alpha_j+H.c.\right)
+$, $\phi_{ij}$ is a phase between sites $i$ and $j$, and $H.c.$ stands for Hermitian conjugate. This tunneling process is followed by a permutation between zero modes $(\alpha_1,\alpha_2)$ and $(\alpha_3,\alpha_4)$, respectively.
+
+\paragraph*{Main problem:}
+Find the phase between the initial ground state of the process $|\psi^i(q)\rangle$ and final ground state of the process $|\psi^f(q)\rangle$, where $q$ is the fusion channel between the unpaired zero modes. Your answer should depend on $k_{ij}\in Z_N$, where $k_{ij}<-\frac{\phi_{ij}}{2\pi}<k_{ij}+1$. Note that, for a Josephson phase between sites $i$ and $j$, $k_{ij}$ is a ground-state fusion channel.
+
+\paragraph*{Definition of the four-stage protocol}
+Take $N\geq2$ and $t>0$. Use $\omega=e^{2\pi i/N}$,
+$\alpha_i^N=1$, and $\alpha_i\alpha_j=\omega\alpha_j\alpha_i$ for $i<j$.
+For $i<j$ use the fusion-parity convention
+$Q_{ij}=\omega^{(N+1)/2}\alpha_i\alpha_j^\dagger$.
+The four stages mean successive projections onto the ground spaces of the
+listed Hamiltonians, with $Q_{ij}$ eigenvalue $\omega^{k_{ij}}$:
+\[
+P_{ij}^{(k)}=\frac1N\sum_{s=0}^{N-1}\omega^{-ks}Q_{ij}^{s},\qquad
+\mathcal U=N^2P_{34}^{(k_{34})}P_{13}^{(k_{13})}
+P_{12}^{(k_{12})}P_{23}^{(k_{23})}P_{34}^{(k_{34})}.
+\]
+Choose the initial fusion basis $|q,k_{34}\rangle$ and fix its phases by
+$Q_{23}|x,y\rangle=|x+1,y-1\rangle$.
+The final paired-mode permutation is a relabeling in this comparison; the
+orientation is fixed by the ordered projector product above. Determine its
+fusion-channel-dependent geometric phase, excluding a common dynamical phase,
+and normalize the answer to phase one at $q=k_{12}$.
+\end{document}

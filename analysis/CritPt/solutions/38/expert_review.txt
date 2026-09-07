@@ -44,3 +44,143 @@ Answer:
 Question: Attestation
 Answer:
 I agree to the attestation above.
+
+========================================================================
+Follow-up expert clarification
+========================================================================
+Source: expert clarification relayed by the user.
+Instruction: the filename is wrong, use the explanation - Sohrab Ismail-Beigi.txt
+
+Retrieved attachment: explanation - Sohrab Ismail-Beigi.txt
+Drive file: https://drive.google.com/file/d/1-yw4B7Z_UKm7FaJZx8r68pOTM6rKO7A9/view
+
+I got so confused/annoyed by this problem and its solution that I had
+to write an explanation for my strange response.
+
+There are various categories of explanations in this short text file.
+
+*** (1) Is the solution provided correct or not?
+
+Yes and no.  The answer provided in the solutions PDF
+"I(T)-I(0) \propto T" is correct due to its extreme vagueness: it just
+says the change of I(T) is linear in T to lowest order.  But it is
+such a poor interpretation of "Compute the temperature dependence"
+that it is also wrong (see below for when I explain why the AI is
+really not understanding key aspects of the problem based on what it
+has produced as a solution).  When we write "what is the temperature
+dependence of xyz", we mean more than just if the change in it is
+linear in T with unknown coefficient; but this could be acceptable if
+we are instructed to just ignore proportionality constants.
+
+So my recommendation overall here is the AI's answer is wrong
+especially given how it got to it and its rationale.
+
+*** (2) Is the problem well written?
+
+Mostly yes, with a few key issues.  It could have been improved by
+
+(a) Stating somewhere that the system is in thermal equilibrium.  I
+realize is what we "assume" but it was not stated at all.  So
+technically one must assume it is the case since there is talk of
+"temperature" (which is assumed to be T but never stated) and I guess
+temperature usually means thermal equilibrium unless otherwise
+specified?  But what of dynamical processes that start at thermal
+equilibrium?
+
+(b) The perturbation term H' is presumably needed for us to reach
+thermal equilibrium via scattering.  It is sort of generically written
+but has no clear stated spin dependence or lack thereof in "V" so
+maybe the system can get to thermal equilibrium in spin population or
+not?  I would have added that "V" is generic enough to allow spin
+flips of various sorts to achieve equilibrium of spin populations at
+long times.
+
+(c) It would be nice from the start to say we are talking about
+spin-1/2 fermions.  It is implicitly stated (we get "fermion" in an
+explanation of the H' term) and there is sigma which is usually spin.
+Again, usually we assume these things but why not write them down?
+What if we are talking about spin-3/2 fermions?
+
+(d) Once we clarify these three points, the problem is well posed and is
+asking for something specific.  But they way it is stated, it is
+asking for something most people don't care about.  The problem has
+chosen to pick a specific energy for the bottom of the band: zero.
+The band goes from 0 to W in energy.  The problem then asks for what
+I(T) is like for one of the band energies epsilon_1 being very small.
+Since all the band energies like epsilon_1 are positive, saying U >> W
+>> kBT >> epsilon_1 means epsilon_1 is basically zero and at the bottom
+of the band.  This is well defined, but not what we typically care
+about. Typically we care about a band energy near the Fermi energy.
+So the person who wrote this problem was probably being sloppy and
+just thought they meant epsilon_1=mu to high precision (below kBT);
+that is the "standard" interpretation for usual problems of fermions.
+
+
+*** (3) Is the AI solution correct?
+
+(a) The AI works mainly with band energies referenced to the Fermi
+energy mu which is good (page 33 and calls them xi).  On page 34, after
+having defined the xi, it then talks about epsilon_1 and not xi_1 and
+sets epsilon_1 to zero to leading order.  But in the associated math
+it is actually setting xi_1 = 0 (top of page 34).  So what it writes is
+not what it does, and it is doing the standard problem not the stated
+problem.  The conclusion here is that it doesn't understand what it
+has read (I mean it says "epsilon_1=0 at leading order" which is
+correct but then sets epsilon_1-mu=0 in the math).  It is solving the
+"standard problem" of epsilon_1-mu=0 and not that stated one, because
+the enormous number of training problems it has encountered in solid
+state physics or condensed matter all assumed that at low temperature
+we care about band energies around the Fermi level (which we normally
+do).  So it doesn't understand what is given to it in the problem, and
+instead solves another problem it has seen before: statistically, it
+would be very unlikely for someone to pose this type of problem with
+epsilon_1=band bottom energy (as is stated here) so it just spits out
+the most likely thing.  Which is wrong as the problem is written and
+really really wrong (like lack of comprehension wrong).
+
+(b) Now, given the "standard" assumptions, the solution looks
+"correct" to me.  I verified various key points by hand, and it all
+seems good up until the top of page 37.  I think the big mess on top
+of page 37 is mostly correct.  For some reason, however, it things the
+expectation of the band energy |epsilon_1| is negligible but it should
+also be O(kBT) in the standard interpretation (but it is negligible if
+epsilon_1=0 which is the problem statement but not what is assumed).
+
+(c) The final answer that is boxed, however, is so dumb and simple and
+vague however.  After having derived some nice complicated
+expression, it says that the template is only asking for temperature
+dependence and only accepts "T" as input; I guess literally this is
+what is found on the page, but no physicist thinks like this.  If the
+problem supplies you with key quantities like mu and W that appear in
+your final expression, why drop them completely?  The problem didn't'
+say to ignore constants of proportionality; the dependence on these
+key physical parameters is obviously implicit.  But the AI instead
+gets rid of everything and just reports the linearity of the final
+answer in T.  This is a good strategy that I've seen with (real)
+people who are taking a hard exam in the past and want to hedge: they
+would say well you only want T dependence so here you go, and I would
+be very irritated with myself for not explicitly telling them to
+include the constant of proportionality that can depend on W,mu,U,etc.
+Most readers would maybe also be interested in in I(0) not being zero
+but the final answer elides that as well since it just talks about
+I(T)-I(0).  While the boxed answer is correct, it is very
+disappointing after all that math.  The fact that I(T)-I(0) is linear
+in T at low T is sort of really easy to show (just write the integrals
+and argue with a plot of the energy axes with narrow shaded areas of
+size T that the change in the I(T) is from the shaded areas).  I would
+rate this type of extreme simplification also as a lack of
+understanding: any smart person who was sure they did the math right
+would have reported the longer formula on top of page 37 for the
+answer not the easily and vague answer in the box.  It is not wrong,
+but it is called writing the exam answer with an eye only to
+maximizing your final score and not demonstrating understanding.
+
+
+*** (4) What is the correct answer to the problem as written?
+
+If one is trying to answer the question as posed, I worked out I(0)
+only by hand for which I got mu^2/8 for mu<W/2 and mu*W/4 for mu>W/2.
+The temperature dependent change over I(0) for I(T) will be O(T) as
+before.  We can work it out if needed, but already the I(0) part is
+not the same as the AI solution so we can say the AI solution is
+wrong.  If you really want the I(0) derivation, happy to supply it.

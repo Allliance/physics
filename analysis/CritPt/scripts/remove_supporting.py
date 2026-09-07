@@ -15,8 +15,11 @@ def remove_supporting(directory, report=None):
 
     directory = directory.resolve()
     report_path = directory.parent / "solution_normalization_report.json"
+    manifest_path = directory / "manifest.json"
+    manifest = json.loads(manifest_path.read_text())
     if report is None:
-        report = json.loads(report_path.read_text())
+        report = (json.loads(report_path.read_text()) if report_path.exists()
+                  else manifest["normalization"])
     plans = []
     assets = {}
     for row in report["challenges"]:
@@ -68,9 +71,10 @@ def remove_supporting(directory, report=None):
         "Source upload folders removed after normalization. Source paths and hashes "
         "are historical provenance; required TeX assets remain beside canonical files."
     )
-    atomic_write(report_path, (json.dumps(report, indent=2) + "\n").encode())
-    manifest_path = directory / "manifest.json"
-    manifest = json.loads(manifest_path.read_text())
+    if report_path.exists():
+        atomic_write(report_path, (json.dumps(report, indent=2) + "\n").encode())
+    else:
+        manifest["normalization"] = report
     manifest["remove_supporting"] = True
     atomic_write(manifest_path, (json.dumps(manifest, indent=2) + "\n").encode())
     removed = 0

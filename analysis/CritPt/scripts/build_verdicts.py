@@ -48,8 +48,9 @@ def build_verdicts(base):
         problem, model = verdict["problem"], verdict["model"]
         if problem not in {"clean", "repairable", "unrepairable"}:
             raise ValueError(f"Invalid problem verdict for {challenge}")
-        if (problem == "clean" and model not in {"correct", "incorrect"}) or (
-                problem != "clean" and model != "none"):
+        if model not in {"correct", "incorrect", "none"} or (
+                problem == "clean" and model == "none") or (
+                problem == "unrepairable" and model != "none"):
             raise ValueError(f"Invalid problem/model combination for {challenge}")
         if problem == "repairable":
             if not (base / "solutions" / challenge / "problem.tex").is_file():

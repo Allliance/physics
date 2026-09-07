@@ -1,0 +1,31 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,bm,braket}
+\usepackage{hyperref}
+\begin{document}
+\section*{Final answer}
+
+
+\[
+\boxed{
+\begin{aligned}
+\Big\{&(j_L,n_L,j_R,n_R,1):
+ (j_L,n_L)\in\mathcal A,\ (j_R,n_R)\in\mathcal A\Big\}\\
+{}\cup\Big\{&(j_L,n_L,j_R,n_R,\sqrt2):
+ (j_L,n_L)\in\mathcal A,\ (j_R,n_R)\in\mathcal N
+ \ \text{or vice versa}\Big\}\\
+{}\cup\Big\{&(j_L,n_L,j_R,n_R,2):
+ (j_L,n_L)\in\mathcal N,\ (j_R,n_R)\in\mathcal N\Big\},
+\end{aligned}}
+\]
+
+with
+
+\[
+\mathcal A=\{(0,0),(0,2),(1,0),(1,2)\},
+\qquad
+\mathcal N=\left\{\left(\frac12,1\right),\left(\frac12,3\right)\right\}.
+\]
+
+This gives $16$ tuples with $\lambda=1$, $16$ with $\lambda=\sqrt2$, and $4$ with $\lambda=2$.
+\end{document}

@@ -1,0 +1,110 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,bm,braket}
+\usepackage{hyperref}
+\begin{document}
+\paragraph*{Step-by-Step Derivation}
+
+A vacuum expectation value of a Verlinde line equals its quantum dimension,
+
+\[
+\lambda_a=\langle L_a\rangle
+=\frac{S_{a0}}{S_{00}},
+\qquad
+\lambda_0=1.
+\]
+
+This is the standard vacuum normalization for topological defect lines in a unitary CFT. \href{\detokenize{https://www.mdpi.com/1099-4300/26/12/1064}}{Entropic Order Parameters for Categorical Symmetries in 2D CFT}
+
+The Moore--Read edge theory is the product of an Ising neutral sector and an Abelian charged boson sector. Its electron is the product of the Ising fermion and a charged vertex operator. \href{\detokenize{https://harvest.aps.org/v2/journals/articles/10.1103/RevModPhys.80.1083/fulltext}}{Nayak et al., *Non-Abelian Anyons and Topological Quantum Computation*}
+
+For the Ising, equivalently $SU(2)_2$, sector,
+
+\[
+S^{\mathrm{Ising}}
+=
+\frac12
+\begin{pmatrix}
+1&\sqrt2&1\\
+\sqrt2&0&-\sqrt2\\
+1&-\sqrt2&1
+\end{pmatrix},
+\]
+
+in the ordering $j=0,\frac12,1$. Therefore,
+
+\[
+d_j=\frac{S_{j0}}{S_{00}}
+=
+\frac{\sin\!\left[\frac{\pi}{4}(2j+1)\right]}
+{\sin(\pi/4)}
+=
+\begin{cases}
+1,&j=0,\\[2mm]
+\sqrt2,&j=\frac12,\\[2mm]
+1,&j=1.
+\end{cases}
+\]
+
+The general $SU(2)_k$ expression for these vacuum Verlinde-line expectation values is given explicitly in \href{\detokenize{https://scoap3-prod-backend.s3.cern.ch/media/files/67899/10.1007/JHEP01%282022%29175_a.pdf}}{JHEP 01 (2022) 175}.
+
+Every line in the Abelian $U(1)$ charge sector has quantum dimension one, so the answer is independent of $n_L,n_R$. \href{\detokenize{https://s3.cern.ch/inspire-prod-files-e/e3ba3709c35f55bab8ac4ed87349533e}}{JHEP 10 (2015) 092}
+
+Since the left- and right-moving modular matrices factorize,
+
+\[
+\lambda_{(j_L,n_L,j_R,n_R)}
+=d_{j_L}d_{j_R}
+=2^{\frac12\delta_{j_L,1/2}+\frac12\delta_{j_R,1/2}}.
+\]
+
+For the physical Moore--Read spectrum, locality with respect to each electron requires
+
+\[
+2j_L+n_L\equiv0\pmod 2,
+\qquad
+2j_R+n_R\equiv0\pmod 2.
+\]
+
+Thus each chiral edge has the six sectors
+
+\[
+\mathcal A=
+\left\{
+(0,0),(0,2),(1,0),(1,2)
+\right\},
+\qquad
+\mathcal N=
+\left\{
+\left(\frac12,1\right),
+\left(\frac12,3\right)
+\right\},
+\]
+
+where sectors in $\mathcal A$ have dimension $1$, while those in $\mathcal N$ have dimension $\sqrt2$. The electron lines consequently have expectation value $1$, as required.
+
+\textbf{Final Answer:}
+
+\[
+\boxed{
+\begin{aligned}
+\Big\{&(j_L,n_L,j_R,n_R,1):
+ (j_L,n_L)\in\mathcal A,\ (j_R,n_R)\in\mathcal A\Big\}\\
+{}\cup\Big\{&(j_L,n_L,j_R,n_R,\sqrt2):
+ (j_L,n_L)\in\mathcal A,\ (j_R,n_R)\in\mathcal N
+ \ \text{or vice versa}\Big\}\\
+{}\cup\Big\{&(j_L,n_L,j_R,n_R,2):
+ (j_L,n_L)\in\mathcal N,\ (j_R,n_R)\in\mathcal N\Big\},
+\end{aligned}}
+\]
+
+with
+
+\[
+\mathcal A=\{(0,0),(0,2),(1,0),(1,2)\},
+\qquad
+\mathcal N=\left\{\left(\frac12,1\right),\left(\frac12,3\right)\right\}.
+\]
+
+This gives $16$ tuples with $\lambda=1$, $16$ with $\lambda=\sqrt2$, and $4$ with $\lambda=2$.
+\end{document}
