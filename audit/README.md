@@ -129,3 +129,47 @@ python3 audit/scripts/build_conflict_report.py \
 The script uses the conflict statuses as supplied; it does not rerun audit
 processing or read overrides itself. The generated reports can be reproduced
 from the conflict file and selected response records.
+
+## Sync results to the Yale paper
+
+After regenerating `audits_processed.csv`, update the paper with:
+
+```sh
+uv run audit/scripts/sync_yale_paper.py
+```
+
+This command works from any directory when given the script's absolute path.
+`uv` manages the pinned Matplotlib dependency; an existing Python environment
+with Matplotlib installed can also run the script directly.
+
+The script matches each processed audit to an initially rejected item in
+`initial_data/selected/*/responses.jsonl`, validates those exports against the
+selection manifest, and derives each evaluated denominator from those records.
+Duplicate/unresolved labels, missing audits, unknown labels/datasets, and selection
+mismatches stop the export before any paper assets are changed.
+
+The default destination is the sibling `yale-paper` repository. Each run exports
+aggregate counts and source hashes to `results/audit_counts.json`, preserves
+additional benchmark rows supplied in the paper, refreshes the
+four audited datasets in `results/accuracy.json`, and regenerates the numerical
+macros, tables, and main figure PDF/PNG. Individual audit records and evaluation
+item lists remain in physics; the paper repository does not receive copies.
+Paper builds depend only on the exported aggregates and accuracy JSON.
+
+The accuracy JSON supplies `initial` and `corrected` percentage values for each
+dataset. Additional datasets and metadata such as `attempts` are preserved, as
+are the CMT/CritPt entries. Normal paper builds read this JSON
+without overwriting it; running this sync explicitly replaces the four audited
+entries from the current audits. It then runs `make pdf` in the paper repository,
+producing `output/pdf/main.pdf`. The TeX build requires the paper's documented
+LaTeX dependencies.
+
+Options: `--input`, `--selected-dir`, `--paper-dir`, and `--skip-paper-build`.
+The last option still regenerates the figure but skips compilation of the full
+paper. Generation is staged before copying outputs; a final TeX failure leaves
+the updated data/figure in place and can be retried with `make pdf`.
+
+This sync does not rerun audit processing, edit overrides, commit, push, or watch
+files. Run it after each processed CSV update. The processed labels include manual
+overrides, so a successful record match does not independently validate their
+scientific correctness. CMT/CritPt accuracy values remain unchanged. Manually written prose should be reviewed after result changes.
