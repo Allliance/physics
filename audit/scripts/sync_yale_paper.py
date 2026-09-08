@@ -113,23 +113,25 @@ def collect_results(csv_path: Path, selected_dir: Path, template: dict) -> dict:
     return data
 
 
-def sync(csv_path: Path, selected_dir: Path, paper: Path, build_paper: bool = True) -> dict:
+def sync(csv_path: Path, selected_dir: Path, paper: Path, build_paper: bool = True,
+         coverage: dict | None = None) -> dict:
     template = json.loads((paper / "results/audit_counts.json").read_text())
     data = collect_results(csv_path, selected_dir, template)
+    if coverage is not None:
+        data['review_coverage'] = {key: coverage[key] for key in ('passed', 'summary', 'datasets', 'source_sha256')}
     # Generate in isolation so validation/plotting failures leave published assets intact.
     with tempfile.TemporaryDirectory(prefix="yale-audit-") as directory:
         staging = Path(directory)
         for folder in ("code", "results", "tables", "figures"):
             shutil.copytree(paper / folder, staging / folder)
         (staging / "results/audit_counts.json").write_text(json.dumps(data, indent=2) + "\n")
-        subprocess.run([sys.executable, str(staging / "code/build_audit_results.py"),
-                        "--refresh-accuracy"], check=True)
+        subprocess.run([sys.executable, str(staging / "code/build_audit_results.py")], check=True)
         for extension in ("pdf", "png"):
             subprocess.run([sys.executable, str(staging / "code/plot_benchmark_accuracy.py"),
                             "--output", str(staging / f"figures/benchmark_accuracy.{extension}")], check=True)
         outputs = [
             "results/audit_counts.json",
-            "results/audit_derived.json", "results/audit_numbers.tex", "results/accuracy.json",
+            "results/audit_derived.json", "results/audit_numbers.tex",
             "tables/accuracy_tabular.tex", "tables/attribution_tabular.tex", "tables/attribution_rows.tex",
             "figures/benchmark_accuracy.pdf", "figures/benchmark_accuracy.png",
         ]
@@ -146,9 +148,17 @@ def main() -> None:
     parser.add_argument("--selected-dir", type=Path, default=AUDIT_DIR / "initial_data/selected")
     parser.add_argument("--paper-dir", type=Path, default=DEFAULT_PAPER)
     parser.add_argument("--skip-paper-build", action="store_true", help="Update data and figures without running make pdf")
+    parser.add_argument("--raw", type=Path, default=AUDIT_DIR / "audits.csv")
+    parser.add_argument("--overrides", type=Path, default=AUDIT_DIR / "audit-overrides.json")
     args = parser.parse_args()
     try:
-        data = sync(args.input.resolve(), args.selected_dir.resolve(), args.paper_dir.resolve(), not args.skip_paper_build)
+        from validate_review_coverage import validate, write_report
+        coverage = validate(args.raw, args.input, args.overrides)
+        write_report(coverage, AUDIT_DIR / "reports/reviewer_coverage")
+        if not coverage['passed']:
+            raise ValueError(f"{coverage['summary']['violations']} problems fail reviewer/override coverage; see audit/reports/reviewer_coverage.md")
+        data = sync(args.input.resolve(), args.selected_dir.resolve(), args.paper_dir.resolve(),
+                    not args.skip_paper_build, coverage=coverage)
     except (ValueError, KeyError, OSError, subprocess.CalledProcessError) as error:
         parser.exit(1, f"Sync failed: {error}\n")
     total = sum(row["rejected"] for row in data["benchmarks"])

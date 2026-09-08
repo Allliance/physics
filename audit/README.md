@@ -130,46 +130,52 @@ The script uses the conflict statuses as supplied; it does not rerun audit
 processing or read overrides itself. The generated reports can be reproduced
 from the conflict file and selected response records.
 
-## Sync results to the Yale paper
+## Validate reviewer coverage and paper numbers
 
-After regenerating `audits_processed.csv`, update the paper with:
+```sh
+python3 audit/scripts/validate_review_coverage.py
+python3 audit/scripts/check_paper_numbers.py
+```
+
+Coverage validation uses submitted raw annotations and distinct reviewer IDs.
+Every singly reviewed item requires an override; every disagreement requires an
+explicit override, including a disagreement settled by a third-pass majority.
+It verifies that processed rows reproduce from raw reviews and overrides, writes
+`reports/reviewer_coverage.{json,md}`, and exits nonzero for violations. It never
+creates reviews or overrides. The current snapshot has 47 single-review gaps;
+all 56 reviewer disagreements have explicit overrides. The legacy processor's
+zero unresolved-conflict count does not imply that reviewer coverage passes.
+
+The paper check verifies all selected audit IDs, arithmetic, printed sample IDs,
+HLE exclusion counts, and saved CMT/CritPt/Fable evaluation summaries. It writes
+`reports/paper_numbers.{json,md}` and aggregate-only copies into the sibling
+paper's reports directory. Coverage status is reported separately from arithmetic.
+The script is specific to the manuscript's recorded runs; update the explicit
+source paths when the paper adopts new runs.
+
+## Sync results to the Yale paper
 
 ```sh
 uv run audit/scripts/sync_yale_paper.py
 ```
 
-This command works from any directory when given the script's absolute path.
-`uv` manages the pinned Matplotlib dependency; an existing Python environment
-with Matplotlib installed can also run the script directly.
+The CLI first runs reviewer coverage validation and stops on failure before
+changing any paper assets. It then matches each processed audit to exactly one
+initially rejected question in `initial_data/selected/*/responses.jsonl` and
+validates those exports against the selection manifest. Invalid, duplicate,
+missing, or extra labels stop export. It stages the aggregate counts, generated
+TeX tables/macros, and PDF/PNG figures, copies them after successful generation,
+then runs `make pdf` in the paper repository. A final TeX failure can be retried.
 
-The script matches each processed audit to an initially rejected item in
-`initial_data/selected/*/responses.jsonl`, validates those exports against the
-selection manifest, and derives each evaluated denominator from those records.
-Duplicate/unresolved labels, missing audits, unknown labels/datasets, and selection
-mismatches stop the export before any paper assets are changed.
+The paper's `results/accuracy.json` is preserved. Its later HLE runs and separate
+CMT/CritPt scores cannot be reconstructed from these audit counts. Audit-derived
+fractions and attribution use only the four datasets in `audits_processed.csv`.
+Paper provenance records reviewer coverage separately from exact item matching.
+Individual audit records and reviewer identities stay in physics.
 
-The default destination is the sibling `yale-paper` repository. Each run exports
-aggregate counts and source hashes to `results/audit_counts.json`, preserves
-additional benchmark rows supplied in the paper, refreshes the
-four audited datasets in `results/accuracy.json`, and regenerates the numerical
-macros, tables, and main figure PDF/PNG. Individual audit records and evaluation
-item lists remain in physics; the paper repository does not receive copies.
-Paper builds depend only on the exported aggregates and accuracy JSON.
-
-The accuracy JSON supplies `initial` and `corrected` percentage values for each
-dataset. Additional datasets and metadata such as `attempts` are preserved, as
-are the CMT/CritPt entries. Normal paper builds read this JSON
-without overwriting it; running this sync explicitly replaces the four audited
-entries from the current audits. It then runs `make pdf` in the paper repository,
-producing `output/pdf/main.pdf`. The TeX build requires the paper's documented
-LaTeX dependencies.
-
-Options: `--input`, `--selected-dir`, `--paper-dir`, and `--skip-paper-build`.
-The last option still regenerates the figure but skips compilation of the full
-paper. Generation is staged before copying outputs; a final TeX failure leaves
-the updated data/figure in place and can be retried with `make pdf`.
-
-This sync does not rerun audit processing, edit overrides, commit, push, or watch
-files. Run it after each processed CSV update. The processed labels include manual
-overrides, so a successful record match does not independently validate their
-scientific correctness. CMT/CritPt accuracy values remain unchanged. Manually written prose should be reviewed after result changes.
+Options: `--input`, `--raw`, `--overrides`, `--selected-dir`, `--paper-dir`, and
+`--skip-paper-build`. The last skips full compilation but still generates figures.
+Python plotting uses the pinned Matplotlib dependency through uv. The paper's
+LaTeX dependencies are required for compilation. This sync never commits, pushes,
+changes audit decisions, or launches an evaluation. Manually written prose and
+separate measured scores require reconciliation when audit decisions change.
