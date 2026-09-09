@@ -130,52 +130,28 @@ The script uses the conflict statuses as supplied; it does not rerun audit
 processing or read overrides itself. The generated reports can be reproduced
 from the conflict file and selected response records.
 
-## Validate reviewer coverage and paper numbers
+## Current review coverage and paper export
+
+The processed export has 250 questions. Of these, 196 have two reviews and 54
+have one review. All 56 disagreements among twice-reviewed questions have
+explicit overrides. Singly reviewed questions retain their original labels;
+the seven overrides previously attached to such questions have been removed.
+There are 56 overrides in total and no unresolved label conflicts. Zero conflicts
+does not imply that every question received two reviews.
+
+The previously documented `validate_review_coverage.py`, `check_paper_numbers.py`,
+and `sync_yale_paper.py` scripts are no longer present in this repository.
+Verify source identities, review coverage, selection, and collection histories,
+then export aggregate audit counts with the sibling paper's verifier:
 
 ```sh
-python3 audit/scripts/validate_review_coverage.py
-python3 audit/scripts/check_paper_numbers.py
+python3 ../yale-paper/code/verify_audit_sources.py --export
+python3 ../yale-paper/code/build_audit_results.py
 ```
 
-Coverage validation uses submitted raw annotations and distinct reviewer IDs.
-Every singly reviewed item requires an override; every disagreement requires an
-explicit override, including a disagreement settled by a third-pass majority.
-It verifies that processed rows reproduce from raw reviews and overrides, writes
-`reports/reviewer_coverage.{json,md}`, and exits nonzero for violations. It never
-creates reviews or overrides. The current snapshot has 47 single-review gaps;
-all 56 reviewer disagreements have explicit overrides. The legacy processor's
-zero unresolved-conflict count does not imply that reviewer coverage passes.
-
-The paper check verifies all selected audit IDs, arithmetic, printed sample IDs,
-HLE exclusion counts, and saved CMT/CritPt/Fable evaluation summaries. It writes
-`reports/paper_numbers.{json,md}` and aggregate-only copies into the sibling
-paper's reports directory. Coverage status is reported separately from arithmetic.
-The script is specific to the manuscript's recorded runs; update the explicit
-source paths when the paper adopts new runs.
-
-## Sync results to the Yale paper
-
-```sh
-uv run audit/scripts/sync_yale_paper.py
-```
-
-The CLI first runs reviewer coverage validation and stops on failure before
-changing any paper assets. It then matches each processed audit to exactly one
-initially rejected question in `initial_data/selected/*/responses.jsonl` and
-validates those exports against the selection manifest. Invalid, duplicate,
-missing, or extra labels stop export. It stages the aggregate counts, generated
-TeX tables/macros, and PDF/PNG figures, copies them after successful generation,
-then runs `make pdf` in the paper repository. A final TeX failure can be retried.
-
-The paper's `results/accuracy.json` is preserved. Its later HLE runs and separate
-CMT/CritPt scores cannot be reconstructed from these audit counts. Audit-derived
-fractions and attribution use only the four datasets in `audits_processed.csv`.
-Paper provenance records reviewer coverage separately from exact item matching.
-Individual audit records and reviewer identities stay in physics.
-
-Options: `--input`, `--raw`, `--overrides`, `--selected-dir`, `--paper-dir`, and
-`--skip-paper-build`. The last skips full compilation but still generates figures.
-Python plotting uses the pinned Matplotlib dependency through uv. The paper's
-LaTeX dependencies are required for compilation. This sync never commits, pushes,
-changes audit decisions, or launches an evaluation. Manually written prose and
-separate measured scores require reconciliation when audit decisions change.
+Run `make pdf` in the paper repository to regenerate figures and compile the
+manuscript (see its `code/README.md` for dependencies). The verifier does not
+alter annotations or launch evaluations. The paper's `results/accuracy.json`
+is preserved. Corrected accuracy requires excluding `PROBLEM_FAILURE` questions
+and re-evaluating the retained questions with the HLE-adapted pipeline; it is
+not calculated from the audit attribution counts.

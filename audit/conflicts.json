@@ -4,7 +4,7 @@
     "problems": 250,
     "output_audits": 250,
     "unresolved_conflicts": 0,
-    "resolved_conflicts": 63
+    "resolved_conflicts": 56
   },
   "conflicts": [
     {
@@ -1592,40 +1592,6 @@
       }
     },
     {
-      "dataset": "prism",
-      "source_problem_id": "06_cleaned_dag:5057",
-      "display_id": "120",
-      "status": "resolved",
-      "reason": "Manual override applied; no unresolved pass disagreement.",
-      "audits": [
-        {
-          "annotation_id": "cmtf0nq310213jey14z2mti8y",
-          "display_id": "120",
-          "source_problem_id": "06_cleaned_dag:5057",
-          "dataset": "prism",
-          "category": "atomic, molecular, and optical physics",
-          "pass": "1",
-          "label": "GRADER_FAILURE",
-          "note": "they are the same answers"
-        }
-      ],
-      "override": {
-        "dataset": "prism",
-        "source_problem_id": "06_cleaned_dag:5057",
-        "label": "GRADER_FAILURE"
-      },
-      "resolved_audit": {
-        "annotation_id": "cmtf0nq310213jey14z2mti8y",
-        "display_id": "120",
-        "source_problem_id": "06_cleaned_dag:5057",
-        "dataset": "prism",
-        "category": "atomic, molecular, and optical physics",
-        "pass": "1",
-        "label": "GRADER_FAILURE",
-        "note": "they are the same answers"
-      }
-    },
-    {
       "dataset": "hle-physics",
       "source_problem_id": "672338c7348c6cb89bd6a7a4",
       "display_id": "187",
@@ -2419,40 +2385,6 @@
     },
     {
       "dataset": "ugphysics",
-      "source_problem_id": "ClassicalElectromagnetism/en/328",
-      "display_id": "138",
-      "status": "resolved",
-      "reason": "Manual override applied; no unresolved pass disagreement.",
-      "audits": [
-        {
-          "annotation_id": "cmtfpbu0v03g7jey18pufxitc",
-          "display_id": "138",
-          "source_problem_id": "ClassicalElectromagnetism/en/328",
-          "dataset": "ugphysics",
-          "category": "electrodynamics",
-          "pass": "1",
-          "label": "GRADER_FAILURE",
-          "note": ""
-        }
-      ],
-      "override": {
-        "dataset": "ugphysics",
-        "source_problem_id": "ClassicalElectromagnetism/en/328",
-        "label": "PROBLEM_FAILURE"
-      },
-      "resolved_audit": {
-        "annotation_id": "cmtfpbu0v03g7jey18pufxitc",
-        "display_id": "138",
-        "source_problem_id": "ClassicalElectromagnetism/en/328",
-        "dataset": "ugphysics",
-        "category": "electrodynamics",
-        "pass": "1",
-        "label": "PROBLEM_FAILURE",
-        "note": ""
-      }
-    },
-    {
-      "dataset": "ugphysics",
       "source_problem_id": "QuantumMechanics/en/128",
       "display_id": "145",
       "status": "resolved",
@@ -2496,74 +2428,6 @@
       }
     },
     {
-      "dataset": "ugphysics",
-      "source_problem_id": "QuantumMechanics/en/463",
-      "display_id": "142",
-      "status": "resolved",
-      "reason": "Manual override applied; no unresolved pass disagreement.",
-      "audits": [
-        {
-          "annotation_id": "cmtg3n6ps03jmjey1hggdusz7",
-          "display_id": "142",
-          "source_problem_id": "QuantumMechanics/en/463",
-          "dataset": "ugphysics",
-          "category": "quantum mechanics",
-          "pass": "1",
-          "label": "MODEL_FAILURE",
-          "note": ""
-        }
-      ],
-      "override": {
-        "dataset": "ugphysics",
-        "source_problem_id": "QuantumMechanics/en/463",
-        "label": "PROBLEM_FAILURE"
-      },
-      "resolved_audit": {
-        "annotation_id": "cmtg3n6ps03jmjey1hggdusz7",
-        "display_id": "142",
-        "source_problem_id": "QuantumMechanics/en/463",
-        "dataset": "ugphysics",
-        "category": "quantum mechanics",
-        "pass": "1",
-        "label": "PROBLEM_FAILURE",
-        "note": ""
-      }
-    },
-    {
-      "dataset": "prism",
-      "source_problem_id": "04_cleaned_dag:2002",
-      "display_id": "84",
-      "status": "resolved",
-      "reason": "Manual override applied; no unresolved pass disagreement.",
-      "audits": [
-        {
-          "annotation_id": "cmtg6vq7d0015p0vnkerkexty",
-          "display_id": "84",
-          "source_problem_id": "04_cleaned_dag:2002",
-          "dataset": "prism",
-          "category": "high energy & nuclear",
-          "pass": "1",
-          "label": "GRADER_FAILURE",
-          "note": ""
-        }
-      ],
-      "override": {
-        "dataset": "prism",
-        "source_problem_id": "04_cleaned_dag:2002",
-        "label": "PROBLEM_FAILURE"
-      },
-      "resolved_audit": {
-        "annotation_id": "cmtg6vq7d0015p0vnkerkexty",
-        "display_id": "84",
-        "source_problem_id": "04_cleaned_dag:2002",
-        "dataset": "prism",
-        "category": "high energy & nuclear",
-        "pass": "1",
-        "label": "PROBLEM_FAILURE",
-        "note": ""
-      }
-    },
-    {
       "dataset": "prism",
       "source_problem_id": "04_cleaned_dag:3081",
       "display_id": "89",
@@ -2601,108 +2465,6 @@
         "display_id": "89",
         "source_problem_id": "04_cleaned_dag:3081",
         "dataset": "prism",
-        "category": "high energy & nuclear",
-        "pass": "1",
-        "label": "PROBLEM_FAILURE",
-        "note": ""
-      }
-    },
-    {
-      "dataset": "prism",
-      "source_problem_id": "04_cleaned_dag:2045",
-      "display_id": "86",
-      "status": "resolved",
-      "reason": "Manual override applied; no unresolved pass disagreement.",
-      "audits": [
-        {
-          "annotation_id": "cmtglep9p00vup0vnyhpn6qr8",
-          "display_id": "86",
-          "source_problem_id": "04_cleaned_dag:2045",
-          "dataset": "prism",
-          "category": "high energy & nuclear",
-          "pass": "1",
-          "label": "PROBLEM_FAILURE",
-          "note": "The AI Model response is better than the Reference solution"
-        }
-      ],
-      "override": {
-        "dataset": "prism",
-        "source_problem_id": "04_cleaned_dag:2045",
-        "label": "PROBLEM_FAILURE"
-      },
-      "resolved_audit": {
-        "annotation_id": "cmtglep9p00vup0vnyhpn6qr8",
-        "display_id": "86",
-        "source_problem_id": "04_cleaned_dag:2045",
-        "dataset": "prism",
-        "category": "high energy & nuclear",
-        "pass": "1",
-        "label": "PROBLEM_FAILURE",
-        "note": "The AI Model response is better than the Reference solution"
-      }
-    },
-    {
-      "dataset": "hle-physics",
-      "source_problem_id": "672ddd9bff7bf1483f564046",
-      "display_id": "205",
-      "status": "resolved",
-      "reason": "Manual override applied; no unresolved pass disagreement.",
-      "audits": [
-        {
-          "annotation_id": "cmtoty5fh00y7y8lcuiephe2m",
-          "display_id": "205",
-          "source_problem_id": "672ddd9bff7bf1483f564046",
-          "dataset": "hle-physics",
-          "category": "high energy & nuclear",
-          "pass": "1",
-          "label": "GRADER_FAILURE",
-          "note": ""
-        }
-      ],
-      "override": {
-        "dataset": "hle-physics",
-        "source_problem_id": "672ddd9bff7bf1483f564046",
-        "label": "PROBLEM_FAILURE"
-      },
-      "resolved_audit": {
-        "annotation_id": "cmtoty5fh00y7y8lcuiephe2m",
-        "display_id": "205",
-        "source_problem_id": "672ddd9bff7bf1483f564046",
-        "dataset": "hle-physics",
-        "category": "high energy & nuclear",
-        "pass": "1",
-        "label": "PROBLEM_FAILURE",
-        "note": ""
-      }
-    },
-    {
-      "dataset": "ugphysics",
-      "source_problem_id": "AtomicPhysics/en/791",
-      "display_id": "150",
-      "status": "resolved",
-      "reason": "Manual override applied; no unresolved pass disagreement.",
-      "audits": [
-        {
-          "annotation_id": "cmtouahbj011ry8lc0qggkecc",
-          "display_id": "150",
-          "source_problem_id": "AtomicPhysics/en/791",
-          "dataset": "ugphysics",
-          "category": "high energy & nuclear",
-          "pass": "1",
-          "label": "GRADER_FAILURE",
-          "note": ""
-        }
-      ],
-      "override": {
-        "dataset": "ugphysics",
-        "source_problem_id": "AtomicPhysics/en/791",
-        "label": "PROBLEM_FAILURE"
-      },
-      "resolved_audit": {
-        "annotation_id": "cmtouahbj011ry8lc0qggkecc",
-        "display_id": "150",
-        "source_problem_id": "AtomicPhysics/en/791",
-        "dataset": "ugphysics",
         "category": "high energy & nuclear",
         "pass": "1",
         "label": "PROBLEM_FAILURE",
