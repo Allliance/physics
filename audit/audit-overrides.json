@@ -2,50 +2,42 @@
   {
     "dataset": "phybench",
     "source_problem_id": "674",
-    "label": "MODEL_FAILURE",
-    "note": "There are some ambiguity, but I think if a human thinks long enough he will figure out some implicit assumption, e.g. question says “fly off the table”, a normal human would assume an upward force is executed. It seems to me the model clearly has no sense about the physical world."
+    "label": "PROBLEM_FAILURE"
   },
   {
     "dataset": "phybench",
     "source_problem_id": "71",
-    "label": "PROBLEM_FAILURE",
-    "note": "Reference answer is wrong."
+    "label": "PROBLEM_FAILURE"
   },
   {
     "dataset": "hle-physics",
     "source_problem_id": "6720fda3febecf1a8b9b083d",
-    "label": "PROBLEM_FAILURE",
-    "note": "Reference answer is wrong."
+    "label": "PROBLEM_FAILURE"
   },
   {
     "dataset": "hle-physics",
     "source_problem_id": "672a28afb4642f4105e02122",
-    "label": "PROBLEM_FAILURE",
-    "note": "Ambiguity"
+    "label": "PROBLEM_FAILURE"
   },
   {
     "dataset": "hle-physics",
     "source_problem_id": "672d44d02a52b5a11753319c",
-    "label": "PROBLEM_FAILURE",
-    "note": "Reference answer wrong."
+    "label": "PROBLEM_FAILURE"
   },
   {
     "dataset": "hle-physics",
     "source_problem_id": "67325a61292f97f5175026dd",
-    "label": "PROBLEM_FAILURE",
-    "note": "Reference answer wrong."
+    "label": "PROBLEM_FAILURE"
   },
   {
     "dataset": "hle-physics",
     "source_problem_id": "6734956467d2904eebed3a09",
-    "label": "MODEL_FAILURE",
-    "note": "I think this question does not have enough context so the model gets it wrong."
+    "label": "PROBLEM_FAILURE"
   },
   {
     "dataset": "hle-physics",
     "source_problem_id": "67364c441758ad568a4a2ac6",
-    "label": "PROBLEM_FAILURE",
-    "note": ""
+    "label": "PROBLEM_FAILURE"
   },
   {
     "dataset": "hle-physics",
@@ -65,7 +57,7 @@
   {
     "dataset": "hle-physics",
     "source_problem_id": "6723daed271ddeec8bacb9be",
-    "label": "PROBLEM_FAILURE"
+    "label": "GRADER_FAILURE"
   },
   {
     "dataset": "hle-physics",
@@ -140,6 +132,186 @@
   {
     "dataset": "hle-physics",
     "source_problem_id": "672ddd9bff7bf1483f564046",
+    "label": "PROBLEM_FAILURE"
+  },
+  {
+    "dataset": "phybench",
+    "source_problem_id": "43",
+    "label": "PROBLEM_FAILURE"
+  },
+  {
+    "dataset": "phybench",
+    "source_problem_id": "50",
+    "label": "GRADER_FAILURE"
+  },
+  {
+    "dataset": "phybench",
+    "source_problem_id": "83",
+    "label": "GRADER_FAILURE"
+  },
+  {
+    "dataset": "phybench",
+    "source_problem_id": "89",
+    "label": "PROBLEM_FAILURE"
+  },
+  {
+    "dataset": "phybench",
+    "source_problem_id": "259",
+    "label": "GRADER_FAILURE"
+  },
+  {
+    "dataset": "phybench",
+    "source_problem_id": "285",
+    "label": "GRADER_FAILURE"
+  },
+  {
+    "dataset": "phybench",
+    "source_problem_id": "412",
+    "label": "GRADER_FAILURE"
+  },
+  {
+    "dataset": "phybench",
+    "source_problem_id": "617",
+    "label": "PROBLEM_FAILURE"
+  },
+  {
+    "dataset": "prism",
+    "source_problem_id": "01_cleaned_dag:1142",
+    "label": "PROBLEM_FAILURE"
+  },
+  {
+    "dataset": "prism",
+    "source_problem_id": "01_cleaned_dag:2016",
+    "label": "PROBLEM_FAILURE"
+  },
+  {
+    "dataset": "prism",
+    "source_problem_id": "01_cleaned_dag:3031",
+    "label": "PROBLEM_FAILURE"
+  },
+  {
+    "dataset": "prism",
+    "source_problem_id": "02_cleaned_dag:2089",
+    "label": "PROBLEM_FAILURE"
+  },
+  {
+    "dataset": "prism",
+    "source_problem_id": "04_cleaned_dag:2119",
+    "label": "GRADER_FAILURE"
+  },
+  {
+    "dataset": "prism",
+    "source_problem_id": "04_cleaned_dag:3081",
+    "label": "PROBLEM_FAILURE"
+  },
+  {
+    "dataset": "prism",
+    "source_problem_id": "04_cleaned_dag:4002",
+    "label": "GRADER_FAILURE"
+  },
+  {
+    "dataset": "prism",
+    "source_problem_id": "04_cleaned_dag:4037",
+    "label": "GRADER_FAILURE"
+  },
+  {
+    "dataset": "prism",
+    "source_problem_id": "04_cleaned_dag:4060",
+    "label": "GRADER_FAILURE"
+  },
+  {
+    "dataset": "prism",
+    "source_problem_id": "05_cleaned_dag:1077",
+    "label": "PROBLEM_FAILURE"
+  },
+  {
+    "dataset": "prism",
+    "source_problem_id": "05_cleaned_dag:1127",
+    "label": "GRADER_FAILURE"
+  },
+  {
+    "dataset": "prism",
+    "source_problem_id": "05_cleaned_dag:1137",
+    "label": "PROBLEM_FAILURE"
+  },
+  {
+    "dataset": "prism",
+    "source_problem_id": "05_cleaned_dag:2054",
+    "label": "PROBLEM_FAILURE"
+  },
+  {
+    "dataset": "prism",
+    "source_problem_id": "05_cleaned_dag:2072",
+    "label": "PROBLEM_FAILURE"
+  },
+  {
+    "dataset": "prism",
+    "source_problem_id": "05_cleaned_dag:2102",
+    "label": "PROBLEM_FAILURE"
+  },
+  {
+    "dataset": "prism",
+    "source_problem_id": "05_cleaned_dag:2105",
+    "label": "PROBLEM_FAILURE"
+  },
+  {
+    "dataset": "prism",
+    "source_problem_id": "06_cleaned_dag:6003",
+    "label": "PROBLEM_FAILURE"
+  },
+  {
+    "dataset": "prism",
+    "source_problem_id": "06_cleaned_dag:6058",
+    "label": "PROBLEM_FAILURE"
+  },
+  {
+    "dataset": "prism",
+    "source_problem_id": "06_cleaned_dag:8008",
+    "label": "GRADER_FAILURE"
+  },
+  {
+    "dataset": "ugphysics",
+    "source_problem_id": "StatisticalMechanics/en/554",
+    "label": "PROBLEM_FAILURE"
+  },
+  {
+    "dataset": "ugphysics",
+    "source_problem_id": "TheoreticalMechanics/en/185",
+    "label": "GRADER_FAILURE"
+  },
+  {
+    "dataset": "ugphysics",
+    "source_problem_id": "QuantumMechanics/en/128",
+    "label": "PROBLEM_FAILURE"
+  },
+  {
+    "dataset": "prism",
+    "source_problem_id": "04_cleaned_dag:2002",
+    "label": "PROBLEM_FAILURE"
+  },
+  {
+    "dataset": "prism",
+    "source_problem_id": "04_cleaned_dag:2045",
+    "label": "PROBLEM_FAILURE"
+  },
+  {
+    "dataset": "prism",
+    "source_problem_id": "06_cleaned_dag:5057",
+    "label": "GRADER_FAILURE"
+  },
+  {
+    "dataset": "ugphysics",
+    "source_problem_id": "ClassicalElectromagnetism/en/328",
+    "label": "PROBLEM_FAILURE"
+  },
+  {
+    "dataset": "ugphysics",
+    "source_problem_id": "QuantumMechanics/en/463",
+    "label": "PROBLEM_FAILURE"
+  },
+  {
+    "dataset": "ugphysics",
+    "source_problem_id": "AtomicPhysics/en/791",
     "label": "PROBLEM_FAILURE"
   }
 ]
