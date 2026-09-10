@@ -46,6 +46,7 @@ class BuildVerdictsTests(unittest.TestCase):
             data = self.fixture(base)
             for problem, model in (("clean", "none"), ("clean", None),
                                    ("repairable", "unknown"), ("repairable", None),
+                                   ("repairable", "correct"), ("repairable", "incorrect"),
                                    ("unrepairable", "correct"), ("unrepairable", "incorrect")):
                 data["challenges"]["01"]["verdict"] = {"problem": problem, "model": model}
                 (base / "verdict_review.json").write_text(json.dumps(data))
@@ -56,21 +57,34 @@ class BuildVerdictsTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "corrected statement"):
                 build_verdicts(base)
 
-    def test_repaired_problem_does_not_determine_model_correctness(self):
+    def test_repaired_problem_has_no_model_attribution(self):
         with tempfile.TemporaryDirectory() as temporary:
             base = Path(temporary)
             data = self.fixture(base)
             statement = base / "solutions/01/problem.tex"
             statement.parent.mkdir(parents=True)
             statement.write_text("Expert's corrected statement")
-            for model in ("correct", "incorrect", "none"):
-                with self.subTest(model=model):
-                    expected = {"problem": "repairable", "model": model}
-                    data["challenges"]["01"]["verdict"] = expected
-                    (base / "verdict_review.json").write_text(json.dumps(data))
-                    verdicts, _, pending = build_verdicts(base)
-                    self.assertEqual(verdicts["01"], expected)
-                    self.assertEqual(pending, 1)
+            expected = {"problem": "repairable", "model": "none"}
+            data["challenges"]["01"]["verdict"] = expected
+            (base / "verdict_review.json").write_text(json.dumps(data))
+            verdicts, _, pending = build_verdicts(base)
+            self.assertEqual(verdicts["01"], expected)
+            self.assertEqual(pending, 1)
+
+    def test_reads_relocated_review_sources_and_still_checks_hashes(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            base = Path(temporary)
+            self.fixture(base)
+            archive = base / "supplemental_data"
+            archive.mkdir()
+            (base / "annotations.csv").rename(archive / "raw_annotations.csv")
+            (base / "verdict_review.json").rename(archive / "verdict_review.json")
+            verdicts, _, pending = build_verdicts(base)
+            self.assertEqual(verdicts["01"], {"problem": "clean", "model": "correct"})
+            self.assertEqual(pending, 1)
+            (archive / "raw_annotations.csv").write_text("Challenge ID\n1\n2\n")
+            with self.assertRaisesRegex(ValueError, "Reviewed source changed"):
+                build_verdicts(base)
 
     def test_requires_complete_reviewed_challenge_coverage(self):
         with tempfile.TemporaryDirectory() as temporary:

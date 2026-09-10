@@ -26,8 +26,8 @@ class ExpertClarificationTests(unittest.TestCase):
         plan = {
             "authority": "user-relayed expert clarification", "comments": {"02": "accept this repair"},
             "review_appendices": {"02": "accepted follow-up"},
-            "verdict_policy": {"model": "Assess original model answer independently."},
-            "decisions": {"02": {"verdict": {"problem": "repairable", "model": "correct"}, "reason": "expert-authorized repair; model verified"}},
+            "verdict_policy": {"model": "Benchmark errors take precedence; model verdict is none."},
+            "decisions": {"02": {"verdict": {"problem": "repairable", "model": "none"}, "reason": "expert-authorized repair; model attribution withheld"}},
             "files": {"solutions/02/problem.tex": {
                 "before_sha256": None, "content": "corrected problem", "source": "expert clarification",
                 "source_sha256": sha(b"expert clarification"), "action": "repaired"}},
@@ -46,9 +46,9 @@ class ExpertClarificationTests(unittest.TestCase):
             self.assertEqual((base / "solutions/02/expert_review.txt").read_bytes(), first)
             self.assertEqual(first.count(b"accepted follow-up"), 1)
             self.assertEqual(json.loads((base / "verdicts.json").read_text())["02"],
-                             {"problem": "repairable", "model": "correct"})
+                             {"problem": "repairable", "model": "none"})
             self.assertEqual(json.loads((base / "verdict_review.json").read_text())["policy"]["model"],
-                             "Assess original model answer independently.")
+                             "Benchmark errors take precedence; model verdict is none.")
             # Simulate a fresh download that must not overwrite the accepted repair.
             source = base / "solutions/02/supporting/problem - Reviewer.tex"
             source.parent.mkdir()

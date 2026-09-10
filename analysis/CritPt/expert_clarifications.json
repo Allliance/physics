@@ -331,9 +331,9 @@
     "07": {
       "verdict": {
         "problem": "repairable",
-        "model": "correct"
+        "model": "none"
       },
-      "reason": "The follow-up explicitly authorizes replacing the problem and solution with the uploaded expert files. This supplies the accepted problem repair. The expert states that the derivations are correct given the initial fidelity assumption. The original and accepted final QFI expressions agree; the uploaded replacement clarifies the interpretation rather than correcting that result.",
+      "reason": "The follow-up explicitly authorizes replacing the problem and solution with the uploaded expert files. This supplies the accepted problem repair. The expert states that the derivations are correct given the initial fidelity assumption. The original and accepted final QFI expressions agree; the uploaded replacement clarifies the interpretation rather than correcting that result. Model attribution is withheld (none) because the problem has a benchmark error, under the user-directed precedence rule of 2026-09-10.",
       "model_assessment": {
         "basis": "Original model answer, independently of problem repair status; expert-accepted assumptions and grading conventions apply.",
         "reason": "The expert states that the derivations are correct given the initial fidelity assumption. The original and accepted final QFI expressions agree; the uploaded replacement clarifies the interpretation rather than correcting that result.",
@@ -346,15 +346,18 @@
             "path": "/shared/data/home/aa3242/critpt-sol/challenges/07/final_answer.tex",
             "sha256": "8ad3ed1f38e9538074621d780f3457a135b3a9658480fd7996ddebd53dd49fcf"
           }
-        }
-      }
+        },
+        "status": "Historical expert assessment; superseded for audit attribution by the benchmark-error precedence rule."
+      },
+      "previous_model_verdict": "correct",
+      "model_verdict_reason": "Model attribution is withheld (none) because the problem has a benchmark error, under the user-directed precedence rule of 2026-09-10."
     },
     "12": {
       "verdict": {
         "problem": "repairable",
-        "model": "correct"
+        "model": "none"
       },
-      "reason": "The expert-accepted original AI solution is the ground truth. The authorized repair now explicitly defines successive ground-space projections and the geometric phase convention, which the original tunneling description omitted. The user-relayed expert clarification explicitly accepts the original AI solution as ground truth and instructs patching the problem to match it.",
+      "reason": "The expert-accepted original AI solution is the ground truth. The authorized repair now explicitly defines successive ground-space projections and the geometric phase convention, which the original tunneling description omitted. The user-relayed expert clarification explicitly accepts the original AI solution as ground truth and instructs patching the problem to match it. Model attribution is withheld (none) because the problem has a benchmark error, under the user-directed precedence rule of 2026-09-10.",
       "model_assessment": {
         "basis": "Original model answer, independently of problem repair status; expert-accepted assumptions and grading conventions apply.",
         "reason": "The user-relayed expert clarification explicitly accepts the original AI solution as ground truth and instructs patching the problem to match it.",
@@ -367,15 +370,18 @@
             "path": "/shared/data/home/aa3242/critpt-sol/challenges/12/final_answer.tex",
             "sha256": "2b0a8bb76325c18d0f0323b240f1d1d9d66ecb1f01ee69c47b594ba0f8537860"
           }
-        }
-      }
+        },
+        "status": "Historical expert assessment; superseded for audit attribution by the benchmark-error precedence rule."
+      },
+      "previous_model_verdict": "correct",
+      "model_verdict_reason": "Model attribution is withheld (none) because the problem has a benchmark error, under the user-directed precedence rule of 2026-09-10."
     },
     "13": {
       "verdict": {
         "problem": "repairable",
-        "model": "correct"
+        "model": "none"
       },
-      "reason": "The expert-accepted original AI solution is the ground truth. The authorized statement repair fixes the previously unspecified vacuum-channel geometry and sector convention. The user-relayed expert clarification explicitly accepts the original AI solution as ground truth under its vacuum-channel geometry and sector convention. The original and accepted 36-tuple answers agree.",
+      "reason": "The expert-accepted original AI solution is the ground truth. The authorized statement repair fixes the previously unspecified vacuum-channel geometry and sector convention. The user-relayed expert clarification explicitly accepts the original AI solution as ground truth under its vacuum-channel geometry and sector convention. The original and accepted 36-tuple answers agree. Model attribution is withheld (none) because the problem has a benchmark error, under the user-directed precedence rule of 2026-09-10.",
       "model_assessment": {
         "basis": "Original model answer, independently of problem repair status; expert-accepted assumptions and grading conventions apply.",
         "reason": "The user-relayed expert clarification explicitly accepts the original AI solution as ground truth under its vacuum-channel geometry and sector convention. The original and accepted 36-tuple answers agree.",
@@ -388,8 +394,11 @@
             "path": "/shared/data/home/aa3242/critpt-sol/challenges/13/final_answer.tex",
             "sha256": "f091220a0e749b5080350da4cebd44f5f853251433a459c65c726fe4b68d7341"
           }
-        }
-      }
+        },
+        "status": "Historical expert assessment; superseded for audit attribution by the benchmark-error precedence rule."
+      },
+      "previous_model_verdict": "correct",
+      "model_verdict_reason": "Model attribution is withheld (none) because the problem has a benchmark error, under the user-directed precedence rule of 2026-09-10."
     },
     "16": {
       "verdict": {
@@ -401,9 +410,9 @@
     "22": {
       "verdict": {
         "problem": "repairable",
-        "model": "correct"
+        "model": "none"
       },
-      "reason": "The follow-up explicitly accepts the expert's uploaded problem, solution and final answer as the repaired ground truth. These files are retained verbatim rather than replacing the chosen interpretation with a new one. The user-relayed clarification accepts all three uploaded files as ground truth. The original and accepted final expressions agree: a = cos^2(theta), f(x) = h2(a) + a*h2(x) - x*h2(a).",
+      "reason": "The follow-up explicitly accepts the expert's uploaded problem, solution and final answer as the repaired ground truth. These files are retained verbatim rather than replacing the chosen interpretation with a new one. The user-relayed clarification accepts all three uploaded files as ground truth. The original and accepted final expressions agree: a = cos^2(theta), f(x) = h2(a) + a*h2(x) - x*h2(a). Model attribution is withheld (none) because the problem has a benchmark error, under the user-directed precedence rule of 2026-09-10.",
       "model_assessment": {
         "basis": "Original model answer, independently of problem repair status; expert-accepted assumptions and grading conventions apply.",
         "reason": "The user-relayed clarification accepts all three uploaded files as ground truth. The original and accepted final expressions agree: a = cos^2(theta), f(x) = h2(a) + a*h2(x) - x*h2(a).",
@@ -416,8 +425,11 @@
             "path": "/shared/data/home/aa3242/critpt-sol/challenges/22/final_answer.tex",
             "sha256": "fae1269a365e06c3b66b6374177d9fa3da74ae2fa0170b78a84453def1eba777"
           }
-        }
-      }
+        },
+        "status": "Historical expert assessment; superseded for audit attribution by the benchmark-error precedence rule."
+      },
+      "previous_model_verdict": "correct",
+      "model_verdict_reason": "Model attribution is withheld (none) because the problem has a benchmark error, under the user-directed precedence rule of 2026-09-10."
     },
     "38": {
       "verdict": {
@@ -429,9 +441,9 @@
     "42": {
       "verdict": {
         "problem": "repairable",
-        "model": "correct"
+        "model": "none"
       },
-      "reason": "The authorized statement repair makes the large-gate geometry, puddle meaning, equilibrium screening model and fixed gate capacitance explicit, following the expert response and corrected solution. The expert describes the corrected derivation as essentially the same result. The original tuple (-1/3, 2/3, True, True, True, True) agrees with the accepted scaling and qualitative conclusions under the clarified geometry and screening assumptions.",
+      "reason": "The authorized statement repair makes the large-gate geometry, puddle meaning, equilibrium screening model and fixed gate capacitance explicit, following the expert response and corrected solution. The expert describes the corrected derivation as essentially the same result. The original tuple (-1/3, 2/3, True, True, True, True) agrees with the accepted scaling and qualitative conclusions under the clarified geometry and screening assumptions. Model attribution is withheld (none) because the problem has a benchmark error, under the user-directed precedence rule of 2026-09-10.",
       "model_assessment": {
         "basis": "Original model answer, independently of problem repair status; expert-accepted assumptions and grading conventions apply.",
         "reason": "The expert describes the corrected derivation as essentially the same result. The original tuple (-1/3, 2/3, True, True, True, True) agrees with the accepted scaling and qualitative conclusions under the clarified geometry and screening assumptions.",
@@ -444,8 +456,11 @@
             "path": "/shared/data/home/aa3242/critpt-sol/challenges/42/final_answer.tex",
             "sha256": "9a5332d28cc17ec3ad82b7c86cf550354fb210ac15bc117f13767140503ff224"
           }
-        }
-      }
+        },
+        "status": "Historical expert assessment; superseded for audit attribution by the benchmark-error precedence rule."
+      },
+      "previous_model_verdict": "correct",
+      "model_verdict_reason": "Model attribution is withheld (none) because the problem has a benchmark error, under the user-directed precedence rule of 2026-09-10."
     },
     "45": {
       "verdict": {
@@ -461,9 +476,9 @@
     "56": {
       "verdict": {
         "problem": "repairable",
-        "model": "correct"
+        "model": "none"
       },
-      "reason": "The expert ZIP and direct solution/final-answer uploads are accepted as ground truth. The material response, geometry, velocity and finite-coherence SNR assumptions of the primary reference calculation are now explicit in the repaired prompt. The expert explicitly concludes there is no consequential model error and accepts the sharp two-regime convention as an alternative. Original values 3.012e-23 and 1.447e-24 lie within the expert grading tolerances around that accepted alternative (2.97e-23 and 1.43e-24). The primary repaired reference uses the finite-coherence statistic (3.05e-23 and 1.85e-24). Correct here records the expert assessment of the original answer under an accepted convention; it does not assert exact agreement with the primary repaired reference.",
+      "reason": "The expert ZIP and direct solution/final-answer uploads are accepted as ground truth. The material response, geometry, velocity and finite-coherence SNR assumptions of the primary reference calculation are now explicit in the repaired prompt. The expert explicitly concludes there is no consequential model error and accepts the sharp two-regime convention as an alternative. Original values 3.012e-23 and 1.447e-24 lie within the expert grading tolerances around that accepted alternative (2.97e-23 and 1.43e-24). The primary repaired reference uses the finite-coherence statistic (3.05e-23 and 1.85e-24). Correct here records the expert assessment of the original answer under an accepted convention; it does not assert exact agreement with the primary repaired reference. Model attribution is withheld (none) because the problem has a benchmark error, under the user-directed precedence rule of 2026-09-10.",
       "model_assessment": {
         "basis": "Original model answer, independently of problem repair status; expert-accepted assumptions and grading conventions apply.",
         "reason": "The expert explicitly concludes there is no consequential model error and accepts the sharp two-regime convention as an alternative. Original values 3.012e-23 and 1.447e-24 lie within the expert grading tolerances around that accepted alternative (2.97e-23 and 1.43e-24). The primary repaired reference uses the finite-coherence statistic (3.05e-23 and 1.85e-24). Correct here records the expert assessment of the original answer under an accepted convention; it does not assert exact agreement with the primary repaired reference.",
@@ -476,15 +491,18 @@
             "path": "/shared/data/home/aa3242/critpt-sol/challenges/56/final_answer.tex",
             "sha256": "5c78c11ac1d7f22be85031ebc60640383202216edca7c8b89212cb4dda95596d"
           }
-        }
-      }
+        },
+        "status": "Historical expert assessment; superseded for audit attribution by the benchmark-error precedence rule."
+      },
+      "previous_model_verdict": "correct",
+      "model_verdict_reason": "Model attribution is withheld (none) because the problem has a benchmark error, under the user-directed precedence rule of 2026-09-10."
     },
     "57": {
       "verdict": {
         "problem": "repairable",
-        "model": "incorrect"
+        "model": "none"
       },
-      "reason": "The expert ZIP and direct solution/final-answer uploads are accepted as ground truth. The missing density, velocity, arm length, material, orientation average and semicoherent statistic are now explicit in the repaired prompt. The expert identifies a genuine consequential error: the original answer assumes fully coherent integration for 13 years despite the finite coherence time, and uses an unrealistic optimal projection. It overstates reach by factors of approximately 22-27. Supplying the missing prompt inputs does not fix those errors in the original answer.",
+      "reason": "The expert ZIP and direct solution/final-answer uploads are accepted as ground truth. The missing density, velocity, arm length, material, orientation average and semicoherent statistic are now explicit in the repaired prompt. The expert identifies a genuine consequential error: the original answer assumes fully coherent integration for 13 years despite the finite coherence time, and uses an unrealistic optimal projection. It overstates reach by factors of approximately 22-27. Supplying the missing prompt inputs does not fix those errors in the original answer. Model attribution is withheld (none) because the problem has a benchmark error, under the user-directed precedence rule of 2026-09-10.",
       "model_assessment": {
         "basis": "Original model answer, independently of problem repair status; expert-accepted assumptions and grading conventions apply.",
         "reason": "The expert identifies a genuine consequential error: the original answer assumes fully coherent integration for 13 years despite the finite coherence time, and uses an unrealistic optimal projection. It overstates reach by factors of approximately 22-27. Supplying the missing prompt inputs does not fix those errors in the original answer.",
@@ -497,8 +515,11 @@
             "path": "/shared/data/home/aa3242/critpt-sol/challenges/57/final_answer.tex",
             "sha256": "b632021ed32c348227e66a4ebd3756cf3ee10d4b4f7fade65ff794972cc9b650"
           }
-        }
-      }
+        },
+        "status": "Historical expert assessment; superseded for audit attribution by the benchmark-error precedence rule."
+      },
+      "previous_model_verdict": "incorrect",
+      "model_verdict_reason": "Model attribution is withheld (none) because the problem has a benchmark error, under the user-directed precedence rule of 2026-09-10."
     },
     "69": {
       "verdict": {
@@ -510,9 +531,9 @@
     "01": {
       "verdict": {
         "problem": "repairable",
-        "model": "correct"
+        "model": "none"
       },
-      "reason": "The expert explicitly edited the statement to fix the anomaly sign convention and supply missing density terms; the corrected problem is provided. The expert confirms all eleven requested coefficients agree. The original model solution also displays the full anomaly density, including the four invariants omitted from the original question; these terms are present before the expert repair.",
+      "reason": "The expert explicitly edited the statement to fix the anomaly sign convention and supply missing density terms; the corrected problem is provided. The expert confirms all eleven requested coefficients agree. The original model solution also displays the full anomaly density, including the four invariants omitted from the original question; these terms are present before the expert repair. Model attribution is withheld (none) because the problem has a benchmark error, under the user-directed precedence rule of 2026-09-10.",
       "model_assessment": {
         "basis": "Original model answer, independently of problem repair status; expert-accepted assumptions and grading conventions apply.",
         "reason": "The expert confirms all eleven requested coefficients agree. The original model solution also displays the full anomaly density, including the four invariants omitted from the original question; these terms are present before the expert repair.",
@@ -525,15 +546,18 @@
             "path": "/shared/data/home/aa3242/critpt-sol/challenges/01/final_answer.tex",
             "sha256": "f6310b9a8707fe634afb6e61739018427eb9eb8dcbcdabbf31c7b84b0983fafe"
           }
-        }
-      }
+        },
+        "status": "Historical expert assessment; superseded for audit attribution by the benchmark-error precedence rule."
+      },
+      "previous_model_verdict": "correct",
+      "model_verdict_reason": "Model attribution is withheld (none) because the problem has a benchmark error, under the user-directed precedence rule of 2026-09-10."
     },
     "08": {
       "verdict": {
         "problem": "repairable",
-        "model": "correct"
+        "model": "none"
       },
-      "reason": "The submitted problem explicitly supplies previously unstated action normalizations and orientation/sign conventions that affect a requested signed quantity. This is a documented repair, beyond the harmless numbering and tetrad-label fixes. The original final tuple (3.1675, 0.85, 5.335) agrees with the accepted answer. The repair specifies the action normalization and orientation/sign conventions used by that solution.",
+      "reason": "The submitted problem explicitly supplies previously unstated action normalizations and orientation/sign conventions that affect a requested signed quantity. This is a documented repair, beyond the harmless numbering and tetrad-label fixes. The original final tuple (3.1675, 0.85, 5.335) agrees with the accepted answer. The repair specifies the action normalization and orientation/sign conventions used by that solution. Model attribution is withheld (none) because the problem has a benchmark error, under the user-directed precedence rule of 2026-09-10.",
       "model_assessment": {
         "basis": "Original model answer, independently of problem repair status; expert-accepted assumptions and grading conventions apply.",
         "reason": "The original final tuple (3.1675, 0.85, 5.335) agrees with the accepted answer. The repair specifies the action normalization and orientation/sign conventions used by that solution.",
@@ -546,15 +570,18 @@
             "path": "/shared/data/home/aa3242/critpt-sol/challenges/08/final_answer.tex",
             "sha256": "cba7c970da3c64992db5f3af9669f888fd5cd4fccb4ff9b37b7b4730b717cb60"
           }
-        }
-      }
+        },
+        "status": "Historical expert assessment; superseded for audit attribution by the benchmark-error precedence rule."
+      },
+      "previous_model_verdict": "correct",
+      "model_verdict_reason": "Model attribution is withheld (none) because the problem has a benchmark error, under the user-directed precedence rule of 2026-09-10."
     },
     "28": {
       "verdict": {
         "problem": "repairable",
-        "model": "correct"
+        "model": "none"
       },
-      "reason": "The expert explicitly calls the original repairable and provides a revised prompt defining the leading omega-squared coefficients and an intensive conductivity; literal zero-frequency rates do not have the requested exponents. The expert explicitly verifies the original final tuple under the intended sequential limit. The original (10.0, 2.0, 6.0) agrees with the accepted (10, 2, 6); the revised prompt makes the frequency-coefficient and intensive-conductivity definitions explicit.",
+      "reason": "The expert explicitly calls the original repairable and provides a revised prompt defining the leading omega-squared coefficients and an intensive conductivity; literal zero-frequency rates do not have the requested exponents. The expert explicitly verifies the original final tuple under the intended sequential limit. The original (10.0, 2.0, 6.0) agrees with the accepted (10, 2, 6); the revised prompt makes the frequency-coefficient and intensive-conductivity definitions explicit. Model attribution is withheld (none) because the problem has a benchmark error, under the user-directed precedence rule of 2026-09-10.",
       "model_assessment": {
         "basis": "Original model answer, independently of problem repair status; expert-accepted assumptions and grading conventions apply.",
         "reason": "The expert explicitly verifies the original final tuple under the intended sequential limit. The original (10.0, 2.0, 6.0) agrees with the accepted (10, 2, 6); the revised prompt makes the frequency-coefficient and intensive-conductivity definitions explicit.",
@@ -567,15 +594,18 @@
             "path": "/shared/data/home/aa3242/critpt-sol/challenges/28/final_answer.tex",
             "sha256": "0cf4a0eb142abbf80d607e0170ff64103f8854cecf960e605e063840994cdc9a"
           }
-        }
-      }
+        },
+        "status": "Historical expert assessment; superseded for audit attribution by the benchmark-error precedence rule."
+      },
+      "previous_model_verdict": "correct",
+      "model_verdict_reason": "Model attribution is withheld (none) because the problem has a benchmark error, under the user-directed precedence rule of 2026-09-10."
     },
     "31": {
       "verdict": {
         "problem": "repairable",
-        "model": "correct"
+        "model": "none"
       },
-      "reason": "The same reviewer's later submission (8/30/2026 15:39:12) explicitly supersedes the earlier generic Yes: the model must be specified and has been revised. The provided prompt adds the three-dimensional geometry and Boussinesq approximation. Both submissions were checked. The expert verified the existing solution, then specified the missing model assumptions in the revised prompt. The original values 816.7444 and 2.21473 agree with the accepted result under the three-dimensional Boussinesq model.",
+      "reason": "The same reviewer's later submission (8/30/2026 15:39:12) explicitly supersedes the earlier generic Yes: the model must be specified and has been revised. The provided prompt adds the three-dimensional geometry and Boussinesq approximation. Both submissions were checked. The expert verified the existing solution, then specified the missing model assumptions in the revised prompt. The original values 816.7444 and 2.21473 agree with the accepted result under the three-dimensional Boussinesq model. Model attribution is withheld (none) because the problem has a benchmark error, under the user-directed precedence rule of 2026-09-10.",
       "model_assessment": {
         "basis": "Original model answer, independently of problem repair status; expert-accepted assumptions and grading conventions apply.",
         "reason": "Both submissions were checked. The expert verified the existing solution, then specified the missing model assumptions in the revised prompt. The original values 816.7444 and 2.21473 agree with the accepted result under the three-dimensional Boussinesq model.",
@@ -588,15 +618,18 @@
             "path": "/shared/data/home/aa3242/critpt-sol/challenges/31/final_answer.tex",
             "sha256": "9338d6a2c46d96bc460b8e1d73f61a4b1b2dfbeab2c6271baaeb9cbf9ca2efaa"
           }
-        }
-      }
+        },
+        "status": "Historical expert assessment; superseded for audit attribution by the benchmark-error precedence rule."
+      },
+      "previous_model_verdict": "correct",
+      "model_verdict_reason": "Model attribution is withheld (none) because the problem has a benchmark error, under the user-directed precedence rule of 2026-09-10."
     },
     "32": {
       "verdict": {
         "problem": "repairable",
-        "model": "correct"
+        "model": "none"
       },
-      "reason": "The expert says the model must be specified and supplies an edited problem explicitly defining the Boussinesq approximation. The correction is present in the uploaded statement even though no solution file was uploaded. The expert explicitly says the existing solution was verified and supplies the Boussinesq problem repair. The user expressly instructs repairable/correct. Absence of an uploaded replacement solution or final-answer file is not evidence that the original model was incorrect or unassessed.",
+      "reason": "The expert says the model must be specified and supplies an edited problem explicitly defining the Boussinesq approximation. The correction is present in the uploaded statement even though no solution file was uploaded. The expert explicitly says the existing solution was verified and supplies the Boussinesq problem repair. The user expressly instructs repairable/correct. Absence of an uploaded replacement solution or final-answer file is not evidence that the original model was incorrect or unassessed. Model attribution is withheld (none) because the problem has a benchmark error, under the user-directed precedence rule of 2026-09-10.",
       "model_assessment": {
         "basis": "Original model answer, independently of problem repair status; expert-accepted assumptions and grading conventions apply.",
         "reason": "The expert explicitly says the existing solution was verified and supplies the Boussinesq problem repair. The user expressly instructs repairable/correct. Absence of an uploaded replacement solution or final-answer file is not evidence that the original model was incorrect or unassessed.",
@@ -609,15 +642,18 @@
             "path": "/shared/data/home/aa3242/critpt-sol/challenges/32/final_answer.tex",
             "sha256": "50bf5e50790995a02abd8686eb6505750a00d0f110cbf632f9f0457c5086c928"
           }
-        }
-      }
+        },
+        "status": "Historical expert assessment; superseded for audit attribution by the benchmark-error precedence rule."
+      },
+      "previous_model_verdict": "correct",
+      "model_verdict_reason": "Model attribution is withheld (none) because the problem has a benchmark error, under the user-directed precedence rule of 2026-09-10."
     },
     "40": {
       "verdict": {
         "problem": "repairable",
-        "model": "correct"
+        "model": "none"
       },
-      "reason": "The expert explicitly says the original is ambiguous and provides the corrected assignment of sigma to the rank-two dissipative current while excluding the independent rank-three contribution. The expert states that the original final answer remains correct with the clarified dissipative-current assignment. The original and accepted dispersion expressions agree.",
+      "reason": "The expert explicitly says the original is ambiguous and provides the corrected assignment of sigma to the rank-two dissipative current while excluding the independent rank-three contribution. The expert states that the original final answer remains correct with the clarified dissipative-current assignment. The original and accepted dispersion expressions agree. Model attribution is withheld (none) because the problem has a benchmark error, under the user-directed precedence rule of 2026-09-10.",
       "model_assessment": {
         "basis": "Original model answer, independently of problem repair status; expert-accepted assumptions and grading conventions apply.",
         "reason": "The expert states that the original final answer remains correct with the clarified dissipative-current assignment. The original and accepted dispersion expressions agree.",
@@ -630,15 +666,18 @@
             "path": "/shared/data/home/aa3242/critpt-sol/challenges/40/final_answer.tex",
             "sha256": "36963380362e3c1cf35ebfe2b529d67aea2fddf1e719e9f265c20b8a76eb2b14"
           }
-        }
-      }
+        },
+        "status": "Historical expert assessment; superseded for audit attribution by the benchmark-error precedence rule."
+      },
+      "previous_model_verdict": "correct",
+      "model_verdict_reason": "Model attribution is withheld (none) because the problem has a benchmark error, under the user-directed precedence rule of 2026-09-10."
     },
     "44": {
       "verdict": {
         "problem": "repairable",
-        "model": "correct"
+        "model": "none"
       },
-      "reason": "The expert explicitly identifies a material factor-of-four normalization ambiguity and supplies the Hamiltonian and sign in the revised prompt. The separate rounding correction is minor, but the Hamiltonian ambiguity is not. The expert calls the proposed solution perfect. The original (4, 1, -9.80028270024311) agrees with the accepted (4, 1, -9.800) to the requested precision; the Hamiltonian normalization is repaired separately.",
+      "reason": "The expert explicitly identifies a material factor-of-four normalization ambiguity and supplies the Hamiltonian and sign in the revised prompt. The separate rounding correction is minor, but the Hamiltonian ambiguity is not. The expert calls the proposed solution perfect. The original (4, 1, -9.80028270024311) agrees with the accepted (4, 1, -9.800) to the requested precision; the Hamiltonian normalization is repaired separately. Model attribution is withheld (none) because the problem has a benchmark error, under the user-directed precedence rule of 2026-09-10.",
       "model_assessment": {
         "basis": "Original model answer, independently of problem repair status; expert-accepted assumptions and grading conventions apply.",
         "reason": "The expert calls the proposed solution perfect. The original (4, 1, -9.80028270024311) agrees with the accepted (4, 1, -9.800) to the requested precision; the Hamiltonian normalization is repaired separately.",
@@ -651,15 +690,18 @@
             "path": "/shared/data/home/aa3242/critpt-sol/challenges/44/final_answer.tex",
             "sha256": "d386b9a6132ea1534c2404eb79e9c8fc67e24bc2e228cb573a03a805db9f3e18"
           }
-        }
-      }
+        },
+        "status": "Historical expert assessment; superseded for audit attribution by the benchmark-error precedence rule."
+      },
+      "previous_model_verdict": "correct",
+      "model_verdict_reason": "Model attribution is withheld (none) because the problem has a benchmark error, under the user-directed precedence rule of 2026-09-10."
     },
     "48": {
       "verdict": {
         "problem": "repairable",
-        "model": "correct"
+        "model": "none"
       },
-      "reason": "The expert identifies nonunique analytic continuation; the supplied revised prompt prescribes Z_can near n=1 and asks for its derivative. The original final-answer file already contains 0.674499120060534, agreeing with the accepted 0.6744991200605346131. The model correctly identifies the continuation ambiguity and supplies the numerical result selected by the repaired canonical continuation; the prior rationale incorrectly implied it had not supplied a numerical target.",
+      "reason": "The expert identifies nonunique analytic continuation; the supplied revised prompt prescribes Z_can near n=1 and asks for its derivative. The original final-answer file already contains 0.674499120060534, agreeing with the accepted 0.6744991200605346131. The model correctly identifies the continuation ambiguity and supplies the numerical result selected by the repaired canonical continuation; the prior rationale incorrectly implied it had not supplied a numerical target. Model attribution is withheld (none) because the problem has a benchmark error, under the user-directed precedence rule of 2026-09-10.",
       "model_assessment": {
         "basis": "Original model answer, independently of problem repair status; expert-accepted assumptions and grading conventions apply.",
         "reason": "The original final-answer file already contains 0.674499120060534, agreeing with the accepted 0.6744991200605346131. The model correctly identifies the continuation ambiguity and supplies the numerical result selected by the repaired canonical continuation; the prior rationale incorrectly implied it had not supplied a numerical target.",
@@ -672,15 +714,18 @@
             "path": "/shared/data/home/aa3242/critpt-sol/challenges/48/final_answer.tex",
             "sha256": "ec7d0e700524db38e9365bcb1828e8317077e20b945425ac0d98eedfd59d6747"
           }
-        }
-      }
+        },
+        "status": "Historical expert assessment; superseded for audit attribution by the benchmark-error precedence rule."
+      },
+      "previous_model_verdict": "correct",
+      "model_verdict_reason": "Model attribution is withheld (none) because the problem has a benchmark error, under the user-directed precedence rule of 2026-09-10."
     },
     "61": {
       "verdict": {
         "problem": "repairable",
-        "model": "incorrect"
+        "model": "none"
       },
-      "reason": "The expert explicitly changes the unspecified connectivity of the complete subgraphs to the connectivity assumed by the solution and provides the corrected prompt. The expert separately identifies an original solution error: using a method that requires time-dependent gamma although gamma is fixed in this task. The original final (T, P) = (801, 0.98) does not agree with the corrected optimization result (794, 0.04). Repairing graph connectivity does not fix this solution error.",
+      "reason": "The expert explicitly changes the unspecified connectivity of the complete subgraphs to the connectivity assumed by the solution and provides the corrected prompt. The expert separately identifies an original solution error: using a method that requires time-dependent gamma although gamma is fixed in this task. The original final (T, P) = (801, 0.98) does not agree with the corrected optimization result (794, 0.04). Repairing graph connectivity does not fix this solution error. Model attribution is withheld (none) because the problem has a benchmark error, under the user-directed precedence rule of 2026-09-10.",
       "model_assessment": {
         "basis": "Original model answer, independently of problem repair status; expert-accepted assumptions and grading conventions apply.",
         "reason": "The expert separately identifies an original solution error: using a method that requires time-dependent gamma although gamma is fixed in this task. The original final (T, P) = (801, 0.98) does not agree with the corrected optimization result (794, 0.04). Repairing graph connectivity does not fix this solution error.",
@@ -693,15 +738,18 @@
             "path": "/shared/data/home/aa3242/critpt-sol/challenges/61/final_answer.tex",
             "sha256": "daa2d6f20ed4e2683742445f3bc8f51c484c62b9b8f73414d3aa94bc623492e7"
           }
-        }
-      }
+        },
+        "status": "Historical expert assessment; superseded for audit attribution by the benchmark-error precedence rule."
+      },
+      "previous_model_verdict": "incorrect",
+      "model_verdict_reason": "Model attribution is withheld (none) because the problem has a benchmark error, under the user-directed precedence rule of 2026-09-10."
     },
     "62": {
       "verdict": {
         "problem": "repairable",
-        "model": "correct"
+        "model": "none"
       },
-      "reason": "The expert explicitly says the problem was corrected and clarified. The revised prompt supplies a valid local phase unitary and, materially, optimizes over a binary POVM; otherwise the requested answer is measurement-dependent. The expert checked the original final results without changing them. The original and accepted formulas agree; the repair makes the valid local phase operation and optimization over binary POVMs explicit.",
+      "reason": "The expert explicitly says the problem was corrected and clarified. The revised prompt supplies a valid local phase unitary and, materially, optimizes over a binary POVM; otherwise the requested answer is measurement-dependent. The expert checked the original final results without changing them. The original and accepted formulas agree; the repair makes the valid local phase operation and optimization over binary POVMs explicit. Model attribution is withheld (none) because the problem has a benchmark error, under the user-directed precedence rule of 2026-09-10.",
       "model_assessment": {
         "basis": "Original model answer, independently of problem repair status; expert-accepted assumptions and grading conventions apply.",
         "reason": "The expert checked the original final results without changing them. The original and accepted formulas agree; the repair makes the valid local phase operation and optimization over binary POVMs explicit.",
@@ -714,15 +762,18 @@
             "path": "/shared/data/home/aa3242/critpt-sol/challenges/62/final_answer.tex",
             "sha256": "f533874abd15bf922c95e8b08ef20ab634f744bd96b26de749cf65f3b21cd6e7"
           }
-        }
-      }
+        },
+        "status": "Historical expert assessment; superseded for audit attribution by the benchmark-error precedence rule."
+      },
+      "previous_model_verdict": "correct",
+      "model_verdict_reason": "Model attribution is withheld (none) because the problem has a benchmark error, under the user-directed precedence rule of 2026-09-10."
     },
     "67": {
       "verdict": {
         "problem": "repairable",
-        "model": "correct"
+        "model": "none"
       },
-      "reason": "The expert says the solution depends on the unproved Spin Alignment Conjecture and that this must be explicit. The uploaded prompt adds that assumption, turning the task into a conditional one. The expert verifies the solution conditional on the Spin Alignment Conjecture. The original and accepted result Q = 1/d agrees; the repaired prompt explicitly adds the conjectural assumption already needed by the derivation.",
+      "reason": "The expert says the solution depends on the unproved Spin Alignment Conjecture and that this must be explicit. The uploaded prompt adds that assumption, turning the task into a conditional one. The expert verifies the solution conditional on the Spin Alignment Conjecture. The original and accepted result Q = 1/d agrees; the repaired prompt explicitly adds the conjectural assumption already needed by the derivation. Model attribution is withheld (none) because the problem has a benchmark error, under the user-directed precedence rule of 2026-09-10.",
       "model_assessment": {
         "basis": "Original model answer, independently of problem repair status; expert-accepted assumptions and grading conventions apply.",
         "reason": "The expert verifies the solution conditional on the Spin Alignment Conjecture. The original and accepted result Q = 1/d agrees; the repaired prompt explicitly adds the conjectural assumption already needed by the derivation.",
@@ -735,15 +786,18 @@
             "path": "/shared/data/home/aa3242/critpt-sol/challenges/67/final_answer.tex",
             "sha256": "5669298d6d2b82213f838be8dde713b0cb15e3b8f471ca7f1fb79032333aa91c"
           }
-        }
-      }
+        },
+        "status": "Historical expert assessment; superseded for audit attribution by the benchmark-error precedence rule."
+      },
+      "previous_model_verdict": "correct",
+      "model_verdict_reason": "Model attribution is withheld (none) because the problem has a benchmark error, under the user-directed precedence rule of 2026-09-10."
     },
     "68": {
       "verdict": {
         "problem": "repairable",
-        "model": "correct"
+        "model": "none"
       },
-      "reason": "The expert identifies the ill-defined inverse for singular sigma and explicitly adds sigma > 0 to the supplied statement. The AI's quoted caveat says additional support conditions are needed rather than completing the unrestricted singular case; this is a domain restriction, not just a typographical fix. The original and accepted derivative formulas agree for strictly positive sigma. The model already cautions about singular-support conditions, and the expert repair explicitly restricts the domain to sigma > 0.",
+      "reason": "The expert identifies the ill-defined inverse for singular sigma and explicitly adds sigma > 0 to the supplied statement. The AI's quoted caveat says additional support conditions are needed rather than completing the unrestricted singular case; this is a domain restriction, not just a typographical fix. The original and accepted derivative formulas agree for strictly positive sigma. The model already cautions about singular-support conditions, and the expert repair explicitly restricts the domain to sigma > 0. Model attribution is withheld (none) because the problem has a benchmark error, under the user-directed precedence rule of 2026-09-10.",
       "model_assessment": {
         "basis": "Original model answer, independently of problem repair status; expert-accepted assumptions and grading conventions apply.",
         "reason": "The original and accepted derivative formulas agree for strictly positive sigma. The model already cautions about singular-support conditions, and the expert repair explicitly restricts the domain to sigma > 0.",
@@ -756,8 +810,11 @@
             "path": "/shared/data/home/aa3242/critpt-sol/challenges/68/final_answer.tex",
             "sha256": "59aabc0b259052dd617353017dd7956f79b82c1a0aec1629a4011b8bf6550b78"
           }
-        }
-      }
+        },
+        "status": "Historical expert assessment; superseded for audit attribution by the benchmark-error precedence rule."
+      },
+      "previous_model_verdict": "correct",
+      "model_verdict_reason": "Model attribution is withheld (none) because the problem has a benchmark error, under the user-directed precedence rule of 2026-09-10."
     }
   },
   "attachments": {
@@ -951,7 +1008,11 @@
     ]
   },
   "verdict_policy": {
-    "model": "Judge the original AI answer independently of problem repair status, not the expert replacement. Both clean and repairable tasks can have correct or incorrect model answers. For repaired tasks, use expert-accepted assumptions and grading conventions, and record any difference from the primary repaired reference. repairable/none is reserved for an unavailable or unassessable original model answer, never inferred merely from a repair. unrepairable retains none. Unresolved interpretations or disputed correctness require clarification and are excluded from evaluation verdicts.",
-    "model_policy_authority": "User instruction: a repairable problem does not necessarily mean that the model solution should be none; explicitly label challenge 32 repairable/correct and audit analogous cases."
+    "model": "Benchmark errors take precedence in audit attribution. For every repairable or unrepairable problem, set the model verdict to none regardless of whether the original answer was judged correct or incorrect. Assess model correctness only for clean problems. Historical expert assessments remain evidence, not active model attributions. This audit rule does not alter judgments or scores from separate corrected evaluations.",
+    "model_policy_authority": "User instruction, 2026-09-10: If they are benchmark error, then definitely the model verdict (Whether it solved or not) should be none for them. Fix their labels.",
+    "superseded_model_policy": {
+      "model": "Judge the original AI answer independently of problem repair status, not the expert replacement. Both clean and repairable tasks can have correct or incorrect model answers. For repaired tasks, use expert-accepted assumptions and grading conventions, and record any difference from the primary repaired reference. repairable/none is reserved for an unavailable or unassessable original model answer, never inferred merely from a repair. unrepairable retains none. Unresolved interpretations or disputed correctness require clarification and are excluded from evaluation verdicts.",
+      "model_policy_authority": "User instruction: a repairable problem does not necessarily mean that the model solution should be none; explicitly label challenge 32 repairable/correct and audit analogous cases."
+    }
   }
 }
