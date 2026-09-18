@@ -1,0 +1,788 @@
+{
+  "benchmarks": {
+    "cmt": {
+      "post_audit": {
+        "evaluation_count": 49,
+        "evaluator": "unified HLE-adapted merged binary equivalence judge",
+        "excluded": [
+          {
+            "id": "14",
+            "reason": "UNREPAIRABLE"
+          }
+        ],
+        "file": "post_audit/cmt.jsonl",
+        "sha256": "166428c858d4a71efae870599f95b6c2497205f81c9a0643dc4c72715c7100ec",
+        "source_count": 50
+      },
+      "pre_audit": {
+        "evaluable_count": 50,
+        "evaluator": "CMT HLE-adapted merged binary equivalence judge",
+        "excluded": [],
+        "file": "pre_audit/cmt.jsonl",
+        "sha256": "9791615ba518e27ea6406d3d04afb1006f8b19b3d7042fadb88adbda097197f8",
+        "source": "analysis/CMT-Benchmark/data/cmt_data_original.jsonl",
+        "source_count": 50
+      }
+    },
+    "critpt": {
+      "post_audit": {
+        "evaluation_count": 54,
+        "evaluator": "unified HLE-adapted merged binary equivalence judge",
+        "excluded": [
+          {
+            "id": "41",
+            "reason": "UNREPAIRABLE"
+          },
+          {
+            "id": "46",
+            "reason": "UNREPAIRABLE"
+          }
+        ],
+        "file": "post_audit/critpt.jsonl",
+        "sha256": "b0c26b49155e35f783c87b533965c9cacc2072dcc754fb99444e9251da13f72e",
+        "source_count": 56
+      },
+      "pre_audit": {
+        "evaluable_count": 55,
+        "evaluator": "CritPt HLE-adapted merged binary equivalence judge",
+        "excluded": [
+          {
+            "id": "11",
+            "reason": "MISSING_REFERENCE"
+          },
+          {
+            "id": "15",
+            "reason": "MISSING_REFERENCE"
+          },
+          {
+            "id": "21",
+            "reason": "MISSING_REFERENCE"
+          },
+          {
+            "id": "24",
+            "reason": "MISSING_REFERENCE"
+          },
+          {
+            "id": "25",
+            "reason": "MISSING_REFERENCE"
+          },
+          {
+            "id": "27",
+            "reason": "MISSING_REFERENCE"
+          },
+          {
+            "id": "34",
+            "reason": "MISSING_REFERENCE"
+          },
+          {
+            "id": "36",
+            "reason": "MISSING_REFERENCE"
+          },
+          {
+            "id": "37",
+            "reason": "MISSING_REFERENCE"
+          },
+          {
+            "id": "38",
+            "reason": "MISSING_REFERENCE"
+          },
+          {
+            "id": "41",
+            "reason": "MISSING_REFERENCE"
+          },
+          {
+            "id": "43",
+            "reason": "MISSING_REFERENCE"
+          },
+          {
+            "id": "46",
+            "reason": "MISSING_REFERENCE"
+          },
+          {
+            "id": "52",
+            "reason": "MISSING_REFERENCE"
+          },
+          {
+            "id": "54",
+            "reason": "MISSING_REFERENCE"
+          },
+          {
+            "id": "63",
+            "reason": "MISSING_REFERENCE"
+          }
+        ],
+        "file": "pre_audit/critpt.jsonl",
+        "sha256": "3a4e83a2356260c5e2b8274776fa48d5f5d9ad0fcb5c28f2fcecf147670286db",
+        "source": "analysis/CritPt/original_challenges.jsonl",
+        "source_count": 71
+      }
+    },
+    "hle-physics": {
+      "post_audit": {
+        "evaluation_count": 116,
+        "evaluator": "unified HLE-adapted merged binary equivalence judge",
+        "excluded": [
+          {
+            "id": "66e9032060abc895aedcf460",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "66e9100b48468f864f861b90",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "66eda111ea64e37f9218600c",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "66f28cc8b866ea3f1f4e95f5",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "66f2dee46721a56e35d20300",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "66f86bbb27a30cecdc2d6c7e",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "66f8cff8469c315e2c9ed2f6",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "66fc56f5d90ebe461bfd0c9c",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "66fc6a20d90ebe461bfd0cc7",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "66fcbb1e2c2f679cc795985f",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "6702df0bf9b93417fbae272c",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "6715f373a35b028a9e88c09f",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "671b14a6a05f8889abb23bf0",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "671bd4fb69d17f19519341dc",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "671ec6d8a695a5847b48c39a",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "671eefbfb6d7145231fa28e4",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "671f6889490be3e9a159f485",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "671feb0424e49a0a566a7883",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "672072c945e7bc8f5c2dd1ba",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "67208aa0563d776c82113daa",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "6720a9feec461e4c6a4e2c3a",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "6720fda3febecf1a8b9b083d",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "67213cb9043b1e724244a1c6",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "6721767ddb8105efc71a7d1b",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "67218f865b0747ce2231d48c",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "67225f3cf135fd983a87bc1f",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "6722809eb0e7186e733d6838",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "67229b1f5a95bf7d096a6319",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "67230d6e736f03c0e4c1adee",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "672333955d82e15ca8e37afb",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "672338c7348c6cb89bd6a7a4",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "6725280ff2e932808735b2e8",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "6725562814a5e4119e612733",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "67260355aaf7cd419fd01af6",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "6728c038c556bb2fdda61dd7",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "6728d1e3a8053eddd7a7f24a",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "6728e8d695a162eb76520086",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "672a26f8b4642f4105e02119",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "672a27f5d30d6f5584cde73d",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "672a28afb4642f4105e02122",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "672a29a8d30d6f5584cde745",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "672a30472091cee6de17ebd1",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "672a5c2bea4e7fa0183543ae",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "672a79431629c5c3d6933ca7",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "672d44d02a52b5a11753319c",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "672de1afed6de72b75b8c7e6",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "672dfdac63f8d9211905d385",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "672e09b50a85795d0ed2d36e",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "672f4434e9c13daba078d693",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "672fc00e13e5fbd332372f3f",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "672fec044673df044daa1f34",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "672ff8317b5ea0144d26c82d",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "67300670a8a3b9c5fe76c0b8",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "67319c16b68f5ac822e236b0",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "67325a61292f97f5175026dd",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "673347de7c5871632811feec",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "6734956467d2904eebed3a09",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "673497b017a9687889930ac4",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "6734989917a9687889930ac9",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "67361730dba36cc0d595f422",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "67364c441758ad568a4a2ac6",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "673704af1c2083e9eaa6d732",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "67370aa83f0517b6e8a60769",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "673757b8673b15e8ce0a3755",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "6737d23a6a364decc45cc7ee",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "67380ecdb808e1bf292d214e",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "67381641a8513cd02a2937c3",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "67381812e4ea03183132a54e",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "67381f0835f9616e390e737a",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "67382f8535f9616e390e73ae",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "673909949318c3bbb1056f54",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "67390df48dfa3346e87f711a",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "67398780bcaf1e028b8576a2",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "67399a69c180d4d45680e434",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "673c03d7048156c9e9c8cac6",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "673f8ff088d617494f21e0d2",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "67401245b9a033e63640df4b",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "67434c26e839fa1a02de4251",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "67440064abafa90f5b9d4da9",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "67487e955830790e3687a567",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "6748b7dfac494f3a05306206",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "6756844266c3ec0e7088bf9f",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "67770f6d9a59b3d9ca3a5f82",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "6750df74ca6713770c0671be",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "66ed86e620ed3db95f9901d3",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "6726119595fd0ad0b8ae2978",
+            "reason": "PROBLEM_FAILURE"
+          }
+        ],
+        "file": "post_audit/hle-physics.jsonl",
+        "sha256": "33694c0dea2e7f53ac8f7da95f4b9a5e618d18f0e98eef104cf923316504c7a5",
+        "source_count": 202
+      },
+      "pre_audit": {
+        "evaluable_count": 202,
+        "evaluator": "HLE released LLM equivalence judge on the original text-only Physics split",
+        "excluded": [],
+        "file": "pre_audit/hle-physics.jsonl",
+        "sha256": "2ab74a3e9203fe6f134da37b3969892e46d6344abf89d45d51b08bff83d45ef1",
+        "source": "audit/initial_data/selected/hle-physics/responses.jsonl",
+        "source_count": 202
+      }
+    },
+    "phybench": {
+      "post_audit": {
+        "evaluation_count": 87,
+        "evaluator": "unified HLE-adapted merged binary equivalence judge",
+        "excluded": [
+          {
+            "id": "674",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "250",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "88",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "617",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "55",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "71",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "636",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "420",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "450",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "131",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "121",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "43",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "89",
+            "reason": "PROBLEM_FAILURE"
+          }
+        ],
+        "file": "post_audit/phybench.jsonl",
+        "sha256": "d231c1e4b66cd677ae139ceee3c9aa9ccd792ac545f2f74a3267ebcfcb17e3eb",
+        "source_count": 100
+      },
+      "pre_audit": {
+        "evaluable_count": 100,
+        "evaluator": "PHYBench released EED; correct iff EED = 100",
+        "excluded": [],
+        "file": "pre_audit/phybench.jsonl",
+        "sha256": "09efdf4675583bff29f8e12e0c11d0cbd6a0802d798a633d30336a421c0c2f3e",
+        "source": "benchmarks/phybench/data/PHYBench-fullques_v1.json",
+        "source_count": 100
+      }
+    },
+    "prism": {
+      "post_audit": {
+        "evaluation_count": 74,
+        "evaluator": "unified HLE-adapted merged binary equivalence judge",
+        "excluded": [
+          {
+            "id": "01_cleaned_dag:1142",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "01_cleaned_dag:2016",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "01_cleaned_dag:2056",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "01_cleaned_dag:3031",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "02_cleaned_dag:2039",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "02_cleaned_dag:2089",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "02_cleaned_dag:3038",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "04_cleaned_dag:2010",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "04_cleaned_dag:2045",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "04_cleaned_dag:2074",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "04_cleaned_dag:3081",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "04_cleaned_dag:4101",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "05_cleaned_dag:1077",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "05_cleaned_dag:1137",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "05_cleaned_dag:2054",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "05_cleaned_dag:2055",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "05_cleaned_dag:2072",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "05_cleaned_dag:2102",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "05_cleaned_dag:2105",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "06_cleaned_dag:3046",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "06_cleaned_dag:4010",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "06_cleaned_dag:5060",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "06_cleaned_dag:6003",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "06_cleaned_dag:6004",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "06_cleaned_dag:6058",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "06_cleaned_dag:8009",
+            "reason": "PROBLEM_FAILURE"
+          }
+        ],
+        "file": "post_audit/prism.jsonl",
+        "sha256": "1c7ddc6a29f3f64924278a08c35f669280d16d68f39b2cbf2412e559ee7534ac",
+        "source_count": 100
+      },
+      "pre_audit": {
+        "evaluable_count": 100,
+        "evaluator": "PRISM released DAG grader; correct iff every final-answer DAG formula matches",
+        "excluded": [],
+        "file": "pre_audit/prism.jsonl",
+        "sha256": "ea0290de20e25fb84b6c6c0ae95306fde73416d97b2eac43ef89c4b43954270a",
+        "source": "benchmarks/prism/datasets",
+        "source_count": 100
+      }
+    },
+    "ugphysics": {
+      "post_audit": {
+        "evaluation_count": 82,
+        "evaluator": "unified HLE-adapted merged binary equivalence judge",
+        "excluded": [
+          {
+            "id": "StatisticalMechanics/en/386",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "SemiconductorPhysics/en/140",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "StatisticalMechanics/en/317",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "ClassicalMechanics/en/489",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "QuantumMechanics/en/1002",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "ClassicalMechanics/en/231",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "StatisticalMechanics/en/554",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "ClassicalMechanics/en/267",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "Relativity/en/141",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "QuantumMechanics/en/827",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "AtomicPhysics/en/702",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "QuantumMechanics/en/128",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "QuantumMechanics/en/748",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "Electrodynamics/en/100",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "AtomicPhysics/en/228",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "ClassicalMechanics/en/1",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "Solid-StatePhysics/en/81",
+            "reason": "PROBLEM_FAILURE"
+          },
+          {
+            "id": "SemiconductorPhysics/en/4",
+            "reason": "PROBLEM_FAILURE"
+          }
+        ],
+        "file": "post_audit/ugphysics.jsonl",
+        "sha256": "28b54591929e4765cd873abb36757e3d9e0221aca02af0ec548bc53144c5149e",
+        "source_count": 100
+      },
+      "pre_audit": {
+        "evaluable_count": 100,
+        "evaluator": "UGPhysics released strict rule grader, then its auxiliary equivalence prompt on non-passes",
+        "excluded": [],
+        "file": "pre_audit/ugphysics.jsonl",
+        "sha256": "018b45e9f9432c0365ef6021eafbd8fa6c424a4ad59fab5273cf6eda9c7368f5",
+        "source": "benchmarks/ugphysics/data/dataset",
+        "source_count": 100
+      }
+    }
+  },
+  "schema": {
+    "pre_audit_additional": [
+      "prompt",
+      "system_prompt",
+      "response_format",
+      "native"
+    ],
+    "required": [
+      "id",
+      "question",
+      "reference_answer",
+      "category"
+    ]
+  },
+  "version": 1
+}
