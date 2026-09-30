@@ -70,6 +70,8 @@ class CodexLLM:
     sandbox_mode: str = "read-only"
     env_inherit: str = "none"
     env_set: dict[str, str] | None = None
+    #: Extra ``-c key=value`` settings, used for isolated custom providers.
+    config_overrides: list[str] | None = None
     #: One of "auto", "concise", "detailed", "none". When set, Codex emits
     #: `reasoning` items carrying the model's reasoning summaries.
     reasoning_summary: str | None = None
@@ -199,6 +201,8 @@ class CodexLLM:
         ]
         for key, value in (self.env_set or {}).items():
             cmd.extend(["-c", f'shell_environment_policy.set.{key}="{value}"'])
+        for override in self.config_overrides or []:
+            cmd.extend(["-c", override])
         if self.model:
             cmd.extend(["--model", self.model])
         if self.model_reasoning_effort:
