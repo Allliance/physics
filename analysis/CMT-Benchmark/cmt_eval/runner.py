@@ -1,4 +1,4 @@
-"""Evaluate GPT-5.6-Sol or Fable 5 on CMT with rounds, judging, and aggregation."""
+"""Evaluate supported Codex, Gemini, or Fable models on CMT."""
 
 from __future__ import annotations
 
@@ -20,12 +20,19 @@ ARTIFACT_ROOT = BENCHMARK_ROOT / "artifacts"
 
 
 def model_name(value: str) -> str:
-    aliases = {"gpt-5.6-sol": "gpt-5.6-sol", "fable": "claude-fable-5",
+    aliases = {"gemini": "gemini-3.1-pro-preview", "gemini-3.1-pro": "gemini-3.1-pro-preview",
+               "gemini-3.1-pro-preview": "gemini-3.1-pro-preview", "gpt-5.6-sol": "gpt-5.6-sol",
+               "luna": "gpt-5.6-luna", "gpt-5.6-luna": "gpt-5.6-luna",
+               "astra": "gpt-6-astra", "gpt-6-astra": "gpt-6-astra",
+               "gpt-oss-120b": "gpt-oss-120b", "gpt-oss": "gpt-oss-120b", "fable": "claude-fable-5",
+               "kimi-k3": "kimi-k3", "kimi": "kimi-k3",
+               "glm-5.3": "glm-5.3", "glm": "glm-5.3",
+               "deepseek-v4-pro": "deepseek-v4-pro", "deepseek": "deepseek-v4-pro",
                "fable-5": "claude-fable-5", "claude-fable-5": "claude-fable-5"}
     try:
         return aliases[value.casefold()]
     except KeyError:
-        raise argparse.ArgumentTypeError("Choose gpt-5.6-sol or fable (Fable 5).") from None
+        raise argparse.ArgumentTypeError("Choose gpt-5.6-sol, gpt-5.6-luna, gpt-6-astra, gpt-oss-120b, kimi-k3, glm-5.3, deepseek-v4-pro, gemini-3.1-pro-preview, or fable (Fable 5).") from None
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
@@ -42,6 +49,8 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
                         action=argparse.BooleanOptionalAction, default=False,
                         help="Enable computation and search tools (default: false).")
     parser.add_argument("--rounds", type=int, default=1, help="Independent attempts per question (default: 1).")
+    parser.add_argument("--round-workers", type=int,
+                        help="Rounds to overlap; defaults to 4 for multi-round GPT-OSS runs and 1 otherwise.")
     parser.add_argument("--aggregation", choices=["mean", "max"], default="mean",
                         help="Aggregate each question across rounds before averaging (default: mean).")
     parser.add_argument("--exclude-ids-file", "--exclude-ids", dest="exclude_ids_file", type=Path,
@@ -61,13 +70,15 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--ids-file", type=Path, help="JSON list of question IDs to evaluate.")
     parser.add_argument("--list-categories", action="store_true")
     args = parser.parse_args(argv)
-    expected_judge = "claude-fable-5" if args.model == "gpt-5.6-sol" else "gpt-5.6-sol"
+    if args.round_workers is None:
+        args.round_workers = min(4, args.rounds) if args.model in {"gpt-oss-120b", "kimi-k3", "glm-5.3", "deepseek-v4-pro"} else 1
+    expected_judge = "gpt-5.6-sol" if args.model in {"claude-fable-5", "kimi-k3", "glm-5.3", "deepseek-v4-pro"} else "claude-fable-5"
     if args.judge_model is not None and args.judge_model != expected_judge:
         parser.error(f"Cross-model judging requires --judge-model {expected_judge} for {args.model}.")
     args.judge_model = expected_judge
-    if (args.num_workers < 1 or args.timeout <= 0 or
+    if (args.num_workers < 1 or args.round_workers < 1 or args.timeout <= 0 or
             (args.max_output_tokens is not None and args.max_output_tokens < 1)):
-        parser.error("Workers, timeout, and output token budget must be positive.")
+        parser.error("Workers, round workers, timeout, and output token budget must be positive.")
     if args.max_samples is not None and args.max_samples < 1:
         parser.error("--max-samples must be positive.")
     if args.rounds < 1 or args.max_tool_turns < 1:
@@ -78,12 +89,19 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         parser.error("--web-search requires --use-tools.")
     if args.model == "claude-fable-5" and args.web_search == "cached":
         parser.error("Fable supports live or disabled web search, not cached search.")
-    if args.model == "gpt-5.6-sol" and (
+    if args.model in {"kimi-k3", "glm-5.3", "deepseek-v4-pro"} and args.use_tools:
+        parser.error("Local open-model evaluation currently supports no-tools runs only.")
+    if args.model in {"gpt-5.6-sol", "gpt-5.6-luna"} and (
         args.max_output_tokens is not None or args.reasoning_effort == "max"
     ):
         parser.error("--max-output-tokens and effort 'max' are Fable evaluation-only options.")
+    if args.model == "gemini-3.1-pro-preview":
+        if args.reasoning_effort not in {"low", "medium", "high", "max"}:
+            parser.error("Gemini supports low, medium, high, or max (mapped to high).")
+        if args.web_search == "cached":
+            parser.error("Gemini supports live or disabled web search.")
     if args.max_output_tokens is None:
-        args.max_output_tokens = 32768
+        args.max_output_tokens = 65536 if args.model in {"gemini-3.1-pro-preview", "kimi-k3", "glm-5.3", "deepseek-v4-pro"} else 32768
     return args
 
 
@@ -172,6 +190,10 @@ def main(argv: list[str] | None = None) -> int:
         raise ValueError(f"No questions selected. Available categories: {categories}")
     api_model = resolve_fable_model(args.fable_model) if args.model == "claude-fable-5" else None
     backend = "codex" if api_model is None else ("claude-cli" if args.use_tools else "anthropic")
+    if args.model == "gemini-3.1-pro-preview":
+        api_model, backend = args.model, "gemini"
+    if args.model in {"gpt-oss-120b", "kimi-k3", "glm-5.3", "deepseek-v4-pro"}:
+        backend = "codex-local-vllm" if args.use_tools else "openai-compatible"
     category = "".join(c if c.isalnum() or c in "-_" else "_" for c in args.category.lower())
     tools_suffix = "_tools" if args.use_tools else ""
     output = args.output or ARTIFACT_ROOT / f"cmt_{args.model}_{args.reasoning_effort}_{category}{tools_suffix}.json"
@@ -187,7 +209,7 @@ def main(argv: list[str] | None = None) -> int:
         "reasoning_effort": args.reasoning_effort,
         "use_tools": args.use_tools, "web_search": args.web_search,
         "max_tool_turns": args.max_tool_turns if api_model and args.use_tools else None,
-        "max_output_tokens": args.max_output_tokens if api_model else None,
+        "max_output_tokens": args.max_output_tokens if api_model or args.model in {"gpt-oss-120b", "kimi-k3", "glm-5.3", "deepseek-v4-pro"} else None,
         "base_url": os.environ.get("ANTHROPIC_BASE_URL", "https://api.anthropic.com") if api_model else None,
         "excluded_ids": sorted(set(excluded)), "question_ids": [q["id"] for q in questions],
         "questions_sha256": fingerprint(questions),
@@ -197,6 +219,18 @@ def main(argv: list[str] | None = None) -> int:
         "judge_model": args.judge_model, "judge_reasoning_effort": args.judge_reasoning_effort,
     }
     manifest.update(judge_backend_config(args))
+    if backend == "gemini":
+        sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
+        from utils.gemini_backend import backend_metadata
+        manifest.update(backend_metadata(args.reasoning_effort))
+        manifest["max_tool_turns"] = None
+    if backend in {"openai-compatible", "codex-local-vllm"}:
+        sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
+        from utils.openai_compatible import backend_metadata
+        manifest.update(backend_metadata())
+    if backend == "codex-local-vllm":
+        manifest["wire_api"] = "responses"
+        manifest["tool_environment"] = {"PATH": TOOL_PATH, "harness": "codex exec"}
     if args.use_tools and backend == "codex":
         manifest["tool_environment"] = {"PATH": TOOL_PATH}
     run_config = output.with_suffix(".run.json")
@@ -220,13 +254,22 @@ def main(argv: list[str] | None = None) -> int:
 
     # Invalidate any old final score before starting additional/missing rounds.
     save_summary()
-    for index in range(1, args.rounds + 1):
+    active_rounds = min(args.round_workers, args.rounds, args.num_workers)
+    round_args = argparse.Namespace(**vars(args))
+    round_args.num_workers = args.num_workers // active_rounds
+
+    def evaluate_round(index: int):
         path = round_path(output, index)
         print(f"Round {index}/{args.rounds}", flush=True)
-        predictions = run_generation_round(args, questions, path, {**manifest, "round": index})
+        predictions = run_generation_round(round_args, questions, path, {**manifest, "round": index})
         judged_path = path.with_name(f"{path.stem}.judged{path.suffix}")
-        judged_rounds[index - 1] = judge_round(args, questions, answers, predictions, judged_path, write_json)
-        summary = save_summary()
+        return judge_round(round_args, questions, answers, predictions, judged_path, write_json)
+
+    with concurrent.futures.ThreadPoolExecutor(max_workers=active_rounds) as pool:
+        futures = {pool.submit(evaluate_round, index): index for index in range(1, args.rounds + 1)}
+        for future in concurrent.futures.as_completed(futures):
+            judged_rounds[futures[future] - 1] = future.result()
+            summary = save_summary()
     if summary["complete"]:
         print(f"Final {args.aggregation} score: {summary['final_score_percent']:.2f}% "
               f"({len(questions)} questions, {args.rounds} rounds); summary={summary_path}", flush=True)

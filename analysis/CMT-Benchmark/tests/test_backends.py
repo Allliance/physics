@@ -19,10 +19,25 @@ from cmt_eval import backends, runner
 
 
 class BackendRequestTests(unittest.TestCase):
+    def test_astra_max_tools_configuration(self):
+        args = runner.parse_args([
+            "--model", "gpt-6-astra", "--reasoning-effort", "max", "--use-tools"
+        ])
+        self.assertEqual(args.model, "gpt-6-astra")
+        self.assertEqual(args.judge_model, "claude-fable-5")
+        self.assertTrue(args.use_tools)
+        self.assertEqual(args.web_search, "live")
+
+    def test_recovered_codex_connection_error_is_completed(self):
+        result = SimpleNamespace(text="4", events=[
+            {"type": "error"}, {"type": "turn.completed"}])
+        backends.validate_codex_result(result)
+
     def test_sol_tools_and_prompt(self):
         event = {"item": {"type": "command_execution", "aggregated_output": "4"}}
         client = MagicMock()
-        client.complete.return_value = SimpleNamespace(text="4", usage={}, attempts=1, events=[event])
+        client.complete.return_value = SimpleNamespace(
+            text="4", usage={}, attempts=1, events=[event, {"type": "turn.completed"}])
         constructor = MagicMock(return_value=client)
         with patch.dict("sys.modules", {"codex_cli": SimpleNamespace(CodexLLM=constructor)}):
             args = runner.parse_args(["--use-tools"])
