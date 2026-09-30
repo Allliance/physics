@@ -18,6 +18,39 @@ attempts for `mean@n` and `pass@n`. Generation and judging are no-tool in this
 runner. Historical tool-enabled paper runs remain in their benchmark artifact
 directories and are not silently mixed with new no-tool runs.
 
+## Upstream HLE checkout
+
+[`benchmarks/hle/`](../benchmarks/hle/) is an unmodified Git submodule of
+[`centerforaisafety/hle`](https://github.com/centerforaisafety/hle). The parent
+repository pins its commit; the clone retains its upstream remote and history.
+Initialize it after cloning this repository:
+
+```bash
+git submodule update --init benchmarks/hle
+git -C benchmarks/hle remote -v
+git -C benchmarks/hle status --short
+```
+
+The canonical pre-audit HLE adapter is [`pre_audit/hle.py`](pre_audit/hle.py).
+It reads the exact `JUDGE_PROMPT` and `ExtractedAnswer` declaration from the
+upstream `hle_eval/run_judge_results.py`, without importing the API-only CLI or
+changing any upstream file. The canonical Codex/Fable transports supply no-tool
+judging, validation, and retryable failures. The selected judge model, reasoning
+effort, and token budget remain canonical pipeline settings. Frozen inputs and
+aggregation remain in `eval/`.
+
+Pre-audit HLE manifests record the upstream commit and source, prompt, schema,
+and adapter hashes. This replaces the shortened prompt in the former local HLE
+harness, so use a new output directory for fresh pre-audit runs. Changed
+implementation or provider-helper hashes also invalidate older checkpoints;
+saved results are preserved. Post-audit continues to use the existing
+HLE-adapted physics-equivalence prompt under `eval/prompts/`.
+
+The former HLE folder, including its pending changes and artifacts, is preserved
+at [`benchmarks/hle_changed (discarded)/`](<../benchmarks/hle_changed (discarded)/>).
+Canonical runs do not import that harness. Shared Fable transport helpers live
+in [`utils/fable_backend.py`](../utils/fable_backend.py).
+
 ## Data
 
 All built-in runtime inputs are immutable snapshots under [`data/`](data/README.md).
@@ -117,6 +150,7 @@ invalidates the run directory instead of mixing results.
 | `prompts/` | Unified post-audit generation/judge prompts and schema | Yes |
 | `pre_audit/pipeline.py` | Original-data API and evaluator routing | Yes |
 | `pre_audit/native.py` | Isolated adapters for released rule graders | Yes |
+| `pre_audit/hle.py` | Reads the upstream HLE judge contract and uses canonical transports | Pre-audit HLE only |
 | `pre_audit/runner.py` | Fresh generation, repeated attempts, aggregation | Yes |
 | `data/` | Frozen original and corrected inputs plus manifest | Yes |
 | `tests/` | Network-free regression tests | Yes for maintenance |

@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 import tempfile
 
-from benchmarks.hle.hle_eval.backends import (
+from utils.fable_backend import (
     image_block, make_fable_client, parse_fable_response, resolve_fable_model,
 )
 from utils.codex_cli import CodexLLM, validate_codex_result
@@ -131,25 +131,26 @@ def make_predictor(args, api_model):
     return predict
 
 
-def make_judge(args):
+def make_judge(args, *, judge_prompt=JUDGE, system_prompt=JUDGE_SYSTEM, schema=SCHEMA):
     fable = args.judge_model == 'claude-fable-5'
     api_model = resolve_fable_model(args.fable_model) if fable else None
-    client = make_fable_client(args.timeout) if fable else codex_client(args, judge=True)
+    client = make_fable_client(args.timeout) if fable else codex_client(
+        args, judge=True, system_prompt=system_prompt)
 
     def judge(question, prediction):
         if prediction.get('refused'):
             content = {'extracted_final_answer': 'None', 'reasoning': 'The evaluated model refused.',
                        'correct': 'no', 'confidence': 0, 'strict': True}
             return {'judgment': content, 'actual_model': None, 'judge_called': False}
-        prompt = JUDGE.format(question=question['question'], response=prediction['response'],
+        prompt = judge_prompt.format(question=question['question'], response=prediction['response'],
                               correct_answer=question['reference_answer'])
         with tempfile.TemporaryDirectory(prefix='physics-judge-') as directory:
             image = image_path(question, directory)
             if fable:
                 content = ([image_block(image)] if image else []) + [{
-                    'type': 'text', 'text': prompt + '\n\nOutput JSON schema:\n' + json.dumps(SCHEMA)}]
+                    'type': 'text', 'text': prompt + '\n\nOutput JSON schema:\n' + json.dumps(schema)}]
                 with client.messages.stream(
-                    model=api_model, max_tokens=args.judge_max_output_tokens, system=JUDGE_SYSTEM,
+                    model=api_model, max_tokens=args.judge_max_output_tokens, system=system_prompt,
                     messages=[{'role': 'user', 'content': content}],
                     thinking={'type': 'adaptive'}, output_config={'effort': args.judge_reasoning_effort},
                 ) as stream:
@@ -163,9 +164,9 @@ def make_judge(args):
                         'raw_response': parsed['response'], 'raw_api_response': raw,
                         'requested_model': args.judge_model, 'actual_model': parsed['actual_model'],
                         'judge_called': True}
-            schema = Path(directory) / 'schema.json'
-            schema.write_text(json.dumps(SCHEMA))
-            response = client.complete(prompt, output_schema=schema, image_paths=[image] if image else None)
+            schema_path = Path(directory) / 'schema.json'
+            schema_path.write_text(json.dumps(schema))
+            response = client.complete(prompt, output_schema=schema_path, image_paths=[image] if image else None)
         validate_codex(response)
         content = json.loads(response.text)
         validate_judgment(content)

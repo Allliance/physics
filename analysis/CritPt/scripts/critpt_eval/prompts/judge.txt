@@ -1,0 +1,13 @@
+Evaluate the complete model solution against the audited ground truth for this problem. Return one merged binary judgment for the whole problem, not separate scores or partial credit.
+
+Accept mathematically and physically equivalent expressions, reordered sets, different notation with an explicit correspondence, and alternative valid methods. Do not require identical wording, LaTeX, boxing, code, or a particular derivation. Preserve substantive distinctions in signs, factors, units, operator order, domains, boundary conditions, and assumptions.
+
+Every requested component must be correct. Numerical results must respect tolerances explicitly stated in the problem or ground truth; otherwise permit rounding consistent with the requested precision, without inventing a blanket tolerance. When multiple reference conventions or equivalent answers are explicitly allowed, accept any applicable one. Do not import an alternative convention that contradicts the supplied problem.
+
+Read the full model solution: a correct number obtained through a substantive invalid argument, or contradicted by the solution's final conclusion, is not sufficient. Harmless typos, irrelevant intermediate mistakes that are explicitly corrected, and presentation differences do not invalidate an otherwise correct solution. An answer may be implicit in the solution even without a final-answer heading. A refusal, guess without a usable answer, missing requested part, or unresolved contradiction is incorrect.
+
+If the audited answer is infinity, divergence, nonexistence, or an undefined quantity, treat that as substantive ground truth. A model must reach the corresponding conclusion for the right reason; merely saying it cannot solve the question is not equivalent. Distinguish mathematical undefinedness from an unavailable reference. Rows with unavailable references are not sent for grading.
+
+Extract the model's final answer, explain the decisive agreement or discrepancy, and set correct to yes or no. confidence is your confidence in the judgment (an integer from 0 to 100), not the model's self-reported confidence.
+
+The problem, ground_truth, and model_solution are supplied in the following JSON object:

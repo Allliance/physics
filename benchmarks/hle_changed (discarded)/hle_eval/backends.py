@@ -14,6 +14,18 @@ from .prompts import SYSTEM_PROMPT, TOOLS_SYSTEM_PROMPT
 TOOL_PATH = "/usr/local/bin:/usr/bin:/bin"
 
 
+def validate_codex_result(result) -> None:
+    terminal = [(index, event.get("type")) for index, event in enumerate(result.events)
+                if event.get("type") in {"turn.completed", "turn.failed"}]
+    if not terminal or terminal[-1][1] != "turn.completed":
+        raise ValueError("Codex stream did not complete successfully")
+    completed_at = terminal[-1][0]
+    if any(event.get("type") == "error" for event in result.events[completed_at + 1:]):
+        raise ValueError("Codex stream errored after completion")
+    if not isinstance(result.text, str) or not result.text.strip():
+        raise ValueError("Codex stream completed without answer text")
+
+
 def image_block(path: Path) -> dict:
     data = path.read_bytes()
     # Dataset URLs and local paths need not have file extensions.
@@ -89,7 +101,68 @@ def make_fable_client(timeout: float):
 
 
 def make_predictor(args: argparse.Namespace, api_model: str | None):
-    if args.model == "gpt-5.6-sol":
+    if args.model == "gemini-3.1-pro-preview":
+        sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
+        from utils.gemini_backend import generate, GeminiLimitError
+
+        def predict(question: dict, image: Path | None) -> dict:
+            try:
+                return generate(
+                    question["question"], image, effort=args.reasoning_effort,
+                    max_output_tokens=args.max_output_tokens, timeout=args.timeout,
+                    system_prompt=TOOLS_SYSTEM_PROMPT if args.use_tools else SYSTEM_PROMPT,
+                    use_tools=args.use_tools, web_search=args.web_search == "live",
+                )
+            except GeminiLimitError as exc:
+                from .errors import GenerationLimitError
+                raise GenerationLimitError(str(exc)) from exc
+        return predict
+
+    if args.model in {"gpt-oss-120b", "kimi-k3", "glm-5.3", "deepseek-v4-pro"}:
+        repository = Path(__file__).resolve().parents[3]
+        sys.path[:0] = [str(repository / "utils"), str(repository)]
+        if args.use_tools:
+            from codex_cli import CodexLLM
+            from utils.openai_compatible import backend_metadata
+
+            local = backend_metadata()
+            client = CodexLLM(
+                model=local["served_model"], model_reasoning_effort=args.reasoning_effort,
+                timeout=args.timeout, system_prompt=TOOLS_SYSTEM_PROMPT, strict_no_tools=False,
+                web_search=args.web_search, sandbox_mode="workspace-write", env_inherit="none",
+                env_set={"PATH": TOOL_PATH}, config_overrides=[
+                    'model_provider="vllm"',
+                    'model_providers.vllm.name="gpt-oss"',
+                    f'model_providers.vllm.base_url="{local["base_url"]}"',
+                    'model_providers.vllm.wire_api="responses"',
+                    'model_providers.vllm.requires_openai_auth=false',
+                ],
+            )
+
+            def predict(question: dict, image: Path | None) -> dict:
+                if image:
+                    raise ValueError("gpt-oss-120b is text-only")
+                result = client.complete(question["question"])
+                validate_codex_result(result)
+                trace = [event for event in result.events if event.get("item", {}).get("type") in
+                         {"command_execution", "file_change", "mcp_tool_call", "web_search"}]
+                return {"response": result.text, "usage": result.usage, "attempts": result.attempts,
+                        "tool_events": [event["item"]["type"] for event in trace], "tool_trace": trace}
+            return predict
+        from utils.openai_compatible import generate
+
+        def predict(question: dict, image: Path | None) -> dict:
+            if image:
+                raise ValueError(f"{args.model} image input is not enabled in this evaluation")
+            return generate(question["question"], system_prompt=SYSTEM_PROMPT,
+                            reasoning_effort=args.reasoning_effort,
+                            max_output_tokens=args.max_output_tokens, timeout=args.timeout,
+                            temperature=1.0 if args.model != "gpt-oss-120b" else None,
+                            top_p=(1.0 if args.model == "deepseek-v4-pro" else 0.95)
+                            if args.model != "gpt-oss-120b" else None)
+        return predict
+
+    if args.model in {"gpt-5.6-sol", "gpt-5.6-luna", "gpt-6-astra"}:
         sys.path.insert(0, str(args.codex_cli_path.resolve()))
         from codex_cli import CodexLLM
 
@@ -103,6 +176,7 @@ def make_predictor(args: argparse.Namespace, api_model: str | None):
 
         def predict(question: dict, image: Path | None) -> dict:
             result = client.complete(question["question"], image_paths=[image] if image else None)
+            validate_codex_result(result)
             trace = [event for event in result.events if event.get("item", {}).get("type") in
                      {"command_execution", "file_change", "mcp_tool_call", "web_search"}]
             return {"response": result.text, "usage": result.usage, "attempts": result.attempts,

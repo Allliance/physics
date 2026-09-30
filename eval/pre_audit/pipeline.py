@@ -282,7 +282,7 @@ def _prepend_import(path: Path, package: str) -> ModuleType:
 def _make_adapted_judge(dataset: str, settings: JudgeSettings) -> Judge:
     args = _judge_args(settings)
     if dataset == "hle-physics":
-        module = importlib.import_module("benchmarks.hle.hle_eval.scoring")
+        from . import hle as module
         judge = module.make_judge(args)
 
         def evaluate(problem: Problem, response: str) -> dict[str, Any]:
@@ -299,7 +299,7 @@ def _make_adapted_judge(dataset: str, settings: JudgeSettings) -> Judge:
         return evaluate
     if dataset == "critpt":
         module = _prepend_import(ROOT / "analysis/CritPt/scripts", "critpt_eval.backends")
-        from benchmarks.hle.hle_eval.backends import resolve_fable_model
+        from utils.fable_backend import resolve_fable_model
 
         judge = module.make_judge(args, {"api_model": resolve_fable_model(settings.fable_model)})
 

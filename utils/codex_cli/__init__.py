@@ -4,6 +4,7 @@ from .llm import (
     CodexLLMResult,
     CodexToolRetryError,
     CodexToolUseError,
+    validate_codex_result,
 )
 
 __all__ = [
@@ -12,4 +13,5 @@ __all__ = [
     "CodexLLMResult",
     "CodexToolRetryError",
     "CodexToolUseError",
+    "validate_codex_result",
 ]

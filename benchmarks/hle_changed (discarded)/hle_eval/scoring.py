@@ -42,6 +42,14 @@ def fingerprint(value) -> str:
 
 
 def load_answers(dataset_name: str, question_ids: list[str]) -> dict[str, str]:
+    if Path(dataset_name).is_file():
+        from .dataset import load_local_rows
+        wanted = set(question_ids)
+        answers = {row["id"]: row["answer"] for row in load_local_rows(Path(dataset_name))
+                   if row["id"] in wanted}
+        if set(answers) != wanted:
+            raise ValueError("Missing reference answers for selected questions.")
+        return answers
     from datasets import load_dataset
 
     dataset = load_dataset(dataset_name, split="test").select_columns(["id", "answer"])
