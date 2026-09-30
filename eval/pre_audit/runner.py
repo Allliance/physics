@@ -11,7 +11,7 @@ from pathlib import Path
 import shutil
 import sys
 
-from benchmarks.hle.hle_eval.backends import resolve_fable_model
+from utils.fable_backend import resolve_fable_model
 
 from eval.backends import make_predictor
 from eval.storage import atomic_json, file_hash, fingerprint, require_checkpoint
@@ -140,6 +140,12 @@ def _run_attempt(args, dataset: str, attempt: int) -> int:
             )
         },
     }
+    if dataset == "hle-physics":
+        from .hle import provenance
+
+        manifest["evaluator_source"] = provenance()
+    manifest["shared_backend_sha256"] = file_hash(
+        Path(__file__).parents[2] / "utils/fable_backend.py")
     if args.dry_run:
         print(json.dumps(manifest, indent=2))
         return 0
@@ -150,40 +156,42 @@ def _run_attempt(args, dataset: str, attempt: int) -> int:
     except BlockingIOError:
         lock.close()
         raise ValueError(f"Another process is using {output}") from None
-    require_checkpoint(output / "manifest.json", manifest)
-    require_checkpoint(output / "dataset.json", [problem.as_dict() for problem in problems])
-    ids = [problem.id for problem in problems]
-    predictions = _checkpoint(output / "predictions.json", ids)
-    scores = _checkpoint(output / "scores.json", ids)
-    for qid, prediction in predictions.items():
-        if (not prediction.get("refused") and
-                (not isinstance(prediction.get("response"), str) or
-                 not prediction["response"].strip())):
-            raise ValueError(f"Invalid prediction checkpoint: {qid}")
-    for qid, score in scores.items():
-        if qid not in predictions or score.get("prediction_sha256") != fingerprint(predictions[qid]):
-            raise ValueError(f"Prediction changed after scoring: {qid}")
-    if args.stage in {"all", "generate"}:
-        predict = make_predictor(args, api_model)
-        _work(args, problems, predictions, "predictions.json",
-              lambda problem: predict(problem.predictor_input()))
-    if args.stage in {"all", "score"}:
-        def score(problem):
-            prediction = predictions[problem.id]
-            if prediction.get("refused"):
-                return {"dataset": dataset, "id": problem.id, "correct": False,
-                        "score": 0.0, "evaluator": "model refusal", "details": {},
-                        "prediction_sha256": fingerprint(prediction)}
-            result = pipeline.evaluate(problem.id, prediction["response"],
-                                       timeout=args.grade_timeout).as_dict()
-            return {**result, "prediction_sha256": fingerprint(prediction)}
+    try:
+        require_checkpoint(output / "manifest.json", manifest)
+        require_checkpoint(output / "dataset.json", [problem.as_dict() for problem in problems])
+        ids = [problem.id for problem in problems]
+        predictions = _checkpoint(output / "predictions.json", ids)
+        scores = _checkpoint(output / "scores.json", ids)
+        for qid, prediction in predictions.items():
+            if (not prediction.get("refused") and
+                    (not isinstance(prediction.get("response"), str) or
+                     not prediction["response"].strip())):
+                raise ValueError(f"Invalid prediction checkpoint: {qid}")
+        for qid, score in scores.items():
+            if qid not in predictions or score.get("prediction_sha256") != fingerprint(predictions[qid]):
+                raise ValueError(f"Prediction changed after scoring: {qid}")
+        if args.stage in {"all", "generate"}:
+            predict = make_predictor(args, api_model)
+            _work(args, problems, predictions, "predictions.json",
+                  lambda problem: predict(problem.predictor_input()))
+        if args.stage in {"all", "score"}:
+            def score(problem):
+                prediction = predictions[problem.id]
+                if prediction.get("refused"):
+                    return {"dataset": dataset, "id": problem.id, "correct": False,
+                            "score": 0.0, "evaluator": "model refusal", "details": {},
+                            "prediction_sha256": fingerprint(prediction)}
+                result = pipeline.evaluate(problem.id, prediction["response"],
+                                           timeout=args.grade_timeout).as_dict()
+                return {**result, "prediction_sha256": fingerprint(prediction)}
 
-        scoreable = [problem for problem in problems if problem.id in predictions]
-        _work(args, scoreable, scores, "scores.json", score)
-    summary = _summary(problems, predictions, scores, pipeline)
-    atomic_json(output / "summary.json", summary)
-    lock.close()
-    return 0 if summary["complete"] or args.stage in {"prepare", "generate"} else 2
+            scoreable = [problem for problem in problems if problem.id in predictions]
+            _work(args, scoreable, scores, "scores.json", score)
+        summary = _summary(problems, predictions, scores, pipeline)
+        atomic_json(output / "summary.json", summary)
+        return 0 if summary["complete"] or args.stage in {"prepare", "generate"} else 2
+    finally:
+        lock.close()
 
 
 def _aggregate(args, datasets: list[str]) -> dict:

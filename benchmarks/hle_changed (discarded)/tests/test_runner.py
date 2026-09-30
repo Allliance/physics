@@ -27,6 +27,15 @@ QUESTIONS = [
 
 
 class SelectionTests(unittest.TestCase):
+    def test_astra_max_tools_configuration(self):
+        args = runner.parse_args([
+            "--model", "gpt-6-astra", "--reasoning-effort", "max", "--use-tools"
+        ])
+        self.assertEqual(args.model, "gpt-6-astra")
+        self.assertEqual(args.judge_model, "claude-fable-5")
+        self.assertTrue(args.use_tools)
+        self.assertEqual(args.web_search, "live")
+
     def test_images_are_opt_in_for_both_models(self):
         for model in ["GPT-5.6-Sol", "Fable"]:
             self.assertFalse(runner.parse_args(["--model", model]).include_images)
@@ -61,6 +70,11 @@ class FableTests(unittest.TestCase):
     def response(self, **updates):
         return {"model": "claude-fable-5", "content": [{"type": "text", "text": "Answer: 4"}],
                 "stop_reason": "end_turn", "usage": {"output_tokens": 5}, **updates}
+
+    def test_recovered_codex_connection_error_is_completed(self):
+        result = SimpleNamespace(text="4", events=[
+            {"type": "error"}, {"type": "turn.completed"}])
+        backends.validate_codex_result(result)
 
     def test_thinking_is_not_used_as_answer(self):
         data = self.response(content=[{"type": "thinking", "thinking": "private"},

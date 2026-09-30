@@ -52,6 +52,12 @@ def _grade_child(connection, benchmark: str, row: dict[str, Any], response: str,
     if hasattr(os, "sched_getaffinity"):
         os.sched_setaffinity(0, sorted(os.sched_getaffinity(0))[:4])
     try:
+        if benchmark == "prism":
+            # The fork inherits the repository's utils package. PRISM has its
+            # own package with the same name; resolve it inside this child only.
+            for name in list(sys.modules):
+                if name == "utils" or name.startswith("utils."):
+                    sys.modules.pop(name, None)
         runner = _native(benchmark)
         if benchmark == "ugphysics":
             judge = runner.Judger(strict_extract=True)
@@ -120,7 +126,7 @@ def auxiliary_judge(row: dict[str, Any], response: str, model: str, timeout: flo
         return {"correct": False, "judge_called": False,
                 "reason": "student answer extraction error"}
     if model == "claude-fable-5":
-        from benchmarks.hle.hle_eval.backends import (
+        from utils.fable_backend import (
             make_fable_client, parse_fable_response, resolve_fable_model,
         )
 

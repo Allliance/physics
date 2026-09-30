@@ -1,0 +1,11 @@
+{
+  "type": "object",
+  "properties": {
+    "correct": {"type": "string", "enum": ["yes", "no"]},
+    "extracted_final_answer": {"type": "string"},
+    "reasoning": {"type": "string"},
+    "confidence": {"type": "integer", "minimum": 0, "maximum": 100}
+  },
+  "required": ["correct", "extracted_final_answer", "reasoning", "confidence"],
+  "additionalProperties": false
+}

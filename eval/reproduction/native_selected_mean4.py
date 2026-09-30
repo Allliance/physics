@@ -17,7 +17,7 @@ from eval.datasets import ROOT, load_dataset
 from eval.storage import atomic_json, file_hash, fingerprint, require_checkpoint
 from eval.reproduction.selected_mean4 import MODELS, DATASETS, ATTEMPTS
 from eval.backends import validate_codex
-from benchmarks.hle.hle_eval.backends import make_fable_client, parse_fable_response, resolve_fable_model
+from utils.fable_backend import make_fable_client, parse_fable_response, resolve_fable_model
 from utils.codex_cli import CodexLLM
 from utils.gemini_backend import generate as generate_gemini
 from model_evals.gemini.run_suite import load_credentials
@@ -173,7 +173,7 @@ def run_attempt(args):
                   'backend_sha256': {str(p.relative_to(ROOT)): file_hash(p) for p in (
                       ROOT / 'utils/codex_cli/llm.py', ROOT / 'utils/gemini_backend.py',
                       ROOT / 'utils/openai_compatible.py',
-                      ROOT / 'benchmarks/hle/hle_eval/backends.py', Path(native_base.__file__))},
+                      ROOT / 'utils/fable_backend.py', Path(native_base.__file__))},
                   'grade_timeout': args.grade_timeout, 'judge_timeout': args.timeout,
                   'judge_max_output_tokens': 32768 if judge == 'claude-fable-5' else None,
                   'native_error_policy': 'Record native scoring exceptions/timeouts as non-passes, as in the original runners.'}

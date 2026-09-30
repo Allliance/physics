@@ -1,4 +1,4 @@
-"""Evaluate GPT-5.6-Sol or Fable 5 on HLE with rounds, judging, and aggregation."""
+"""Evaluate supported Codex, Gemini, or Fable models on HLE."""
 
 from __future__ import annotations
 
@@ -24,12 +24,19 @@ ARTIFACT_ROOT = Path(__file__).resolve().parents[1] / "artifacts"
 
 
 def model_name(value: str) -> str:
-    aliases = {"gpt-5.6-sol": "gpt-5.6-sol", "fable": "claude-fable-5",
+    aliases = {"gemini": "gemini-3.1-pro-preview", "gemini-3.1-pro": "gemini-3.1-pro-preview",
+               "gemini-3.1-pro-preview": "gemini-3.1-pro-preview", "gpt-5.6-sol": "gpt-5.6-sol",
+               "luna": "gpt-5.6-luna", "gpt-5.6-luna": "gpt-5.6-luna", "fable": "claude-fable-5",
+               "astra": "gpt-6-astra", "gpt-6-astra": "gpt-6-astra",
+               "gpt-oss-120b": "gpt-oss-120b", "gpt-oss": "gpt-oss-120b",
+               "kimi-k3": "kimi-k3", "kimi": "kimi-k3",
+               "glm-5.3": "glm-5.3", "glm": "glm-5.3",
+               "deepseek-v4-pro": "deepseek-v4-pro", "deepseek": "deepseek-v4-pro",
                "fable-5": "claude-fable-5", "claude-fable-5": "claude-fable-5"}
     try:
         return aliases[value.casefold()]
     except KeyError:
-        raise argparse.ArgumentTypeError("Choose gpt-5.6-sol or fable (Fable 5).") from None
+        raise argparse.ArgumentTypeError("Choose gpt-5.6-sol, gpt-5.6-luna, gpt-6-astra, gpt-oss-120b, kimi-k3, glm-5.3, deepseek-v4-pro, gemini-3.1-pro-preview, or fable (Fable 5).") from None
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
@@ -71,7 +78,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--ids-file", type=Path, help="JSON list of question IDs to evaluate.")
     parser.add_argument("--list-categories", action="store_true")
     args = parser.parse_args(argv)
-    expected_judge = "claude-fable-5" if args.model == "gpt-5.6-sol" else "gpt-5.6-sol"
+    expected_judge = "gpt-5.6-sol" if args.model in {"claude-fable-5", "kimi-k3", "glm-5.3", "deepseek-v4-pro"} else "claude-fable-5"
     if args.judge_model is not None and args.judge_model != expected_judge:
         parser.error(f"Cross-model judging requires --judge-model {expected_judge} for {args.model}.")
     args.judge_model = expected_judge
@@ -88,16 +95,29 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         parser.error("--web-search requires --use-tools.")
     if args.model == "claude-fable-5" and args.web_search == "cached":
         parser.error("Fable supports live or disabled web search, not cached search.")
-    if args.model == "gpt-5.6-sol" and (
+    if args.model in {"kimi-k3", "glm-5.3", "deepseek-v4-pro"} and args.use_tools:
+        parser.error("Local open-model evaluation currently supports no-tools runs only.")
+    if args.model in {"gpt-5.6-sol", "gpt-5.6-luna"} and (
         args.max_output_tokens is not None or args.reasoning_effort == "max"
     ):
         parser.error("--max-output-tokens and effort 'max' are Fable evaluation-only options.")
+    if args.model == "gemini-3.1-pro-preview":
+        if args.reasoning_effort not in {"low", "medium", "high", "max"}:
+            parser.error("Gemini supports low, medium, high, or max (mapped to high).")
+        if args.web_search == "cached":
+            parser.error("Gemini supports live or disabled web search.")
     if args.max_output_tokens is None:
-        args.max_output_tokens = 32768
+        args.max_output_tokens = 65536 if args.model in {"gemini-3.1-pro-preview", "kimi-k3", "glm-5.3", "deepseek-v4-pro"} else 32768
     return args
 
 
 def load_questions(dataset_name: str, category: str) -> tuple[list[dict], list[str]]:
+    if Path(dataset_name).is_file():
+        from .dataset import load_local_rows
+        rows = load_local_rows(Path(dataset_name))
+        categories = sorted({row["category"] for row in rows})
+        return [{key: row.get(key, "") for key in ("id", "question", "image", "category")}
+                for row in rows if row["category"].casefold() == category.casefold()], categories
     from datasets import load_dataset
 
     dataset = load_dataset(dataset_name, split="test")
@@ -275,6 +295,10 @@ def main(argv: list[str] | None = None) -> int:
         raise ValueError(f"No questions selected. Available categories: {categories}")
     api_model = resolve_fable_model(args.fable_model) if args.model == "claude-fable-5" else None
     backend = "codex" if api_model is None else ("claude-cli" if args.use_tools else "anthropic")
+    if args.model == "gemini-3.1-pro-preview":
+        api_model, backend = args.model, "gemini"
+    if args.model in {"gpt-oss-120b", "kimi-k3", "glm-5.3", "deepseek-v4-pro"}:
+        backend = "codex-local-vllm" if args.use_tools else "openai-compatible"
     modality = "with_images" if args.include_images else "text_only"
     category = "".join(c if c.isalnum() or c in "-_" else "_" for c in args.category.lower())
     tools_suffix = "_tools" if args.use_tools else ""
@@ -285,14 +309,28 @@ def main(argv: list[str] | None = None) -> int:
         "reasoning_effort": args.reasoning_effort, "include_images": args.include_images,
         "use_tools": args.use_tools, "web_search": args.web_search,
         "max_tool_turns": args.max_tool_turns if api_model and args.use_tools else None,
-        "max_output_tokens": args.max_output_tokens if api_model else None,
+        "max_output_tokens": args.max_output_tokens if api_model or args.model in {"gpt-oss-120b", "kimi-k3", "glm-5.3", "deepseek-v4-pro"} else None,
         "base_url": os.environ.get("ANTHROPIC_BASE_URL", "https://api.anthropic.com") if api_model else None,
         "excluded_ids": sorted(set(excluded)), "question_ids": [q["id"] for q in questions],
         "questions_sha256": hashlib.sha256(json.dumps(questions, sort_keys=True).encode()).hexdigest(),
         "prompt_sha256": hashlib.sha256((TOOLS_SYSTEM_PROMPT if args.use_tools else SYSTEM_PROMPT).encode()).hexdigest(),
         "judge_model": args.judge_model, "judge_reasoning_effort": args.judge_reasoning_effort,
     }
+    if Path(args.dataset).is_file():
+        manifest["dataset_sha256"] = hashlib.sha256(Path(args.dataset).read_bytes()).hexdigest()
     manifest.update(judge_backend_config(args))
+    if backend == "gemini":
+        sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
+        from utils.gemini_backend import backend_metadata
+        manifest.update(backend_metadata(args.reasoning_effort))
+        manifest["max_tool_turns"] = None
+    if backend in {"openai-compatible", "codex-local-vllm"}:
+        sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
+        from utils.openai_compatible import backend_metadata
+        manifest.update(backend_metadata())
+    if backend == "codex-local-vllm":
+        manifest["wire_api"] = "responses"
+        manifest["tool_environment"] = {"PATH": TOOL_PATH, "harness": "codex exec"}
     if backend == "claude-cli":
         manifest["claude_launch_mode"] = "safe-mode"
     if args.use_tools and backend == "codex":

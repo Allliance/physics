@@ -38,6 +38,24 @@ class CodexToolRetryError(CodexToolUseError):
     """Raised after Codex keeps using tools across all retry attempts."""
 
 
+def validate_codex_result(result) -> None:
+    """Require a nonempty answer whose final terminal event is completion.
+
+    Transient connection errors may precede a successful completion. An error
+    after completion, a failed terminal event, or an unfinished stream is not a
+    completed model outcome.
+    """
+    terminal = [(index, event.get("type")) for index, event in enumerate(result.events)
+                if event.get("type") in {"turn.completed", "turn.failed"}]
+    if not terminal or terminal[-1][1] != "turn.completed":
+        raise ValueError("Codex stream did not complete successfully")
+    completed_at = terminal[-1][0]
+    if any(event.get("type") == "error" for event in result.events[completed_at + 1:]):
+        raise ValueError("Codex stream errored after completion")
+    if not isinstance(result.text, str) or not result.text.strip():
+        raise ValueError("Codex stream completed without answer text")
+
+
 @dataclass
 class CodexLLMResult:
     text: str

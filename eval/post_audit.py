@@ -12,7 +12,7 @@ import shutil
 import sys
 from datetime import datetime, timezone
 
-from benchmarks.hle.hle_eval.backends import resolve_fable_model
+from utils.fable_backend import resolve_fable_model
 from .backends import make_judge, make_predictor, validate_judgment
 from .datasets import AUDITED, load_dataset, predictor_input
 from .scoring import summarize
@@ -114,6 +114,7 @@ def run_one(args):
         'timeout': args.timeout, 'codex_bin': str(Path(args.codex_bin).resolve()),
         'implementation_sha256': {str(p.relative_to(package)): file_hash(p) for p in sorted(package.glob('*.py'))},
         'prompts_sha256': {p.name: file_hash(p) for p in sorted((package / 'prompts').iterdir()) if p.is_file()},
+        'shared_backend_sha256': file_hash(package.parent / 'utils/fable_backend.py'),
     }
     if args.judge_model == 'claude-fable-5':
         manifest['judge_backend'] = {
