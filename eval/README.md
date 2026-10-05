@@ -51,6 +51,42 @@ at [`benchmarks/hle_changed (discarded)/`](<../benchmarks/hle_changed (discarded
 Canonical runs do not import that harness. Shared Fable transport helpers live
 in [`utils/fable_backend.py`](../utils/fable_backend.py).
 
+## Upstream PHYBench, PRISM, and UGPhysics checkouts
+
+The active benchmark folders are pristine Git submodules, pinned by this
+repository and retaining their original remotes and history:
+
+| Folder | Upstream | Grading code used |
+|---|---|---|
+| `benchmarks/phybench` | [phybench-official/phybench](https://github.com/phybench-official/phybench) | `EED/EED.py` |
+| `benchmarks/prism` | [Open-PRISM/PRISM-Physics-Code](https://github.com/Open-PRISM/PRISM-Physics-Code) | `utils/grade_utils.py` |
+| `benchmarks/ugphysics` | [YangLabHKUST/UGPhysics](https://github.com/YangLabHKUST/UGPhysics) | `codes/judge.py`, `data/judge_prompt.txt` |
+
+Initialize them after cloning:
+
+```bash
+git submodule update --init benchmarks/phybench benchmarks/prism benchmarks/ugphysics
+git submodule status
+```
+
+[`pre_audit/native.py`](pre_audit/native.py) calls the released graders directly
+in isolated processes. PHYBench and UGPhysics had no changes to upstream source;
+their local additions were runners, downloaded inputs, and analysis artifacts.
+PRISM's useful local fixes now live in this adapter: grading pools respect CPU
+affinity/Slurm allocations, and boxed/fbox presentation wrappers are removed
+before grading. The upstream source stays unchanged. PHYBench retains its
+presentation-only LaTeX normalization; UGPhysics retains the released CLI's
+`1e-2` precision and exact auxiliary prompt through the configured judge backend.
+Pre-audit manifests record upstream commits, source hashes, and the adapter hash.
+Use fresh output directories after this migration; incompatible checkpoints are
+rejected, while saved results remain available.
+
+Each previous folder, including local inputs and artifacts, is preserved as
+`benchmarks/<name>_changed (discarded)`. Canonical runs use the frozen snapshots
+under `eval/data`, and do not import archived runners. Historical Fable/Gemini
+and native reproduction launchers also use the upstream graders. Gemini's
+historical full-data scopes read the preserved input datasets from the archives.
+
 ## Data
 
 All built-in runtime inputs are immutable snapshots under [`data/`](data/README.md).

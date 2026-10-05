@@ -22,6 +22,7 @@ from utils.codex_cli import CodexLLM
 from utils.gemini_backend import generate as generate_gemini
 from model_evals.gemini.run_suite import load_credentials
 from model_evals.fable import evaluate_initial as native_base
+from eval.pre_audit import native as released
 
 LOCAL_MODELS = {
     'kimi': ('kimi-k3', 'gpt-5.6-sol'),
@@ -80,12 +81,6 @@ def read(path):
     return json.loads(path.read_text())
 
 
-def initialize_native(benchmark):
-    if benchmark == 'prism':
-        sys.modules.pop('utils', None)
-    return native_base.native(benchmark)
-
-
 def native_score(benchmark, row, prediction, timeout):
     response = prediction.get('final_answer', prediction['response'])
     result = native_base.grade_one(benchmark, row, response, timeout)
@@ -93,9 +88,7 @@ def native_score(benchmark, row, prediction, timeout):
 
 
 def auxiliary_judge(row, prediction, judge_model, timeout):
-    runner = native_base.native('ugphysics')
-    prompt = runner.build_prompt(runner.JUDGE_PROMPT_PATH.read_text(), row,
-                                 {'completion': prediction['response']}, runner.Judger(strict_extract=True))
+    prompt = released.auxiliary_prompt(row, prediction['response'], timeout)
     result = {'id': row['_eval_id'], 'prediction_sha256': fingerprint(prediction),
               'judge_model': judge_model, 'judge_reasoning_effort': 'high', 'tools': False}
     if prompt is None:
@@ -105,7 +98,7 @@ def auxiliary_judge(row, prediction, judge_model, timeout):
         api_model = resolve_fable_model(None)
         with make_fable_client(timeout) as client:
             with client.messages.stream(model=api_model, max_tokens=32768,
-                    system=runner.SYSTEM_PROMPT, messages=[{'role': 'user', 'content': prompt}],
+                    system=released.SYSTEM_PROMPT, messages=[{'role': 'user', 'content': prompt}],
                     thinking={'type': 'adaptive'}, output_config={'effort': 'high'}) as stream:
                 raw = stream.get_final_message().model_dump(mode='json')
         parsed = parse_fable_response(raw, api_model)
@@ -115,12 +108,12 @@ def auxiliary_judge(row, prediction, judge_model, timeout):
                       usage=parsed['usage'], raw_response=raw)
     else:
         client = CodexLLM(model=judge_model, model_reasoning_effort='high', timeout=timeout,
-                          system_prompt=runner.SYSTEM_PROMPT, strict_no_tools=True,
+                          system_prompt=released.SYSTEM_PROMPT, strict_no_tools=True,
                           max_exec_retries=0, max_tool_retries=0)
         response = client.complete(prompt)
         validate_codex(response)
         result.update(report=response.text, actual_model=None, usage=response.usage)
-    return {**result, 'correct': runner.parse_verdict(result['report']), 'judge_called': True,
+    return {**result, 'correct': released.parse_verdict(result['report']), 'judge_called': True,
             'prompt_sha256': fingerprint(prompt)}
 
 
@@ -153,7 +146,6 @@ def run_attempt(args):
         pre_audit, selection = load_dataset(args.benchmark, split='pre-audit')
         ids = [r['id'] for r in pre_audit]
         predictor, judge = LOCAL_MODELS.get(args.model, MODELS.get(args.model))
-        initialize_native(args.benchmark)
         # Reuse the existing native-source identity checks; this only prepares data.
         with tempfile.TemporaryDirectory(prefix='native-selected-') as temporary:
             preparation = argparse.Namespace(benchmark=args.benchmark, output=Path(temporary), max_output_tokens=32768)
@@ -169,6 +161,7 @@ def run_attempt(args):
                   'judge_reasoning_effort': 'high' if args.benchmark == 'ugphysics' else None,
                   'selection': selection, 'native_sample_sha256': fingerprint(rows),
                   'grader_sources': native_config['grader_sources'],
+                  'evaluator_source': native_config['evaluator_source'],
                   'implementation_sha256': file_hash(Path(__file__)),
                   'backend_sha256': {str(p.relative_to(ROOT)): file_hash(p) for p in (
                       ROOT / 'utils/codex_cli/llm.py', ROOT / 'utils/gemini_backend.py',
@@ -182,7 +175,7 @@ def run_attempt(args):
         if args.benchmark == 'ugphysics' and judge == 'claude-fable-5':
             config['judge_api_model'] = resolve_fable_model(None)
         if args.benchmark == 'ugphysics':
-            config['auxiliary_prompt_sha256'] = file_hash(native_base.native('ugphysics').JUDGE_PROMPT_PATH)
+            config['auxiliary_prompt_sha256'] = file_hash(released.JUDGE_PROMPT_PATH)
         require_checkpoint(output / 'manifest.json', config)
         require_checkpoint(output / 'sample.json', rows)
         require_checkpoint(output / 'dataset.json', pre_audit)

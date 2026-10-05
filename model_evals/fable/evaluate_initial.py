@@ -5,13 +5,9 @@ from __future__ import annotations
 
 import argparse
 import hashlib
-import importlib.util
 import json
 import multiprocessing
-import os
-import signal
 import sys
-import time
 from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
@@ -22,7 +18,8 @@ from utils.fable_backend import (
     make_fable_client, parse_fable_response, resolve_fable_model,
 )
 
-NATIVE = None
+from eval.pre_audit import native as released
+from eval.pre_audit.pipeline import load_benchmark
 
 
 def now():
@@ -50,26 +47,6 @@ def append(path, value):
         handle.write(json.dumps(value, ensure_ascii=False) + '\n')
 
 
-def load_module(name, path):
-    spec = importlib.util.spec_from_file_location(name, path)
-    module = importlib.util.module_from_spec(spec)
-    sys.modules[name] = module
-    spec.loader.exec_module(module)
-    return module
-
-
-def native(benchmark):
-    global NATIVE
-    if NATIVE is None:
-        path = ROOT / {
-            'ugphysics': 'benchmarks/ugphysics/auxiliary_judge_codex.py',
-            'prism': 'benchmarks/prism/scripts/run_codex_rounds.py',
-            'phybench': 'benchmarks/phybench/evaluate_codex.py',
-        }[benchmark]
-        NATIVE = load_module('fable_native_runner', path)
-    return NATIVE
-
-
 def validate_selection(selected, manifest, benchmark):
     ids = [row['problem_id'] for row in selected]
     expected = manifest['benchmarks'][benchmark]['selected_problem_ids']
@@ -91,42 +68,20 @@ def prepare(args):
     selected = read_jsonl(source)
     selection_manifest = json.loads((source.parent.parent / 'selection-manifest.json').read_text())
     ids = validate_selection(selected, selection_manifest, args.benchmark)
-    runner = native(args.benchmark)
-    if args.benchmark == 'ugphysics':
-        from utils import make_prompt
-        original = read_jsonl(ROOT / 'benchmarks/ugphysics/artifacts/gpt-5.6-sol-high-random-1000/sample.jsonl')
-        by_id = {row['_eval_id']: row for row in original}
-        system = ('Solve the supplied undergraduate physics problem yourself. Give a rigorous, '
-                  'self-contained solution and obey its requested answer format. Do not use tools, '
-                  'files, web search, or external context.')
-        prompt_builder = lambda row: f"{make_prompt(row)}\n\n{row['problem']}"
-        context_builder = lambda row: row['problem']
-        reference_builder = lambda row: f"{row['solution']}\n\nReference answer:\n{row['answers']}"
-    elif args.benchmark == 'phybench':
-        original = runner.load_rows()
-        by_id = {str(row['id']): {**row, '_eval_id': str(row['id'])} for row in original}
-        system = runner.SYSTEM_PROMPT
-        prompt_builder = lambda row: row['content']
-        context_builder = lambda row: row['content']
-        reference_builder = lambda row: row['solution']
-    else:
-        from utils.prompt_utils import get_problem_context, get_reference_solution
-        original = runner.load_text_problems(ROOT / 'benchmarks/prism/datasets')
-        by_id = {row['_eval_id']: row for row in original}
-        system = ('Answer using only the supplied prompt. Do not use tools, shell commands, '
-                  'files, web search, or external context.')
-        prompt_builder = runner.get_eval_prompt
-        context_builder = get_problem_context
-        reference_builder = get_reference_solution
+    pipeline = load_benchmark(args.benchmark)
+    by_id = {problem.id: problem for problem in pipeline.problems}
     rows = []
     for audit in selected:
-        row = by_id[audit['problem_id']]
-        if context_builder(row).strip() != audit['problem_statement'].strip():
-            raise ValueError(f"Original question differs from selected export: {audit['problem_id']}")
-        if reference_builder(row).strip() != audit['reference_solution'].strip():
-            raise ValueError(f"Original reference differs from selected export: {audit['problem_id']}")
-        rows.append({'id': row['_eval_id'], 'native': row,
-                     'system_prompt': system, 'prompt': prompt_builder(row)})
+        problem = by_id[audit['problem_id']]
+        if problem.question.strip() != audit['problem_statement'].strip():
+            raise ValueError(f"Original question differs from selected export: {problem.id}")
+        if problem.reference_answer.strip() != audit['reference_solution'].strip():
+            raise ValueError(f"Original reference differs from selected export: {problem.id}")
+        rows.append({'id': problem.id, 'native': problem.native,
+                     'system_prompt': problem.system_prompt or
+                     'Answer using only the supplied prompt. Do not use tools, shell commands, '
+                     'files, web search, or external context.', 'prompt': problem.prompt})
+    provenance = released.provenance(args.benchmark)
     config = {
         'benchmark': args.benchmark, 'model': 'claude-fable-5',
         'api_model': resolve_fable_model(None), 'reasoning_effort': 'high',
@@ -143,18 +98,14 @@ def prepare(args):
             'prism': 'native PRISM final-answer DAG matches',
             'phybench': 'native EED score == 100, with original presentation-only normalization',
         }[args.benchmark],
-        'grader_sources': {
-            str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest()
-            for p in sorted((ROOT / 'benchmarks' / args.benchmark /
-                             {'ugphysics': 'codes', 'prism': 'utils', 'phybench': 'EED'}[args.benchmark]).glob('*.py'))
-        },
+        'grader_sources': {**provenance['sources_sha256'],
+                           str(Path(released.__file__).relative_to(ROOT)): provenance['adapter_sha256']},
+        'evaluator_source': provenance,
     }
     if args.benchmark == 'ugphysics':
-        config['judge_prompt_sha256'] = hashlib.sha256(runner.JUDGE_PROMPT_PATH.read_bytes()).hexdigest()
+        config['judge_prompt_sha256'] = hashlib.sha256(released.JUDGE_PROMPT_PATH.read_bytes()).hexdigest()
     elif args.benchmark == 'phybench':
-        config['answer_schema'] = runner.SCHEMA
-        runner_path = ROOT / 'benchmarks/phybench/evaluate_codex.py'
-        config['grader_sources'][str(runner_path.relative_to(ROOT))] = hashlib.sha256(runner_path.read_bytes()).hexdigest()
+        config['answer_schema'] = released.ANSWER_SCHEMA
     args.output.mkdir(parents=True, exist_ok=True)
     check_checkpoint(args.output / 'manifest.json', config)
     check_checkpoint(args.output / 'sample.json', rows)
@@ -204,50 +155,14 @@ def generate_one(row, config, timeout):
         client.close()
 
 
-def grade_child(connection, benchmark, row, response, timeout):
-    os.setsid()
-    if hasattr(os, 'sched_getaffinity'):
-        os.sched_setaffinity(0, sorted(os.sched_getaffinity(0))[:4])
-    try:
-        runner = native(benchmark)
-        if benchmark == 'ugphysics':
-            judge = runner.Judger(strict_extract=True)
-            result = {'correct': bool(judge.auto_judge(response, row['answers'], precision=1e-2)),
-                      'extracted_answer': judge.extract_ans(response), 'reference_answer': row['answers']}
-        elif benchmark == 'phybench':
-            result = runner.score(row, {'final_answer': response})
-            result['correct'] = result.pop('success')
-        else:
-            result = runner.grade_one(row, {'response': response}, timeout)
-            result['correct'] = result.pop('final_answer_correct')
-        connection.send({**result, 'id': row['_eval_id'], 'grading_error': None})
-    except Exception as exc:
-        connection.send({'id': row['_eval_id'], 'correct': False,
-                         'grading_error': f'{type(exc).__name__}: {exc}'})
-    finally:
-        connection.close()
-
-
 def grade_one(benchmark, row, response, timeout):
-    started = time.monotonic()
-    ctx = multiprocessing.get_context('fork')
-    receiver, sender = ctx.Pipe(duplex=False)
-    child = ctx.Process(target=grade_child, args=(sender, benchmark, row, response, timeout))
-    child.start()
-    sender.close()
-    try:
-        if receiver.poll(timeout + 5):
-            result = receiver.recv()
-        else:
-            result = {'id': row['_eval_id'], 'correct': False,
-                      'grading_error': f'Native grading timeout after {timeout:g}s'}
-    finally:
-        child.join(1)
-        if child.is_alive():
-            os.killpg(child.pid, signal.SIGKILL)
-            child.join()
-        receiver.close()
-    return {**result, 'grading_seconds': time.monotonic() - started, 'created_at': now()}
+    return {**released.grade_one(benchmark, row, response, timeout), 'created_at': now()}
+
+
+def auxiliary_one(row, response, timeout):
+    return {'id': row['_eval_id'],
+            **released.auxiliary_judge(row, response, 'gpt-5.6-sol', timeout, 8192),
+            'created_at': now()}
 
 
 def run_stage(args, rows, config, stage):
@@ -273,12 +188,9 @@ def run_stage(args, rows, config, stage):
             return
         pending = [row for row in rows if row['id'] in scores and not scores[row['id']]['correct']
                    and row['id'] not in auxiliary]
-        runner = native(args.benchmark)
-        template = runner.JUDGE_PROMPT_PATH.read_text()
         executor = ThreadPoolExecutor(max_workers=args.workers)
-        function = lambda row: (runner.judge_one, (row['native'],
-                                {'completion': generations[row['id']]['response']}, template,
-                                'gpt-5.6-sol', 'high', args.timeout))
+        function = lambda row: (auxiliary_one, (row['native'],
+                                generations[row['id']]['response'], args.timeout))
         output = 'auxiliary_judgments.jsonl'
     if args.limit:
         pending = pending[:args.limit]
@@ -345,7 +257,7 @@ def main():
     parser.add_argument('--limit', type=int, help='Limit pending work for a smoke test; retain the full sample manifest.')
     args = parser.parse_args()
     if args.output is None:
-        args.output = (ROOT / 'benchmarks/phybench/artifacts/fable-5-high-initial-100'
+        args.output = (ROOT / 'model_evals/fable/artifacts/phybench-initial-100'
                        if args.benchmark == 'phybench' else
                        Path(__file__).resolve().parent / 'runs' / f'{args.benchmark}-initial-high-100')
     rows, config = prepare(args)

@@ -40,3 +40,11 @@ the reference is excluded from `predictor_input()`. `Problem.native` is retained
 privately for native rule graders. Native scorer failures remain retryable errors.
 PHYBench responses use `{"final_answer":"..."}`; the other evaluators consume
 raw model text.
+
+The PHYBench, PRISM, and UGPhysics graders are loaded directly from unmodified
+upstream Git submodules. Initialize them with
+`git submodule update --init benchmarks/phybench benchmarks/prism benchmarks/ugphysics`.
+The external adapter retains formatting and worker-limit compatibility without
+editing upstream files. Run manifests record the upstream commit and source
+hashes, so use a fresh output directory after migrating from the archived local
+runners. See the parent README for upstream links and archive locations.

@@ -8,7 +8,7 @@ container=qwen35-9b-vllm-${SLURM_JOB_ID}
 model=Qwen/Qwen3.5-9B
 port=8000
 run_root="$repo_root/model_evals/qwen/runs/qwen35-9b-phybench-${SLURM_JOB_ID}"
-artifact_root="$repo_root/benchmarks/phybench/artifacts/qwen3.5-9b-nonthinking-single"
+artifact_root="$repo_root/benchmarks/phybench_changed (discarded)/artifacts/qwen3.5-9b-nonthinking-single"
 
 mkdir -p "$run_root"
 
@@ -103,7 +103,7 @@ EOF
     --with numpy \
     --with latex2sympy2_extended \
     --with timeout_decorator \
-    python "$repo_root/benchmarks/phybench/evaluate_vllm.py" \
+    python "$repo_root/benchmarks/phybench_changed (discarded)/evaluate_vllm.py" \
     --base-url "http://127.0.0.1:${port}/v1" \
     --model "$model" \
     --samples 1 \

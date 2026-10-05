@@ -4,7 +4,7 @@
 set -euo pipefail
 
 repo_root=/shared/data/home/aa3242/physics
-artifact="$repo_root/benchmarks/ugphysics/artifacts/gpt-5.6-sol-high-full-5520"
+artifact="$repo_root/benchmarks/ugphysics_changed (discarded)/artifacts/gpt-5.6-sol-high-full-5520"
 sample="$artifact/sample.jsonl"
 generations="$artifact/generations.jsonl"
 judgments="$artifact/qwen35_judgments.jsonl"

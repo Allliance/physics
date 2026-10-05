@@ -144,6 +144,10 @@ def _run_attempt(args, dataset: str, attempt: int) -> int:
         from .hle import provenance
 
         manifest["evaluator_source"] = provenance()
+    elif dataset in {"phybench", "prism", "ugphysics"}:
+        from .native import provenance
+
+        manifest["evaluator_source"] = provenance(dataset)
     manifest["shared_backend_sha256"] = file_hash(
         Path(__file__).parents[2] / "utils/fable_backend.py")
     if args.dry_run:
