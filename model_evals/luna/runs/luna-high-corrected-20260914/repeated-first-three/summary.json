@@ -1,0 +1,63 @@
+{
+  "complete": true,
+  "model": "gpt-5.6-luna",
+  "reasoning_effort": "high",
+  "judge_model": "claude-fable-5",
+  "judge_reasoning_effort": "high",
+  "results": {
+    "phybench": {
+      "complete": true,
+      "questions": 88,
+      "attempts": 4,
+      "correct_attempts": 268,
+      "attempt_denominator": 352,
+      "mean_at_4": 0.7613636363636364,
+      "mean_at_4_percent": 76.13636363636364,
+      "passed_questions": 76,
+      "pass_at_4": 0.8636363636363636,
+      "pass_at_4_percent": 86.36363636363636,
+      "attempt_summaries": [
+        "/shared/data/home/aa3242/physics/model_evals/luna/runs/luna-high-corrected-20260914/phybench/frozen-gemini-corrected/summary.json",
+        "/shared/data/home/aa3242/physics/model_evals/luna/runs/luna-high-corrected-20260914/repeated-first-three/phybench/attempt-2/summary.json",
+        "/shared/data/home/aa3242/physics/model_evals/luna/runs/luna-high-corrected-20260914/repeated-first-three/phybench/attempt-3/summary.json",
+        "/shared/data/home/aa3242/physics/model_evals/luna/runs/luna-high-corrected-20260914/repeated-first-three/phybench/attempt-4/summary.json"
+      ]
+    },
+    "prism": {
+      "complete": true,
+      "questions": 74,
+      "attempts": 4,
+      "correct_attempts": 263,
+      "attempt_denominator": 296,
+      "mean_at_4": 0.8885135135135135,
+      "mean_at_4_percent": 88.85135135135135,
+      "passed_questions": 72,
+      "pass_at_4": 0.972972972972973,
+      "pass_at_4_percent": 97.29729729729729,
+      "attempt_summaries": [
+        "/shared/data/home/aa3242/physics/model_evals/luna/runs/luna-high-corrected-20260914/prism/frozen-gemini-corrected/summary.json",
+        "/shared/data/home/aa3242/physics/model_evals/luna/runs/luna-high-corrected-20260914/repeated-first-three/prism/attempt-2/summary.json",
+        "/shared/data/home/aa3242/physics/model_evals/luna/runs/luna-high-corrected-20260914/repeated-first-three/prism/attempt-3/summary.json",
+        "/shared/data/home/aa3242/physics/model_evals/luna/runs/luna-high-corrected-20260914/repeated-first-three/prism/attempt-4/summary.json"
+      ]
+    },
+    "ugphysics": {
+      "complete": true,
+      "questions": 78,
+      "attempts": 4,
+      "correct_attempts": 268,
+      "attempt_denominator": 312,
+      "mean_at_4": 0.8589743589743589,
+      "mean_at_4_percent": 85.8974358974359,
+      "passed_questions": 73,
+      "pass_at_4": 0.9358974358974359,
+      "pass_at_4_percent": 93.58974358974359,
+      "attempt_summaries": [
+        "/shared/data/home/aa3242/physics/model_evals/luna/runs/luna-high-corrected-20260914/ugphysics/frozen-gemini-corrected/summary.json",
+        "/shared/data/home/aa3242/physics/model_evals/luna/runs/luna-high-corrected-20260914/repeated-first-three/ugphysics/attempt-2/summary.json",
+        "/shared/data/home/aa3242/physics/model_evals/luna/runs/luna-high-corrected-20260914/repeated-first-three/ugphysics/attempt-3/summary.json",
+        "/shared/data/home/aa3242/physics/model_evals/luna/runs/luna-high-corrected-20260914/repeated-first-three/ugphysics/attempt-4/summary.json"
+      ]
+    }
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "results": {
+    "phybench": {
+      "questions": 88,
+      "attempts": 88,
+      "repeated": false,
+      "luna": {
+        "mean": 0.75,
+        "judged": 88,
+        "correct": 66,
+        "full_denominator_bounds": [
+          0.75,
+          0.75
+        ]
+      },
+      "sol": {
+        "mean": 0.8863636363636364,
+        "judged": 88,
+        "correct": 78,
+        "full_denominator_bounds": [
+          0.8863636363636364,
+          0.8863636363636364
+        ]
+      },
+      "sol_audit_credit": {
+        "mean": 0.8977272727272727,
+        "judged": 88,
+        "correct": 79,
+        "full_denominator_bounds": [
+          0.8977272727272727,
+          0.8977272727272727
+        ]
+      }
+    },
+    "prism": {
+      "questions": 74,
+      "attempts": 74,
+      "repeated": false,
+      "luna": {
+        "mean": 0.9459459459459459,
+        "judged": 74,
+        "correct": 70,
+        "full_denominator_bounds": [
+          0.9459459459459459,
+          0.9459459459459459
+        ]
+      },
+      "sol": {
+        "mean": 0.9726027397260274,
+        "judged": 73,
+        "correct": 71,
+        "full_denominator_bounds": [
+          0.9594594594594594,
+          0.972972972972973
+        ]
+      },
+      "sol_audit_credit": {
+        "mean": 0.9864864864864865,
+        "judged": 74,
+        "correct": 73,
+        "full_denominator_bounds": [
+          0.9864864864864865,
+          0.9864864864864865
+        ]
+      }
+    },
+    "ugphysics": {
+      "questions": 78,
+      "attempts": 78,
+      "repeated": false,
+      "luna": {
+        "mean": 0.8333333333333334,
+        "judged": 78,
+        "correct": 65,
+        "full_denominator_bounds": [
+          0.8333333333333334,
+          0.8333333333333334
+        ]
+      },
+      "sol": {
+        "mean": 0.9743589743589743,
+        "judged": 78,
+        "correct": 76,
+        "full_denominator_bounds": [
+          0.9743589743589743,
+          0.9743589743589743
+        ]
+      },
+      "sol_audit_credit": {
+        "mean": 0.9743589743589743,
+        "judged": 78,
+        "correct": 76,
+        "full_denominator_bounds": [
+          0.9743589743589743,
+          0.9743589743589743
+        ]
+      }
+    },
+    "hle": {
+      "questions": 115,
+      "attempts": 460,
+      "repeated": true,
+      "luna": {
+        "mean": 0.4652173913043478,
+        "judged": 460,
+        "correct": 214,
+        "full_denominator_bounds": [
+          0.4652173913043478,
+          0.4652173913043478
+        ],
+        "pass": 0.6608695652173913
+      },
+      "sol": {
+        "mean": 0.6695652173913044,
+        "judged": 460,
+        "correct": 308,
+        "full_denominator_bounds": [
+          0.6695652173913044,
+          0.6695652173913044
+        ],
+        "pass": 0.782608695652174
+      }
+    },
+    "cmt": {
+      "questions": 49,
+      "attempts": 196,
+      "repeated": true,
+      "luna": {
+        "mean": 0.7448979591836735,
+        "judged": 196,
+        "correct": 146,
+        "full_denominator_bounds": [
+          0.7448979591836735,
+          0.7448979591836735
+        ],
+        "pass": 0.8979591836734694
+      },
+      "sol": {
+        "mean": 0.8316326530612245,
+        "judged": 196,
+        "correct": 163,
+        "full_denominator_bounds": [
+          0.8316326530612245,
+          0.8316326530612245
+        ],
+        "pass": 0.8979591836734694
+      }
+    }
+  },
+  "rows": 896
+}

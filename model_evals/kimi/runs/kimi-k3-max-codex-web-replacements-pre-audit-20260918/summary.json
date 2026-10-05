@@ -1,0 +1,162 @@
+{
+  "complete": true,
+  "model": "moonshotai/kimi-k3",
+  "reasoning_effort": "max",
+  "replacement_harness": "Codex CLI with local tools and OpenRouter agentic-web preset",
+  "judge_model": "gpt-5.6-sol",
+  "total_retries": 761,
+  "total_retry_successes": 162,
+  "retry_success_rate": 0.21287779237844942,
+  "datasets": {
+    "hle-physics": {
+      "complete": true,
+      "questions": 202,
+      "attempts": 4,
+      "retries": 510,
+      "retry_successes": 82,
+      "retry_success_rate": 0.1607843137254902,
+      "original_mean_at_4": 0.3688118811881188,
+      "final_mean_at_4": 0.47029702970297027,
+      "original_pass_at_4": 0.47029702970297027,
+      "final_pass_at_4": 0.5544554455445545,
+      "per_attempt": [
+        {
+          "attempt": 1,
+          "questions": 202,
+          "original_correct": 76,
+          "retries": 126,
+          "retry_successes": 20,
+          "final_correct": 96,
+          "final_accuracy": 0.4752475247524752
+        },
+        {
+          "attempt": 2,
+          "questions": 202,
+          "original_correct": 74,
+          "retries": 128,
+          "retry_successes": 21,
+          "final_correct": 95,
+          "final_accuracy": 0.47029702970297027
+        },
+        {
+          "attempt": 3,
+          "questions": 202,
+          "original_correct": 77,
+          "retries": 125,
+          "retry_successes": 19,
+          "final_correct": 96,
+          "final_accuracy": 0.4752475247524752
+        },
+        {
+          "attempt": 4,
+          "questions": 202,
+          "original_correct": 71,
+          "retries": 131,
+          "retry_successes": 22,
+          "final_correct": 93,
+          "final_accuracy": 0.4603960396039604
+        }
+      ]
+    },
+    "cmt": {
+      "complete": true,
+      "questions": 50,
+      "attempts": 4,
+      "retries": 133,
+      "retry_successes": 56,
+      "retry_success_rate": 0.42105263157894735,
+      "original_mean_at_4": 0.335,
+      "final_mean_at_4": 0.615,
+      "original_pass_at_4": 0.48,
+      "final_pass_at_4": 0.8,
+      "per_attempt": [
+        {
+          "attempt": 1,
+          "questions": 50,
+          "original_correct": 16,
+          "retries": 34,
+          "retry_successes": 13,
+          "final_correct": 29,
+          "final_accuracy": 0.58
+        },
+        {
+          "attempt": 2,
+          "questions": 50,
+          "original_correct": 17,
+          "retries": 33,
+          "retry_successes": 17,
+          "final_correct": 34,
+          "final_accuracy": 0.68
+        },
+        {
+          "attempt": 3,
+          "questions": 50,
+          "original_correct": 16,
+          "retries": 34,
+          "retry_successes": 17,
+          "final_correct": 33,
+          "final_accuracy": 0.66
+        },
+        {
+          "attempt": 4,
+          "questions": 50,
+          "original_correct": 18,
+          "retries": 32,
+          "retry_successes": 9,
+          "final_correct": 27,
+          "final_accuracy": 0.54
+        }
+      ]
+    },
+    "critpt": {
+      "complete": true,
+      "questions": 55,
+      "attempts": 4,
+      "retries": 118,
+      "retry_successes": 24,
+      "retry_success_rate": 0.2033898305084746,
+      "original_mean_at_4": 0.4636363636363636,
+      "final_mean_at_4": 0.5727272727272728,
+      "original_pass_at_4": 0.6181818181818182,
+      "final_pass_at_4": 0.7272727272727273,
+      "per_attempt": [
+        {
+          "attempt": 1,
+          "questions": 55,
+          "original_correct": 25,
+          "retries": 30,
+          "retry_successes": 4,
+          "final_correct": 29,
+          "final_accuracy": 0.5272727272727272
+        },
+        {
+          "attempt": 2,
+          "questions": 55,
+          "original_correct": 24,
+          "retries": 31,
+          "retry_successes": 9,
+          "final_correct": 33,
+          "final_accuracy": 0.6
+        },
+        {
+          "attempt": 3,
+          "questions": 55,
+          "original_correct": 25,
+          "retries": 30,
+          "retry_successes": 7,
+          "final_correct": 32,
+          "final_accuracy": 0.5818181818181818
+        },
+        {
+          "attempt": 4,
+          "questions": 55,
+          "original_correct": 28,
+          "retries": 27,
+          "retry_successes": 4,
+          "final_correct": 32,
+          "final_accuracy": 0.5818181818181818
+        }
+      ]
+    }
+  }
+}

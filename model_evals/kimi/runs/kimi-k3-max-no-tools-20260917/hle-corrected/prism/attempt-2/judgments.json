@@ -1,0 +1,1556 @@
+{
+  "01_cleaned_dag:1098": {
+    "judgment": {
+      "extracted_final_answer": "y=\\frac{\\omega}{V}(R-x)^2,\\qquad 0\\le t\\le \\Psi_t",
+      "reasoning": "The response derives the same approximate trajectory as the reference: x≈R−Vt and y≈ωVt², which gives y=(ω/V)(R−x)². It also states the required short-time condition by neglecting terms of order (ωt)² and gives the specified time interval. The sign and coefficient match the reference.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12753,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 132,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"y=\\\\frac{\\\\omega}{V}(R-x)^2,\\\\qquad 0\\\\le t\\\\le \\\\Psi_t\",\"reasoning\":\"The response derives the same approximate trajectory as the reference: x≈R−Vt and y≈ωVt², which gives y=(ω/V)(R−x)². It also states the required short-time condition by neglecting terms of order (ωt)² and gives the specified time interval. The sign and coefficient match the reference.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "acf3a05e22da69fc8c4e1f77cdbdd2fdd05de14448fb17ab881f6f9f3e28391e"
+  },
+  "01_cleaned_dag:1267": {
+    "judgment": {
+      "extracted_final_answer": "\\dfrac{p(0)}{p(R_0)}=\\exp\\!\\left(-\\dfrac{M g R_0}{2 R T}\\right)",
+      "reasoning": "The response exactly matches the reference answer, including the negative sign and the factor of 2 in the exponent.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12129,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 92,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\dfrac{p(0)}{p(R_0)}=\\\\exp\\\\!\\\\left(-\\\\dfrac{M g R_0}{2 R T}\\\\right)\",\"reasoning\":\"The response exactly matches the reference answer, including the negative sign and the factor of 2 in the exponent.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "81113e878e14e479750ff6c5efecbad4ac41530c1c05850eb6ffb7dbd4115f71"
+  },
+  "01_cleaned_dag:1049": {
+    "judgment": {
+      "extracted_final_answer": "\\boxed{\\rho_e=\\rho_m}",
+      "reasoning": "The response exactly matches the reference conclusion that Earth and Moon have equal mean densities.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11956,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 59,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\boxed{\\\\rho_e=\\\\rho_m}\",\"reasoning\":\"The response exactly matches the reference conclusion that Earth and Moon have equal mean densities.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "92f1cbbd69fc262381d248cecfa7880bc317d9191b4a65b46256b083cd626f88"
+  },
+  "01_cleaned_dag:1070": {
+    "judgment": {
+      "extracted_final_answer": "(a) Choose \\(\\dot r(0)=0\\), \\(J^2=-mr_0^3f(r_0)\\), and \\(E=V^*(r_0)\\), so \\(V^{*\\prime}(r_0)=0\\) and \\(r(t)=r_0\\). (b) Stability requires \\(f'(r_0)+3f(r_0)/r_0<0\\), equivalently \\(r_0f'(r_0)+3f(r_0)<0\\). (c) For \\(f(r)=-K/r^n\\), stability requires \\(n<3\\); \\(n=3\\) is marginal.",
+      "reasoning": "The response correctly gives the circular-orbit equilibrium and initial-energy conditions. Its stability condition is equivalent to the reference condition after using the circular-orbit relation \\(J^2=-mr_0^3f(r_0)\\): \\(3J^2/(mr_0^4)-f'(r_0)>0\\) becomes \\(f'(r_0)+3f(r_0)/r_0<0\\). Substitution of the inverse-power force then correctly yields \\(n<3\\), with \\(n=3\\) marginal rather than stable.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12846,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 426,
+      "reasoning_output_tokens": 114
+    },
+    "raw_response": "{\"extracted_final_answer\":\"(a) Choose \\\\(\\\\dot r(0)=0\\\\), \\\\(J^2=-mr_0^3f(r_0)\\\\), and \\\\(E=V^*(r_0)\\\\), so \\\\(V^{*\\\\prime}(r_0)=0\\\\) and \\\\(r(t)=r_0\\\\). (b) Stability requires \\\\(f'(r_0)+3f(r_0)/r_0<0\\\\), equivalently \\\\(r_0f'(r_0)+3f(r_0)<0\\\\). (c) For \\\\(f(r)=-K/r^n\\\\), stability requires \\\\(n<3\\\\); \\\\(n=3\\\\) is marginal.\",\"reasoning\":\"The response correctly gives the circular-orbit equilibrium and initial-energy conditions. Its stability condition is equivalent to the reference condition after using the circular-orbit relation \\\\(J^2=-mr_0^3f(r_0)\\\\): \\\\(3J^2/(mr_0^4)-f'(r_0)>0\\\\) becomes \\\\(f'(r_0)+3f(r_0)/r_0<0\\\\). Substitution of the inverse-power force then correctly yields \\\\(n<3\\\\), with \\\\(n=3\\\\) marginal rather than stable.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "34653317b830ddc86a848890d556a553d8590d6b6ec22cecfb3ce3831c265bc6"
+  },
+  "01_cleaned_dag:1146": {
+    "judgment": {
+      "extracted_final_answer": "I_{xx}=I_{yy}=I_{zz}=I_0,\\quad I_{xy}=I_{yz}=I_{zx}=0,\\quad I=I_0(\\lambda^2+\\mu^2+\\nu^2)=I_0,\\quad \\mathbf r=a(\\mathbf i+\\mathbf j+\\mathbf k),\\quad I_{\\mathrm{corner}}=I_0. If the cube has mass M, then I_0=I_{\\mathrm{corner}}=\\frac{2}{3}Ma^2.",
+      "reasoning": "The response matches the reference: cube symmetry makes the three coordinate-axis moments equal to I_0 and all products of inertia zero. Since direction cosines satisfy \\lambda^2+\\mu^2+\\nu^2=1, the moment about any central axis, including the body diagonal through a corner, is I_0. The stated corner vector is also correct. The additional mass formula I_0=\\frac{2}{3}Ma^2 is correct for a cube of side length 2a.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12294,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 331,
+      "reasoning_output_tokens": 69
+    },
+    "raw_response": "{\"extracted_final_answer\":\"I_{xx}=I_{yy}=I_{zz}=I_0,\\\\quad I_{xy}=I_{yz}=I_{zx}=0,\\\\quad I=I_0(\\\\lambda^2+\\\\mu^2+\\\\nu^2)=I_0,\\\\quad \\\\mathbf r=a(\\\\mathbf i+\\\\mathbf j+\\\\mathbf k),\\\\quad I_{\\\\mathrm{corner}}=I_0. If the cube has mass M, then I_0=I_{\\\\mathrm{corner}}=\\\\frac{2}{3}Ma^2.\",\"reasoning\":\"The response matches the reference: cube symmetry makes the three coordinate-axis moments equal to I_0 and all products of inertia zero. Since direction cosines satisfy \\\\lambda^2+\\\\mu^2+\\\\nu^2=1, the moment about any central axis, including the body diagonal through a corner, is I_0. The stated corner vector is also correct. The additional mass formula I_0=\\\\frac{2}{3}Ma^2 is correct for a cube of side length 2a.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "add3a895a92149db7622c965be61bb2994006f3008fa16ece024aaa804820ed7"
+  },
+  "01_cleaned_dag:1075": {
+    "judgment": {
+      "extracted_final_answer": "(a) g = GM/R^2 = 1.62×10^0 m s^-2; (b) v_0 = sqrt(2GM/R) = 2.37×10^3 m s^-1.",
+      "reasoning": "The response correctly derives the surface gravitational acceleration and escape velocity. Both formulas and numerical values, including SI units, match the supplied reference. The alternative escape-velocity expression sqrt(2GM/R) is algebraically equivalent to sqrt(2gR). No confidence was stated, so 100 is used.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12543,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 142,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"(a) g = GM/R^2 = 1.62×10^0 m s^-2; (b) v_0 = sqrt(2GM/R) = 2.37×10^3 m s^-1.\",\"reasoning\":\"The response correctly derives the surface gravitational acceleration and escape velocity. Both formulas and numerical values, including SI units, match the supplied reference. The alternative escape-velocity expression sqrt(2GM/R) is algebraically equivalent to sqrt(2gR). No confidence was stated, so 100 is used.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "a58f2be234350a5acf8bb39d07b21341af037a71c81720ef22551c152f6e9165"
+  },
+  "01_cleaned_dag:1013": {
+    "judgment": {
+      "extracted_final_answer": "(a) \\(V_0=\\sqrt{2gh}=14\\,\\mathrm{m/s}\\), \\(T=\\sqrt{2h/g}=10/7\\,\\mathrm{s}\\approx1.43\\,\\mathrm{s}\\). (b) \\(m\\,dv/dt=-bv^2\\) and \\(V(x)=V_0e^{-(b/m)x}\\). (c) \\(x=(5/2)\\ln 10\\,\\mathrm{m}\\approx5.76\\,\\mathrm{m}\\). (d) \\(x(t)=(m/b)\\ln\\!\\left(1+(b/m)V_0t\\right)\\); for \\(b/m=2/5\\,\\mathrm{m}^{-1}\\), \\(x(t)=(5/2)\\ln(1+5.6t)\\,\\mathrm{m}\\).",
+      "reasoning": "The response matches the reference in every subproblem. Its impact speed and air time are correct; its underwater equation of motion uses the correct upward drag sign with downward-positive coordinates; its depth-dependent velocity satisfies the stated boundary condition; its one-tenth-speed depth is correct; and its time-dependent depth is algebraically identical to the reference. The specialized numerical expression in part (d) also correctly uses \\((b/m)V_0=(2/5)(14)=5.6\\,\\mathrm{s}^{-1}\\).",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12786,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 343,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"(a) \\\\(V_0=\\\\sqrt{2gh}=14\\\\,\\\\mathrm{m/s}\\\\), \\\\(T=\\\\sqrt{2h/g}=10/7\\\\,\\\\mathrm{s}\\\\approx1.43\\\\,\\\\mathrm{s}\\\\). (b) \\\\(m\\\\,dv/dt=-bv^2\\\\) and \\\\(V(x)=V_0e^{-(b/m)x}\\\\). (c) \\\\(x=(5/2)\\\\ln 10\\\\,\\\\mathrm{m}\\\\approx5.76\\\\,\\\\mathrm{m}\\\\). (d) \\\\(x(t)=(m/b)\\\\ln\\\\!\\\\left(1+(b/m)V_0t\\\\right)\\\\); for \\\\(b/m=2/5\\\\,\\\\mathrm{m}^{-1}\\\\), \\\\(x(t)=(5/2)\\\\ln(1+5.6t)\\\\,\\\\mathrm{m}\\\\).\",\"reasoning\":\"The response matches the reference in every subproblem. Its impact speed and air time are correct; its underwater equation of motion uses the correct upward drag sign with downward-positive coordinates; its depth-dependent velocity satisfies the stated boundary condition; its one-tenth-speed depth is correct; and its time-dependent depth is algebraically identical to the reference. The specialized numerical expression in part (d) also correctly uses \\\\((b/m)V_0=(2/5)(14)=5.6\\\\,\\\\mathrm{s}^{-1}\\\\).\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "ed8b90f78292174c753bc79a9072572c155c6b39e5d37f97a7326194a25b848f"
+  },
+  "01_cleaned_dag:1126": {
+    "judgment": {
+      "extracted_final_answer": "\\overline{T}=-\\frac12\\,\\overline{\\sum_i \\mathbf F_i\\cdot\\mathbf r_i};\\quad \\overline{T}=-\\frac{\\overline V}{2}.",
+      "reasoning": "The response correctly derives the virial theorem by differentiating the finite virial quantity, averaging its derivative, and showing the boundary term vanishes for periodic motion or in the infinite-time limit. For V(r)=C/r, it also correctly obtains \\mathbf F\\cdot\\mathbf r=V and hence \\overline T=-\\overline V/2. Both requested results match the reference.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 13183,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 163,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\overline{T}=-\\\\frac12\\\\,\\\\overline{\\\\sum_i \\\\mathbf F_i\\\\cdot\\\\mathbf r_i};\\\\quad \\\\overline{T}=-\\\\frac{\\\\overline V}{2}.\",\"reasoning\":\"The response correctly derives the virial theorem by differentiating the finite virial quantity, averaging its derivative, and showing the boundary term vanishes for periodic motion or in the infinite-time limit. For V(r)=C/r, it also correctly obtains \\\\mathbf F\\\\cdot\\\\mathbf r=V and hence \\\\overline T=-\\\\overline V/2. Both requested results match the reference.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "da78357a95b7dd23815de7da3232ffe06c28ce2fb81a7a7be0e10e4e5a720b0d"
+  },
+  "01_cleaned_dag:1071": {
+    "judgment": {
+      "extracted_final_answer": "\\(\\omega_p=hu_0^{2}(1-a)=\\sqrt{\\frac{GM}{R^{3}}-\\frac{A}{m}}-\\sqrt{\\frac{GM}{R^{3}}-\\frac{4A}{m}}\\)",
+      "reasoning": "The response exactly matches the reference expression for the precession angular velocity. The intermediate form \\(hu_0^2(1-a)\\) is also equivalent because \\(hu_0^2=\\dot\\theta\\) for the circular orbit.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12963,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 144,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(\\\\omega_p=hu_0^{2}(1-a)=\\\\sqrt{\\\\frac{GM}{R^{3}}-\\\\frac{A}{m}}-\\\\sqrt{\\\\frac{GM}{R^{3}}-\\\\frac{4A}{m}}\\\\)\",\"reasoning\":\"The response exactly matches the reference expression for the precession angular velocity. The intermediate form \\\\(hu_0^2(1-a)\\\\) is also equivalent because \\\\(hu_0^2=\\\\dot\\\\theta\\\\) for the circular orbit.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "e77568ba96e5517d649ee226d1f3d7c7d9f71f00a2ac0e3fcfdeb7b0e3670e36"
+  },
+  "01_cleaned_dag:2037": {
+    "judgment": {
+      "extracted_final_answer": "ω_z = ω_0; ω_± = √(ω_0² + ω_c²/4) ± ω_c/2, where ω_c = |e|B/m. The electric field shifts the equilibrium to x_E = eE/(mω_0²) without changing the frequencies. For ω_c ≪ ω_0, ω_± = ω_0 ± ω_c/2 + ω_c²/(8ω_0) + O(ω_c⁴/ω_0³). For ω_c ≫ ω_0, ω_+ = ω_c + ω_0²/ω_c + O(ω_0⁴/ω_c³) and ω_- = ω_0²/ω_c + O(ω_0⁴/ω_c³).",
+      "reasoning": "This matches the reference for eB > 0, since √(ω_0² + ω_c²/4) ± ω_c/2 is algebraically identical to (√(ω_c² + 4ω_0²) ± ω_c)/2. The equilibrium shift, z frequency, and weak- and strong-field limits are all correct. Using |e| for the positive frequencies is physically appropriate; changing the sign of eB only exchanges the circular-polarization labels, as the response explicitly notes.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 13366,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 458,
+      "reasoning_output_tokens": 150
+    },
+    "raw_response": "{\"extracted_final_answer\":\"ω_z = ω_0; ω_± = √(ω_0² + ω_c²/4) ± ω_c/2, where ω_c = |e|B/m. The electric field shifts the equilibrium to x_E = eE/(mω_0²) without changing the frequencies. For ω_c ≪ ω_0, ω_± = ω_0 ± ω_c/2 + ω_c²/(8ω_0) + O(ω_c⁴/ω_0³). For ω_c ≫ ω_0, ω_+ = ω_c + ω_0²/ω_c + O(ω_0⁴/ω_c³) and ω_- = ω_0²/ω_c + O(ω_0⁴/ω_c³).\",\"reasoning\":\"This matches the reference for eB > 0, since √(ω_0² + ω_c²/4) ± ω_c/2 is algebraically identical to (√(ω_c² + 4ω_0²) ± ω_c)/2. The equilibrium shift, z frequency, and weak- and strong-field limits are all correct. Using |e| for the positive frequencies is physically appropriate; changing the sign of eB only exchanges the circular-polarization labels, as the response explicitly notes.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "f8297bc7074142028039c94e0a22232c3b7395de2e0183e07266042bc3effd87"
+  },
+  "01_cleaned_dag:3010": {
+    "judgment": {
+      "extracted_final_answer": "\\theta'=120^\\circ",
+      "reasoning": "The response exactly matches the reference answer for subproblem (b): the observed angle in K' is 120 degrees.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11982,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 63,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\theta'=120^\\\\circ\",\"reasoning\":\"The response exactly matches the reference answer for subproblem (b): the observed angle in K' is 120 degrees.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "3eb9aa0f10bff01ecbe47f8056f4bea8f23b3c7c7160bf7ba71e4b3fd31a4a4b"
+  },
+  "02_cleaned_dag:1012": {
+    "judgment": {
+      "extracted_final_answer": "\\(\\rho=\\frac{3Q}{4\\pi R^3}\\), and \\(\\vec E(\\vec r)=\\begin{cases}\\frac{\\rho R^3}{3\\epsilon_0}\\frac{\\vec r}{r^3}=\\frac{Q}{4\\pi\\epsilon_0r^3}\\vec r,&r\\ge R,\\\\[2pt]\\frac{\\rho}{3\\epsilon_0}\\vec r=\\frac{Q}{4\\pi\\epsilon_0R^3}\\vec r,&r\\le R.\\end{cases}\\)",
+      "reasoning": "The charge density and both piecewise electric-field expressions are algebraically identical to the reference answer. The inside and outside formulas also agree continuously at r=R.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11990,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 196,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(\\\\rho=\\\\frac{3Q}{4\\\\pi R^3}\\\\), and \\\\(\\\\vec E(\\\\vec r)=\\\\begin{cases}\\\\frac{\\\\rho R^3}{3\\\\epsilon_0}\\\\frac{\\\\vec r}{r^3}=\\\\frac{Q}{4\\\\pi\\\\epsilon_0r^3}\\\\vec r,&r\\\\ge R,\\\\\\\\[2pt]\\\\frac{\\\\rho}{3\\\\epsilon_0}\\\\vec r=\\\\frac{Q}{4\\\\pi\\\\epsilon_0R^3}\\\\vec r,&r\\\\le R.\\\\end{cases}\\\\)\",\"reasoning\":\"The charge density and both piecewise electric-field expressions are algebraically identical to the reference answer. The inside and outside formulas also agree continuously at r=R.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "5ba88e515857b1f41703b0c26e550919372d4bb30f8b8a897e01e2111732ed47"
+  },
+  "02_cleaned_dag:1024": {
+    "judgment": {
+      "extracted_final_answer": "V_2=\\frac{C_1}{C_2}V_1",
+      "reasoning": "The response exactly matches the supplied reference answer: with the insulated plate's charge constant, C_1V_1=C_2V_2, so V_2=(C_1/C_2)V_1.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11869,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 95,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"V_2=\\\\frac{C_1}{C_2}V_1\",\"reasoning\":\"The response exactly matches the supplied reference answer: with the insulated plate's charge constant, C_1V_1=C_2V_2, so V_2=(C_1/C_2)V_1.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "6e2d96848f50cb479da3b5e1f82bb6a5deed1f8e2fa3e7f070f19736a271f478"
+  },
+  "01_cleaned_dag:2066": {
+    "judgment": {
+      "extracted_final_answer": "(a) \\(\\ddot x=-\\dfrac{(2x-y)[g+2(\\dot x^2-\\dot x\\dot y+\\dot y^2)]}{1+(2x-y)^2+(2y-x)^2}\\), \\(\\ddot y=-\\dfrac{(2y-x)[g+2(\\dot x^2-\\dot x\\dot y+\\dot y^2)]}{1+(2x-y)^2+(2y-x)^2}\\). (b) \\(\\omega_1=\\sqrt g\\), \\(\\omega_2=\\sqrt{3g}\\), with eigenvectors proportional to \\((1,1)\\) and \\((1,-1)\\), respectively. (c) \\(\\delta x:\\delta y=1:-1\\), equivalently \\(\\delta x/\\delta y=-1\\).",
+      "reasoning": "The explicit nonlinear equations in part (a) are algebraically equivalent to the Euler–Lagrange equations in the reference. Their linearization gives the stated matrix equation, whose eigenvalues yield \\(\\sqrt g\\) and \\(\\sqrt{3g}\\). The higher-frequency eigenvector is \\((1,-1)\\), so the displacement ratio is correctly given as equal magnitude and opposite sign. All requested components match the reference.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 13104,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 589,
+      "reasoning_output_tokens": 267
+    },
+    "raw_response": "{\"extracted_final_answer\":\"(a) \\\\(\\\\ddot x=-\\\\dfrac{(2x-y)[g+2(\\\\dot x^2-\\\\dot x\\\\dot y+\\\\dot y^2)]}{1+(2x-y)^2+(2y-x)^2}\\\\), \\\\(\\\\ddot y=-\\\\dfrac{(2y-x)[g+2(\\\\dot x^2-\\\\dot x\\\\dot y+\\\\dot y^2)]}{1+(2x-y)^2+(2y-x)^2}\\\\). (b) \\\\(\\\\omega_1=\\\\sqrt g\\\\), \\\\(\\\\omega_2=\\\\sqrt{3g}\\\\), with eigenvectors proportional to \\\\((1,1)\\\\) and \\\\((1,-1)\\\\), respectively. (c) \\\\(\\\\delta x:\\\\delta y=1:-1\\\\), equivalently \\\\(\\\\delta x/\\\\delta y=-1\\\\).\",\"reasoning\":\"The explicit nonlinear equations in part (a) are algebraically equivalent to the Euler–Lagrange equations in the reference. Their linearization gives the stated matrix equation, whose eigenvalues yield \\\\(\\\\sqrt g\\\\) and \\\\(\\\\sqrt{3g}\\\\). The higher-frequency eigenvector is \\\\((1,-1)\\\\), so the displacement ratio is correctly given as equal magnitude and opposite sign. All requested components match the reference.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "754441c0cedd6df9a2f233017e99604882d60f32b301f88c5c9348dfc633f4f9"
+  },
+  "02_cleaned_dag:2055": {
+    "judgment": {
+      "extracted_final_answer": "With B=B0: (a) τ=mR/(B0^2l^2), I(t)=mg/(B0l)(1−e^(−t/τ)), and v(t)=mgR/(B0^2l^2)(1−e^(−t/τ)). (b) ω=B0l/√(mL), I(t)=mg/(B0l)+c1 cos(ωt)+c2 sin(ωt)=mg/(B0l)[1−cos(ωt)], with c1=−mg/(B0l), c2=0, and v(t)=g/ω sin(ωt).",
+      "reasoning": "The stated I(t) and v(t) in both parts are mathematically equivalent to the reference after substituting B=B0 and τ=mR/(B0^2l^2). In part (b), the response’s c1 and c2 parameterize the current rather than the velocity as in the reference, but they correctly satisfy the displayed current solution and initial conditions. The final current, velocity, and angular frequency all match the reference.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12449,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 261,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"With B=B0: (a) τ=mR/(B0^2l^2), I(t)=mg/(B0l)(1−e^(−t/τ)), and v(t)=mgR/(B0^2l^2)(1−e^(−t/τ)). (b) ω=B0l/√(mL), I(t)=mg/(B0l)+c1 cos(ωt)+c2 sin(ωt)=mg/(B0l)[1−cos(ωt)], with c1=−mg/(B0l), c2=0, and v(t)=g/ω sin(ωt).\",\"reasoning\":\"The stated I(t) and v(t) in both parts are mathematically equivalent to the reference after substituting B=B0 and τ=mR/(B0^2l^2). In part (b), the response’s c1 and c2 parameterize the current rather than the velocity as in the reference, but they correctly satisfy the displayed current solution and initial conditions. The final current, velocity, and angular frequency all match the reference.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "69c29f87bdc4322105eeab0fca6db6f9fff109c30fdb821b3b957600d263b445"
+  },
+  "02_cleaned_dag:2102": {
+    "judgment": {
+      "extracted_final_answer": "(S_a,S_b,S_c)=(0,1,0)",
+      "reasoning": "The extracted tuple exactly matches the reference values: S_a=0, S_b=1, and S_c=0.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11889,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 72,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"(S_a,S_b,S_c)=(0,1,0)\",\"reasoning\":\"The extracted tuple exactly matches the reference values: S_a=0, S_b=1, and S_c=0.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "9b8cb53094535627bc7e0567208cef4bf01000e70f0a30f971d450b26940dfc5"
+  },
+  "02_cleaned_dag:2076": {
+    "judgment": {
+      "extracted_final_answer": "\\(\\displaystyle \\mathbf F_m=\\frac{3\\mu_0}{4\\pi r^4}\\left[(\\mathbf m_1\\!\\cdot\\!\\hat{\\mathbf r})\\mathbf m_2+(\\mathbf m_2\\!\\cdot\\!\\hat{\\mathbf r})\\mathbf m_1+(\\mathbf m_1\\!\\cdot\\!\\mathbf m_2)\\hat{\\mathbf r}-5(\\mathbf m_1\\!\\cdot\\!\\hat{\\mathbf r})(\\mathbf m_2\\!\\cdot\\!\\hat{\\mathbf r})\\hat{\\mathbf r}\\right]\\), hence \\(\\mathbf F_m\\propto 1/r^4\\).",
+      "reasoning": "The response correctly gives the scalar potential, obtains the standard dipole magnetic field using \\(\\mathbf B=-\\mu_0\\nabla\\varphi_m\\), and applies \\(\\mathbf F_m=\\nabla(\\mathbf m_1\\cdot\\mathbf B)\\). Its explicit force expression has the correct sign, numerical factor, angular dependence, and \\(r^{-4}\\) scaling. For fixed relative orientation, the bracket is independent of distance, so the conclusion matches the reference for arbitrary orientations under the stated assumptions.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12796,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 465,
+      "reasoning_output_tokens": 149
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(\\\\displaystyle \\\\mathbf F_m=\\\\frac{3\\\\mu_0}{4\\\\pi r^4}\\\\left[(\\\\mathbf m_1\\\\!\\\\cdot\\\\!\\\\hat{\\\\mathbf r})\\\\mathbf m_2+(\\\\mathbf m_2\\\\!\\\\cdot\\\\!\\\\hat{\\\\mathbf r})\\\\mathbf m_1+(\\\\mathbf m_1\\\\!\\\\cdot\\\\!\\\\mathbf m_2)\\\\hat{\\\\mathbf r}-5(\\\\mathbf m_1\\\\!\\\\cdot\\\\!\\\\hat{\\\\mathbf r})(\\\\mathbf m_2\\\\!\\\\cdot\\\\!\\\\hat{\\\\mathbf r})\\\\hat{\\\\mathbf r}\\\\right]\\\\), hence \\\\(\\\\mathbf F_m\\\\propto 1/r^4\\\\).\",\"reasoning\":\"The response correctly gives the scalar potential, obtains the standard dipole magnetic field using \\\\(\\\\mathbf B=-\\\\mu_0\\\\nabla\\\\varphi_m\\\\), and applies \\\\(\\\\mathbf F_m=\\\\nabla(\\\\mathbf m_1\\\\cdot\\\\mathbf B)\\\\). Its explicit force expression has the correct sign, numerical factor, angular dependence, and \\\\(r^{-4}\\\\) scaling. For fixed relative orientation, the bracket is independent of distance, so the conclusion matches the reference for arbitrary orientations under the stated assumptions.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "f7a0f64970920f30bb766d3d0de71ed393c793451d8ea407c52a80d3d99ed1c5"
+  },
+  "02_cleaned_dag:3034": {
+    "judgment": {
+      "extracted_final_answer": "a) L=\\pi^2/500\\ \\mathrm{H}\\approx1.974\\times10^{-2}\\ \\mathrm{H}; b) B=0.4\\pi\\ \\mathrm{Wb/m^2}\\approx1.257\\ \\mathrm{Wb/m^2}; c) W_m=4000\\pi^2\\ \\mathrm{J}\\approx3.948\\times10^4\\ \\mathrm{J}; d) \\varepsilon=L\\,di/dt+Ri,\\ i(0)=0,\\ i(t)=200(1-e^{-t/\\tau})\\ \\mathrm{A},\\ i(\\infty)=200\\ \\mathrm{A},\\ \\tau=\\pi^2/50\\ \\mathrm{s}\\approx0.1974\\ \\mathrm{s}.",
+      "reasoning": "The response is complete and matches the reference. Its exact inductance follows from the stated geometry, the magnetic field and stored energy are consistent with that inductance and I=2000 A, and the RL step-response equation, steady-state current, and time constant are all correct.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12927,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 264,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"a) L=\\\\pi^2/500\\\\ \\\\mathrm{H}\\\\approx1.974\\\\times10^{-2}\\\\ \\\\mathrm{H}; b) B=0.4\\\\pi\\\\ \\\\mathrm{Wb/m^2}\\\\approx1.257\\\\ \\\\mathrm{Wb/m^2}; c) W_m=4000\\\\pi^2\\\\ \\\\mathrm{J}\\\\approx3.948\\\\times10^4\\\\ \\\\mathrm{J}; d) \\\\varepsilon=L\\\\,di/dt+Ri,\\\\ i(0)=0,\\\\ i(t)=200(1-e^{-t/\\\\tau})\\\\ \\\\mathrm{A},\\\\ i(\\\\infty)=200\\\\ \\\\mathrm{A},\\\\ \\\\tau=\\\\pi^2/50\\\\ \\\\mathrm{s}\\\\approx0.1974\\\\ \\\\mathrm{s}.\",\"reasoning\":\"The response is complete and matches the reference. Its exact inductance follows from the stated geometry, the magnetic field and stored energy are consistent with that inductance and I=2000 A, and the RL step-response equation, steady-state current, and time constant are all correct.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "de9bead16fa5ad750f08088e102917db9ce9cb5abc98d277662ecf7656435de2"
+  },
+  "03_cleaned_dag:2029": {
+    "judgment": {
+      "extracted_final_answer": "z_{\\max}\\simeq \\frac{R^{2}}{2\\lambda}",
+      "reasoning": "The response gives the same expression as the reference answer for the most distant axial zero. The asymptotic symbol is consistent with the stated regime \\(\\lambda/R\\ll 1\\).",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11739,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 92,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"z_{\\\\max}\\\\simeq \\\\frac{R^{2}}{2\\\\lambda}\",\"reasoning\":\"The response gives the same expression as the reference answer for the most distant axial zero. The asymptotic symbol is consistent with the stated regime \\\\(\\\\lambda/R\\\\ll 1\\\\).\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "82e475a09d522cca56a127d5e8882c92b03a2549870d8c6427c83e265e0a6e3d"
+  },
+  "04_cleaned_dag:1018": {
+    "judgment": {
+      "extracted_final_answer": "\\(\\tau=10^{-8}\\,\\unit{s}\\)",
+      "reasoning": "The response gives exactly the same lifetime and unit as the supplied reference answer.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11685,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 62,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(\\\\tau=10^{-8}\\\\,\\\\unit{s}\\\\)\",\"reasoning\":\"The response gives exactly the same lifetime and unit as the supplied reference answer.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "8cf3cbe601341a31f1f7360d6545697e31764461709a44ac0b2e1535a28cd419"
+  },
+  "04_cleaned_dag:1021": {
+    "judgment": {
+      "extracted_final_answer": "β = 9×10^-6 and Δν ≈ 9×10^8 Hz ≈ 10^9 Hz",
+      "reasoning": "The response correctly applies β = √(3kT/(mc²)) and Δν ≈ ν₀β. Its rounded Doppler width of 10^9 Hz matches the supplied reference and identifies the correct option.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12124,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 105,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"β = 9×10^-6 and Δν ≈ 9×10^8 Hz ≈ 10^9 Hz\",\"reasoning\":\"The response correctly applies β = √(3kT/(mc²)) and Δν ≈ ν₀β. Its rounded Doppler width of 10^9 Hz matches the supplied reference and identifies the correct option.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "81a54bdf5c0b55f73ffb66c7afadb9bf55d00bf816245c6327d05f7751cdae4d"
+  },
+  "03_cleaned_dag:2066": {
+    "judgment": {
+      "extracted_final_answer": "d\\approx 3\\times 10^{13}\\ \\mathrm{m}\\;(=3\\times 10^{15}\\ \\mathrm{cm})",
+      "reasoning": "The reference answer is d≈3×10^16 cm, equivalent to 3×10^14 m. The response gives 3×10^15 cm (3×10^13 m), which is smaller by a factor of 10, so it does not match.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11870,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 121,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"d\\\\approx 3\\\\times 10^{13}\\\\ \\\\mathrm{m}\\\\;(=3\\\\times 10^{15}\\\\ \\\\mathrm{cm})\",\"reasoning\":\"The reference answer is d≈3×10^16 cm, equivalent to 3×10^14 m. The response gives 3×10^15 cm (3×10^13 m), which is smaller by a factor of 10, so it does not match.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "d56b2fd55d6510795d7c720c607a0a9f28d031c983b2b4fb0f1d06756be6c8a3"
+  },
+  "04_cleaned_dag:1025": {
+    "judgment": {
+      "extracted_final_answer": "P(s_y=+1/2;t)=\\frac12\\left[1+\\sin\\left(\\frac{\\mu_0Bt}{\\hbar}\\right)\\right],\\quad P(s_y=-1/2;t)=\\frac12\\left[1-\\sin\\left(\\frac{\\mu_0Bt}{\\hbar}\\right)\\right]",
+      "reasoning": "The response gives both requested probabilities, and they exactly match the supplied reference, including the signs and the argument \\(\\mu_0Bt/\\hbar\\).",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12593,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 150,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"P(s_y=+1/2;t)=\\\\frac12\\\\left[1+\\\\sin\\\\left(\\\\frac{\\\\mu_0Bt}{\\\\hbar}\\\\right)\\\\right],\\\\quad P(s_y=-1/2;t)=\\\\frac12\\\\left[1-\\\\sin\\\\left(\\\\frac{\\\\mu_0Bt}{\\\\hbar}\\\\right)\\\\right]\",\"reasoning\":\"The response gives both requested probabilities, and they exactly match the supplied reference, including the signs and the argument \\\\(\\\\mu_0Bt/\\\\hbar\\\\).\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "45dc3244788b8a49faf7e24e9b397093d6eef62de0125f8d32a017f267bc02fd"
+  },
+  "04_cleaned_dag:1049": {
+    "judgment": {
+      "extracted_final_answer": "E_n=-\\frac{me^4}{8\\pi^2\\epsilon_0^2\\hbar^2n^2},\\qquad E_{n,l=1}=\\left\\{E_n-\\mu_BB,\\;E_n,\\;E_n+\\mu_BB\\right\\},\\quad \\mu_B=\\frac{e\\hbar}{2m},\\quad n\\ge2.",
+      "reasoning": "The He+ energy expression is algebraically identical to the reference: \\(-2me^4/[(4\\pi\\epsilon_0)^2n^2\\hbar^2]=-me^4/(8\\pi^2\\epsilon_0^2n^2\\hbar^2)\\). For \\(l=1\\), the response gives the three orbital Zeeman shifts \\(-\\mu_BB,0,+\\mu_BB\\), which are the same set as the reference's \\(+e\\hbar B/(2m),0,-e\\hbar B/(2m)\\), merely reordered. The answer is complete and physically equivalent to the reference.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12698,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 401,
+      "reasoning_output_tokens": 130
+    },
+    "raw_response": "{\"extracted_final_answer\":\"E_n=-\\\\frac{me^4}{8\\\\pi^2\\\\epsilon_0^2\\\\hbar^2n^2},\\\\qquad E_{n,l=1}=\\\\left\\\\{E_n-\\\\mu_BB,\\\\;E_n,\\\\;E_n+\\\\mu_BB\\\\right\\\\},\\\\quad \\\\mu_B=\\\\frac{e\\\\hbar}{2m},\\\\quad n\\\\ge2.\",\"reasoning\":\"The He+ energy expression is algebraically identical to the reference: \\\\(-2me^4/[(4\\\\pi\\\\epsilon_0)^2n^2\\\\hbar^2]=-me^4/(8\\\\pi^2\\\\epsilon_0^2n^2\\\\hbar^2)\\\\). For \\\\(l=1\\\\), the response gives the three orbital Zeeman shifts \\\\(-\\\\mu_BB,0,+\\\\mu_BB\\\\), which are the same set as the reference's \\\\(+e\\\\hbar B/(2m),0,-e\\\\hbar B/(2m)\\\\), merely reordered. The answer is complete and physically equivalent to the reference.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "4c1da8eb1ac646fe02d5c52c38c914915478dcbd5ce94d1bdd8886ba1e8306f4"
+  },
+  "04_cleaned_dag:1128": {
+    "judgment": {
+      "extracted_final_answer": "\\(\\Delta \\nu=\\frac{h}{4\\pi^2 I}=\\frac{h}{4\\pi^2\\mu r^2}\\approx 6.2\\times10^{11}\\ \\mathrm{Hz}\\)",
+      "reasoning": "The response gives the same exact expression and numerical value as the reference answer. Using \\(I=\\mu r^2\\), \\(h/(4\\pi^2 I)\\) is equivalent to \\(h/(4\\pi^2\\mu r^2)\\), and the reported value \\(6.2\\times10^{11}\\,\\mathrm{Hz}\\) matches.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12315,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 168,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(\\\\Delta \\\\nu=\\\\frac{h}{4\\\\pi^2 I}=\\\\frac{h}{4\\\\pi^2\\\\mu r^2}\\\\approx 6.2\\\\times10^{11}\\\\ \\\\mathrm{Hz}\\\\)\",\"reasoning\":\"The response gives the same exact expression and numerical value as the reference answer. Using \\\\(I=\\\\mu r^2\\\\), \\\\(h/(4\\\\pi^2 I)\\\\) is equivalent to \\\\(h/(4\\\\pi^2\\\\mu r^2)\\\\), and the reported value \\\\(6.2\\\\times10^{11}\\\\,\\\\mathrm{Hz}\\\\) matches.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "2d5c4a019ee50c9952900b248e394e79f374c2ac31ef5ec3ca0f7ef3730c6cb6"
+  },
+  "04_cleaned_dag:1104": {
+    "judgment": {
+      "extracted_final_answer": "\\(\\lambda_{K\\alpha}=0.1435\\,\\mathrm{nm}=1.435\\,\\text{\\AA};\\quad \\text{a) }\\lambda_{\\min}=0.2480\\,\\mathrm{nm}=2.480\\,\\text{\\AA};\\quad \\text{b) }E_{\\mathrm{char},\\max}=E_{L_I}=1.21\\,\\mathrm{keV},\\ \\lambda_{\\mathrm{char},\\min}=1.025\\,\\mathrm{nm}=10.25\\,\\text{\\AA}.\\)",
+      "reasoning": "The response matches the reference physically and mathematically. Its values of 2.480 Å and 10.25 Å differ negligibly from the reference values 2.482 Å and 10.26 Å because it uses a slightly different rounded value of \\(hc\\). The additional \\(K_\\alpha\\) result is also correctly computed from \\(E_K-E_{L_{III}}\\).",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12477,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 354,
+      "reasoning_output_tokens": 99
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(\\\\lambda_{K\\\\alpha}=0.1435\\\\,\\\\mathrm{nm}=1.435\\\\,\\\\text{\\\\AA};\\\\quad \\\\text{a) }\\\\lambda_{\\\\min}=0.2480\\\\,\\\\mathrm{nm}=2.480\\\\,\\\\text{\\\\AA};\\\\quad \\\\text{b) }E_{\\\\mathrm{char},\\\\max}=E_{L_I}=1.21\\\\,\\\\mathrm{keV},\\\\ \\\\lambda_{\\\\mathrm{char},\\\\min}=1.025\\\\,\\\\mathrm{nm}=10.25\\\\,\\\\text{\\\\AA}.\\\\)\",\"reasoning\":\"The response matches the reference physically and mathematically. Its values of 2.480 Å and 10.25 Å differ negligibly from the reference values 2.482 Å and 10.26 Å because it uses a slightly different rounded value of \\\\(hc\\\\). The additional \\\\(K_\\\\alpha\\\\) result is also correctly computed from \\\\(E_K-E_{L_{III}}\\\\).\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "d7ec754470ac7907a0b4139656ed9a873339f57f2d9769922ab3a0c5fc84c453"
+  },
+  "04_cleaned_dag:2005": {
+    "judgment": {
+      "extracted_final_answer": "ω ≈ 4×10^2 s^-1 (closest option: 10^3 s^-1)",
+      "reasoning": "The response’s estimate 4×10^2 s^-1 equals 0.4×10^3 s^-1 and correctly identifies 10^3 s^-1 as the closest option, matching the reference answer.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12021,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 101,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"ω ≈ 4×10^2 s^-1 (closest option: 10^3 s^-1)\",\"reasoning\":\"The response’s estimate 4×10^2 s^-1 equals 0.4×10^3 s^-1 and correctly identifies 10^3 s^-1 as the closest option, matching the reference answer.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "ba8484eea51b3bbc421946bf3368320f7172e3e895bdd26c2e96c0e3f943705e"
+  },
+  "04_cleaned_dag:1139": {
+    "judgment": {
+      "extracted_final_answer": "p\\sim\\hbar/d;\\quad E_{\\mathrm{elect}}\\sim\\hbar^2/(m_e d^2)\\sim e^2/d;\\quad K\\sim e^2/d^3;\\quad \\omega\\sim\\hbar/(d^2\\sqrt{m_e m_n});\\quad E_{\\mathrm{vib}}\\sim E_{\\mathrm{elect}}(m_e/m_n)^{1/2};\\quad \\Delta x\\sim d(m_e/m_n)^{1/4};\\quad E_{\\mathrm{rot}}\\sim E_{\\mathrm{elect}}(m_e/m_n);\\quad E_{\\mathrm{elect}}:E_{\\mathrm{vib}}:E_{\\mathrm{rot}}\\sim1:(m_e/m_n)^{1/2}:m_e/m_n.",
+      "reasoning": "The response gives all requested order-of-magnitude estimates and the same final energy hierarchy as the reference. Its use of the typical nuclear mass m_n instead of the reduced mass m in the vibration and rotation estimates is valid at order-of-magnitude level because m\\approx m_n, as stated in the reference. Omitted factors such as 1/2 are also immaterial for these estimates.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12871,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 436,
+      "reasoning_output_tokens": 136
+    },
+    "raw_response": "{\"extracted_final_answer\":\"p\\\\sim\\\\hbar/d;\\\\quad E_{\\\\mathrm{elect}}\\\\sim\\\\hbar^2/(m_e d^2)\\\\sim e^2/d;\\\\quad K\\\\sim e^2/d^3;\\\\quad \\\\omega\\\\sim\\\\hbar/(d^2\\\\sqrt{m_e m_n});\\\\quad E_{\\\\mathrm{vib}}\\\\sim E_{\\\\mathrm{elect}}(m_e/m_n)^{1/2};\\\\quad \\\\Delta x\\\\sim d(m_e/m_n)^{1/4};\\\\quad E_{\\\\mathrm{rot}}\\\\sim E_{\\\\mathrm{elect}}(m_e/m_n);\\\\quad E_{\\\\mathrm{elect}}:E_{\\\\mathrm{vib}}:E_{\\\\mathrm{rot}}\\\\sim1:(m_e/m_n)^{1/2}:m_e/m_n.\",\"reasoning\":\"The response gives all requested order-of-magnitude estimates and the same final energy hierarchy as the reference. Its use of the typical nuclear mass m_n instead of the reduced mass m in the vibration and rotation estimates is valid at order-of-magnitude level because m\\\\approx m_n, as stated in the reference. Omitted factors such as 1/2 are also immaterial for these estimates.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "957ff32b37fc77afcdd8e4f4f91038742b499438f67a930c59a7216b1bcd5516"
+  },
+  "04_cleaned_dag:1084": {
+    "judgment": {
+      "extracted_final_answer": "Emission and absorption lines occur at 2.10 eV (3p↔3s, λ≈590 nm) and 1.08 eV (4s↔3p, λ≈1.148 μm); 4s↔3s is electric-dipole forbidden. The populations are N1/N0=1.53×10^-5 and N2/N1=6.33×10^-4. The relative integrated intensities are I_em,10:I_em,21=1:1.33×10^-4 q and I_abs,01:I_abs,12=1:2.62×10^-6 q, where q is the ratio of the summed squared radial-dipole strengths. Under the additional approximation q=1, these correspond to inverse ratios of approximately 7.5×10^3 and 3.8×10^5, respectively.",
+      "reasoning": "The listed transitions and photon energies exactly match the reference. With the response's stated equal-strength approximation q=1, its emission ratio gives I_01/I_12≈1/(1.33×10^-4)=7.5×10^3, consistent with the reference's ≈8×10^3, and its absorption ratio gives I_10/I_21≈1/(2.62×10^-6)=3.8×10^5, consistent with ≈4×10^5. The response additionally retains the otherwise-undetermined dipole-strength ratio and includes the negligible stimulated-emission correction, neither of which conflicts with the reference assumptions.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 14307,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 721,
+      "reasoning_output_tokens": 366
+    },
+    "raw_response": "{\"extracted_final_answer\":\"Emission and absorption lines occur at 2.10 eV (3p↔3s, λ≈590 nm) and 1.08 eV (4s↔3p, λ≈1.148 μm); 4s↔3s is electric-dipole forbidden. The populations are N1/N0=1.53×10^-5 and N2/N1=6.33×10^-4. The relative integrated intensities are I_em,10:I_em,21=1:1.33×10^-4 q and I_abs,01:I_abs,12=1:2.62×10^-6 q, where q is the ratio of the summed squared radial-dipole strengths. Under the additional approximation q=1, these correspond to inverse ratios of approximately 7.5×10^3 and 3.8×10^5, respectively.\",\"reasoning\":\"The listed transitions and photon energies exactly match the reference. With the response's stated equal-strength approximation q=1, its emission ratio gives I_01/I_12≈1/(1.33×10^-4)=7.5×10^3, consistent with the reference's ≈8×10^3, and its absorption ratio gives I_10/I_21≈1/(2.62×10^-6)=3.8×10^5, consistent with ≈4×10^5. The response additionally retains the otherwise-undetermined dipole-strength ratio and includes the negligible stimulated-emission correction, neither of which conflicts with the reference assumptions.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "65a3b69a1748e83a2229b051e6501eaafed97503cde212b62561e63b136654a2"
+  },
+  "04_cleaned_dag:4030": {
+    "judgment": {
+      "extracted_final_answer": "(a) τ₀ = 4.27×10⁻²⁴ s, τ = 2.78×10⁻²³ s, d = 8.24×10⁻¹³ cm = 8.24 fm; (b) Eπ,th = 1.0774 GeV (Tπ,th = 0.9374 GeV); (c) ⟨Nρ⁰⟩ = 1.264×10⁻³; (d) θmin = 0 (unrestricted), with θsym = 0.2879 rad = 16.50° for the symmetric configuration.",
+      "reasoning": "The response matches the reference in every requested part, up to consistent rounding: the lifetime and decay distance, threshold total pion energy, production probability, and unrestricted minimum opening angle are all correct. The additional kinetic threshold energy and symmetric-configuration angle do not contradict the requested answers; the response clearly identifies θmin = 0.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 14053,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 282,
+      "reasoning_output_tokens": 44
+    },
+    "raw_response": "{\"extracted_final_answer\":\"(a) τ₀ = 4.27×10⁻²⁴ s, τ = 2.78×10⁻²³ s, d = 8.24×10⁻¹³ cm = 8.24 fm; (b) Eπ,th = 1.0774 GeV (Tπ,th = 0.9374 GeV); (c) ⟨Nρ⁰⟩ = 1.264×10⁻³; (d) θmin = 0 (unrestricted), with θsym = 0.2879 rad = 16.50° for the symmetric configuration.\",\"reasoning\":\"The response matches the reference in every requested part, up to consistent rounding: the lifetime and decay distance, threshold total pion energy, production probability, and unrestricted minimum opening angle are all correct. The additional kinetic threshold energy and symmetric-configuration angle do not contradict the requested answers; the response clearly identifies θmin = 0.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "9663e4674fb5f6bf80721b604126ed761ad4ff94a62cf17710fb90c6b215d3d8"
+  },
+  "04_cleaned_dag:4037": {
+    "judgment": {
+      "extracted_final_answer": "E_\\gamma'=\\frac{E_\\gamma(E_e+p_e)}{E_e-p_e+2E_\\gamma}\\approx 29.76\\ \\mathrm{MeV}",
+      "reasoning": "The exact expression matches the reference because photon momentum equals photon energy, so replacing p_γ by E_γ is equivalent. The numerical value 29.76 MeV is consistent with the reference value of approximately 29.7 MeV up to rounding.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12498,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 200,
+      "reasoning_output_tokens": 73
+    },
+    "raw_response": "{\"extracted_final_answer\":\"E_\\\\gamma'=\\\\frac{E_\\\\gamma(E_e+p_e)}{E_e-p_e+2E_\\\\gamma}\\\\approx 29.76\\\\ \\\\mathrm{MeV}\",\"reasoning\":\"The exact expression matches the reference because photon momentum equals photon energy, so replacing p_γ by E_γ is equivalent. The numerical value 29.76 MeV is consistent with the reference value of approximately 29.7 MeV up to rounding.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "3c779452ea9fefd1bb23ffa758969059f9299e76254f4ac3fc173e944abf4a46"
+  },
+  "04_cleaned_dag:4051": {
+    "judgment": {
+      "extracted_final_answer": "\\(\\gamma=\\frac53\\), \\(\\beta=\\frac45\\), \\((p_x)_{\\max}=\\frac92\\,\\mathrm{GeV}/c\\), \\((p_x)_{\\min}=-\\frac12\\,\\mathrm{GeV}/c\\), and \\(\\frac{dP}{dp_x}=\\frac15(\\mathrm{GeV}/c)^{-1}\\) for \\(-\\frac12\\,\\mathrm{GeV}/c\\le p_x\\le\\frac92\\,\\mathrm{GeV}/c\\), with density zero otherwise.",
+      "reasoning": "The response exactly matches the reference: the Lorentz factor, speed, maximum and minimum laboratory x-momenta, constant probability density, units, and support are all correct and complete.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12702,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 203,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(\\\\gamma=\\\\frac53\\\\), \\\\(\\\\beta=\\\\frac45\\\\), \\\\((p_x)_{\\\\max}=\\\\frac92\\\\,\\\\mathrm{GeV}/c\\\\), \\\\((p_x)_{\\\\min}=-\\\\frac12\\\\,\\\\mathrm{GeV}/c\\\\), and \\\\(\\\\frac{dP}{dp_x}=\\\\frac15(\\\\mathrm{GeV}/c)^{-1}\\\\) for \\\\(-\\\\frac12\\\\,\\\\mathrm{GeV}/c\\\\le p_x\\\\le\\\\frac92\\\\,\\\\mathrm{GeV}/c\\\\), with density zero otherwise.\",\"reasoning\":\"The response exactly matches the reference: the Lorentz factor, speed, maximum and minimum laboratory x-momenta, constant probability density, units, and support are all correct and complete.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "e76e5dcd701427afe4ae69a84418d4783b526d90c3164d6fe44406d137fefcde"
+  },
+  "05_cleaned_dag:1080": {
+    "judgment": {
+      "extracted_final_answer": "(a) \\(\\left(\\frac{dT}{dL}\\right)_S=\\frac{T}{C_L}\\left(\\frac{\\partial f}{\\partial T}\\right)_L\\). (b) \\(\\nu=\\frac{1}{2\\pi}\\sqrt{\\frac{k_S}{m}}=\\frac{1}{2\\pi}\\sqrt{\\frac{gk_S}{W}}\\), equivalently \\(k_S=\\frac{4\\pi^2W\\nu^2}{g}\\). (c) \\(\\delta L=-\\frac{\\delta Q}{Tk_S}\\left(\\frac{dT}{dL}\\right)_S=-\\frac{g\\delta Q}{4\\pi^2W\\nu^2T}\\left(\\frac{dT}{dL}\\right)_S\\).",
+      "reasoning": "The response matches the reference in all three parts. Its thermoelastic slope has the correct sign and factor, its frequency–adiabatic-stiffness relation is algebraically equivalent to \\(k_S=(2\\pi\\nu)^2(W/g)\\), and its final heat-induced length change is exactly the reference result. The additional expression obtained by substituting the measured frequency is also correct.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 13062,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 302,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"(a) \\\\(\\\\left(\\\\frac{dT}{dL}\\\\right)_S=\\\\frac{T}{C_L}\\\\left(\\\\frac{\\\\partial f}{\\\\partial T}\\\\right)_L\\\\). (b) \\\\(\\\\nu=\\\\frac{1}{2\\\\pi}\\\\sqrt{\\\\frac{k_S}{m}}=\\\\frac{1}{2\\\\pi}\\\\sqrt{\\\\frac{gk_S}{W}}\\\\), equivalently \\\\(k_S=\\\\frac{4\\\\pi^2W\\\\nu^2}{g}\\\\). (c) \\\\(\\\\delta L=-\\\\frac{\\\\delta Q}{Tk_S}\\\\left(\\\\frac{dT}{dL}\\\\right)_S=-\\\\frac{g\\\\delta Q}{4\\\\pi^2W\\\\nu^2T}\\\\left(\\\\frac{dT}{dL}\\\\right)_S\\\\).\",\"reasoning\":\"The response matches the reference in all three parts. Its thermoelastic slope has the correct sign and factor, its frequency–adiabatic-stiffness relation is algebraically equivalent to \\\\(k_S=(2\\\\pi\\\\nu)^2(W/g)\\\\), and its final heat-induced length change is exactly the reference result. The additional expression obtained by substituting the measured frequency is also correct.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "0f44520f026d93c6ff505b88260606a7165486377e221596484817e1f315bee0"
+  },
+  "05_cleaned_dag:1127": {
+    "judgment": {
+      "extracted_final_answer": "\\frac{dp}{dT}=\\frac{L}{T(V_1-V_2)}",
+      "reasoning": "The response correctly derives the liquid–vapor coexistence relation from equality of chemical potentials and their differentials. Its final expression exactly matches the general Clausius–Clapeyron equation requested. The additional approximation V_2 \\ll V_1 in the reference is not required by the question.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12086,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 114,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\frac{dp}{dT}=\\\\frac{L}{T(V_1-V_2)}\",\"reasoning\":\"The response correctly derives the liquid–vapor coexistence relation from equality of chemical potentials and their differentials. Its final expression exactly matches the general Clausius–Clapeyron equation requested. The additional approximation V_2 \\\\ll V_1 in the reference is not required by the question.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "54df76e19df79db33ce556ca8d1d2346d8b105ab3fdb1e576758ffa1ecdd57d6"
+  },
+  "05_cleaned_dag:1083": {
+    "judgment": {
+      "extracted_final_answer": "(a1) (∂E/∂x)_T = 0; (a2) (∂c_x/∂x)_T = 0; (a3) c_x(x,T) = K; (a4) E(x,T) = E(T_0) + K(T-T_0); (a5) S(x,T) = C + K ln(T/T_0) - A[x^2/(2l_0) + l_0^2/x - 3l_0/2]; (b) T_f = T_0 exp(7Al_0/(24K)).",
+      "reasoning": "All requested components match the reference. The entropy expression differs only by an additive constant and the equivalent logarithm ln(T/T_0), both absorbed into the arbitrary entropy constant C. Also, 7/24 = 0.291666..., which is the exact value corresponding to the reference's rounded coefficient 0.292.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 13124,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 369,
+      "reasoning_output_tokens": 135
+    },
+    "raw_response": "{\"extracted_final_answer\":\"(a1) (∂E/∂x)_T = 0; (a2) (∂c_x/∂x)_T = 0; (a3) c_x(x,T) = K; (a4) E(x,T) = E(T_0) + K(T-T_0); (a5) S(x,T) = C + K ln(T/T_0) - A[x^2/(2l_0) + l_0^2/x - 3l_0/2]; (b) T_f = T_0 exp(7Al_0/(24K)).\",\"reasoning\":\"All requested components match the reference. The entropy expression differs only by an additive constant and the equivalent logarithm ln(T/T_0), both absorbed into the arbitrary entropy constant C. Also, 7/24 = 0.291666..., which is the exact value corresponding to the reference's rounded coefficient 0.292.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "692de06bcc2e7200b1b62d641bf6984ad501e0c1060be2eccf285c1d43b5a26d"
+  },
+  "05_cleaned_dag:2067": {
+    "judgment": {
+      "extracted_final_answer": "ans_{2D}=0, ans_{1D}=0",
+      "reasoning": "The response concludes that the excited-state population diverges at mu→0⁻ in both two and one dimensions, so no finite-temperature BEC occurs in the thermodynamic limit. This matches the reference answer exactly.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12764,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 88,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"ans_{2D}=0, ans_{1D}=0\",\"reasoning\":\"The response concludes that the excited-state population diverges at mu→0⁻ in both two and one dimensions, so no finite-temperature BEC occurs in the thermodynamic limit. This matches the reference answer exactly.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "03acdc2a3d2ab15e5ec7750524de61c974b097f68fec60ac92831af4bc5e2c98"
+  },
+  "05_cleaned_dag:2037": {
+    "judgment": {
+      "extracted_final_answer": "z=\\sum_{J=0}^{\\infty}(2J+1)e^{-\\hbar^2J(J+1)/(2IkT)};\\quad U=-N\\,\\partial_\\beta\\ln z=NkT^2\\,\\partial_T\\ln z=\\frac{N}{z}\\sum_{J=0}^{\\infty}(2J+1)\\frac{\\hbar^2}{2I}J(J+1)e^{-\\hbar^2J(J+1)/(2IkT)}. For kT\\gg\\hbar^2/(2I), z\\simeq 2IkT/\\hbar^2, U\\simeq NkT, and the molar specific heat is C_v=N_Ak=R. Part (c) restates the same partition function and internal-energy ratio.",
+      "reasoning": "The response matches the reference in every requested component. It correctly includes the (2J+1) degeneracy, gives the thermodynamic derivative and explicit weighted-average forms of U, states the correct high-temperature condition for replacing the sum by an integral, evaluates the integral partition function as 2IkT/\\hbar^2, and obtains U=NkT and molar C_v=R. Its distinction between the N-rotor heat capacity Nk and molar specific heat R is also correct.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12966,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 319,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"z=\\\\sum_{J=0}^{\\\\infty}(2J+1)e^{-\\\\hbar^2J(J+1)/(2IkT)};\\\\quad U=-N\\\\,\\\\partial_\\\\beta\\\\ln z=NkT^2\\\\,\\\\partial_T\\\\ln z=\\\\frac{N}{z}\\\\sum_{J=0}^{\\\\infty}(2J+1)\\\\frac{\\\\hbar^2}{2I}J(J+1)e^{-\\\\hbar^2J(J+1)/(2IkT)}. For kT\\\\gg\\\\hbar^2/(2I), z\\\\simeq 2IkT/\\\\hbar^2, U\\\\simeq NkT, and the molar specific heat is C_v=N_Ak=R. Part (c) restates the same partition function and internal-energy ratio.\",\"reasoning\":\"The response matches the reference in every requested component. It correctly includes the (2J+1) degeneracy, gives the thermodynamic derivative and explicit weighted-average forms of U, states the correct high-temperature condition for replacing the sum by an integral, evaluates the integral partition function as 2IkT/\\\\hbar^2, and obtains U=NkT and molar C_v=R. Its distinction between the N-rotor heat capacity Nk and molar specific heat R is also correct.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "039faf18b6460ffff4787984ce6f3019e2005c7ad672b1a03e52eb8b967bcd0f"
+  },
+  "05_cleaned_dag:2073": {
+    "judgment": {
+      "extracted_final_answer": "T \\approx 6.2\\times 10^{9}\\ \\mathrm{K}",
+      "reasoning": "The response gives approximately 6.2×10^9 K, which is consistent with the reference answer of approximately 6×10^9 K under the requested approximate precision.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12051,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 87,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"T \\\\approx 6.2\\\\times 10^{9}\\\\ \\\\mathrm{K}\",\"reasoning\":\"The response gives approximately 6.2×10^9 K, which is consistent with the reference answer of approximately 6×10^9 K under the requested approximate precision.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "95e70bdd26e5bd603858647a29ac2ba5acb0088da413e757c87116259a8fd0d8"
+  },
+  "05_cleaned_dag:2032": {
+    "judgment": {
+      "extracted_final_answer": "Z=\\frac{e^{-\\hbar\\omega/(2kT)}}{1-e^{-\\hbar\\omega/(kT)}};\\quad \\langle E\\rangle=\\hbar\\omega\\left(\\frac12+\\frac{1}{e^{\\hbar\\omega/(kT)}-1}\\right)=\\frac{\\hbar\\omega}{2}\\coth\\!\\left(\\frac{\\hbar\\omega}{2kT}\\right);\\quad \\Delta E=\\frac{\\hbar\\omega}{2}\\operatorname{csch}\\!\\left(\\frac{\\hbar\\omega}{2kT}\\right). For kT\\ll\\hbar\\omega: \\langle E\\rangle\\simeq\\frac{\\hbar\\omega}{2}+\\hbar\\omega e^{-\\hbar\\omega/(kT)} and \\Delta E\\simeq\\hbar\\omega e^{-\\hbar\\omega/(2kT)}. For kT\\gg\\hbar\\omega: \\langle E\\rangle\\simeq kT and \\Delta E\\simeq kT.",
+      "reasoning": "The mean-energy and fluctuation formulas exactly match the reference, since \\operatorname{csch}(x)=1/\\sinh(x). Both high-temperature limits agree. At low temperature, the response gives the reference's leading ground-state limit for the mean energy together with the correct leading exponentially small correction, and its fluctuation asymptotic agrees exactly. Thus the response is complete and physically and mathematically equivalent to the reference.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12363,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 377,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"Z=\\\\frac{e^{-\\\\hbar\\\\omega/(2kT)}}{1-e^{-\\\\hbar\\\\omega/(kT)}};\\\\quad \\\\langle E\\\\rangle=\\\\hbar\\\\omega\\\\left(\\\\frac12+\\\\frac{1}{e^{\\\\hbar\\\\omega/(kT)}-1}\\\\right)=\\\\frac{\\\\hbar\\\\omega}{2}\\\\coth\\\\!\\\\left(\\\\frac{\\\\hbar\\\\omega}{2kT}\\\\right);\\\\quad \\\\Delta E=\\\\frac{\\\\hbar\\\\omega}{2}\\\\operatorname{csch}\\\\!\\\\left(\\\\frac{\\\\hbar\\\\omega}{2kT}\\\\right). For kT\\\\ll\\\\hbar\\\\omega: \\\\langle E\\\\rangle\\\\simeq\\\\frac{\\\\hbar\\\\omega}{2}+\\\\hbar\\\\omega e^{-\\\\hbar\\\\omega/(kT)} and \\\\Delta E\\\\simeq\\\\hbar\\\\omega e^{-\\\\hbar\\\\omega/(2kT)}. For kT\\\\gg\\\\hbar\\\\omega: \\\\langle E\\\\rangle\\\\simeq kT and \\\\Delta E\\\\simeq kT.\",\"reasoning\":\"The mean-energy and fluctuation formulas exactly match the reference, since \\\\operatorname{csch}(x)=1/\\\\sinh(x). Both high-temperature limits agree. At low temperature, the response gives the reference's leading ground-state limit for the mean energy together with the correct leading exponentially small correction, and its fluctuation asymptotic agrees exactly. Thus the response is complete and physically and mathematically equivalent to the reference.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "5252ee722c350c8d92d22eb780db203e2ad97bc278a0fb9a2f3fb62471448525"
+  },
+  "05_cleaned_dag:2071": {
+    "judgment": {
+      "extracted_final_answer": "V=L^3; \\(\\nu=\\frac{c}{2L}\\sqrt{n_1^2+n_2^2+n_3^2}\\); \\(D_\\nu=\\frac{8\\pi\\nu^2}{c^3}\\). (a) \\(E_{avg}=kT\\) and \\(u_\\nu=\\frac{8\\pi\\nu^2}{c^3}kT\\), which diverges upon integration because it has no high-frequency falloff. (b) \\(E_n=nh\\nu\\), \\(Z=(1-e^{-\\beta h\\nu})^{-1}\\), \\(\\langle E\\rangle=\\frac{h\\nu}{e^{h\\nu/(kT)}-1}\\), and \\(u_\\nu=\\frac{8\\pi h\\nu^3}{c^3(e^{h\\nu/(kT)}-1)}\\). (c) \\(u=\\frac{8\\pi^5k^4}{15c^3h^3}T^4\\) and \\(P=A\\frac{2\\pi^5k^4}{15c^2h^3}T^4\\), hence \\(P\\propto T^4\\).",
+      "reasoning": "The response matches the reference in every requested component: it derives the correct electromagnetic mode density, Rayleigh–Jeans law and ultraviolet divergence, Planck mean mode energy and spectral law, and the Stefan–Boltzmann temperature dependence using \\(P=cAu/4\\). Its additional explicit constants for total energy density and emitted power are also correct. The apparent use of “u” instead of \\(\\nu\\) in the mode-frequency line is a typographical notation issue and does not change the otherwise unambiguous result.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 13163,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 525,
+      "reasoning_output_tokens": 98
+    },
+    "raw_response": "{\"extracted_final_answer\":\"V=L^3; \\\\(\\\\nu=\\\\frac{c}{2L}\\\\sqrt{n_1^2+n_2^2+n_3^2}\\\\); \\\\(D_\\\\nu=\\\\frac{8\\\\pi\\\\nu^2}{c^3}\\\\). (a) \\\\(E_{avg}=kT\\\\) and \\\\(u_\\\\nu=\\\\frac{8\\\\pi\\\\nu^2}{c^3}kT\\\\), which diverges upon integration because it has no high-frequency falloff. (b) \\\\(E_n=nh\\\\nu\\\\), \\\\(Z=(1-e^{-\\\\beta h\\\\nu})^{-1}\\\\), \\\\(\\\\langle E\\\\rangle=\\\\frac{h\\\\nu}{e^{h\\\\nu/(kT)}-1}\\\\), and \\\\(u_\\\\nu=\\\\frac{8\\\\pi h\\\\nu^3}{c^3(e^{h\\\\nu/(kT)}-1)}\\\\). (c) \\\\(u=\\\\frac{8\\\\pi^5k^4}{15c^3h^3}T^4\\\\) and \\\\(P=A\\\\frac{2\\\\pi^5k^4}{15c^2h^3}T^4\\\\), hence \\\\(P\\\\propto T^4\\\\).\",\"reasoning\":\"The response matches the reference in every requested component: it derives the correct electromagnetic mode density, Rayleigh–Jeans law and ultraviolet divergence, Planck mean mode energy and spectral law, and the Stefan–Boltzmann temperature dependence using \\\\(P=cAu/4\\\\). Its additional explicit constants for total energy density and emitted power are also correct. The apparent use of “u” instead of \\\\(\\\\nu\\\\) in the mode-frequency line is a typographical notation issue and does not change the otherwise unambiguous result.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "5819f008de4af2f147c023e3279f239d2ddc8f0c3af41ecfcbbc984a6bec4aa0"
+  },
+  "04_cleaned_dag:4049": {
+    "judgment": {
+      "extracted_final_answer": "βγ = 12.1682328; γ = 12.2092543; β = 0.996640134; v = 2.98992040×10^8 m/s; t = 3.34457064×10^-8 s; τ = 3.17437611×10^-7 s; λ = 3.15022532×10^6 s^-1; p = 1.70355259 GeV/c; T = 1.56929560 GeV.",
+      "reasoning": "The central results for βγ, momentum, and kinetic energy are physically correct when calculated without premature rounding, and are consistent with the reference to the precision of the given inputs. However, the reported lab lifetime is inconsistent with the response's own γ: γτ₀ = 12.2092543×2.6×10^-8 s = 3.17440612×10^-7 s, not 3.17437611×10^-7 s. Consequently, the reported decay constant is also slightly incorrect. Because the response presents these as final components, the complete answer is not strictly correct.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12506,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1739,
+      "reasoning_output_tokens": 1472
+    },
+    "raw_response": "{\"extracted_final_answer\":\"βγ = 12.1682328; γ = 12.2092543; β = 0.996640134; v = 2.98992040×10^8 m/s; t = 3.34457064×10^-8 s; τ = 3.17437611×10^-7 s; λ = 3.15022532×10^6 s^-1; p = 1.70355259 GeV/c; T = 1.56929560 GeV.\",\"reasoning\":\"The central results for βγ, momentum, and kinetic energy are physically correct when calculated without premature rounding, and are consistent with the reference to the precision of the given inputs. However, the reported lab lifetime is inconsistent with the response's own γ: γτ₀ = 12.2092543×2.6×10^-8 s = 3.17440612×10^-7 s, not 3.17437611×10^-7 s. Consequently, the reported decay constant is also slightly incorrect. Because the response presents these as final components, the complete answer is not strictly correct.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "ea2c67937d0c294734da97d59a7fde447b4083fa6bc32fe791b83eb2060317f5"
+  },
+  "05_cleaned_dag:2137": {
+    "judgment": {
+      "extracted_final_answer": "(a) \\(\\epsilon_{l,p_z}=p_z^2/(2m)+(l+1/2)\\hbar\\omega_c\\) and \\(g_L=eBa^2/(hc)\\). (b) \\(\\ln\\Xi=(xV/\\lambda_T^3)\\sum_{r=1}^\\infty (-1)^{r+1}\\lambda^r/[r^{3/2}\\sinh(rx)]\\), which in the dilute high-temperature limit becomes \\(\\ln\\Xi\\simeq (\\lambda V/\\lambda_T^3)x/\\sinh x\\), with \\(\\overline N\\simeq (\\lambda V/\\lambda_T^3)x/\\sinh x\\). (c) \\(M=-\\overline N\\mu_B\\mathcal L(x)\\simeq-\\overline N\\mu_B^2B/(3kT)\\), so \\(\\chi_\\infty=-\\overline n\\mu_B^2/(3kT)=-\\overline n e^2\\hbar^2/(12m^2c^2kT)\\).",
+      "reasoning": "The response matches the reference for all three requested components. It gives the correct Landau-level energies and degeneracy, the correct high-temperature grand partition function and mean particle number, and the correct diamagnetic magnetization and susceptibility, including the negative sign and factor of 1/3. Its additional fugacity-series expression is also consistent with the stated formulas.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 13808,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 604,
+      "reasoning_output_tokens": 240
+    },
+    "raw_response": "{\"extracted_final_answer\":\"(a) \\\\(\\\\epsilon_{l,p_z}=p_z^2/(2m)+(l+1/2)\\\\hbar\\\\omega_c\\\\) and \\\\(g_L=eBa^2/(hc)\\\\). (b) \\\\(\\\\ln\\\\Xi=(xV/\\\\lambda_T^3)\\\\sum_{r=1}^\\\\infty (-1)^{r+1}\\\\lambda^r/[r^{3/2}\\\\sinh(rx)]\\\\), which in the dilute high-temperature limit becomes \\\\(\\\\ln\\\\Xi\\\\simeq (\\\\lambda V/\\\\lambda_T^3)x/\\\\sinh x\\\\), with \\\\(\\\\overline N\\\\simeq (\\\\lambda V/\\\\lambda_T^3)x/\\\\sinh x\\\\). (c) \\\\(M=-\\\\overline N\\\\mu_B\\\\mathcal L(x)\\\\simeq-\\\\overline N\\\\mu_B^2B/(3kT)\\\\), so \\\\(\\\\chi_\\\\infty=-\\\\overline n\\\\mu_B^2/(3kT)=-\\\\overline n e^2\\\\hbar^2/(12m^2c^2kT)\\\\).\",\"reasoning\":\"The response matches the reference for all three requested components. It gives the correct Landau-level energies and degeneracy, the correct high-temperature grand partition function and mean particle number, and the correct diamagnetic magnetization and susceptibility, including the negative sign and factor of 1/3. Its additional fugacity-series expression is also consistent with the stated formulas.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "ed92bd40b4500af6a55c7796a382044eec514ce0567c45ee5c442e42aad06ec3"
+  },
+  "05_cleaned_dag:2139": {
+    "judgment": {
+      "extracted_final_answer": "\\(\\sqrt{\\langle(\\Delta n)^2\\rangle}=\\sqrt{\\langle n\\rangle(\\langle n\\rangle+1)}=\\frac{e^{\\lambda/2}}{e^\\lambda-1}=\\frac{1}{2\\sinh(\\lambda/2)}>\\langle n\\rangle\\quad(\\lambda>0)\\), with \\(\\langle n\\rangle=\\frac{1}{e^\\lambda-1}\\).",
+      "reasoning": "The response exactly matches the reference. Its expressions for the mean occupation number and rms fluctuation are algebraically equivalent to the reference, and it correctly concludes that the rms fluctuation exceeds the mean for \\(\\lambda>0\\).",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12428,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 194,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(\\\\sqrt{\\\\langle(\\\\Delta n)^2\\\\rangle}=\\\\sqrt{\\\\langle n\\\\rangle(\\\\langle n\\\\rangle+1)}=\\\\frac{e^{\\\\lambda/2}}{e^\\\\lambda-1}=\\\\frac{1}{2\\\\sinh(\\\\lambda/2)}>\\\\langle n\\\\rangle\\\\quad(\\\\lambda>0)\\\\), with \\\\(\\\\langle n\\\\rangle=\\\\frac{1}{e^\\\\lambda-1}\\\\).\",\"reasoning\":\"The response exactly matches the reference. Its expressions for the mean occupation number and rms fluctuation are algebraically equivalent to the reference, and it correctly concludes that the rms fluctuation exceeds the mean for \\\\(\\\\lambda>0\\\\).\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "c60f701238ee661ccaf5c18698effceb578785d96c8e78b42014348f7f6bd854"
+  },
+  "06_cleaned_dag:6001": {
+    "judgment": {
+      "extracted_final_answer": "\\(\\delta_0=-kR\\pmod{\\pi}\\), \\(\\sigma_t(k,R)=\\frac{4\\pi}{k^2}\\sin^2(kR)=4\\pi R^2\\left[\\frac{\\sin(kR)}{kR}\\right]^2\\); for \\(kR\\ll1\\), \\(\\sigma_t\\to4\\pi R^2\\), and for \\(kR\\gg1\\), \\(\\sigma_t\\to0\\) (cycle average \\(2\\pi/k^2\\)).",
+      "reasoning": "The response matches the reference: it imposes the hard-sphere boundary condition at r=R, obtains the equivalent phase shift modulo pi, derives the exact s-wave cross section, and gives the same low- and high-energy limits. The added low-energy expansion and high-energy cycle average are consistent with the exact result.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12434,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 223,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(\\\\delta_0=-kR\\\\pmod{\\\\pi}\\\\), \\\\(\\\\sigma_t(k,R)=\\\\frac{4\\\\pi}{k^2}\\\\sin^2(kR)=4\\\\pi R^2\\\\left[\\\\frac{\\\\sin(kR)}{kR}\\\\right]^2\\\\); for \\\\(kR\\\\ll1\\\\), \\\\(\\\\sigma_t\\\\to4\\\\pi R^2\\\\), and for \\\\(kR\\\\gg1\\\\), \\\\(\\\\sigma_t\\\\to0\\\\) (cycle average \\\\(2\\\\pi/k^2\\\\)).\",\"reasoning\":\"The response matches the reference: it imposes the hard-sphere boundary condition at r=R, obtains the equivalent phase shift modulo pi, derives the exact s-wave cross section, and gives the same low- and high-energy limits. The added low-energy expansion and high-energy cycle average are consistent with the exact result.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "e59941e42bf814567eb0aff49d3975c577815da3f1128d918eaf16d2a00cc2ab"
+  },
+  "06_cleaned_dag:6051": {
+    "judgment": {
+      "extracted_final_answer": "\\boxed{P=\\frac{65536\\,e^{2}E_{0}^{2}m^{2}b^{6}}{81\\pi^{4}\\hbar^{2}\\left(64m^{2}b^{4}\\alpha^{2}+9\\pi^{4}\\hbar^{2}\\right)}}",
+      "reasoning": "This is algebraically equivalent to the reference answer. Multiplying the reference denominator by 64m^2b^4 and factoring out \\hbar^2 yields exactly the response's expression.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12553,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 293,
+      "reasoning_output_tokens": 150
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\boxed{P=\\\\frac{65536\\\\,e^{2}E_{0}^{2}m^{2}b^{6}}{81\\\\pi^{4}\\\\hbar^{2}\\\\left(64m^{2}b^{4}\\\\alpha^{2}+9\\\\pi^{4}\\\\hbar^{2}\\\\right)}}\",\"reasoning\":\"This is algebraically equivalent to the reference answer. Multiplying the reference denominator by 64m^2b^4 and factoring out \\\\hbar^2 yields exactly the response's expression.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "569263504b336223ff68cdd5035fcc6f70a34861a26d1d166e323ce6a5f54818"
+  },
+  "06_cleaned_dag:6003": {
+    "judgment": {
+      "extracted_final_answer": "\\(\\delta_0(E)=\\tan^{-1}(\\lambda/k)\\), \\(\\sigma_t(E)\\simeq \\frac{4\\pi\\lambda^2}{k^2(k^2+\\lambda^2)}=\\frac{2\\pi\\hbar^2\\lambda^2}{mE\\left(\\lambda^2+\\frac{2mE}{\\hbar^2}\\right)}\\sim_{E\\to0^+}\\frac{2\\pi\\hbar^2}{mE}\\), with \\(k=\\sqrt{2mE}/\\hbar\\).",
+      "reasoning": "The response’s low-energy result \\(\\sigma_t(E)\\sim 2\\pi\\hbar^2/(mE)\\) is exactly equivalent to the reference result \\(4\\pi/k^2\\) after substituting \\(k^2=2mE/\\hbar^2\\). Its phase shift \\(\\delta_0=\\tan^{-1}(\\lambda/k)\\) is also equivalent to \\(\\pi/2-\\tan^{-1}(k/\\lambda)\\) for positive \\(k\\) and \\(\\lambda\\).",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12870,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 339,
+      "reasoning_output_tokens": 42
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(\\\\delta_0(E)=\\\\tan^{-1}(\\\\lambda/k)\\\\), \\\\(\\\\sigma_t(E)\\\\simeq \\\\frac{4\\\\pi\\\\lambda^2}{k^2(k^2+\\\\lambda^2)}=\\\\frac{2\\\\pi\\\\hbar^2\\\\lambda^2}{mE\\\\left(\\\\lambda^2+\\\\frac{2mE}{\\\\hbar^2}\\\\right)}\\\\sim_{E\\\\to0^+}\\\\frac{2\\\\pi\\\\hbar^2}{mE}\\\\), with \\\\(k=\\\\sqrt{2mE}/\\\\hbar\\\\).\",\"reasoning\":\"The response’s low-energy result \\\\(\\\\sigma_t(E)\\\\sim 2\\\\pi\\\\hbar^2/(mE)\\\\) is exactly equivalent to the reference result \\\\(4\\\\pi/k^2\\\\) after substituting \\\\(k^2=2mE/\\\\hbar^2\\\\). Its phase shift \\\\(\\\\delta_0=\\\\tan^{-1}(\\\\lambda/k)\\\\) is also equivalent to \\\\(\\\\pi/2-\\\\tan^{-1}(k/\\\\lambda)\\\\) for positive \\\\(k\\\\) and \\\\(\\\\lambda\\\\).\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "419d7f5d147a2fb8e264f4c8fd86e4ed6338f1ed917235eede27586c2248a252"
+  },
+  "06_cleaned_dag:8025": {
+    "judgment": {
+      "extracted_final_answer": "\\(\\frac{\\partial u}{\\partial t}=\\frac{\\hbar}{2m}\\nabla^2u\\), so \\(D=\\frac{\\hbar}{2m}\\).",
+      "reasoning": "The response correctly derives the diffusion-type equation and identifies the same diffusion coefficient as the supplied reference, with matching sign and factors.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12322,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 103,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(\\\\frac{\\\\partial u}{\\\\partial t}=\\\\frac{\\\\hbar}{2m}\\\\nabla^2u\\\\), so \\\\(D=\\\\frac{\\\\hbar}{2m}\\\\).\",\"reasoning\":\"The response correctly derives the diffusion-type equation and identifies the same diffusion coefficient as the supplied reference, with matching sign and factors.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "c448679846ff3ba133d8b6a1675cdfe2925d4061189cc9396b2f38881b3d43e1"
+  },
+  "07_cleaned_dag:1008": {
+    "judgment": {
+      "extracted_final_answer": "\\frac{\\sigma_\\lambda}{\\lambda}=\\sqrt{\\left(\\sigma_\\theta\\cot\\theta\\right)^2+\\left(\\frac{1}{3}\\frac{\\sigma_\\rho}{\\rho}\\right)^2}\\simeq 9.41\\times10^{-3}\\;(0.941\\%)",
+      "reasoning": "The response gives the same independent-uncertainty propagation formula as the reference. Its numerical value, 9.41×10^-3 (0.941%), is consistent with the reference value 9.4×10^-3 after rounding.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12360,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 158,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\frac{\\\\sigma_\\\\lambda}{\\\\lambda}=\\\\sqrt{\\\\left(\\\\sigma_\\\\theta\\\\cot\\\\theta\\\\right)^2+\\\\left(\\\\frac{1}{3}\\\\frac{\\\\sigma_\\\\rho}{\\\\rho}\\\\right)^2}\\\\simeq 9.41\\\\times10^{-3}\\\\;(0.941\\\\%)\",\"reasoning\":\"The response gives the same independent-uncertainty propagation formula as the reference. Its numerical value, 9.41×10^-3 (0.941%), is consistent with the reference value 9.4×10^-3 after rounding.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "2df627aaf0213a70d114068f04da87d97e00493093abc654bf5115acd400e468"
+  },
+  "07_cleaned_dag:1065": {
+    "judgment": {
+      "extracted_final_answer": "M_s = 1.0\\times10^{6}\\ \\mathrm{A/m};\\quad \\mu \\approx 3.3\\times10^{-23}\\ \\mathrm{A\\,m^2}",
+      "reasoning": "The response gives the requested typical saturation magnetization with correct units and correctly uses \\(M_s=n\\mu\\), obtaining \\(\\mu=M_s/n\\approx3.3\\times10^{-23}\\ \\mathrm{A\\,m^2}\\). This is consistent with the reference value \\(3\\times10^{-23}\\ \\mathrm{A\\,m^2}\\) under ordinary rounding.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12033,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 162,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"M_s = 1.0\\\\times10^{6}\\\\ \\\\mathrm{A/m};\\\\quad \\\\mu \\\\approx 3.3\\\\times10^{-23}\\\\ \\\\mathrm{A\\\\,m^2}\",\"reasoning\":\"The response gives the requested typical saturation magnetization with correct units and correctly uses \\\\(M_s=n\\\\mu\\\\), obtaining \\\\(\\\\mu=M_s/n\\\\approx3.3\\\\times10^{-23}\\\\ \\\\mathrm{A\\\\,m^2}\\\\). This is consistent with the reference value \\\\(3\\\\times10^{-23}\\\\ \\\\mathrm{A\\\\,m^2}\\\\) under ordinary rounding.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "a7cf64aba3c427ff08613dba1e365d3e0361e70e591fdc0fc0507d9f4149e767"
+  },
+  "01_cleaned_dag:3014": {
+    "judgment": {
+      "extracted_final_answer": "\\frac{\\nu_e-\\nu_s}{\\nu_s}=\\sqrt{\\frac{1+2\\Phi(r_s)/c^2}{1+2\\Phi(r_e)/c^2}}-1\\simeq\\frac{\\Phi(r_s)-\\Phi(r_e)}{c^2}",
+      "reasoning": "The response gives both the exact expression obtained from the stated metric and its first-order weak-field expansion. These match the supplied reference in notation, sign, and factors.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12631,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 134,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\frac{\\\\nu_e-\\\\nu_s}{\\\\nu_s}=\\\\sqrt{\\\\frac{1+2\\\\Phi(r_s)/c^2}{1+2\\\\Phi(r_e)/c^2}}-1\\\\simeq\\\\frac{\\\\Phi(r_s)-\\\\Phi(r_e)}{c^2}\",\"reasoning\":\"The response gives both the exact expression obtained from the stated metric and its first-order weak-field expansion. These match the supplied reference in notation, sign, and factors.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "de43fe9345287a4489e212d0e148d017db4e2b946fddcb8460c4f7575875fa1d"
+  },
+  "04_cleaned_dag:4013": {
+    "judgment": {
+      "extracted_final_answer": "(a) M=\\sqrt{17}\\,m_0; (b) v=\\frac{2\\sqrt{2}}{5}c\\approx0.566c.",
+      "reasoning": "The response matches the reference exactly: \\(\\sqrt{8}/5=2\\sqrt{2}/5\\), so both the composite rest mass and velocity are correct and complete.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12189,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 109,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"(a) M=\\\\sqrt{17}\\\\,m_0; (b) v=\\\\frac{2\\\\sqrt{2}}{5}c\\\\approx0.566c.\",\"reasoning\":\"The response matches the reference exactly: \\\\(\\\\sqrt{8}/5=2\\\\sqrt{2}/5\\\\), so both the composite rest mass and velocity are correct and complete.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "c8cee6c207898f5f6c759de94c099f740bfb4796215d8a61a20767e022ca677a"
+  },
+  "05_cleaned_dag:2155": {
+    "judgment": {
+      "extracted_final_answer": "\\frac{9}{16}",
+      "reasoning": "The response gives the exact probability 9/16, which matches the supplied correct answer exactly.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11885,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 58,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\frac{9}{16}\",\"reasoning\":\"The response gives the exact probability 9/16, which matches the supplied correct answer exactly.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "9124a437eafa02d43c9a098b07afd550e5bf36efb7bea519c73c2cd6968b92a4"
+  },
+  "04_cleaned_dag:4078": {
+    "judgment": {
+      "extracted_final_answer": "\\(\\eta=e^{-0.5}\\approx 0.6065\\), and \\(\\eta''=\\frac35(1-e^{-0.5})\\approx 0.2361\\).",
+      "reasoning": "The response matches the reference for both parts. The total optical depth is \\((n_H\\sigma_H+n_C\\sigma_C)d=0.5\\), giving transmission \\(e^{-1/2}\\). The hydrogen interaction share is \\(n_H\\sigma_H/(n_H\\sigma_H+n_C\\sigma_C)=3/5\\), so the recoil-proton fraction is \\(\\frac35(1-e^{-1/2})\\).",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12478,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 173,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(\\\\eta=e^{-0.5}\\\\approx 0.6065\\\\), and \\\\(\\\\eta''=\\\\frac35(1-e^{-0.5})\\\\approx 0.2361\\\\).\",\"reasoning\":\"The response matches the reference for both parts. The total optical depth is \\\\((n_H\\\\sigma_H+n_C\\\\sigma_C)d=0.5\\\\), giving transmission \\\\(e^{-1/2}\\\\). The hydrogen interaction share is \\\\(n_H\\\\sigma_H/(n_H\\\\sigma_H+n_C\\\\sigma_C)=3/5\\\\), so the recoil-proton fraction is \\\\(\\\\frac35(1-e^{-1/2})\\\\).\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "c1d400af59ac4f418f335075a1ff03211c7968ab928b7852ee2324e5445df3da"
+  },
+  "05_cleaned_dag:2150": {
+    "judgment": {
+      "extracted_final_answer": "N=\\frac14 n\\bar v S=\\frac14\\frac{p}{kT}\\sqrt{\\frac{8kT}{\\pi m}}L^2\\approx 8\\times10^{25}\\ \\mathrm{s^{-1}}\\sim10^{26}\\ \\mathrm{s^{-1}}",
+      "reasoning": "The response gives the requested order-of-magnitude estimate, 10^26 s^-1. Although its prefactor gives 8×10^25 s^-1 rather than the reference's 5×10^25 s^-1, both values have the same order of magnitude, which is the precision explicitly requested.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12085,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 346,
+      "reasoning_output_tokens": 182
+    },
+    "raw_response": "{\"extracted_final_answer\":\"N=\\\\frac14 n\\\\bar v S=\\\\frac14\\\\frac{p}{kT}\\\\sqrt{\\\\frac{8kT}{\\\\pi m}}L^2\\\\approx 8\\\\times10^{25}\\\\ \\\\mathrm{s^{-1}}\\\\sim10^{26}\\\\ \\\\mathrm{s^{-1}}\",\"reasoning\":\"The response gives the requested order-of-magnitude estimate, 10^26 s^-1. Although its prefactor gives 8×10^25 s^-1 rather than the reference's 5×10^25 s^-1, both values have the same order of magnitude, which is the precision explicitly requested.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "9321b55366b39a65e3be53b925d48bea2735449e68a3b35fb1e63a10ee6a6e74"
+  },
+  "05_cleaned_dag:1070": {
+    "judgment": {
+      "extracted_final_answer": "(a) ΔU = 7.9000×10^4 cal = 3.30536×10^5 J; (b) ΔS = 238.721245 cal/K = 998.809690 J/K; (c) F_Ω = exp(7.23435×10^25) ≈ 10^(3.14184×10^25); (d) W_max = 9.054675×10^3 cal = 3.788476×10^4 J.",
+      "reasoning": "The response gives the same formulas as the reference and numerically agrees at greater precision: 79,000 cal for ΔU, approximately 239 cal/K for ΔS, an accessible-state factor of approximately exp(7×10^25), and approximately 9×10^3 cal for the maximum work. The joule conversions are also consistent with the stated exact conversion factor.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12598,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 368,
+      "reasoning_output_tokens": 148
+    },
+    "raw_response": "{\"extracted_final_answer\":\"(a) ΔU = 7.9000×10^4 cal = 3.30536×10^5 J; (b) ΔS = 238.721245 cal/K = 998.809690 J/K; (c) F_Ω = exp(7.23435×10^25) ≈ 10^(3.14184×10^25); (d) W_max = 9.054675×10^3 cal = 3.788476×10^4 J.\",\"reasoning\":\"The response gives the same formulas as the reference and numerically agrees at greater precision: 79,000 cal for ΔU, approximately 239 cal/K for ΔS, an accessible-state factor of approximately exp(7×10^25), and approximately 9×10^3 cal for the maximum work. The joule conversions are also consistent with the stated exact conversion factor.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "b25998f51d152dc4e65126bf0312e5449e32c08b7524bbd35bf405db3e9ed5ed"
+  },
+  "04_cleaned_dag:4059": {
+    "judgment": {
+      "extracted_final_answer": "\\(\\tau=\\left[\\frac{G^2}{8\\pi\\hbar^4c}\\sqrt{\\frac{m_K^2}{4}-\\mu^2}\\right]^{-1}\\)",
+      "reasoning": "The extracted lifetime formula exactly matches the supplied reference answer, including all factors of \\(G\\), \\(8\\pi\\), \\(\\hbar^4\\), \\(c\\), and the square-root mass dependence.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 13335,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 352,
+      "reasoning_output_tokens": 222
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(\\\\tau=\\\\left[\\\\frac{G^2}{8\\\\pi\\\\hbar^4c}\\\\sqrt{\\\\frac{m_K^2}{4}-\\\\mu^2}\\\\right]^{-1}\\\\)\",\"reasoning\":\"The extracted lifetime formula exactly matches the supplied reference answer, including all factors of \\\\(G\\\\), \\\\(8\\\\pi\\\\), \\\\(\\\\hbar^4\\\\), \\\\(c\\\\), and the square-root mass dependence.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "0064890faf1dd2096e18af97499dd852b3b4a770e22ad1e565e2f83efd6cfc8d"
+  },
+  "04_cleaned_dag:4027": {
+    "judgment": {
+      "extracted_final_answer": "(a) \\(E=M_Z/2=46\\,\\mathrm{GeV}\\) per beam. (b) \\(E_{e^+}=(M_Z^2-2m_e^2)/(2m_e)\\simeq8.2818\\times10^6\\,\\mathrm{GeV}=8.2818\\,\\mathrm{PeV}\\). (c) \\(E_Z=M_Z^2/(2m_e)\\simeq8.2818\\times10^6\\,\\mathrm{GeV}\\), \\(\\beta_Z=\\sqrt{1-4m_e^2/M_Z^2}\\simeq0.9999999999383\\), and \\(v_Z\\simeq(1-6.17\\times10^{-11})c\\). (d) \\(E_{\\mu,\\max}=\\frac{M_Z^2}{4m_e}\\left[1+\\sqrt{1-\\frac{4m_e^2}{M_Z^2}}\\sqrt{1-\\frac{4m_\\mu^2}{M_Z^2}}\\right]\\simeq8.28\\times10^6\\,\\mathrm{GeV}\\).",
+      "reasoning": "The response matches all four reference results. Its fixed-target energy and Z energy are exact expressions equivalent to the reference approximations. Its Z speed agrees with the stated threshold expression and expansion. For the muon maximum energy, the response gives the more exact Lorentz-boost result including finite electron and muon masses; in the ultrarelativistic limit it reduces to the reference value \\(M_Z^2/(2m_e)\\).",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 13418,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 664,
+      "reasoning_output_tokens": 268
+    },
+    "raw_response": "{\"extracted_final_answer\":\"(a) \\\\(E=M_Z/2=46\\\\,\\\\mathrm{GeV}\\\\) per beam. (b) \\\\(E_{e^+}=(M_Z^2-2m_e^2)/(2m_e)\\\\simeq8.2818\\\\times10^6\\\\,\\\\mathrm{GeV}=8.2818\\\\,\\\\mathrm{PeV}\\\\). (c) \\\\(E_Z=M_Z^2/(2m_e)\\\\simeq8.2818\\\\times10^6\\\\,\\\\mathrm{GeV}\\\\), \\\\(\\\\beta_Z=\\\\sqrt{1-4m_e^2/M_Z^2}\\\\simeq0.9999999999383\\\\), and \\\\(v_Z\\\\simeq(1-6.17\\\\times10^{-11})c\\\\). (d) \\\\(E_{\\\\mu,\\\\max}=\\\\frac{M_Z^2}{4m_e}\\\\left[1+\\\\sqrt{1-\\\\frac{4m_e^2}{M_Z^2}}\\\\sqrt{1-\\\\frac{4m_\\\\mu^2}{M_Z^2}}\\\\right]\\\\simeq8.28\\\\times10^6\\\\,\\\\mathrm{GeV}\\\\).\",\"reasoning\":\"The response matches all four reference results. Its fixed-target energy and Z energy are exact expressions equivalent to the reference approximations. Its Z speed agrees with the stated threshold expression and expansion. For the muon maximum energy, the response gives the more exact Lorentz-boost result including finite electron and muon masses; in the ultrarelativistic limit it reduces to the reference value \\\\(M_Z^2/(2m_e)\\\\).\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "8a0c91b63c4376ddee47bbe79639622d038db7cd5b52daec40251d5ecfae8829"
+  },
+  "06_cleaned_dag:5008": {
+    "judgment": {
+      "extracted_final_answer": "\\Delta E_0^{(1)}\\simeq\\begin{cases}\\dfrac{\\lambda}{a}\\sqrt{\\dfrac{\\pi m\\omega}{\\hbar}},&a\\ll\\sqrt{\\dfrac{\\hbar}{m\\omega}},\\\\[1.2em]\\dfrac{\\lambda}{a^2},&a\\gg\\sqrt{\\dfrac{\\hbar}{m\\omega}}.\\end{cases}",
+      "reasoning": "The response's large-a result, \\(\\Delta E=\\lambda/a^2\\), exactly matches the supplied reference under the same condition \\(a\\gg\\sqrt{\\hbar/(m\\omega)}\\). Its additional small-a result is also consistent with the stated expectation-value integral and does not contradict the reference.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12685,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 271,
+      "reasoning_output_tokens": 66
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\Delta E_0^{(1)}\\\\simeq\\\\begin{cases}\\\\dfrac{\\\\lambda}{a}\\\\sqrt{\\\\dfrac{\\\\pi m\\\\omega}{\\\\hbar}},&a\\\\ll\\\\sqrt{\\\\dfrac{\\\\hbar}{m\\\\omega}},\\\\\\\\[1.2em]\\\\dfrac{\\\\lambda}{a^2},&a\\\\gg\\\\sqrt{\\\\dfrac{\\\\hbar}{m\\\\omega}}.\\\\end{cases}\",\"reasoning\":\"The response's large-a result, \\\\(\\\\Delta E=\\\\lambda/a^2\\\\), exactly matches the supplied reference under the same condition \\\\(a\\\\gg\\\\sqrt{\\\\hbar/(m\\\\omega)}\\\\). Its additional small-a result is also consistent with the stated expectation-value integral and does not contradict the reference.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "36cd55706cc0869ccf83796b6ca79ff1e2c8173a0857f2cbedfecb724617cdf2"
+  },
+  "06_cleaned_dag:4009": {
+    "judgment": {
+      "extracted_final_answer": "(a) \\(\\psi_T(t)=\\psi^*(-t)\\), with \\(\\hat H_T(t)=\\hat H^*(-t)\\). (b) \\(\\hat H=-\\mu_zH_z=\\frac{e\\hbar}{2mc}H_z\\sigma_z\\). (c) For \\(\\mathbf H=H_y\\hat y+H_z\\hat z\\), \\(\\hat H=\\frac{e\\hbar}{2mc}(H_y\\sigma_y+H_z\\sigma_z)\\) and \\(\\frac{d\\boldsymbol\\mu}{dt}=\\frac{e}{mc}\\mathbf H\\times\\boldsymbol\\mu=\\frac{e}{mc}[(H_y\\mu_z-H_z\\mu_y)\\hat x+H_z\\mu_x\\hat y-H_y\\mu_x\\hat z]\\).",
+      "reasoning": "The response matches the reference in all three parts. It gives the correct time-reversed wave function and transformed Hamiltonian, the correct magnetic-field Hamiltonian along z, and the correct Heisenberg evolution of the magnetic moment with equivalent vector and component forms. The assumed time-reversal invariance supplies the reference condition \\(H^*(-t)=H(t)\\).",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12951,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 410,
+      "reasoning_output_tokens": 105
+    },
+    "raw_response": "{\"extracted_final_answer\":\"(a) \\\\(\\\\psi_T(t)=\\\\psi^*(-t)\\\\), with \\\\(\\\\hat H_T(t)=\\\\hat H^*(-t)\\\\). (b) \\\\(\\\\hat H=-\\\\mu_zH_z=\\\\frac{e\\\\hbar}{2mc}H_z\\\\sigma_z\\\\). (c) For \\\\(\\\\mathbf H=H_y\\\\hat y+H_z\\\\hat z\\\\), \\\\(\\\\hat H=\\\\frac{e\\\\hbar}{2mc}(H_y\\\\sigma_y+H_z\\\\sigma_z)\\\\) and \\\\(\\\\frac{d\\\\boldsymbol\\\\mu}{dt}=\\\\frac{e}{mc}\\\\mathbf H\\\\times\\\\boldsymbol\\\\mu=\\\\frac{e}{mc}[(H_y\\\\mu_z-H_z\\\\mu_y)\\\\hat x+H_z\\\\mu_x\\\\hat y-H_y\\\\mu_x\\\\hat z]\\\\).\",\"reasoning\":\"The response matches the reference in all three parts. It gives the correct time-reversed wave function and transformed Hamiltonian, the correct magnetic-field Hamiltonian along z, and the correct Heisenberg evolution of the magnetic moment with equivalent vector and component forms. The assumed time-reversal invariance supplies the reference condition \\\\(H^*(-t)=H(t)\\\\).\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "06b3ac7da862ffd0b812379c045af76a04b1ff8545310f1ab32c14c376329476"
+  },
+  "06_cleaned_dag:1059": {
+    "judgment": {
+      "extracted_final_answer": "A_0=\\exp\\!\\left(-\\frac{p^2}{4m\\hbar\\omega}\\right),\\quad P_0=\\exp\\!\\left(-\\frac{p^2}{2m\\hbar\\omega}\\right)",
+      "reasoning": "The response matches the reference derivation: substituting \\(\\alpha^2=m\\omega/\\hbar\\) into \\(A_0=\\exp[-p^2/(4\\alpha^2\\hbar^2)]\\) and \\(P_0=\\exp[-p^2/(2\\alpha^2\\hbar^2)]\\) gives exactly the response. The reference's last expression involving \\(2m\\alpha\\hbar\\) is inconsistent with its own derivation and definitions.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12359,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 354,
+      "reasoning_output_tokens": 151
+    },
+    "raw_response": "{\"extracted_final_answer\":\"A_0=\\\\exp\\\\!\\\\left(-\\\\frac{p^2}{4m\\\\hbar\\\\omega}\\\\right),\\\\quad P_0=\\\\exp\\\\!\\\\left(-\\\\frac{p^2}{2m\\\\hbar\\\\omega}\\\\right)\",\"reasoning\":\"The response matches the reference derivation: substituting \\\\(\\\\alpha^2=m\\\\omega/\\\\hbar\\\\) into \\\\(A_0=\\\\exp[-p^2/(4\\\\alpha^2\\\\hbar^2)]\\\\) and \\\\(P_0=\\\\exp[-p^2/(2\\\\alpha^2\\\\hbar^2)]\\\\) gives exactly the response. The reference's last expression involving \\\\(2m\\\\alpha\\\\hbar\\\\) is inconsistent with its own derivation and definitions.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "cdc2b1241baad1d19b1e014ee9f84d32f9202af49800e2fe4eda32be04d30eb5"
+  },
+  "06_cleaned_dag:7002": {
+    "judgment": {
+      "extracted_final_answer": "y_1=(x_1+x_2)/\\sqrt2,\\; y_2=(x_1-x_2)/\\sqrt2, and for n',n=0,1,2,\\ldots: (a) E_{n'n}=\\hbar\\sqrt{(k+\\varepsilon)/m}(n'+1/2)+\\hbar\\sqrt{(k-\\varepsilon)/m}(n+1/2)=\\hbar\\omega[\\sqrt{1+\\varepsilon/k}(n'+1/2)+\\sqrt{1-\\varepsilon/k}(n+1/2)]. (b) E_{n'n}=\\hbar\\omega[n'+n+1+(\\varepsilon/(2k))(n'-n)+O(\\varepsilon^2/k^2)].",
+      "reasoning": "The response exactly matches the reference. The chosen normal coordinates diagonalize the Hamiltonian into modes with frequencies \\sqrt{(k+\\varepsilon)/m} and \\sqrt{(k-\\varepsilon)/m}. Its exact spectrum and first-order expansion in \\varepsilon/k have the correct signs, factors, quantum-number assignments, and zero-point contributions.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12567,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 282,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"y_1=(x_1+x_2)/\\\\sqrt2,\\\\; y_2=(x_1-x_2)/\\\\sqrt2, and for n',n=0,1,2,\\\\ldots: (a) E_{n'n}=\\\\hbar\\\\sqrt{(k+\\\\varepsilon)/m}(n'+1/2)+\\\\hbar\\\\sqrt{(k-\\\\varepsilon)/m}(n+1/2)=\\\\hbar\\\\omega[\\\\sqrt{1+\\\\varepsilon/k}(n'+1/2)+\\\\sqrt{1-\\\\varepsilon/k}(n+1/2)]. (b) E_{n'n}=\\\\hbar\\\\omega[n'+n+1+(\\\\varepsilon/(2k))(n'-n)+O(\\\\varepsilon^2/k^2)].\",\"reasoning\":\"The response exactly matches the reference. The chosen normal coordinates diagonalize the Hamiltonian into modes with frequencies \\\\sqrt{(k+\\\\varepsilon)/m} and \\\\sqrt{(k-\\\\varepsilon)/m}. Its exact spectrum and first-order expansion in \\\\varepsilon/k have the correct signs, factors, quantum-number assignments, and zero-point contributions.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "684e25ae867f9412976abfeb0e961655f96dd7c67f03eefd75e6a4c1b8f3b5bc"
+  },
+  "06_cleaned_dag:5057": {
+    "judgment": {
+      "extracted_final_answer": "(a) \\(E_{nljm_j}\\simeq E_{nlj}-g\\mu_0Bm_j\\), with \\(g=g_l\\frac{j(j+1)+l(l+1)-s(s+1)}{2j(j+1)}+g_s\\frac{j(j+1)-l(l+1)+s(s+1)}{2j(j+1)}\\), and \\(N_{weak\\_levels}=2j+1\\). (b) \\(E_{nlm_lm_s}\\simeq E_{nl}-\\mu_0B(g_lm_l+g_sm_s)\\); for \\(g_l=1,g_s\\simeq2\\), \\(E\\simeq E_{nl}-\\mu_0B(m_l+2m_s)\\), with \\(N_{strong\\_levels}=2\\) for \\(l=0\\) and \\(2l+3\\) for \\(l\\ge1\\), and \\(\\Delta m_l=0,\\pm1\\), \\(\\Delta m_s=0\\).",
+      "reasoning": "The response does not match the supplied reference's stated sign conventions. In part (a), it gives the conventional positive Landé factor, whereas the reference explicitly specifies \\(g=-[1+(j(j+1)+s(s+1)-l(l+1))/(2j(j+1))]\\) for the quoted values. In part (b), the response uses \\(g_s\\simeq+2\\) and obtains a negative shift \\(-\\mu_0B(m_l+2m_s)\\), while the reference specifies \\(g_s=-2\\) and states \\(+\\mu_0B(m_l+2m_s)\\). It also gives an \\(l=0\\) exception of two strong-field levels, whereas the supplied reference states \\(N_{strong\\_levels}=2l+3\\) without that exception. Therefore the complete answer is not equivalent to the supplied reference.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 14598,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 682,
+      "reasoning_output_tokens": 209
+    },
+    "raw_response": "{\"extracted_final_answer\":\"(a) \\\\(E_{nljm_j}\\\\simeq E_{nlj}-g\\\\mu_0Bm_j\\\\), with \\\\(g=g_l\\\\frac{j(j+1)+l(l+1)-s(s+1)}{2j(j+1)}+g_s\\\\frac{j(j+1)-l(l+1)+s(s+1)}{2j(j+1)}\\\\), and \\\\(N_{weak\\\\_levels}=2j+1\\\\). (b) \\\\(E_{nlm_lm_s}\\\\simeq E_{nl}-\\\\mu_0B(g_lm_l+g_sm_s)\\\\); for \\\\(g_l=1,g_s\\\\simeq2\\\\), \\\\(E\\\\simeq E_{nl}-\\\\mu_0B(m_l+2m_s)\\\\), with \\\\(N_{strong\\\\_levels}=2\\\\) for \\\\(l=0\\\\) and \\\\(2l+3\\\\) for \\\\(l\\\\ge1\\\\), and \\\\(\\\\Delta m_l=0,\\\\pm1\\\\), \\\\(\\\\Delta m_s=0\\\\).\",\"reasoning\":\"The response does not match the supplied reference's stated sign conventions. In part (a), it gives the conventional positive Landé factor, whereas the reference explicitly specifies \\\\(g=-[1+(j(j+1)+s(s+1)-l(l+1))/(2j(j+1))]\\\\) for the quoted values. In part (b), the response uses \\\\(g_s\\\\simeq+2\\\\) and obtains a negative shift \\\\(-\\\\mu_0B(m_l+2m_s)\\\\), while the reference specifies \\\\(g_s=-2\\\\) and states \\\\(+\\\\mu_0B(m_l+2m_s)\\\\). It also gives an \\\\(l=0\\\\) exception of two strong-field levels, whereas the supplied reference states \\\\(N_{strong\\\\_levels}=2l+3\\\\) without that exception. Therefore the complete answer is not equivalent to the supplied reference.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "33f532d057f76f00bce207282d10312b733ecac7c89bde9cc995ad8a94ce243f"
+  },
+  "06_cleaned_dag:5058": {
+    "judgment": {
+      "extracted_final_answer": "(a) \\(\\Delta E_{\\mathrm{fs}}=\\frac{\\hbar^2}{2}(2l+1)\\overline{\\xi(r)}\\). (b) \\(\\Delta E_Z=g_j\\mu_BH\\), where \\(g_j=1+\\frac{j(j+1)+3/4-l(l+1)}{2j(j+1)}\\), equivalently \\(g_{l+1/2}=\\frac{2(l+1)}{2l+1}\\) and \\(g_{l-1/2}=\\frac{2l}{2l+1}\\). (c) In the Paschen–Back regime, \\(j\\) is no longer a good quantum number, while \\(m_l,m_s\\) are approximately good, and \\(E_{nlm_lm_s}\\simeq E_{nl}+\\mu_BH(m_l+2m_s)+\\hbar^2\\overline{\\xi(r)}m_lm_s\\).",
+      "reasoning": "The fine-structure interval and weak-field Landé factors exactly match the reference after substituting \\(j=l\\pm\\tfrac12\\). The strong-field description correctly identifies the Paschen–Back regime and its good quantum numbers. Its additional \\(\\hbar^2\\overline{\\xi(r)}m_lm_s\\) term is the valid first-order residual spin–orbit correction; neglecting it in the stated dominant-field limit recovers the reference energy and spacing \\(\\Delta E_Z=\\mu_BH\\).",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 14018,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 725,
+      "reasoning_output_tokens": 352
+    },
+    "raw_response": "{\"extracted_final_answer\":\"(a) \\\\(\\\\Delta E_{\\\\mathrm{fs}}=\\\\frac{\\\\hbar^2}{2}(2l+1)\\\\overline{\\\\xi(r)}\\\\). (b) \\\\(\\\\Delta E_Z=g_j\\\\mu_BH\\\\), where \\\\(g_j=1+\\\\frac{j(j+1)+3/4-l(l+1)}{2j(j+1)}\\\\), equivalently \\\\(g_{l+1/2}=\\\\frac{2(l+1)}{2l+1}\\\\) and \\\\(g_{l-1/2}=\\\\frac{2l}{2l+1}\\\\). (c) In the Paschen–Back regime, \\\\(j\\\\) is no longer a good quantum number, while \\\\(m_l,m_s\\\\) are approximately good, and \\\\(E_{nlm_lm_s}\\\\simeq E_{nl}+\\\\mu_BH(m_l+2m_s)+\\\\hbar^2\\\\overline{\\\\xi(r)}m_lm_s\\\\).\",\"reasoning\":\"The fine-structure interval and weak-field Landé factors exactly match the reference after substituting \\\\(j=l\\\\pm\\\\tfrac12\\\\). The strong-field description correctly identifies the Paschen–Back regime and its good quantum numbers. Its additional \\\\(\\\\hbar^2\\\\overline{\\\\xi(r)}m_lm_s\\\\) term is the valid first-order residual spin–orbit correction; neglecting it in the stated dominant-field limit recovers the reference energy and spacing \\\\(\\\\Delta E_Z=\\\\mu_BH\\\\).\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "b9febd210f64a3f4467b31360f8fcbcb4347a0511387035298ba533e08c3cd8b"
+  },
+  "06_cleaned_dag:8008": {
+    "judgment": {
+      "extracted_final_answer": "For l=0, with χ(r)=rR(r), the radial equation is −(ℏ²/2m)χʺ+Vχ=Eχ on 0<r<∞, with χ(0)=0 and χ(∞)=0 (equivalently R(0) finite and R(∞)=0). The WKB condition is ∫₀^{r_t}√(2m[E−V(r)])dr=(n+3/4)πℏ=(n+3/4)h/2. For V(r)=−V₀e^(−r/a), the barely bound n=0 threshold is V₀,min^(WKB)=9π²ℏ²/(128ma²), or 2mV₀a²/ℏ²=9π²/64≈1.3879, about 3.6% below the exact value 1.44.",
+      "reasoning": "The response correctly states the l=0 radial equations, bound-state boundary conditions, half-line WKB phase condition, turning point, threshold integral, and resulting minimum potential strength. Its dimensionless threshold 9π²/64≈1.39 and comparison with 1.44 agree with the supplied reference.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 13756,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 383,
+      "reasoning_output_tokens": 92
+    },
+    "raw_response": "{\"extracted_final_answer\":\"For l=0, with χ(r)=rR(r), the radial equation is −(ℏ²/2m)χʺ+Vχ=Eχ on 0<r<∞, with χ(0)=0 and χ(∞)=0 (equivalently R(0) finite and R(∞)=0). The WKB condition is ∫₀^{r_t}√(2m[E−V(r)])dr=(n+3/4)πℏ=(n+3/4)h/2. For V(r)=−V₀e^(−r/a), the barely bound n=0 threshold is V₀,min^(WKB)=9π²ℏ²/(128ma²), or 2mV₀a²/ℏ²=9π²/64≈1.3879, about 3.6% below the exact value 1.44.\",\"reasoning\":\"The response correctly states the l=0 radial equations, bound-state boundary conditions, half-line WKB phase condition, turning point, threshold integral, and resulting minimum potential strength. Its dimensionless threshold 9π²/64≈1.39 and comparison with 1.44 agree with the supplied reference.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "3a87375cfaa072415ebc5a5eb3500fc760423c9e4d22da2e1cfa9f4ff6cc50db"
+  },
+  "04_cleaned_dag:4060": {
+    "judgment": {
+      "extracted_final_answer": "N_p = 3.344 × 10^33, ΔN = 33.4 yr^-1; E_{γ,max} = 469.0 MeV and E_{γ,min} = 9.71 MeV.",
+      "reasoning": "The response correctly computes the number of protons and expected yearly decays. Its photon-energy endpoints are physically and mathematically correct and agree with the reference within rounding; the slight difference in the stated maximum (469.0 versus 469.3 MeV) results from the response retaining greater precision rather than prematurely rounding E_π to 479 MeV.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 13354,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 326,
+      "reasoning_output_tokens": 171
+    },
+    "raw_response": "{\"extracted_final_answer\":\"N_p = 3.344 × 10^33, ΔN = 33.4 yr^-1; E_{γ,max} = 469.0 MeV and E_{γ,min} = 9.71 MeV.\",\"reasoning\":\"The response correctly computes the number of protons and expected yearly decays. Its photon-energy endpoints are physically and mathematically correct and agree with the reference within rounding; the slight difference in the stated maximum (469.0 versus 469.3 MeV) results from the response retaining greater precision rather than prematurely rounding E_π to 479 MeV.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "c6c09ba2a5eb8ac6aee1c3dffb63918228729588ff65c147bbeb03835434e948"
+  },
+  "04_cleaned_dag:3077": {
+    "judgment": {
+      "extracted_final_answer": "a) R = 2; b) R = 10/3",
+      "reasoning": "The response exactly matches the reference for both energy ranges: the accessible u, d, s flavors give R = 2 below charm threshold, and adding charm gives R = 10/3 below bottom threshold.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12018,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 89,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"a) R = 2; b) R = 10/3\",\"reasoning\":\"The response exactly matches the reference for both energy ranges: the accessible u, d, s flavors give R = 2 below charm threshold, and adding charm gives R = 10/3 below bottom threshold.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "2dbf0ff69cb27d876d7d645ec5b3c2ec7ba921c49b80953d63c8a95eb0bc2568"
+  },
+  "02_cleaned_dag:1010": {
+    "judgment": {
+      "extracted_final_answer": "F=\\frac{Q\\sigma}{2\\varepsilon_0}\\left(1-\\frac{z}{\\sqrt{z^2+R^2}}\\right)",
+      "reasoning": "The extracted expression exactly matches the reference answer, since \\(z^2+R^2=R^2+z^2\\), and it gives the requested axial force with positive direction along the +z-axis for the stated placement.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11989,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 120,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"F=\\\\frac{Q\\\\sigma}{2\\\\varepsilon_0}\\\\left(1-\\\\frac{z}{\\\\sqrt{z^2+R^2}}\\\\right)\",\"reasoning\":\"The extracted expression exactly matches the reference answer, since \\\\(z^2+R^2=R^2+z^2\\\\), and it gives the requested axial force with positive direction along the +z-axis for the stated placement.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "1d00685b5da08c0ade878233fd77b5fec654f32c467f3965eb58437da45766ee"
+  },
+  "04_cleaned_dag:2119": {
+    "judgment": {
+      "extracted_final_answer": "\\(\\sigma \\sim 10^{-24}\\ \\mathrm{cm^2}\\)",
+      "reasoning": "The response selects \\(10^{-24}\\ \\mathrm{cm^2}\\), which matches the option and value specified in the correct answer. The use of \\(\\sim\\) appropriately indicates a typical order of magnitude.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11800,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 97,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(\\\\sigma \\\\sim 10^{-24}\\\\ \\\\mathrm{cm^2}\\\\)\",\"reasoning\":\"The response selects \\\\(10^{-24}\\\\ \\\\mathrm{cm^2}\\\\), which matches the option and value specified in the correct answer. The use of \\\\(\\\\sim\\\\) appropriately indicates a typical order of magnitude.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "c1faeef5f88bc036abdbc9a60da8a277011edd0359cdf45a16fd91470818e50c"
+  },
+  "01_cleaned_dag:3052": {
+    "judgment": {
+      "extracted_final_answer": "\\(\\beta^{*}=\\frac{pc}{E+m_0c^2},\\quad E^{*}=\\sqrt{2m_0c^2(E+m_0c^2)}\\simeq \\sqrt{2m_0c^2E}\\simeq \\sqrt{2m_0c^3p}\\)",
+      "reasoning": "The response matches both reference components. Its exact COM energy expands to \\(\\sqrt{2Em_0c^2+2m_0^2c^4}\\), and its extreme-relativistic approximations use \\(E\\approx pc\\), exactly as required. No confidence was stated, so the confidence is 100.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12275,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 178,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(\\\\beta^{*}=\\\\frac{pc}{E+m_0c^2},\\\\quad E^{*}=\\\\sqrt{2m_0c^2(E+m_0c^2)}\\\\simeq \\\\sqrt{2m_0c^2E}\\\\simeq \\\\sqrt{2m_0c^3p}\\\\)\",\"reasoning\":\"The response matches both reference components. Its exact COM energy expands to \\\\(\\\\sqrt{2Em_0c^2+2m_0^2c^4}\\\\), and its extreme-relativistic approximations use \\\\(E\\\\approx pc\\\\), exactly as required. No confidence was stated, so the confidence is 100.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "b17f561416c7c483d2e264f3a4a7609a1d8b72f32de309fc34b32dc611d58a1e"
+  },
+  "02_cleaned_dag:2029": {
+    "judgment": {
+      "extracted_final_answer": "\\(B=\\dfrac{\\mu_{0}NI}{s+L/\\mu_r}=\\dfrac{\\mu_{0}\\mu_r NI}{L+\\mu_r s}\\)",
+      "reasoning": "The response is equivalent to the reference because the iron rod length is \\(L=2\\pi R-s\\). Substituting this into the response gives \\(B=\\mu_0\\mu_r NI/[2\\pi R+(\\mu_r-1)s]\\), exactly matching the supplied reference.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11909,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 248,
+      "reasoning_output_tokens": 106
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(B=\\\\dfrac{\\\\mu_{0}NI}{s+L/\\\\mu_r}=\\\\dfrac{\\\\mu_{0}\\\\mu_r NI}{L+\\\\mu_r s}\\\\)\",\"reasoning\":\"The response is equivalent to the reference because the iron rod length is \\\\(L=2\\\\pi R-s\\\\). Substituting this into the response gives \\\\(B=\\\\mu_0\\\\mu_r NI/[2\\\\pi R+(\\\\mu_r-1)s]\\\\), exactly matching the supplied reference.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "913ef0c5bb76323889e0d5c139f6010b68897a12263522ef280c10de006c9f29"
+  },
+  "02_cleaned_dag:2053": {
+    "judgment": {
+      "extracted_final_answer": "v(t)=\\frac{FR}{B^{2}l^{2}}\\left(1-e^{-\\frac{B^{2}l^{2}}{mR}t}\\right),\\quad I(t)=\\frac{F}{Bl}\\left(1-e^{-\\frac{B^{2}l^{2}}{mR}t}\\right). The conventional current flows in the direction such that I\\,\\vec l\\times\\vec B opposes the applied force (and the wire's motion), as required by Lenz's law.",
+      "reasoning": "The response derives the same equation of motion, velocity, and current as the reference answer. Its stated current direction is physically equivalent to the reference: the induced current produces a magnetic force opposing the motion. The illustrative vector example is also consistent with that rule.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12438,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 271,
+      "reasoning_output_tokens": 70
+    },
+    "raw_response": "{\"extracted_final_answer\":\"v(t)=\\\\frac{FR}{B^{2}l^{2}}\\\\left(1-e^{-\\\\frac{B^{2}l^{2}}{mR}t}\\\\right),\\\\quad I(t)=\\\\frac{F}{Bl}\\\\left(1-e^{-\\\\frac{B^{2}l^{2}}{mR}t}\\\\right). The conventional current flows in the direction such that I\\\\,\\\\vec l\\\\times\\\\vec B opposes the applied force (and the wire's motion), as required by Lenz's law.\",\"reasoning\":\"The response derives the same equation of motion, velocity, and current as the reference answer. Its stated current direction is physically equivalent to the reference: the induced current produces a magnetic force opposing the motion. The illustrative vector example is also consistent with that rule.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "047ce904fa1cce4a12b3ccc52e6d8546035399969366a2bbf7d8733c5972eec1"
+  },
+  "02_cleaned_dag:2021": {
+    "judgment": {
+      "extracted_final_answer": "ρ = -2a, σ = aR, λ_tot = 0; E_in(r) = -(ar/ε_0)e_r and E_out(r) = 0; j = -2aωr e_θ, K = aωR^2 e_θ; B_in(r) = μ_0aωr^2 e_z and B_out(r) = 0; (dW/dz)_before = πa^2R^4/(4ε_0); (dW/dz)_spinning = πa^2R^4/(4ε_0) + πμ_0a^2ω^2R^6/6 = [πa^2R^4/(4ε_0)][1 + (2/3)(ωR/c)^2]. The additional magnetic energy is supplied by mechanical work from the external agent during spin-up.",
+      "reasoning": "The response matches the reference in every requested component: the bound charge densities and zero total charge, the interior and exterior electric fields, the volume and surface currents, the interior and exterior magnetic fields (with the response's scalar B_in multiplied by e_z as defined in the question), both energy expressions, and the mechanical origin of the additional energy. The added statement about work against induced electromagnetic torque is consistent and does not contradict the reference.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 13717,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 307,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"ρ = -2a, σ = aR, λ_tot = 0; E_in(r) = -(ar/ε_0)e_r and E_out(r) = 0; j = -2aωr e_θ, K = aωR^2 e_θ; B_in(r) = μ_0aωr^2 e_z and B_out(r) = 0; (dW/dz)_before = πa^2R^4/(4ε_0); (dW/dz)_spinning = πa^2R^4/(4ε_0) + πμ_0a^2ω^2R^6/6 = [πa^2R^4/(4ε_0)][1 + (2/3)(ωR/c)^2]. The additional magnetic energy is supplied by mechanical work from the external agent during spin-up.\",\"reasoning\":\"The response matches the reference in every requested component: the bound charge densities and zero total charge, the interior and exterior electric fields, the volume and surface currents, the interior and exterior magnetic fields (with the response's scalar B_in multiplied by e_z as defined in the question), both energy expressions, and the mechanical origin of the additional energy. The added statement about work against induced electromagnetic torque is consistent and does not contradict the reference.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "1d7373a8de282f817f82ca9486be7dad1677a7c1d2ea7311ca573d658b0b0487"
+  },
+  "02_cleaned_dag:3030": {
+    "judgment": {
+      "extracted_final_answer": "L=8\\pi\\times10^{-5}\\,\\mathrm{H},\\quad M=8\\pi\\times10^{-6}\\,\\mathrm{H},\\quad q=8\\pi\\times10^{-9}\\,\\mathrm{C}",
+      "reasoning": "The stated L and M equal approximately 2.513×10^-4 H and 2.513×10^-5 H, matching the reference. However, the stated q equals approximately 2.513×10^-8 C, which does not match the supplied reference value 2.76×10^-7 C. Because all requested components must match, the response is incorrect.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12364,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 329,
+      "reasoning_output_tokens": 162
+    },
+    "raw_response": "{\"extracted_final_answer\":\"L=8\\\\pi\\\\times10^{-5}\\\\,\\\\mathrm{H},\\\\quad M=8\\\\pi\\\\times10^{-6}\\\\,\\\\mathrm{H},\\\\quad q=8\\\\pi\\\\times10^{-9}\\\\,\\\\mathrm{C}\",\"reasoning\":\"The stated L and M equal approximately 2.513×10^-4 H and 2.513×10^-5 H, matching the reference. However, the stated q equals approximately 2.513×10^-8 C, which does not match the supplied reference value 2.76×10^-7 C. Because all requested components must match, the response is incorrect.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "8190ad9e3002136a46610c2a9fd80d4a07169c0719bc200ab3fe6150fc22c76e"
+  },
+  "04_cleaned_dag:4002": {
+    "judgment": {
+      "extracted_final_answer": "m=1.4\\times10^2\\ \\mathrm{MeV}/c^2 (mc^2=1.4\\times10^2\\ \\mathrm{MeV});\\ T_1=6.9\\times10^2\\ \\mathrm{MeV};\\ T_2=34\\ \\mathrm{MeV};\\ \\tau_0=2.6\\times10^{-8}\\ \\mathrm{s};\\ l_1=32\\ \\mathrm{m}.",
+      "reasoning": "The response is complete and physically correct. Its values of 690 MeV and 32 m differ slightly from the reference's 680 MeV and 31 m only because the response retains the unrounded derived mass (0.136 GeV/c^2) in intermediate calculations. Direct calculation gives T1≈685 MeV and l1≈31.76 m, which round to 690 MeV and 32 m at the requested two-significant-figure accuracy. The mass, slowed kinetic energy, and intrinsic half-life also agree.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 13204,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 523,
+      "reasoning_output_tokens": 275
+    },
+    "raw_response": "{\"extracted_final_answer\":\"m=1.4\\\\times10^2\\\\ \\\\mathrm{MeV}/c^2 (mc^2=1.4\\\\times10^2\\\\ \\\\mathrm{MeV});\\\\ T_1=6.9\\\\times10^2\\\\ \\\\mathrm{MeV};\\\\ T_2=34\\\\ \\\\mathrm{MeV};\\\\ \\\\tau_0=2.6\\\\times10^{-8}\\\\ \\\\mathrm{s};\\\\ l_1=32\\\\ \\\\mathrm{m}.\",\"reasoning\":\"The response is complete and physically correct. Its values of 690 MeV and 32 m differ slightly from the reference's 680 MeV and 31 m only because the response retains the unrounded derived mass (0.136 GeV/c^2) in intermediate calculations. Direct calculation gives T1≈685 MeV and l1≈31.76 m, which round to 690 MeV and 32 m at the requested two-significant-figure accuracy. The mass, slowed kinetic energy, and intrinsic half-life also agree.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "34f154a0e9f4c9226662e49e58ee9ce19390d83264c95142cec8eb1d0d2b273f"
+  }
+}

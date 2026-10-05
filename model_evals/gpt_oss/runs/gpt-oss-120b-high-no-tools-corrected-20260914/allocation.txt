@@ -1,0 +1,15 @@
+job_id=23064
+node=mi355-gpu-35
+started_at=2026-09-14T13:35:11+00:00
+image=rocm/vllm:rocm7.13.0_gfx950-dcgpu_ubuntu24.04_py3.13_pytorch_2.10.0_vllm_0.19.1
+model=openai/gpt-oss-120b
+reasoning_effort=high
+gpus=8
+data_parallel_size=8
+max_num_seqs=256
+gpu_memory_utilization=0.90
+attention_backend=TRITON_ATTN_after_gfx950_aiter_startup_fault
+async_scheduling=disabled
+expert_parallel=enabled
+all2all_backend=naive
+client_workers_per_benchmark=128

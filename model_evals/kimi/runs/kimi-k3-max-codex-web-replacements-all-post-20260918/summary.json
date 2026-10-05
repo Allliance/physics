@@ -1,0 +1,162 @@
+{
+  "complete": false,
+  "model": "moonshotai/kimi-k3",
+  "reasoning_effort": "max",
+  "replacement_harness": "Codex CLI with local tools and OpenRouter agentic-web preset",
+  "judge_model": "gpt-5.6-sol",
+  "total_retries": 128,
+  "total_retry_successes": 0,
+  "retry_success_rate": 0.0,
+  "datasets": {
+    "phybench": {
+      "complete": false,
+      "questions": 88,
+      "attempts": 4,
+      "retries": 65,
+      "retry_successes": 0,
+      "retry_success_rate": 0.0,
+      "original_mean_at_4": 0.8153409090909091,
+      "final_mean_at_4": null,
+      "original_pass_at_4": 0.9204545454545454,
+      "final_pass_at_4": null,
+      "per_attempt": [
+        {
+          "attempt": 1,
+          "questions": 88,
+          "original_correct": 74,
+          "retries": 14,
+          "retry_successes": 0,
+          "final_correct": null,
+          "final_accuracy": null
+        },
+        {
+          "attempt": 2,
+          "questions": 88,
+          "original_correct": 74,
+          "retries": 14,
+          "retry_successes": 0,
+          "final_correct": null,
+          "final_accuracy": null
+        },
+        {
+          "attempt": 3,
+          "questions": 88,
+          "original_correct": 69,
+          "retries": 19,
+          "retry_successes": 0,
+          "final_correct": null,
+          "final_accuracy": null
+        },
+        {
+          "attempt": 4,
+          "questions": 88,
+          "original_correct": 70,
+          "retries": 18,
+          "retry_successes": 0,
+          "final_correct": null,
+          "final_accuracy": null
+        }
+      ]
+    },
+    "prism": {
+      "complete": false,
+      "questions": 74,
+      "attempts": 4,
+      "retries": 27,
+      "retry_successes": 0,
+      "retry_success_rate": 0.0,
+      "original_mean_at_4": 0.9087837837837838,
+      "final_mean_at_4": null,
+      "original_pass_at_4": 0.972972972972973,
+      "final_pass_at_4": null,
+      "per_attempt": [
+        {
+          "attempt": 1,
+          "questions": 74,
+          "original_correct": 69,
+          "retries": 5,
+          "retry_successes": 0,
+          "final_correct": null,
+          "final_accuracy": null
+        },
+        {
+          "attempt": 2,
+          "questions": 74,
+          "original_correct": 70,
+          "retries": 4,
+          "retry_successes": 0,
+          "final_correct": null,
+          "final_accuracy": null
+        },
+        {
+          "attempt": 3,
+          "questions": 74,
+          "original_correct": 66,
+          "retries": 8,
+          "retry_successes": 0,
+          "final_correct": null,
+          "final_accuracy": null
+        },
+        {
+          "attempt": 4,
+          "questions": 74,
+          "original_correct": 64,
+          "retries": 10,
+          "retry_successes": 0,
+          "final_correct": null,
+          "final_accuracy": null
+        }
+      ]
+    },
+    "ugphysics": {
+      "complete": false,
+      "questions": 78,
+      "attempts": 4,
+      "retries": 36,
+      "retry_successes": 0,
+      "retry_success_rate": 0.0,
+      "original_mean_at_4": 0.8846153846153846,
+      "final_mean_at_4": null,
+      "original_pass_at_4": 0.9615384615384616,
+      "final_pass_at_4": null,
+      "per_attempt": [
+        {
+          "attempt": 1,
+          "questions": 78,
+          "original_correct": 70,
+          "retries": 8,
+          "retry_successes": 0,
+          "final_correct": null,
+          "final_accuracy": null
+        },
+        {
+          "attempt": 2,
+          "questions": 78,
+          "original_correct": 69,
+          "retries": 9,
+          "retry_successes": 0,
+          "final_correct": null,
+          "final_accuracy": null
+        },
+        {
+          "attempt": 3,
+          "questions": 78,
+          "original_correct": 69,
+          "retries": 9,
+          "retry_successes": 0,
+          "final_correct": null,
+          "final_accuracy": null
+        },
+        {
+          "attempt": 4,
+          "questions": 78,
+          "original_correct": 68,
+          "retries": 10,
+          "retry_successes": 0,
+          "final_correct": null,
+          "final_accuracy": null
+        }
+      ]
+    }
+  }
+}

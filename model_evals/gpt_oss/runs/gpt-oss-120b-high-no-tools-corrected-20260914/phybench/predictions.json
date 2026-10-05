@@ -1,0 +1,1150 @@
+{
+  "206": {
+    "response": "\\[\n\\boxed{\\,V(\\alpha)=V_{0}\\,\\frac{\\displaystyle\\ln\\!\\Big(\\dfrac{\\tan(\\alpha/2)}{\\tan(\\alpha_{1}/2)}\\Big)}\n{\\displaystyle\\ln\\!\\Big(\\dfrac{\\tan(\\alpha_{2}/2)}{\\tan(\\alpha_{1}/2)}\\Big)}\\,,\\qquad \n\\alpha_{1}\\le\\alpha\\le\\alpha_{2}\\,}\n\\]",
+    "usage": {
+      "prompt_tokens": 329,
+      "total_tokens": 2198,
+      "completion_tokens": 1869,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "318": {
+    "response": "\\[\nF(x,t)=\\pi R^{2}\\,\\Big[p\\!\\big(x+\\tfrac{h}{2},t\\big)-p\\!\\big(x-\\tfrac{h}{2},t\\big)\\Big]\n    =2\\pi R^{2}\\,\\gamma P_{0}\\,A\\,k\\,\n      \\cos(kx)\\,\\sin\\!\\Big(\\frac{k h}{2}\\Big)\\,\n      \\cos(2\\pi f t)\\,,\n\\]\n\nwhere the acoustic pressure perturbation is \n\\(p(x,t)=\\gamma P_{0}A k\\sin(kx)\\cos(2\\pi f t)\\).\nFor a cylinder much shorter than the wavelength \\((kh\\ll1)\\) this reduces to  \n\n\\[\nF(x,t)\\simeq\\pi R^{2}\\,\\gamma P_{0}\\,A\\,k^{2}h\\,\n            \\cos(kx)\\cos(2\\pi f t)\\,. \n\\]",
+    "usage": {
+      "prompt_tokens": 248,
+      "total_tokens": 2353,
+      "completion_tokens": 2105,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "670": {
+    "response": "\\[\n\\boxed{\\lambda_D=\\sqrt{\\frac{\\varepsilon_0\\,k\\,T}{2\\,n_0\\,e^{2}}}}\n\\]",
+    "usage": {
+      "prompt_tokens": 525,
+      "total_tokens": 2772,
+      "completion_tokens": 2247,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "39": {
+    "response": "\\[\n\\boxed{T \\;=\\; 2\\pi\\,\\sqrt{\\dfrac{\\rho_{1}\\,H}{\\rho_{2}\\,g}}}\n\\]",
+    "usage": {
+      "prompt_tokens": 283,
+      "total_tokens": 2675,
+      "completion_tokens": 2392,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "603": {
+    "response": "\\[\n\\boxed{\\varepsilon(\\omega)\\;=\\;\\varepsilon_{0}\\Bigl(1-\\frac{\\omega_{p}^{2}}{\\omega^{2}}\\Bigr)\n\\qquad\\text{with}\\qquad \n\\omega_{p}^{2}\\;=\\;\\frac{n\\,e^{2}}{\\varepsilon_{0}\\,m}\\;}\n\\]",
+    "usage": {
+      "prompt_tokens": 468,
+      "total_tokens": 3103,
+      "completion_tokens": 2635,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "41": {
+    "response": "\\[\n\\boxed{h \\;=\\; R\\Bigg(\\frac{1}{\\sqrt{k_{2}\\bigl(k_{1}+1\\bigr)-k_{1}}}\\;-\\;1\\Bigg)\n\\;=\\; R\\Bigg(\\frac{1}{\\sqrt{k_{2}+(k_{2}-1)k_{1}}}\\;-\\;1\\Bigg)}\n\\]",
+    "usage": {
+      "prompt_tokens": 258,
+      "total_tokens": 3020,
+      "completion_tokens": 2762,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "600": {
+    "response": "\\[\n\\boxed{V \\;=\\; \\frac{2\\cos^{2}\\theta}{1+\\cos^{2}\\theta}\\;=\\;\\frac{2(0.5)^{2}}{1+(0.5)^{2}}\n\\;=\\;\\frac{0.5}{1.25}\\;=\\;0.40\\;\\text{(i.e. }40\\%\\text{ visibility)}}\n\\]",
+    "usage": {
+      "prompt_tokens": 335,
+      "total_tokens": 3305,
+      "completion_tokens": 2970,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "133": {
+    "response": "\\[\n\\boxed{\\displaystyle \n\\mathbf{a}= (a_x,a_y) \\;,\\qquad a_x=0,\\;\\;\na_y=\\frac{v^3}{R\\,v_x}\n\\;,\\;\\;v=\\sqrt{v_x^{2}+v_y^{2}} } \n\\]  (The sign of \\(a_y\\) follows the sense of curvature; magnitude \\( |a|=v^3/(R|v_x|)\\).)",
+    "usage": {
+      "prompt_tokens": 189,
+      "total_tokens": 3367,
+      "completion_tokens": 3178,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "401": {
+    "response": "\\[\n\\boxed{\\displaystyle \n\\varphi\\;\\approx\\;\\frac{2\\,k^{2}\\sin\\theta}{\\,1-\\varepsilon\\,}\n\\;\\;\\simeq\\;\\frac{2\\,k^{2}\\theta}{\\,1-\\varepsilon\\,}\\qquad(\\theta\\ll1)\n}\n\\]",
+    "usage": {
+      "prompt_tokens": 302,
+      "total_tokens": 3910,
+      "completion_tokens": 3608,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "284": {
+    "response": "\\[\n\\boxed{\\displaystyle \n\\varphi \\;=\\;2\\,\\arctan\\!\\Biggl(\\frac{\\sqrt{\\,n^{2}\\sin^{2}\\theta-(n+\\delta n)^{2}\\,}}{\\,n\\cos\\theta\\,}\\Biggr)\n\\;=\\;2\\,\\arctan\\!\\Biggl(\\frac{\\sqrt{\\sin^{2}\\theta-\\bigl(1+\\frac{\\delta n}{n}\\bigr)^{2}}}{\\cos\\theta}\\Biggr)\\,.}\n\\]",
+    "usage": {
+      "prompt_tokens": 432,
+      "total_tokens": 4134,
+      "completion_tokens": 3702,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "443": {
+    "response": "\\[\n\\boxed{\\lambda \\;\\approx\\; \\frac{\\lambda_{0}}{\\sqrt{\\displaystyle\\frac{\\varepsilon_{1}\\,\\varepsilon_{21}}{\\varepsilon_{1}+\\varepsilon_{21}}}}\n\\;=\\; \\lambda_{0}\\,\\sqrt{\\frac{\\varepsilon_{1}+\\varepsilon_{21}}{\\varepsilon_{1}\\,\\varepsilon_{21}}}\\qquad(\\varepsilon_{22}\\ll1)}\n\\]",
+    "usage": {
+      "prompt_tokens": 627,
+      "total_tokens": 4450,
+      "completion_tokens": 3823,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "143": {
+    "response": "\\[\n\\boxed{\\,T=2\\pi\\sqrt{\\frac{m}{k}}\\,}\n\\]",
+    "usage": {
+      "prompt_tokens": 237,
+      "total_tokens": 4068,
+      "completion_tokens": 3831,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "719": {
+    "response": "\\[\n\\boxed{\\,T(h)=\\frac{\\mu\\,G\\,M_{m}}{R\\,n\\,\n\\bigl(R_{m}+h\\bigr)}\\,}\n\\]",
+    "usage": {
+      "prompt_tokens": 389,
+      "total_tokens": 4328,
+      "completion_tokens": 3939,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "497": {
+    "response": "\\[\n\\Delta A \\;=\\;A_f-A_0,\\qquad \nA_f \\;=\\;A_0\\left[\\frac{M+\\frac{m}{3}}{\\bigl(1-\\gamma_2\\frac{m}{M}\\bigr)\\Bigl(M+\\frac{\\gamma_1 m}{3}\\Bigr)}\\right]^{1/4}\n\\]\n\n\\[\n\\boxed{\\displaystyle \n\\Delta A\n\\;=\\;\nA_0\\!\\left[\\left(\\frac{M+\\frac{m}{3}}\n{(1-\\gamma_2\\frac{m}{M})\\bigl(M+\\frac{\\gamma_1 m}{3}\\bigr)}\\right)^{\\!1/4}\n-1\\right]\n\\;\\;\\approx\\;\\;\n\\frac{A_0\\,m}{12M}\\bigl(1+3\\gamma_2-\\gamma_1\\bigr)\n}\n\\]\n\nThe first (exact) form follows from the adiabatic invariant \n\\(J\\propto\\sqrt{k\\mu}\\,A^{2}=\\text{const}\\) with the effective mass \n\\(\\mu=M+m/3\\) of a uniformly‑massive spring.  The approximate expression\nholds to first order in the small parameter \\(m/M\\) (since \\(m\\ll M\\)).",
+    "usage": {
+      "prompt_tokens": 386,
+      "total_tokens": 4410,
+      "completion_tokens": 4024,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "134": {
+    "response": "\\[\n\\boxed{\\dfrac{v_{1}\\,v_{2}}{L}}\n\\]",
+    "usage": {
+      "prompt_tokens": 236,
+      "total_tokens": 4502,
+      "completion_tokens": 4266,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "204": {
+    "response": "\\[\n\\boxed{\\displaystyle \n\\omega_{z}\n=\\sqrt{\\frac{q\\,Q_{0}\\,\\bigl(R^{2}-2\\,l^{2}\\bigr)}{2\\pi\\,\\varepsilon_{0}\\,m\\,\n\\bigl(R^{2}+l^{2}\\bigr)^{5/2}}}\\,,\\qquad\\text{stable for }R^{2}>2l^{2}\\,.}\n\\]",
+    "usage": {
+      "prompt_tokens": 294,
+      "total_tokens": 5105,
+      "completion_tokens": 4811,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "62": {
+    "response": "\\[\n\\boxed{\\;\\gamma B\\;\\bigl(2J\\,S+\\gamma B\\bigr)\\;}\n\\]",
+    "usage": {
+      "prompt_tokens": 784,
+      "total_tokens": 6140,
+      "completion_tokens": 5356,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "10": {
+    "response": "\\[\n\\boxed{E(x,+0,z)=\\frac{qb}{2\\pi\\varepsilon_{0}}\\Biggl[\\frac{1}{\\big((x-a)^{2}+b^{2}+(z-c)^{2}\\big)^{3/2}}\n-\\frac{1}{\\big((x+a)^{2}+b^{2}+(z-c)^{2}\\big)^{3/2}}\\Biggr]}\n\\]\n\n(The field on the \\(xOz\\) plane is directed normal to the surface, i.e. \\(\\mathbf{E}= -E\\,\\hat{\\mathbf y}\\).)",
+    "usage": {
+      "prompt_tokens": 260,
+      "total_tokens": 5651,
+      "completion_tokens": 5391,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "310": {
+    "response": "\\[\n\\boxed{\\;\n\\sqrt{\\frac{1+\\beta_{1}}{\\,1-\\beta_{1}\\,}}\n\\;=\\;\n\\sqrt{\\frac{1+\\beta_{0}}{\\,1-\\beta_{0}\\,}}\n\\;+\\;\n\\frac{2E}{m\\,c^{2}}\n\\;}\n\\]\n\nEquivalently, solving for \\(\\beta_{1}\\),\n\n\\[\n\\boxed{\\;\n\\beta_{1}\n=\n\\frac{\\Bigl(\\displaystyle\\sqrt{\\frac{1+\\beta_{0}}{1-\\beta_{0}}}\n+\\frac{2E}{m\\,c^{2}}\\Bigr)^{2}-1}\n{\\Bigl(\\displaystyle\\sqrt{\\frac{1+\\beta_{0}}{1-\\beta_{0}}}\n+\\frac{2E}{m\\,c^{2}}\\Bigr)^{2}+1}\n\\;}\n\\]",
+    "usage": {
+      "prompt_tokens": 272,
+      "total_tokens": 5717,
+      "completion_tokens": 5445,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "321": {
+    "response": "\\[\n\\boxed{\\displaystyle \\Delta\\theta \\;=\\;2\\pi\\sqrt{\\frac{\\lambda(\\lambda+r)}{\\;\\lambda(\\lambda+r)-r^{2}\\;}}\n\\;=\\;2\\pi\\sqrt{\\frac{r+\\lambda}{\\,r+\\lambda-\\frac{r^{2}}{\\lambda}\\,}}}\n\\]",
+    "usage": {
+      "prompt_tokens": 412,
+      "total_tokens": 6212,
+      "completion_tokens": 5800,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "42": {
+    "response": "\\[\n\\boxed{\\,n(r)=n_{0}\\left(\\frac{a}{r}\\right)^{2}\n\\sqrt{\\,q^{2}+\\bigl(1-q^{2}\\bigr)\\left(\\frac{r}{a}\\right)^{2}}\\,,\\qquad 0<r<a\\,}\n\\]",
+    "usage": {
+      "prompt_tokens": 249,
+      "total_tokens": 6329,
+      "completion_tokens": 6080,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "244": {
+    "response": "\\[\n\\boxed{\\displaystyle \\gamma \\;=\\; \\frac{7}{4}}\n\\]",
+    "usage": {
+      "prompt_tokens": 261,
+      "total_tokens": 6726,
+      "completion_tokens": 6465,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "409": {
+    "response": "\\[\n\\sigma(x,y)\\;=\\;\n\\begin{cases}\n\\dfrac{\\varepsilon_{0}\\,E_{0}\\,a}{\\sqrt{a^{2}-(x^{2}+y^{2})}}\\,, & x^{2}+y^{2}\\le a^{2},\\\\[6pt]\n0\\,, & x^{2}+y^{2}>a^{2}\\,,\n\\end{cases}\n\\qquad \n\\Bigl(\\rho\\equiv\\sqrt{x^{2}+y^{2}}\\Bigr)\n\\]\n\ni.e. a thin circular disk of radius \\(a\\) in the \\(xy\\)–plane carrying the surface‑charge density  \n\n\\[\n\\sigma(\\rho)=\\frac{\\varepsilon_{0}E_{0}a}{\\sqrt{a^{2}-\\rho^{2}}}\\,,\\qquad 0\\le\\rho\\le a,\n\\]\n\nand zero elsewhere.  This disk produces the electric field whose lines follow the oblate‑spheroidal \\(\\mu\\)‑coordinate direction with the field strength at the centre (\\(\\rho=0\\)) equal to \\(E_{0}\\).  (The total charge on the disk is \\(Q=2\\pi\\varepsilon_{0}E_{0}a^{2}\\).)",
+    "usage": {
+      "prompt_tokens": 557,
+      "total_tokens": 7188,
+      "completion_tokens": 6631,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "493": {
+    "response": "\\[\n\\boxed{T_{1}=2\\pi\\sqrt{\\frac{M\\,h^{3}}{\\mu_{0}\\,I\\,m}}}\n\\]",
+    "usage": {
+      "prompt_tokens": 359,
+      "total_tokens": 7031,
+      "completion_tokens": 6672,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "367": {
+    "response": "\\[\n\\boxed{\\,T \\;=\\;2\\pi\\sqrt{\\frac{4\\pi\\varepsilon_{0}\\,m\\,a^{3}b^{2}}{qQ\\,(a^{2}-b^{2})}}\\;}\n\\] \n\n(Equivalently, \\(T=2\\pi\\sqrt{\\dfrac{m a^{3}b^{2}}{k_{e}\\,qQ\\,(a^{2}-b^{2})}}\\) with \\(k_{e}=1/(4\\pi\\varepsilon_{0})\\).)",
+    "usage": {
+      "prompt_tokens": 269,
+      "total_tokens": 6948,
+      "completion_tokens": 6679,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "124": {
+    "response": "\\[\n\\boxed{\\,T \\;=\\;2\\pi\\sqrt{\\frac{m\\bigl(M+m\\sin^{2}\\theta\\bigr)}{k\\,(M+m)}}\\;=\\;2\\pi\\sqrt{\\frac{M\\,m+m^{2}\\sin^{2}\\theta}{k\\,(M+m)}}\\,}\n\\]",
+    "usage": {
+      "prompt_tokens": 267,
+      "total_tokens": 7151,
+      "completion_tokens": 6884,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "716": {
+    "response": "\\[\n\\boxed{\\displaystyle \\omega \\;=\\; \\sqrt{\\frac{26\\,k\\,Q\\,q}{\\,m\\,L^{3}}}\\,}\n\\]",
+    "usage": {
+      "prompt_tokens": 471,
+      "total_tokens": 7767,
+      "completion_tokens": 7296,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "495": {
+    "response": "\\[\n\\boxed{\n\\begin{aligned}\nv(\\omega)&=\\frac{N\\,Z\\,e^{3}\\,\\omega^{2}}{2\\,\\varepsilon_{0}\\,m^{2}\\,c\\,n\\,\\bigl(\\omega_{0}^{2}-\\omega^{2}\\bigr)^{2}}\n\\;=\\;\\frac{e\\,\\omega}{2m c}\\,\\frac{{\\rm d}n}{{\\rm d}\\omega}\n\\;=\\;-\\frac{e\\,\\lambda}{2m c}\\,\\frac{{\\rm d}n}{{\\rm d}\\lambda}\\,,\\\\[4pt]\n\\beta&=v(\\omega)\\,B\\,d\n\\end{aligned}\n}\n\\]",
+    "usage": {
+      "prompt_tokens": 603,
+      "total_tokens": 7963,
+      "completion_tokens": 7360,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "259": {
+    "response": "\\[\n\\boxed{A'(t')\n=\\frac{2\\,v^{2}\\,t'^{\\,2}}{\\gamma^{3}\\!\\left(1-\\dfrac{u^{2}v^{2}}{c^{4}}\\right)}\n=\\frac{2\\,v^{2}\\,t'^{\\,2}}\n{\\Bigl(1-\\dfrac{u^{2}}{c^{2}}\\Bigr)^{3/2}\n\\Bigl(1-\\dfrac{u^{2}v^{2}}{c^{4}}\\Bigr)}\n=\\frac{2\\,c\\,(c^{2}-u^{2})^{3/2}\\,v^{2}}{c^{4}-u^{2}v^{2}}\\;t'^{\\,2}}\n\\]",
+    "usage": {
+      "prompt_tokens": 329,
+      "total_tokens": 7782,
+      "completion_tokens": 7453,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "45": {
+    "response": "\\[\n\\boxed{c=\\sqrt{\\frac{\\gamma\\,\\mu\\,p}{\\rho\\;(\\mu-b\\rho)}+\\frac{a\\,\\rho}{\\mu^{2}}\\Biggl(\\frac{\\gamma\\,\\mu}{\\mu-b\\rho}-2\\Biggr)}}\n\\]",
+    "usage": {
+      "prompt_tokens": 505,
+      "total_tokens": 8292,
+      "completion_tokens": 7787,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "331": {
+    "response": "\\[\n\\boxed{\\displaystyle \\Delta y \\;=\\; \\frac{L\\,\\lambda}{d\\,\\sin\\phi}\\,}\n\\]",
+    "usage": {
+      "prompt_tokens": 380,
+      "total_tokens": 8640,
+      "completion_tokens": 8260,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "654": {
+    "response": "\\[\n\\boxed{\\,N' \\;=\\; \\frac{2\\,m\\,n\\,S\\,c\\,\\gamma_{1}^{2}\\,\\gamma_{2}\\,\\bigl(v_{1}-v_{2}\\bigr)^{2}}{h\\,u_{0}}\n\\;=\\; \\frac{2\\,m\\,n\\,S\\,c^{3}\\,\\gamma_{1}^{2}\\,\\gamma_{2}\\,(\\beta_{1}-\\beta_{2})^{2}}{h\\,u_{0}}\\,}\n\\]\n\nwhere \\(\\beta_{i}=v_{i}/c\\) and \\(\\gamma_{i}=1/\\sqrt{1-\\beta_{i}^{2}}\\) \\((i=1,2)\\). This is the number of photons that must be emitted backward per unit proper time of the spaceship to counteract the momentum loss due to perfectly elastic collisions with the dust and maintain constant speed.",
+    "usage": {
+      "prompt_tokens": 437,
+      "total_tokens": 9465,
+      "completion_tokens": 9028,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "58": {
+    "response": "\\[\n\\boxed{R_{\\text{eq}} \\;=\\; 2R_{2}\\;-\\;\\frac{R_{2}^{2}}{R_{1}}\\;=\\;\\frac{R_{2}\\,\\bigl(2R_{1}-R_{2}\\bigr)}{R_{1}}}\n\\]",
+    "usage": {
+      "prompt_tokens": 671,
+      "total_tokens": 10003,
+      "completion_tokens": 9332,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "423": {
+    "response": "\\[\n\\boxed{S_{D}-S_{A}=3\\left(\\frac{v_{A}\\,p_{A}^{2}}{T_{A}^{3}}\\right)^{\\!1/3}\n\\Big[(p_{D}\\,v_{D}^{2})^{1/3}-(p_{A}\\,v_{A}^{2})^{1/3}\\Big]}\n\\]\n\n(Equivalently, using \\(C_{0}=v_{A}p_{A}^{2}/T_{A}^{3}=v_{D}p_{D}^{2}/T_{D}^{3}\\),\n\n\\[\nS_{D}-S_{A}=3\\,C_{0}\\left(\\frac{T_{D}^{2}}{p_{D}}-\\frac{T_{A}^{2}}{p_{A}}\\right)\n=3\\,\\frac{v_{A}^{1/3}p_{A}^{2/3}}{T_{A}}\n\\Big[(p_{D}v_{D}^{2})^{1/3}-(p_{A}v_{A}^{2})^{1/3}\\Big] .\n\\] )",
+    "usage": {
+      "prompt_tokens": 347,
+      "total_tokens": 9959,
+      "completion_tokens": 9612,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "453": {
+    "response": "\\[\n\\boxed{\\displaystyle \n\\alpha(\\omega)=\\frac{N\\,e^{2}\\,\\gamma\\,\\omega^{2}}{\\varepsilon_{0}\\,n\\,c\\,m\\,\n\\Big[(\\omega_{0}^{2}-\\omega^{2})^{2}+(\\gamma\\,\\omega)^{2}\\Big]}}\n\\]",
+    "usage": {
+      "prompt_tokens": 609,
+      "total_tokens": 10645,
+      "completion_tokens": 10036,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "120": {
+    "response": "\\[\n\\eta_{\\max }=\\frac{W}{Q_{\\rm in}^{\\rm min}}\n        =\\frac{(\\gamma-1)\\,W}{2\\sqrt{\\gamma\\,p_{0}V_{0}\\,W}-W}\n        \\qquad\\Bigl(W\\le\\frac{p_{0}V_{0}}{\\gamma}\\Bigr),\n\\]\n\nwhere the optimum rectangle has the point \\((p_{0},V_{0})\\) at its upper‑right corner and its sides satisfy  \n\n\\[\n\\Delta p=\\sqrt{\\frac{\\gamma\\,p_{0}W}{V_{0}}},\\qquad \n\\Delta V=\\sqrt{\\frac{W\\,V_{0}}{\\gamma\\,p_{0}}}\\;( \\Delta p\\,\\Delta V=W).\n\\]",
+    "usage": {
+      "prompt_tokens": 247,
+      "total_tokens": 10563,
+      "completion_tokens": 10316,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "100": {
+    "response": "\\[\n\\boxed{\\displaystyle \\omega \\;=\\; g\\sqrt{\\frac{2\\,m\\,l}{E\\,a\\,h^{3}}}\\,}\n\\]",
+    "usage": {
+      "prompt_tokens": 344,
+      "total_tokens": 11013,
+      "completion_tokens": 10669,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "112": {
+    "response": "\\[\n\\boxed{\\,Q \\;=\\; \\frac{6\\pi\\,\\varepsilon_{0}\\,R^{3}}{\\varepsilon_{r}+2}\\;E_{0}^{2}\\,}\n\\]",
+    "usage": {
+      "prompt_tokens": 278,
+      "total_tokens": 11085,
+      "completion_tokens": 10807,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "653": {
+    "response": "\\[\n\\boxed{v_{0}= \\sqrt{\\,2\\,g\\,\\alpha\\;+\\;\\frac{\\bigl(\\pi r^{2}B\\bigr)^{2}}{m\\,L}\\,}}\n\\]",
+    "usage": {
+      "prompt_tokens": 369,
+      "total_tokens": 11904,
+      "completion_tokens": 11535,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "285": {
+    "response": "\\[\n\\boxed{F_{\\max}=5\\,m\\,\\omega^{2}\\,R}\n\\]",
+    "usage": {
+      "prompt_tokens": 276,
+      "total_tokens": 11844,
+      "completion_tokens": 11568,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "505": {
+    "response": "\\[\n\\boxed{ \\;y^{2}= \\bigl(R^{2}-x^{2}\\bigr)\\Biggl[\\,1-\\frac{\\omega^{4}}{g^{2}}\\bigl(R^{2}-x^{2}\\bigr)\\Biggr]\\; }\n\\]\n\n(The curve is defined where the right–hand side is non‑negative, i.e. \\(|x|\\ge\\sqrt{R^{2}-g^{2}/\\omega^{4}}\\).)",
+    "usage": {
+      "prompt_tokens": 455,
+      "total_tokens": 12060,
+      "completion_tokens": 11605,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "256": {
+    "response": "\\[\nE_{1}\\;=\\;\\frac{M\\,c^{2}}{2}\\left[\\sqrt{\\frac{1+\\sqrt{1-\\bigl(\\frac{\\alpha}{\\hbar c}\\bigr)^{2}}}{2}}\\;-\\;\\sqrt{1-\\bigl(\\frac{\\alpha}{\\hbar c}\\bigr)^{2}}\\right]_{\\displaystyle\\alpha=\\alpha_{c}/2}\n\\;=\\;\\frac{M\\,c^{2}}{4}\\Bigl(\\sqrt{\\,2+\\sqrt{3}\\,}\\;-\\;\\sqrt{3}\\Bigr)\\,.\n\\]",
+    "usage": {
+      "prompt_tokens": 387,
+      "total_tokens": 12796,
+      "completion_tokens": 12409,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "458": {
+    "response": "\\[\n\\boxed{Q \\;=\\; \\frac{\\sqrt{3}\\,a^{4}}{320\\,\\mu\\,l}\\,\\Delta p }\n\\]",
+    "usage": {
+      "prompt_tokens": 318,
+      "total_tokens": 13041,
+      "completion_tokens": 12723,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "211": {
+    "response": "\\[\n\\boxed{\\,a_{B}\\;=\\;\\frac{a_{A}}{\\,1\\;+\\displaystyle\\frac{a_{A}\\,L_{0}}{c^{2}}\\,}\\,}\n\\]",
+    "usage": {
+      "prompt_tokens": 342,
+      "total_tokens": 13460,
+      "completion_tokens": 13118,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "65": {
+    "response": "\\[\n\\boxed{\\;\nv(t)=v_{0}\\,\\exp\\!\\Big[-\\,\\frac{5\\pi B^{2}R}{4\\,m\\,\\lambda}\\;t\\Big]\\;\n\\Longleftrightarrow\\;\n\\frac{\\mathrm d v}{\\mathrm d t}=-\\frac{5\\pi B^{2}R}{4\\,m\\,\\lambda}\\,v\\; }\n\\]",
+    "usage": {
+      "prompt_tokens": 315,
+      "total_tokens": 14276,
+      "completion_tokens": 13961,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "333": {
+    "response": "\\[\n\\boxed{\\begin{aligned}\n\\beta&=\\frac{M}{I_{\\text{mech}}+I_{\\text{em}}}\\,,\\\\[4pt]\nI_{\\text{mech}}&=\\frac12\\,mR^{2},\\\\[4pt]\nI_{\\text{em}}&=\\frac{dL_{\\rm em}}{d\\omega}\n           =2\\pi\\mu_{0}P_{0}^{2}L\\int_{0}^{R} r^{3}e^{2kr}\\,dr\\\\[4pt]\n          &=2\\pi\\mu_{0}P_{0}^{2}L\\Bigg[\n                \\frac{R^{3}e^{2kR}}{2k}\n               -\\frac{3R^{2}e^{2kR}}{4k^{2}}\n               +\\frac{3R\\,e^{2kR}}{4k^{3}}\n               +\\frac{3}{8k^{4}}\\!\\bigl(1-e^{2kR}\\bigr)\n               \\Bigg]\\;.\n\\end{aligned}}\n\\]\n\nThus the angular acceleration of the polarized cylinder under the constant external torque \\(M\\) is  \n\n\\[\n\\boxed{\\displaystyle \n\\beta\n=\n\\frac{M}\n{\\displaystyle \\frac12\\,mR^{2}\n+2\\pi\\mu_{0}P_{0}^{2}L\n\\Bigg[\n\\frac{R^{3}e^{2kR}}{2k}\n-\\frac{3R^{2}e^{2kR}}{4k^{2}}\n+\\frac{3R\\,e^{2kR}}{4k^{3}}\n+\\frac{3}{8k^{4}}\\bigl(1-e^{2kR}\\bigr)\n\\Bigg] } }.\n\\]",
+    "usage": {
+      "prompt_tokens": 270,
+      "total_tokens": 14353,
+      "completion_tokens": 14083,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "281": {
+    "response": "\\[\n\\boxed{\\,h=\\sqrt{\\frac{2\\sigma}{\\rho g}\\,\\bigl(1-\\sin\\theta\\bigr)}\\,}\n\\]",
+    "usage": {
+      "prompt_tokens": 394,
+      "total_tokens": 14765,
+      "completion_tokens": 14371,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "115": {
+    "response": "\\[\n\\boxed{%\n\\frac{dP'}{dz'}\\;=\\;\\frac{n\\,q^{2}\\,c}{6\\,\\varepsilon_{0}}\\,\n\\gamma_{\\beta}\\,\n\\Biggl[\n\\frac{1}{1-\\bigl(\\tfrac{\\omega R}{c}\\bigr)^{2}}\n\\;+\\;\n\\ln\\!\\Bigl(1-\\bigl(\\tfrac{\\omega R}{c}\\bigr)^{2}\\Bigr)\n\\;-\\;1\n\\Biggr]\\!,\n\\qquad \n\\gamma_{\\beta}=\\frac{1}{\\sqrt{1-\\beta^{2}}}\\;}\n\\]\n\nwhere \\(n\\) is the charge number density in the rest frame \\(S\\), \\(q\\) the charge of each particle, \\(\\omega\\) the angular‑velocity of the rigid rotation, \\(R\\) the cylinder radius, \\(\\beta c\\) the boost velocity of the frame \\(S'\\) along the cylinder axis, \\(c\\) the speed of light, and \\(\\varepsilon_{0}\\) the vacuum permittivity.  (Equivalently, one may write the bracket as \\(\\frac{(\\omega R/c)^{2}}{1-(\\omega R/c)^{2}}+\\ln[1-(\\omega R/c)^{2}]\\).)",
+    "usage": {
+      "prompt_tokens": 419,
+      "total_tokens": 15015,
+      "completion_tokens": 14596,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "25": {
+    "response": "\\[\n\\boxed{\\,r(\\theta)=a\\left(\\frac{v_{0}}{v}\\right)^{2}\\bigl(1-\\cos\\theta\\bigr)\n      \\;=\\;2a\\left(\\frac{v_{0}}{v}\\right)^{2}\\sin^{2}\\!\\frac{\\theta}{2}\\,}\n\\]",
+    "usage": {
+      "prompt_tokens": 258,
+      "total_tokens": 14985,
+      "completion_tokens": 14727,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "630": {
+    "response": "\\[\n\\boxed{P_{1}=P_{0}\\,(1+\\alpha)\\,\n\\frac{\\,5+3\\alpha+\\displaystyle\\frac{2\\lambda\\alpha}{R\\,T_{0}}\\,}{\\,5+8\\alpha\\,}}\n\\]\n\nwhere  \n\n* \\(P_{0}\\) – initial pressure,  \n* \\(\\alpha\\) – mole fraction of ethanol in the initial gas,  \n* \\(\\lambda>0\\) – magnitude of the reaction enthalpy (\\(\\Delta H=-\\lambda\\) for 1 mol ethanol at \\(P_{0},T_{0}\\)),  \n* \\(R\\) – universal gas constant,  \n* \\(T_{0}\\) – initial temperature.\n\n(Equivalently, \\(P_{1}=P_{0}(1+\\alpha)\\dfrac{\\tfrac52+\\tfrac32\\alpha+\\frac{\\lambda\\alpha}{RT_{0}}}{\\tfrac52+4\\alpha}\\).)",
+    "usage": {
+      "prompt_tokens": 448,
+      "total_tokens": 15196,
+      "completion_tokens": 14748,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "432": {
+    "response": "\\[\n\\boxed{ \\displaystyle \nh \\;=\\;\\Biggl[\n\\frac{-\\dfrac{Q^{2}}{\\varepsilon_{0}}\n      \\;+\\;\\sqrt{\\Bigl(\\dfrac{Q^{2}}{\\varepsilon_{0}}\\Bigr)^{2}\n      \\;+\\;\\dfrac{192\\pi\\,\\mu_{0}\\,m\\,g\\,Q^{2}\\,\\omega^{2}\\,R^{4}}{25}}\n     }{32\\pi\\,m\\,g}\n\\Biggr]^{\\!1/2} } \n\\] \n\nEquivalently, writing the result in a more compact form, let  \n\n\\[\na=\\frac{Q^{2}}{\\varepsilon_{0}},\\qquad \nb=\\frac{3\\mu_{0}Q^{2}\\omega^{2}R^{4}}{25},\n\\]\n\nthen the equilibrium height satisfies  \n\n\\[\n16\\pi m g\\,h^{4}+a\\,h^{2}-b=0,\n\\]\n\nso that  \n\n\\[\n\\boxed{ \\displaystyle \nh=\\sqrt{\\frac{-a+\\sqrt{a^{2}+64\\pi m g\\,b}}{32\\pi m g}}\\; } .\n\\]",
+    "usage": {
+      "prompt_tokens": 367,
+      "total_tokens": 15543,
+      "completion_tokens": 15176,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "478": {
+    "response": "\\[\n\\boxed{F \\;=\\; |Q|\\,E_{0}}\n\\]  (The force is directed along the external field \\(\\vec E_{0}\\) for a positive charge.)",
+    "usage": {
+      "prompt_tokens": 310,
+      "total_tokens": 15706,
+      "completion_tokens": 15396,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "105": {
+    "response": "\\[\n\\boxed{\\lambda = 1}\n\\]",
+    "usage": {
+      "prompt_tokens": 430,
+      "total_tokens": 16037,
+      "completion_tokens": 15607,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "110": {
+    "response": "\\[\n\\boxed{\\displaystyle \n\\alpha \\;=\\; \\arctan\\!\\Bigg(\\frac{\\sqrt{c^{4}\\;-\\;d^{2}\\bigl(a^{2}-c^{2}\\bigr)}}{a\\,d}\\Bigg)\n\\;}\n\\]",
+    "usage": {
+      "prompt_tokens": 298,
+      "total_tokens": 16053,
+      "completion_tokens": 15755,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "708": {
+    "response": "\\[\n\\boxed{\\,y_{\\rm blur}\\;=\\;\\frac{c\\,\\lambda_{2}\\,L}{\\pi\\,d}\\,\n\\sqrt{\\frac{m}{2\\,k_{\\!B}\\,T}}\\;}\n\\]",
+    "usage": {
+      "prompt_tokens": 445,
+      "total_tokens": 17572,
+      "completion_tokens": 17127,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "33": {
+    "response": "\\[\np(\\theta)\\;=\\;\\sigma T_{1}^{4}\\;\\frac{r}{R}\\;\n\\frac{R^{2}-b^{2}}\n{\\,R^{2}+b^{2}-2\\,R\\,b\\cos\\theta\\,}\\;,\n\\qquad\\left( r<b<R,\\;0\\le\\theta<2\\pi\\right)\n\\]",
+    "usage": {
+      "prompt_tokens": 339,
+      "total_tokens": 17498,
+      "completion_tokens": 17159,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "336": {
+    "response": "\\[\n\\boxed{\\,f=\\frac{1}{2\\pi}\\sqrt{\\frac{4\\,b^{2}\\,g}{\\bigl(R-b\\bigr)\\,\\bigl(a^{2}+5\\,b^{2}\\bigr)}}\\;}\n\\] \n\n(For a solid homogeneous elliptical cylinder the moment of inertia about its centre‑of‑mass axis is \\(I=\\tfrac{m}{4}(a^{2}+b^{2})\\); the no‑slip condition gives \\(\\dot\\phi=-(R-b)/b\\,\\dot\\alpha\\); substituting into the Lagrangian and linearising about the equilibrium yields the above small‑oscillation frequency.  The outer‐cylinder mass \\(M\\) does not enter because the cylinder is fixed.)",
+    "usage": {
+      "prompt_tokens": 303,
+      "total_tokens": 18147,
+      "completion_tokens": 17844,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "50": {
+    "response": "\\[\n\\boxed{\\,T_{1}=T_{0}\\Bigl(\\frac{p_{1}}{p_{0}}\\Bigr)^{\\frac{2}{7}}\n\\exp\\!\\Bigg[\\frac{2}{7N}\\Bigl(\\Bigl(\\frac{Sp_{0}}{m g}-N\\Bigr)\n\\ln\\!\\Bigl(1-\\frac{Nm g}{Sp_{0}}\\Bigr)\n-\\Bigl(\\frac{Sp_{1}}{m g}-N\\Bigr)\n\\ln\\!\\Bigl(1-\\frac{Nm g}{Sp_{1}}\\Bigr)\\Bigr)\\Bigg]\\;}\n\\]\n\n\\[\n\\text{or equivalently }\n\\ T_{1}=T_{0}\\Bigl(\\frac{p_{1}}{p_{0}}\\Bigr)^{2/7}\n\\frac{\\Bigl[1-\\dfrac{Nm g}{Sp_{0}}\\Bigr]^{\\frac{2}{7}\n\\bigl(\\frac{Sp_{0}}{Nm g}-1\\bigr)}}\n{\\Bigl[1-\\dfrac{Nm g}{Sp_{1}}\\Bigr]^{\\frac{2}{7}\n\\bigl(\\frac{Sp_{1}}{Nm g}-1\\bigr)}}\\;,\n\\]\n\n\\[\n\\text{with }\\gamma=\\frac{7}{5}\\;(\\text{diatomic ideal gas}),\\;\nf=5\\;,\\;\\alpha=\\frac{mg}{k_{B}T},\\;\np_{0},p_{1}\\text{ the initial and final piston pressures.}\n\\]",
+    "usage": {
+      "prompt_tokens": 334,
+      "total_tokens": 18281,
+      "completion_tokens": 17947,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "139": {
+    "response": "\\[\n\\boxed{\\displaystyle \n\\tan\\varphi=\\frac{P_{1}-P_{2}\\cos 2\\beta}{P_{2}\\sin 2\\beta}\n          \\;=\\;\n          \\frac{\\dfrac{P_{1}}{P_{2}}-\\cos 2\\beta}{\\sin 2\\beta}\n}\n\\]",
+    "usage": {
+      "prompt_tokens": 269,
+      "total_tokens": 18265,
+      "completion_tokens": 17996,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "498": {
+    "response": "\\[\n\\boxed{\\displaystyle \n\\varphi \\;=\\; \\frac{2\\pi\\,d}{\\lambda\\,(n_{b}-n_{a})}\\,\n\\Bigl[\n\\,n_{b}\\sqrt{\\,n_{b}^{2}-\\sin^{2}i\\,}\n\\;-\\;\nn_{a}\\sqrt{\\,n_{a}^{2}-\\sin^{2}i\\,}\n\\;-\\;\n\\sin^{2}i\\,\n\\ln\\!\\frac{\\,n_{b}+\\sqrt{\\,n_{b}^{2}-\\sin^{2}i\\,}\\,}\n{\\,n_{a}+\\sqrt{\\,n_{a}^{2}-\\sin^{2}i\\,}\\,}\n\\Bigr]\n}\n\\] \n\n(Here \\(\\lambda\\) is the wavelength in air, \\(i\\) the incident angle, \\(d\\) the film thickness, and \\(n_{a},\\,n_{b}\\) the refractive indices at the lower and upper surfaces, respectively.)",
+    "usage": {
+      "prompt_tokens": 475,
+      "total_tokens": 18918,
+      "completion_tokens": 18443,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "419": {
+    "response": "\\[\n\\boxed{%\nR_{s}\\;=\\;\\frac{(1-n^{2})^{2}\\,\\sinh^{2}\\!\\Bigl(\\displaystyle\\frac{2\\pi d}{\\lambda}\n\\sqrt{\\sin^{2}i_{2}-n^{2}}\\Bigr)}\n{(1-n^{2})^{2}\\,\\sinh^{2}\\!\\Bigl(\\displaystyle\\frac{2\\pi d}{\\lambda}\n\\sqrt{\\sin^{2}i_{2}-n^{2}}\\Bigr)\\;+\\;4\\cos^{2}i_{2}\\,\\bigl(\\sin^{2}i_{2}-n^{2}\\bigr)} } \n\\]\n\nwhere  \n\n\\[\n\\alpha\\;=\\;\\frac{2\\pi d}{\\lambda}\\sqrt{\\sin^{2}i_{2}-n^{2}} ,\n\\qquad \nn=\\frac{n_{1}}{n_{2}}<1 .\n\\]\n\nEquivalently,\n\n\\[\nR_{s}= \\frac{\\sinh^{2}\\alpha}\n{\\sinh^{2}\\alpha+\\dfrac{4\\cos^{2}i_{2}\\bigl(\\sin^{2}i_{2}-n^{2}\\bigr)}{(1-n^{2})^{2}}}\\; .\n\\]",
+    "usage": {
+      "prompt_tokens": 327,
+      "total_tokens": 18942,
+      "completion_tokens": 18615,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "702": {
+    "response": "\\[\n\\boxed{\\displaystyle \n\\Omega_{\\min}\n=\\sqrt{\\frac{2\\,q\\,\\lambda}{\\pi\\,\\varepsilon_{0}\\,a^{2}\\,m}}\\;.\n}\n\\]",
+    "usage": {
+      "prompt_tokens": 386,
+      "total_tokens": 19060,
+      "completion_tokens": 18674,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "69": {
+    "response": "\\[\n\\boxed{\\;\n\\Delta\\alpha\n\\;=\\;\n-\\;\\frac{3\\pi}{2}\\,\n\\frac{G^{2}\\,M_{S}\\,M_{J}\\,m^{3}\\,R_{0}^{2}}{L^{4}}\n\\;=\\;\n-\\;\\frac{3\\pi}{2}\\,\n\\frac{G^{8/3}\\,M_{S}\\,M_{J}\\,\\bigl(M_{S}+M_{J}\\bigr)^{2/3}\\,m^{3}}\n      {L^{4}\\,\\Omega^{4/3}}\\; } \n\\]\n\n(The first form uses the binary separation \\(R_{0}\\); using the binary Kepler law \n\\( \\Omega^{2}=G\\,(M_{S}+M_{J})/R_{0}^{3}\\) gives the second form.)",
+    "usage": {
+      "prompt_tokens": 906,
+      "total_tokens": 20373,
+      "completion_tokens": 19467,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "709": {
+    "response": "\\[\n\\boxed{\\displaystyle \\delta\\omega \\;=\\; \\Omega}\n\\]",
+    "usage": {
+      "prompt_tokens": 350,
+      "total_tokens": 20450,
+      "completion_tokens": 20100,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "106": {
+    "response": "\\[\n\\boxed{v=\\sqrt{3\\,g\\,l\\,\\sin\\theta_{0}}}\n\\]",
+    "usage": {
+      "prompt_tokens": 289,
+      "total_tokens": 21128,
+      "completion_tokens": 20839,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "36": {
+    "response": "\\[\n\\boxed{\\,e=\\sqrt{\\;\\frac{15\\,\\omega^{2}}{8\\pi\\,G\\,\\rho}\\;+\\;\\frac{45\\,\\lambda}{8\\,\\rho\\,r^{2}}\\,}\\;}\n\\] \n\nwhere \\(\\rho\\) is the uniform density of the Earth, \\(\\omega\\) its angular velocity, \\(G\\) the gravitational constant, \\(\\lambda=m/(2\\pi r)\\) the line density of the lunar ring, and \\(r\\) the radius of the ring (\\(r\\gg R\\)).  (Equivalently, using the total lunar mass \\(m\\), \\(e=\\sqrt{\\frac{15\\omega^{2}}{8\\pi G\\rho}+\\frac{45m}{16\\pi\\rho r^{3}}}\\,.)\\)",
+    "usage": {
+      "prompt_tokens": 375,
+      "total_tokens": 21352,
+      "completion_tokens": 20977,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "737": {
+    "response": "\\[\n\\boxed{T_{\\text{rad}}=\\frac{2\\pi}{\\sqrt{\\,n+1\\,}}\\;\\frac{m}{|q|\\,B_{0}}\n      \\;=\\;\\frac{2\\pi m}{|q|\\,B_{0}\\sqrt{\\,n+1\\,}}}\n\\]",
+    "usage": {
+      "prompt_tokens": 283,
+      "total_tokens": 21574,
+      "completion_tokens": 21291,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "43": {
+    "response": "\\[\n\\boxed{\n\\begin{aligned}\n&\\text{Define the geometric resistances and capacitances of the two slabs}\\\\\n&R_{i}= \\frac{h_{i}}{\\sigma_{i}A},\\qquad \nC_{i}= \\frac{\\varepsilon_{i}A}{h_{i}}\\qquad (i=1,2),\\\\[4pt]\n&\\text{Total conductance }G_{i}=1/R_{i},\\qquad \nG_{1}+G_{2}= \\frac{\\sigma_{1}A}{h_{1}}+\\frac{\\sigma_{2}A}{h_{2}},\\\\[4pt]\n&\\text{Effective time constant}\\\\\n&\\tau=\\frac{C_{1}+C_{2}}{G_{1}+G_{2}}\n      =\\frac{\\varepsilon_{1}h_{2}+\\varepsilon_{2}h_{1}}\n            {\\sigma_{1}h_{2}+\\sigma_{2}h_{1}}\\; ,\\\\[6pt]\n&\\text{Steady–state (DC) current after the transients have died out}\\\\\n&I_{\\infty}= \\frac{U_{0}}{R_{1}+R_{2}}\n           = \\frac{U_{0}A}{\\displaystyle\\frac{h_{1}}{\\sigma_{1}}\n                         +\\frac{h_{2}}{\\sigma_{2}}}\\; ,\\\\[6pt]\n&\\text{Current just after the step (the finite part after the Dirac impulse)}\\\\\n&I(0^{+})=\n   \\frac{U_{0}A\\bigl(\\sigma_{2}\\varepsilon_{1}^{2}h_{2}\n                     +\\sigma_{1}\\varepsilon_{2}^{2}h_{1}\\bigr)}\n        {(\\varepsilon_{1}h_{2}+\\varepsilon_{2}h_{1})^{2}}\\; ,\\\\[6pt]\n&\\text{Time–dependence of the current for }t>0\\\\\n&I(t)= I_{\\infty}+\\bigl(I(0^{+})-I_{\\infty}\\bigr)\\,\n        e^{-t/\\tau}\\; .\n\\end{aligned}\n}\n\\]",
+    "usage": {
+      "prompt_tokens": 320,
+      "total_tokens": 23070,
+      "completion_tokens": 22750,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "332": {
+    "response": "\\[\n\\boxed{\\displaystyle \n\\mu(\\varphi)=\\frac{2d^{2}\\sin\\psi\\;\\sin\\varphi}\n{\\big(d^{2}+L^{2}-R^{2}\\big)\\Big[\\,\\cos\\varphi-\n\\frac{3\\,m\\sin^{2}\\psi}\n{2\\big(m\\sin^{2}\\psi+2M\\big)}\\;(1-\\cos\\varphi)\\Big]}\\!,\n\\qquad \n\\sin\\psi=\\sqrt{1-\n\\Big(\\frac{d^{2}+R^{2}-L^{2}}{2dR}\\Big)^{2}}\\,.\n}\n\\] \n\nEquivalently,\n\n\\[\n\\boxed{\\displaystyle \n\\mu(\\varphi)=\\frac{4d^{2}\\sin\\psi\\big(m\\sin^{2}\\psi+2M\\big)\\sin\\varphi}\n{\\big(d^{2}+L^{2}-R^{2}\\big)\\big[(5m\\sin^{2}\\psi+4M)\\cos\\varphi-3m\\sin^{2}\\psi\\big]}\\,.}\n\\] \n\nThese formulas give the static‑friction coefficient required for the rod and the spherical shell to remain in contact without sliding when the whole system has rotated through an angle \\(\\varphi\\).",
+    "usage": {
+      "prompt_tokens": 363,
+      "total_tokens": 23255,
+      "completion_tokens": 22892,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "649": {
+    "response": "\\[\n\\boxed{\\;\n\\Omega_{\\min}\n=\\sqrt{\\frac{8\\pi\\,m\\Bigl(\\dfrac{R^{2}}{2}-l^{2}\\Bigr)\\sqrt{R^{2}+l^{2}}}\n{\\;\\epsilon_{0}\\,q\\,Q_{0}\\,\\mu_{0}^{2}\\,R^{4}}}\n\\qquad\\Bigl(R>\\sqrt{2}\\,l\\Bigr)\n\\;}\n\\]",
+    "usage": {
+      "prompt_tokens": 362,
+      "total_tokens": 23330,
+      "completion_tokens": 22968,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "648": {
+    "response": "\\[\n\\boxed{\\,v_{\\min}\n=\\sqrt{\\frac{2k\\,Qq}{mR}\\;\n\\frac{1-\\cos\\!\\left(\\dfrac{\\pi}{n}\\right)}\n     {\\,2\\cos\\!\\left(\\dfrac{\\pi}{n}\\right)-1\\,}}\n\\;=\\;\n\\sqrt{\\frac{4k\\,Qq}{mR}\\;\n\\frac{\\sin^{2}\\!\\left(\\dfrac{\\pi}{2n}\\right)}\n     {1-4\\sin^{2}\\!\\left(\\dfrac{\\pi}{2n}\\right)}}\\;}\n}\n\\]\n\nwhere \\(k=1/(4\\pi\\varepsilon_{0})\\).  \n(For a real solution one must have \\(n\\ge4\\); the case \\(n=3\\) requires \\(v\\to\\infty\\) and \\(n=2\\) is impossible.)",
+    "usage": {
+      "prompt_tokens": 352,
+      "total_tokens": 23730,
+      "completion_tokens": 23378,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "54": {
+    "response": "\\[\n\\boxed{T_{\\text{mid}} \\;=\\;2m\\,g\\;+\\;\\frac{4m\\,v_{0}^{2}}{l}\n\\;=\\;2m\\Bigl(g+\\frac{2v_{0}^{2}}{l}\\Bigr)}\n\\]",
+    "usage": {
+      "prompt_tokens": 264,
+      "total_tokens": 24022,
+      "completion_tokens": 23758,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "688": {
+    "response": "\\[\n\\boxed{T=\\frac{2\\pi}{\\sqrt{\\,n+1\\,}\\,|\\omega_{c}|}\n      =\\frac{2\\pi m}{|q|\\,B_{0}\\,\\sqrt{\\,n+1\\,}}\\qquad \n      \\left(\\omega_{c}\\equiv\\frac{qB_{0}}{m}\\right)}\n\\] \n(The radial oscillations are stable for \\(n>-1\\).)",
+    "usage": {
+      "prompt_tokens": 275,
+      "total_tokens": 24156,
+      "completion_tokens": 23881,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "228": {
+    "response": "\\[\n\\boxed{\n\\alpha_{2}= \\frac{3\\ell_{2}\\,\\omega_{2}^{2}\\sin(\\theta_{1}-\\theta_{2})\\cos(\\theta_{1}-\\theta_{2})\n      +6\\ell_{1}\\,\\omega_{1}^{2}\\sin(\\theta_{1}-\\theta_{2})\n      +6g\\Big[\\cos(\\theta_{1}-\\theta_{2})\\,\\sin\\theta_{1}-\\sin\\theta_{2}\\Big]}\n      {\\ell_{2}\\,\\Big[\\,1+3\\sin^{2}(\\theta_{1}-\\theta_{2})\\,\\Big]}}\n\\] \n\n(Here \\(\\Delta=\\theta_{1}-\\theta_{2}\\); the expression involves only the given quantities \\(\\ell_{1},\\;\\ell_{2},\\;\\theta_{1},\\;\\theta_{2},\\;\\omega_{1},\\;\\omega_{2}\\) and \\(g\\).)",
+    "usage": {
+      "prompt_tokens": 343,
+      "total_tokens": 24943,
+      "completion_tokens": 24600,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "140": {
+    "response": "\\[\n\\boxed{\\displaystyle T=\\frac{P}{3\\sqrt{6}}}\n\\]",
+    "usage": {
+      "prompt_tokens": 224,
+      "total_tokens": 25727,
+      "completion_tokens": 25503,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "221": {
+    "response": "\\[\n\\boxed{\\,t=\\frac{4\\,m_{0}^{3/2}\\,R_{0}^{6}}{7\\,\\rho\\,A\\,\\sqrt{k}}\\Biggl(\\frac{1}{R^{7}}-\\frac{1}{R_{0}^{7}}\\Biggr)\\,}\n\\]",
+    "usage": {
+      "prompt_tokens": 361,
+      "total_tokens": 27624,
+      "completion_tokens": 27263,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "766": {
+    "response": "\\[\n\\boxed{\\,T(\\theta)=m g\\,\\sin\\theta\\;\\frac{6-\\sin^{2}\\theta}{\\bigl(2-\\sin^{2}\\theta\\bigr)^{2}}\n       \\;=\\;m g\\,\\sin\\theta\\;\\frac{5+\\cos^{2}\\theta}{\\bigl(1+\\cos^{2}\\theta\\bigr)^{2}}\\,}\n\\]",
+    "usage": {
+      "prompt_tokens": 233,
+      "total_tokens": 29544,
+      "completion_tokens": 29311,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "117": {
+    "response": "\\[\n\\boxed{\\;\n\\begin{aligned}\n\\theta_{\\max }&\\;=\\;2\\pi-\\delta\\,,\\qquad \n\\delta\\;\\simeq\\;\\sqrt{\\frac{128}{3}\\,\\frac{\\sigma\\,r\\,R}{M}}\\;( \\sigma rR\\ll M),\\\\[4pt]\ny_{\\max }&\\;=\\;R\\bigl(1-\\cos\\theta_{\\max}\\bigr)\n           \\;\\simeq\\;R\\frac{\\delta^{2}}{2}\n           \\;\\simeq\\;\\frac{64}{3}\\,\\frac{\\sigma\\,r\\,R^{2}}{M}\\;,\\\\[4pt]\n\\text{hence the maximal ascent above the lowest point }(y=2R)\n&\\;h_{\\max}=2R-y_{\\max}\n          \\;\\simeq\\;2R\\Bigl[1-\\frac{32}{3}\\,\\frac{\\sigma\\,r\\,R}{M}\\Bigr] .\n\\end{aligned}\n\\;}\n\\] \n\n(Only the leading term in the small parameter \\(\\sigma rR/M\\) has been kept; higher‑order terms are \\(O[(\\sigma rR/M)^{3/2}]\\).)",
+    "usage": {
+      "prompt_tokens": 378,
+      "total_tokens": 31678,
+      "completion_tokens": 31300,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "103": {
+    "response": "\\[\n\\boxed{R_{04}=R\\bigl(3-\\sqrt{3}\\bigr)}\n\\]",
+    "usage": {
+      "prompt_tokens": 348,
+      "total_tokens": 14712,
+      "completion_tokens": 14364,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 2,
+    "tool_events": []
+  },
+  "37": {
+    "response": "\\[\n\\boxed{a_y \\;=\\; \\frac{\\mu^{2}\\,h\\,g\\,\\omega}{2\\,v}}\n\\]",
+    "usage": {
+      "prompt_tokens": 442,
+      "total_tokens": 21348,
+      "completion_tokens": 20906,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 2,
+    "tool_events": []
+  },
+  "674": {
+    "response": "\\[\n\\boxed{\\,v_{0,\\min}= \\sqrt{\\frac{4\\sqrt{3}}{5}\\;g\\,r}\\,}\n\\]",
+    "usage": {
+      "prompt_tokens": 275,
+      "total_tokens": 32772,
+      "completion_tokens": 32497,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 2,
+    "tool_events": []
+  },
+  "72": {
+    "response": "\\[\n\\boxed{l \\;=\\;0.20\\,\\frac{V_{0}}{S}}\n\\]",
+    "usage": {
+      "prompt_tokens": 403,
+      "total_tokens": 27345,
+      "completion_tokens": 26942,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 3,
+    "tool_events": []
+  },
+  "95": {
+    "response": "\\[\n\\boxed{\\,x(t)=\\frac{F}{44\\sqrt{3}\\,M\\,\\Omega^{2}}\\Big[(2\\sqrt{3}+1)\\cos\\!\\big((2\\sqrt{3}-1)\\,\\Omega\\,t\\big)\n+(2\\sqrt{3}-1)\\cos\\!\\big((2\\sqrt{3}+1)\\,\\Omega\\,t\\big)-4\\sqrt{3}\\Big]\\;}\n\\] \n\n(Here \\(F\\) is the constant forward force, \\(M\\) the carriage mass, and \\(\\Omega\\) the Earth’s angular‑velocity at the pole; the relation \\(g/l=\\omega_{0}^{2}=10\\Omega^{2}\\) has been used and the small‑angle approximation applied.)",
+    "usage": {
+      "prompt_tokens": 381,
+      "total_tokens": 29220,
+      "completion_tokens": 28839,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 3,
+    "tool_events": []
+  },
+  "118": {
+    "response": "\\boxed{\\dfrac{38}{41}r}",
+    "usage": {
+      "prompt_tokens": 215,
+      "total_tokens": 21672,
+      "completion_tokens": 21457,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 4,
+    "tool_events": []
+  },
+  "412": {
+    "response": "\\[\n\\boxed{\nT=2\\pi\\Biggl[\\;\n\\underbrace{\\frac{6I_{0}g_{0}^{2}}{m f_{0}^{2}}\n\\Bigl(LI_{0}+\\sqrt{L^{2}I_{0}^{2}+\n\\frac{f_{0}\\,m g\\,L}{g_{0}}}\\,\\Bigr)}_{\\text{magnetic contribution}}\n\\;+\\;\n\\underbrace{g\\!\\Bigl(\\frac{3g_{0}}{f_{0}}+\\frac{h_{0}}{g_{0}}\\Bigr)}_{\\text{gravity contribution}}\n\\;\\Biggr]^{-1/2}\n}\n\\]\n\nwhere  \n\n\\[\nf_{0}=1-\\frac{z_{0}}{\\sqrt{R^{2}+z_{0}^{2}}},\\qquad \ng_{0}= \\frac{R^{2}}{(R^{2}+z_{0}^{2})^{3/2}},\\qquad \nh_{0}= \\frac{3R^{2}z_{0}}{(R^{2}+z_{0}^{2})^{5/2}} .\n\\]\n\n(Here \\(I_{0}\\) is the persistent current of the ring, \\(L\\) its self‑inductance, \n\\(m\\) its mass, \\(g\\) the gravitational acceleration, \\(R\\) the solenoid radius and \n\\(z_{0}>0\\) the equilibrium height of the ring.  The period does not depend on the \nsolenoid parameters \\(n\\) and \\(r\\); they cancel out in the final result.)",
+    "usage": {
+      "prompt_tokens": 514,
+      "total_tokens": 27162,
+      "completion_tokens": 26648,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 4,
+    "tool_events": []
+  },
+  "101": {
+    "response": "\\[\n\\boxed{\\phi(t)=\\frac{\\pi}{4}-\\frac{5}{27}\\,\\theta_{0}+\\frac{5}{27}\\,\\theta_{0}\\cos(\\omega t)\n\\qquad\\Longrightarrow\\qquad \nA_{\\phi}= \\frac{5}{27}\\,\\theta_{0}\\,.}\n\\]",
+    "usage": {
+      "prompt_tokens": 550,
+      "total_tokens": 32428,
+      "completion_tokens": 31878,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "stop",
+    "attempts": 4,
+    "tool_events": []
+  },
+  "457": {
+    "response": "[No completed answer: configured generation limit exhausted.]",
+    "response_is_placeholder": true,
+    "limit_exhausted": true,
+    "usage": {
+      "prompt_tokens": 290,
+      "total_tokens": 33058,
+      "completion_tokens": 32768,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "length",
+    "attempts": 1,
+    "tool_events": []
+  },
+  "650": {
+    "response": "[No completed answer: configured generation limit exhausted.]",
+    "response_is_placeholder": true,
+    "limit_exhausted": true,
+    "usage": {
+      "prompt_tokens": 319,
+      "total_tokens": 33087,
+      "completion_tokens": 32768,
+      "prompt_tokens_details": null
+    },
+    "actual_model": "openai/gpt-oss-120b",
+    "finish_reason": "length",
+    "attempts": 1,
+    "tool_events": []
+  }
+}

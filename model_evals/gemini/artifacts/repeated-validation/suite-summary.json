@@ -1,0 +1,95 @@
+{
+  "complete": false,
+  "results": {
+    "hle-corrected-no-tools": {
+      "complete": false,
+      "questions": 115,
+      "rounds": 4,
+      "mean@4": null,
+      "pass@4": null,
+      "missing_judgments": 460
+    },
+    "hle-original-no-tools": {
+      "complete": false,
+      "questions": 202,
+      "rounds": 4,
+      "mean@4": null,
+      "pass@4": null,
+      "missing_judgments": 808
+    },
+    "hle-corrected-tools": {
+      "complete": false,
+      "questions": 115,
+      "rounds": 4,
+      "mean@4": null,
+      "pass@4": null,
+      "missing_judgments": 460
+    },
+    "hle-original-tools": {
+      "complete": false,
+      "questions": 202,
+      "rounds": 4,
+      "mean@4": null,
+      "pass@4": null,
+      "missing_judgments": 808
+    },
+    "cmt-original-no-tools": {
+      "complete": false,
+      "questions": 50,
+      "rounds": 4,
+      "mean@4": null,
+      "pass@4": null,
+      "missing_judgments": 200
+    },
+    "cmt-original-tools": {
+      "complete": false,
+      "questions": 50,
+      "rounds": 4,
+      "mean@4": null,
+      "pass@4": null,
+      "missing_judgments": 200
+    },
+    "cmt-corrected-no-tools": {
+      "complete": false,
+      "questions": 49,
+      "rounds": 4,
+      "mean@4": null,
+      "pass@4": null,
+      "missing_judgments": 196
+    },
+    "cmt-corrected-tools": {
+      "complete": false,
+      "questions": 49,
+      "rounds": 4,
+      "mean@4": null,
+      "pass@4": null,
+      "missing_judgments": 196
+    },
+    "critpt-original-tools": {
+      "complete": false,
+      "questions": 55,
+      "rounds": 4,
+      "mean@4": null,
+      "pass@4": null,
+      "missing_judgments": 220
+    },
+    "critpt-corrected-tools": {
+      "complete": false,
+      "questions": 54,
+      "rounds": 4,
+      "mean@4": null,
+      "pass@4": null,
+      "missing_judgments": 216
+    }
+  },
+  "planned_prediction_calls": 2844,
+  "planned_judgment_calls": 3764,
+  "protocol": {
+    "model": "gemini-3.1-pro-preview",
+    "judge": "claude-fable-5 high",
+    "tools": "Gemini native code execution and Google Search; differs from Sol's CLI tools",
+    "critpt_effort": "requested max; effective high (Gemini's highest level)",
+    "hle_corrected": "Reuse original responses after question identity validation; rejudge against full audit references instead of original short answers",
+    "cmt_corrected": "Same 49 IDs and corrected source as Sol clean-refresh-20260906"
+  }
+}

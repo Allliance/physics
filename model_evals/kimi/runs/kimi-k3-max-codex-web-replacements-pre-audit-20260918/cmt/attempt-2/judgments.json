@@ -1,0 +1,695 @@
+{
+  "17": {
+    "judgment": {
+      "extracted_final_answer": "\\boxed{-t\\left(p^{\\dagger}_{i,\\sigma}p_{j,\\sigma}+p^{\\dagger}_{j,\\sigma}p_{i,\\sigma}\\right)-U\\left(m_{i,\\uparrow}-\\frac{1}{2}\\right)\\left(m_{i,\\downarrow}-\\frac{1}{2}\\right)-\\mu\\left(m_{i,\\uparrow}-m_{i,\\downarrow}\\right)-\\mu}",
+      "reasoning": "The response's boxed expression exactly matches the supplied correct answer, including the hopping term, the sign-flipped interaction term, the chemical-potential-induced density difference, and the constant term.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12120,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 177,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\boxed{-t\\\\left(p^{\\\\dagger}_{i,\\\\sigma}p_{j,\\\\sigma}+p^{\\\\dagger}_{j,\\\\sigma}p_{i,\\\\sigma}\\\\right)-U\\\\left(m_{i,\\\\uparrow}-\\\\frac{1}{2}\\\\right)\\\\left(m_{i,\\\\downarrow}-\\\\frac{1}{2}\\\\right)-\\\\mu\\\\left(m_{i,\\\\uparrow}-m_{i,\\\\downarrow}\\\\right)-\\\\mu}\",\"reasoning\":\"The response's boxed expression exactly matches the supplied correct answer, including the hopping term, the sign-flipped interaction term, the chemical-potential-induced density difference, and the constant term.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "38dcc4b8c6f62e9a0a0f1f8ccbcd025b5018f63c23bcdd8b265d943498c7e22a"
+  },
+  "19": {
+    "judgment": {
+      "extracted_final_answer": "\\boxed{a}",
+      "reasoning": "The response’s final answer is choice (a), which exactly matches the supplied reference answer \\(\\boxed{a}\\).",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11864,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 63,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\boxed{a}\",\"reasoning\":\"The response’s final answer is choice (a), which exactly matches the supplied reference answer \\\\(\\\\boxed{a}\\\\).\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "718c84c39ea9684e890ebaa18b72010e7db5b08aa4e471644217b059d2d45bb3"
+  },
+  "21": {
+    "judgment": {
+      "extracted_final_answer": "\\boxed{f=N_k B}",
+      "reasoning": "The response gives f = N_k B, which exactly matches the supplied reference answer \\boxed{N_k B}.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11861,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 64,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\boxed{f=N_k B}\",\"reasoning\":\"The response gives f = N_k B, which exactly matches the supplied reference answer \\\\boxed{N_k B}.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "d70867e43047976535da4ea80959bb81b319ab43920159b823c5cf3db2240f2b"
+  },
+  "22": {
+    "judgment": {
+      "extracted_final_answer": "\\boxed{4}",
+      "reasoning": "The response’s final answer is 4, which exactly matches the supplied reference answer \\(\\boxed{4}\\).",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11799,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 62,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\boxed{4}\",\"reasoning\":\"The response’s final answer is 4, which exactly matches the supplied reference answer \\\\(\\\\boxed{4}\\\\).\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "364546497764528f776e192fc437460db240474b0a1d4b6d5f1d55e2ac0ee1c8"
+  },
+  "28": {
+    "judgment": {
+      "extracted_final_answer": "$\\boxed{b}$",
+      "reasoning": "The response’s final answer is option (b), while the supplied correct answer is option (a). They do not match.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12136,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 63,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"$\\\\boxed{b}$\",\"reasoning\":\"The response’s final answer is option (b), while the supplied correct answer is option (a). They do not match.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "caaf753580972bd03bc7929ea90f723fa1f25c1b59302cd414c950a8fc70de3e"
+  },
+  "33": {
+    "judgment": {
+      "extracted_final_answer": "\\boxed{a;c}",
+      "reasoning": "The response selects choices a and c, while the supplied correct answer selects only c. The extra choice a makes the complete answer incorrect.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12113,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 65,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\boxed{a;c}\",\"reasoning\":\"The response selects choices a and c, while the supplied correct answer selects only c. The extra choice a makes the complete answer incorrect.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "5e7ac5c9772eda8c6c48a14d402461ea8b9e9a679ea8c515610aecdb1d532e0b"
+  },
+  "37": {
+    "judgment": {
+      "extracted_final_answer": "\\boxed{1;3}",
+      "reasoning": "The response gives n_{FM}=1 and n_{AF}=3, exactly matching the supplied reference \\boxed{1; 3}; the spacing difference is immaterial.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11841,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 74,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\boxed{1;3}\",\"reasoning\":\"The response gives n_{FM}=1 and n_{AF}=3, exactly matching the supplied reference \\\\boxed{1; 3}; the spacing difference is immaterial.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "8fa58da998a7b4a7f14cd28e09f0b26fee5917ccade5e9d19f1468aab7dcf160"
+  },
+  "47": {
+    "judgment": {
+      "extracted_final_answer": "\\boxed{1,1,1}",
+      "reasoning": "The response's final answer is \\(\\boxed{1,1,1}\\), which does not match the supplied correct answer \\(\\boxed{2,2,1}\\). The first two integers are incorrect.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12146,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 86,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\boxed{1,1,1}\",\"reasoning\":\"The response's final answer is \\\\(\\\\boxed{1,1,1}\\\\), which does not match the supplied correct answer \\\\(\\\\boxed{2,2,1}\\\\). The first two integers are incorrect.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "59837c644bd8359ebf54dff5a3da687b123ccedb7462d195e8acca7b3e5eafdf"
+  },
+  "0": {
+    "judgment": {
+      "extracted_final_answer": "\\boxed{\\frac{U_1}{2}}",
+      "reasoning": "The response gives U_1/2, which exactly matches the supplied reference answer.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11727,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 61,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\boxed{\\\\frac{U_1}{2}}\",\"reasoning\":\"The response gives U_1/2, which exactly matches the supplied reference answer.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "2376a74e75b51ddba46a8453fe60a8064e786fab05355de0b9ea1466c22bd1ca"
+  },
+  "1": {
+    "judgment": {
+      "extracted_final_answer": "\\boxed{\\left\\langle c_{\\uparrow}^{\\dagger}(k)c_{\\uparrow}(k)\\right\\rangle;\\ \\left\\langle c_{\\downarrow}^{\\dagger}(k)c_{\\downarrow}(k)\\right\\rangle}",
+      "reasoning": "The response gives exactly the two order parameters in the reference answer. The differences are only equivalent LaTeX formatting and spacing.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12101,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 121,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\boxed{\\\\left\\\\langle c_{\\\\uparrow}^{\\\\dagger}(k)c_{\\\\uparrow}(k)\\\\right\\\\rangle;\\\\ \\\\left\\\\langle c_{\\\\downarrow}^{\\\\dagger}(k)c_{\\\\downarrow}(k)\\\\right\\\\rangle}\",\"reasoning\":\"The response gives exactly the two order parameters in the reference answer. The differences are only equivalent LaTeX formatting and spacing.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "fbd9d955a75322b26241b42ef648d641c814c64f20ca0e49c4c5254d22275372"
+  },
+  "6": {
+    "judgment": {
+      "extracted_final_answer": "\\boxed{a;\\ b;\\ d}",
+      "reasoning": "The response selects exactly a, b, and d, matching the supplied reference answer.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11776,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 60,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\boxed{a;\\\\ b;\\\\ d}\",\"reasoning\":\"The response selects exactly a, b, and d, matching the supplied reference answer.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "48adc379859de57013b58159ca05858bee483bb36135cb15f500b45735be7410"
+  },
+  "3": {
+    "judgment": {
+      "extracted_final_answer": "16N_q^2",
+      "reasoning": "The response gives exactly the same spatial complexity as the supplied reference answer.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12254,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 51,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"16N_q^2\",\"reasoning\":\"The response gives exactly the same spatial complexity as the supplied reference answer.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "1cf524b0ab8774f6bfb846a6cdac2a3b806e8c89349f41a874dd4d8fc2e55147"
+  },
+  "2": {
+    "judgment": {
+      "extracted_final_answer": "\\boxed{(2.09,\\ 1.21);\\ (0.00,\\ 2.42);\\ (-2.09,\\ 1.21);\\ (-2.09,\\ -1.21);\\ (0.00,\\ -2.42);\\ (2.09,\\ -1.21)}",
+      "reasoning": "The response does not match the supplied reference: the two corners on the k_y axis are given as (0.00, 2.42) and (0.00, -2.42), whereas the reference specifies (0., 2.41) and (0., -2.41). At the requested two-decimal precision, these values are distinct.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11876,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 395,
+      "reasoning_output_tokens": 212
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\boxed{(2.09,\\\\ 1.21);\\\\ (0.00,\\\\ 2.42);\\\\ (-2.09,\\\\ 1.21);\\\\ (-2.09,\\\\ -1.21);\\\\ (0.00,\\\\ -2.42);\\\\ (2.09,\\\\ -1.21)}\",\"reasoning\":\"The response does not match the supplied reference: the two corners on the k_y axis are given as (0.00, 2.42) and (0.00, -2.42), whereas the reference specifies (0., 2.41) and (0., -2.41). At the requested two-decimal precision, these values are distinct.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "65363946715f347cd9a912abb65a9a57cc5f962c8a753711264156ebeece76bd"
+  },
+  "8": {
+    "judgment": {
+      "extracted_final_answer": "\\boxed{\\mathrm{b};\\mathrm{i}}",
+      "reasoning": "The extracted answer selects b and i, while the reference answer selects b, f, and i. Because choice f is missing and all requested components must be present, the response is incomplete and therefore incorrect.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12107,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 85,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\boxed{\\\\mathrm{b};\\\\mathrm{i}}\",\"reasoning\":\"The extracted answer selects b and i, while the reference answer selects b, f, and i. Because choice f is missing and all requested components must be present, the response is incomplete and therefore incorrect.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "6140c5fa252274b7face33932bd15f7113f09ccfa5f9e2ab00b214a6b91706df"
+  },
+  "7": {
+    "judgment": {
+      "extracted_final_answer": "\\boxed{\\text{a}}",
+      "reasoning": "The response selects choice (a), while the supplied correct answer is choice (d). They do not match.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11994,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 62,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\boxed{\\\\text{a}}\",\"reasoning\":\"The response selects choice (a), while the supplied correct answer is choice (d). They do not match.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "1faa125529c7a1ca6358e6db68cc8ef3f648221baeed67fabf2b8c53a8fa143e"
+  },
+  "9": {
+    "judgment": {
+      "extracted_final_answer": "\\boxed{b;c}",
+      "reasoning": "The response selects b and c, while the supplied correct answer selects b and e. Since the complete sets of choices do not match, the response is incorrect.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12108,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 70,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\boxed{b;c}\",\"reasoning\":\"The response selects b and c, while the supplied correct answer selects b and e. Since the complete sets of choices do not match, the response is incorrect.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "18b4c989290cbef7becb6fff305c13a0840ff83f2b0cfa7fdc872debef6936ba"
+  },
+  "11": {
+    "judgment": {
+      "extracted_final_answer": "\\boxed{2^{N/2-1};\\qquad c=\\frac12}",
+      "reasoning": "The extracted answer exactly matches the supplied reference: the open-chain ground-state degeneracy is \\(2^{N/2-1}\\) and the central charge is \\(c=1/2\\).",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12004,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 95,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\boxed{2^{N/2-1};\\\\qquad c=\\\\frac12}\",\"reasoning\":\"The extracted answer exactly matches the supplied reference: the open-chain ground-state degeneracy is \\\\(2^{N/2-1}\\\\) and the central charge is \\\\(c=1/2\\\\).\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "529796a0df012d5417f434c6c928fafda9073501190041a815c52fe636b964f5"
+  },
+  "12": {
+    "judgment": {
+      "extracted_final_answer": "\\boxed{b}",
+      "reasoning": "The response selects choice b, while the supplied correct answer selects choice c. These are distinct choices, so the response does not match the reference.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12058,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 66,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\boxed{b}\",\"reasoning\":\"The response selects choice b, while the supplied correct answer selects choice c. These are distinct choices, so the response does not match the reference.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "134c7e3463acbbe87b494150540782c0b6d6ad7a43d06c8a934c59e90fbd0274"
+  },
+  "13": {
+    "judgment": {
+      "extracted_final_answer": "\\boxed{a;c}",
+      "reasoning": "The response selects choices a and c, while the supplied correct answer selects d and e. These sets of choices do not match, so the response is incorrect.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12234,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 70,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\boxed{a;c}\",\"reasoning\":\"The response selects choices a and c, while the supplied correct answer selects d and e. These sets of choices do not match, so the response is incorrect.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "71c859dc21e105edc9c0390f766f31f3d55ef7345813524541ccb03f9e134811"
+  },
+  "14": {
+    "judgment": {
+      "extracted_final_answer": "\\boxed{b; e}",
+      "reasoning": "The response’s final answer exactly matches the supplied correct answer, including both requested choices.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11848,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 56,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\boxed{b; e}\",\"reasoning\":\"The response’s final answer exactly matches the supplied correct answer, including both requested choices.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "7b286270962a0fb9cadeec0a24b0dfc3ab080267030b3fe3918049173170d968"
+  },
+  "16": {
+    "judgment": {
+      "extracted_final_answer": "\\boxed{3}",
+      "reasoning": "The response's final answer is 3, while the supplied correct answer is 7. They do not match.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11938,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 60,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\boxed{3}\",\"reasoning\":\"The response's final answer is 3, while the supplied correct answer is 7. They do not match.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "e6d9d49ab43f4c0201ef5b5694a806549a63401504b5fa59ed47a8c142cda507"
+  },
+  "18": {
+    "judgment": {
+      "extracted_final_answer": "\\boxed{a;d}",
+      "reasoning": "The extracted answer selects choices a and d, while the supplied reference selects a and b. Because d does not match b, the response is incorrect.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11924,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 69,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\boxed{a;d}\",\"reasoning\":\"The extracted answer selects choices a and d, while the supplied reference selects a and b. Because d does not match b, the response is incorrect.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "7697fbf885d0e94d68415e8e5d62be4bc33734ffb1eb2711c82d3279809072b7"
+  },
+  "27": {
+    "judgment": {
+      "extracted_final_answer": "\\boxed{d;g}",
+      "reasoning": "The response's final answer selects cases d and g, exactly matching the reference answer \\(\\boxed{d; g}\\). The spacing difference is immaterial.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 13134,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 72,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\boxed{d;g}\",\"reasoning\":\"The response's final answer selects cases d and g, exactly matching the reference answer \\\\(\\\\boxed{d; g}\\\\). The spacing difference is immaterial.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "cce82a3069c8b1e514fcee90258ddcce376277fbc34bfb95b2b0bb73015d296e"
+  },
+  "31": {
+    "judgment": {
+      "extracted_final_answer": "\\boxed{a;c}",
+      "reasoning": "The response's final answer exactly matches the supplied reference answer.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11860,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 50,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\boxed{a;c}\",\"reasoning\":\"The response's final answer exactly matches the supplied reference answer.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "b746b647c178b6b8c9174e9e90a946cdf336e627d419d070ca88fc66509e5475"
+  },
+  "35": {
+    "judgment": {
+      "extracted_final_answer": "\\boxed{a;b}",
+      "reasoning": "The response’s final answer exactly matches the supplied correct answer, \\(\\boxed{a;b}\\).",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12231,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 60,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\boxed{a;b}\",\"reasoning\":\"The response’s final answer exactly matches the supplied correct answer, \\\\(\\\\boxed{a;b}\\\\).\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "d3d5cc4aa2dd3fa94147916a631148a3de8a59564822e995e628392cbd7e8adf"
+  },
+  "36": {
+    "judgment": {
+      "extracted_final_answer": "$\\boxed{b;c;d}$",
+      "reasoning": "The response’s final answer selects operations b, c, and d, whereas the supplied correct answer is $\\boxed{g}$. They are not equivalent, so the response is incorrect.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11817,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 79,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"$\\\\boxed{b;c;d}$\",\"reasoning\":\"The response’s final answer selects operations b, c, and d, whereas the supplied correct answer is $\\\\boxed{g}$. They are not equivalent, so the response is incorrect.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "e92dee8bb3d96e2062ad043e9b4fe12ab9a0b5a30488dc2d2adf9a6a8a347015"
+  },
+  "38": {
+    "judgment": {
+      "extracted_final_answer": "\\boxed{a;d;g;j}",
+      "reasoning": "The response’s final answer is a;d;g;j, while the supplied correct answer is a;d;i. It incorrectly includes g and j and omits i, so the complete answer does not match the reference.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12385,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 87,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\boxed{a;d;g;j}\",\"reasoning\":\"The response’s final answer is a;d;g;j, while the supplied correct answer is a;d;i. It incorrectly includes g and j and omits i, so the complete answer does not match the reference.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "b959eec854b4efa1ae1efa48e54cba71a094ab7a4315076436e33c781e01061a"
+  },
+  "40": {
+    "judgment": {
+      "extracted_final_answer": "\\boxed{a; e}",
+      "reasoning": "The response selects a and e, while the supplied correct answer selects a, d, and e. Since statement d is missing, the response does not match the complete reference answer.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12429,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 75,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\boxed{a; e}\",\"reasoning\":\"The response selects a and e, while the supplied correct answer selects a, d, and e. Since statement d is missing, the response does not match the complete reference answer.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "55e7b49ae0abb7ec006d3fde5d7454512f1e7160122a84ec65caee7a58829b2d"
+  },
+  "39": {
+    "judgment": {
+      "extracted_final_answer": "\\boxed{\\Delta E=\\frac{2\\left(t_2^2-t_1^2\\right)}{t_2}\\left(\\frac{t_1}{t_2}\\right)^n}",
+      "reasoning": "The response's prefactor is \\(2(t_2^2-t_1^2)/t_2\\), whereas the reference prefactor is \\(2t_1\\). These are not generally equal, so the answers are not mathematically equivalent.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12388,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 203,
+      "reasoning_output_tokens": 67
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\boxed{\\\\Delta E=\\\\frac{2\\\\left(t_2^2-t_1^2\\\\right)}{t_2}\\\\left(\\\\frac{t_1}{t_2}\\\\right)^n}\",\"reasoning\":\"The response's prefactor is \\\\(2(t_2^2-t_1^2)/t_2\\\\), whereas the reference prefactor is \\\\(2t_1\\\\). These are not generally equal, so the answers are not mathematically equivalent.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "6f1d359777a57076a5633cd4d7b56e99c34507c49235e03463a62c0055c75d28"
+  },
+  "41": {
+    "judgment": {
+      "extracted_final_answer": "\\boxed{\\alpha=\\frac{2\\tanh\\!\\left(\\frac{\\beta\\omega}{2}\\right)}{\\omega}}",
+      "reasoning": "The response gives alpha as 2 tanh(beta omega/2) divided by omega, exactly matching the supplied reference.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11779,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 90,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\boxed{\\\\alpha=\\\\frac{2\\\\tanh\\\\!\\\\left(\\\\frac{\\\\beta\\\\omega}{2}\\\\right)}{\\\\omega}}\",\"reasoning\":\"The response gives alpha as 2 tanh(beta omega/2) divided by omega, exactly matching the supplied reference.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "9e69923ae2c4348d063d9efcf34ae1133c017bcac038e30db58218289bfb0eb8"
+  },
+  "43": {
+    "judgment": {
+      "extracted_final_answer": "\\boxed{\\mathrm{c}}",
+      "reasoning": "The response’s final answer is option c, which exactly matches the supplied reference answer \\(\\boxed{c}\\).",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12301,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 65,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\boxed{\\\\mathrm{c}}\",\"reasoning\":\"The response’s final answer is option c, which exactly matches the supplied reference answer \\\\(\\\\boxed{c}\\\\).\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "b8de7144397d618478e4fb7262ea4a15c529e94232e370776e0ee36262771f1c"
+  },
+  "46": {
+    "judgment": {
+      "extracted_final_answer": "\\boxed{\\frac{(p+x^3)^2}{4x^4}+4x^2}",
+      "reasoning": "The response's final boxed integrand exactly matches the supplied reference, differing only in inconsequential spacing.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11869,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 77,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\boxed{\\\\frac{(p+x^3)^2}{4x^4}+4x^2}\",\"reasoning\":\"The response's final boxed integrand exactly matches the supplied reference, differing only in inconsequential spacing.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "d05e1228979cd68668ca1d122af96520e8b01ffb7995cbc5e28027aecd4a11d2"
+  },
+  "44": {
+    "judgment": {
+      "extracted_final_answer": "K_c=\\gamma+3\\sigma^2",
+      "reasoning": "The extracted answer does not match the supplied reference expression and is not algebraically equivalent to it. It also has a different dependence on \\(\\gamma\\) and \\(\\sigma\\).",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11995,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 83,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"K_c=\\\\gamma+3\\\\sigma^2\",\"reasoning\":\"The extracted answer does not match the supplied reference expression and is not algebraically equivalent to it. It also has a different dependence on \\\\(\\\\gamma\\\\) and \\\\(\\\\sigma\\\\).\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "ff5a2c46785ab7057dc6bb3ca6c99b0ac01ebb0a4eb00c82d63330ef4e5e4f0b"
+  }
+}

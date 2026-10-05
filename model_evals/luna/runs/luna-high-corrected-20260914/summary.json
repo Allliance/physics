@@ -1,0 +1,66 @@
+{
+  "updated_at": "2026-09-14T06:28:36.391959+00:00",
+  "complete": false,
+  "model": "gpt-5.6-luna",
+  "reasoning_effort": "high",
+  "judge_model": "claude-fable-5",
+  "judge_reasoning_effort": "high",
+  "tools": false,
+  "order": [
+    "phybench",
+    "prism",
+    "ugphysics",
+    "hle",
+    "cmt",
+    "critpt"
+  ],
+  "completed_benchmarks": [
+    "phybench",
+    "prism",
+    "ugphysics",
+    "hle",
+    "cmt"
+  ],
+  "active_or_next": "critpt",
+  "results": {
+    "phybench": {
+      "complete": true,
+      "summary": "/shared/data/home/aa3242/physics/model_evals/luna/runs/luna-high-corrected-20260914/phybench/frozen-gemini-corrected/summary.json",
+      "questions": 88,
+      "pass@1": 0.75
+    },
+    "prism": {
+      "complete": true,
+      "summary": "/shared/data/home/aa3242/physics/model_evals/luna/runs/luna-high-corrected-20260914/prism/frozen-gemini-corrected/summary.json",
+      "questions": 74,
+      "pass@1": 0.9459459459459459
+    },
+    "ugphysics": {
+      "complete": true,
+      "summary": "/shared/data/home/aa3242/physics/model_evals/luna/runs/luna-high-corrected-20260914/ugphysics/frozen-gemini-corrected/summary.json",
+      "questions": 78,
+      "pass@1": 0.8333333333333334
+    },
+    "hle": {
+      "complete": true,
+      "summary": "/shared/data/home/aa3242/physics/benchmarks/hle/artifacts/luna-high-corrected-20260914/hle-corrected-no-tools.summary.json",
+      "questions": 115,
+      "mean@4": 0.4652173913043478,
+      "pass@4": 0.6608695652173913
+    },
+    "cmt": {
+      "complete": true,
+      "summary": "/shared/data/home/aa3242/physics/analysis/CMT-Benchmark/artifacts/luna-high-corrected-20260914/cmt-corrected-no-tools.summary.json",
+      "questions": 49,
+      "mean@4": 0.7448979591836735,
+      "pass@4": 0.8979591836734694
+    },
+    "critpt": {
+      "complete": false,
+      "summary": "/shared/data/home/aa3242/physics/analysis/CritPt/artifacts/luna-high-corrected-20260914/critpt-corrected-no-tools.summary.json",
+      "questions": 54,
+      "mean@4": null,
+      "pass@4": null
+    }
+  }
+}

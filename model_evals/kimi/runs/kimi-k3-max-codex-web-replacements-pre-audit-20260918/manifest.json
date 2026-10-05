@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "source": "/shared/data/home/aa3242/physics/eval/artifacts/pre-audit-kimi-k3-max-reuse-20260918",
+  "datasets": {
+    "hle-physics": 510,
+    "cmt": 133,
+    "critpt": 118
+  },
+  "total_retries": 761,
+  "model": "moonshotai/kimi-k3",
+  "requested_model": "moonshotai/kimi-k3@preset/agentic-web",
+  "reasoning_effort": "max",
+  "harness": "codex exec",
+  "tools": [
+    "codex local tools",
+    "openrouter:web_search"
+  ],
+  "openrouter_preset": "agentic-web",
+  "sandbox": "workspace-write",
+  "judge_model": "gpt-5.6-sol",
+  "judge_reasoning_effort": "high",
+  "replacement_policy": "replace every original incorrect attempt; preserve original correct attempts",
+  "seed_output": "/shared/data/home/aa3242/physics/model_evals/kimi/runs/kimi-k3-max-codex-web-replacements-20260918",
+  "seed_dataset_map": {
+    "hle-physics": "hle"
+  }
+}

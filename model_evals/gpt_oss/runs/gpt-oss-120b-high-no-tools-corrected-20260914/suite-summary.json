@@ -1,0 +1,3458 @@
+{
+  "model": "gpt-oss-120b",
+  "reasoning_effort": "high",
+  "tools": false,
+  "judge_model": "claude-fable-5",
+  "judge_reasoning_effort": "high",
+  "workers_per_benchmark": 128,
+  "returncodes": {
+    "cmt": 0,
+    "critpt": 0,
+    "hle": 0,
+    "phybench": 0,
+    "prism": 0,
+    "ugphysics": 0
+  },
+  "results": {
+    "phybench": {
+      "complete": true,
+      "questions": 88,
+      "predictions": 88,
+      "judgments": 88,
+      "correct": 58,
+      "missing_predictions": 0,
+      "missing_judgments": 0,
+      "accuracy": 0.6590909090909091,
+      "accuracy_percent": 65.9090909090909,
+      "per_question": [
+        {
+          "id": "495",
+          "correct": 1
+        },
+        {
+          "id": "600",
+          "correct": 1
+        },
+        {
+          "id": "285",
+          "correct": 1
+        },
+        {
+          "id": "321",
+          "correct": 1
+        },
+        {
+          "id": "674",
+          "correct": 0
+        },
+        {
+          "id": "54",
+          "correct": 1
+        },
+        {
+          "id": "10",
+          "correct": 1
+        },
+        {
+          "id": "33",
+          "correct": 0
+        },
+        {
+          "id": "41",
+          "correct": 1
+        },
+        {
+          "id": "453",
+          "correct": 0
+        },
+        {
+          "id": "281",
+          "correct": 1
+        },
+        {
+          "id": "95",
+          "correct": 0
+        },
+        {
+          "id": "101",
+          "correct": 0
+        },
+        {
+          "id": "630",
+          "correct": 0
+        },
+        {
+          "id": "134",
+          "correct": 1
+        },
+        {
+          "id": "650",
+          "correct": 0
+        },
+        {
+          "id": "332",
+          "correct": 0
+        },
+        {
+          "id": "409",
+          "correct": 0
+        },
+        {
+          "id": "133",
+          "correct": 1
+        },
+        {
+          "id": "336",
+          "correct": 0
+        },
+        {
+          "id": "105",
+          "correct": 0
+        },
+        {
+          "id": "702",
+          "correct": 1
+        },
+        {
+          "id": "367",
+          "correct": 1
+        },
+        {
+          "id": "497",
+          "correct": 0
+        },
+        {
+          "id": "457",
+          "correct": 0
+        },
+        {
+          "id": "432",
+          "correct": 0
+        },
+        {
+          "id": "284",
+          "correct": 1
+        },
+        {
+          "id": "39",
+          "correct": 1
+        },
+        {
+          "id": "124",
+          "correct": 1
+        },
+        {
+          "id": "419",
+          "correct": 1
+        },
+        {
+          "id": "458",
+          "correct": 1
+        },
+        {
+          "id": "206",
+          "correct": 1
+        },
+        {
+          "id": "204",
+          "correct": 1
+        },
+        {
+          "id": "478",
+          "correct": 0
+        },
+        {
+          "id": "259",
+          "correct": 1
+        },
+        {
+          "id": "766",
+          "correct": 1
+        },
+        {
+          "id": "716",
+          "correct": 0
+        },
+        {
+          "id": "103",
+          "correct": 1
+        },
+        {
+          "id": "310",
+          "correct": 1
+        },
+        {
+          "id": "110",
+          "correct": 1
+        },
+        {
+          "id": "256",
+          "correct": 0
+        },
+        {
+          "id": "112",
+          "correct": 1
+        },
+        {
+          "id": "505",
+          "correct": 1
+        },
+        {
+          "id": "331",
+          "correct": 0
+        },
+        {
+          "id": "498",
+          "correct": 1
+        },
+        {
+          "id": "737",
+          "correct": 1
+        },
+        {
+          "id": "228",
+          "correct": 1
+        },
+        {
+          "id": "708",
+          "correct": 1
+        },
+        {
+          "id": "649",
+          "correct": 1
+        },
+        {
+          "id": "688",
+          "correct": 1
+        },
+        {
+          "id": "118",
+          "correct": 1
+        },
+        {
+          "id": "318",
+          "correct": 0
+        },
+        {
+          "id": "62",
+          "correct": 1
+        },
+        {
+          "id": "143",
+          "correct": 0
+        },
+        {
+          "id": "401",
+          "correct": 0
+        },
+        {
+          "id": "443",
+          "correct": 1
+        },
+        {
+          "id": "115",
+          "correct": 1
+        },
+        {
+          "id": "493",
+          "correct": 0
+        },
+        {
+          "id": "69",
+          "correct": 0
+        },
+        {
+          "id": "65",
+          "correct": 0
+        },
+        {
+          "id": "709",
+          "correct": 0
+        },
+        {
+          "id": "423",
+          "correct": 1
+        },
+        {
+          "id": "36",
+          "correct": 1
+        },
+        {
+          "id": "333",
+          "correct": 1
+        },
+        {
+          "id": "50",
+          "correct": 0
+        },
+        {
+          "id": "221",
+          "correct": 0
+        },
+        {
+          "id": "120",
+          "correct": 1
+        },
+        {
+          "id": "648",
+          "correct": 1
+        },
+        {
+          "id": "72",
+          "correct": 1
+        },
+        {
+          "id": "603",
+          "correct": 1
+        },
+        {
+          "id": "670",
+          "correct": 1
+        },
+        {
+          "id": "140",
+          "correct": 1
+        },
+        {
+          "id": "653",
+          "correct": 1
+        },
+        {
+          "id": "719",
+          "correct": 1
+        },
+        {
+          "id": "211",
+          "correct": 1
+        },
+        {
+          "id": "139",
+          "correct": 0
+        },
+        {
+          "id": "106",
+          "correct": 1
+        },
+        {
+          "id": "58",
+          "correct": 1
+        },
+        {
+          "id": "412",
+          "correct": 0
+        },
+        {
+          "id": "43",
+          "correct": 1
+        },
+        {
+          "id": "117",
+          "correct": 1
+        },
+        {
+          "id": "42",
+          "correct": 1
+        },
+        {
+          "id": "45",
+          "correct": 1
+        },
+        {
+          "id": "37",
+          "correct": 1
+        },
+        {
+          "id": "654",
+          "correct": 1
+        },
+        {
+          "id": "244",
+          "correct": 1
+        },
+        {
+          "id": "25",
+          "correct": 0
+        },
+        {
+          "id": "100",
+          "correct": 1
+        }
+      ],
+      "dataset": "phybench-frozen-gemini-corrected",
+      "split": "corrected",
+      "model": "gpt-oss-120b",
+      "reasoning_effort": "high",
+      "judge_model": "claude-fable-5",
+      "judge_reasoning_effort": "high",
+      "tools": false,
+      "evaluator": "HLE-adapted physics equivalence; merged binary score",
+      "predictions_reused": false,
+      "source_count": 88,
+      "excluded_count": 0
+    },
+    "prism": {
+      "complete": true,
+      "questions": 74,
+      "predictions": 74,
+      "judgments": 74,
+      "correct": 62,
+      "missing_predictions": 0,
+      "missing_judgments": 0,
+      "accuracy": 0.8378378378378378,
+      "accuracy_percent": 83.78378378378379,
+      "per_question": [
+        {
+          "id": "01_cleaned_dag:1013",
+          "correct": 1
+        },
+        {
+          "id": "01_cleaned_dag:1049",
+          "correct": 1
+        },
+        {
+          "id": "01_cleaned_dag:1070",
+          "correct": 1
+        },
+        {
+          "id": "01_cleaned_dag:1071",
+          "correct": 1
+        },
+        {
+          "id": "01_cleaned_dag:1075",
+          "correct": 0
+        },
+        {
+          "id": "01_cleaned_dag:1098",
+          "correct": 1
+        },
+        {
+          "id": "01_cleaned_dag:1126",
+          "correct": 1
+        },
+        {
+          "id": "01_cleaned_dag:1146",
+          "correct": 1
+        },
+        {
+          "id": "01_cleaned_dag:1267",
+          "correct": 1
+        },
+        {
+          "id": "01_cleaned_dag:2037",
+          "correct": 1
+        },
+        {
+          "id": "01_cleaned_dag:2066",
+          "correct": 0
+        },
+        {
+          "id": "01_cleaned_dag:3010",
+          "correct": 1
+        },
+        {
+          "id": "01_cleaned_dag:3014",
+          "correct": 1
+        },
+        {
+          "id": "01_cleaned_dag:3052",
+          "correct": 1
+        },
+        {
+          "id": "02_cleaned_dag:1010",
+          "correct": 1
+        },
+        {
+          "id": "02_cleaned_dag:1012",
+          "correct": 1
+        },
+        {
+          "id": "02_cleaned_dag:1024",
+          "correct": 1
+        },
+        {
+          "id": "02_cleaned_dag:2021",
+          "correct": 0
+        },
+        {
+          "id": "02_cleaned_dag:2029",
+          "correct": 1
+        },
+        {
+          "id": "02_cleaned_dag:2053",
+          "correct": 1
+        },
+        {
+          "id": "02_cleaned_dag:2055",
+          "correct": 0
+        },
+        {
+          "id": "02_cleaned_dag:2076",
+          "correct": 1
+        },
+        {
+          "id": "02_cleaned_dag:2102",
+          "correct": 1
+        },
+        {
+          "id": "02_cleaned_dag:3030",
+          "correct": 0
+        },
+        {
+          "id": "02_cleaned_dag:3034",
+          "correct": 1
+        },
+        {
+          "id": "03_cleaned_dag:2029",
+          "correct": 1
+        },
+        {
+          "id": "03_cleaned_dag:2066",
+          "correct": 1
+        },
+        {
+          "id": "04_cleaned_dag:1018",
+          "correct": 1
+        },
+        {
+          "id": "04_cleaned_dag:1021",
+          "correct": 1
+        },
+        {
+          "id": "04_cleaned_dag:1025",
+          "correct": 1
+        },
+        {
+          "id": "04_cleaned_dag:1049",
+          "correct": 1
+        },
+        {
+          "id": "04_cleaned_dag:1084",
+          "correct": 0
+        },
+        {
+          "id": "04_cleaned_dag:1104",
+          "correct": 0
+        },
+        {
+          "id": "04_cleaned_dag:1128",
+          "correct": 1
+        },
+        {
+          "id": "04_cleaned_dag:1139",
+          "correct": 0
+        },
+        {
+          "id": "04_cleaned_dag:2005",
+          "correct": 1
+        },
+        {
+          "id": "04_cleaned_dag:2119",
+          "correct": 1
+        },
+        {
+          "id": "04_cleaned_dag:3077",
+          "correct": 1
+        },
+        {
+          "id": "04_cleaned_dag:4002",
+          "correct": 1
+        },
+        {
+          "id": "04_cleaned_dag:4013",
+          "correct": 1
+        },
+        {
+          "id": "04_cleaned_dag:4027",
+          "correct": 1
+        },
+        {
+          "id": "04_cleaned_dag:4030",
+          "correct": 0
+        },
+        {
+          "id": "04_cleaned_dag:4037",
+          "correct": 1
+        },
+        {
+          "id": "04_cleaned_dag:4049",
+          "correct": 1
+        },
+        {
+          "id": "04_cleaned_dag:4051",
+          "correct": 1
+        },
+        {
+          "id": "04_cleaned_dag:4059",
+          "correct": 1
+        },
+        {
+          "id": "04_cleaned_dag:4060",
+          "correct": 1
+        },
+        {
+          "id": "04_cleaned_dag:4078",
+          "correct": 1
+        },
+        {
+          "id": "05_cleaned_dag:1070",
+          "correct": 1
+        },
+        {
+          "id": "05_cleaned_dag:1080",
+          "correct": 0
+        },
+        {
+          "id": "05_cleaned_dag:1083",
+          "correct": 1
+        },
+        {
+          "id": "05_cleaned_dag:1127",
+          "correct": 1
+        },
+        {
+          "id": "05_cleaned_dag:2032",
+          "correct": 1
+        },
+        {
+          "id": "05_cleaned_dag:2037",
+          "correct": 1
+        },
+        {
+          "id": "05_cleaned_dag:2067",
+          "correct": 1
+        },
+        {
+          "id": "05_cleaned_dag:2071",
+          "correct": 1
+        },
+        {
+          "id": "05_cleaned_dag:2073",
+          "correct": 1
+        },
+        {
+          "id": "05_cleaned_dag:2137",
+          "correct": 1
+        },
+        {
+          "id": "05_cleaned_dag:2139",
+          "correct": 1
+        },
+        {
+          "id": "05_cleaned_dag:2150",
+          "correct": 1
+        },
+        {
+          "id": "05_cleaned_dag:2155",
+          "correct": 1
+        },
+        {
+          "id": "06_cleaned_dag:1059",
+          "correct": 1
+        },
+        {
+          "id": "06_cleaned_dag:4009",
+          "correct": 1
+        },
+        {
+          "id": "06_cleaned_dag:5008",
+          "correct": 1
+        },
+        {
+          "id": "06_cleaned_dag:5057",
+          "correct": 0
+        },
+        {
+          "id": "06_cleaned_dag:5058",
+          "correct": 0
+        },
+        {
+          "id": "06_cleaned_dag:6001",
+          "correct": 1
+        },
+        {
+          "id": "06_cleaned_dag:6003",
+          "correct": 1
+        },
+        {
+          "id": "06_cleaned_dag:6051",
+          "correct": 1
+        },
+        {
+          "id": "06_cleaned_dag:7002",
+          "correct": 1
+        },
+        {
+          "id": "06_cleaned_dag:8008",
+          "correct": 1
+        },
+        {
+          "id": "06_cleaned_dag:8025",
+          "correct": 1
+        },
+        {
+          "id": "07_cleaned_dag:1008",
+          "correct": 1
+        },
+        {
+          "id": "07_cleaned_dag:1065",
+          "correct": 1
+        }
+      ],
+      "dataset": "prism-frozen-gemini-corrected",
+      "split": "corrected",
+      "model": "gpt-oss-120b",
+      "reasoning_effort": "high",
+      "judge_model": "claude-fable-5",
+      "judge_reasoning_effort": "high",
+      "tools": false,
+      "evaluator": "HLE-adapted physics equivalence; merged binary score",
+      "predictions_reused": false,
+      "source_count": 74,
+      "excluded_count": 0
+    },
+    "ugphysics": {
+      "complete": true,
+      "questions": 78,
+      "predictions": 78,
+      "judgments": 78,
+      "correct": 63,
+      "missing_predictions": 0,
+      "missing_judgments": 0,
+      "accuracy": 0.8076923076923077,
+      "accuracy_percent": 80.76923076923077,
+      "per_question": [
+        {
+          "id": "AtomicPhysics/en/602",
+          "correct": 1
+        },
+        {
+          "id": "Thermodynamics/en/63",
+          "correct": 1
+        },
+        {
+          "id": "StatisticalMechanics/en/323",
+          "correct": 1
+        },
+        {
+          "id": "QuantumMechanics/en/985",
+          "correct": 1
+        },
+        {
+          "id": "AtomicPhysics/en/900",
+          "correct": 1
+        },
+        {
+          "id": "StatisticalMechanics/en/181",
+          "correct": 1
+        },
+        {
+          "id": "Thermodynamics/en/97",
+          "correct": 1
+        },
+        {
+          "id": "ClassicalElectromagnetism/en/154",
+          "correct": 1
+        },
+        {
+          "id": "ClassicalElectromagnetism/en/298",
+          "correct": 1
+        },
+        {
+          "id": "QuantumMechanics/en/502",
+          "correct": 1
+        },
+        {
+          "id": "ClassicalElectromagnetism/en/17",
+          "correct": 1
+        },
+        {
+          "id": "StatisticalMechanics/en/245",
+          "correct": 1
+        },
+        {
+          "id": "ClassicalMechanics/en/640",
+          "correct": 1
+        },
+        {
+          "id": "TheoreticalMechanics/en/49",
+          "correct": 1
+        },
+        {
+          "id": "AtomicPhysics/en/624",
+          "correct": 1
+        },
+        {
+          "id": "StatisticalMechanics/en/159",
+          "correct": 1
+        },
+        {
+          "id": "QuantumMechanics/en/821",
+          "correct": 0
+        },
+        {
+          "id": "ClassicalMechanics/en/159",
+          "correct": 0
+        },
+        {
+          "id": "AtomicPhysics/en/798",
+          "correct": 1
+        },
+        {
+          "id": "QuantumMechanics/en/579",
+          "correct": 1
+        },
+        {
+          "id": "TheoreticalMechanics/en/206",
+          "correct": 0
+        },
+        {
+          "id": "AtomicPhysics/en/339",
+          "correct": 1
+        },
+        {
+          "id": "QuantumMechanics/en/708",
+          "correct": 1
+        },
+        {
+          "id": "QuantumMechanics/en/357",
+          "correct": 1
+        },
+        {
+          "id": "Thermodynamics/en/248",
+          "correct": 1
+        },
+        {
+          "id": "StatisticalMechanics/en/517",
+          "correct": 0
+        },
+        {
+          "id": "WaveOptics/en/181",
+          "correct": 1
+        },
+        {
+          "id": "ClassicalElectromagnetism/en/21",
+          "correct": 0
+        },
+        {
+          "id": "Relativity/en/99",
+          "correct": 1
+        },
+        {
+          "id": "ClassicalMechanics/en/354",
+          "correct": 1
+        },
+        {
+          "id": "AtomicPhysics/en/406",
+          "correct": 1
+        },
+        {
+          "id": "Relativity/en/20",
+          "correct": 0
+        },
+        {
+          "id": "AtomicPhysics/en/283",
+          "correct": 1
+        },
+        {
+          "id": "Electrodynamics/en/80",
+          "correct": 0
+        },
+        {
+          "id": "ClassicalMechanics/en/806",
+          "correct": 1
+        },
+        {
+          "id": "SemiconductorPhysics/en/119",
+          "correct": 0
+        },
+        {
+          "id": "AtomicPhysics/en/357",
+          "correct": 1
+        },
+        {
+          "id": "QuantumMechanics/en/813",
+          "correct": 0
+        },
+        {
+          "id": "StatisticalMechanics/en/162",
+          "correct": 1
+        },
+        {
+          "id": "QuantumMechanics/en/738",
+          "correct": 0
+        },
+        {
+          "id": "AtomicPhysics/en/514",
+          "correct": 1
+        },
+        {
+          "id": "QuantumMechanics/en/650",
+          "correct": 1
+        },
+        {
+          "id": "QuantumMechanics/en/612",
+          "correct": 1
+        },
+        {
+          "id": "QuantumMechanics/en/372",
+          "correct": 0
+        },
+        {
+          "id": "StatisticalMechanics/en/261",
+          "correct": 1
+        },
+        {
+          "id": "AtomicPhysics/en/295",
+          "correct": 1
+        },
+        {
+          "id": "ClassicalMechanics/en/74",
+          "correct": 1
+        },
+        {
+          "id": "Relativity/en/94",
+          "correct": 1
+        },
+        {
+          "id": "SemiconductorPhysics/en/129",
+          "correct": 1
+        },
+        {
+          "id": "ClassicalMechanics/en/117",
+          "correct": 1
+        },
+        {
+          "id": "AtomicPhysics/en/551",
+          "correct": 0
+        },
+        {
+          "id": "ClassicalElectromagnetism/en/366",
+          "correct": 1
+        },
+        {
+          "id": "QuantumMechanics/en/820",
+          "correct": 1
+        },
+        {
+          "id": "AtomicPhysics/en/111",
+          "correct": 0
+        },
+        {
+          "id": "ClassicalMechanics/en/249",
+          "correct": 1
+        },
+        {
+          "id": "QuantumMechanics/en/229",
+          "correct": 0
+        },
+        {
+          "id": "ClassicalMechanics/en/59",
+          "correct": 1
+        },
+        {
+          "id": "ClassicalMechanics/en/316",
+          "correct": 1
+        },
+        {
+          "id": "ClassicalMechanics/en/158",
+          "correct": 1
+        },
+        {
+          "id": "AtomicPhysics/en/279",
+          "correct": 1
+        },
+        {
+          "id": "ClassicalMechanics/en/731",
+          "correct": 1
+        },
+        {
+          "id": "QuantumMechanics/en/848",
+          "correct": 1
+        },
+        {
+          "id": "SemiconductorPhysics/en/47",
+          "correct": 1
+        },
+        {
+          "id": "GeometricalOptics/en/30",
+          "correct": 1
+        },
+        {
+          "id": "ClassicalMechanics/en/531",
+          "correct": 0
+        },
+        {
+          "id": "AtomicPhysics/en/309",
+          "correct": 1
+        },
+        {
+          "id": "Electrodynamics/en/153",
+          "correct": 1
+        },
+        {
+          "id": "Thermodynamics/en/141",
+          "correct": 1
+        },
+        {
+          "id": "AtomicPhysics/en/647",
+          "correct": 1
+        },
+        {
+          "id": "WaveOptics/en/160",
+          "correct": 1
+        },
+        {
+          "id": "AtomicPhysics/en/413",
+          "correct": 1
+        },
+        {
+          "id": "StatisticalMechanics/en/8",
+          "correct": 1
+        },
+        {
+          "id": "Thermodynamics/en/56",
+          "correct": 1
+        },
+        {
+          "id": "QuantumMechanics/en/926",
+          "correct": 1
+        },
+        {
+          "id": "ClassicalMechanics/en/239",
+          "correct": 1
+        },
+        {
+          "id": "ClassicalMechanics/en/501",
+          "correct": 1
+        },
+        {
+          "id": "ClassicalElectromagnetism/en/384",
+          "correct": 1
+        },
+        {
+          "id": "TheoreticalMechanics/en/57",
+          "correct": 1
+        }
+      ],
+      "dataset": "ugphysics-frozen-gemini-corrected",
+      "split": "corrected",
+      "model": "gpt-oss-120b",
+      "reasoning_effort": "high",
+      "judge_model": "claude-fable-5",
+      "judge_reasoning_effort": "high",
+      "tools": false,
+      "evaluator": "HLE-adapted physics equivalence; merged binary score",
+      "predictions_reused": false,
+      "source_count": 78,
+      "excluded_count": 0
+    },
+    "hle": {
+      "complete": true,
+      "questions": 115,
+      "rounds": 4,
+      "aggregation": "mean",
+      "final_score": 0.2391304347826087,
+      "final_score_percent": 23.91304347826087,
+      "mean_score": 0.2391304347826087,
+      "max_score": 0.4608695652173913,
+      "round_scores": [
+        0.2608695652173913,
+        0.24347826086956523,
+        0.2,
+        0.25217391304347825
+      ],
+      "per_question": {
+        "66b727d367968fa27f2dddda": {
+          "round_scores": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "mean": 0.5,
+          "max": 1
+        },
+        "66b827b9b64deaedfbb997a2": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "66e89ebe7361982cbfbc5952": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "66e8e8864c478c24f1a7e7b8": {
+          "round_scores": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.25,
+          "max": 1
+        },
+        "66e94a88b78e263c565b17ee": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "66e9e6b3c27ad6bc46adbc20": {
+          "round_scores": [
+            0,
+            1,
+            0,
+            0
+          ],
+          "mean": 0.25,
+          "max": 1
+        },
+        "66eb968f69502893cf210115": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "66f378a504165ae3e4f46de9": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "mean": 0.25,
+          "max": 1
+        },
+        "66f56cf9ee58cb70d2bff0e9": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "66fb417395a8e2fc57e479d7": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "66fc45034293a9638d7e0f47": {
+          "round_scores": [
+            0,
+            1,
+            0,
+            0
+          ],
+          "mean": 0.25,
+          "max": 1
+        },
+        "66fc5ed440e3b3e56869687f": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "6702db18a423c5b9f9c1c49c": {
+          "round_scores": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "mean": 0.25,
+          "max": 1
+        },
+        "67036eec810cc41df802051d": {
+          "round_scores": [
+            0,
+            1,
+            1,
+            1
+          ],
+          "mean": 0.75,
+          "max": 1
+        },
+        "670402f0bae67686d8aef3e8": {
+          "round_scores": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1.0,
+          "max": 1
+        },
+        "6704465caf0a436d92c65160": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "6707425209b8f334446ed3e2": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "6707d229ce18c3c60d66c712": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "mean": 0.25,
+          "max": 1
+        },
+        "670ad4fbb4aea214feb705d3": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "670e88d674a7c40e93dd1a5c": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "670fe03ef99389b3c7942186": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "670fe86a7e294dc6ad20c1ba": {
+          "round_scores": [
+            0,
+            1,
+            0,
+            0
+          ],
+          "mean": 0.25,
+          "max": 1
+        },
+        "6713cedd6978edcd74f82863": {
+          "round_scores": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.25,
+          "max": 1
+        },
+        "67153bd7f588f3f15b038f5b": {
+          "round_scores": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1.0,
+          "max": 1
+        },
+        "67154da65a8d78b045561f82": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "mean": 0.25,
+          "max": 1
+        },
+        "67169906187dc7ac4a7ae1a8": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "mean": 0.25,
+          "max": 1
+        },
+        "671a22850b52f35047c0b230": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "671a246d8479d8185c4d4435": {
+          "round_scores": [
+            1,
+            1,
+            1,
+            0
+          ],
+          "mean": 0.75,
+          "max": 1
+        },
+        "671bb1348b80a27571baf0d3": {
+          "round_scores": [
+            0,
+            1,
+            0,
+            0
+          ],
+          "mean": 0.25,
+          "max": 1
+        },
+        "671d25bc8258d39a94ba00fb": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "mean": 0.25,
+          "max": 1
+        },
+        "671e3d672637abea9c147ba1": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "671f1f0bb0b665acec70c3aa": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "671f7a4a1bcf902a1bca1eca": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "671f7f334db66145d9e41f1f": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "671f8a0781665b519321d818": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "671fbb0cc6abf8266c1892ca": {
+          "round_scores": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1.0,
+          "max": 1
+        },
+        "671fd62fc40008a5a756fea4": {
+          "round_scores": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.25,
+          "max": 1
+        },
+        "671ff43951f8a38cb737b3d4": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "6720241e20239af7af582ae1": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "6720449622c03e062e242dd2": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "6720c10ac6e0d9a4953b636f": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "6720e184a9e1d1cc990cc8e9": {
+          "round_scores": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.25,
+          "max": 1
+        },
+        "672257b388e407d7eb077431": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "67225b0a9e5897be2aec5257": {
+          "round_scores": [
+            1,
+            1,
+            1,
+            0
+          ],
+          "mean": 0.75,
+          "max": 1
+        },
+        "6722613b4152cab57c187de5": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "672295eda223ce4156c54839": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "6722cb976bc44598e1fd09be": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "672302bdbc9e7202ad89ccd3": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "6723bf036e47cec0509b5caf": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "mean": 0.25,
+          "max": 1
+        },
+        "6723e60719c334bc13515f01": {
+          "round_scores": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.25,
+          "max": 1
+        },
+        "67242914911674ab1b5d9036": {
+          "round_scores": [
+            0,
+            1,
+            1,
+            1
+          ],
+          "mean": 0.75,
+          "max": 1
+        },
+        "67249cc8709ecff358139741": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "6724e29c42ec04c22a24aab0": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "mean": 0.25,
+          "max": 1
+        },
+        "6724f652efed730d1aaef326": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "6725267ae9d3782179d4a5ff": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "67253690bcd1c268662e77bb": {
+          "round_scores": [
+            1,
+            1,
+            0,
+            1
+          ],
+          "mean": 0.75,
+          "max": 1
+        },
+        "672588e1f71812e186947615": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "6725e204e46049e7f2d2a192": {
+          "round_scores": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1.0,
+          "max": 1
+        },
+        "6725e382086428ce4e2fa8d6": {
+          "round_scores": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "mean": 0.25,
+          "max": 1
+        },
+        "6725e42052e181595c8bf328": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "672600b226992c47ce3a7efe": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "672669616633802b43ad2332": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "6727716f45a3c3a9020e2732": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "mean": 0.25,
+          "max": 1
+        },
+        "6728be777ed2554b747b3d65": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "6728cbe9a6734ebc93d3adff": {
+          "round_scores": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.25,
+          "max": 1
+        },
+        "6728ec2d5ab07491268f24fe": {
+          "round_scores": [
+            1,
+            1,
+            0,
+            1
+          ],
+          "mean": 0.75,
+          "max": 1
+        },
+        "6729035989898f87cb532106": {
+          "round_scores": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1.0,
+          "max": 1
+        },
+        "67298280a5f43bd5a3870e14": {
+          "round_scores": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "mean": 0.25,
+          "max": 1
+        },
+        "672a5ecf541155da3e036094": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "672a80a432cd57d8762583e9": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "672b687682d2a83f881d7c5a": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "672de9b9ed6de72b75b8c802": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "672fadd93c2722c42adabef3": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "673186a4d531bb7e168901a3": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "6732ce52ec2dbeda063b420b": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "6732d3b01a3f938f2274a659": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "6734956467d2904eebed3a09": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "6734968f832777944c775cc4": {
+          "round_scores": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "mean": 0.25,
+          "max": 1
+        },
+        "6735bafad86155d1e57160e7": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "6737092e3a78dbef3611f734": {
+          "round_scores": [
+            0,
+            1,
+            1,
+            1
+          ],
+          "mean": 0.75,
+          "max": 1
+        },
+        "67374c79ccee19cce9664dd5": {
+          "round_scores": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1.0,
+          "max": 1
+        },
+        "6737591afaa3cc153fb6ddc3": {
+          "round_scores": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.25,
+          "max": 1
+        },
+        "673797594656f5343e5d35db": {
+          "round_scores": [
+            0,
+            1,
+            1,
+            1
+          ],
+          "mean": 0.75,
+          "max": 1
+        },
+        "67379aea6c946be458900f3f": {
+          "round_scores": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.25,
+          "max": 1
+        },
+        "673818e39b3842b34824240d": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "67382954b12bd45429d6c0d1": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "673829d59b3842b348242450": {
+          "round_scores": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "mean": 0.5,
+          "max": 1
+        },
+        "6738f07b851b80b033aa8633": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "67390213fc9dc4f5102ad835": {
+          "round_scores": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.25,
+          "max": 1
+        },
+        "6739674739118cf30f5f1075": {
+          "round_scores": [
+            0,
+            1,
+            0,
+            0
+          ],
+          "mean": 0.25,
+          "max": 1
+        },
+        "673971a55c3de09264d6d373": {
+          "round_scores": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1.0,
+          "max": 1
+        },
+        "673a92ad437529d472475406": {
+          "round_scores": [
+            1,
+            1,
+            1,
+            0
+          ],
+          "mean": 0.75,
+          "max": 1
+        },
+        "673b4efb373d154ce855b23b": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "673b865227d07a53a7b0ec48": {
+          "round_scores": [
+            1,
+            0,
+            1,
+            1
+          ],
+          "mean": 0.75,
+          "max": 1
+        },
+        "673cc4885c871b3f9e026d02": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "673cf4fe0a06bbe311425068": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "673ff6e9766a23f49ade65df": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "mean": 0.25,
+          "max": 1
+        },
+        "67428dcab53462ceeb83c6f6": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "67455cd07df215d3effe4f4e": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "67455f379dbdcf3802abd8f6": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "6747fa2a456927085f863956": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "676cc5d177aae7d3ee8caaeb": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "677da0a433769e54d305f23c": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "678dadfaa2acdbbe2a403cb7": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "672635d88217be904f5899ed": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "mean": 0.25,
+          "max": 1
+        },
+        "66ef3be2b8a1ba6e0ba23496": {
+          "round_scores": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1.0,
+          "max": 1
+        },
+        "6725ed80de551b21db6a0f29": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "677296942ebbac6133a1d618": {
+          "round_scores": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "mean": 0.5,
+          "max": 1
+        },
+        "670be48d7038d6936230870a": {
+          "round_scores": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1.0,
+          "max": 1
+        },
+        "66eddc58fcc3c877643b5f39": {
+          "round_scores": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1.0,
+          "max": 1
+        },
+        "6776ba046889be9d113ccce1": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "66ed6347e50f3c9aca56e5f4": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "6771d50cff6d0a6c35d7ca99": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "66ed985a7b0ffebd9fae6993": {
+          "round_scores": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1.0,
+          "max": 1
+        },
+        "6750a730651c49cb2cce0df5": {
+          "round_scores": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "mean": 0.5,
+          "max": 1
+        }
+      },
+      "missing_judgments": 0,
+      "model": "gpt-oss-120b",
+      "use_tools": false,
+      "generation_limit_policy": "incorrect",
+      "limit_exhausted_attempts": 26,
+      "include_images": false,
+      "excluded_ids": [],
+      "judge_model": "claude-fable-5",
+      "prediction_files": [
+        "/shared/data/home/aa3242/physics/benchmarks/hle/artifacts/gpt-oss-120b-high-no-tools-corrected-20260914/hle-corrected.json",
+        "/shared/data/home/aa3242/physics/benchmarks/hle/artifacts/gpt-oss-120b-high-no-tools-corrected-20260914/hle-corrected.round2.json",
+        "/shared/data/home/aa3242/physics/benchmarks/hle/artifacts/gpt-oss-120b-high-no-tools-corrected-20260914/hle-corrected.round3.json",
+        "/shared/data/home/aa3242/physics/benchmarks/hle/artifacts/gpt-oss-120b-high-no-tools-corrected-20260914/hle-corrected.round4.json"
+      ]
+    },
+    "cmt": {
+      "complete": true,
+      "questions": 49,
+      "rounds": 4,
+      "aggregation": "mean",
+      "final_score": 0.4336734693877551,
+      "final_score_percent": 43.36734693877551,
+      "mean_score": 0.4336734693877551,
+      "max_score": 0.6326530612244898,
+      "round_scores": [
+        0.42857142857142855,
+        0.3469387755102041,
+        0.46938775510204084,
+        0.4897959183673469
+      ],
+      "per_question": {
+        "0": {
+          "round_scores": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1.0,
+          "max": 1
+        },
+        "1": {
+          "round_scores": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "mean": 0.25,
+          "max": 1
+        },
+        "2": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "mean": 0.25,
+          "max": 1
+        },
+        "3": {
+          "round_scores": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1.0,
+          "max": 1
+        },
+        "4": {
+          "round_scores": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1.0,
+          "max": 1
+        },
+        "5": {
+          "round_scores": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1.0,
+          "max": 1
+        },
+        "6": {
+          "round_scores": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1.0,
+          "max": 1
+        },
+        "7": {
+          "round_scores": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1.0,
+          "max": 1
+        },
+        "8": {
+          "round_scores": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "mean": 0.25,
+          "max": 1
+        },
+        "9": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "10": {
+          "round_scores": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1.0,
+          "max": 1
+        },
+        "11": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "mean": 0.25,
+          "max": 1
+        },
+        "12": {
+          "round_scores": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1.0,
+          "max": 1
+        },
+        "13": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "15": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "mean": 0.25,
+          "max": 1
+        },
+        "16": {
+          "round_scores": [
+            1,
+            0,
+            1,
+            1
+          ],
+          "mean": 0.75,
+          "max": 1
+        },
+        "17": {
+          "round_scores": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "mean": 0.25,
+          "max": 1
+        },
+        "18": {
+          "round_scores": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1.0,
+          "max": 1
+        },
+        "19": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "20": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "21": {
+          "round_scores": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1.0,
+          "max": 1
+        },
+        "22": {
+          "round_scores": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "mean": 0.5,
+          "max": 1
+        },
+        "23": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "24": {
+          "round_scores": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "mean": 0.25,
+          "max": 1
+        },
+        "25": {
+          "round_scores": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1.0,
+          "max": 1
+        },
+        "26": {
+          "round_scores": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1.0,
+          "max": 1
+        },
+        "27": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "28": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "29": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "30": {
+          "round_scores": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "mean": 0.5,
+          "max": 1
+        },
+        "31": {
+          "round_scores": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1.0,
+          "max": 1
+        },
+        "32": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "33": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "34": {
+          "round_scores": [
+            1,
+            1,
+            0,
+            1
+          ],
+          "mean": 0.75,
+          "max": 1
+        },
+        "35": {
+          "round_scores": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1.0,
+          "max": 1
+        },
+        "36": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "37": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "38": {
+          "round_scores": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "mean": 0.5,
+          "max": 1
+        },
+        "39": {
+          "round_scores": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "mean": 0.5,
+          "max": 1
+        },
+        "40": {
+          "round_scores": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1.0,
+          "max": 1
+        },
+        "41": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "42": {
+          "round_scores": [
+            1,
+            0,
+            1,
+            0
+          ],
+          "mean": 0.5,
+          "max": 1
+        },
+        "43": {
+          "round_scores": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "mean": 0.25,
+          "max": 1
+        },
+        "44": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "45": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "46": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "47": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "48": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "mean": 0.25,
+          "max": 1
+        },
+        "49": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        }
+      },
+      "missing_judgments": 0,
+      "model": "gpt-oss-120b",
+      "use_tools": false,
+      "dataset": "/shared/data/home/aa3242/physics/analysis/CMT-Benchmark/data/cmt_data_clean.json",
+      "excluded_ids": [],
+      "judge_model": "claude-fable-5",
+      "prediction_files": [
+        "/shared/data/home/aa3242/physics/analysis/CMT-Benchmark/artifacts/gpt-oss-120b-high-no-tools-corrected-20260914/cmt-corrected.json",
+        "/shared/data/home/aa3242/physics/analysis/CMT-Benchmark/artifacts/gpt-oss-120b-high-no-tools-corrected-20260914/cmt-corrected.round2.json",
+        "/shared/data/home/aa3242/physics/analysis/CMT-Benchmark/artifacts/gpt-oss-120b-high-no-tools-corrected-20260914/cmt-corrected.round3.json",
+        "/shared/data/home/aa3242/physics/analysis/CMT-Benchmark/artifacts/gpt-oss-120b-high-no-tools-corrected-20260914/cmt-corrected.round4.json"
+      ]
+    },
+    "critpt": {
+      "complete": true,
+      "questions": 54,
+      "rounds": 4,
+      "aggregation": "mean",
+      "final_score": 0.17592592592592593,
+      "final_score_percent": 17.59259259259259,
+      "mean_score": 0.17592592592592593,
+      "max_score": 0.2777777777777778,
+      "round_scores": [
+        0.16666666666666666,
+        0.14814814814814814,
+        0.2037037037037037,
+        0.18518518518518517
+      ],
+      "per_question": {
+        "01": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "02": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "03": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "04": {
+          "round_scores": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.25,
+          "max": 1
+        },
+        "05": {
+          "round_scores": [
+            1,
+            0,
+            1,
+            1
+          ],
+          "mean": 0.75,
+          "max": 1
+        },
+        "06": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "07": {
+          "round_scores": [
+            0,
+            1,
+            0,
+            0
+          ],
+          "mean": 0.25,
+          "max": 1
+        },
+        "08": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "09": {
+          "round_scores": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1.0,
+          "max": 1
+        },
+        "10": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "12": {
+          "round_scores": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "mean": 0.5,
+          "max": 1
+        },
+        "13": {
+          "round_scores": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1.0,
+          "max": 1
+        },
+        "14": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "16": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "17": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "18": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "19": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "20": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "22": {
+          "round_scores": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "mean": 0.25,
+          "max": 1
+        },
+        "23": {
+          "round_scores": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "mean": 0.25,
+          "max": 1
+        },
+        "26": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "28": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "29": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "30": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "31": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "32": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "33": {
+          "round_scores": [
+            0,
+            1,
+            1,
+            1
+          ],
+          "mean": 0.75,
+          "max": 1
+        },
+        "35": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "39": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "40": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "42": {
+          "round_scores": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1.0,
+          "max": 1
+        },
+        "44": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "45": {
+          "round_scores": [
+            1,
+            1,
+            1,
+            0
+          ],
+          "mean": 0.75,
+          "max": 1
+        },
+        "47": {
+          "round_scores": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1.0,
+          "max": 1
+        },
+        "48": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "49": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "50": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "51": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "mean": 0.25,
+          "max": 1
+        },
+        "53": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "55": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "56": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "57": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "58": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "59": {
+          "round_scores": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "mean": 0.5,
+          "max": 1
+        },
+        "60": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "61": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "62": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "64": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "65": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "66": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "67": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "68": {
+          "round_scores": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1.0,
+          "max": 1
+        },
+        "69": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        },
+        "70": {
+          "round_scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0.0,
+          "max": 0
+        }
+      },
+      "missing_predictions": 0,
+      "missing_judgments": 0,
+      "low_confidence_judgments": [
+        {
+          "challenge_id": "09",
+          "round": 1
+        },
+        {
+          "challenge_id": "09",
+          "round": 3
+        },
+        {
+          "challenge_id": "59",
+          "round": 1
+        },
+        {
+          "challenge_id": "59",
+          "round": 2
+        },
+        {
+          "challenge_id": "59",
+          "round": 4
+        }
+      ],
+      "solved_ids": [
+        "04",
+        "05",
+        "07",
+        "09",
+        "12",
+        "13",
+        "22",
+        "23",
+        "33",
+        "42",
+        "45",
+        "47",
+        "51",
+        "59",
+        "68"
+      ],
+      "unsolved_ids": [
+        "01",
+        "02",
+        "03",
+        "06",
+        "08",
+        "10",
+        "14",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "26",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "35",
+        "39",
+        "40",
+        "44",
+        "48",
+        "49",
+        "50",
+        "53",
+        "55",
+        "56",
+        "57",
+        "58",
+        "60",
+        "61",
+        "62",
+        "64",
+        "65",
+        "66",
+        "67",
+        "69",
+        "70"
+      ],
+      "pending_ids": [],
+      "model": "gpt-oss-120b",
+      "judge_model": "claude-fable-5",
+      "mode": "merged",
+      "dataset": "/shared/data/home/aa3242/physics/analysis/CritPt/corrected_challenge.jsonl",
+      "use_tools": false,
+      "skipped_null_ground_truth": [],
+      "question_ids": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "12",
+        "13",
+        "14",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "22",
+        "23",
+        "26",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "35",
+        "39",
+        "40",
+        "42",
+        "44",
+        "45",
+        "47",
+        "48",
+        "49",
+        "50",
+        "51",
+        "53",
+        "55",
+        "56",
+        "57",
+        "58",
+        "59",
+        "60",
+        "61",
+        "62",
+        "64",
+        "65",
+        "66",
+        "67",
+        "68",
+        "69",
+        "70"
+      ],
+      "limit_policy": "incorrect",
+      "run_manifest_sha256": "fdf6c4951d664fa2ea66ca665f62eac239847399f99a5d0c76fc9a2c5736c564"
+    }
+  },
+  "complete": true
+}

@@ -1,0 +1,1136 @@
+{
+  "06": {
+    "judgment": {
+      "extracted_final_answer": "(C_1,C_2,C_3)=(+1,-1,0) up to an overall sign; \\operatorname{Tr}\\mathcal{G}\\approx 7.35",
+      "reasoning": "The Chern numbers match the reference, including the allowed global sign freedom. However, the reported Wannier-spread quantity 7.35 does not match the required two-decimal value 7.51. Because all requested components must be correct, the overall response is incorrect.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12925,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 129,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"(C_1,C_2,C_3)=(+1,-1,0) up to an overall sign; \\\\operatorname{Tr}\\\\mathcal{G}\\\\approx 7.35\",\"reasoning\":\"The Chern numbers match the reference, including the allowed global sign freedom. However, the reported Wannier-spread quantity 7.35 does not match the required two-decimal value 7.51. Because all requested components must be correct, the overall response is incorrect.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "f760b1273bf56af09921f58b046a387cd81c6f9bf951dd57c6f40fc809ae2707"
+  },
+  "08": {
+    "judgment": {
+      "extracted_final_answer": "(-3.1675, -0.85, 3.1675)",
+      "reasoning": "The response does not match the reference answer (3.1675, 0.85, 5.335). The first two components have incorrect signs, and the third component has an incorrect value.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 13634,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 90,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"(-3.1675, -0.85, 3.1675)\",\"reasoning\":\"The response does not match the reference answer (3.1675, 0.85, 5.335). The first two components have incorrect signs, and the third component has an incorrect value.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "ea879ee474d9ffe26272f7a52e85f46737e1df04e39f7e2abec6d7244006f376"
+  },
+  "02": {
+    "judgment": {
+      "extracted_final_answer": "\\(\\displaystyle \\Lambda=\\frac{\\lambda^+ + \\lambda^- - k_+ - k_-}{2}+\\frac12\\sqrt{(\\lambda^+-\\lambda^- -k_+ +k_-)^2+4k_+k_-}+0\\,\\frac{\\sigma^2}{\\bar v_b^2}\\). Neither \\(\\beta\\) nor \\(\\sigma^2\\) affects the population growth rate; larger \\(\\beta\\) strengthens size homeostasis and \\(\\sigma^2\\) broadens the size distribution.",
+      "reasoning": "The stated growth-rate formula is algebraically identical to the reference answer, uses the larger root, and explicitly gives a zero first-order division-noise correction. It also correctly states that neither beta nor sigma squared affects the population growth rate.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12582,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 205,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(\\\\displaystyle \\\\Lambda=\\\\frac{\\\\lambda^+ + \\\\lambda^- - k_+ - k_-}{2}+\\\\frac12\\\\sqrt{(\\\\lambda^+-\\\\lambda^- -k_+ +k_-)^2+4k_+k_-}+0\\\\,\\\\frac{\\\\sigma^2}{\\\\bar v_b^2}\\\\). Neither \\\\(\\\\beta\\\\) nor \\\\(\\\\sigma^2\\\\) affects the population growth rate; larger \\\\(\\\\beta\\\\) strengthens size homeostasis and \\\\(\\\\sigma^2\\\\) broadens the size distribution.\",\"reasoning\":\"The stated growth-rate formula is algebraically identical to the reference answer, uses the larger root, and explicitly gives a zero first-order division-noise correction. It also correctly states that neither beta nor sigma squared affects the population growth rate.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "cf0ae2ef2a962e895993ef0ad4a421cdcda7841c12439428d8ac1e850cedf547"
+  },
+  "09": {
+    "judgment": {
+      "extracted_final_answer": "N(t=2{,}000{,}000)\\simeq 1.54\\ \\text{e-folds}",
+      "reasoning": "The response gives 1.54 e-folds, which is the reference value 1.54019538230 rounded consistently to two decimal places. No greater numerical precision was explicitly requested, so the answer matches.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12437,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 104,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"N(t=2{,}000{,}000)\\\\simeq 1.54\\\\ \\\\text{e-folds}\",\"reasoning\":\"The response gives 1.54 e-folds, which is the reference value 1.54019538230 rounded consistently to two decimal places. No greater numerical precision was explicitly requested, so the answer matches.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "ca623b2266c5e43717c08932ad1f8284dd1a48efe756441ea522ed56b3a8965f"
+  },
+  "05": {
+    "judgment": {
+      "extracted_final_answer": "g(\\alpha)=\\begin{cases}0,&\\alpha=0,\\\\ \\dfrac{1}{1+\\alpha}\\left[\\log(1+\\alpha)-\\dfrac12-\\dfrac{(1-\\alpha)^2}{4\\alpha}\\log\\!\\left(\\dfrac{1-\\alpha}{1+\\alpha}\\right)\\right],&0<\\alpha<1,\\\\ \\dfrac{\\log 2-\\frac12}{2},&\\alpha=1.\\end{cases}",
+      "reasoning": "The extracted answer does not match the reference. In particular, at \\(\\alpha=1\\) it gives \\((\\log 2-1/2)/2\\), whereas the reference gives \\(-1\\). The interior expression is also not equivalent to \\(-1-((1-\\alpha)\\log(1-\\alpha))/\\alpha\\). Therefore the complete answer is incorrect.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11979,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 235,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"g(\\\\alpha)=\\\\begin{cases}0,&\\\\alpha=0,\\\\\\\\ \\\\dfrac{1}{1+\\\\alpha}\\\\left[\\\\log(1+\\\\alpha)-\\\\dfrac12-\\\\dfrac{(1-\\\\alpha)^2}{4\\\\alpha}\\\\log\\\\!\\\\left(\\\\dfrac{1-\\\\alpha}{1+\\\\alpha}\\\\right)\\\\right],&0<\\\\alpha<1,\\\\\\\\ \\\\dfrac{\\\\log 2-\\\\frac12}{2},&\\\\alpha=1.\\\\end{cases}\",\"reasoning\":\"The extracted answer does not match the reference. In particular, at \\\\(\\\\alpha=1\\\\) it gives \\\\((\\\\log 2-1/2)/2\\\\), whereas the reference gives \\\\(-1\\\\). The interior expression is also not equivalent to \\\\(-1-((1-\\\\alpha)\\\\log(1-\\\\alpha))/\\\\alpha\\\\). Therefore the complete answer is incorrect.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "bc081b76f5a702e1dce80d278a7ef30dfaa832da1276d002a4466191848fd98f"
+  },
+  "03": {
+    "judgment": {
+      "extracted_final_answer": "\\langle\\mathcal O(x,\\tau_E=0)\\rangle\\simeq A_{\\mathcal O}\\left[\\frac{r_0}{2\\sinh(r_0x)}\\sqrt{\\frac{1+\\eta}{1-\\eta}}\\right]^m, with possible replacement m\\to\\Delta_m=1+\\sqrt{1+m^2}.",
+      "reasoning": "This does not match the reference. The response incorrectly introduces x-dependence through \\sinh(r_0x), whereas spherical/rotational symmetry requires the one-point function to be independent of x (or \\phi). It also has the opposite dependence on brane tension: it predicts enhancement by e^{+m\\operatorname{arctanh}\\eta}, while the reference requires suppression by e^{-m\\operatorname{arctanh}\\eta}. Accordingly, its stated renormalized geodesic length has both an extraneous x-dependent term and the wrong sign for the tension contribution.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12950,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 241,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\langle\\\\mathcal O(x,\\\\tau_E=0)\\\\rangle\\\\simeq A_{\\\\mathcal O}\\\\left[\\\\frac{r_0}{2\\\\sinh(r_0x)}\\\\sqrt{\\\\frac{1+\\\\eta}{1-\\\\eta}}\\\\right]^m, with possible replacement m\\\\to\\\\Delta_m=1+\\\\sqrt{1+m^2}.\",\"reasoning\":\"This does not match the reference. The response incorrectly introduces x-dependence through \\\\sinh(r_0x), whereas spherical/rotational symmetry requires the one-point function to be independent of x (or \\\\phi). It also has the opposite dependence on brane tension: it predicts enhancement by e^{+m\\\\operatorname{arctanh}\\\\eta}, while the reference requires suppression by e^{-m\\\\operatorname{arctanh}\\\\eta}. Accordingly, its stated renormalized geodesic length has both an extraneous x-dependent term and the wrong sign for the tension contribution.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "3db0ca059c39c973fed4bf484e4da741582381b8235cd8a1e308db52e74f0ad4"
+  },
+  "04": {
+    "judgment": {
+      "extracted_final_answer": "{(-23,+1), (46,-1), (23,+1)}",
+      "reasoning": "The extracted set does not match the reference. The reference requires all +1-helicity states with even OAM values from 10 through 34 and all -1-helicity states with odd OAM values from 13 through 35. The response instead gives only three states, none of which belong to the required ranges, so it is incomplete and incorrect.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12055,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 120,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"{(-23,+1), (46,-1), (23,+1)}\",\"reasoning\":\"The extracted set does not match the reference. The reference requires all +1-helicity states with even OAM values from 10 through 34 and all -1-helicity states with odd OAM values from 13 through 35. The response instead gives only three states, none of which belong to the required ranges, so it is incomplete and incorrect.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "97c5f53b6c450e712196853ea345d7f7c3ad7984125d6b2f815fc9f5a6947341"
+  },
+  "07": {
+    "judgment": {
+      "extracted_final_answer": "\\mathcal F(\\theta_1)=n^{2}d\\,(2q-1)^{2nd}\\frac{\\left(2^{nd}Fk^{n-1}-1\\right)^{2}}{\\left(2^{nd}-1\\right)\\left[1+\\left(2^{nd}-2\\right)Fk^{n-1}\\right]}",
+      "reasoning": "The response exactly matches the supplied reference up to commutative reordering: n^2d=dn^2, and 1+(2^{nd}-2)Fk^{n-1}=(2^{nd}-2)Fk^{n-1}+1. All powers and factors agree.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12372,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 177,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\mathcal F(\\\\theta_1)=n^{2}d\\\\,(2q-1)^{2nd}\\\\frac{\\\\left(2^{nd}Fk^{n-1}-1\\\\right)^{2}}{\\\\left(2^{nd}-1\\\\right)\\\\left[1+\\\\left(2^{nd}-2\\\\right)Fk^{n-1}\\\\right]}\",\"reasoning\":\"The response exactly matches the supplied reference up to commutative reordering: n^2d=dn^2, and 1+(2^{nd}-2)Fk^{n-1}=(2^{nd}-2)Fk^{n-1}+1. All powers and factors agree.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "b29ce064efe65288cf75e1bd29710d9434bb81da3f9b569b273b5a0c811c8ee3"
+  },
+  "10": {
+    "judgment": {
+      "extracted_final_answer": "None",
+      "reasoning": "The response explicitly contains no completed answer, so it does not provide the required value N(25000) = 75.1009281083.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12726,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 63,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"None\",\"reasoning\":\"The response explicitly contains no completed answer, so it does not provide the required value N(25000) = 75.1009281083.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "e41501e29d67808d927a9d8564a4e84464d65722aac0d3d318899ea5c380613c"
+  },
+  "01": {
+    "judgment": {
+      "extracted_final_answer": "X^{(4)}=\\frac18\\left[\\frac14\\operatorname{tr}(P^4)-\\operatorname{tr}(P^3)\\operatorname{tr}(P)+\\frac14(\\operatorname{tr}(P^2))^2+\\frac12\\operatorname{tr}(P^2)(\\operatorname{tr}P)^2-\\frac14(\\operatorname{tr}P)^4\\right]+\\frac14\\left[\\operatorname{tr}(BP^2)-\\operatorname{tr}(BP)\\operatorname{tr}(P)\\right]+\\frac12\\operatorname{tr}(B^2)+\\frac13\\operatorname{tr}(OP), with zero coefficients for \\operatorname{tr}(P^3), \\operatorname{tr}(BP), \\operatorname{tr}(B^2P), \\operatorname{tr}(OP^2), \\operatorname{tr}(\\Omega), and \\operatorname{tr}(\\Omega P).",
+      "reasoning": "The response does not match the reference. For example, it gives the coefficient of \\operatorname{tr}(P^4) as 1/32 instead of 1/10368, \\operatorname{tr}(P^3)\\operatorname{tr}(P) as -1/8 instead of -1/7776, \\operatorname{tr}(BP^2) as 1/4 instead of 1/864, \\operatorname{tr}(B^2) as 1/2 instead of 1/384, and \\operatorname{tr}(OP) as 1/3 instead of 1/1152. Several other nonzero coefficients likewise have incorrect magnitudes or signs.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 13782,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 433,
+      "reasoning_output_tokens": 29
+    },
+    "raw_response": "{\"extracted_final_answer\":\"X^{(4)}=\\\\frac18\\\\left[\\\\frac14\\\\operatorname{tr}(P^4)-\\\\operatorname{tr}(P^3)\\\\operatorname{tr}(P)+\\\\frac14(\\\\operatorname{tr}(P^2))^2+\\\\frac12\\\\operatorname{tr}(P^2)(\\\\operatorname{tr}P)^2-\\\\frac14(\\\\operatorname{tr}P)^4\\\\right]+\\\\frac14\\\\left[\\\\operatorname{tr}(BP^2)-\\\\operatorname{tr}(BP)\\\\operatorname{tr}(P)\\\\right]+\\\\frac12\\\\operatorname{tr}(B^2)+\\\\frac13\\\\operatorname{tr}(OP), with zero coefficients for \\\\operatorname{tr}(P^3), \\\\operatorname{tr}(BP), \\\\operatorname{tr}(B^2P), \\\\operatorname{tr}(OP^2), \\\\operatorname{tr}(\\\\Omega), and \\\\operatorname{tr}(\\\\Omega P).\",\"reasoning\":\"The response does not match the reference. For example, it gives the coefficient of \\\\operatorname{tr}(P^4) as 1/32 instead of 1/10368, \\\\operatorname{tr}(P^3)\\\\operatorname{tr}(P) as -1/8 instead of -1/7776, \\\\operatorname{tr}(BP^2) as 1/4 instead of 1/864, \\\\operatorname{tr}(B^2) as 1/2 instead of 1/384, and \\\\operatorname{tr}(OP) as 1/3 instead of 1/1152. Several other nonzero coefficients likewise have incorrect magnitudes or signs.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "fa28f2054a04f35a85bd147d01a418e4baa08563dab9421358a97a8f71409586"
+  },
+  "12": {
+    "judgment": {
+      "extracted_final_answer": "|\\psi^{f}(q)\\rangle=e^{i\\theta_q}|\\psi^{i}(q)\\rangle,\\qquad e^{i\\theta_q}=\\exp\\!\\left[\\frac{2\\pi i}{N}\\left((q-k_{12})(k_{12}+k_{23}-k_{13})+\\frac{(q-k_{12})(q-k_{12}+N)}{2}\\right)\\right]",
+      "reasoning": "Let d=q-k_{12}. The response exponent equals (i\\pi/N)[2d(k_{12}+k_{23}-k_{13})+d(d+N)]=(i\\pi/N)d(q+k_{12}+N+2k_{23}-2k_{13}), exactly matching the reference. It also evaluates to phase one at q=k_{12}.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12470,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 344,
+      "reasoning_output_tokens": 132
+    },
+    "raw_response": "{\"extracted_final_answer\":\"|\\\\psi^{f}(q)\\\\rangle=e^{i\\\\theta_q}|\\\\psi^{i}(q)\\\\rangle,\\\\qquad e^{i\\\\theta_q}=\\\\exp\\\\!\\\\left[\\\\frac{2\\\\pi i}{N}\\\\left((q-k_{12})(k_{12}+k_{23}-k_{13})+\\\\frac{(q-k_{12})(q-k_{12}+N)}{2}\\\\right)\\\\right]\",\"reasoning\":\"Let d=q-k_{12}. The response exponent equals (i\\\\pi/N)[2d(k_{12}+k_{23}-k_{13})+d(d+N)]=(i\\\\pi/N)d(q+k_{12}+N+2k_{23}-2k_{13}), exactly matching the reference. It also evaluates to phase one at q=k_{12}.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "8f73c6a377cce991e3054707c81117b317af8be616cdd9429ed93b25f012659d"
+  },
+  "13": {
+    "judgment": {
+      "extracted_final_answer": "{(0,0,0,0,1),(0,0,0,2,1),(0,0,1/2,1,√2),(0,0,1/2,3,√2),(0,0,1,0,1),(0,0,1,2,1),(0,2,0,0,1),(0,2,0,2,1),(0,2,1/2,1,√2),(0,2,1/2,3,√2),(0,2,1,0,1),(0,2,1,2,1),(1/2,1,0,0,√2),(1/2,1,0,2,√2),(1/2,1,1/2,1,2),(1/2,1,1/2,3,2),(1/2,1,1,0,√2),(1/2,1,1,2,√2),(1/2,3,0,0,√2),(1/2,3,0,2,√2),(1/2,3,1/2,1,2),(1/2,3,1/2,3,2),(1/2,3,1,0,√2),(1/2,3,1,2,√2),(1,0,0,0,1),(1,0,0,2,1),(1,0,1/2,1,√2),(1,0,1/2,3,√2),(1,0,1,0,1),(1,0,1,2,1),(1,2,0,0,1),(1,2,0,2,1),(1,2,1/2,1,√2),(1,2,1/2,3,√2),(1,2,1,0,1),(1,2,1,2,1)}",
+      "reasoning": "The response explicitly lists all 36 allowed left-right combinations. It assigns λ=1 to the 16 pairs with both sectors in A, λ=√2 to the 16 pairs with one sector in A and the other in N, and λ=2 to the 4 pairs with both sectors in N. This exactly matches the supplied reference.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12691,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 623,
+      "reasoning_output_tokens": 93
+    },
+    "raw_response": "{\"extracted_final_answer\":\"{(0,0,0,0,1),(0,0,0,2,1),(0,0,1/2,1,√2),(0,0,1/2,3,√2),(0,0,1,0,1),(0,0,1,2,1),(0,2,0,0,1),(0,2,0,2,1),(0,2,1/2,1,√2),(0,2,1/2,3,√2),(0,2,1,0,1),(0,2,1,2,1),(1/2,1,0,0,√2),(1/2,1,0,2,√2),(1/2,1,1/2,1,2),(1/2,1,1/2,3,2),(1/2,1,1,0,√2),(1/2,1,1,2,√2),(1/2,3,0,0,√2),(1/2,3,0,2,√2),(1/2,3,1/2,1,2),(1/2,3,1/2,3,2),(1/2,3,1,0,√2),(1/2,3,1,2,√2),(1,0,0,0,1),(1,0,0,2,1),(1,0,1/2,1,√2),(1,0,1/2,3,√2),(1,0,1,0,1),(1,0,1,2,1),(1,2,0,0,1),(1,2,0,2,1),(1,2,1/2,1,√2),(1,2,1/2,3,√2),(1,2,1,0,1),(1,2,1,2,1)}\",\"reasoning\":\"The response explicitly lists all 36 allowed left-right combinations. It assigns λ=1 to the 16 pairs with both sectors in A, λ=√2 to the 16 pairs with one sector in A and the other in N, and λ=2 to the 4 pairs with both sectors in N. This exactly matches the supplied reference.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "eb11ae220c661e71c6eb6d53566fea55ff4eb07dbf41f403d048c3f01a8033f9"
+  },
+  "26": {
+    "judgment": {
+      "extracted_final_answer": "\\frac{\\Delta\\omega_c}{\\omega_c^{(0)}}=2.85\\times10^{-12}",
+      "reasoning": "The response exactly matches the supplied correct answer, including the positive sign and the requested three significant figures.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12426,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 78,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\frac{\\\\Delta\\\\omega_c}{\\\\omega_c^{(0)}}=2.85\\\\times10^{-12}\",\"reasoning\":\"The response exactly matches the supplied correct answer, including the positive sign and the requested three significant figures.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "4ce9a8ba1d0716256eefe7e5125bfd7abe694015edb9a43c508aae31ab985979"
+  },
+  "23": {
+    "judgment": {
+      "extracted_final_answer": "\\[\\widetilde q_{\\rm sail}(x,p^z,\\epsilon,\\mu)=\\frac{i}{16\\pi^2p^z}\\begin{cases}\\dfrac{1+2x\\ln\\!\\left(\\dfrac{x-1}{x}\\right)}{1-x},&x<0,\\\\[1ex]\\dfrac{-\\frac{2x}{\\epsilon_{\\rm IR}}+1-2x+2x\\ln\\!\\left(\\dfrac{4x(1-x)(p^z)^2}{\\mu^2}\\right)}{1-x},&0<x<1,\\\\[1ex]\\dfrac{1-2x\\ln\\!\\left(\\dfrac{x}{x-1}\\right)}{x-1},&x>1.\\end{cases}\\]",
+      "reasoning": "The answer matches the reference in all three regions. For x<0, (x-1)/x=(1-x)/(-x). The middle expression is identical up to term ordering. For x>1, multiplying the response's numerator and denominator by -1 gives exactly the reference expression.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 13040,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 406,
+      "reasoning_output_tokens": 124
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\[\\\\widetilde q_{\\\\rm sail}(x,p^z,\\\\epsilon,\\\\mu)=\\\\frac{i}{16\\\\pi^2p^z}\\\\begin{cases}\\\\dfrac{1+2x\\\\ln\\\\!\\\\left(\\\\dfrac{x-1}{x}\\\\right)}{1-x},&x<0,\\\\\\\\[1ex]\\\\dfrac{-\\\\frac{2x}{\\\\epsilon_{\\\\rm IR}}+1-2x+2x\\\\ln\\\\!\\\\left(\\\\dfrac{4x(1-x)(p^z)^2}{\\\\mu^2}\\\\right)}{1-x},&0<x<1,\\\\\\\\[1ex]\\\\dfrac{1-2x\\\\ln\\\\!\\\\left(\\\\dfrac{x}{x-1}\\\\right)}{x-1},&x>1.\\\\end{cases}\\\\]\",\"reasoning\":\"The answer matches the reference in all three regions. For x<0, (x-1)/x=(1-x)/(-x). The middle expression is identical up to term ordering. For x>1, multiplying the response's numerator and denominator by -1 gives exactly the reference expression.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "ab31a6f2dfddfbe7f27374dd7a084e7ce9f73d0490209762e7f446b3c944240b"
+  },
+  "28": {
+    "judgment": {
+      "extracted_final_answer": "(\\gamma_{\\sigma},\\gamma_{\\mathrm{qp}},\\gamma_{\\mathrm{tr}})=(6,2,6)",
+      "reasoning": "The extracted answer does not match the reference answer (10,2,6): the conductivity exponent is given as 6 instead of 10. Therefore, the complete answer is incorrect.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11995,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 100,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"(\\\\gamma_{\\\\sigma},\\\\gamma_{\\\\mathrm{qp}},\\\\gamma_{\\\\mathrm{tr}})=(6,2,6)\",\"reasoning\":\"The extracted answer does not match the reference answer (10,2,6): the conductivity exponent is given as 6 instead of 10. Therefore, the complete answer is incorrect.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "74df9f35f8ca89355cbd99ef314b9139a6a56773b72262b41bb8fdad9f9d908e"
+  },
+  "31": {
+    "judgment": {
+      "extracted_final_answer": "Ra_c \\approx 816.7,\\quad k_c \\approx 2.21",
+      "reasoning": "The response matches the reference within the stated tolerances: |816.7 - 816.7444| = 0.0444 ≤ 0.5 and |2.21 - 2.21473| = 0.00473 ≤ 0.02. The notation k_c is equivalent to the reference's critical horizontal wavenumber a_c in context.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11774,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 128,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"Ra_c \\\\approx 816.7,\\\\quad k_c \\\\approx 2.21\",\"reasoning\":\"The response matches the reference within the stated tolerances: |816.7 - 816.7444| = 0.0444 ≤ 0.5 and |2.21 - 2.21473| = 0.00473 ≤ 0.02. The notation k_c is equivalent to the reference's critical horizontal wavenumber a_c in context.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "76b390207b5f39aa13591a273ce100f1561ec9af3534cd53420d694ab6f8d300"
+  },
+  "30": {
+    "judgment": {
+      "extracted_final_answer": "\\[\\boxed{\\overline{\\left|\\langle\\phi|V^\\dagger V|\\psi\\rangle\\right|^2}=\\frac{d_P}{d_B^2d_P^2+d_Bd_P-2}\\left[\\left(d_B^2d_P+d_B-2\\right)\\left|\\langle\\phi|\\psi\\rangle\\right|^2+d_B(d_P-1)\\left(1+\\left|\\langle\\phi^*|\\psi\\rangle\\right|^2\\right)\\right]}\\]",
+      "reasoning": "The response is algebraically equivalent to the reference. Its denominator satisfies d_B^2 d_P^2+d_Bd_P-2=(d_Bd_P-1)(d_Bd_P+2). After distributing the prefactor d_P, both numerator coefficients exactly match the corresponding coefficients in the reference.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12149,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 332,
+      "reasoning_output_tokens": 102
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\[\\\\boxed{\\\\overline{\\\\left|\\\\langle\\\\phi|V^\\\\dagger V|\\\\psi\\\\rangle\\\\right|^2}=\\\\frac{d_P}{d_B^2d_P^2+d_Bd_P-2}\\\\left[\\\\left(d_B^2d_P+d_B-2\\\\right)\\\\left|\\\\langle\\\\phi|\\\\psi\\\\rangle\\\\right|^2+d_B(d_P-1)\\\\left(1+\\\\left|\\\\langle\\\\phi^*|\\\\psi\\\\rangle\\\\right|^2\\\\right)\\\\right]}\\\\]\",\"reasoning\":\"The response is algebraically equivalent to the reference. Its denominator satisfies d_B^2 d_P^2+d_Bd_P-2=(d_Bd_P-1)(d_Bd_P+2). After distributing the prefactor d_P, both numerator coefficients exactly match the corresponding coefficients in the reference.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "d00f720331a9776d7bc03a51116e89c2eec6cdab48f3db0cb99939c8f3c725d5"
+  },
+  "29": {
+    "judgment": {
+      "extracted_final_answer": "k=2\\pi/\\lambda,\\ E_R=\\hbar^2k^2/(2m),\\ s=V_0/E_R,\\ V_0=4|\\alpha|E^2;\\quad t\\simeq \\frac{4}{\\sqrt{\\pi}}E_Rs^{3/4}e^{-2\\sqrt{s}},\\quad U_{\\rm Gauss}\\simeq \\frac{4}{\\sqrt{\\pi}}E_R(ka_s)(kW)^{-1/2}s^{3/4}. The response also gives the alternative \\(U_{\\rm iso}\\simeq\\sqrt{8/\\pi}E_Rka_ss^{3/4}\\).",
+      "reasoning": "The formulas for t and the geometry-appropriate U are algebraically equivalent to the reference when expressed using the same s: substituting k=2π/λ into U_Gauss gives 4√2 E_R a_s/√(λW) s^{3/4}. However, the response defines the lattice depth as V_0=4|α|E², whereas the supplied reference unambiguously requires V_0=αE². This factor-of-four mismatch changes s and therefore both t and U under the question's notation. The additional isotropic U is not the requested result for the stated Gaussian geometry.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12211,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 562,
+      "reasoning_output_tokens": 241
+    },
+    "raw_response": "{\"extracted_final_answer\":\"k=2\\\\pi/\\\\lambda,\\\\ E_R=\\\\hbar^2k^2/(2m),\\\\ s=V_0/E_R,\\\\ V_0=4|\\\\alpha|E^2;\\\\quad t\\\\simeq \\\\frac{4}{\\\\sqrt{\\\\pi}}E_Rs^{3/4}e^{-2\\\\sqrt{s}},\\\\quad U_{\\\\rm Gauss}\\\\simeq \\\\frac{4}{\\\\sqrt{\\\\pi}}E_R(ka_s)(kW)^{-1/2}s^{3/4}. The response also gives the alternative \\\\(U_{\\\\rm iso}\\\\simeq\\\\sqrt{8/\\\\pi}E_Rka_ss^{3/4}\\\\).\",\"reasoning\":\"The formulas for t and the geometry-appropriate U are algebraically equivalent to the reference when expressed using the same s: substituting k=2π/λ into U_Gauss gives 4√2 E_R a_s/√(λW) s^{3/4}. However, the response defines the lattice depth as V_0=4|α|E², whereas the supplied reference unambiguously requires V_0=αE². This factor-of-four mismatch changes s and therefore both t and U under the question's notation. The additional isotropic U is not the requested result for the stated Gaussian geometry.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "0b7ad7c702158a04576524fa7fe41a9a4296757418b3875d08efb05fcac49f45"
+  },
+  "35": {
+    "judgment": {
+      "extracted_final_answer": "H = 0.6480542736638854\\sum_{r=0}^{11} Z_r + \\sum_{r=0}^{10}\\left[X_rX_{r+1}+Y_rY_{r+1}-0.7615941559557649\\left(X_rY_{r+1}+Y_rX_{r+1}\\right)\\right], with all other listed coefficients zero.",
+      "reasoning": "The response does not match the reference. It assigns the same coupling J_r=1 to every nearest-neighbor bond and the same onsite Z coefficient to every site. The reference requires nonuniform bond couplings J_r, and consequently the Z_r coefficients depend on adjacent J values (with boundary terms differing from bulk terms). Thus the supplied coefficient vector is not equivalent to the required Hamiltonian.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 23684,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 356,
+      "reasoning_output_tokens": 158
+    },
+    "raw_response": "{\"extracted_final_answer\":\"H = 0.6480542736638854\\\\sum_{r=0}^{11} Z_r + \\\\sum_{r=0}^{10}\\\\left[X_rX_{r+1}+Y_rY_{r+1}-0.7615941559557649\\\\left(X_rY_{r+1}+Y_rX_{r+1}\\\\right)\\\\right], with all other listed coefficients zero.\",\"reasoning\":\"The response does not match the reference. It assigns the same coupling J_r=1 to every nearest-neighbor bond and the same onsite Z coefficient to every site. The reference requires nonuniform bond couplings J_r, and consequently the Z_r coefficients depend on adjacent J values (with boundary terms differing from bulk terms). Thus the supplied coefficient vector is not equivalent to the required Hamiltonian.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "30a0728dd3ee2cb0ccccc73d473a72a6b53a095f651d269f6a589fee64b5ca1a"
+  },
+  "39": {
+    "judgment": {
+      "extracted_final_answer": "\\[\\left\\langle n'\\middle|\\hat\\rho_{c,\\mathrm{ss}}\\middle|n\\right\\rangle=e^{-|\\alpha|^{2}}\\left[\\delta_{n'0}\\delta_{n0}+\\frac{\\alpha^{n'+1}(\\alpha^{*})^{n+1}}{\\sqrt{(n'+1)!(n+1)!}}\\,\\frac{4\\gamma^{2}\\sqrt{(n'+1)(n+1)}}{g^{2}(n'-n)^{2}+2\\gamma^{2}(n'+n+2)}\\right],\\quad n',n=0,1,\\ldots\\]",
+      "reasoning": "The response is algebraically equivalent to the reference. Using \\(\\sqrt{(n'+1)(n+1)}/\\sqrt{(n'+1)!(n+1)!}=1/\\sqrt{n'!n!}\\) and \\(\\alpha^{n'+1}(\\alpha^*)^{n+1}=|\\alpha|^2\\alpha^{n'}(\\alpha^*)^n\\), then dividing the second fraction's numerator and denominator by \\(2\\gamma^2\\), gives exactly the reference expression. Also, \\((n'-n)^2=(n-n')^2\\), and the delta factors are identical up to ordering.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12182,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 462,
+      "reasoning_output_tokens": 129
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\[\\\\left\\\\langle n'\\\\middle|\\\\hat\\\\rho_{c,\\\\mathrm{ss}}\\\\middle|n\\\\right\\\\rangle=e^{-|\\\\alpha|^{2}}\\\\left[\\\\delta_{n'0}\\\\delta_{n0}+\\\\frac{\\\\alpha^{n'+1}(\\\\alpha^{*})^{n+1}}{\\\\sqrt{(n'+1)!(n+1)!}}\\\\,\\\\frac{4\\\\gamma^{2}\\\\sqrt{(n'+1)(n+1)}}{g^{2}(n'-n)^{2}+2\\\\gamma^{2}(n'+n+2)}\\\\right],\\\\quad n',n=0,1,\\\\ldots\\\\]\",\"reasoning\":\"The response is algebraically equivalent to the reference. Using \\\\(\\\\sqrt{(n'+1)(n+1)}/\\\\sqrt{(n'+1)!(n+1)!}=1/\\\\sqrt{n'!n!}\\\\) and \\\\(\\\\alpha^{n'+1}(\\\\alpha^*)^{n+1}=|\\\\alpha|^2\\\\alpha^{n'}(\\\\alpha^*)^n\\\\), then dividing the second fraction's numerator and denominator by \\\\(2\\\\gamma^2\\\\), gives exactly the reference expression. Also, \\\\((n'-n)^2=(n-n')^2\\\\), and the delta factors are identical up to ordering.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "2c45fe6579880f0081500b61bb9733da35285eb74bde862b4ca9747b33391009"
+  },
+  "32": {
+    "judgment": {
+      "extracted_final_answer": "Ra_c ≈ 17.65, k_c ≈ 1.75, and (w(z)/T(z))|_{z=0.67365} ≈ 9.62",
+      "reasoning": "The response gives all three requested quantities. Ra_c = 17.65 differs from 17.6536526097729 by about 0.00365, within the allowed ±0.05. k_c = 1.75 differs from 1.74986116307449 by about 0.00014, within the allowed ±0.02. The ratio 9.62 is the reference value 9.61548007716335 rounded to two decimal places. Thus the complete answer matches the reference.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11922,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 179,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"Ra_c ≈ 17.65, k_c ≈ 1.75, and (w(z)/T(z))|_{z=0.67365} ≈ 9.62\",\"reasoning\":\"The response gives all three requested quantities. Ra_c = 17.65 differs from 17.6536526097729 by about 0.00365, within the allowed ±0.05. k_c = 1.75 differs from 1.74986116307449 by about 0.00014, within the allowed ±0.02. The ratio 9.62 is the reference value 9.61548007716335 rounded to two decimal places. Thus the complete answer matches the reference.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "a300877c1a89cebee0013110a216f1d2119f39afe364342cc951bb92f6f2da89"
+  },
+  "40": {
+    "judgment": {
+      "extracted_final_answer": "\\(\\omega_{\\pm}(k)=-\\frac{i\\sigma}{2\\chi}k^{4}\\pm\\sqrt{\\frac{\\kappa}{\\chi}k^{6}-\\frac{\\sigma^{2}}{4\\chi^{2}}k^{8}}=\\pm\\sqrt{\\frac{\\kappa}{\\chi}}|k|^{3}-\\frac{i\\sigma}{2\\chi}k^{4}+O(|k|^{5})\\)",
+      "reasoning": "The response does not match the reference. Its damping term is \\(-i\\sigma k^4/(2\\chi)\\), whereas the reference has \\(-i\\kappa k^2/(2\\sigma)\\). The corresponding negative term inside the square root is also different: \\(-\\sigma^2 k^8/(4\\chi^2)\\) versus \\(-\\kappa^2 k^4/(4\\sigma^2)\\). These are not algebraically or physically equivalent for general \\(\\chi,\\kappa,\\sigma,k\\).",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12160,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 261,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(\\\\omega_{\\\\pm}(k)=-\\\\frac{i\\\\sigma}{2\\\\chi}k^{4}\\\\pm\\\\sqrt{\\\\frac{\\\\kappa}{\\\\chi}k^{6}-\\\\frac{\\\\sigma^{2}}{4\\\\chi^{2}}k^{8}}=\\\\pm\\\\sqrt{\\\\frac{\\\\kappa}{\\\\chi}}|k|^{3}-\\\\frac{i\\\\sigma}{2\\\\chi}k^{4}+O(|k|^{5})\\\\)\",\"reasoning\":\"The response does not match the reference. Its damping term is \\\\(-i\\\\sigma k^4/(2\\\\chi)\\\\), whereas the reference has \\\\(-i\\\\kappa k^2/(2\\\\sigma)\\\\). The corresponding negative term inside the square root is also different: \\\\(-\\\\sigma^2 k^8/(4\\\\chi^2)\\\\) versus \\\\(-\\\\kappa^2 k^4/(4\\\\sigma^2)\\\\). These are not algebraically or physically equivalent for general \\\\(\\\\chi,\\\\kappa,\\\\sigma,k\\\\).\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "36b949534bd63c632be197c20d5f5a023c42842abbd207702010b10588572288"
+  },
+  "42": {
+    "judgment": {
+      "extracted_final_answer": "\\(\\alpha=-\\frac13\\), \\(\\beta=\\frac23\\); hence \\(\\xi\\propto n_i^{-1/3}\\) and \\(\\Delta V_g\\propto n_i^{2/3}\\). A 3D topological-insulator surface has an analogous Dirac-cone puddle mechanism and minimum-conductivity plateau, though bulk conduction may obscure it. Nonmagnetic charged impurities remain important and produce screened, long-range Coulomb scattering. At comparable disorder strength, its predominantly forward scattering generally gives a longer transport mean free path than short-range disorder in both graphene and a topological-insulator surface.",
+      "reasoning": "The response gives exactly the reference scaling exponents and dependencies. Its topological-insulator discussion is also equivalent: surface Dirac states can form electron/hole puddles and a charge-neutrality plateau; charged impurities remain relevant and cause screened long-range, predominantly small-angle scattering; and, for comparable disorder strength, this generally produces a longer transport mean free path than short-range scattering. The observation that bulk conduction may obscure the surface plateau is consistent with the reference's insulating-bulk condition.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12496,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 343,
+      "reasoning_output_tokens": 77
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(\\\\alpha=-\\\\frac13\\\\), \\\\(\\\\beta=\\\\frac23\\\\); hence \\\\(\\\\xi\\\\propto n_i^{-1/3}\\\\) and \\\\(\\\\Delta V_g\\\\propto n_i^{2/3}\\\\). A 3D topological-insulator surface has an analogous Dirac-cone puddle mechanism and minimum-conductivity plateau, though bulk conduction may obscure it. Nonmagnetic charged impurities remain important and produce screened, long-range Coulomb scattering. At comparable disorder strength, its predominantly forward scattering generally gives a longer transport mean free path than short-range disorder in both graphene and a topological-insulator surface.\",\"reasoning\":\"The response gives exactly the reference scaling exponents and dependencies. Its topological-insulator discussion is also equivalent: surface Dirac states can form electron/hole puddles and a charge-neutrality plateau; charged impurities remain relevant and cause screened long-range, predominantly small-angle scattering; and, for comparable disorder strength, this generally produces a longer transport mean free path than short-range scattering. The observation that bulk conduction may obscure the surface plateau is consistent with the reference's insulating-bulk condition.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "e48f49e9150e360c2ce227177e3fa27bc94c7125431109152efc967f1743e4f2"
+  },
+  "44": {
+    "judgment": {
+      "extracted_final_answer": "(N_{\\mathrm{GS}},N_{\\mathrm{GS}}^{(\\mathrm{flux\\text{-}free)},E_0)=(1,1,-(6+2\\sqrt3))\\approx(1,1,-9.464)",
+      "reasoning": "The response does not match the reference. It gives 1 total ground state instead of 4, and its ground-state energy is -9.464 instead of -9.800. Although both give 1 flux-free ground state, all requested components must be correct, so the merged answer is incorrect.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11863,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 148,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"(N_{\\\\mathrm{GS}},N_{\\\\mathrm{GS}}^{(\\\\mathrm{flux\\\\text{-}free)},E_0)=(1,1,-(6+2\\\\sqrt3))\\\\approx(1,1,-9.464)\",\"reasoning\":\"The response does not match the reference. It gives 1 total ground state instead of 4, and its ground-state energy is -9.464 instead of -9.800. Although both give 1 flux-free ground state, all requested components must be correct, so the merged answer is incorrect.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "20044abe3f6083a1e60dd454208b949b9adf1beee5232a3c562ca5ed1f03def0"
+  },
+  "58": {
+    "judgment": {
+      "extracted_final_answer": "∅",
+      "reasoning": "The response gives the empty set, whereas the reference specifies four possible magnetic space groups with BNS numbers {20.33, 5.15, 4.7, 1.1}. Therefore, the response is not equivalent to the complete reference answer.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11850,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 87,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"∅\",\"reasoning\":\"The response gives the empty set, whereas the reference specifies four possible magnetic space groups with BNS numbers {20.33, 5.15, 4.7, 1.1}. Therefore, the response is not equivalent to the complete reference answer.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "218fcbbe9f55fe8c3ba973adbe6c1472003f10bee5122917514235b8a9c2a266"
+  },
+  "56": {
+    "judgment": {
+      "extracted_final_answer": "None",
+      "reasoning": "The response explicitly contains no completed answer, so it does not provide either of the two requested numerical values and cannot match the supplied reference answer.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12443,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 61,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"None\",\"reasoning\":\"The response explicitly contains no completed answer, so it does not provide either of the two requested numerical values and cannot match the supplied reference answer.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "bb92c0e5efcd64b7b8d83b69399ee8a32a487ad7a94bb03f0a2d94d0eeb9a9f1"
+  },
+  "64": {
+    "judgment": {
+      "extracted_final_answer": "G_{(1)}=\\frac{1033}{480\\sqrt{170}}\\approx 0.165057257,\\quad G_{(2)}=\\frac{361}{1152}\\approx 0.313368056.",
+      "reasoning": "Both exact values match the supplied reference. The decimal values are also consistent rounded approximations.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11909,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 100,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"G_{(1)}=\\\\frac{1033}{480\\\\sqrt{170}}\\\\approx 0.165057257,\\\\quad G_{(2)}=\\\\frac{361}{1152}\\\\approx 0.313368056.\",\"reasoning\":\"Both exact values match the supplied reference. The decimal values are also consistent rounded approximations.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "e25a6ec88105263fcbe400c8f0a0e3b9d584ac2604462260837969c5d344e03b"
+  },
+  "62": {
+    "judgment": {
+      "extracted_final_answer": "\\(\\delta_{k=1}(\\phi)=0\\) for \\(0\\le\\phi\\le\\pi/2\\), and \\(\\delta_{k=1}(\\phi)=-\\frac23\\cos\\phi\\) for \\(\\pi/2<\\phi\\le\\pi\\); \\(T(1)=(\\pi/2,\\pi]\\), while \\(T(k)=\\varnothing\\) for \\(k\\ge2\\); \\(\\phi_{\\max}(1)=\\pi\\) with \\(\\delta_{\\max}(1)=2/3\\), and there is no quantum-violating maximizer for \\(k\\ge2\\).",
+      "reasoning": "The response does not match the reference. For k=1, the reference gives \\(\\delta=(\\sqrt{5-4\\cos\\phi}-1)/3\\), which is positive for every \\(\\phi>0\\), rather than the stated piecewise expression. Consequently, the correct violation range is \\((0,\\pi]\\), not \\((\\pi/2,\\pi]\\). For k\\ne1, the reference gives a nonempty interval \\((0,\\arccos((k-2)/(k-1)))\\) and an explicit maximizing phase, contradicting the response's claims of no violation and no maximizer. Although \\(\\phi_{\\max}=\\pi\\) and \\(\\delta_{\\max}=2/3\\) are correct for k=1, the complete answer is incorrect.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12865,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 364,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(\\\\delta_{k=1}(\\\\phi)=0\\\\) for \\\\(0\\\\le\\\\phi\\\\le\\\\pi/2\\\\), and \\\\(\\\\delta_{k=1}(\\\\phi)=-\\\\frac23\\\\cos\\\\phi\\\\) for \\\\(\\\\pi/2<\\\\phi\\\\le\\\\pi\\\\); \\\\(T(1)=(\\\\pi/2,\\\\pi]\\\\), while \\\\(T(k)=\\\\varnothing\\\\) for \\\\(k\\\\ge2\\\\); \\\\(\\\\phi_{\\\\max}(1)=\\\\pi\\\\) with \\\\(\\\\delta_{\\\\max}(1)=2/3\\\\), and there is no quantum-violating maximizer for \\\\(k\\\\ge2\\\\).\",\"reasoning\":\"The response does not match the reference. For k=1, the reference gives \\\\(\\\\delta=(\\\\sqrt{5-4\\\\cos\\\\phi}-1)/3\\\\), which is positive for every \\\\(\\\\phi>0\\\\), rather than the stated piecewise expression. Consequently, the correct violation range is \\\\((0,\\\\pi]\\\\), not \\\\((\\\\pi/2,\\\\pi]\\\\). For k\\\\ne1, the reference gives a nonempty interval \\\\((0,\\\\arccos((k-2)/(k-1)))\\\\) and an explicit maximizing phase, contradicting the response's claims of no violation and no maximizer. Although \\\\(\\\\phi_{\\\\max}=\\\\pi\\\\) and \\\\(\\\\delta_{\\\\max}=2/3\\\\) are correct for k=1, the complete answer is incorrect.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "634a4a5bd41984e5498a419d4595d87f5b9c8aa98124779f3d429b42296d7e62"
+  },
+  "65": {
+    "judgment": {
+      "extracted_final_answer": "\\(\\text{tr}(\\psi),\\qquad \\text{tr}(\\psi^{3})\\)",
+      "reasoning": "The response lists exactly the two indecomposable gauge-invariant operators in the reference answer: \\(\\operatorname{tr}\\psi\\) and \\(\\operatorname{tr}\\psi^3\\). The difference in LaTeX formatting and omission of explicit set braces do not change the mathematical content.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11773,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 120,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(\\\\text{tr}(\\\\psi),\\\\qquad \\\\text{tr}(\\\\psi^{3})\\\\)\",\"reasoning\":\"The response lists exactly the two indecomposable gauge-invariant operators in the reference answer: \\\\(\\\\operatorname{tr}\\\\psi\\\\) and \\\\(\\\\operatorname{tr}\\\\psi^3\\\\). The difference in LaTeX formatting and omission of explicit set braces do not change the mathematical content.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "c2f00c237089071878d61f9230494476a8d47a00c1bb0a5019335ec4128ba67d"
+  },
+  "66": {
+    "judgment": {
+      "extracted_final_answer": "I_2(q)=(1-q)(1-q^2)(1-q^4)(1-q^5)=1-q-q^2+q^3-q^4+2q^6-q^8+q^9-q^{10}-q^{11}+q^{12}+0q^{13}+0q^{14}+0q^{15}",
+      "reasoning": "The response does not match the reference answer. In particular, it contains terms at charges below 7, omits the required -q^7 term, and has different coefficients at charges 9 through 15 (for example, q^9 instead of 2q^9 and 0q^15 instead of 5q^15).",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11828,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 178,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"I_2(q)=(1-q)(1-q^2)(1-q^4)(1-q^5)=1-q-q^2+q^3-q^4+2q^6-q^8+q^9-q^{10}-q^{11}+q^{12}+0q^{13}+0q^{14}+0q^{15}\",\"reasoning\":\"The response does not match the reference answer. In particular, it contains terms at charges below 7, omits the required -q^7 term, and has different coefficients at charges 9 through 15 (for example, q^9 instead of 2q^9 and 0q^15 instead of 5q^15).\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "d80058841c83b8b12223a3077a58d5712ffbc7765e52070df0f755c5e656f92f"
+  },
+  "69": {
+    "judgment": {
+      "extracted_final_answer": "None",
+      "reasoning": "The response explicitly provides no completed answer, so it does not match the reference value 2.30909016642874.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11982,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 58,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"None\",\"reasoning\":\"The response explicitly provides no completed answer, so it does not match the reference value 2.30909016642874.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "664a8ef6d9aedb8450147f9cde938b2629851fefe331d44e02cc9b8455506e59"
+  },
+  "67": {
+    "judgment": {
+      "extracted_final_answer": "Q(\\mathcal N)=\\log_2\\!\\left(1+\\frac{1}{d}\\right)",
+      "reasoning": "The response gives \\(\\log_2(1+1/d)\\), whereas the supplied correct answer is \\(1/d\\). These expressions are not generally equal, so the response is incorrect.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11869,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 101,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"Q(\\\\mathcal N)=\\\\log_2\\\\!\\\\left(1+\\\\frac{1}{d}\\\\right)\",\"reasoning\":\"The response gives \\\\(\\\\log_2(1+1/d)\\\\), whereas the supplied correct answer is \\\\(1/d\\\\). These expressions are not generally equal, so the response is incorrect.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "0a52cea8c61720bb022806cd7b8c1f4642a4df107fbdfd67bb72e75369249e0b"
+  },
+  "70": {
+    "judgment": {
+      "extracted_final_answer": "\\frac{487}{13500}",
+      "reasoning": "The response gives the exact value 487/13500, which matches the supplied reference exactly.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11793,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 59,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\frac{487}{13500}\",\"reasoning\":\"The response gives the exact value 487/13500, which matches the supplied reference exactly.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "27ca5206bd46424bd73eaa4a0177d1f073e3e01d6d62cd8b7e02a53db32626ce"
+  },
+  "68": {
+    "judgment": {
+      "extracted_final_answer": "\\left.\\frac{d}{dt}D_f^{\\mathrm{std}}(\\rho_t\\|\\sigma)\\right|_{t=\\frac12}=\\int_0^\\infty \\operatorname{tr}\\!\\left[(\\rho-\\sigma)A_s^{-1}(\\rho-\\sigma)-\\frac14(\\rho-\\sigma)A_s^{-1}L_{\\rho-\\sigma}A_s^{-1}(\\rho-\\sigma)\\right]d\\mu(s),\\qquad A_s=L_{(\\rho+\\sigma)/2}+sR_\\sigma.",
+      "reasoning": "The response matches the reference exactly up to renaming the operator B_s as A_s and using linearity of the trace to combine the two trace terms. The sign, factor 1/4, operator ordering, integration measure, and definition of the operator are all preserved.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12093,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 222,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\left.\\\\frac{d}{dt}D_f^{\\\\mathrm{std}}(\\\\rho_t\\\\|\\\\sigma)\\\\right|_{t=\\\\frac12}=\\\\int_0^\\\\infty \\\\operatorname{tr}\\\\!\\\\left[(\\\\rho-\\\\sigma)A_s^{-1}(\\\\rho-\\\\sigma)-\\\\frac14(\\\\rho-\\\\sigma)A_s^{-1}L_{\\\\rho-\\\\sigma}A_s^{-1}(\\\\rho-\\\\sigma)\\\\right]d\\\\mu(s),\\\\qquad A_s=L_{(\\\\rho+\\\\sigma)/2}+sR_\\\\sigma.\",\"reasoning\":\"The response matches the reference exactly up to renaming the operator B_s as A_s and using linearity of the trace to combine the two trace terms. The sign, factor 1/4, operator ordering, integration measure, and definition of the operator are all preserved.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "0869d13f95222deeb70e53e0564aec42d4bddf8c862fced32c471b4600f62933"
+  },
+  "14": {
+    "judgment": {
+      "extracted_final_answer": "J=0.658",
+      "reasoning": "The response exactly matches the supplied correct answer to the requested three decimal places.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12079,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 52,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"J=0.658\",\"reasoning\":\"The response exactly matches the supplied correct answer to the requested three decimal places.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "e93368041d4e8054ee3800b42668fb132ee8523a30d884317d99b50262e185d5"
+  },
+  "33": {
+    "judgment": {
+      "extracted_final_answer": "Only A particles crystallize for r > r_o; a + 10b + 100c = -99; s = 1.",
+      "reasoning": "The response does not match the supplied correct answer. The reference states that no particles crystallize for r > r_o and that both requested numerical quantities are undefined, whereas the response claims A particles crystallize and gives numerical values -99 and 1.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12579,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 110,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"Only A particles crystallize for r > r_o; a + 10b + 100c = -99; s = 1.\",\"reasoning\":\"The response does not match the supplied correct answer. The reference states that no particles crystallize for r > r_o and that both requested numerical quantities are undefined, whereas the response claims A particles crystallize and gives numerical values -99 and 1.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "6549038f3b1dedddc7218e368af3ee5f5f2defc8632ffa868491cde3cbe6c396"
+  },
+  "47": {
+    "judgment": {
+      "extracted_final_answer": "\\operatorname{Tr}(L^4)=+\\infty",
+      "reasoning": "The response’s final answer exactly matches the supplied correct answer. No explicit confidence is present, so confidence is set to 100.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12448,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 72,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\operatorname{Tr}(L^4)=+\\\\infty\",\"reasoning\":\"The response’s final answer exactly matches the supplied correct answer. No explicit confidence is present, so confidence is set to 100.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "be5e09009a94cfbef45f48abeeea369b0c273877ec63f74e0b18d66234567604"
+  },
+  "17": {
+    "judgment": {
+      "extracted_final_answer": "0.2324",
+      "reasoning": "The response gives S/N = 0.2324, while the supplied correct answer is S/N = 0.2747. These values differ and are not equivalent within the requested four-decimal precision.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11776,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 78,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"0.2324\",\"reasoning\":\"The response gives S/N = 0.2324, while the supplied correct answer is S/N = 0.2747. These values differ and are not equivalent within the requested four-decimal precision.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "fe7c278f057b6d8e557251dd91cf781ca075956f1bbb36c710ee1044a7296976"
+  },
+  "16": {
+    "judgment": {
+      "extracted_final_answer": "U_c=28-18\\sqrt2\\approx 2.5441558773",
+      "reasoning": "The response’s exact critical interaction strength is identical to the reference answer. Its numerical approximation is also consistent, differing only by an additional correctly rounded digit, and it uses the same energy units.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12886,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 88,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"U_c=28-18\\\\sqrt2\\\\approx 2.5441558773\",\"reasoning\":\"The response’s exact critical interaction strength is identical to the reference answer. Its numerical approximation is also consistent, differing only by an additional correctly rounded digit, and it uses the same energy units.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "f33ca85fec3ea27e64543e4fe32856057218a9405dcfce9c6c9556525e0ed867"
+  },
+  "18": {
+    "judgment": {
+      "extracted_final_answer": "\\[\\boxed{\\begin{aligned} k_1&=\\frac{\\alpha_1\\alpha_2E_1E_2k^2}{8\\pi\\epsilon_0d_0}\\left(k-\\frac{1}{z_R}\\right)^2\\cos(kd_0)\\cos(\\phi_1-\\phi_2),\\\\[2mm] k_2&=\\frac{\\alpha_1\\alpha_2E_1E_2k^2}{8\\pi\\epsilon_0d_0}\\left(k-\\frac{1}{z_R}\\right)^2\\sin(kd_0)\\sin(\\phi_1-\\phi_2). \\end{aligned}}\\]",
+      "reasoning": "The response is equivalent only if \\(\\alpha_1\\alpha_2\\) is real. The reference explicitly requires \\(\\operatorname{Re}[\\alpha_1\\alpha_2e^{ikd_0}]\\) and \\(\\operatorname{Im}[\\alpha_1\\alpha_2e^{ikd_0}]\\), which include contributions from complex polarizabilities. Since the problem does not state that the polarizabilities are real, the response is not generally equivalent to the reference.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12514,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 373,
+      "reasoning_output_tokens": 66
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\[\\\\boxed{\\\\begin{aligned} k_1&=\\\\frac{\\\\alpha_1\\\\alpha_2E_1E_2k^2}{8\\\\pi\\\\epsilon_0d_0}\\\\left(k-\\\\frac{1}{z_R}\\\\right)^2\\\\cos(kd_0)\\\\cos(\\\\phi_1-\\\\phi_2),\\\\\\\\[2mm] k_2&=\\\\frac{\\\\alpha_1\\\\alpha_2E_1E_2k^2}{8\\\\pi\\\\epsilon_0d_0}\\\\left(k-\\\\frac{1}{z_R}\\\\right)^2\\\\sin(kd_0)\\\\sin(\\\\phi_1-\\\\phi_2). \\\\end{aligned}}\\\\]\",\"reasoning\":\"The response is equivalent only if \\\\(\\\\alpha_1\\\\alpha_2\\\\) is real. The reference explicitly requires \\\\(\\\\operatorname{Re}[\\\\alpha_1\\\\alpha_2e^{ikd_0}]\\\\) and \\\\(\\\\operatorname{Im}[\\\\alpha_1\\\\alpha_2e^{ikd_0}]\\\\), which include contributions from complex polarizabilities. Since the problem does not state that the polarizabilities are real, the response is not generally equivalent to the reference.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "019ff0f98e810018231c1f3cff11337ce38ff3f7204ae659496ad6fccbe0bb73"
+  },
+  "22": {
+    "judgment": {
+      "extracted_final_answer": "\\(\\max \\chi=\\max_{x\\in[0,1]}f(x)\\), where \\(f(x)=H_3(x\\cos^2\\theta,(1-x)\\cos^2\\theta,\\sin^2\\theta)-x h_2(\\cos^2\\theta)=\\cos^2\\theta\\,h_2(x)+(1-x)h_2(\\cos^2\\theta)\\), and \\(h_2(t)=-t\\log_2t-(1-t)\\log_2(1-t)\\).",
+      "reasoning": "Let \\(a=\\cos^2\\theta\\). The ternary entropy satisfies \\(H_3(ax,a(1-x),1-a)=h_2(a)+a h_2(x)\\). Therefore the response gives \\(f(x)=h_2(a)+a h_2(x)-x h_2(a)\\), exactly matching the reference answer. Its alternative form \\(a h_2(x)+(1-x)h_2(a)\\) is algebraically equivalent.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12067,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 360,
+      "reasoning_output_tokens": 94
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(\\\\max \\\\chi=\\\\max_{x\\\\in[0,1]}f(x)\\\\), where \\\\(f(x)=H_3(x\\\\cos^2\\\\theta,(1-x)\\\\cos^2\\\\theta,\\\\sin^2\\\\theta)-x h_2(\\\\cos^2\\\\theta)=\\\\cos^2\\\\theta\\\\,h_2(x)+(1-x)h_2(\\\\cos^2\\\\theta)\\\\), and \\\\(h_2(t)=-t\\\\log_2t-(1-t)\\\\log_2(1-t)\\\\).\",\"reasoning\":\"Let \\\\(a=\\\\cos^2\\\\theta\\\\). The ternary entropy satisfies \\\\(H_3(ax,a(1-x),1-a)=h_2(a)+a h_2(x)\\\\). Therefore the response gives \\\\(f(x)=h_2(a)+a h_2(x)-x h_2(a)\\\\), exactly matching the reference answer. Its alternative form \\\\(a h_2(x)+(1-x)h_2(a)\\\\) is algebraically equivalent.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "7d2719623814d3bb4e31def89ceeb0bb7465a6a03cc6bb7a9f811988426d4845"
+  },
+  "45": {
+    "judgment": {
+      "extracted_final_answer": "\\left(\\frac{m_{c,x}}{m_{v,x}}-F\\right)\\left(\\frac{m_{c,y}}{m_{v,y}}-F\\right)<0,\\quad F=\\frac{\\frac{\\Delta}{2k_BT}+2+\\frac12\\ln q}{\\frac{\\Delta}{2k_BT}+2-\\frac12\\ln q},\\quad q=\\sqrt{\\frac{m_{c,x}m_{c,y}}{m_{v,x}m_{v,y}}}. In the large-gap approximation \\Delta\\gg k_BT, this reduces to \\left(\\frac{m_{c,x}}{m_{v,x}}-1\\right)\\left(\\frac{m_{c,y}}{m_{v,y}}-1\\right)<0.",
+      "reasoning": "The response is equivalent to the reference. Its intrinsic chemical potential satisfies \\eta=-\\tfrac12\\ln q, and with A=\\Delta/(2k_BT)+2 its threshold is F=(A-\\eta)/(A+\\eta)=R(T). Therefore its exact product inequality matches the reference condition. Its large-gap limit also correctly reduces to opposite signs of m_{c,\\alpha}-m_{v,\\alpha} along the two axes.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 13047,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 524,
+      "reasoning_output_tokens": 213
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\left(\\\\frac{m_{c,x}}{m_{v,x}}-F\\\\right)\\\\left(\\\\frac{m_{c,y}}{m_{v,y}}-F\\\\right)<0,\\\\quad F=\\\\frac{\\\\frac{\\\\Delta}{2k_BT}+2+\\\\frac12\\\\ln q}{\\\\frac{\\\\Delta}{2k_BT}+2-\\\\frac12\\\\ln q},\\\\quad q=\\\\sqrt{\\\\frac{m_{c,x}m_{c,y}}{m_{v,x}m_{v,y}}}. In the large-gap approximation \\\\Delta\\\\gg k_BT, this reduces to \\\\left(\\\\frac{m_{c,x}}{m_{v,x}}-1\\\\right)\\\\left(\\\\frac{m_{c,y}}{m_{v,y}}-1\\\\right)<0.\",\"reasoning\":\"The response is equivalent to the reference. Its intrinsic chemical potential satisfies \\\\eta=-\\\\tfrac12\\\\ln q, and with A=\\\\Delta/(2k_BT)+2 its threshold is F=(A-\\\\eta)/(A+\\\\eta)=R(T). Therefore its exact product inequality matches the reference condition. Its large-gap limit also correctly reduces to opposite signs of m_{c,\\\\alpha}-m_{v,\\\\alpha} along the two axes.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "77a7490d06204fe3d8a67da9e8444bcbad964be695192ea717afcfad371b5a05"
+  },
+  "20": {
+    "judgment": {
+      "extracted_final_answer": "e=\\sqrt{1-b^2/a^2},\\quad L_x=\\frac{1-e^2}{2e^3}\\left[\\ln\\!\\left(\\frac{1+e}{1-e}\\right)-2e\\right],\\quad L_y=L_z=\\frac{1-L_x}{2},\\quad V=\\frac{4\\pi}{3}ab^2,\\quad I_{\\rm lib}=\\frac{\\rho V}{5}(a^2+b^2),\\quad \\Delta\\alpha=\\epsilon_0V(\\epsilon_r-1)\\left[\\frac{1}{1+L_x(\\epsilon_r-1)}-\\frac{1}{1+L_y(\\epsilon_r-1)}\\right],\\quad \\omega_t=\\sqrt{\\frac{2P_0\\Delta\\alpha}{\\pi\\epsilon_0cw_0^2I_{\\rm lib}}},\\quad g=\\frac{\\omega_t\\Delta\\alpha}{8\\pi\\epsilon_0R^3}\\left[\\cos(kR)+kR\\sin(kR)-(kR)^2\\cos(kR)\\right].",
+      "reasoning": "The depolarization factors, volume, moment of inertia, polarizability anisotropy, and trap frequency are equivalent to the reference expressions. Using \\(\\omega_t^2=2P_0\\Delta\\alpha/(\\pi\\epsilon_0cw_0^2I)\\), the stated coupling becomes \\(-\\Delta\\alpha^2P_0[(k^2R^2-1)\\cos(kR)-kR\\sin(kR)]/(4\\pi^2\\epsilon_0^2cw_0^2R^3I\\omega_t)\\), which exactly matches the reference with the allowed cycle-averaged convention \\(C=1/2\\).",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12872,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 784,
+      "reasoning_output_tokens": 338
+    },
+    "raw_response": "{\"extracted_final_answer\":\"e=\\\\sqrt{1-b^2/a^2},\\\\quad L_x=\\\\frac{1-e^2}{2e^3}\\\\left[\\\\ln\\\\!\\\\left(\\\\frac{1+e}{1-e}\\\\right)-2e\\\\right],\\\\quad L_y=L_z=\\\\frac{1-L_x}{2},\\\\quad V=\\\\frac{4\\\\pi}{3}ab^2,\\\\quad I_{\\\\rm lib}=\\\\frac{\\\\rho V}{5}(a^2+b^2),\\\\quad \\\\Delta\\\\alpha=\\\\epsilon_0V(\\\\epsilon_r-1)\\\\left[\\\\frac{1}{1+L_x(\\\\epsilon_r-1)}-\\\\frac{1}{1+L_y(\\\\epsilon_r-1)}\\\\right],\\\\quad \\\\omega_t=\\\\sqrt{\\\\frac{2P_0\\\\Delta\\\\alpha}{\\\\pi\\\\epsilon_0cw_0^2I_{\\\\rm lib}}},\\\\quad g=\\\\frac{\\\\omega_t\\\\Delta\\\\alpha}{8\\\\pi\\\\epsilon_0R^3}\\\\left[\\\\cos(kR)+kR\\\\sin(kR)-(kR)^2\\\\cos(kR)\\\\right].\",\"reasoning\":\"The depolarization factors, volume, moment of inertia, polarizability anisotropy, and trap frequency are equivalent to the reference expressions. Using \\\\(\\\\omega_t^2=2P_0\\\\Delta\\\\alpha/(\\\\pi\\\\epsilon_0cw_0^2I)\\\\), the stated coupling becomes \\\\(-\\\\Delta\\\\alpha^2P_0[(k^2R^2-1)\\\\cos(kR)-kR\\\\sin(kR)]/(4\\\\pi^2\\\\epsilon_0^2cw_0^2R^3I\\\\omega_t)\\\\), which exactly matches the reference with the allowed cycle-averaged convention \\\\(C=1/2\\\\).\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "ed9d263f2a89664cdd2c785e0dea34de4debcaf13c2842c34e2c877b503522ed"
+  },
+  "19": {
+    "judgment": {
+      "extracted_final_answer": "\\[\\boxed{\\begin{aligned}\n\\left\\langle |I_\\theta(\\nu)|^2\\right\\rangle\n={}&1-\\eta+\\eta\\Bigg\\{\n\\mu\\Big[\n\\cosh(2r_1)\\cosh(2r_2)\n+\\cos(\\phi_2-\\phi_1)\\sinh(2r_1)\\sinh(2r_2)\\\\\n&\\quad+\\sinh(2r_1)\\cosh(2r_2)\\cos(2\\theta-\\phi_1)\n+\\cosh(2r_1)\\sinh(2r_2)\\cos(2\\theta-\\phi_2)\n\\Big]\\\\\n&\\quad+(1-\\mu)\\Big[\\cosh(2r_2)+\\sinh(2r_2)\\cos(2\\theta-\\phi_2)\\Big]\n\\Bigg\\},\\\\\n\\left\\langle |I|^2\\right\\rangle_{\\rm sq}\n={}&1-\\eta+\\eta\\big(C_\\pi-|D_\\pi|\\big),\\\\\n\\left\\langle |I|^2\\right\\rangle_{\\rm asq}\n={}&1-\\eta+\\eta\\big(C_\\pi+|D_\\pi|\\big),\n\\end{aligned}}\\]\nwhere\n\\[C_\\pi=\\mu\\cosh\\!\\bigl(2(r_1-r_2)\\bigr)+(1-\\mu)\\cosh(2r_2),\\qquad D_\\pi=\\mu\\sinh\\!\\bigl(2(r_1-r_2)\\bigr)-(1-\\mu)\\sinh(2r_2).\\]",
+      "reasoning": "The response is algebraically equivalent to the reference. With x=2θ−φ₂ and δ=φ₂−φ₁, its term cos(2θ−φ₁)=cos(x+δ)=cos x cos δ−sin x sin δ, reproducing the reference’s cosine and sine terms exactly. For δ=π, its Cπ and Dπ give the same center and modulation amplitude as the reference after including the outer factors 1−η and η, so the squeezed and anti-squeezed extrema also match.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 13275,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 902,
+      "reasoning_output_tokens": 324
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\[\\\\boxed{\\\\begin{aligned}\\n\\\\left\\\\langle |I_\\\\theta(\\\\nu)|^2\\\\right\\\\rangle\\n={}&1-\\\\eta+\\\\eta\\\\Bigg\\\\{\\n\\\\mu\\\\Big[\\n\\\\cosh(2r_1)\\\\cosh(2r_2)\\n+\\\\cos(\\\\phi_2-\\\\phi_1)\\\\sinh(2r_1)\\\\sinh(2r_2)\\\\\\\\\\n&\\\\quad+\\\\sinh(2r_1)\\\\cosh(2r_2)\\\\cos(2\\\\theta-\\\\phi_1)\\n+\\\\cosh(2r_1)\\\\sinh(2r_2)\\\\cos(2\\\\theta-\\\\phi_2)\\n\\\\Big]\\\\\\\\\\n&\\\\quad+(1-\\\\mu)\\\\Big[\\\\cosh(2r_2)+\\\\sinh(2r_2)\\\\cos(2\\\\theta-\\\\phi_2)\\\\Big]\\n\\\\Bigg\\\\},\\\\\\\\\\n\\\\left\\\\langle |I|^2\\\\right\\\\rangle_{\\\\rm sq}\\n={}&1-\\\\eta+\\\\eta\\\\big(C_\\\\pi-|D_\\\\pi|\\\\big),\\\\\\\\\\n\\\\left\\\\langle |I|^2\\\\right\\\\rangle_{\\\\rm asq}\\n={}&1-\\\\eta+\\\\eta\\\\big(C_\\\\pi+|D_\\\\pi|\\\\big),\\n\\\\end{aligned}}\\\\]\\nwhere\\n\\\\[C_\\\\pi=\\\\mu\\\\cosh\\\\!\\\\bigl(2(r_1-r_2)\\\\bigr)+(1-\\\\mu)\\\\cosh(2r_2),\\\\qquad D_\\\\pi=\\\\mu\\\\sinh\\\\!\\\\bigl(2(r_1-r_2)\\\\bigr)-(1-\\\\mu)\\\\sinh(2r_2).\\\\]\",\"reasoning\":\"The response is algebraically equivalent to the reference. With x=2θ−φ₂ and δ=φ₂−φ₁, its term cos(2θ−φ₁)=cos(x+δ)=cos x cos δ−sin x sin δ, reproducing the reference’s cosine and sine terms exactly. For δ=π, its Cπ and Dπ give the same center and modulation amplitude as the reference after including the outer factors 1−η and η, so the squeezed and anti-squeezed extrema also match.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "ef34847298fd1541dc8d0ed20415bd0a0e2848cdeb46efe12ed84f7ea362c6d5"
+  },
+  "48": {
+    "judgment": {
+      "extracted_final_answer": "-1.542205432993",
+      "reasoning": "The response gives -1.542205432993, whereas the supplied correct value is 0.6744991200605346131... (0.67449912 to eight decimal places). The values differ in both sign and magnitude, so the response is incorrect.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12201,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 93,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"-1.542205432993\",\"reasoning\":\"The response gives -1.542205432993, whereas the supplied correct value is 0.6744991200605346131... (0.67449912 to eight decimal places). The values differ in both sign and magnitude, so the response is incorrect.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "47d74dfd082d48b952d79bdcdaa40e905e232c8fe64a6a68f6bbd8346a0fc9a4"
+  },
+  "50": {
+    "judgment": {
+      "extracted_final_answer": "None",
+      "reasoning": "The response explicitly provides no completed or exact answer, so it does not match the supplied reference value.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12195,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 53,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"None\",\"reasoning\":\"The response explicitly provides no completed or exact answer, so it does not match the supplied reference value.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "2e46223ad2ead51d23fc302714e9d3b1f465289bbd5fba1099d4dbe655d274bf"
+  },
+  "55": {
+    "judgment": {
+      "extracted_final_answer": "(σ₂(1 meV), σ₂(40 meV)) = (0.000 barn, 0.071 barn)",
+      "reasoning": "The response’s final values exactly match the supplied reference to the requested three decimal places, with consistent units.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12263,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 81,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"(σ₂(1 meV), σ₂(40 meV)) = (0.000 barn, 0.071 barn)\",\"reasoning\":\"The response’s final values exactly match the supplied reference to the requested three decimal places, with consistent units.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "99ea21b263f0814d2dd6cbf1735c37cfde1a89dc6a92307e58c1421b9dc109e3"
+  },
+  "53": {
+    "judgment": {
+      "extracted_final_answer": "A_2=1, A_3=\\tfrac13; \\(\\gamma^{(2)}_{ij}-A_2\\Omega^{(1)}_{ij}=P_i{}^kP_{kj}\\), and \\(\\gamma^{(3)}_{ij}-A_3\\Omega^{(2)}_{ij}=\\frac{4}{3(d-4)}B_{k(i}P^k{}_{j)}\\).",
+      "reasoning": "The values of A_2 and A_3 and the k=2 coefficient agree with the reference. However, the k=3 coefficient has the wrong sign: the response gives \\(+4/[3(d-4)]\\), while the reference gives \\(-4/[3(d-4)]=4/[3(4-d)]\\). Thus, at d=6 the response implies +2/3 instead of the required -2/3. Since all requested components must be correct, the response is incorrect.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12504,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 313,
+      "reasoning_output_tokens": 78
+    },
+    "raw_response": "{\"extracted_final_answer\":\"A_2=1, A_3=\\\\tfrac13; \\\\(\\\\gamma^{(2)}_{ij}-A_2\\\\Omega^{(1)}_{ij}=P_i{}^kP_{kj}\\\\), and \\\\(\\\\gamma^{(3)}_{ij}-A_3\\\\Omega^{(2)}_{ij}=\\\\frac{4}{3(d-4)}B_{k(i}P^k{}_{j)}\\\\).\",\"reasoning\":\"The values of A_2 and A_3 and the k=2 coefficient agree with the reference. However, the k=3 coefficient has the wrong sign: the response gives \\\\(+4/[3(d-4)]\\\\), while the reference gives \\\\(-4/[3(d-4)]=4/[3(4-d)]\\\\). Thus, at d=6 the response implies +2/3 instead of the required -2/3. Since all requested components must be correct, the response is incorrect.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "064b5921b22ccec9aefeccabc2fb2ee5621f725a7e05f4267781a1e4763af08b"
+  },
+  "51": {
+    "judgment": {
+      "extracted_final_answer": "\\[\\Omega(x,g,\\lambda)=\\frac{1}{\\pi}\\int_{0}^{\\pi}\\frac{d\\theta}{1-\\frac g2+(g-2\\lambda)x\\cos\\theta+\\frac g2\\sqrt{(1-2x\\cos\\theta)^2-4x^2}},\\qquad \\Omega(x,2,1)=\\frac{2}{\\pi}\\mathcal K(16x^2),\\] where \\(\\mathcal K(m)=\\int_0^{\\pi/2}(1-m\\sin^2\\phi)^{-1/2}\\,d\\phi\\), and \\(\\Omega\\) is not elementary in general.",
+      "reasoning": "The integral is equivalent to the reference because its integrand is even, so \\(\\pi^{-1}\\int_0^\\pi\\) equals \\((2\\pi)^{-1}\\int_{-\\pi}^{\\pi}\\). The elliptic specialization also agrees: the response defines the elliptic integral using the parameter \\(m\\), giving \\(\\mathcal K(16x^2)\\), whereas the reference uses modulus notation \\(K(4x)\\); these are the same since \\(m=k^2\\). The non-elementarity conclusion matches.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 13099,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 421,
+      "reasoning_output_tokens": 111
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\[\\\\Omega(x,g,\\\\lambda)=\\\\frac{1}{\\\\pi}\\\\int_{0}^{\\\\pi}\\\\frac{d\\\\theta}{1-\\\\frac g2+(g-2\\\\lambda)x\\\\cos\\\\theta+\\\\frac g2\\\\sqrt{(1-2x\\\\cos\\\\theta)^2-4x^2}},\\\\qquad \\\\Omega(x,2,1)=\\\\frac{2}{\\\\pi}\\\\mathcal K(16x^2),\\\\] where \\\\(\\\\mathcal K(m)=\\\\int_0^{\\\\pi/2}(1-m\\\\sin^2\\\\phi)^{-1/2}\\\\,d\\\\phi\\\\), and \\\\(\\\\Omega\\\\) is not elementary in general.\",\"reasoning\":\"The integral is equivalent to the reference because its integrand is even, so \\\\(\\\\pi^{-1}\\\\int_0^\\\\pi\\\\) equals \\\\((2\\\\pi)^{-1}\\\\int_{-\\\\pi}^{\\\\pi}\\\\). The elliptic specialization also agrees: the response defines the elliptic integral using the parameter \\\\(m\\\\), giving \\\\(\\\\mathcal K(16x^2)\\\\), whereas the reference uses modulus notation \\\\(K(4x)\\\\); these are the same since \\\\(m=k^2\\\\). The non-elementarity conclusion matches.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "d69840e2044971220de702593e6a2c6f7e9f6d21e1306f79aa494a25c7688311"
+  },
+  "57": {
+    "judgment": {
+      "extracted_final_answer": "\\epsilon_{B-L}^{\\min}(250~\\mathrm{Hz})\\simeq \\begin{cases}1.46\\times10^{-27}, & \\delta q=0.074,\\\\ 8.99\\times10^{-27}, & \\delta q=6\\times10^{-3},\\\\ 1.04\\times10^{-26}, & \\delta q=5\\times10^{-4}.\\end{cases}",
+      "reasoning": "The first value agrees with the reference within rounding (1.46×10^-27 versus 1.47×10^-27), but the second and third do not: the reference gives 1.78×10^-26 and 1.79×10^-25, respectively. Because all requested components must match, the response is incorrect.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12325,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 196,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\epsilon_{B-L}^{\\\\min}(250~\\\\mathrm{Hz})\\\\simeq \\\\begin{cases}1.46\\\\times10^{-27}, & \\\\delta q=0.074,\\\\\\\\ 8.99\\\\times10^{-27}, & \\\\delta q=6\\\\times10^{-3},\\\\\\\\ 1.04\\\\times10^{-26}, & \\\\delta q=5\\\\times10^{-4}.\\\\end{cases}\",\"reasoning\":\"The first value agrees with the reference within rounding (1.46×10^-27 versus 1.47×10^-27), but the second and third do not: the reference gives 1.78×10^-26 and 1.79×10^-25, respectively. Because all requested components must match, the response is incorrect.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "63064bf0bb2c9bc0ba9df9f11f30492a334d102e87b9b6143a468b4e23bc64f3"
+  },
+  "49": {
+    "judgment": {
+      "extracted_final_answer": "\\[\\varphi(z)=\\frac{z^{2}}{4}-\\frac{z}{4}\\log_{2}z+\\frac{z}{4}\\left[\\log_{2}\\!\\left(\\frac{\\pi}{K^{2}}\\right)+\\frac{1}{\\ln 2}\\right]+\\frac{1}{16}\\left(\\log_{2}z\\right)^{2}+\\left[\\frac{1}{4\\ln 2}-\\frac14-\\frac18\\log_{2}\\!\\left(\\frac{\\pi}{K^{2}}\\right)\\right]\\log_{2}z+O(1)\\]",
+      "reasoning": "The answer is algebraically equivalent to the reference. For the coefficient of z, 1+log_2(eπ/(2K²)) = log_2(π/K²)+log_2(e) = log_2(π/K²)+1/ln 2. For the coefficient of log_2 z, expanding log_2(2K²/π) likewise gives 1/(4 ln 2)-1/4-(1/8)log_2(π/K²). The O(1) remainder is consistent with the instruction that constant corrections may be ignored.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12111,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 533,
+      "reasoning_output_tokens": 225
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\[\\\\varphi(z)=\\\\frac{z^{2}}{4}-\\\\frac{z}{4}\\\\log_{2}z+\\\\frac{z}{4}\\\\left[\\\\log_{2}\\\\!\\\\left(\\\\frac{\\\\pi}{K^{2}}\\\\right)+\\\\frac{1}{\\\\ln 2}\\\\right]+\\\\frac{1}{16}\\\\left(\\\\log_{2}z\\\\right)^{2}+\\\\left[\\\\frac{1}{4\\\\ln 2}-\\\\frac14-\\\\frac18\\\\log_{2}\\\\!\\\\left(\\\\frac{\\\\pi}{K^{2}}\\\\right)\\\\right]\\\\log_{2}z+O(1)\\\\]\",\"reasoning\":\"The answer is algebraically equivalent to the reference. For the coefficient of z, 1+log_2(eπ/(2K²)) = log_2(π/K²)+log_2(e) = log_2(π/K²)+1/ln 2. For the coefficient of log_2 z, expanding log_2(2K²/π) likewise gives 1/(4 ln 2)-1/4-(1/8)log_2(π/K²). The O(1) remainder is consistent with the instruction that constant corrections may be ignored.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "081ebd780a5ffbbee8b934ff82597fcb3dc27872aecdfe27fa5761e02955f5e9"
+  },
+  "61": {
+    "judgment": {
+      "extracted_final_answer": "(T,P)=(555,0.50)",
+      "reasoning": "The response gives T=555 and P=0.50, while the supplied correct answer is T=794 and P=0.04. Neither requested component matches, so the response is incorrect.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11901,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 83,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"(T,P)=(555,0.50)\",\"reasoning\":\"The response gives T=555 and P=0.50, while the supplied correct answer is T=794 and P=0.04. Neither requested component matches, so the response is incorrect.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "907e928510432915f8a8e7d52fac8f67a6fb7488fe14aaf38317e9d3d5df99b0"
+  },
+  "60": {
+    "judgment": {
+      "extracted_final_answer": "\\(\\mathcal{F}^{(1)}_{\\theta}=\\left[\\frac{1}{4(\\Delta k^{2}-\\gamma^{2})}+\\frac{1}{36\\,\\Delta k^{2}}\\right]^{-1}=\\frac{36\\,\\Delta k^{2}(\\Delta k^{2}-\\gamma^{2})}{10\\,\\Delta k^{2}-\\gamma^{2}}\\)",
+      "reasoning": "The response’s final expression exactly matches the supplied reference. Its inverse-sum form is also algebraically equivalent to the same fraction.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12240,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 155,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(\\\\mathcal{F}^{(1)}_{\\\\theta}=\\\\left[\\\\frac{1}{4(\\\\Delta k^{2}-\\\\gamma^{2})}+\\\\frac{1}{36\\\\,\\\\Delta k^{2}}\\\\right]^{-1}=\\\\frac{36\\\\,\\\\Delta k^{2}(\\\\Delta k^{2}-\\\\gamma^{2})}{10\\\\,\\\\Delta k^{2}-\\\\gamma^{2}}\\\\)\",\"reasoning\":\"The response’s final expression exactly matches the supplied reference. Its inverse-sum form is also algebraically equivalent to the same fraction.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "d55f6bc7796ec3db41bf45b13b38fc88972f61c7c065ae6f937fb423b0765c99"
+  },
+  "59": {
+    "judgment": {
+      "extracted_final_answer": "For the lowest nonzero parent reflection along [100], the parent is (M,0,0), and the only first-order satellites are (M-1,0,0) and (M+1,0,0). With the normalized structure factor S=F/N,\nS^{(1)}(M+s,0,0)=-s\\,\\frac{\\varepsilon q_{x,s}}{2}=-s\\,\\frac{\\pi\\varepsilon}{a}\\frac{M+s}{M},\\quad s=\\pm1,\nso\nS^{(1)}(M-1,0,0)=\\frac{\\pi\\varepsilon}{a}(1-1/M),\\qquad S^{(1)}(M+1,0,0)=-\\frac{\\pi\\varepsilon}{a}(1+1/M),\nand all other first-order components vanish. The unnormalized factors are F=NS.",
+      "reasoning": "The response identifies exactly the two first-order satellites n_x=M±1, equivalently k=G±Q, and gives their amplitudes with the correct opposite signs and k_xε/2 dependence. Its normalized convention S=F/N is equivalent to the reference's unnormalized Mf(k·ε)/2 result when N=M and the atomic form factor is taken as unity (or restored multiplicatively).",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 13162,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 593,
+      "reasoning_output_tokens": 274
+    },
+    "raw_response": "{\"extracted_final_answer\":\"For the lowest nonzero parent reflection along [100], the parent is (M,0,0), and the only first-order satellites are (M-1,0,0) and (M+1,0,0). With the normalized structure factor S=F/N,\\nS^{(1)}(M+s,0,0)=-s\\\\,\\\\frac{\\\\varepsilon q_{x,s}}{2}=-s\\\\,\\\\frac{\\\\pi\\\\varepsilon}{a}\\\\frac{M+s}{M},\\\\quad s=\\\\pm1,\\nso\\nS^{(1)}(M-1,0,0)=\\\\frac{\\\\pi\\\\varepsilon}{a}(1-1/M),\\\\qquad S^{(1)}(M+1,0,0)=-\\\\frac{\\\\pi\\\\varepsilon}{a}(1+1/M),\\nand all other first-order components vanish. The unnormalized factors are F=NS.\",\"reasoning\":\"The response identifies exactly the two first-order satellites n_x=M±1, equivalently k=G±Q, and gives their amplitudes with the correct opposite signs and k_xε/2 dependence. Its normalized convention S=F/N is equivalent to the reference's unnormalized Mf(k·ε)/2 result when N=M and the atomic form factor is taken as unity (or restored multiplicatively).\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "0542784bf34aeea3180c501c942c549b238f96bd1114d123d7341919bc76ad83"
+  }
+}

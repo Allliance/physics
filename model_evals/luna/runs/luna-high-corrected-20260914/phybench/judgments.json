@@ -1,0 +1,71 @@
+{
+  "495": {
+    "judgment": {
+      "extracted_final_answer": "v = \\frac{NZe^{3}}{2\\varepsilon_{0}m^{2}cn}\\,\\frac{\\omega^{2}}{(\\omega_{0}^{2}-\\omega^{2})^{2}}",
+      "reasoning": "The reference answer is v = \\frac{NZe^{3}}{2c\\varepsilon_{0}m^{2}n} \\cdot \\frac{\\omega^{2}}{(\\omega_{0}^{2}-\\omega^{2})^{2}}. The response's expression is identical, differing only in the ordering of the constants in the denominator (2\\varepsilon_{0}m^{2}cn vs 2c\\varepsilon_{0}m^{2}n), which is a trivial commutative rearrangement. The answer is mathematically equivalent.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": null,
+      "input_tokens": 4072,
+      "output_tokens": 325,
+      "output_tokens_details": {
+        "thinking_tokens": 12
+      },
+      "server_tool_use": null,
+      "service_tier": null
+    },
+    "raw_response": "{\"extracted_final_answer\": \"v = \\\\frac{NZe^{3}}{2\\\\varepsilon_{0}m^{2}cn}\\\\,\\\\frac{\\\\omega^{2}}{(\\\\omega_{0}^{2}-\\\\omega^{2})^{2}}\", \"reasoning\": \"The reference answer is v = \\\\frac{NZe^{3}}{2c\\\\varepsilon_{0}m^{2}n} \\\\cdot \\\\frac{\\\\omega^{2}}{(\\\\omega_{0}^{2}-\\\\omega^{2})^{2}}. The response's expression is identical, differing only in the ordering of the constants in the denominator (2\\\\varepsilon_{0}m^{2}cn vs 2c\\\\varepsilon_{0}m^{2}n), which is a trivial commutative rearrangement. The answer is mathematically equivalent.\", \"correct\": \"yes\", \"confidence\": 100, \"strict\": true}",
+    "raw_api_response": {
+      "id": "msg_vrtx_011Cf2cmNdgQ3eyarLZCULRL",
+      "container": null,
+      "content": [
+        {
+          "signature": "CAIS/gEKeQgREAIYAipASqGPZOqGLAndwD7LCwRV1fyRC0/wW1asxGHK2TYTNHVWAe5Jw3DEscdPa1hKbZ9FYhNLmnPGa5+Fe+miJN2+CDIOY2xhdWRlLWZhYmxlLTU4AUIIdGhpbmtpbmdaDDI1MTM2OTk4NjI1NKgBj9Kd1QYSDI7YIMPpRvUvs4RkmhoMNG8cZFHve7yJQUnbIjDP3Mr2NU1bHhUpctcAmXwimGmeq8mR+Y51krTzsJ3gP4MiSZYuHLFtCaLMW8nBUIwqM75z2rFtj0T4MaCEyjPjnJiLHD62F7DZYRh6WUV9MQOS612rBDmIymes+gFb+QA3a7L5uRgB",
+          "thinking": "",
+          "type": "thinking"
+        },
+        {
+          "citations": null,
+          "text": "{\"extracted_final_answer\": \"v = \\\\frac{NZe^{3}}{2\\\\varepsilon_{0}m^{2}cn}\\\\,\\\\frac{\\\\omega^{2}}{(\\\\omega_{0}^{2}-\\\\omega^{2})^{2}}\", \"reasoning\": \"The reference answer is v = \\\\frac{NZe^{3}}{2c\\\\varepsilon_{0}m^{2}n} \\\\cdot \\\\frac{\\\\omega^{2}}{(\\\\omega_{0}^{2}-\\\\omega^{2})^{2}}. The response's expression is identical, differing only in the ordering of the constants in the denominator (2\\\\varepsilon_{0}m^{2}cn vs 2c\\\\varepsilon_{0}m^{2}n), which is a trivial commutative rearrangement. The answer is mathematically equivalent.\", \"correct\": \"yes\", \"confidence\": 100, \"strict\": true}",
+          "type": "text",
+          "parsed_output": null
+        }
+      ],
+      "model": "claude-fable-5",
+      "role": "assistant",
+      "stop_details": null,
+      "stop_reason": "end_turn",
+      "stop_sequence": null,
+      "type": "message",
+      "usage": {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "inference_geo": null,
+        "input_tokens": 4072,
+        "output_tokens": 325,
+        "output_tokens_details": {
+          "thinking_tokens": 12
+        },
+        "server_tool_use": null,
+        "service_tier": null
+      }
+    },
+    "requested_model": "claude-fable-5",
+    "actual_model": "claude-fable-5",
+    "judge_called": true,
+    "prediction_sha256": "ed84853288200e7d2aaf8149899decf6586ef1003dd7f7baf256fc08fc0a9df6"
+  }
+}

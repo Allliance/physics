@@ -1,0 +1,63 @@
+{
+  "complete": true,
+  "model": "gpt-oss-120b",
+  "reasoning_effort": "high",
+  "judge_model": "claude-fable-5",
+  "judge_reasoning_effort": "high",
+  "results": {
+    "phybench": {
+      "complete": true,
+      "questions": 88,
+      "attempts": 4,
+      "correct_attempts": 207,
+      "attempt_denominator": 352,
+      "mean_at_4": 0.5880681818181818,
+      "mean_at_4_percent": 58.80681818181818,
+      "passed_questions": 71,
+      "pass_at_4": 0.8068181818181818,
+      "pass_at_4_percent": 80.68181818181819,
+      "attempt_summaries": [
+        "/shared/data/home/aa3242/physics/model_evals/gpt_oss/runs/gpt-oss-120b-high-no-tools-corrected-20260914/phybench/summary.json",
+        "/shared/data/home/aa3242/physics/model_evals/gpt_oss/runs/gpt-oss-120b-high-no-tools-corrected-20260914/repeated-first-three/phybench/attempt-2/summary.json",
+        "/shared/data/home/aa3242/physics/model_evals/gpt_oss/runs/gpt-oss-120b-high-no-tools-corrected-20260914/repeated-first-three/phybench/attempt-3/summary.json",
+        "/shared/data/home/aa3242/physics/model_evals/gpt_oss/runs/gpt-oss-120b-high-no-tools-corrected-20260914/repeated-first-three/phybench/attempt-4/summary.json"
+      ]
+    },
+    "prism": {
+      "complete": true,
+      "questions": 74,
+      "attempts": 4,
+      "correct_attempts": 257,
+      "attempt_denominator": 296,
+      "mean_at_4": 0.8682432432432432,
+      "mean_at_4_percent": 86.82432432432432,
+      "passed_questions": 70,
+      "pass_at_4": 0.9459459459459459,
+      "pass_at_4_percent": 94.5945945945946,
+      "attempt_summaries": [
+        "/shared/data/home/aa3242/physics/model_evals/gpt_oss/runs/gpt-oss-120b-high-no-tools-corrected-20260914/prism/summary.json",
+        "/shared/data/home/aa3242/physics/model_evals/gpt_oss/runs/gpt-oss-120b-high-no-tools-corrected-20260914/repeated-first-three/prism/attempt-2/summary.json",
+        "/shared/data/home/aa3242/physics/model_evals/gpt_oss/runs/gpt-oss-120b-high-no-tools-corrected-20260914/repeated-first-three/prism/attempt-3/summary.json",
+        "/shared/data/home/aa3242/physics/model_evals/gpt_oss/runs/gpt-oss-120b-high-no-tools-corrected-20260914/repeated-first-three/prism/attempt-4/summary.json"
+      ]
+    },
+    "ugphysics": {
+      "complete": true,
+      "questions": 78,
+      "attempts": 4,
+      "correct_attempts": 260,
+      "attempt_denominator": 312,
+      "mean_at_4": 0.8333333333333334,
+      "mean_at_4_percent": 83.33333333333333,
+      "passed_questions": 72,
+      "pass_at_4": 0.9230769230769231,
+      "pass_at_4_percent": 92.3076923076923,
+      "attempt_summaries": [
+        "/shared/data/home/aa3242/physics/model_evals/gpt_oss/runs/gpt-oss-120b-high-no-tools-corrected-20260914/ugphysics/summary.json",
+        "/shared/data/home/aa3242/physics/model_evals/gpt_oss/runs/gpt-oss-120b-high-no-tools-corrected-20260914/repeated-first-three/ugphysics/attempt-2/summary.json",
+        "/shared/data/home/aa3242/physics/model_evals/gpt_oss/runs/gpt-oss-120b-high-no-tools-corrected-20260914/repeated-first-three/ugphysics/attempt-3/summary.json",
+        "/shared/data/home/aa3242/physics/model_evals/gpt_oss/runs/gpt-oss-120b-high-no-tools-corrected-20260914/repeated-first-three/ugphysics/attempt-4/summary.json"
+      ]
+    }
+  }
+}

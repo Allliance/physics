@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "dataset": "hle-corrected",
+  "selection": "incorrect in all four saved Kimi K3 max no-tool attempts",
+  "source": "/shared/data/home/aa3242/physics/model_evals/kimi/runs/kimi-k3-max-no-tools-20260917/hle-corrected/hle",
+  "ids": [
+    "66e89ebe7361982cbfbc5952",
+    "6735bafad86155d1e57160e7",
+    "678dadfaa2acdbbe2a403cb7"
+  ],
+  "model": "moonshotai/kimi-k3",
+  "requested_model": "moonshotai/kimi-k3@preset/agentic-web",
+  "reasoning_effort": "max",
+  "harness": "codex exec",
+  "tools": [
+    "codex local tools",
+    "openrouter:web_search"
+  ],
+  "openrouter_preset": "agentic-web",
+  "sandbox": "workspace-write",
+  "judge_model": "gpt-5.6-sol",
+  "judge_reasoning_effort": "high"
+}

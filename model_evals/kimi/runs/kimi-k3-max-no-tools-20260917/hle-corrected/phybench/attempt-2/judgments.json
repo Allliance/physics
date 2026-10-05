@@ -1,0 +1,1850 @@
+{
+  "600": {
+    "judgment": {
+      "extracted_final_answer": "\\frac{2}{5}",
+      "reasoning": "The response gives the stripe contrast as 2/5, exactly matching the supplied reference value γ = 2/5.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11890,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 64,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\frac{2}{5}\",\"reasoning\":\"The response gives the stripe contrast as 2/5, exactly matching the supplied reference value γ = 2/5.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "46320234122229f5380fa9e061833773d12039c5b3a9d753d147caacdee4b011"
+  },
+  "285": {
+    "judgment": {
+      "extracted_final_answer": "F_{\\max}=5mR\\omega^2",
+      "reasoning": "The response’s final answer is algebraically identical to the supplied reference answer, \\(F_{\\max}=5m\\omega^2R\\).",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12274,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 76,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"F_{\\\\max}=5mR\\\\omega^2\",\"reasoning\":\"The response’s final answer is algebraically identical to the supplied reference answer, \\\\(F_{\\\\max}=5m\\\\omega^2R\\\\).\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "ab9c234f32ca43a34499ffc1e7512d986362a6e305ec27f6e6902a21addc33b1"
+  },
+  "54": {
+    "judgment": {
+      "extracted_final_answer": "T_{\\text{middle}}=2mg+\\frac{4mv_0^2}{l}",
+      "reasoning": "The response exactly matches the supplied reference result, since \\(4m\\frac{v_0^2}{l}=\\frac{4mv_0^2}{l}\\).",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11843,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 94,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"T_{\\\\text{middle}}=2mg+\\\\frac{4mv_0^2}{l}\",\"reasoning\":\"The response exactly matches the supplied reference result, since \\\\(4m\\\\frac{v_0^2}{l}=\\\\frac{4mv_0^2}{l}\\\\).\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "d72a2a220a03796c26d06286aa9a03b7d657a034b75f39fdb3a26fd662fce59e"
+  },
+  "674": {
+    "judgment": {
+      "extracted_final_answer": "\\(v_{0,\\min}=\\sqrt{\\frac{8gr}{5}}\\)",
+      "reasoning": "The response does not match the reference answer \\(v_{0,\\min}=\\frac{3\\sqrt5}{5}\\sqrt{gr}\\). Their squared coefficients are \\(8/5\\) and \\(9/5\\), respectively, so the expressions are not equivalent.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12428,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 114,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(v_{0,\\\\min}=\\\\sqrt{\\\\frac{8gr}{5}}\\\\)\",\"reasoning\":\"The response does not match the reference answer \\\\(v_{0,\\\\min}=\\\\frac{3\\\\sqrt5}{5}\\\\sqrt{gr}\\\\). Their squared coefficients are \\\\(8/5\\\\) and \\\\(9/5\\\\), respectively, so the expressions are not equivalent.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "bdf285449ed76c67b86d9f734b5e4d38a4ddc19f3048508303f72cb202fb9628"
+  },
+  "321": {
+    "judgment": {
+      "extracted_final_answer": "\\(\\Delta\\theta=2\\pi\\sqrt{\\frac{1+r/\\lambda}{4+2r/\\lambda-(r/\\lambda)^2}},\\quad r<(1+\\sqrt5)\\lambda\\)",
+      "reasoning": "The response does not match the reference answer. Its denominator is \\(4+2r/\\lambda-(r/\\lambda)^2\\), whereas the reference denominator is \\(1+r/\\lambda-(r/\\lambda)^2\\). These are not algebraically equivalent. The stated radial condition also differs from the stability condition implied by the reference denominator.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12162,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 157,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(\\\\Delta\\\\theta=2\\\\pi\\\\sqrt{\\\\frac{1+r/\\\\lambda}{4+2r/\\\\lambda-(r/\\\\lambda)^2}},\\\\quad r<(1+\\\\sqrt5)\\\\lambda\\\\)\",\"reasoning\":\"The response does not match the reference answer. Its denominator is \\\\(4+2r/\\\\lambda-(r/\\\\lambda)^2\\\\), whereas the reference denominator is \\\\(1+r/\\\\lambda-(r/\\\\lambda)^2\\\\). These are not algebraically equivalent. The stated radial condition also differs from the stability condition implied by the reference denominator.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "3d7dc1f1534d29b7aa8dd57a65d36823b452adf0c1884ec6efb817723d2ad672"
+  },
+  "33": {
+    "judgment": {
+      "extracted_final_answer": "p(\\theta)=\\sigma\\left(T_2^{4}-T_1^{4}\\right)\\frac{r\\left(R-b\\cos\\theta\\right)}{R^{2}+b^{2}-2Rb\\cos\\theta}",
+      "reasoning": "The response does not exactly match the supplied reference final answer. Its numerator contains r(R-b\\cos\\theta), whereas the reference final expression contains r(R-b). This is a substantive θ-dependent difference, so the expressions are not equivalent.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12242,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 183,
+      "reasoning_output_tokens": 47
+    },
+    "raw_response": "{\"extracted_final_answer\":\"p(\\\\theta)=\\\\sigma\\\\left(T_2^{4}-T_1^{4}\\\\right)\\\\frac{r\\\\left(R-b\\\\cos\\\\theta\\\\right)}{R^{2}+b^{2}-2Rb\\\\cos\\\\theta}\",\"reasoning\":\"The response does not exactly match the supplied reference final answer. Its numerator contains r(R-b\\\\cos\\\\theta), whereas the reference final expression contains r(R-b). This is a substantive θ-dependent difference, so the expressions are not equivalent.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "4929ab86ea106ea56b10afa506acb89406ac8f0853cf0cd3be889a923e1dcb71"
+  },
+  "10": {
+    "judgment": {
+      "extracted_final_answer": "\\(\\left|\\mathbf E(x,+0,z)\\right|=\\frac{|q|b}{2\\pi\\varepsilon_0}\\left[\\frac{1}{\\left((x-a)^2+b^2+(z-c)^2\\right)^{3/2}}-\\frac{1}{\\left((x+a)^2+b^2+(z-c)^2\\right)^{3/2}}\\right],\\quad x>0\\)",
+      "reasoning": "The reference vector field has the opposite ordering inside the bracket, but the question asks for its magnitude. Since \\(a>0\\) and \\(x>0\\), the response's bracket is nonnegative, and replacing \\(q\\) by \\(|q|\\) gives exactly the magnitude of the reference field.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12138,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 337,
+      "reasoning_output_tokens": 134
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(\\\\left|\\\\mathbf E(x,+0,z)\\\\right|=\\\\frac{|q|b}{2\\\\pi\\\\varepsilon_0}\\\\left[\\\\frac{1}{\\\\left((x-a)^2+b^2+(z-c)^2\\\\right)^{3/2}}-\\\\frac{1}{\\\\left((x+a)^2+b^2+(z-c)^2\\\\right)^{3/2}}\\\\right],\\\\quad x>0\\\\)\",\"reasoning\":\"The reference vector field has the opposite ordering inside the bracket, but the question asks for its magnitude. Since \\\\(a>0\\\\) and \\\\(x>0\\\\), the response's bracket is nonnegative, and replacing \\\\(q\\\\) by \\\\(|q|\\\\) gives exactly the magnitude of the reference field.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "47f1b93cf12c9cc3e7bbfb75eaaafec262b039aa9bdcda82c672d5f3d1ad33a1"
+  },
+  "495": {
+    "judgment": {
+      "extracted_final_answer": "v(\\omega)=\\frac{e\\omega}{2m_ec}\\frac{dn}{d\\omega}=\\frac{e}{2m_ec}\\frac{n^2-1}{n}\\frac{\\omega^2}{\\omega_0^2-\\omega^2}=\\frac{NZe^3}{2\\epsilon_0m_e^2cn}\\frac{\\omega^2}{(\\omega_0^2-\\omega^2)^2},\\quad \\beta=v(\\omega)Bd.",
+      "reasoning": "The response’s explicit Verdet constant exactly matches the reference, with m_e denoting the electron mass m. Its equivalent dispersion forms follow from n^2-1=NZe^2/[\\epsilon_0m_e(\\omega_0^2-\\omega^2)], and it correctly gives the rotation angle as \\beta=vBd.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 13856,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 380,
+      "reasoning_output_tokens": 163
+    },
+    "raw_response": "{\"extracted_final_answer\":\"v(\\\\omega)=\\\\frac{e\\\\omega}{2m_ec}\\\\frac{dn}{d\\\\omega}=\\\\frac{e}{2m_ec}\\\\frac{n^2-1}{n}\\\\frac{\\\\omega^2}{\\\\omega_0^2-\\\\omega^2}=\\\\frac{NZe^3}{2\\\\epsilon_0m_e^2cn}\\\\frac{\\\\omega^2}{(\\\\omega_0^2-\\\\omega^2)^2},\\\\quad \\\\beta=v(\\\\omega)Bd.\",\"reasoning\":\"The response’s explicit Verdet constant exactly matches the reference, with m_e denoting the electron mass m. Its equivalent dispersion forms follow from n^2-1=NZe^2/[\\\\epsilon_0m_e(\\\\omega_0^2-\\\\omega^2)], and it correctly gives the rotation angle as \\\\beta=vBd.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "e41366c368d3bc79a4c59bb1d2753d3e7191483299b6b4d24822d5c6c57658da"
+  },
+  "41": {
+    "judgment": {
+      "extracted_final_answer": "h=R\\left[\\frac{1}{\\sqrt{k_2(k_1+1)-k_1}}-1\\right]",
+      "reasoning": "The response exactly matches the reference answer, since k_2(k_1+1)-k_1 is identical to k_2(1+k_1)-k_1.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11801,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 100,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"h=R\\\\left[\\\\frac{1}{\\\\sqrt{k_2(k_1+1)-k_1}}-1\\\\right]\",\"reasoning\":\"The response exactly matches the reference answer, since k_2(k_1+1)-k_1 is identical to k_2(1+k_1)-k_1.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "b10278b994593909d104e97419d65d018a6ae629b527b26c9b347e7b2594a089"
+  },
+  "281": {
+    "judgment": {
+      "extracted_final_answer": "h=\\sqrt{\\frac{2\\sigma}{\\rho g}\\left(1-\\sin\\theta\\right)}",
+      "reasoning": "The response exactly matches the supplied reference result for the additional capillary-rise height under the stated assumptions.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12421,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 79,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"h=\\\\sqrt{\\\\frac{2\\\\sigma}{\\\\rho g}\\\\left(1-\\\\sin\\\\theta\\\\right)}\",\"reasoning\":\"The response exactly matches the supplied reference result for the additional capillary-rise height under the stated assumptions.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "646bfe4208c825f61580122893e3d2ae9fae1086b76b564a19a917dd0d18fd69"
+  },
+  "101": {
+    "judgment": {
+      "extracted_final_answer": "\\(\\varphi_{\\mathrm{amp}}=\\frac{25\\sqrt{2}}{204}\\,\\theta_0\\)",
+      "reasoning": "The response gives the same leg-oscillation amplitude as the supplied reference, namely \\(A=\\frac{25\\sqrt{2}}{204}\\theta_0\\). The notation \\(\\varphi_{\\mathrm{amp}}\\) is consistent with the requested amplitude, so the answers are equivalent.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 13451,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 128,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(\\\\varphi_{\\\\mathrm{amp}}=\\\\frac{25\\\\sqrt{2}}{204}\\\\,\\\\theta_0\\\\)\",\"reasoning\":\"The response gives the same leg-oscillation amplitude as the supplied reference, namely \\\\(A=\\\\frac{25\\\\sqrt{2}}{204}\\\\theta_0\\\\). The notation \\\\(\\\\varphi_{\\\\mathrm{amp}}\\\\) is consistent with the requested amplitude, so the answers are equivalent.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "c2476fcccf7ba0ec845291409abc28754ef34e813429b4882a69bac2f5e6b8f0"
+  },
+  "95": {
+    "judgment": {
+      "extracted_final_answer": "x(t)=\\frac{F}{741M\\Omega^{2}}\\left[76\\cos\\!\\left(\\sqrt{6}\\,\\Omega t\\right)+15\\cos\\!\\left(\\sqrt{19}\\,\\Omega t\\right)-91\\right]",
+      "reasoning": "The answer is algebraically identical to the reference: 76/741 = 4/39, 15/741 = 5/247, and -91/741 = -7/57. Both cosine frequencies also match exactly.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 13076,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 247,
+      "reasoning_output_tokens": 103
+    },
+    "raw_response": "{\"extracted_final_answer\":\"x(t)=\\\\frac{F}{741M\\\\Omega^{2}}\\\\left[76\\\\cos\\\\!\\\\left(\\\\sqrt{6}\\\\,\\\\Omega t\\\\right)+15\\\\cos\\\\!\\\\left(\\\\sqrt{19}\\\\,\\\\Omega t\\\\right)-91\\\\right]\",\"reasoning\":\"The answer is algebraically identical to the reference: 76/741 = 4/39, 15/741 = 5/247, and -91/741 = -7/57. Both cosine frequencies also match exactly.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "b8d2adf1568b0fadb9721c81d8efe224b6ed0f19ce2e976250021f9c674bc46d"
+  },
+  "134": {
+    "judgment": {
+      "extracted_final_answer": "\\frac{v_{1}v_{2}}{L}",
+      "reasoning": "The response exactly matches the reference acceleration magnitude, \\(a=\\frac{v_1v_2}{L}\\).",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12047,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 73,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\frac{v_{1}v_{2}}{L}\",\"reasoning\":\"The response exactly matches the reference acceleration magnitude, \\\\(a=\\\\frac{v_1v_2}{L}\\\\).\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "ab4520e13a6815b454b7575540b5d526bdb8ff85ea6a1cd9b402c3046f6fe359"
+  },
+  "453": {
+    "judgment": {
+      "extracted_final_answer": "\\(\\alpha(\\omega)=\\dfrac{Ne^2\\gamma\\omega^2}{n\\varepsilon_0\\mathsf mc\\left[(\\omega_0^2-\\omega^2)^2+\\gamma^2\\omega^2\\right]}=\\dfrac{Ne^4\\omega^4}{6\\pi n\\varepsilon_0^2\\mathsf m^2c^4\\left[(\\omega_0^2-\\omega^2)^2+\\gamma^2\\omega^2\\right]},\\quad \\gamma\\simeq\\dfrac{e^2\\omega^2}{6\\pi\\varepsilon_0\\mathsf mc^3}\\).",
+      "reasoning": "The response’s second expression for \\(\\alpha\\) is algebraically identical to the reference answer: it has the same prefactor, \\(\\omega^4e^4/m^2\\) numerator, and Lorentz-oscillator denominator. The additional first form is equivalent after using the stated radiative-damping relation for \\(\\gamma\\).",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 13019,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 412,
+      "reasoning_output_tokens": 146
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(\\\\alpha(\\\\omega)=\\\\dfrac{Ne^2\\\\gamma\\\\omega^2}{n\\\\varepsilon_0\\\\mathsf mc\\\\left[(\\\\omega_0^2-\\\\omega^2)^2+\\\\gamma^2\\\\omega^2\\\\right]}=\\\\dfrac{Ne^4\\\\omega^4}{6\\\\pi n\\\\varepsilon_0^2\\\\mathsf m^2c^4\\\\left[(\\\\omega_0^2-\\\\omega^2)^2+\\\\gamma^2\\\\omega^2\\\\right]},\\\\quad \\\\gamma\\\\simeq\\\\dfrac{e^2\\\\omega^2}{6\\\\pi\\\\varepsilon_0\\\\mathsf mc^3}\\\\).\",\"reasoning\":\"The response’s second expression for \\\\(\\\\alpha\\\\) is algebraically identical to the reference answer: it has the same prefactor, \\\\(\\\\omega^4e^4/m^2\\\\) numerator, and Lorentz-oscillator denominator. The additional first form is equivalent after using the stated radiative-damping relation for \\\\(\\\\gamma\\\\).\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "7dc54398307e812abcac8fabb7007ce10d3cf55c60e46920e9bfa209c9ae49c0"
+  },
+  "630": {
+    "judgment": {
+      "extracted_final_answer": "\\(P_{1}=P_{0}(1+\\alpha)\\left[1+\\frac{2\\alpha(\\lambda+RT_{0})}{(5+8\\alpha)RT_{0}}\\right]\\)",
+      "reasoning": "Expanding the bracket gives \\(P_1=P_0(1+\\alpha)\\frac{5+10\\alpha+2\\alpha\\lambda/(RT_0)}{5+8\\alpha}\\), which exactly matches the reference answer.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12342,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 228,
+      "reasoning_output_tokens": 91
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(P_{1}=P_{0}(1+\\\\alpha)\\\\left[1+\\\\frac{2\\\\alpha(\\\\lambda+RT_{0})}{(5+8\\\\alpha)RT_{0}}\\\\right]\\\\)\",\"reasoning\":\"Expanding the bracket gives \\\\(P_1=P_0(1+\\\\alpha)\\\\frac{5+10\\\\alpha+2\\\\alpha\\\\lambda/(RT_0)}{5+8\\\\alpha}\\\\), which exactly matches the reference answer.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "70a271c7e29ac95c24ed6d7652eaaeeb72949504ae9d93cd6d073e3f5c8c58f5"
+  },
+  "409": {
+    "judgment": {
+      "extracted_final_answer": "\\sigma(\\varrho)=\\begin{cases}\\dfrac{2\\varepsilon_{0}E_{0}}{\\sqrt{1-\\varrho^{2}/a^{2}}},&0\\leq \\varrho<a,\\\\[6pt]0,&\\varrho>a,\\end{cases}\\qquad \\varrho=\\sqrt{x^{2}+y^{2}}",
+      "reasoning": "For 0\\leq\\varrho<a, the response is algebraically equivalent to the reference because \\(1/\\sqrt{1-\\varrho^2/a^2}=a/\\sqrt{a^2-\\varrho^2}\\) (with \\(a>0\\), as a radius). Thus it gives \\(\\sigma=2\\varepsilon_0E_0a/\\sqrt{a^2-\\varrho^2}\\). It also correctly specifies zero charge outside the radius-\\(a\\) disk. The density diverges at the rim, so omission of a separate value at \\(\\varrho=a\\) is consistent.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 13112,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 262,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\sigma(\\\\varrho)=\\\\begin{cases}\\\\dfrac{2\\\\varepsilon_{0}E_{0}}{\\\\sqrt{1-\\\\varrho^{2}/a^{2}}},&0\\\\leq \\\\varrho<a,\\\\\\\\[6pt]0,&\\\\varrho>a,\\\\end{cases}\\\\qquad \\\\varrho=\\\\sqrt{x^{2}+y^{2}}\",\"reasoning\":\"For 0\\\\leq\\\\varrho<a, the response is algebraically equivalent to the reference because \\\\(1/\\\\sqrt{1-\\\\varrho^2/a^2}=a/\\\\sqrt{a^2-\\\\varrho^2}\\\\) (with \\\\(a>0\\\\), as a radius). Thus it gives \\\\(\\\\sigma=2\\\\varepsilon_0E_0a/\\\\sqrt{a^2-\\\\varrho^2}\\\\). It also correctly specifies zero charge outside the radius-\\\\(a\\\\) disk. The density diverges at the rim, so omission of a separate value at \\\\(\\\\varrho=a\\\\) is consistent.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "9c4eee5582f71d5d39201aae913b1ad59048cef1b9227d2e93d3d3ecff390300"
+  },
+  "650": {
+    "judgment": {
+      "extracted_final_answer": "d_{\\max}=2R\\sqrt{1-\\left[\\frac{\\frac{2E_{0}}{\\pi m g L}+\\sqrt{1+\\frac{E_{0}}{mgL}-\\frac{4E_{0}}{\\pi^{2}mgL}-\\frac{2E_{0}}{\\pi^{2}mgR}\\left(1+\\frac{E_{0}}{mgL}\\right)}}{1+\\frac{E_{0}}{mgL}}\\right]^{2}}",
+      "reasoning": "The response does not match the reference answer, which is d_{\\max}=\\frac{2}{\\pi}\\sqrt{\\frac{E_0R}{mg}}\\sqrt{(\\pi-2)^2\\frac{R}{L}+2}. The response has a fundamentally different dependence on E_0, including nonlinear dimensionless combinations and a leading factor 2R; it is not an algebraic rearrangement of the reference expression.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12693,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 285,
+      "reasoning_output_tokens": 38
+    },
+    "raw_response": "{\"extracted_final_answer\":\"d_{\\\\max}=2R\\\\sqrt{1-\\\\left[\\\\frac{\\\\frac{2E_{0}}{\\\\pi m g L}+\\\\sqrt{1+\\\\frac{E_{0}}{mgL}-\\\\frac{4E_{0}}{\\\\pi^{2}mgL}-\\\\frac{2E_{0}}{\\\\pi^{2}mgR}\\\\left(1+\\\\frac{E_{0}}{mgL}\\\\right)}}{1+\\\\frac{E_{0}}{mgL}}\\\\right]^{2}}\",\"reasoning\":\"The response does not match the reference answer, which is d_{\\\\max}=\\\\frac{2}{\\\\pi}\\\\sqrt{\\\\frac{E_0R}{mg}}\\\\sqrt{(\\\\pi-2)^2\\\\frac{R}{L}+2}. The response has a fundamentally different dependence on E_0, including nonlinear dimensionless combinations and a leading factor 2R; it is not an algebraic rearrangement of the reference expression.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "07bebd6bd47793fc823382be7d28ae7639df434730dbaf1df8188b712b9f57de"
+  },
+  "105": {
+    "judgment": {
+      "extracted_final_answer": "\\lambda=-1",
+      "reasoning": "The response gives \\(\\lambda=-1\\), which exactly matches the final result in the supplied correct answer.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12251,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 59,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\lambda=-1\",\"reasoning\":\"The response gives \\\\(\\\\lambda=-1\\\\), which exactly matches the final result in the supplied correct answer.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "5c55880255fd36fb8641a41d20f7933529fd4d5b47629aae21d81d2bdefbe95c"
+  },
+  "332": {
+    "judgment": {
+      "extracted_final_answer": "\\(\\displaystyle \\mu(\\varphi)=\\frac{2Md\\sin\\theta\\,\\sin\\varphi}{(d-R\\cos\\theta)\\left[2M\\cos\\varphi+m\\sin^{2}\\theta(3\\cos\\varphi-2)\\right]},\\quad \\theta=\\arccos\\!\\left(\\frac{d^{2}+R^{2}-L^{2}}{2dR}\\right)\\)",
+      "reasoning": "The response is not equivalent to the reference answer. Its angle \\(\\theta\\) equals the reference's \\(\\gamma\\), whereas the reference result depends essentially on both geometric angles \\(\\beta\\) and \\(\\gamma\\), includes factors of \\(R^2\\) and \\(L^2\\), and has a square-root denominator obtained by minimizing over the friction-force direction. These dependencies and the minimization are absent from the response, so it is not a complete or algebraically equivalent expression.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 13053,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 326,
+      "reasoning_output_tokens": 80
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(\\\\displaystyle \\\\mu(\\\\varphi)=\\\\frac{2Md\\\\sin\\\\theta\\\\,\\\\sin\\\\varphi}{(d-R\\\\cos\\\\theta)\\\\left[2M\\\\cos\\\\varphi+m\\\\sin^{2}\\\\theta(3\\\\cos\\\\varphi-2)\\\\right]},\\\\quad \\\\theta=\\\\arccos\\\\!\\\\left(\\\\frac{d^{2}+R^{2}-L^{2}}{2dR}\\\\right)\\\\)\",\"reasoning\":\"The response is not equivalent to the reference answer. Its angle \\\\(\\\\theta\\\\) equals the reference's \\\\(\\\\gamma\\\\), whereas the reference result depends essentially on both geometric angles \\\\(\\\\beta\\\\) and \\\\(\\\\gamma\\\\), includes factors of \\\\(R^2\\\\) and \\\\(L^2\\\\), and has a square-root denominator obtained by minimizing over the friction-force direction. These dependencies and the minimization are absent from the response, so it is not a complete or algebraically equivalent expression.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "1131eb891e69c3104608dd7bdaa07f0327ac159444fb31267426211ec4e098b1"
+  },
+  "367": {
+    "judgment": {
+      "extracted_final_answer": "T=2\\pi\\sqrt{\\frac{4\\pi\\varepsilon_{0}\\,m\\,a^{3}b^{2}}{qQ\\left(a^{2}-b^{2}\\right)}}",
+      "reasoning": "The response exactly matches the reference period, with qQ equivalent to Qq and ε₀ notation unchanged in meaning.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12609,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 103,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"T=2\\\\pi\\\\sqrt{\\\\frac{4\\\\pi\\\\varepsilon_{0}\\\\,m\\\\,a^{3}b^{2}}{qQ\\\\left(a^{2}-b^{2}\\\\right)}}\",\"reasoning\":\"The response exactly matches the reference period, with qQ equivalent to Qq and ε₀ notation unchanged in meaning.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "4c3669a11ea3001a4979034071274de5f41ea9f2b112adfd0f9f29e6cd51177a"
+  },
+  "133": {
+    "judgment": {
+      "extracted_final_answer": "\\(\\mathbf a=\\left(0,\\;\\pm\\frac{(v_x^2+v_y^2)^{3/2}}{R|v_x|}\\right)\\), with the sign toward the concave side.",
+      "reasoning": "Since \\(v=\\sqrt{v_x^2+v_y^2}\\), the response gives \\(|\\mathbf a|=v^3/(R|v_x|)\\), which is physically equivalent to the reference result \\(a=v^3/(Rv_x)\\) under its implicit positive-\\(v_x\\) convention. It also correctly specifies \\(a_x=0\\) and the acceleration direction.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12026,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 318,
+      "reasoning_output_tokens": 140
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(\\\\mathbf a=\\\\left(0,\\\\;\\\\pm\\\\frac{(v_x^2+v_y^2)^{3/2}}{R|v_x|}\\\\right)\\\\), with the sign toward the concave side.\",\"reasoning\":\"Since \\\\(v=\\\\sqrt{v_x^2+v_y^2}\\\\), the response gives \\\\(|\\\\mathbf a|=v^3/(R|v_x|)\\\\), which is physically equivalent to the reference result \\\\(a=v^3/(Rv_x)\\\\) under its implicit positive-\\\\(v_x\\\\) convention. It also correctly specifies \\\\(a_x=0\\\\) and the acceleration direction.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "876c7929b9fb69bd71e0c15634a09b31f3cbd64a4de2f978309ba6043ae95a8f"
+  },
+  "702": {
+    "judgment": {
+      "extracted_final_answer": "\\(\\Omega_{\\min}=\\sqrt{\\frac{2q\\lambda}{\\pi m\\varepsilon_{0}a^{2}}}\\)",
+      "reasoning": "The response exactly matches the critical angular velocity \\(\\omega_0=\\sqrt{2q\\lambda/(\\pi\\varepsilon_0 a^2m)}\\) in the reference. Strict stability requires \\(\\Omega>\\omega_0\\), so the stated \\(\\Omega_{\\min}\\) is the threshold value.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 13577,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 212,
+      "reasoning_output_tokens": 72
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(\\\\Omega_{\\\\min}=\\\\sqrt{\\\\frac{2q\\\\lambda}{\\\\pi m\\\\varepsilon_{0}a^{2}}}\\\\)\",\"reasoning\":\"The response exactly matches the critical angular velocity \\\\(\\\\omega_0=\\\\sqrt{2q\\\\lambda/(\\\\pi\\\\varepsilon_0 a^2m)}\\\\) in the reference. Strict stability requires \\\\(\\\\Omega>\\\\omega_0\\\\), so the stated \\\\(\\\\Omega_{\\\\min}\\\\) is the threshold value.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "27356bb61b7e23856ac826378cfc0424d8a40933b8ff60d4354381408118a40e"
+  },
+  "336": {
+    "judgment": {
+      "extracted_final_answer": "f=\\frac{1}{2\\pi}\\sqrt{\\frac{4g\\left[R(a^2-b^2)+a^2b\\right]}{\\left(a^2+5b^2\\right)\\left(bR-a^2\\right)}}",
+      "reasoning": "The response is algebraically equivalent to the reference. Multiplying both \\(b+R-b^2R/a^2\\) and \\(bR/a^2-1\\) by \\(a^2\\) gives the response’s numerator \\(R(a^2-b^2)+a^2b\\) and denominator factor \\(bR-a^2\\), with the common factor canceling.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12287,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 320,
+      "reasoning_output_tokens": 140
+    },
+    "raw_response": "{\"extracted_final_answer\":\"f=\\\\frac{1}{2\\\\pi}\\\\sqrt{\\\\frac{4g\\\\left[R(a^2-b^2)+a^2b\\\\right]}{\\\\left(a^2+5b^2\\\\right)\\\\left(bR-a^2\\\\right)}}\",\"reasoning\":\"The response is algebraically equivalent to the reference. Multiplying both \\\\(b+R-b^2R/a^2\\\\) and \\\\(bR/a^2-1\\\\) by \\\\(a^2\\\\) gives the response’s numerator \\\\(R(a^2-b^2)+a^2b\\\\) and denominator factor \\\\(bR-a^2\\\\), with the common factor canceling.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "cde3512d5f85dcbcd22c3f7bd2d4f76f2ada24d4481b89adcdc4d7cc6dddb6b9"
+  },
+  "39": {
+    "judgment": {
+      "extracted_final_answer": "T=2\\pi\\sqrt{\\frac{\\rho_{1}H}{\\rho_{2}g}}",
+      "reasoning": "The response exactly matches the reference period under the stated assumptions.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11837,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 69,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"T=2\\\\pi\\\\sqrt{\\\\frac{\\\\rho_{1}H}{\\\\rho_{2}g}}\",\"reasoning\":\"The response exactly matches the reference period under the stated assumptions.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "1096ec086590979f22af53d9b8278f9905d80b2c4ec3c8a2199d7f9b6c96858f"
+  },
+  "497": {
+    "judgment": {
+      "extracted_final_answer": "\\(\\Delta A=A_{0}\\left[\\left(\\frac{M+\\frac{\\gamma_{1}m}{3}}{\\left(M+\\frac{m}{3}\\right)\\left(1-\\gamma_{2}\\frac{m}{M}\\right)}\\right)^{1/4}-1\\right]\\)",
+      "reasoning": "The response’s exact expression follows directly from the reference relation for \\(A^4/A_0^4\\). Its approximation, \\(\\frac{A_0m}{12M}(\\gamma_1-1+3\\gamma_2)\\), is algebraically identical to the reference answer \\(\\frac{mA_0}{4M}[\\frac13(\\gamma_1-1)+\\gamma_2]\\).",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12461,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 277,
+      "reasoning_output_tokens": 73
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(\\\\Delta A=A_{0}\\\\left[\\\\left(\\\\frac{M+\\\\frac{\\\\gamma_{1}m}{3}}{\\\\left(M+\\\\frac{m}{3}\\\\right)\\\\left(1-\\\\gamma_{2}\\\\frac{m}{M}\\\\right)}\\\\right)^{1/4}-1\\\\right]\\\\)\",\"reasoning\":\"The response’s exact expression follows directly from the reference relation for \\\\(A^4/A_0^4\\\\). Its approximation, \\\\(\\\\frac{A_0m}{12M}(\\\\gamma_1-1+3\\\\gamma_2)\\\\), is algebraically identical to the reference answer \\\\(\\\\frac{mA_0}{4M}[\\\\frac13(\\\\gamma_1-1)+\\\\gamma_2]\\\\).\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "bd7a9688f0e669dbdcb91d2962e291eace364ca90ba1afb9e9ad76b1fda77531"
+  },
+  "124": {
+    "judgment": {
+      "extracted_final_answer": "T=2\\pi\\sqrt{\\frac{m\\left(M+m\\sin^2\\theta\\right)}{k(M+m)}}",
+      "reasoning": "The response gives exactly the same oscillation period as the supplied correct answer, with identical factors and parameter dependence.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12412,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 84,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"T=2\\\\pi\\\\sqrt{\\\\frac{m\\\\left(M+m\\\\sin^2\\\\theta\\\\right)}{k(M+m)}}\",\"reasoning\":\"The response gives exactly the same oscillation period as the supplied correct answer, with identical factors and parameter dependence.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "918e3506a81c78d90ac53ec62b9f1736bae69751879c6850e7a4b807bd5134f5"
+  },
+  "284": {
+    "judgment": {
+      "extracted_final_answer": "\\(\\varphi=2\\arctan\\!\\left(\\frac{\\sqrt{n^{2}\\sin^{2}\\theta-(n+\\delta n)^{2}}}{n\\cos\\theta}\\right)\\pmod{2\\pi}\\), with principal value \\(0<\\varphi<\\pi\\).",
+      "reasoning": "This is algebraically identical to the reference answer because dividing the numerator and denominator inside the arctangent by \\(n\\) gives \\(2\\arctan\\!\\left[\\sqrt{\\sin^2\\theta-(1+\\delta n/n)^2}/\\cos\\theta\\right]\\). The stated total-internal-reflection condition is also consistent with the supplied notation.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12700,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 286,
+      "reasoning_output_tokens": 96
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(\\\\varphi=2\\\\arctan\\\\!\\\\left(\\\\frac{\\\\sqrt{n^{2}\\\\sin^{2}\\\\theta-(n+\\\\delta n)^{2}}}{n\\\\cos\\\\theta}\\\\right)\\\\pmod{2\\\\pi}\\\\), with principal value \\\\(0<\\\\varphi<\\\\pi\\\\).\",\"reasoning\":\"This is algebraically identical to the reference answer because dividing the numerator and denominator inside the arctangent by \\\\(n\\\\) gives \\\\(2\\\\arctan\\\\!\\\\left[\\\\sqrt{\\\\sin^2\\\\theta-(1+\\\\delta n/n)^2}/\\\\cos\\\\theta\\\\right]\\\\). The stated total-internal-reflection condition is also consistent with the supplied notation.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "1a2bad8250b1fff475331b2c0c4091a205db2fd2447c990565adf077171504ea"
+  },
+  "432": {
+    "judgment": {
+      "extracted_final_answer": "\\(h=\\left[\\frac{\\sqrt{\\left(\\frac{Q^{2}}{16\\pi\\epsilon_{0}}\\right)^{2}+\\frac{3\\mu_{0}mgQ^{2}\\omega^{2}R^{4}}{200\\pi}}-\\frac{Q^{2}}{16\\pi\\epsilon_{0}}}{2mg}\\right]^{1/2}\\)",
+      "reasoning": "The response is algebraically equivalent to the reference. Setting \\(A=Q^2/(16\\pi\\epsilon_0)\\), the reference force balance gives a quadratic in \\(h^2\\): \\(mg(h^2)^2+A h^2-3\\mu_0Q^2R^4\\omega^2/(800\\pi)=0\\). Its positive solution is exactly the expression provided in the response.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12154,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 374,
+      "reasoning_output_tokens": 154
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(h=\\\\left[\\\\frac{\\\\sqrt{\\\\left(\\\\frac{Q^{2}}{16\\\\pi\\\\epsilon_{0}}\\\\right)^{2}+\\\\frac{3\\\\mu_{0}mgQ^{2}\\\\omega^{2}R^{4}}{200\\\\pi}}-\\\\frac{Q^{2}}{16\\\\pi\\\\epsilon_{0}}}{2mg}\\\\right]^{1/2}\\\\)\",\"reasoning\":\"The response is algebraically equivalent to the reference. Setting \\\\(A=Q^2/(16\\\\pi\\\\epsilon_0)\\\\), the reference force balance gives a quadratic in \\\\(h^2\\\\): \\\\(mg(h^2)^2+A h^2-3\\\\mu_0Q^2R^4\\\\omega^2/(800\\\\pi)=0\\\\). Its positive solution is exactly the expression provided in the response.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "f2a17591e5a5d370c1c4a545e78ffd23e1708e191031f85de8d90dc33022d755"
+  },
+  "457": {
+    "judgment": {
+      "extracted_final_answer": "\\[\\omega=\\sqrt{\\frac{F}{m l\\sin\\!\\left(\\frac{\\pi}{N}\\right)}\\,\\frac{\\left(2+7\\cos\\!\\frac{2\\pi}{N}\\right)^{2}}{\\left(8+\\cos\\!\\frac{2\\pi}{N}\\right)\\left(5+4\\cos\\!\\frac{2\\pi}{N}\\right)}}\\]",
+      "reasoning": "The response is algebraically equivalent to the reference answer. Setting \\(\\theta=\\pi/N\\), using \\(\\tan^2\\theta=(1-\\cos 2\\theta)/(1+\\cos 2\\theta)\\), \\(\\sin^2\\theta=(1-\\cos 2\\theta)/2\\), and factoring the difference of squares in the reference reduces its radicand exactly to the response's radicand.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12094,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 690,
+      "reasoning_output_tokens": 455
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\[\\\\omega=\\\\sqrt{\\\\frac{F}{m l\\\\sin\\\\!\\\\left(\\\\frac{\\\\pi}{N}\\\\right)}\\\\,\\\\frac{\\\\left(2+7\\\\cos\\\\!\\\\frac{2\\\\pi}{N}\\\\right)^{2}}{\\\\left(8+\\\\cos\\\\!\\\\frac{2\\\\pi}{N}\\\\right)\\\\left(5+4\\\\cos\\\\!\\\\frac{2\\\\pi}{N}\\\\right)}}\\\\]\",\"reasoning\":\"The response is algebraically equivalent to the reference answer. Setting \\\\(\\\\theta=\\\\pi/N\\\\), using \\\\(\\\\tan^2\\\\theta=(1-\\\\cos 2\\\\theta)/(1+\\\\cos 2\\\\theta)\\\\), \\\\(\\\\sin^2\\\\theta=(1-\\\\cos 2\\\\theta)/2\\\\), and factoring the difference of squares in the reference reduces its radicand exactly to the response's radicand.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "861addf2f8da2a82f34d52d2f1584706417766555179803a2c5ae13d94d94372"
+  },
+  "478": {
+    "judgment": {
+      "extracted_final_answer": "F=\\frac{|Q|E_0}{\\varepsilon_r}",
+      "reasoning": "The response matches the reference force in magnitude. Since the question asks for the magnitude, using |Q| is appropriate and is equivalent to the magnitude of QE_0/\\varepsilon_r.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11924,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 158,
+      "reasoning_output_tokens": 69
+    },
+    "raw_response": "{\"extracted_final_answer\":\"F=\\\\frac{|Q|E_0}{\\\\varepsilon_r}\",\"reasoning\":\"The response matches the reference force in magnitude. Since the question asks for the magnitude, using |Q| is appropriate and is equivalent to the magnitude of QE_0/\\\\varepsilon_r.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "f0cd0ef86117ab466c971e9a8a14a589226dcb7eb00927753d4245b08edc8253"
+  },
+  "206": {
+    "judgment": {
+      "extracted_final_answer": "V(\\alpha)=V_0\\,\\frac{\\ln\\!\\left[\\dfrac{\\tan(\\alpha/2)}{\\tan(\\alpha_1/2)}\\right]}{\\ln\\!\\left[\\dfrac{\\tan(\\alpha_2/2)}{\\tan(\\alpha_1/2)}\\right]},\\qquad \\alpha_1\\leq\\alpha\\leq\\alpha_2",
+      "reasoning": "The extracted potential distribution exactly matches the reference answer up to equivalent LaTeX formatting. It also satisfies both boundary conditions: V(α₁)=0 and V(α₂)=V₀.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12354,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 174,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"V(\\\\alpha)=V_0\\\\,\\\\frac{\\\\ln\\\\!\\\\left[\\\\dfrac{\\\\tan(\\\\alpha/2)}{\\\\tan(\\\\alpha_1/2)}\\\\right]}{\\\\ln\\\\!\\\\left[\\\\dfrac{\\\\tan(\\\\alpha_2/2)}{\\\\tan(\\\\alpha_1/2)}\\\\right]},\\\\qquad \\\\alpha_1\\\\leq\\\\alpha\\\\leq\\\\alpha_2\",\"reasoning\":\"The extracted potential distribution exactly matches the reference answer up to equivalent LaTeX formatting. It also satisfies both boundary conditions: V(α₁)=0 and V(α₂)=V₀.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "45a2e616b5bb4d6506ebdea71bc1b7c222286941d918844e253634b2ab73a58b"
+  },
+  "204": {
+    "judgment": {
+      "extracted_final_answer": "\\(\\omega_{z}=\\sqrt{\\frac{qQ_{0}}{2\\pi\\varepsilon_{0}m}\\,\\frac{R^{2}-2l^{2}}{\\left(R^{2}+l^{2}\\right)^{5/2}}}\\)",
+      "reasoning": "The response’s formula exactly matches the reference expression, with the ring charge denoted by \\(Q_0\\) as in the question rather than \\(Q\\). The stability condition \\(R^2>2l^2\\) is implicit in requiring the stated angular frequency to be real; the requested angular frequency itself is complete and correct.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12057,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 237,
+      "reasoning_output_tokens": 68
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(\\\\omega_{z}=\\\\sqrt{\\\\frac{qQ_{0}}{2\\\\pi\\\\varepsilon_{0}m}\\\\,\\\\frac{R^{2}-2l^{2}}{\\\\left(R^{2}+l^{2}\\\\right)^{5/2}}}\\\\)\",\"reasoning\":\"The response’s formula exactly matches the reference expression, with the ring charge denoted by \\\\(Q_0\\\\) as in the question rather than \\\\(Q\\\\). The stability condition \\\\(R^2>2l^2\\\\) is implicit in requiring the stated angular frequency to be real; the requested angular frequency itself is complete and correct.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "ffefca7646ef10274c76eae80a1ab47af4ccafcedf3f1324e1c7adb37dbde430"
+  },
+  "766": {
+    "judgment": {
+      "extracted_final_answer": "\\(T=\\dfrac{mg\\sin\\theta\\,(6-\\sin^{2}\\theta)}{(2-\\sin^{2}\\theta)^{2}}\\)",
+      "reasoning": "The response is equivalent to the reference because \\(6-\\sin^2\\theta=5+\\cos^2\\theta\\) and \\(2-\\sin^2\\theta=1+\\cos^2\\theta\\). Thus it simplifies exactly to \\(T=\\dfrac{(5+\\cos^2\\theta)mg\\sin\\theta}{(1+\\cos^2\\theta)^2}\\).",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12742,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 211,
+      "reasoning_output_tokens": 43
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(T=\\\\dfrac{mg\\\\sin\\\\theta\\\\,(6-\\\\sin^{2}\\\\theta)}{(2-\\\\sin^{2}\\\\theta)^{2}}\\\\)\",\"reasoning\":\"The response is equivalent to the reference because \\\\(6-\\\\sin^2\\\\theta=5+\\\\cos^2\\\\theta\\\\) and \\\\(2-\\\\sin^2\\\\theta=1+\\\\cos^2\\\\theta\\\\). Thus it simplifies exactly to \\\\(T=\\\\dfrac{(5+\\\\cos^2\\\\theta)mg\\\\sin\\\\theta}{(1+\\\\cos^2\\\\theta)^2}\\\\).\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "7d5faf6eb0a4d3ec3f995f4d90fc39a18d3a21c8b5ff3b38a37ac237f466f968"
+  },
+  "458": {
+    "judgment": {
+      "extracted_final_answer": "Q=\\frac{\\sqrt3}{320}\\frac{a^4}{\\mu}\\frac{\\Delta p}{l}=\\frac{\\sqrt3\\,a^4}{320\\,\\eta}\\frac{\\Delta p}{l}",
+      "reasoning": "The response includes a factor of 1/μ (equivalently 1/η) in the flow rate, whereas the supplied reference answer is Q = (√3 a^4 Δp)/(320 l), with no viscosity factor. Therefore, the extracted answer does not exactly match the supplied reference.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12136,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 212,
+      "reasoning_output_tokens": 62
+    },
+    "raw_response": "{\"extracted_final_answer\":\"Q=\\\\frac{\\\\sqrt3}{320}\\\\frac{a^4}{\\\\mu}\\\\frac{\\\\Delta p}{l}=\\\\frac{\\\\sqrt3\\\\,a^4}{320\\\\,\\\\eta}\\\\frac{\\\\Delta p}{l}\",\"reasoning\":\"The response includes a factor of 1/μ (equivalently 1/η) in the flow rate, whereas the supplied reference answer is Q = (√3 a^4 Δp)/(320 l), with no viscosity factor. Therefore, the extracted answer does not exactly match the supplied reference.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "a9571eed0d97da0fdb1481f2854e358c190644863ef602f036bfbdf0aa02c899"
+  },
+  "419": {
+    "judgment": {
+      "extracted_final_answer": "\\[R_s=\\frac{(1-n^2)^2\\sinh^2\\!\\left(\\dfrac{2\\pi d}{\\lambda}\\sqrt{\\sin^2 i_2-n^2}\\right)}{(1-n^2)^2\\sinh^2\\!\\left(\\dfrac{2\\pi d}{\\lambda}\\sqrt{\\sin^2 i_2-n^2}\\right)+4\\cos^2 i_2\\left(\\sin^2 i_2-n^2\\right)}\\]",
+      "reasoning": "The answer is algebraically equivalent to the reference. Setting \\(a=(2\\pi d/\\lambda)\\sqrt{\\sin^2 i_2-n^2}\\), the identity \\(2e^{-a}/(1-e^{-2a})=1/\\sinh a\\) converts the reference expression into exactly the stated fraction.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12287,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 401,
+      "reasoning_output_tokens": 171
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\[R_s=\\\\frac{(1-n^2)^2\\\\sinh^2\\\\!\\\\left(\\\\dfrac{2\\\\pi d}{\\\\lambda}\\\\sqrt{\\\\sin^2 i_2-n^2}\\\\right)}{(1-n^2)^2\\\\sinh^2\\\\!\\\\left(\\\\dfrac{2\\\\pi d}{\\\\lambda}\\\\sqrt{\\\\sin^2 i_2-n^2}\\\\right)+4\\\\cos^2 i_2\\\\left(\\\\sin^2 i_2-n^2\\\\right)}\\\\]\",\"reasoning\":\"The answer is algebraically equivalent to the reference. Setting \\\\(a=(2\\\\pi d/\\\\lambda)\\\\sqrt{\\\\sin^2 i_2-n^2}\\\\), the identity \\\\(2e^{-a}/(1-e^{-2a})=1/\\\\sinh a\\\\) converts the reference expression into exactly the stated fraction.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "aa225145eed6e3fd7c866fc566910f24b5177a28bb42f438f5057b67bad91f04"
+  },
+  "716": {
+    "judgment": {
+      "extracted_final_answer": "\\boxed{\\omega=\\sqrt{\\frac{26 k Q q}{m L^{3}}}}",
+      "reasoning": "The response gives \\(\\omega^2=26kQq/(mL^3)\\), whereas the reference gives \\(\\omega_B=4\\sqrt{13kqQ/(23mL^3)}\\), so \\(\\omega_B^2=208kQq/(23mL^3)\\). Since \\(26\\neq 208/23\\), the expressions are not equivalent.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12229,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 191,
+      "reasoning_output_tokens": 45
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\boxed{\\\\omega=\\\\sqrt{\\\\frac{26 k Q q}{m L^{3}}}}\",\"reasoning\":\"The response gives \\\\(\\\\omega^2=26kQq/(mL^3)\\\\), whereas the reference gives \\\\(\\\\omega_B=4\\\\sqrt{13kqQ/(23mL^3)}\\\\), so \\\\(\\\\omega_B^2=208kQq/(23mL^3)\\\\). Since \\\\(26\\\\neq 208/23\\\\), the expressions are not equivalent.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "38e3aeded3fc3ac19097b50e7d3247c597adcd53ed931e0223c3d85d6bd93127"
+  },
+  "103": {
+    "judgment": {
+      "extracted_final_answer": "R_{04}=(3-\\sqrt{3})R",
+      "reasoning": "The response exactly matches the supplied reference answer for the equivalent thermal resistance between nodes 0 and 4.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12149,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 66,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"R_{04}=(3-\\\\sqrt{3})R\",\"reasoning\":\"The response exactly matches the supplied reference answer for the equivalent thermal resistance between nodes 0 and 4.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "a37464a91439e374f566f2c058bd6688ac66ac342df22ddc20daf61efc3561dd"
+  },
+  "256": {
+    "judgment": {
+      "extracted_final_answer": "\\frac{Mc^{2}}{2\\sqrt{3}}",
+      "reasoning": "The response gives E_1 = Mc^2/(2\\sqrt{3}) = (\\sqrt{3}/6)Mc^2, whereas the supplied reference gives E_1 = (\\sqrt{3}/8)Mc^2. These differ by a factor of 4/3 and are not equivalent.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12552,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 112,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\frac{Mc^{2}}{2\\\\sqrt{3}}\",\"reasoning\":\"The response gives E_1 = Mc^2/(2\\\\sqrt{3}) = (\\\\sqrt{3}/6)Mc^2, whereas the supplied reference gives E_1 = (\\\\sqrt{3}/8)Mc^2. These differ by a factor of 4/3 and are not equivalent.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "a094afa4552368be6ff76abb92804bcce8a55f932223e3d33cf652831140c83f"
+  },
+  "310": {
+    "judgment": {
+      "extracted_final_answer": "\\beta_{1}=\\frac{\\left(\\sqrt{\\frac{1+\\beta_{0}}{1-\\beta_{0}}}+\\frac{2E}{mc^{2}}\\right)^{2}-1}{\\left(\\sqrt{\\frac{1+\\beta_{0}}{1-\\beta_{0}}}+\\frac{2E}{mc^{2}}\\right)^{2}+1}",
+      "reasoning": "The response's final expression exactly matches the supplied reference answer, with only inconsequential formatting differences.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11963,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 146,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\beta_{1}=\\\\frac{\\\\left(\\\\sqrt{\\\\frac{1+\\\\beta_{0}}{1-\\\\beta_{0}}}+\\\\frac{2E}{mc^{2}}\\\\right)^{2}-1}{\\\\left(\\\\sqrt{\\\\frac{1+\\\\beta_{0}}{1-\\\\beta_{0}}}+\\\\frac{2E}{mc^{2}}\\\\right)^{2}+1}\",\"reasoning\":\"The response's final expression exactly matches the supplied reference answer, with only inconsequential formatting differences.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "3e85bd833a215d270904538b5e56e88b03abaea5852445c7167faf099a5ddc02"
+  },
+  "112": {
+    "judgment": {
+      "extracted_final_answer": "\\(Q_{\\mathrm{J}}=\\dfrac{6\\pi\\varepsilon_{0}R^{3}}{\\varepsilon_{r}+2}\\left|\\vec E_{0}\\right|^{2}\\)",
+      "reasoning": "The response exactly matches the reference result, since \\(E_0^2\\) and \\(\\lvert\\vec E_0\\rvert^2\\) are equivalent for the magnitude of the applied electric field.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 13843,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 129,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(Q_{\\\\mathrm{J}}=\\\\dfrac{6\\\\pi\\\\varepsilon_{0}R^{3}}{\\\\varepsilon_{r}+2}\\\\left|\\\\vec E_{0}\\\\right|^{2}\\\\)\",\"reasoning\":\"The response exactly matches the reference result, since \\\\(E_0^2\\\\) and \\\\(\\\\lvert\\\\vec E_0\\\\rvert^2\\\\) are equivalent for the magnitude of the applied electric field.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "194e1008f55cb8ab16d9c5c5063df62afab165760c65473ae7bb301ad9728904"
+  },
+  "259": {
+    "judgment": {
+      "extracted_final_answer": "A'(t')=\\frac{2v^2\\left(1-\\dfrac{u^2}{c^2}\\right)^{3/2}}{1-\\dfrac{u^2v^2}{c^4}}\\,t'^2,\\qquad t'\\ge 0",
+      "reasoning": "The response does not exactly match the supplied reference: its denominator is \\(1-u^2v^2/c^4\\), whereas the reference states \\(1-(uv/c)^2=1-u^2v^2/c^2\\). These are not algebraically or dimensionally equivalent under the stated notation. Therefore, under strict comparison to the supplied answer, the response is incorrect.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 13489,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 377,
+      "reasoning_output_tokens": 193
+    },
+    "raw_response": "{\"extracted_final_answer\":\"A'(t')=\\\\frac{2v^2\\\\left(1-\\\\dfrac{u^2}{c^2}\\\\right)^{3/2}}{1-\\\\dfrac{u^2v^2}{c^4}}\\\\,t'^2,\\\\qquad t'\\\\ge 0\",\"reasoning\":\"The response does not exactly match the supplied reference: its denominator is \\\\(1-u^2v^2/c^4\\\\), whereas the reference states \\\\(1-(uv/c)^2=1-u^2v^2/c^2\\\\). These are not algebraically or dimensionally equivalent under the stated notation. Therefore, under strict comparison to the supplied answer, the response is incorrect.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "5cc3676b0f9bfd38dd49c5e264e4c270112d1aa94e754279daecf1b1387db1e7"
+  },
+  "110": {
+    "judgment": {
+      "extracted_final_answer": "\\(\\alpha=\\arccos\\!\\left(\\frac{ad}{c\\sqrt{c^{2}+d^{2}}}\\right)\\)",
+      "reasoning": "The response is equivalent to the reference. From the reference, \\(\\tan\\alpha=\\frac{\\sqrt{c^4-d^2(a^2-c^2)}}{ad}\\). Since \\(\\alpha\\in(0,\\pi/2]\\), this gives \\(\\cos\\alpha=\\frac{ad}{\\sqrt{a^2d^2+c^4-d^2(a^2-c^2)}}=\\frac{ad}{c\\sqrt{c^2+d^2}}\\), exactly matching the response.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12216,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 293,
+      "reasoning_output_tokens": 105
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(\\\\alpha=\\\\arccos\\\\!\\\\left(\\\\frac{ad}{c\\\\sqrt{c^{2}+d^{2}}}\\\\right)\\\\)\",\"reasoning\":\"The response is equivalent to the reference. From the reference, \\\\(\\\\tan\\\\alpha=\\\\frac{\\\\sqrt{c^4-d^2(a^2-c^2)}}{ad}\\\\). Since \\\\(\\\\alpha\\\\in(0,\\\\pi/2]\\\\), this gives \\\\(\\\\cos\\\\alpha=\\\\frac{ad}{\\\\sqrt{a^2d^2+c^4-d^2(a^2-c^2)}}=\\\\frac{ad}{c\\\\sqrt{c^2+d^2}}\\\\), exactly matching the response.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "2a539f21b3035ae6924bf523f6a364517cd59b75bad7471739a0053039421ec7"
+  },
+  "505": {
+    "judgment": {
+      "extracted_final_answer": "\\(y^{2}=R^{2}-x^{2}-\\frac{\\omega^{4}}{g^{2}}\\left(R^{2}-x^{2}\\right)^{2}\\)",
+      "reasoning": "The response is algebraically equivalent to the reference. Expanding the reference gives \\(\\frac{\\omega^4}{g^2}(R^2-x^2)(x^2-R^2)+R^2-x^2=(R^2-x^2)-\\frac{\\omega^4}{g^2}(R^2-x^2)^2\\), exactly matching the response.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12157,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 254,
+      "reasoning_output_tokens": 93
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(y^{2}=R^{2}-x^{2}-\\\\frac{\\\\omega^{4}}{g^{2}}\\\\left(R^{2}-x^{2}\\\\right)^{2}\\\\)\",\"reasoning\":\"The response is algebraically equivalent to the reference. Expanding the reference gives \\\\(\\\\frac{\\\\omega^4}{g^2}(R^2-x^2)(x^2-R^2)+R^2-x^2=(R^2-x^2)-\\\\frac{\\\\omega^4}{g^2}(R^2-x^2)^2\\\\), exactly matching the response.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "64ce865ccbd48cc4c751d5eb6a56287a8c34a1c8961f7af48f26403226fee677"
+  },
+  "331": {
+    "judgment": {
+      "extracted_final_answer": "\\(\\Delta y \\simeq \\frac{\\lambda L}{d\\,\\sin\\phi\\,\\cos^{2}(2\\phi)}\\)",
+      "reasoning": "This matches the reference because \\(1+\\tan^2(2\\phi)=\\sec^2(2\\phi)=1/\\cos^2(2\\phi)\\). Thus the response is algebraically equivalent to \\(\\Delta y=\\frac{1+\\tan^2(2\\phi)}{\\sin\\phi}\\frac{\\lambda L}{d}\\).",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12384,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 227,
+      "reasoning_output_tokens": 73
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(\\\\Delta y \\\\simeq \\\\frac{\\\\lambda L}{d\\\\,\\\\sin\\\\phi\\\\,\\\\cos^{2}(2\\\\phi)}\\\\)\",\"reasoning\":\"This matches the reference because \\\\(1+\\\\tan^2(2\\\\phi)=\\\\sec^2(2\\\\phi)=1/\\\\cos^2(2\\\\phi)\\\\). Thus the response is algebraically equivalent to \\\\(\\\\Delta y=\\\\frac{1+\\\\tan^2(2\\\\phi)}{\\\\sin\\\\phi}\\\\frac{\\\\lambda L}{d}\\\\).\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "674aa466ac35fe0a81e73958d780cb8fa9c748c620baace562d3e563b4d2bc62"
+  },
+  "498": {
+    "judgment": {
+      "extracted_final_answer": "\\(\\displaystyle \\varphi=\\frac{2\\pi d}{\\lambda(n_b-n_a)}\\left[n_b\\sqrt{n_b^2-\\sin^2 i}-n_a\\sqrt{n_a^2-\\sin^2 i}-\\sin^2 i\\ln\\!\\left(\\frac{n_b+\\sqrt{n_b^2-\\sin^2 i}}{n_a+\\sqrt{n_a^2-\\sin^2 i}}\\right)\\right]\\)",
+      "reasoning": "The response exactly matches the supplied reference final expression, including the prefactor, square-root terms, logarithmic term, and all signs and factors. It is complete and contains no residual S.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 14038,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 184,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(\\\\displaystyle \\\\varphi=\\\\frac{2\\\\pi d}{\\\\lambda(n_b-n_a)}\\\\left[n_b\\\\sqrt{n_b^2-\\\\sin^2 i}-n_a\\\\sqrt{n_a^2-\\\\sin^2 i}-\\\\sin^2 i\\\\ln\\\\!\\\\left(\\\\frac{n_b+\\\\sqrt{n_b^2-\\\\sin^2 i}}{n_a+\\\\sqrt{n_a^2-\\\\sin^2 i}}\\\\right)\\\\right]\\\\)\",\"reasoning\":\"The response exactly matches the supplied reference final expression, including the prefactor, square-root terms, logarithmic term, and all signs and factors. It is complete and contains no residual S.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "7ae7a64a6be2039d86a4d3a2e99a6bfa9e3f76a5f2991f79a1df459e7ceb068e"
+  },
+  "737": {
+    "judgment": {
+      "extracted_final_answer": "\\(T_{\\mathrm{rad}}=\\frac{2\\pi m}{|q|B_0\\sqrt{n+1}}\\quad(n>-1)\\)",
+      "reasoning": "This matches the reference period. Using \\(|q|\\) instead of \\(q\\) correctly makes the physical period positive, and the condition \\(n>-1\\) states the stability condition required for real small radial oscillations.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12432,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 191,
+      "reasoning_output_tokens": 69
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(T_{\\\\mathrm{rad}}=\\\\frac{2\\\\pi m}{|q|B_0\\\\sqrt{n+1}}\\\\quad(n>-1)\\\\)\",\"reasoning\":\"This matches the reference period. Using \\\\(|q|\\\\) instead of \\\\(q\\\\) correctly makes the physical period positive, and the condition \\\\(n>-1\\\\) states the stability condition required for real small radial oscillations.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "a3d415fdfb828e4ce6bebbb8c079c2c93884fd770410701959e32c85947de9f9"
+  },
+  "688": {
+    "judgment": {
+      "extracted_final_answer": "\\(T=\\frac{2\\pi m}{|q|B_{0}\\sqrt{n+1}}\\quad(n>-1)\\)",
+      "reasoning": "This matches the reference oscillation period. The absolute value \\(|q|\\) correctly ensures a positive physical period and is equivalent to the reference under the usual magnitude convention. The condition \\(n>-1\\) states the required stability condition for real small radial oscillations.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 13036,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 194,
+      "reasoning_output_tokens": 71
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(T=\\\\frac{2\\\\pi m}{|q|B_{0}\\\\sqrt{n+1}}\\\\quad(n>-1)\\\\)\",\"reasoning\":\"This matches the reference oscillation period. The absolute value \\\\(|q|\\\\) correctly ensures a positive physical period and is equivalent to the reference under the usual magnitude convention. The condition \\\\(n>-1\\\\) states the required stability condition for real small radial oscillations.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "47f4a5390727186b3820968efd5c2f54cbf9a121c4b19c221e81b163b2f3fc45"
+  },
+  "118": {
+    "judgment": {
+      "extracted_final_answer": "\\frac{38}{41}r",
+      "reasoning": "The response gives the exact resistance \\(\\frac{38}{41}r\\), which matches the supplied reference answer exactly.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11873,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 66,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\frac{38}{41}r\",\"reasoning\":\"The response gives the exact resistance \\\\(\\\\frac{38}{41}r\\\\), which matches the supplied reference answer exactly.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "a2e7fa24689156caf2ae1b9c63de6fea38e564a8f8671141ead6193259d26b20"
+  },
+  "318": {
+    "judgment": {
+      "extracted_final_answer": "F_x=-\\pi R^{2}h\\,\\gamma P_{0}Ak^{2}\\cos(kx)\\cos(2\\pi ft)",
+      "reasoning": "The response exactly matches the reference force for the standing wave specified in the question, including the negative sign and all factors.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11945,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 90,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"F_x=-\\\\pi R^{2}h\\\\,\\\\gamma P_{0}Ak^{2}\\\\cos(kx)\\\\cos(2\\\\pi ft)\",\"reasoning\":\"The response exactly matches the reference force for the standing wave specified in the question, including the negative sign and all factors.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "29c7111c7658b42079d9d0800c79bfcccb0367e1900cfaaede91bc179fde97cb"
+  },
+  "228": {
+    "judgment": {
+      "extracted_final_answer": "\\[\\alpha_{2}=-\\frac{6\\sin(\\theta_{2}-\\theta_{1})\\left[g\\cos\\theta_{1}+l_{1}\\omega_{1}^{2}+\\frac{l_{2}}{2}\\omega_{2}^{2}\\cos(\\theta_{2}-\\theta_{1})\\right]}{l_{2}\\left[1+3\\sin^{2}(\\theta_{2}-\\theta_{1})\\right]}\\]",
+      "reasoning": "This is equivalent to the reference because \\(\\sin(\\theta_1-\\theta_2)=-\\sin(\\theta_2-\\theta_1)\\), while cosine and squared sine are unchanged under reversal of the angle difference. Factoring 2 from the reference bracket gives exactly the response's numerator and denominator.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12919,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 356,
+      "reasoning_output_tokens": 147
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\[\\\\alpha_{2}=-\\\\frac{6\\\\sin(\\\\theta_{2}-\\\\theta_{1})\\\\left[g\\\\cos\\\\theta_{1}+l_{1}\\\\omega_{1}^{2}+\\\\frac{l_{2}}{2}\\\\omega_{2}^{2}\\\\cos(\\\\theta_{2}-\\\\theta_{1})\\\\right]}{l_{2}\\\\left[1+3\\\\sin^{2}(\\\\theta_{2}-\\\\theta_{1})\\\\right]}\\\\]\",\"reasoning\":\"This is equivalent to the reference because \\\\(\\\\sin(\\\\theta_1-\\\\theta_2)=-\\\\sin(\\\\theta_2-\\\\theta_1)\\\\), while cosine and squared sine are unchanged under reversal of the angle difference. Factoring 2 from the reference bracket gives exactly the response's numerator and denominator.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "4d0adffd4729766c6d338b7d99c5be1e8a663f36a488ed7c176a46505cb97655"
+  },
+  "708": {
+    "judgment": {
+      "extracted_final_answer": "\\(x_{\\text{blur}}=\\frac{\\lambda_{2}L}{\\pi d}\\sqrt{\\frac{mc^{2}}{2k_{B}T}}\\), with \\(\\gamma(x)=\\exp\\!\\left[-\\left(\\frac{\\pi d x}{L\\lambda_{2}}\\sqrt{\\frac{2k_{B}T}{mc^{2}}}\\right)^2\\right]\\) and \\(\\lambda_1\\) blocked.",
+      "reasoning": "The response's position simplifies to \\(\\frac{L c\\lambda_2}{\\pi d}\\sqrt{\\frac{m}{2k_BT}}\\). The reference answer \\(\\sqrt{\\frac{2m}{k_BT}}\\frac{Lc\\lambda_2}{2\\pi d}\\) simplifies to exactly the same expression. The stated Gaussian contrast also reaches \\(1/e\\) at this position. Its note that strict \\(\\gamma=0\\) occurs only asymptotically is physically consistent and does not contradict the requested subjective blurring criterion.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12564,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 394,
+      "reasoning_output_tokens": 129
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(x_{\\\\text{blur}}=\\\\frac{\\\\lambda_{2}L}{\\\\pi d}\\\\sqrt{\\\\frac{mc^{2}}{2k_{B}T}}\\\\), with \\\\(\\\\gamma(x)=\\\\exp\\\\!\\\\left[-\\\\left(\\\\frac{\\\\pi d x}{L\\\\lambda_{2}}\\\\sqrt{\\\\frac{2k_{B}T}{mc^{2}}}\\\\right)^2\\\\right]\\\\) and \\\\(\\\\lambda_1\\\\) blocked.\",\"reasoning\":\"The response's position simplifies to \\\\(\\\\frac{L c\\\\lambda_2}{\\\\pi d}\\\\sqrt{\\\\frac{m}{2k_BT}}\\\\). The reference answer \\\\(\\\\sqrt{\\\\frac{2m}{k_BT}}\\\\frac{Lc\\\\lambda_2}{2\\\\pi d}\\\\) simplifies to exactly the same expression. The stated Gaussian contrast also reaches \\\\(1/e\\\\) at this position. Its note that strict \\\\(\\\\gamma=0\\\\) occurs only asymptotically is physically consistent and does not contradict the requested subjective blurring criterion.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "b07101f499c39e41289a1dd65cfaebe731507dbc849b4c49c5405921dde12c0a"
+  },
+  "649": {
+    "judgment": {
+      "extracted_final_answer": "\\(\\Omega_{\\min}=\\sqrt{\\frac{4\\pi m(R^{2}-2l^{2})\\sqrt{R^{2}+l^{2}}}{\\mu_{0}^{2}\\epsilon_{0}qQ_{0}R^{4}}}\\) for \\(R^{2}>2l^{2}\\); no finite \\(\\Omega\\) gives linear stability in all directions for \\(R^{2}\\le 2l^{2}\\). Strict stability requires \\(|\\Omega|>\\Omega_{\\min}\\), with equality marginal.",
+      "reasoning": "The response's threshold is algebraically equivalent to the reference: \\(\\sqrt{4\\pi}=2\\sqrt{\\pi}=2\\pi/\\sqrt{\\pi}\\), so it equals \\(\\frac{2\\pi}{\\mu_0R^2}\\sqrt{\\frac{m(R^2-2l^2)\\sqrt{R^2+l^2}}{\\pi\\epsilon_0Q_0q}}\\). It also correctly includes the necessary condition \\(R^2>2l^2\\) and identifies equality in angular speed as marginal rather than strictly stable.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12844,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 415,
+      "reasoning_output_tokens": 129
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(\\\\Omega_{\\\\min}=\\\\sqrt{\\\\frac{4\\\\pi m(R^{2}-2l^{2})\\\\sqrt{R^{2}+l^{2}}}{\\\\mu_{0}^{2}\\\\epsilon_{0}qQ_{0}R^{4}}}\\\\) for \\\\(R^{2}>2l^{2}\\\\); no finite \\\\(\\\\Omega\\\\) gives linear stability in all directions for \\\\(R^{2}\\\\le 2l^{2}\\\\). Strict stability requires \\\\(|\\\\Omega|>\\\\Omega_{\\\\min}\\\\), with equality marginal.\",\"reasoning\":\"The response's threshold is algebraically equivalent to the reference: \\\\(\\\\sqrt{4\\\\pi}=2\\\\sqrt{\\\\pi}=2\\\\pi/\\\\sqrt{\\\\pi}\\\\), so it equals \\\\(\\\\frac{2\\\\pi}{\\\\mu_0R^2}\\\\sqrt{\\\\frac{m(R^2-2l^2)\\\\sqrt{R^2+l^2}}{\\\\pi\\\\epsilon_0Q_0q}}\\\\). It also correctly includes the necessary condition \\\\(R^2>2l^2\\\\) and identifies equality in angular speed as marginal rather than strictly stable.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "69683de2bf9eb8bf9f51755c6f98523ea214eb6687ef04463c9dd933ddb87d8a"
+  },
+  "62": {
+    "judgment": {
+      "extracted_final_answer": "\\(\\omega_1\\omega_2=\\gamma B(\\gamma B+2JS)\\)",
+      "reasoning": "The response exactly matches the reference result, since \\(\\gamma B(\\gamma B+2JS)=\\gamma B(2JS+\\gamma B)\\).",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12712,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 92,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(\\\\omega_1\\\\omega_2=\\\\gamma B(\\\\gamma B+2JS)\\\\)\",\"reasoning\":\"The response exactly matches the reference result, since \\\\(\\\\gamma B(\\\\gamma B+2JS)=\\\\gamma B(2JS+\\\\gamma B)\\\\).\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "173128e1adb67bce84e805d3261fa48d5e70422d493028e1442f71bcda6e6ad9"
+  },
+  "143": {
+    "judgment": {
+      "extracted_final_answer": "t=2\\left(\\pi+\\frac{2a}{b}\\right)\\sqrt{\\frac{m}{k}}",
+      "reasoning": "The response exactly matches the supplied reference answer for the total return time.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 13072,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 75,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"t=2\\\\left(\\\\pi+\\\\frac{2a}{b}\\\\right)\\\\sqrt{\\\\frac{m}{k}}\",\"reasoning\":\"The response exactly matches the supplied reference answer for the total return time.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "554caa9e449c2b81be040a1d8cb9295c8aeda8ddc828fe25c9fe65ceada0144e"
+  },
+  "401": {
+    "judgment": {
+      "extracted_final_answer": "\\(\\varphi \\simeq \\frac{2k^{2}\\theta}{(1-k^{2})(1-\\varepsilon)}\\)",
+      "reasoning": "The response matches the reference answer exactly up to the use of \\(\\simeq\\), which is appropriate because the result is derived under the stated small-angle approximation. The denominator factors are merely reordered.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12530,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 107,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(\\\\varphi \\\\simeq \\\\frac{2k^{2}\\\\theta}{(1-k^{2})(1-\\\\varepsilon)}\\\\)\",\"reasoning\":\"The response matches the reference answer exactly up to the use of \\\\(\\\\simeq\\\\), which is appropriate because the result is derived under the stated small-angle approximation. The denominator factors are merely reordered.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "edbc250bc2ad9fd3c656f6e6fca15a59f3d7a9ee3660b51e765079d8b6ddad65"
+  },
+  "69": {
+    "judgment": {
+      "extracted_final_answer": "\\(\\displaystyle \\Delta\\alpha=\\frac{3\\pi G^{8/3}m^4M_SM_J(M_S+M_J)^{2/3}}{2\\,\\Omega^{4/3}L^4}\\)",
+      "reasoning": "The response's final expression exactly matches the supplied reference answer, with identical numerical factor, powers, masses, and dependence on \\(G\\), \\(\\Omega\\), \\(m\\), and \\(L\\).",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 14625,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 133,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(\\\\displaystyle \\\\Delta\\\\alpha=\\\\frac{3\\\\pi G^{8/3}m^4M_SM_J(M_S+M_J)^{2/3}}{2\\\\,\\\\Omega^{4/3}L^4}\\\\)\",\"reasoning\":\"The response's final expression exactly matches the supplied reference answer, with identical numerical factor, powers, masses, and dependence on \\\\(G\\\\), \\\\(\\\\Omega\\\\), \\\\(m\\\\), and \\\\(L\\\\).\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "68747664e169876363f38f13a182222404b73e311e539f32701059880e5ec3b2"
+  },
+  "493": {
+    "judgment": {
+      "extracted_final_answer": "T_{1}=2\\pi\\sqrt{\\frac{2M\\left(R^{2}+h^{2}\\right)^{7/2}}{\\mu_{0}Im\\left(2R^{4}-11R^{2}h^{2}+2h^{4}\\right)}}",
+      "reasoning": "The response exactly matches the reference answer up to commutation and reordering of factors and terms: \\(Im=mI\\), \\(R^2+h^2=h^2+R^2\\), and \\(2R^4-11R^2h^2+2h^4=2h^4+2R^4-11R^2h^2\\).",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 13001,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 179,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"T_{1}=2\\\\pi\\\\sqrt{\\\\frac{2M\\\\left(R^{2}+h^{2}\\\\right)^{7/2}}{\\\\mu_{0}Im\\\\left(2R^{4}-11R^{2}h^{2}+2h^{4}\\\\right)}}\",\"reasoning\":\"The response exactly matches the reference answer up to commutation and reordering of factors and terms: \\\\(Im=mI\\\\), \\\\(R^2+h^2=h^2+R^2\\\\), and \\\\(2R^4-11R^2h^2+2h^4=2h^4+2R^4-11R^2h^2\\\\).\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "ff8b259fe0e21b533605de9e84a2f993ee5c86a9d1f83c56d0ccd5ee4e32c3a1"
+  },
+  "443": {
+    "judgment": {
+      "extracted_final_answer": "\\(\\lambda=\\dfrac{2\\pi}{\\operatorname{Re}(\\widetilde{k}_x)}=\\lambda_0\\left[\\operatorname{Re}\\sqrt{\\dfrac{\\varepsilon_1\\widetilde{\\varepsilon}_2}{\\varepsilon_1+\\widetilde{\\varepsilon}_2}}\\right]^{-1}\\simeq \\lambda_0\\sqrt{\\dfrac{\\varepsilon_1+\\varepsilon_{21}}{\\varepsilon_1\\varepsilon_{21}}}\\left[1+O(\\varepsilon_{22}^2)\\right]\\)",
+      "reasoning": "The response’s lowest-order result is exactly the reference answer, \\(\\lambda=\\lambda_0\\sqrt{(\\varepsilon_1+\\varepsilon_{21})/(\\varepsilon_1\\varepsilon_{21})}\\). The added \\(O(\\varepsilon_{22}^2)\\) term correctly indicates that the small imaginary permittivity produces no first-order correction to the wavelength.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12860,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 313,
+      "reasoning_output_tokens": 48
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(\\\\lambda=\\\\dfrac{2\\\\pi}{\\\\operatorname{Re}(\\\\widetilde{k}_x)}=\\\\lambda_0\\\\left[\\\\operatorname{Re}\\\\sqrt{\\\\dfrac{\\\\varepsilon_1\\\\widetilde{\\\\varepsilon}_2}{\\\\varepsilon_1+\\\\widetilde{\\\\varepsilon}_2}}\\\\right]^{-1}\\\\simeq \\\\lambda_0\\\\sqrt{\\\\dfrac{\\\\varepsilon_1+\\\\varepsilon_{21}}{\\\\varepsilon_1\\\\varepsilon_{21}}}\\\\left[1+O(\\\\varepsilon_{22}^2)\\\\right]\\\\)\",\"reasoning\":\"The response’s lowest-order result is exactly the reference answer, \\\\(\\\\lambda=\\\\lambda_0\\\\sqrt{(\\\\varepsilon_1+\\\\varepsilon_{21})/(\\\\varepsilon_1\\\\varepsilon_{21})}\\\\). The added \\\\(O(\\\\varepsilon_{22}^2)\\\\) term correctly indicates that the small imaginary permittivity produces no first-order correction to the wavelength.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "c35cadb9300e77430dd1e024c53456c692dce87d555ce778759cff38c604d267"
+  },
+  "65": {
+    "judgment": {
+      "extracted_final_answer": "\\(\\vec v(t)=\\vec v_0\\exp\\!\\left(-\\frac{5\\pi B^{2}R}{14m\\lambda}\\,t\\right)\\)",
+      "reasoning": "The response exactly matches the reference result: the velocity retains its initial direction and decays exponentially with rate \\(5\\pi RB^2/(14m\\lambda)\\).",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12747,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 112,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(\\\\vec v(t)=\\\\vec v_0\\\\exp\\\\!\\\\left(-\\\\frac{5\\\\pi B^{2}R}{14m\\\\lambda}\\\\,t\\\\right)\\\\)\",\"reasoning\":\"The response exactly matches the reference result: the velocity retains its initial direction and decays exponentially with rate \\\\(5\\\\pi RB^2/(14m\\\\lambda)\\\\).\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "9ceb908ffa853aab080dd6cf22d38f1462a6777a4e299fa4b04f90d3760f06e9"
+  },
+  "709": {
+    "judgment": {
+      "extracted_final_answer": "\\(\\delta\\omega=-\\dfrac{2\\Omega}{m^{2}+1}\\)",
+      "reasoning": "The response exactly matches the reference precession angular velocity, including the negative sign and the factor \\(2/(m^2+1)\\).",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12410,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 85,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(\\\\delta\\\\omega=-\\\\dfrac{2\\\\Omega}{m^{2}+1}\\\\)\",\"reasoning\":\"The response exactly matches the reference precession angular velocity, including the negative sign and the factor \\\\(2/(m^2+1)\\\\).\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "33c63bccd9a07309603dc5cfc62ac5aae98c7fbdd24f645538cec6af8a7458db"
+  },
+  "115": {
+    "judgment": {
+      "extracted_final_answer": "\\(\\displaystyle \\frac{dP'}{dz'}=\\frac{nq^{2}\\omega^{4}R^{4}}{6\\varepsilon_{0}c^{3}\\sqrt{1-\\beta^{2}}\\left(1-\\frac{\\omega^{2}R^{2}}{c^{2}}\\right)^{2}}\\)",
+      "reasoning": "The response does not match the reference answer. It effectively applies the single-particle radiation factor evaluated at the outer radius R to the entire cross-sectional particle density. The radiation must instead be integrated over radius because each charge has tangential speed \\(\\omega r\\), acceleration \\(\\omega^2 r\\), and a radius-dependent Lorentz factor. That integration produces \\(\\displaystyle P'=\\frac{nq^2c}{6\\varepsilon_0\\sqrt{1-\\beta^2}}\\left[\\frac{\\omega^2R^2/c^2}{1-\\omega^2R^2/c^2}+\\ln\\left(1-\\frac{\\omega^2R^2}{c^2}\\right)\\right]\\), which is not algebraically equivalent to the extracted expression.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 13555,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 336,
+      "reasoning_output_tokens": 46
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(\\\\displaystyle \\\\frac{dP'}{dz'}=\\\\frac{nq^{2}\\\\omega^{4}R^{4}}{6\\\\varepsilon_{0}c^{3}\\\\sqrt{1-\\\\beta^{2}}\\\\left(1-\\\\frac{\\\\omega^{2}R^{2}}{c^{2}}\\\\right)^{2}}\\\\)\",\"reasoning\":\"The response does not match the reference answer. It effectively applies the single-particle radiation factor evaluated at the outer radius R to the entire cross-sectional particle density. The radiation must instead be integrated over radius because each charge has tangential speed \\\\(\\\\omega r\\\\), acceleration \\\\(\\\\omega^2 r\\\\), and a radius-dependent Lorentz factor. That integration produces \\\\(\\\\displaystyle P'=\\\\frac{nq^2c}{6\\\\varepsilon_0\\\\sqrt{1-\\\\beta^2}}\\\\left[\\\\frac{\\\\omega^2R^2/c^2}{1-\\\\omega^2R^2/c^2}+\\\\ln\\\\left(1-\\\\frac{\\\\omega^2R^2}{c^2}\\\\right)\\\\right]\\\\), which is not algebraically equivalent to the extracted expression.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "6e4530e0f618a2861f6c2c18f8939082c7f61d3cf49703256da006798d55d671"
+  },
+  "36": {
+    "judgment": {
+      "extracted_final_answer": "e\\simeq \\sqrt{\\frac{15}{8\\pi G\\rho}\\left(\\omega^{2}+\\frac{3Gm}{2r^{3}}\\right)}=\\sqrt{\\frac{15\\omega^{2}}{8\\pi G\\rho}+\\frac{45m}{16\\pi\\rho r^{3}}}",
+      "reasoning": "This is algebraically equivalent to the reference answer: \\(\\sqrt{(30\\omega^2+45Gm/r^3)/(16\\pi\\rho G)}\\). Expanding the reference gives exactly the two terms shown in the response.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 13202,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 286,
+      "reasoning_output_tokens": 121
+    },
+    "raw_response": "{\"extracted_final_answer\":\"e\\\\simeq \\\\sqrt{\\\\frac{15}{8\\\\pi G\\\\rho}\\\\left(\\\\omega^{2}+\\\\frac{3Gm}{2r^{3}}\\\\right)}=\\\\sqrt{\\\\frac{15\\\\omega^{2}}{8\\\\pi G\\\\rho}+\\\\frac{45m}{16\\\\pi\\\\rho r^{3}}}\",\"reasoning\":\"This is algebraically equivalent to the reference answer: \\\\(\\\\sqrt{(30\\\\omega^2+45Gm/r^3)/(16\\\\pi\\\\rho G)}\\\\). Expanding the reference gives exactly the two terms shown in the response.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "2eec91e139e390eddd844fa2388aa684b994f6b77450a3eeb8b077d689189ec2"
+  },
+  "423": {
+    "judgment": {
+      "extracted_final_answer": "c_p=6\\frac{pv}{T},\\quad T_D=T_A\\left(\\frac{p_D}{p_A}\\right)^{2/3}\\left(\\frac{v_D}{v_A}\\right)^{1/3},\\quad S_D-S_A=3\\left(\\frac{p_Dv_D}{T_D}-\\frac{p_Av_A}{T_A}\\right)=\\frac{3}{T_A}\\left[\\left(p_A^2p_Dv_Av_D^2\\right)^{1/3}-p_Av_A\\right].",
+      "reasoning": "The response gives the required constant scale factor c_p=6pv/T and the same temperature relation as the reference. Its entropy-change expression is algebraically equivalent to the reference: factoring 3p_Av_A/T_A from the response's final expression yields 3p_Av_A/T_A[(p_Dv_D^2/(p_Av_A^2))^{1/3}-1].",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 13317,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 511,
+      "reasoning_output_tokens": 267
+    },
+    "raw_response": "{\"extracted_final_answer\":\"c_p=6\\\\frac{pv}{T},\\\\quad T_D=T_A\\\\left(\\\\frac{p_D}{p_A}\\\\right)^{2/3}\\\\left(\\\\frac{v_D}{v_A}\\\\right)^{1/3},\\\\quad S_D-S_A=3\\\\left(\\\\frac{p_Dv_D}{T_D}-\\\\frac{p_Av_A}{T_A}\\\\right)=\\\\frac{3}{T_A}\\\\left[\\\\left(p_A^2p_Dv_Av_D^2\\\\right)^{1/3}-p_Av_A\\\\right].\",\"reasoning\":\"The response gives the required constant scale factor c_p=6pv/T and the same temperature relation as the reference. Its entropy-change expression is algebraically equivalent to the reference: factoring 3p_Av_A/T_A from the response's final expression yields 3p_Av_A/T_A[(p_Dv_D^2/(p_Av_A^2))^{1/3}-1].\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "5f796b4fb6638af5c98cdae42069ee6e2c8d7c13c6a701501eb42872e5c40c9b"
+  },
+  "120": {
+    "judgment": {
+      "extracted_final_answer": "\\eta_{\\max}=\\frac{\\gamma-1}{2\\sqrt{\\gamma p_0V_0/W}-1}",
+      "reasoning": "The response exactly matches the reference maximum-efficiency expression, with only equivalent LaTeX formatting differences.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11920,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 82,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\eta_{\\\\max}=\\\\frac{\\\\gamma-1}{2\\\\sqrt{\\\\gamma p_0V_0/W}-1}\",\"reasoning\":\"The response exactly matches the reference maximum-efficiency expression, with only equivalent LaTeX formatting differences.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "63ffaedf7724738ff806d6922168cf7485e69480ea3487c3ff306630d66279cf"
+  },
+  "72": {
+    "judgment": {
+      "extracted_final_answer": "l=0.20\\,\\frac{V_{0}}{S}",
+      "reasoning": "The response exactly matches the supplied reference answer, including the requested coefficient to two decimal places.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12585,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 67,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"l=0.20\\\\,\\\\frac{V_{0}}{S}\",\"reasoning\":\"The response exactly matches the supplied reference answer, including the requested coefficient to two decimal places.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "18cb83e183ef40180b4c5907bd5edd3dfcda41a76b96183137e110939b17eb4d"
+  },
+  "50": {
+    "judgment": {
+      "extracted_final_answer": "T_{1}=T_{0}\\left[\\frac{p_{1}+\\dfrac{Nmg}{S}}{p_{0}+\\dfrac{Nmg}{S}}\\,\\frac{\\left(1+\\dfrac{Nmg}{p_{1}S}\\right)^{\\frac{p_{1}S}{Nmg}}}{\\left(1+\\dfrac{Nmg}{p_{0}S}\\right)^{\\frac{p_{0}S}{Nmg}}}\\right]^{2/7}",
+      "reasoning": "The response is algebraically equivalent to the reference. The first ratio equals (p1 S + Nmg)/(p0 S + Nmg), and applying the outer exponent 2/7 to every factor produces exactly the exponents and pressure-ratio power in the reference answer.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 13161,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 208,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"T_{1}=T_{0}\\\\left[\\\\frac{p_{1}+\\\\dfrac{Nmg}{S}}{p_{0}+\\\\dfrac{Nmg}{S}}\\\\,\\\\frac{\\\\left(1+\\\\dfrac{Nmg}{p_{1}S}\\\\right)^{\\\\frac{p_{1}S}{Nmg}}}{\\\\left(1+\\\\dfrac{Nmg}{p_{0}S}\\\\right)^{\\\\frac{p_{0}S}{Nmg}}}\\\\right]^{2/7}\",\"reasoning\":\"The response is algebraically equivalent to the reference. The first ratio equals (p1 S + Nmg)/(p0 S + Nmg), and applying the outer exponent 2/7 to every factor produces exactly the exponents and pressure-ratio power in the reference answer.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "b2b9697174eeac15b50e20eb4ca85652bd34cd0b23ff9e65366354cc26f36b06"
+  },
+  "333": {
+    "judgment": {
+      "extracted_final_answer": "\\(\\displaystyle \\beta=\\frac{M}{\\frac{mR^{2}}{2}+\\frac{\\pi\\mu_{0}LP_{0}^{2}}{4k^{4}}\\left[3+e^{2kR}\\left(4k^{3}R^{3}-6k^{2}R^{2}+6kR-3\\right)\\right]}\\)",
+      "reasoning": "The response is algebraically equivalent to the reference. Dividing the reference numerator and denominator by 2 gives the mechanical term \\(mR^2/2\\), while expanding its electromagnetic term yields exactly \\(\\frac{\\pi\\mu_0LP_0^2}{4k^4}[3+e^{2kR}(4k^3R^3-6k^2R^2+6kR-3)]\\).",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12284,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 465,
+      "reasoning_output_tokens": 246
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(\\\\displaystyle \\\\beta=\\\\frac{M}{\\\\frac{mR^{2}}{2}+\\\\frac{\\\\pi\\\\mu_{0}LP_{0}^{2}}{4k^{4}}\\\\left[3+e^{2kR}\\\\left(4k^{3}R^{3}-6k^{2}R^{2}+6kR-3\\\\right)\\\\right]}\\\\)\",\"reasoning\":\"The response is algebraically equivalent to the reference. Dividing the reference numerator and denominator by 2 gives the mechanical term \\\\(mR^2/2\\\\), while expanding its electromagnetic term yields exactly \\\\(\\\\frac{\\\\pi\\\\mu_0LP_0^2}{4k^4}[3+e^{2kR}(4k^3R^3-6k^2R^2+6kR-3)]\\\\).\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "e5057c64bbc35a789346e84e85669f2870bdf257c1ac833fdc9b6995a921602e"
+  },
+  "648": {
+    "judgment": {
+      "extracted_final_answer": "\\boxed{v_{\\min}=\\sqrt{\\frac{Qq}{2\\pi\\varepsilon_{0}mR}\\,\\frac{1-\\cos\\!\\left(\\frac{\\pi}{n}\\right)}{2\\cos\\!\\left(\\frac{\\pi}{n}\\right)-1}}\\qquad(n\\ge 4)}",
+      "reasoning": "This matches the reference because Coulomb's constant is k=1/(4\\pi\\varepsilon_0), so 2kQq/(mR)=Qq/(2\\pi\\varepsilon_0mR). The remaining trigonometric factor is identical. The condition n\\ge 4 is also consistent with requiring a finite real speed, since 2\\cos(\\pi/n)-1>0.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12576,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 296,
+      "reasoning_output_tokens": 93
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\boxed{v_{\\\\min}=\\\\sqrt{\\\\frac{Qq}{2\\\\pi\\\\varepsilon_{0}mR}\\\\,\\\\frac{1-\\\\cos\\\\!\\\\left(\\\\frac{\\\\pi}{n}\\\\right)}{2\\\\cos\\\\!\\\\left(\\\\frac{\\\\pi}{n}\\\\right)-1}}\\\\qquad(n\\\\ge 4)}\",\"reasoning\":\"This matches the reference because Coulomb's constant is k=1/(4\\\\pi\\\\varepsilon_0), so 2kQq/(mR)=Qq/(2\\\\pi\\\\varepsilon_0mR). The remaining trigonometric factor is identical. The condition n\\\\ge 4 is also consistent with requiring a finite real speed, since 2\\\\cos(\\\\pi/n)-1>0.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "2f3e6695f2288805ddf774e12503a7a61a3dab2490bc0939913854d457fbf769"
+  },
+  "221": {
+    "judgment": {
+      "extracted_final_answer": "t=\\frac{m_{0}\\gamma_{0}}{\\rho A c\\,\\beta_{0}}\\left[\\frac{4}{7}\\left(\\left(\\frac{R_{0}}{R}\\right)^{7}-1\\right)-\\beta_{0}^{2}\\left(\\frac{R_{0}}{R}-1\\right)\\right],\\quad \\lambda=\\frac{kR_{0}^{2}}{m_{0}c^{2}},\\quad \\gamma_{0}=\\frac{\\lambda+\\sqrt{\\lambda^{2}+4}}{2},\\quad \\beta_{0}=\\sqrt{\\frac{\\lambda}{\\gamma_{0}}}.",
+      "reasoning": "The response is algebraically equivalent to the reference. With B=\\gamma_0m_0R_0^4 and \\beta_0^2=kR_0^2/(\\gamma_0m_0c^2)=\\lambda/\\gamma_0, substituting into the reference expression and simplifying gives exactly the stated formula for t. The definitions of \\gamma_0 and \\beta_0 also match the initial relativistic circular-motion relations.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12525,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 602,
+      "reasoning_output_tokens": 316
+    },
+    "raw_response": "{\"extracted_final_answer\":\"t=\\\\frac{m_{0}\\\\gamma_{0}}{\\\\rho A c\\\\,\\\\beta_{0}}\\\\left[\\\\frac{4}{7}\\\\left(\\\\left(\\\\frac{R_{0}}{R}\\\\right)^{7}-1\\\\right)-\\\\beta_{0}^{2}\\\\left(\\\\frac{R_{0}}{R}-1\\\\right)\\\\right],\\\\quad \\\\lambda=\\\\frac{kR_{0}^{2}}{m_{0}c^{2}},\\\\quad \\\\gamma_{0}=\\\\frac{\\\\lambda+\\\\sqrt{\\\\lambda^{2}+4}}{2},\\\\quad \\\\beta_{0}=\\\\sqrt{\\\\frac{\\\\lambda}{\\\\gamma_{0}}}.\",\"reasoning\":\"The response is algebraically equivalent to the reference. With B=\\\\gamma_0m_0R_0^4 and \\\\beta_0^2=kR_0^2/(\\\\gamma_0m_0c^2)=\\\\lambda/\\\\gamma_0, substituting into the reference expression and simplifying gives exactly the stated formula for t. The definitions of \\\\gamma_0 and \\\\beta_0 also match the initial relativistic circular-motion relations.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "683da4e294ccae9caefc4d9587740d206b89994cf7b4fa865fb7ba4572aa7a14"
+  },
+  "670": {
+    "judgment": {
+      "extracted_final_answer": "\\lambda_D=\\sqrt{\\frac{\\varepsilon_0 kT}{2n_0e^2}}",
+      "reasoning": "The response derives the same Debye radius as the supplied reference. Its expression is algebraically identical to \\(\\sqrt{kT\\varepsilon_0/(2e^2n_0)}\\), with the same sign conventions, factor of 2, and physical assumptions.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12778,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 115,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\lambda_D=\\\\sqrt{\\\\frac{\\\\varepsilon_0 kT}{2n_0e^2}}\",\"reasoning\":\"The response derives the same Debye radius as the supplied reference. Its expression is algebraically identical to \\\\(\\\\sqrt{kT\\\\varepsilon_0/(2e^2n_0)}\\\\), with the same sign conventions, factor of 2, and physical assumptions.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "f5e865b7c606529f4d386f3dc01ce80f64c484274783c9ef861051d88e3c2f3e"
+  },
+  "603": {
+    "judgment": {
+      "extracted_final_answer": "\\(\\varepsilon(\\omega)=\\varepsilon_0-\\frac{ne^2}{m\\omega^2}=\\varepsilon_0\\left(1-\\frac{\\omega_p^2}{\\omega^2}\\right),\\quad \\omega_p^2=\\frac{ne^2}{m\\varepsilon_0}\\)",
+      "reasoning": "The response gives the absolute permittivity, while the reference writes the relative dielectric constant. Dividing the response’s result by \\(\\varepsilon_0\\) gives \\(1-\\frac{ne^2}{\\varepsilon_0m\\omega^2}\\), exactly matching the reference. The expressions are physically and mathematically equivalent under the stated constitutive conventions.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12253,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 288,
+      "reasoning_output_tokens": 99
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(\\\\varepsilon(\\\\omega)=\\\\varepsilon_0-\\\\frac{ne^2}{m\\\\omega^2}=\\\\varepsilon_0\\\\left(1-\\\\frac{\\\\omega_p^2}{\\\\omega^2}\\\\right),\\\\quad \\\\omega_p^2=\\\\frac{ne^2}{m\\\\varepsilon_0}\\\\)\",\"reasoning\":\"The response gives the absolute permittivity, while the reference writes the relative dielectric constant. Dividing the response’s result by \\\\(\\\\varepsilon_0\\\\) gives \\\\(1-\\\\frac{ne^2}{\\\\varepsilon_0m\\\\omega^2}\\\\), exactly matching the reference. The expressions are physically and mathematically equivalent under the stated constitutive conventions.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "89c1b2db6a332590b9559e73d9198d9e4a93af034023438736f39364186e1d5b"
+  },
+  "211": {
+    "judgment": {
+      "extracted_final_answer": "a_B=\\frac{a_A}{1+\\dfrac{a_A L_0}{c^2}}",
+      "reasoning": "The response exactly matches the supplied reference answer, with identical dependence on a_A, L_0, and c.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 13156,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 80,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"a_B=\\\\frac{a_A}{1+\\\\dfrac{a_A L_0}{c^2}}\",\"reasoning\":\"The response exactly matches the supplied reference answer, with identical dependence on a_A, L_0, and c.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "51c7f1c7c9a3e609c987c35e8f836e0496b2882f37ef1e15ce53414adc923d5e"
+  },
+  "719": {
+    "judgment": {
+      "extracted_final_answer": "T(h)=\\frac{\\mu G M_m}{nR(R_m+h)}",
+      "reasoning": "The response exactly matches the reference temperature expression, with the same dependence on all requested physical quantities.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12403,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 69,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"T(h)=\\\\frac{\\\\mu G M_m}{nR(R_m+h)}\",\"reasoning\":\"The response exactly matches the reference temperature expression, with the same dependence on all requested physical quantities.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "112b857e8ffa5b0e4d39b138bb13f0627dcd3b8dc4a6b992be516fa847f531fa"
+  },
+  "139": {
+    "judgment": {
+      "extracted_final_answer": "\\tan\\varphi=\\frac{P_{1}-P_{2}\\cos 2\\beta}{P_{2}\\sin 2\\beta}",
+      "reasoning": "The response does not match the reference answer, which is \\(\\tan\\varphi=\\frac{P_{2}-P_{1}\\cos(2\\beta)}{P_{1}\\sin(2\\beta)}\\). The roles of \\(P_1\\) and \\(P_2\\) are interchanged in both the numerator and denominator, and the two expressions are not generally equivalent.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12145,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 151,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\tan\\\\varphi=\\\\frac{P_{1}-P_{2}\\\\cos 2\\\\beta}{P_{2}\\\\sin 2\\\\beta}\",\"reasoning\":\"The response does not match the reference answer, which is \\\\(\\\\tan\\\\varphi=\\\\frac{P_{2}-P_{1}\\\\cos(2\\\\beta)}{P_{1}\\\\sin(2\\\\beta)}\\\\). The roles of \\\\(P_1\\\\) and \\\\(P_2\\\\) are interchanged in both the numerator and denominator, and the two expressions are not generally equivalent.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "a5356f2ac601308d555875c1850532fa9a25579e7d8e7f90b4163268a98b5217"
+  },
+  "140": {
+    "judgment": {
+      "extracted_final_answer": "\\boxed{T=\\dfrac{P}{3\\sqrt{6}}}",
+      "reasoning": "The response is equivalent to the reference because \\(\\frac{P}{3\\sqrt6}=\\frac{\\sqrt6}{18}P\\).",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11886,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 127,
+      "reasoning_output_tokens": 42
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\boxed{T=\\\\dfrac{P}{3\\\\sqrt{6}}}\",\"reasoning\":\"The response is equivalent to the reference because \\\\(\\\\frac{P}{3\\\\sqrt6}=\\\\frac{\\\\sqrt6}{18}P\\\\).\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "2b725934dfc7de64b74b27e2c657adfa0bad8a6f2e27855c74cff14020f7bb75"
+  },
+  "653": {
+    "judgment": {
+      "extracted_final_answer": "v_{0}=\\sqrt{2g\\alpha+\\frac{\\pi^{2}B^{2}r^{4}}{mL}}",
+      "reasoning": "The response exactly matches the reference final expression, with the reference's pendulum length a represented by α as defined in the question.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12723,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 90,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"v_{0}=\\\\sqrt{2g\\\\alpha+\\\\frac{\\\\pi^{2}B^{2}r^{4}}{mL}}\",\"reasoning\":\"The response exactly matches the reference final expression, with the reference's pendulum length a represented by α as defined in the question.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "6b19becbc50f43e7293d1b3712763ad759d93a3931bee5057cba1e81c17de006"
+  },
+  "106": {
+    "judgment": {
+      "extracted_final_answer": "v=\\sqrt{3gl\\sin\\theta_{0}}",
+      "reasoning": "The response gives the positive magnitude, whereas the reference answer is v=-\\sqrt{3gl\\sin\\theta_{0}}. Since velocity is signed and the grading instructions require preserving sign distinctions, the answers do not match.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11905,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 133,
+      "reasoning_output_tokens": 39
+    },
+    "raw_response": "{\"extracted_final_answer\":\"v=\\\\sqrt{3gl\\\\sin\\\\theta_{0}}\",\"reasoning\":\"The response gives the positive magnitude, whereas the reference answer is v=-\\\\sqrt{3gl\\\\sin\\\\theta_{0}}. Since velocity is signed and the grading instructions require preserving sign distinctions, the answers do not match.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "27cc38dcd75ebeb98492aaef52f56a242da6b6dd438ae788a5a9a9c295afa3ae"
+  },
+  "37": {
+    "judgment": {
+      "extracted_final_answer": "\\(a_y=\\dfrac{\\mu^{2} g h}{2v}\\,\\omega\\)",
+      "reasoning": "The response is algebraically identical to the reference result \\(a_y=\\mu^2\\omega h g/(2\\nu)\\), with \\(v\\) and \\(\\nu\\) denoting the same forward velocity from the question. All factors and the sign match.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12614,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 117,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(a_y=\\\\dfrac{\\\\mu^{2} g h}{2v}\\\\,\\\\omega\\\\)\",\"reasoning\":\"The response is algebraically identical to the reference result \\\\(a_y=\\\\mu^2\\\\omega h g/(2\\\\nu)\\\\), with \\\\(v\\\\) and \\\\(\\\\nu\\\\) denoting the same forward velocity from the question. All factors and the sign match.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "2149d68086a25298bbee5e218e41e6389a89559b49d89c2aa4333e46904a421d"
+  },
+  "117": {
+    "judgment": {
+      "extracted_final_answer": "(x_f,y_f)\\simeq\\left(2\\pi R,\\frac{64\\sigma rR^2}{3M}\\right)",
+      "reasoning": "The response’s final height, \\(y_f=\\frac{64}{3}\\frac{\\sigma R^2r}{M}\\), exactly matches the reference result. Its horizontal coordinate \\(x_f\\simeq2\\pi R\\) is also consistent to the requested first-order accuracy near the opposite end of the cycloid.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12348,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 330,
+      "reasoning_output_tokens": 191
+    },
+    "raw_response": "{\"extracted_final_answer\":\"(x_f,y_f)\\\\simeq\\\\left(2\\\\pi R,\\\\frac{64\\\\sigma rR^2}{3M}\\\\right)\",\"reasoning\":\"The response’s final height, \\\\(y_f=\\\\frac{64}{3}\\\\frac{\\\\sigma R^2r}{M}\\\\), exactly matches the reference result. Its horizontal coordinate \\\\(x_f\\\\simeq2\\\\pi R\\\\) is also consistent to the requested first-order accuracy near the opposite end of the cycloid.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "a4ef4f4183c80959327e01b39e701972a5e27b300c75ebf35521f6d55091a0c9"
+  },
+  "45": {
+    "judgment": {
+      "extracted_final_answer": "v=\\sqrt{\\frac{\\gamma\\left(p+\\dfrac{a\\rho^2}{\\mu^2}\\right)}{\\rho\\left(1-\\dfrac{b\\rho}{\\mu}\\right)}-\\frac{2a\\rho}{\\mu^2}}",
+      "reasoning": "The response matches the reference. Its first term is algebraically equivalent because \\(\\rho(1-b\\rho/\\mu)=(\\mu\\rho-b\\rho^2)/\\mu\\), so both formulas give the same adiabatic wave speed.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12831,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 244,
+      "reasoning_output_tokens": 90
+    },
+    "raw_response": "{\"extracted_final_answer\":\"v=\\\\sqrt{\\\\frac{\\\\gamma\\\\left(p+\\\\dfrac{a\\\\rho^2}{\\\\mu^2}\\\\right)}{\\\\rho\\\\left(1-\\\\dfrac{b\\\\rho}{\\\\mu}\\\\right)}-\\\\frac{2a\\\\rho}{\\\\mu^2}}\",\"reasoning\":\"The response matches the reference. Its first term is algebraically equivalent because \\\\(\\\\rho(1-b\\\\rho/\\\\mu)=(\\\\mu\\\\rho-b\\\\rho^2)/\\\\mu\\\\), so both formulas give the same adiabatic wave speed.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "dc3f3a61a2aa6fb64477a88572619f745e7162a0386c71edd32710d852a9948f"
+  },
+  "654": {
+    "judgment": {
+      "extracted_final_answer": "\\(N'=\\dfrac{2n m S c (v_1-v_2)^2}{h u_0\\left(1-\\frac{v_1^2}{c^2}\\right)\\sqrt{1-\\frac{v_2^2}{c^2}}}\\)",
+      "reasoning": "This matches the reference because \\(\\gamma_1^2=1/(1-v_1^2/c^2)\\) and \\(\\gamma_2=1/\\sqrt{1-v_2^2/c^2}\\). Thus the response is algebraically identical to \\(N'=2nSmc\\gamma_1^2\\gamma_2(v_1-v_2)^2/(hu_0)\\).",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12576,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 243,
+      "reasoning_output_tokens": 48
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(N'=\\\\dfrac{2n m S c (v_1-v_2)^2}{h u_0\\\\left(1-\\\\frac{v_1^2}{c^2}\\\\right)\\\\sqrt{1-\\\\frac{v_2^2}{c^2}}}\\\\)\",\"reasoning\":\"This matches the reference because \\\\(\\\\gamma_1^2=1/(1-v_1^2/c^2)\\\\) and \\\\(\\\\gamma_2=1/\\\\sqrt{1-v_2^2/c^2}\\\\). Thus the response is algebraically identical to \\\\(N'=2nSmc\\\\gamma_1^2\\\\gamma_2(v_1-v_2)^2/(hu_0)\\\\).\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "55721d7751695756f091daebada1fa4d42108e941767ffdcbd757d9210e76cfb"
+  },
+  "43": {
+    "judgment": {
+      "extracted_final_answer": "I(t)=\\frac{A U_{0}\\sigma _{1}\\sigma _{2}}{h_{1}\\sigma _{2}+h_{2}\\sigma _{1}}+\\frac{A U_{0}h_{1}h_{2}(\\varepsilon _{1}\\sigma _{2}-\\varepsilon _{2}\\sigma _{1})^{2}}{(h_{1}\\varepsilon _{2}+h_{2}\\varepsilon _{1})^{2}(h_{1}\\sigma _{2}+h_{2}\\sigma _{1})}\\exp\\!\\left[-\\frac{h_{1}\\sigma _{2}+h_{2}\\sigma _{1}}{h_{1}\\varepsilon _{2}+h_{2}\\varepsilon _{1}}t\\right],\\quad t>0",
+      "reasoning": "The constant term and the exponential coefficient are algebraically equivalent to those in the supplied reference. However, the response has a negative exponential exponent, whereas the reference explicitly has a positive exponent. Because the sign must be preserved under the stated strict comparison, the answers do not match.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12715,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 506,
+      "reasoning_output_tokens": 232
+    },
+    "raw_response": "{\"extracted_final_answer\":\"I(t)=\\\\frac{A U_{0}\\\\sigma _{1}\\\\sigma _{2}}{h_{1}\\\\sigma _{2}+h_{2}\\\\sigma _{1}}+\\\\frac{A U_{0}h_{1}h_{2}(\\\\varepsilon _{1}\\\\sigma _{2}-\\\\varepsilon _{2}\\\\sigma _{1})^{2}}{(h_{1}\\\\varepsilon _{2}+h_{2}\\\\varepsilon _{1})^{2}(h_{1}\\\\sigma _{2}+h_{2}\\\\sigma _{1})}\\\\exp\\\\!\\\\left[-\\\\frac{h_{1}\\\\sigma _{2}+h_{2}\\\\sigma _{1}}{h_{1}\\\\varepsilon _{2}+h_{2}\\\\varepsilon _{1}}t\\\\right],\\\\quad t>0\",\"reasoning\":\"The constant term and the exponential coefficient are algebraically equivalent to those in the supplied reference. However, the response has a negative exponential exponent, whereas the reference explicitly has a positive exponent. Because the sign must be preserved under the stated strict comparison, the answers do not match.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "5cc973bdd06360d7b959ec56acfdff9399e43e22dd15043a7740439680d26b55"
+  },
+  "42": {
+    "judgment": {
+      "extracted_final_answer": "\\(n(r)=n_{0}\\,\\frac{a^{2}}{r^{2}}\\sqrt{\\frac{r^{2}}{a^{2}}+q^{2}\\left(1-\\frac{r^{2}}{a^{2}}\\right)}\\quad(0<r<a),\\qquad n_{0}=n(a)\\)",
+      "reasoning": "The response is algebraically equivalent to the reference. Its square-root factor is \\(q^{2}-(q^{2}-1)r^{2}/a^{2}\\), so the expression simplifies to \\(n_0 a\\sqrt{a^{2}q^{2}/r^{4}-(q^{2}-1)/r^{2}}\\), exactly matching the reference. The stated domain is also appropriate.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12330,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 421,
+      "reasoning_output_tokens": 218
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(n(r)=n_{0}\\\\,\\\\frac{a^{2}}{r^{2}}\\\\sqrt{\\\\frac{r^{2}}{a^{2}}+q^{2}\\\\left(1-\\\\frac{r^{2}}{a^{2}}\\\\right)}\\\\quad(0<r<a),\\\\qquad n_{0}=n(a)\\\\)\",\"reasoning\":\"The response is algebraically equivalent to the reference. Its square-root factor is \\\\(q^{2}-(q^{2}-1)r^{2}/a^{2}\\\\), so the expression simplifies to \\\\(n_0 a\\\\sqrt{a^{2}q^{2}/r^{4}-(q^{2}-1)/r^{2}}\\\\), exactly matching the reference. The stated domain is also appropriate.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "106806f7877a5a421392bc54d788ee0e9e8150fe86f659f9e1ba18e4f9beee19"
+  },
+  "412": {
+    "judgment": {
+      "extracted_final_answer": "\\(A=\\frac{\\mu_{0}\\pi r^{2}nI}{2}\\), \\(f_{0}=1-\\frac{z_{0}}{\\sqrt{R^{2}+z_{0}^{2}}}\\), with equilibrium condition \\(\\frac{AR^{2}}{(R^{2}+z_{0}^{2})^{3/2}}\\left(\\frac{Af_{0}}{L}-I_{0}\\right)=mg\\), and \\(T=2\\pi\\sqrt{\\frac{m}{\\frac{A^{2}R^{4}}{L(R^{2}+z_{0}^{2})^{3}}+\\frac{3AR^{2}z_{0}}{(R^{2}+z_{0}^{2})^{5/2}}\\left(\\frac{Af_{0}}{L}-I_{0}\\right)}}=2\\pi\\sqrt{\\frac{m}{\\frac{A^{2}R^{4}}{L(R^{2}+z_{0}^{2})^{3}}+\\frac{3mgz_{0}}{R^{2}+z_{0}^{2}}}}\\).",
+      "reasoning": "The response's equilibrium equation is identical to the reference after substituting \\(A=\\mu_0\\pi r^2 nI/2\\) and \\(f_0=1-z_0/\\sqrt{R^2+z_0^2}\\). Differentiating \\(F(z)=AR^2(R^2+z^2)^{-3/2}(Af/L-I_0)\\) gives \\(-F'(z_0)=\\frac{A^2R^4}{L(R^2+z_0^2)^3}+\\frac{3AR^2z_0}{(R^2+z_0^2)^{5/2}}(Af_0/L-I_0)\\), exactly the response's period denominator and algebraically equivalent to the reference. The second period form follows from the equilibrium condition. Stability is assumed by the question, so omission of the explicit stability inequality does not invalidate the requested period.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 12677,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 784,
+      "reasoning_output_tokens": 287
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(A=\\\\frac{\\\\mu_{0}\\\\pi r^{2}nI}{2}\\\\), \\\\(f_{0}=1-\\\\frac{z_{0}}{\\\\sqrt{R^{2}+z_{0}^{2}}}\\\\), with equilibrium condition \\\\(\\\\frac{AR^{2}}{(R^{2}+z_{0}^{2})^{3/2}}\\\\left(\\\\frac{Af_{0}}{L}-I_{0}\\\\right)=mg\\\\), and \\\\(T=2\\\\pi\\\\sqrt{\\\\frac{m}{\\\\frac{A^{2}R^{4}}{L(R^{2}+z_{0}^{2})^{3}}+\\\\frac{3AR^{2}z_{0}}{(R^{2}+z_{0}^{2})^{5/2}}\\\\left(\\\\frac{Af_{0}}{L}-I_{0}\\\\right)}}=2\\\\pi\\\\sqrt{\\\\frac{m}{\\\\frac{A^{2}R^{4}}{L(R^{2}+z_{0}^{2})^{3}}+\\\\frac{3mgz_{0}}{R^{2}+z_{0}^{2}}}}\\\\).\",\"reasoning\":\"The response's equilibrium equation is identical to the reference after substituting \\\\(A=\\\\mu_0\\\\pi r^2 nI/2\\\\) and \\\\(f_0=1-z_0/\\\\sqrt{R^2+z_0^2}\\\\). Differentiating \\\\(F(z)=AR^2(R^2+z^2)^{-3/2}(Af/L-I_0)\\\\) gives \\\\(-F'(z_0)=\\\\frac{A^2R^4}{L(R^2+z_0^2)^3}+\\\\frac{3AR^2z_0}{(R^2+z_0^2)^{5/2}}(Af_0/L-I_0)\\\\), exactly the response's period denominator and algebraically equivalent to the reference. The second period form follows from the equilibrium condition. Stability is assumed by the question, so omission of the explicit stability inequality does not invalidate the requested period.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "20dc22c63c3e1cbfda5c4589abdeaa0bdbf8e21a1c2accd007ea443c17aaab05"
+  },
+  "244": {
+    "judgment": {
+      "extracted_final_answer": "\\(\\gamma=\\frac{7}{4}\\)",
+      "reasoning": "The response gives gamma = 7/4, which exactly matches the supplied correct answer.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11788,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 63,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(\\\\gamma=\\\\frac{7}{4}\\\\)\",\"reasoning\":\"The response gives gamma = 7/4, which exactly matches the supplied correct answer.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "fe49b31ab7f171ba6cd72fc52e362682fc4fe0b3553eed561932eb0136ed3f09"
+  },
+  "25": {
+    "judgment": {
+      "extracted_final_answer": "r(\\theta)=a\\left(1-\\cos\\theta\\right)",
+      "reasoning": "The response exactly matches the final trajectory equation in the supplied correct answer.",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 11988,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 64,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"r(\\\\theta)=a\\\\left(1-\\\\cos\\\\theta\\\\right)\",\"reasoning\":\"The response exactly matches the final trajectory equation in the supplied correct answer.\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "091c413cb387bc91968a3712e00462be9906f0c51a5a478cebca08abd22f1814"
+  },
+  "100": {
+    "judgment": {
+      "extracted_final_answer": "\\(\\omega=g\\sqrt{\\frac{2ml}{Eah^{3}}}\\)",
+      "reasoning": "The response's final expression is algebraically identical to the reference: \\(\\sqrt{2mg^2l/(Eah^3)}=g\\sqrt{2ml/(Eah^3)}\\), taking \\(g>0\\).",
+      "correct": "yes",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 13851,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 106,
+      "reasoning_output_tokens": 0
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(\\\\omega=g\\\\sqrt{\\\\frac{2ml}{Eah^{3}}}\\\\)\",\"reasoning\":\"The response's final expression is algebraically identical to the reference: \\\\(\\\\sqrt{2mg^2l/(Eah^3)}=g\\\\sqrt{2ml/(Eah^3)}\\\\), taking \\\\(g>0\\\\).\",\"correct\":\"yes\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "f4d63453fab48d66013f8bf22f1318506cf8d9f77a16e18d40341c77c04cfbb1"
+  },
+  "58": {
+    "judgment": {
+      "extracted_final_answer": "\\(\\frac{R_2(2R_1-R_2)}{R_1}\\)",
+      "reasoning": "The response differs by a factor of 2 from the reference’s stated fractional result \\(\\frac{(2R_1-R_2)R_2}{2R_1}\\). Although the reference’s final alternate expression is algebraically inconsistent with that fraction, the response does not match the explicitly derived fraction.",
+      "correct": "no",
+      "confidence": 100,
+      "strict": true
+    },
+    "usage": {
+      "input_tokens": 13542,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 888,
+      "reasoning_output_tokens": 766
+    },
+    "raw_response": "{\"extracted_final_answer\":\"\\\\(\\\\frac{R_2(2R_1-R_2)}{R_1}\\\\)\",\"reasoning\":\"The response differs by a factor of 2 from the reference’s stated fractional result \\\\(\\\\frac{(2R_1-R_2)R_2}{2R_1}\\\\). Although the reference’s final alternate expression is algebraically inconsistent with that fraction, the response does not match the explicitly derived fraction.\",\"correct\":\"no\",\"confidence\":100,\"strict\":true}",
+    "requested_model": "gpt-5.6-sol",
+    "actual_model": null,
+    "judge_called": true,
+    "prediction_sha256": "61694ac453ca26488a48459e7f543d5fa23cc430bb2fb815fb4e5bee3fb40e15"
+  }
+}

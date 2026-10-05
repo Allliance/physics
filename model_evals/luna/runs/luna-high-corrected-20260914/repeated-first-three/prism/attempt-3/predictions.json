@@ -1,0 +1,1112 @@
+{
+  "01_cleaned_dag:1049": {
+    "response": "\\[\n\\boxed{\\rho_m=\\rho_e}\n\\]",
+    "usage": {
+      "input_tokens": 9828,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 93,
+      "reasoning_output_tokens": 74
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "01_cleaned_dag:1146": {
+    "response": "\\[\n\\boxed{\\text{The problem statement is incomplete; no specific question is provided.}}\n\\]",
+    "usage": {
+      "input_tokens": 9900,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 173,
+      "reasoning_output_tokens": 145
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "01_cleaned_dag:1013": {
+    "response": "\\[\n\\boxed{\n\\begin{aligned}\n\\text{(a)}\\quad\nV_0&=\\sqrt{2gh}=\\sqrt{2(9.8)(10)}=14\\unit{m/s},\\\\\nT&=\\sqrt{\\frac{2h}{g}}=\\sqrt{\\frac{20}{9.8}}\\approx1.43\\unit{s}.\\\\[4pt]\n\\text{(b)}\\quad\nm\\frac{dV}{dt}&=-bV^2,\\qquad\nmV\\frac{dV}{dx}=-bV^2,\\\\\nV(x)&=V_0e^{-(b/m)x}=14e^{-(b/m)x}.\\\\[4pt]\n\\text{(c)}\\quad\n\\frac{V_0}{10}&=V_0e^{-(2/5)x}\n\\;\\Longrightarrow\\;\nx=\\frac{5}{2}\\ln 10\\approx5.76\\unit{m}.\\\\[4pt]\n\\text{(d)}\\quad\nx(t)&=\\frac{m}{b}\\ln\\!\\left(1+\\frac{b}{m}V_0t\\right).\n\\end{aligned}\n}\n\\]",
+    "usage": {
+      "input_tokens": 9999,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 603,
+      "reasoning_output_tokens": 330
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "01_cleaned_dag:1075": {
+    "response": "\\[\n\\boxed{\n\\begin{aligned}\n\\text{a)}\\quad\ng&=\\frac{GM}{R^2}\n=\\frac{(6.67\\times10^{-11})(7.35\\times10^{22})}{(1.74\\times10^6)^2}\\\\\n&\\approx 1.62\\ \\mathrm{m\\,s^{-2}}.\\\\[6pt]\n\\text{b)}\\quad\n\\frac12 mv_0^2-\\frac{GMm}{R}&=0\\\\\nv_0&=\\sqrt{\\frac{2GM}{R}}\n=\\sqrt{\\frac{2(6.67\\times10^{-11})(7.35\\times10^{22})}{1.74\\times10^6}}\\\\\n&\\approx 2.37\\times10^3\\ \\mathrm{m\\,s^{-1}}.\n\\end{aligned}\n}\n\\]",
+    "usage": {
+      "input_tokens": 9858,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 720,
+      "reasoning_output_tokens": 516
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "02_cleaned_dag:1010": {
+    "response": "\\[\n\\boxed{F=\\frac{Q\\sigma}{2\\varepsilon_0}\\left(1-\\frac{z}{\\sqrt{z^2+R^2}}\\right)}\n\\]",
+    "usage": {
+      "input_tokens": 9765,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 305,
+      "reasoning_output_tokens": 256
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "01_cleaned_dag:3014": {
+    "response": "\\[\n\\boxed{\\frac{\\nu_e-\\nu_s}{\\nu_s}\n=\\sqrt{\\frac{1+\\dfrac{2\\Phi(r_s)}{c^2}}{1+\\dfrac{2\\Phi(r_e)}{c^2}}}-1\n\\;\\simeq\\;\n\\frac{\\Phi(r_s)-\\Phi(r_e)}{c^2}}\n\\]",
+    "usage": {
+      "input_tokens": 10031,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 323,
+      "reasoning_output_tokens": 233
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "01_cleaned_dag:1070": {
+    "response": "\\[\n\\boxed{\n\\begin{aligned}\n\\text{a)}\\quad\n&r(0)=r_0,\\qquad \\dot r(0)=0,\\qquad \nJ=m r_0^2\\dot\\theta(0),\\\\\n&\\frac{J^2}{m r_0^3}+f(r_0)=0,\n\\qquad\nE=V^*(r_0).\n\\\\[4pt]\n\\text{b)}\\quad\n&V^{*\\,\\prime\\prime}(r_0)\n=\\frac{3J^2}{m r_0^4}-\\frac{\\partial f}{\\partial r}(r_0)\n=-\\frac{3f(r_0)}{r_0}-\\frac{\\partial f}{\\partial r}(r_0)>0,\\\\\n&\\therefore\\qquad\nr_0\\frac{\\partial f}{\\partial r}(r_0)+3f(r_0)<0.\n\\\\[4pt]\n\\text{c)}\\quad\n&f(r)=-\\frac{K}{r^n}\n\\quad\\Longrightarrow\\quad\n\\frac{\\partial f}{\\partial r}=\\frac{nK}{r^{n+1}},\\\\\n&V^{*\\,\\prime\\prime}(r_0)=\\frac{K(3-n)}{r_0^{n+1}}>0\n\\quad\\Longrightarrow\\quad n<3.\n\\end{aligned}\n}\n\\]",
+    "usage": {
+      "input_tokens": 9877,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 845,
+      "reasoning_output_tokens": 516
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "02_cleaned_dag:1024": {
+    "response": "\\[\n\\boxed{V_2=\\frac{C_1}{C_2}V_1>V_1}\n\\]",
+    "usage": {
+      "input_tokens": 9829,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 83,
+      "reasoning_output_tokens": 48
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "01_cleaned_dag:3010": {
+    "response": "\\[\n\\boxed{\\theta'=120^\\circ}\n\\]",
+    "usage": {
+      "input_tokens": 9841,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 208,
+      "reasoning_output_tokens": 189
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "01_cleaned_dag:1098": {
+    "response": "\\[\n\\boxed{\\,y=\\frac{\\omega}{V}(x-R)^2\\,}\n\\]",
+    "usage": {
+      "input_tokens": 9881,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 544,
+      "reasoning_output_tokens": 516
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "02_cleaned_dag:2102": {
+    "response": "\\[\n\\boxed{S_a=0,\\quad S_b=1,\\quad S_c=0}\n\\]",
+    "usage": {
+      "input_tokens": 9794,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 74,
+      "reasoning_output_tokens": 44
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "01_cleaned_dag:3052": {
+    "response": "\\[\n\\boxed{\n\\begin{aligned}\n\\text{a)}\\quad &\\beta^*=\\frac{pc}{E+m_0c^2},\\\\[2mm]\n\\text{b)}\\quad &E^*=\\sqrt{2m_0c^2\\left(E+m_0c^2\\right)}\n\\;\\xrightarrow{\\,pc\\gg m_0c^2\\,}\\;\n\\sqrt{2m_0c^2\\,pc}.\n\\end{aligned}\n}\n\\]",
+    "usage": {
+      "input_tokens": 9864,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 348,
+      "reasoning_output_tokens": 230
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "02_cleaned_dag:2053": {
+    "response": "\\[\n\\boxed{\n\\begin{aligned}\n\\text{a)}\\quad\nv(t)&=\\frac{FR}{B^{2}l^{2}}\n\\left(1-e^{-\\frac{B^{2}l^{2}}{mR}t}\\right),\\\\[4pt]\n\\text{b)}\\quad\nI(t)&=\\frac{F}{Bl}\n\\left(1-e^{-\\frac{B^{2}l^{2}}{mR}t}\\right),\n\\qquad\n\\varepsilon(t)=Bl\\,v(t).\\\\\n&\\text{The current flows in the direction given by Lenz's law, producing a magnetic force opposing the wire's motion.}\n\\end{aligned}\n}\n\\]",
+    "usage": {
+      "input_tokens": 9884,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 562,
+      "reasoning_output_tokens": 397
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "01_cleaned_dag:1267": {
+    "response": "\\[\n\\boxed{\\frac{p(0)}{p(R_0)}=\\exp\\!\\left(-\\frac{MgR_0}{2RT}\\right)}\n\\]",
+    "usage": {
+      "input_tokens": 9796,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 253,
+      "reasoning_output_tokens": 209
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "02_cleaned_dag:3030": {
+    "response": "\\[\n\\boxed{L=8\\pi\\times10^{-5}\\,\\mathrm{H},\\qquad M=8\\pi\\times10^{-3}\\,\\mathrm{H},\\qquad q=8\\pi\\times10^{-6}\\,\\mathrm{C}}\n\\]",
+    "usage": {
+      "input_tokens": 9926,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 400,
+      "reasoning_output_tokens": 333
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "02_cleaned_dag:1012": {
+    "response": "\\[\n\\boxed{\n\\vec{E}(\\vec r)=\n\\begin{cases}\n\\dfrac{\\rho}{3\\epsilon_0}\\,\\vec r\n=\\dfrac{Q}{4\\pi\\epsilon_0R^3}\\,\\vec r,\n& r\\le R,\\\\[1.2ex]\n\\dfrac{Q}{4\\pi\\epsilon_0r^3}\\,\\vec r,\n& r\\ge R,\n\\end{cases}\n\\qquad\n\\rho=\\dfrac{3Q}{4\\pi R^3}\n}\n\\]",
+    "usage": {
+      "input_tokens": 9742,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 247,
+      "reasoning_output_tokens": 118
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "02_cleaned_dag:2029": {
+    "response": "\\[\n\\boxed{B=\\frac{\\mu_0NI}{\\,s+\\dfrac{L-s}{\\mu_r}\\,}}\n\\]",
+    "usage": {
+      "input_tokens": 9781,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 553,
+      "reasoning_output_tokens": 516
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "01_cleaned_dag:1126": {
+    "response": "\\[\n\\boxed{\n\\begin{aligned}\n\\text{(a)}\\quad\n\\frac{d}{dt}\\left(\\sum_i m_i\\dot r_i\\cdot r_i\\right)\n&=\\sum_i m_i\\ddot r_i\\cdot r_i+\\sum_i m_i\\dot r_i\\cdot\\dot r_i\\\\\n&=\\sum_i F_i\\cdot r_i+2T.\n\\end{aligned}\n}\n\\]\n\n\\[\n\\boxed{\n\\begin{aligned}\n\\text{Taking time averages,}\\qquad\n0&=\\overline{\\frac{d}{dt}\\left(\\sum_i m_i\\dot r_i\\cdot r_i\\right)}\n=\\overline{\\sum_i F_i\\cdot r_i}+2\\overline{T},\\\\\n\\therefore\\qquad\n\\overline{T}&=-\\frac12\\overline{\\sum_i F_i\\cdot r_i}.\n\\end{aligned}\n}\n\\]\n\n\\[\n\\boxed{\n\\begin{aligned}\n\\text{(b)}\\quad V(r)&=\\frac{C}{r},\\\\\nF&=-\\nabla V=\\frac{C}{r^3}\\,r,\\\\\nF\\cdot r&=\\frac{C}{r}=V.\n\\end{aligned}\n\\qquad\n\\therefore\\qquad\n\\overline{T}=-\\frac12\\,\\overline{V}.\n}\n\\]",
+    "usage": {
+      "input_tokens": 9983,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 713,
+      "reasoning_output_tokens": 391
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "01_cleaned_dag:2066": {
+    "response": "\\[\n\\boxed{\n\\begin{gathered}\n\\text{a)}\\quad\n\\begin{aligned}\n&\\bigl[1+(2x-y)^2\\bigr]\\ddot{x}\n +(2x-y)(2y-x)\\ddot{y}\\\\\n&\\qquad +(2x-y)\\bigl(2\\dot{x}^{\\,2}+2\\dot{y}^{\\,2}-2\\dot{x}\\dot{y}+g\\bigr)=0,\\\\\n&(2x-y)(2y-x)\\ddot{x}\n +\\bigl[1+(2y-x)^2\\bigr]\\ddot{y}\\\\\n&\\qquad +(2y-x)\\bigl(2\\dot{x}^{\\,2}+2\\dot{y}^{\\,2}-2\\dot{x}\\dot{y}+g\\bigr)=0.\n\\end{aligned}\\\\[4pt]\n\\text{b)}\\quad \\omega_1=\\sqrt{g},\\qquad \\omega_2=\\sqrt{3g}.\\\\[4pt]\n\\text{c)}\\quad \\dfrac{x_0}{y_0}=-1.\n\\end{gathered}\n}\n\\]",
+    "usage": {
+      "input_tokens": 9867,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1182,
+      "reasoning_output_tokens": 919
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "02_cleaned_dag:2076": {
+    "response": "\\[\n\\boxed{\n\\begin{aligned}\n\\varphi_m(\\vec r)\n&=\\frac{\\vec m_2\\cdot\\vec r}{4\\pi r^3},\\\\[2mm]\n\\vec B(\\vec r)\n&=-\\mu_0\\nabla\\varphi_m\n=\\frac{\\mu_0}{4\\pi r^3}\n\\left[3(\\vec m_2\\cdot\\hat r)\\hat r-\\vec m_2\\right],\\\\[2mm]\n\\vec F_m\n&=\\nabla\\!\\left(\\vec m_1\\cdot\\vec B\\right)\\\\\n&=\\frac{3\\mu_0}{4\\pi r^4}\n\\Big[\n(\\vec m_1\\cdot\\hat r)\\vec m_2\n+(\\vec m_2\\cdot\\hat r)\\vec m_1\n+(\\vec m_1\\cdot\\vec m_2)\\hat r\n-5(\\vec m_1\\cdot\\hat r)(\\vec m_2\\cdot\\hat r)\\hat r\n\\Big],\n\\end{aligned}\n\\qquad\n\\hat r=\\frac{\\vec r}{r}\n}\n\\]",
+    "usage": {
+      "input_tokens": 9839,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1070,
+      "reasoning_output_tokens": 798
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "01_cleaned_dag:1071": {
+    "response": "\\[\n\\boxed{\\omega_p=\\frac{h}{R^{2}}\\left[\\left(1-\\frac{3AR^{4}}{m h^{2}}\\right)^{-1/2}-1\\right]\n=\\frac{h u_0^{2}}{a}(1-a),\\qquad\na=\\sqrt{1-\\frac{3A}{m h^{2}u_0^{4}}}}\n\\]",
+    "usage": {
+      "input_tokens": 9919,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 2167,
+      "reasoning_output_tokens": 2070
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "02_cleaned_dag:2021": {
+    "response": "\\[\n\\boxed{\n\\begin{aligned}\n\\text{a)}\\quad\n\\mathbf E(r)&=\n\\begin{cases}\n-\\dfrac{ar}{\\varepsilon_0}\\,\\mathbf e_r, & r<R,\\\\[4pt]\n0, & r>R,\n\\end{cases}\n\\\\[8pt]\n\\lambda_{\\mathrm{tot}}\n&=\\int_0^R(-2a)\\,2\\pi r\\,dr+(aR)(2\\pi R)=0.\n\\\\[8pt]\n\\text{b)}\\quad\n\\mathbf B(r)&=\n\\begin{cases}\n\\mu_0 a\\omega r^2\\,\\mathbf e_z, & r<R,\\\\[4pt]\n0, & r>R.\n\\end{cases}\n\\\\[8pt]\n\\text{c)(i)}\\quad\n\\frac{dW}{dz}\\bigg|_{\\omega=0}\n&=\\frac{\\pi a^2R^4}{4\\varepsilon_0}.\n\\\\[8pt]\n\\text{c)(ii)}\\quad\n\\frac{dW_e}{dz}\n&=\\frac{\\pi a^2R^4}{4\\varepsilon_0},\n\\qquad\n\\frac{dW_m}{dz}\n=\\frac{\\pi\\mu_0a^2\\omega^2R^6}{6},\n\\\\\n\\frac{dW}{dz}\n&=\\frac{\\pi a^2R^4}{4\\varepsilon_0}\n+\\frac{\\pi\\mu_0a^2\\omega^2R^6}{6}.\n\\\\[4pt]\n\\text{The extra energy comes from the mechanical work supplied to spin the cylinder.}\n\\end{aligned}\n}\n\\]",
+    "usage": {
+      "input_tokens": 10036,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1417,
+      "reasoning_output_tokens": 1034
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "02_cleaned_dag:2055": {
+    "response": "\\[\n\\boxed{\n\\begin{aligned}\n\\text{(a)}\\quad\nI(t)&=\\frac{mg}{Bl}\\left(1-e^{-\\frac{B^{2}l^{2}}{mR}t}\\right),\\\\\nv(t)&=\\frac{mgR}{B^{2}l^{2}}\\left(1-e^{-\\frac{B^{2}l^{2}}{mR}t}\\right).\n\\\\[1em]\n\\text{(b)}\\quad\n\\omega&=\\frac{Bl}{\\sqrt{mL}},\\\\\nI(t)&=\\frac{mg}{Bl}+c_{1}\\cos(\\omega t)+c_{2}\\sin(\\omega t)\n=\\frac{mg}{Bl}\\left(1-\\cos\\omega t\\right),\\\\\nv(t)&=\\frac{g}{\\omega}\\sin(\\omega t),\\qquad\nc_{1}=-\\frac{mg}{Bl},\\quad c_{2}=0.\n\\end{aligned}\n}\n\\]",
+    "usage": {
+      "input_tokens": 9952,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1157,
+      "reasoning_output_tokens": 929
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "01_cleaned_dag:2037": {
+    "response": "\\[\n\\boxed{\n\\begin{gathered}\nx_{\\rm eq}=\\frac{eE}{m\\omega_0^2},\\qquad y_{\\rm eq}=z_{\\rm eq}=0,\\\\[2mm]\n\\omega_z=\\omega_0,\\\\[1mm]\n\\omega_{\\pm}\n=\\sqrt{\\omega_0^2+\\frac{1}{4}\\left(\\frac{eB}{m}\\right)^2}\n\\pm \\frac{eB}{2m}.\n\\\\[3mm]\n\\frac{eB}{m}\\ll\\omega_0:\\qquad\n\\omega_{\\pm}\\simeq\n\\omega_0\\pm\\frac{eB}{2m}\n+\\frac{(eB)^2}{8m^2\\omega_0},\n\\\\[2mm]\n\\frac{eB}{m}\\gg\\omega_0:\\qquad\n\\omega_+\\simeq\\frac{eB}{m}+\\frac{m\\omega_0^2}{eB},\n\\qquad\n\\omega_-\\simeq\\frac{m\\omega_0^2}{eB},\n\\qquad\n\\omega_z=\\omega_0.\n\\end{gathered}\n}\n\\]",
+    "usage": {
+      "input_tokens": 9819,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1258,
+      "reasoning_output_tokens": 982
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "02_cleaned_dag:3034": {
+    "response": "\\[\n\\boxed{\n\\begin{aligned}\n\\text{a)}\\quad n&=\\frac{N}{l}=500\\ \\mathrm{m^{-1}},\\qquad\nS=\\pi r^2=0.01\\pi\\ \\mathrm{m^2},\\\\\nL&=\\frac{\\mu_0N^2S}{l}=0.002\\pi^2\\ \\mathrm{H}\\approx 1.974\\times10^{-2}\\ \\mathrm{H}.\\\\[4pt]\n\\text{b)}\\quad B&=\\mu_0 nI=0.4\\pi\\ \\mathrm{Wb/m^2}\\approx1.257\\ \\mathrm{Wb/m^2}.\\\\[4pt]\n\\text{c)}\\quad W_m&=\\frac12LI^2=4000\\pi^2\\ \\mathrm{J}\\approx3.948\\times10^4\\ \\mathrm{J}.\\\\[4pt]\n\\text{d)}\\quad L\\frac{di(t)}{dt}+Ri(t)&=\\varepsilon,\\\\\n\\tau&=\\frac{L}{R}=0.02\\pi^2\\ \\mathrm{s}\\approx0.197\\ \\mathrm{s},\\\\\ni(\\infty)&=\\frac{\\varepsilon}{R}=200\\ \\mathrm{A},\\\\\ni(t)&=i(\\infty)\\left(1-e^{-t/\\tau}\\right)\n=200\\left(1-e^{-t/(0.02\\pi^2)}\\right)\\ \\mathrm{A}.\n\\end{aligned}\n}\n\\]",
+    "usage": {
+      "input_tokens": 9952,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 823,
+      "reasoning_output_tokens": 473
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "03_cleaned_dag:2029": {
+    "response": "\\[\n\\boxed{z_{\\max}=\\frac{R^{2}}{2\\lambda}}\n\\]",
+    "usage": {
+      "input_tokens": 9766,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 213,
+      "reasoning_output_tokens": 184
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "04_cleaned_dag:1018": {
+    "response": "\\[\n\\boxed{\\tau=10^{-8}\\unit{s}}\n\\]",
+    "usage": {
+      "input_tokens": 9734,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 65,
+      "reasoning_output_tokens": 43
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "03_cleaned_dag:2066": {
+    "response": "\\[\n\\boxed{d \\approx R\\frac{\\lambda}{D}\\approx 3\\times10^{15}\\ \\unit{cm}}\n\\]",
+    "usage": {
+      "input_tokens": 9785,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 141,
+      "reasoning_output_tokens": 103
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "04_cleaned_dag:1021": {
+    "response": "\\[\n\\boxed{\\Delta \\nu \\approx 10^{9}\\ \\unit{Hz}}\n\\]",
+    "usage": {
+      "input_tokens": 9878,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 176,
+      "reasoning_output_tokens": 148
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "04_cleaned_dag:1025": {
+    "response": "\\[\n\\boxed{\nP\\!\\left(s_y=+\\tfrac12;t\\right)=\\frac{1+\\sin\\!\\left(\\frac{\\mu_0Bt}{\\hbar}\\right)}{2},\n\\qquad\nP\\!\\left(s_y=-\\tfrac12;t\\right)=\\frac{1-\\sin\\!\\left(\\frac{\\mu_0Bt}{\\hbar}\\right)}{2}\n}\n\\]",
+    "usage": {
+      "input_tokens": 9834,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 712,
+      "reasoning_output_tokens": 612
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "04_cleaned_dag:1128": {
+    "response": "\\[\n\\boxed{\\Delta \\nu \\approx 6.2\\times10^{11}\\ \\unit{Hz}}\n\\]",
+    "usage": {
+      "input_tokens": 9854,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 526,
+      "reasoning_output_tokens": 493
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "04_cleaned_dag:2005": {
+    "response": "\\[\n\\boxed{\\omega \\approx 10^{3}\\ \\mathrm{s}^{-1}}\n\\]",
+    "usage": {
+      "input_tokens": 9830,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 135,
+      "reasoning_output_tokens": 107
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "04_cleaned_dag:3077": {
+    "response": "\\[\n\\boxed{\\text{a) }R=2,\\qquad \\text{b) }R=\\frac{10}{3}}\n\\]",
+    "usage": {
+      "input_tokens": 9804,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 149,
+      "reasoning_output_tokens": 111
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "04_cleaned_dag:4002": {
+    "response": "\\[\n\\boxed{\n\\begin{gathered}\nm c^2 = 1.4\\times10^2\\ \\mathrm{MeV},\\\\\nT_1 = 6.9\\times10^2\\ \\mathrm{MeV},\\qquad\nT_2 = 3.4\\times10^1\\ \\mathrm{MeV},\\\\\n\\tau_0 = 2.6\\times10^{-8}\\ \\mathrm{s},\\qquad\nl_1 = 3.2\\times10^1\\ \\mathrm{m}\n\\end{gathered}\n}\n\\]",
+    "usage": {
+      "input_tokens": 10149,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 655,
+      "reasoning_output_tokens": 516
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "04_cleaned_dag:1104": {
+    "response": "\\[\n\\boxed{\n\\begin{gathered}\n\\lambda_{K\\alpha}=\\frac{hc}{E_K-E_{L_{III}}}\n=\\frac{hc}{8.64\\,\\mathrm{keV}}\n\\approx 1.44\\times10^{-10}\\,\\mathrm{m},\\\\[4pt]\n\\lambda_{\\min}=\\frac{hc}{E_e}\n=\\frac{hc}{5\\,\\mathrm{keV}}\n\\approx 2.48\\times10^{-10}\\,\\mathrm{m},\\\\[4pt]\n\\lambda_{\\mathrm{char,min}}\n=\\frac{hc}{E_{L_I}-E_{L_{III}}}\n=\\frac{hc}{0.18\\,\\mathrm{keV}}\n\\approx 6.89\\times10^{-9}\\,\\mathrm{m}.\n\\end{gathered}\n}\n\\]",
+    "usage": {
+      "input_tokens": 10054,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1471,
+      "reasoning_output_tokens": 1280
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "04_cleaned_dag:4013": {
+    "response": "\\[\n\\boxed{\\text{a) } M=\\sqrt{17}\\,m_0,\\qquad \\text{b) } v=\\frac{2\\sqrt{2}}{5}\\,c}\n\\]",
+    "usage": {
+      "input_tokens": 9783,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 248,
+      "reasoning_output_tokens": 195
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "04_cleaned_dag:2119": {
+    "response": "\\[\n\\boxed{10^{-24}\\ \\unit{cm^2}}\n\\]",
+    "usage": {
+      "input_tokens": 9763,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 59,
+      "reasoning_output_tokens": 35
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "04_cleaned_dag:1139": {
+    "response": "\\[\n\\boxed{\n\\begin{aligned}\n\\text{(a)}\\quad\n&E_{\\rm elect}\\sim \\frac{p^2}{m_e}\n\\sim \\frac{\\hbar^2}{m_e d^2}\n\\sim \\frac{e^2}{d},\n\\qquad d\\sim a_0.\\\\[4pt]\n\\text{(b)}\\quad\n&K\\sim E\\sim \\frac{f}{d}\\sim \\frac{e^2}{d^3},\\qquad\n\\omega\\sim \\sqrt{\\frac{K}{m}}\n\\sim \\sqrt{\\frac{e^2}{m d^3}},\\\\\n&E_{\\rm vib}\\sim \\hbar\\omega\n\\sim \\frac{e^2}{d}\\sqrt{\\frac{m_e}{m}}.\\\\[4pt]\n\\text{(c)}\\quad\n&\\Delta x\\sim \\sqrt{\\frac{\\hbar}{m\\omega}}\n\\sim d\\left(\\frac{m_e}{m}\\right)^{1/4}.\\\\[4pt]\n\\text{(d)}\\quad\n&E_{\\rm rot}\\sim \\frac{\\hbar^2}{I},\n\\qquad I\\sim m d^2,\n\\qquad\nE_{\\rm rot}\\sim \\frac{\\hbar^2}{m d^2}\n\\sim \\frac{e^2}{d}\\frac{m_e}{m}.\\\\[4pt]\n\\text{(e)}\\quad\n&E_{\\rm elect}:E_{\\rm vib}:E_{\\rm rot}\n\\sim 1:\\sqrt{\\frac{m_e}{m_n}}:\\frac{m_e}{m_n}.\n\\end{aligned}\n}\n\\]",
+    "usage": {
+      "input_tokens": 10071,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1415,
+      "reasoning_output_tokens": 1034
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "04_cleaned_dag:4051": {
+    "response": "\\[\n\\boxed{\n\\gamma=\\frac{5}{3},\\qquad \\beta=\\frac{4}{5},\\qquad\n(p_x)_{\\max}=4.5\\,\\mathrm{GeV}/c,\\qquad\n(p_x)_{\\min}=-0.5\\,\\mathrm{GeV}/c,\n\\qquad\n\\frac{dP}{dp_x}=\n\\begin{cases}\n0.20\\,(\\mathrm{GeV}/c)^{-1}, & -0.5\\le p_x\\le 4.5\\,\\mathrm{GeV}/c,\\\\[2pt]\n0, & \\text{otherwise}.\n\\end{cases}\n}\n\\]",
+    "usage": {
+      "input_tokens": 9923,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 413,
+      "reasoning_output_tokens": 258
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "04_cleaned_dag:4059": {
+    "response": "\\[\n\\boxed{\\tau=\\left[\\frac{G^{2}}{8\\pi\\hbar^{4}c}\\sqrt{\\frac{m_{K}^{2}}{4}-\\mu^{2}}\\right]^{-1}}\n\\]",
+    "usage": {
+      "input_tokens": 10001,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 151,
+      "reasoning_output_tokens": 93
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "04_cleaned_dag:4027": {
+    "response": "\\[\n\\boxed{\n\\begin{aligned}\n\\text{a)}\\quad &E=\\frac{M_Z}{2}=46\\,\\mathrm{GeV}.\\\\[2mm]\n\\text{b)}\\quad &S=2m_e^2+2m_eE_{e^+}=M_Z^2,\\\\\n& E_{e^+}=\\frac{M_Z^2-2m_e^2}{2m_e}.\\\\[2mm]\n\\text{c)}\\quad &E_Z=E_{e^+}+m_e,\\qquad\np_Z=p_{e^+}=\\sqrt{E_{e^+}^2-m_e^2},\\\\\n&v_Z=c\\beta_Z,\\qquad\n\\beta_Z=\\frac{p_{e^+}}{E_{e^+}+m_e}.\\\\[2mm]\n\\text{d)}\\quad &\\bar E_\\mu=\\frac{M_Z}{2},\\qquad\n\\bar p_\\mu=\\sqrt{\\frac{M_Z^2}{4}-m_\\mu^2},\\\\\n&E_{\\mu,\\max}=\\gamma_0\\left(\\bar E_\\mu+\\beta_0\\bar p_\\mu\\right),\\\\\n&\\gamma_0=\\frac{E_Z}{M_Z},\\qquad\n\\beta_0=\\frac{p_Z}{E_Z}.\n\\end{aligned}\n}\n\\]",
+    "usage": {
+      "input_tokens": 10086,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1349,
+      "reasoning_output_tokens": 1034
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "04_cleaned_dag:4037": {
+    "response": "\\[\n\\boxed{E_\\gamma'=\\frac{E_\\gamma(E_e+p_e)}{E_e-p_e+2E_\\gamma}\\simeq 29.8\\unit{MeV}}\n\\]",
+    "usage": {
+      "input_tokens": 9857,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1375,
+      "reasoning_output_tokens": 1323
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "04_cleaned_dag:1049": {
+    "response": "\\[\n\\boxed{\n\\begin{aligned}\n\\text{(a)}\\qquad\n\\frac{mv^2}{r}&=\\frac{2e^2}{4\\pi\\epsilon_0r^2},\n&\nL_\\phi=mvr&=n\\hbar,\\\\[2pt]\nr_n&=\\frac{4\\pi\\epsilon_0n^2\\hbar^2}{2me^2},\n&\nv_n&=\\frac{e^2}{2\\pi\\epsilon_0\\hbar n},\\\\[2pt]\nE_n&=\\frac12mv_n^2-\\frac{2e^2}{4\\pi\\epsilon_0r_n}\n=-\\frac{me^4}{8\\pi^2\\epsilon_0^2\\hbar^2n^2},\n\\qquad n=1,2,\\ldots\n\\\\[8pt]\n\\text{(b)}\\qquad\nA&=\\int_0^{2\\pi}\\int_0^r \\rho\\,d\\rho\\,d\\phi=\\pi r^2,\n&\n\\omega&=\\frac vr,\\quad T=\\frac{2\\pi}{\\omega},\\quad I=\\frac eT,\\\\[2pt]\n\\boldsymbol{\\mu}&=-IA\\,\\hat{\\mathbf L}\n=-\\frac{e}{2m}\\boldsymbol L,\n&\nL_z&=m_l\\hbar,\\quad m_l=-1,0,+1,\\\\[2pt]\n\\Delta E&=-\\boldsymbol{\\mu}\\cdot\\boldsymbol B\n=\\frac{m_l e\\hbar B}{2m},\\\\[2pt]\nE_{n,l=1,m_l}\n&=-\\frac{me^4}{8\\pi^2\\epsilon_0^2\\hbar^2n^2}\n+\\frac{m_l e\\hbar B}{2m},\n\\qquad n\\ge2,\\quad m_l=-1,0,+1.\n\\end{aligned}\n}\n\\]",
+    "usage": {
+      "input_tokens": 9897,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 2664,
+      "reasoning_output_tokens": 2220
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "04_cleaned_dag:4049": {
+    "response": "\\[\n\\boxed{\\beta=0.9966,\\quad v=2.99\\times10^{8}\\,\\unit{m/s},\\quad \\gamma=12.2,\\quad t=3.34\\times10^{-8}\\,\\unit{s},\\quad \\tau=3.17\\times10^{-7}\\,\\unit{s},\\quad \\lambda=3.15\\times10^{6}\\,\\unit{s^{-1}},\\quad p=1.70\\,\\unit{GeV/c},\\quad T=1.57\\,\\unit{GeV}}\n\\]",
+    "usage": {
+      "input_tokens": 9930,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1525,
+      "reasoning_output_tokens": 1395
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "04_cleaned_dag:4078": {
+    "response": "\\[\n\\boxed{\\eta=e^{-0.5}\\approx 0.607,\\qquad \\eta''=\\frac{\\sigma_H}{\\sigma_H+\\sigma_C}(1-\\eta)\\approx 0.236}\n\\]",
+    "usage": {
+      "input_tokens": 9986,
+      "cached_input_tokens": 2816,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 353,
+      "reasoning_output_tokens": 299
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "04_cleaned_dag:4060": {
+    "response": "\\[\n\\boxed{\n\\begin{aligned}\n\\text{a)}\\quad N_p&=3.34\\times10^{33},&\n\\Delta N&=3.34\\times10^{1}\\ \\text{year}^{-1};\\\\[2mm]\n\\text{b)}\\quad E_{\\gamma,\\max}&\\approx469\\ \\text{MeV},&\nE_{\\gamma,\\min}&\\approx9.71\\ \\text{MeV}.\n\\end{aligned}\n}\n\\]",
+    "usage": {
+      "input_tokens": 10143,
+      "cached_input_tokens": 2816,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1148,
+      "reasoning_output_tokens": 1034
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "05_cleaned_dag:1083": {
+    "response": "\\[\n\\boxed{\n\\begin{gathered}\n\\left(\\frac{\\partial E}{\\partial x}\\right)_T=0,\\qquad\n\\left(\\frac{\\partial c_x}{\\partial x}\\right)_T=0,\\qquad\nc_x(x,T)=K,\\\\[2mm]\nE(x,T)=E(T_0)+K(T-T_0),\\\\[2mm]\nS(x,T)=K\\ln\\!\\left(\\frac{T}{T_0}\\right)\n-A\\left(\\frac{x^2}{2l_0}+\\frac{l_0^2}{x}\\right)+C,\\\\[2mm]\nT_f=T_0\\exp\\!\\left(\\frac{7Al_0}{24K}\\right).\n\\end{gathered}\n}\n\\]",
+    "usage": {
+      "input_tokens": 9970,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 915,
+      "reasoning_output_tokens": 734
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "05_cleaned_dag:2032": {
+    "response": "\\[\n\\boxed{\n\\begin{aligned}\n\\text{a)}\\quad\n\\langle E\\rangle\n&=\\frac{\\hbar\\omega}{2}\\coth\\!\\left(\\frac{\\hbar\\omega}{2kT}\\right),\\\\[4pt]\n\\text{b)}\\quad\n\\Delta E\n&=\\frac{\\hbar\\omega}{2\\sinh\\!\\left(\\frac{\\hbar\\omega}{2kT}\\right)},\\\\[4pt]\n\\text{c)}\\quad\nkT\\ll\\hbar\\omega:\\quad\n\\langle E\\rangle&\\sim\\frac{\\hbar\\omega}{2},\\qquad\n\\Delta E\\sim\\hbar\\omega\\,e^{-\\hbar\\omega/(kT)},\\\\\nkT\\gg\\hbar\\omega:\\quad\n\\langle E\\rangle&\\sim kT,\\qquad\n\\Delta E\\sim kT.\n\\end{aligned}\n}\n\\]",
+    "usage": {
+      "input_tokens": 9865,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 435,
+      "reasoning_output_tokens": 213
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "05_cleaned_dag:1127": {
+    "response": "\\[\n\\boxed{\\frac{dp}{dT}\n=\\frac{S_1-S_2}{V_1-V_2}\n=\\frac{L}{T\\left(V_1-V_2\\right)}}\n\\]",
+    "usage": {
+      "input_tokens": 9780,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 212,
+      "reasoning_output_tokens": 157
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "05_cleaned_dag:2037": {
+    "response": "\\[\n\\boxed{\n\\begin{aligned}\n\\text{a)}\\quad\nz&=\\sum_{J=0}^{\\infty}(2J+1)\n\\exp\\!\\left[-\\frac{\\hbar^{2}J(J+1)}{2IkT}\\right],\\\\\nU&=N\\,\n\\frac{\\displaystyle\\sum_{J=0}^{\\infty}(2J+1)\\frac{\\hbar^{2}}{2I}J(J+1)\n\\exp\\!\\left[-\\frac{\\hbar^{2}J(J+1)}{2IkT}\\right]}\n{\\displaystyle\\sum_{J=0}^{\\infty}(2J+1)\n\\exp\\!\\left[-\\frac{\\hbar^{2}J(J+1)}{2IkT}\\right]}.\n\\\\[1ex]\n\\text{b)}\\quad\n&kT\\gg \\frac{\\hbar^{2}}{2I},\\qquad\nz\\simeq\\int_{0}^{\\infty}(2J+1)\n\\exp\\!\\left[-\\frac{\\hbar^{2}J(J+1)}{2IkT}\\right]\\,dJ\n\\simeq \\frac{2IkT}{\\hbar^{2}},\\\\\n&U\\simeq NkT,\\qquad C_v=\\frac{1}{N_A}\\frac{\\partial U}{\\partial T}=R.\n\\\\[1ex]\n\\text{c)}\\quad\nz&=\\sum_{J=0}^{\\infty}(2J+1)\n\\exp\\!\\left[-\\frac{\\hbar^{2}J(J+1)}{2IkT}\\right],\\\\\nU&=NkT^{2}\\frac{\\partial}{\\partial T}\\ln z.\n\\end{aligned}\n}\n\\]",
+    "usage": {
+      "input_tokens": 9903,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 775,
+      "reasoning_output_tokens": 375
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "05_cleaned_dag:2067": {
+    "response": "\\[\n\\boxed{\n\\begin{gathered}\n\\frac{N_{\\mathrm{ex}}}{A}\n=\\frac{2\\pi m kT}{h^{2}}\n\\sum_{l=1}^{\\infty}\\frac{e^{l\\mu/(kT)}}{l},\n\\qquad\n\\frac{N_{\\mathrm{ex}}}{L}\n=\\frac{\\sqrt{2\\pi m kT}}{h}\n\\sum_{l=1}^{\\infty}\\frac{e^{l\\mu/(kT)}}{\\sqrt l}.\n\\\\[4pt]\n\\mu\\to0^{-}\\implies\n\\sum_{l=1}^{\\infty}\\frac1l=\\infty,\n\\qquad\n\\sum_{l=1}^{\\infty}\\frac1{\\sqrt l}=\\infty.\n\\\\[4pt]\n\\therefore\\quad \\mathrm{ans}_{2D}=0,\\qquad \\mathrm{ans}_{1D}=0.\n\\\\[4pt]\n\\text{Thus, at finite }T\\text{ in the thermodynamic limit, the three-dimensional BEC effect does not occur}\\\\\n\\text{in either two or one dimension, because the excited states can accommodate arbitrarily many particles.}\n\\end{gathered}\n}\n\\]",
+    "usage": {
+      "input_tokens": 9918,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 686,
+      "reasoning_output_tokens": 404
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "05_cleaned_dag:2139": {
+    "response": "\\[\n\\boxed{\\sqrt{\\left\\langle(\\Delta n)^2\\right\\rangle}\n=\\sqrt{\\langle n\\rangle\\bigl(1+\\langle n\\rangle\\bigr)}\n=\\frac{e^{\\lambda/2}}{e^\\lambda-1}\n>\\langle n\\rangle=\\frac{1}{e^\\lambda-1}}\n\\]",
+    "usage": {
+      "input_tokens": 9844,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 317,
+      "reasoning_output_tokens": 232
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "05_cleaned_dag:2071": {
+    "response": "\\[\n\\boxed{\n\\begin{aligned}\nD_\\nu&=\\frac{8\\pi \\nu^2}{c^3}.\\\\[2mm]\n\\text{a)}\\quad E_{\\mathrm{avg}}&=kT,\\\\\nu_\\nu^{\\mathrm{RJ}}&=D_\\nu E_{\\mathrm{avg}}\n=\\frac{8\\pi kT}{c^3}\\nu^2.\n\\end{aligned}\n\\qquad\n\\begin{aligned}\n&\\text{This grows as }\\nu^2\\text{ and gives }u=\\int_0^\\infty u_\\nu\\,d\\nu=\\infty,\\\\\n&\\text{the ultraviolet catastrophe, contrary to observation.}\\\\[2mm]\n\\text{b)}\\quad E_n&=nh\\nu,\\qquad\nZ=\\sum_{n=0}^\\infty e^{-\\beta nh\\nu}\n=\\frac{1}{1-e^{-\\beta h\\nu}},\\\\\n\\langle E\\rangle&=-\\frac{\\partial\\ln Z}{\\partial\\beta}\n=\\frac{h\\nu}{e^{\\beta h\\nu}-1},\\\\\nu_\\nu&=D_\\nu\\langle E\\rangle\n=\\frac{8\\pi h\\nu^3}{c^3\\left(e^{h\\nu/(kT)}-1\\right)}.\\\\[2mm]\n\\text{c)}\\quad\nu&=\\int_0^\\infty u_\\nu\\,d\\nu\n=\\frac{8\\pi^5k^4}{15h^3c^3}T^4,\\\\\nP&=\\frac{Ac}{4}u\n=\\frac{2\\pi^5Ak^4}{15h^3c^2}T^4\n=\\sigma AT^4,\n\\qquad\n\\sigma=\\frac{2\\pi^5k^4}{15h^3c^2}.\n\\end{aligned}\n}\n\\]",
+    "usage": {
+      "input_tokens": 10065,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1112,
+      "reasoning_output_tokens": 675
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "05_cleaned_dag:1070": {
+    "response": "\\[\n\\boxed{\n\\begin{aligned}\n\\text{a)}\\quad &\\Delta U = Mc\\Delta T\n= 79{,}000\\ \\unit{cal}\n= 3.30536\\times10^{5}\\ \\unit{J},\\\\[2pt]\n\\text{b)}\\quad &\\Delta S = Mc\\ln\\!\\left(\\frac{T_2}{T_1}\\right)\n\\approx 238.72\\ \\unit{cal/K}\n\\approx 998.81\\ \\unit{J/K},\\\\[2pt]\n\\text{c)}\\quad &F_\\Omega=\\frac{\\Omega_2}{\\Omega_1}\n=\\exp\\!\\left(\\frac{\\Delta S}{k}\\right)\n\\approx \\exp\\!\\left(7.24\\times10^{25}\\right),\\\\[2pt]\n\\text{d)}\\quad &W_{\\max}\n=Mc\\left[\\Delta T-T_1\\ln\\!\\left(\\frac{T_2}{T_1}\\right)\\right]\n\\approx 9.055\\times10^{3}\\ \\unit{cal}\n\\approx 3.788\\times10^{4}\\ \\unit{J}.\n\\end{aligned}\n}\n\\]",
+    "usage": {
+      "input_tokens": 10019,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1828,
+      "reasoning_output_tokens": 1552
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "05_cleaned_dag:2150": {
+    "response": "\\[\n\\boxed{N \\approx 8\\times10^{25}\\ \\text{s}^{-1}\\sim 10^{26}\\ \\text{s}^{-1}}\n\\]",
+    "usage": {
+      "input_tokens": 9827,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 291,
+      "reasoning_output_tokens": 247
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "05_cleaned_dag:2155": {
+    "response": "\\[\n\\boxed{\\frac{9}{16}}\n\\]",
+    "usage": {
+      "input_tokens": 9750,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 261,
+      "reasoning_output_tokens": 242
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "05_cleaned_dag:1080": {
+    "response": "\\[\n\\boxed{\n\\begin{aligned}\n\\text{a)}\\quad\ndF&=-S\\,dT+f\\,dL,\\\\\n\\left(\\frac{\\partial S}{\\partial L}\\right)_T\n&=-\\left(\\frac{\\partial f}{\\partial T}\\right)_L,\\qquad\ndS=\\frac{C_L}{T}\\,dT-\\left(\\frac{\\partial f}{\\partial T}\\right)_L dL,\\\\\n\\therefore\\quad\n\\left(\\frac{dT}{dL}\\right)_S\n&=\\frac{T}{C_L}\\left(\\frac{\\partial f}{\\partial T}\\right)_L.\\\\[4pt]\n\\text{b)}\\quad\nk_S&=4\\pi^2m\\nu^2=\\frac{4\\pi^2W\\nu^2}{g}.\\\\[4pt]\n\\text{c)}\\quad\n\\delta L&=-\\frac{1}{k_S}\\left(\\frac{dT}{dL}\\right)_S\\frac{\\delta Q}{T}\n=-\\frac{g\\,\\delta Q}{4\\pi^2W\\nu^2T}\n\\left(\\frac{dT}{dL}\\right)_S.\n\\end{aligned}\n}\n\\]",
+    "usage": {
+      "input_tokens": 10088,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1949,
+      "reasoning_output_tokens": 1659
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "06_cleaned_dag:1059": {
+    "response": "\\[\n\\boxed{A_0=\\exp\\!\\left(-\\frac{p^2}{4m\\hbar\\omega}\\right)\n=\\exp\\!\\left(-\\frac{mv^2}{4\\hbar\\omega}\\right),\\qquad\nP_0=\\exp\\!\\left(-\\frac{p^2}{2m\\hbar\\omega}\\right)\n=\\exp\\!\\left(-\\frac{mv^2}{2\\hbar\\omega}\\right)}\n\\]",
+    "usage": {
+      "input_tokens": 9828,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 399,
+      "reasoning_output_tokens": 286
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "05_cleaned_dag:2073": {
+    "response": "\\[\n\\boxed{T \\approx 6.2\\times10^{9}\\ \\mathrm{K}}\n\\]",
+    "usage": {
+      "input_tokens": 9832,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1357,
+      "reasoning_output_tokens": 1326
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "06_cleaned_dag:5008": {
+    "response": "\\[\n\\boxed{\n\\Delta E=\n\\begin{cases}\n\\displaystyle \\lambda\\,\\frac{\\sqrt{\\pi m\\omega/\\hbar}}{a},\n& a\\ll \\sqrt{\\dfrac{\\hbar}{m\\omega}},\\\\[1.2em]\n\\displaystyle \\frac{\\lambda}{a^2},\n& a\\gg \\sqrt{\\dfrac{\\hbar}{m\\omega}}.\n\\end{cases}\n}\n\\]",
+    "usage": {
+      "input_tokens": 10037,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 529,
+      "reasoning_output_tokens": 427
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "06_cleaned_dag:6001": {
+    "response": "\\[\n\\boxed{\n\\begin{gathered}\n\\chi_0''(r)+k^2\\chi_0(r)=0,\\qquad r>R,\\\\\nR_0(R)=0\\ \\Longrightarrow\\ \\chi_0(r)\\propto \\sin\\!\\bigl(k(r-R)\\bigr),\\\\\n\\delta_0=-kR,\\\\\n\\sigma_t(k,R)=\\frac{4\\pi}{k^2}\\sin^2\\delta_0\n=\\frac{4\\pi}{k^2}\\sin^2(kR)\n=4\\pi R^2\\left[\\frac{\\sin(kR)}{kR}\\right]^2,\\\\\nkR\\ll1:\\quad \\sigma_t\\longrightarrow4\\pi R^2,\\\\\nkR\\gg1:\\quad \\sigma_t\\sim\\frac{4\\pi}{k^2}\\sin^2(kR)\\longrightarrow0\n\\quad\\left(\\langle\\sigma_t\\rangle=\\frac{2\\pi}{k^2}\\longrightarrow0\\right).\n\\end{gathered}\n}\n\\]",
+    "usage": {
+      "input_tokens": 9832,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 611,
+      "reasoning_output_tokens": 360
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "06_cleaned_dag:7002": {
+    "response": "\\[\n\\boxed{\n\\begin{aligned}\n&y_1=\\frac{x_1+x_2}{\\sqrt2},\\qquad y_2=\\frac{x_1-x_2}{\\sqrt2},\\\\[2pt]\n&E_{n'n}\n=\\hbar\\omega\\left(n'+\\frac12\\right)\\sqrt{1+\\frac{\\varepsilon}{k}}\n+\\hbar\\omega\\left(n+\\frac12\\right)\\sqrt{1-\\frac{\\varepsilon}{k}},\\\\[4pt]\n&E_{n'n}\\simeq \\hbar\\omega(n'+n+1)\n+\\frac{\\hbar\\omega\\,\\varepsilon}{2k}(n'-n)\n\\qquad(\\varepsilon\\ll k).\n\\end{aligned}\n}\n\\]",
+    "usage": {
+      "input_tokens": 9802,
+      "cached_input_tokens": 2816,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 448,
+      "reasoning_output_tokens": 274
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "06_cleaned_dag:6051": {
+    "response": "\\[\n\\boxed{\\displaystyle P=\\frac{1024\\,e^{2}b^{2}E_{0}^{2}}{81\\pi^{4}\\hbar^{2}\\left(\\alpha^{2}+\\frac{\\pi^{4}\\hbar^{2}}{16m^{2}b^{4}}\\right)}}\n\\]",
+    "usage": {
+      "input_tokens": 9937,
+      "cached_input_tokens": 2816,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 772,
+      "reasoning_output_tokens": 694
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "06_cleaned_dag:4009": {
+    "response": "\\[\n\\boxed{\n\\begin{aligned}\n\\text{(a)}\\quad\n&-i\\hbar\\frac{\\partial\\psi^*(t)}{\\partial t}\n=\\hat H^*(t)\\psi^*(t),\\qquad\n\\psi_T(t)=\\psi^*(-t),\\\\\n&i\\hbar\\frac{\\partial\\psi_T(t)}{\\partial t}\n=\\hat H^*(-t)\\psi_T(t).\\\\[4pt]\n\\text{(b)}\\quad\n&\\hat H=-\\mu_zH_z\n=\\frac{e\\hbar}{2mc}H_z\\sigma_z.\\\\[4pt]\n\\text{(c)}\\quad\n&\\hat H=\\frac{e\\hbar}{2mc}\\left(H_y\\sigma_y+H_z\\sigma_z\\right),\\\\\n&\\frac{d\\pmb{\\mu}}{dt}\n=\\frac{1}{i\\hbar}[\\pmb{\\mu},\\hat H]\n=\\frac{e}{mc}\\left(H_y\\hat y+H_z\\hat z\\right)\\times\\pmb{\\mu}\\\\\n&\\hspace{1.2cm}\n=\\frac{e}{mc}\\Big[\n(H_y\\mu_z-H_z\\mu_y)\\hat x\n+H_z\\mu_x\\hat y\n-H_y\\mu_x\\hat z\n\\Big].\n\\end{aligned}\n}\n\\]",
+    "usage": {
+      "input_tokens": 10165,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1869,
+      "reasoning_output_tokens": 1552
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "07_cleaned_dag:1008": {
+    "response": "\\[\n\\boxed{\\frac{\\sigma_\\lambda}{\\lambda}\n=\\left[\\left(\\frac{1}{3}\\frac{\\sigma_\\rho}{\\rho}\\right)^2\n+\\left(\\cot\\theta\\,\\sigma_\\theta\\right)^2\\right]^{1/2}\n\\approx 9.4\\times10^{-3}}\n\\]",
+    "usage": {
+      "input_tokens": 9832,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 295,
+      "reasoning_output_tokens": 214
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "06_cleaned_dag:8025": {
+    "response": "\\[\n\\boxed{\\frac{\\partial u}{\\partial t}=\\frac{\\hbar}{2m}\\nabla^2u,\\qquad D=\\frac{\\hbar}{2m}}\n\\]",
+    "usage": {
+      "input_tokens": 9854,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 201,
+      "reasoning_output_tokens": 152
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "06_cleaned_dag:5058": {
+    "response": "\\[\n\\boxed{\n\\begin{aligned}\n\\text{a)}\\quad\n\\Delta E_{\\mathrm{fs}}\n&=E_{j=l+1/2}-E_{j=l-1/2}\n=\\frac{\\hbar^{2}}{2}(2l+1)\\,\\overline{\\xi(r)}.\n\\\\[4pt]\n\\text{b)}\\quad\n\\Delta E_Z\n&=g_j\\mu_B H,\n\\qquad\ng_j=1+\\frac{j(j+1)+\\frac34-l(l+1)}{2j(j+1)},\\\\\ng_{l+1/2}\n&=1+\\frac{1}{2l+1},\n\\qquad\ng_{l-1/2}=1-\\frac{1}{2l+1}.\n\\\\[4pt]\n\\text{c)}\\quad\nH\\ \\text{very strong}:\\;&\n\\mathbf L\\ \\text{and}\\ \\mathbf S\\ \\text{decouple (Paschen--Back effect)},\\\\\n&\\text{so }m_l\\text{ and }m_s\\text{ are good quantum numbers, with}\\\\\n&E\\simeq E_{nl}+\\mu_BH(m_l+2m_s)\n+\\hbar^2\\overline{\\xi(r)}\\,m_lm_s,\n\\qquad\n\\psi\\simeq Y_{lm_l}\\alpha\\ \\text{or}\\ Y_{lm_l}\\beta.\n\\end{aligned}\n}\n\\]",
+    "usage": {
+      "input_tokens": 10090,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1882,
+      "reasoning_output_tokens": 1552
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "06_cleaned_dag:6003": {
+    "response": "\\[\n\\boxed{\nf_0(k)=\\frac{i\\lambda}{k(\\lambda+i k)},\\qquad\n\\sigma_t(E)=4\\pi |f_0(k)|^2\n=\\frac{4\\pi\\lambda^2}{k^2(\\lambda^2+k^2)}\n=\\frac{4\\pi\\lambda^2}{\\left(\\frac{2mE}{\\hbar^2}\\right)\\left(\\lambda^2+\\frac{2mE}{\\hbar^2}\\right)}\n}\n\\]",
+    "usage": {
+      "input_tokens": 9885,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1674,
+      "reasoning_output_tokens": 1552
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "07_cleaned_dag:1065": {
+    "response": "\\[\n\\boxed{M_s \\approx 10^{6}\\ \\unit{A/m},\\qquad \\mu=\\frac{M_s}{n}\\approx 3.3\\times10^{-23}\\ \\unit{A\\,m^2}}\n\\]",
+    "usage": {
+      "input_tokens": 9849,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 135,
+      "reasoning_output_tokens": 74
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "05_cleaned_dag:2137": {
+    "response": "\\[\n\\boxed{\n\\begin{aligned}\n\\text{(a)}\\quad\ng_l&=\\frac{eBa^2}{hc}\n=\\frac{eBA}{2\\pi\\hbar c},\n\\qquad\n\\epsilon_{l,p_z}\n=\\hbar\\omega_c\\left(l+\\frac12\\right)+\\frac{p_z^2}{2m}.\n\\\\[4pt]\n\\text{(b)}\\quad\n\\Xi\n&=\\prod_{l=0}^{\\infty}\\prod_{p_z}\n\\left[\n1+\\lambda e^{-\\beta\\epsilon_{l,p_z}}\n\\right]^{g_l},\n\\\\\n\\ln\\Xi\n&=\\frac{V}{\\lambda_T^3}\n\\sum_{j=1}^{\\infty}\n\\frac{(-1)^{j+1}\\lambda^j}{j^{3/2}}\n\\frac{x}{\\sinh(jx)}.\n\\\\[4pt]\n\\text{(c)}\\quad\nM&=-\\overline N\\,\\mu_B\\,\\mathcal L(x),\n\\qquad\n\\mathcal L(x)=\\coth x-\\frac1x,\n\\\\\n\\chi_\\infty\n&=\\lim_{x\\to0}\\frac{M}{VB}\n=-\\frac{\\overline n\\,\\mu_B^2}{3kT}.\n\\end{aligned}\n}\n\\]",
+    "usage": {
+      "input_tokens": 10046,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 2897,
+      "reasoning_output_tokens": 2588
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "06_cleaned_dag:8008": {
+    "response": "\\[\n\\boxed{\n\\begin{gathered}\n\\psi(r,\\theta,\\phi)=R(r)Y_{lm}(\\theta,\\phi),\\qquad \\chi(r)=rR(r),\\\\[2pt]\n-\\frac{\\hbar^2}{2m}\\frac{d^2\\chi}{dr^2}+V(r)\\chi(r)=E\\chi(r)\n\\quad (l=0),\\\\\n\\chi(0)=0,\\qquad \\chi(r)\\to0\\ \\text{as}\\ r\\to\\infty\n\\quad (E<0),\\\\[4pt]\n\\int_{0}^{r_t}\\sqrt{2m\\,[E-V(r)]}\\,dr\n=\\left(n+\\frac34\\right)\\pi\\hbar\n=\\left(n+\\frac34\\right)\\frac h2,\\\\\nn=0,1,2,\\ldots,\\qquad V(r_t)=E.\\\\[6pt]\nV(r)=-V_0e^{-r/a},\\quad E\\to0^{-},\\quad r_t\\to\\infty,\\\\\n\\int_0^\\infty\\sqrt{2mV_0e^{-r/a}}\\,dr\n=2a\\sqrt{2mV_0}=\\frac{3\\pi\\hbar}{4},\\\\\n\\therefore\\qquad\n\\frac{2mV_0a^2}{\\hbar^2}\n=\\frac{9\\pi^2}{64}\\approx1.39,\n\\qquad\n\\text{exact value}=1.44.\n\\end{gathered}\n}\n\\]",
+    "usage": {
+      "input_tokens": 9896,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 874,
+      "reasoning_output_tokens": 516
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "04_cleaned_dag:4030": {
+    "response": "\\[\n\\boxed{\n\\begin{aligned}\n\\text{(a)}\\quad &\\tau_0=\\frac{\\hbar}{\\Gamma}=4.27\\times10^{-24}\\,\\mathrm{s},\\qquad\n\\tau=2.78\\times10^{-23}\\,\\mathrm{s},\\qquad\nd=8.24\\times10^{-13}\\,\\mathrm{cm}.\\\\[2mm]\n\\text{(b)}\\quad &E_{\\pi,\\mathrm{th}}=\n\\frac{(m_\\rho+m_n)^2-m_p^2-m_\\pi^2}{2m_p}\n=1.077\\times10^{3}\\,\\mathrm{MeV}.\\\\[2mm]\n\\text{(c)}\\quad &\\langle N_\\rho\\rangle=\n\\sigma l\\frac{\\rho N_0}{A}\n=1.26\\times10^{-3}\\ \\text{per incident }\\pi^-.\\\\[2mm]\n\\text{(d)}\\quad &\\theta_{\\min}=0.\n\\end{aligned}\n}\n\\]",
+    "usage": {
+      "input_tokens": 10263,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 6971,
+      "reasoning_output_tokens": 6732
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "04_cleaned_dag:1084": {
+    "response": "\\[\n\\boxed{\n\\begin{aligned}\n&g_0=2,\\qquad g_1=g_{1/2}+g_{3/2}=2+4=6,\\qquad g_2=2,\\\\\n&kT\\simeq 0.172~\\mathrm{eV},\\qquad\n\\frac{N_1}{N_0}=3e^{-2.10/(kT)}\\simeq1.5\\times10^{-5},\\qquad\n\\frac{N_2}{N_0}=e^{-3.18/(kT)}\\simeq9.7\\times10^{-9}.\\\\[2mm]\n&\\text{(a)}\\quad\nE_{\\gamma,10}=E_1-E_0=2.10~\\mathrm{eV},\\qquad\nE_{\\gamma,21}=E_2-E_1=1.08~\\mathrm{eV}.\\\\\n&\\hspace{13mm}E_{\\gamma,20}=3.18~\\mathrm{eV}\\ \\text{is absent since }{}^2S\\leftrightarrow{}^2S\\text{ is electric-dipole forbidden}.\\\\\n&\\mathcal D_{ik}\\equiv\\sum_{m_i,m_k}\\left|\\langle i m_i|\\mathbf r|k m_k\\rangle\\right|^2,\\qquad\nA_{ik}=\\frac{4e^2\\omega_{ki}^3}{3\\hbar c^3g_k}\\mathcal D_{ik},\\\\\n&I^{(\\mathrm{em})}_{ik}=N_kA_{ik}\\hbar\\omega_{ki},\\qquad\n\\frac{I^{(\\mathrm{em})}_{10}}{I^{(\\mathrm{em})}_{21}}\n=e^{(E_2-E_1)/(kT)}\n\\left(\\frac{\\mathcal D_{10}}{\\mathcal D_{21}}\\right)\n\\left(\\frac{\\omega_{10}}{\\omega_{21}}\\right)^4\\\\\n&\\hspace{38mm}\\simeq 7.5\\times10^3\\,\n\\frac{\\mathcal D_{10}}{\\mathcal D_{21}}\n\\quad\\left(\\simeq7.5\\times10^3\\text{ if }\\mathcal D_{10}\\simeq\\mathcal D_{21}\\right).\\\\\n&\\text{For resolved }{}^2P\\text{ fine structure:}\\qquad\nI_{J=3/2}:I_{J=1/2}=2:1.\\\\[2mm]\n&\\text{(b)}\\quad\n\\text{The absorption lines are }E_{\\gamma,01}=2.10~\\mathrm{eV}\n\\text{ and }E_{\\gamma,12}=1.08~\\mathrm{eV};\\quad 0\\leftrightarrow2\\text{ is forbidden}.\\\\\n&I^{(\\mathrm{abs})}_{ik}=N_iB_{ik}\\rho(\\omega_{ki})\\hbar\\omega_{ki},\\qquad\nB_{ik}\\propto\\frac{e^2}{\\hbar^2g_i}\\mathcal D_{ik},\\\\\n&\\frac{I^{(\\mathrm{abs})}_{01}}{I^{(\\mathrm{abs})}_{12}}\n=e^{E_1/(kT)}\n\\left(\\frac{\\mathcal D_{10}}{\\mathcal D_{21}}\\right)\n\\frac{\\omega_{10}}{\\omega_{21}}\n\\simeq3.8\\times10^5\\,\n\\frac{\\mathcal D_{10}}{\\mathcal D_{21}}\n\\quad\\left(\\simeq3.8\\times10^5\\text{ if }\\mathcal D_{10}\\simeq\\mathcal D_{21}\\right).\n\\end{aligned}\n}\n\\]",
+    "usage": {
+      "input_tokens": 10137,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 8625,
+      "reasoning_output_tokens": 7768
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  },
+  "06_cleaned_dag:5057": {
+    "response": "\\[\n\\boxed{\n\\begin{aligned}\n\\text{(a)}\\quad\n\\hat H_1&=-\\frac{\\mu_0B}{\\hbar}\n\\left(g_l\\hat l_z+g_s\\hat s_z\\right),\\\\[2pt]\nE_{nljm_j}\n&\\simeq E_{nlj}-g\\mu_0Bm_j,\n\\qquad m_j=-j,-j+1,\\ldots,j,\\\\[2pt]\ng&=\n\\frac{\ng_l\\!\\left[j(j+1)+l(l+1)-s(s+1)\\right]\n+g_s\\!\\left[j(j+1)-l(l+1)+s(s+1)\\right]\n}{2j(j+1)}.\\\\[2pt]\n\\text{For }g_l&=1,\\quad g_s\\simeq2:\\qquad\ng=1+\\frac{j(j+1)+s(s+1)-l(l+1)}{2j(j+1)},\\\\\ng_{j=l+1/2}&=1+\\frac{1}{2l+1},\n\\qquad\ng_{j=l-1/2}=1-\\frac{1}{2l+1}.\\\\[2pt]\nN_{\\mathrm{weak\\_levels}}&=2j+1\n\\quad\\text{for fixed }n,l,j.\\\\[8pt]\n\\text{(b)}\\quad\n\\hat H&=\\frac{\\hat p^2}{2m}+V(r)\n-\\frac{\\mu_0B}{\\hbar}\n\\left(g_l\\hat l_z+g_s\\hat s_z\\right),\\\\\nE_{nlm_lm_s}\n&=E_{nl}-\\mu_0B\\left(g_lm_l+g_sm_s\\right),\\\\\nm_l&=-l,-l+1,\\ldots,l,\\qquad\nm_s=\\pm\\frac12,\\qquad\n\\bar s_z=\\hbar m_s,\\\\\n\\hat s_z&=\\frac{\\hbar}{2}\\sigma_z,\\qquad\nE_{\\mathrm{spin}}=-\\frac{g_s\\mu_0B}{2}\\,\n\\langle\\sigma_z\\rangle.\\\\[2pt]\n&\\text{Here }l\\text{ and }s\\text{ are separately quantized, while }j\n\\text{ is no longer a good quantum number.}\\\\\n\\Delta m_s&=0,\\qquad\n\\Delta m_l=0,\\pm1.\\\\[2pt]\nN_{\\mathrm{strong\\_levels}}\n&=\\left|\\left\\{g_lm_l+g_sm_s:\nm_l=-l,\\ldots,l,\\ m_s=\\pm\\tfrac12\\right\\}\\right|.\\\\\n&\\text{Thus, generically }N_{\\mathrm{strong\\_levels}}=2(2l+1);\n\\text{ for }g_l=1,\\ g_s=2,\\text{ it is }2l+3\\ (l\\ge1),\n\\text{ and }2\\ (l=0).\n\\end{aligned}\n}\n\\]",
+    "usage": {
+      "input_tokens": 10294,
+      "cached_input_tokens": 6912,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 3704,
+      "reasoning_output_tokens": 3014
+    },
+    "actual_model": null,
+    "requested_model": "gpt-5.6-luna",
+    "attempts": 1,
+    "tool_events": [],
+    "refused": false
+  }
+}
