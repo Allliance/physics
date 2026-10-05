@@ -28,10 +28,11 @@ def parser():
                    help='Independent attempts per question (use 4 for paper-style mean@4/pass@4)')
     p.add_argument('--model', choices=['claude-fable-5', 'gpt-5.6-sol', 'gpt-5.6-luna',
                                       'gpt-oss-120b', 'kimi-k3', 'glm-5.3',
-                                      'deepseek-v4-pro',
+                                      'deepseek-v4-pro', 'qwen3.8-27b',
                                       'gpt-6-astra', 'gemini-3.1-pro-preview'],
                    default='claude-fable-5')
-    p.add_argument('--reasoning-effort', choices=['low', 'medium', 'high', 'max'], default='high')
+    p.add_argument('--reasoning-effort', choices=['low', 'medium', 'high', 'xhigh', 'max'],
+                   default='high')
     p.add_argument('--judge-model', choices=['gpt-5.6-sol', 'gpt-6-astra', 'claude-fable-5'], default='gpt-5.6-sol')
     p.add_argument('--judge-max-output-tokens', type=int, default=8192)
     p.add_argument('--judge-reasoning-effort', choices=['low', 'medium', 'high'], default='high')
@@ -127,9 +128,12 @@ def run_one(args):
         from utils import gemini_backend
         manifest['gemini_backend_sha256'] = file_hash(Path(gemini_backend.__file__))
         manifest['generation']['thinking_level'] = args.reasoning_effort
-    if args.model in {'gpt-oss-120b', 'kimi-k3', 'glm-5.3', 'deepseek-v4-pro'}:
+    if args.model in {'gpt-oss-120b', 'kimi-k3', 'glm-5.3', 'deepseek-v4-pro',
+                      'qwen3.8-27b'}:
         from utils.openai_compatible import backend_metadata
-        manifest['generation'].update(backend_metadata())
+        generation = backend_metadata()
+        generation['route_sha256'] = fingerprint(generation['base_url'])
+        manifest['generation'].update(generation)
     if args.dry_run:
         print(json.dumps(manifest, indent=2))
         return 0

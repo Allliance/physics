@@ -21,7 +21,7 @@ from .pipeline import DATASETS, JudgeSettings, load_benchmark
 MODELS = [
     "claude-fable-5", "gpt-5.6-sol", "gpt-5.6-luna", "gpt-6-astra",
     "gemini-3.1-pro-preview", "gpt-oss-120b", "kimi-k3", "glm-5.3",
-    "deepseek-v4-pro",
+    "deepseek-v4-pro", "qwen3.8-27b",
 ]
 
 
@@ -32,7 +32,8 @@ def add_arguments(parser: argparse.ArgumentParser) -> None:
     parser.add_argument("--attempts", type=int, default=1,
                         help="Independent attempts per question (use 4 for mean@4/pass@4)")
     parser.add_argument("--model", choices=MODELS, default="claude-fable-5")
-    parser.add_argument("--reasoning-effort", choices=["low", "medium", "high", "max"],
+    parser.add_argument("--reasoning-effort",
+                        choices=["low", "medium", "high", "xhigh", "max"],
                         default="high")
     parser.add_argument("--judge-model", choices=["gpt-5.6-sol", "gpt-6-astra", "claude-fable-5"],
                         default="gpt-5.6-sol")
@@ -150,6 +151,13 @@ def _run_attempt(args, dataset: str, attempt: int) -> int:
         manifest["evaluator_source"] = provenance(dataset)
     manifest["shared_backend_sha256"] = file_hash(
         Path(__file__).parents[2] / "utils/fable_backend.py")
+    if args.model in {"gpt-oss-120b", "kimi-k3", "glm-5.3", "deepseek-v4-pro",
+                      "qwen3.8-27b"}:
+        from utils.openai_compatible import backend_metadata
+
+        generation = backend_metadata()
+        generation["route_sha256"] = fingerprint(generation["base_url"])
+        manifest["generation"] = generation
     if args.dry_run:
         print(json.dumps(manifest, indent=2))
         return 0

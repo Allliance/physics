@@ -145,7 +145,7 @@ Astra, or Fable and must differ from the evaluated model. Important arguments:
 
 - `--dataset NAME|all`
 - `--attempts N` (default 1; use 4 for paper-style metrics)
-- `--reasoning-effort low|medium|high|max`
+- `--reasoning-effort low|medium|high|xhigh|max`
 - `--stage prepare|generate|score|summary|all` for pre-audit
 - `--stage prepare|generate|judge|summary|all` for post-audit
 - `--workers`, `--score-workers` (pre-audit), `--timeout`, and token limits

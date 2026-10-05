@@ -73,7 +73,8 @@ def make_predictor(args, api_model):
                             if question.get('response_format') == 'json_final_answer' else None)
 
         return predict_gemini
-    if args.model in {'gpt-oss-120b', 'kimi-k3', 'glm-5.3', 'deepseek-v4-pro'}:
+    if args.model in {'gpt-oss-120b', 'kimi-k3', 'glm-5.3', 'deepseek-v4-pro',
+                      'qwen3.8-27b'}:
         from utils.openai_compatible import generate
 
         def predict_openai_compatible(question):
