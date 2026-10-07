@@ -13,7 +13,7 @@ class CorrectedChallengesTests(unittest.TestCase):
     def fixture(self, base):
         decisions = {
             "03": {"verdict": {"problem": "clean", "model": "incorrect"}, "reason": "Expert corrected answer."},
-            "04": {"verdict": {"problem": "repairable", "model": "correct"}, "reason": "Expert clarified assumptions."},
+            "04": {"verdict": {"problem": "repairable", "model": "none"}, "reason": "Expert clarified assumptions."},
             "11": {"reason": "Unclear", "question_for_expert": "Which interpretation?"},
             "38": {"verdict": {"problem": "clean", "model": "incorrect"}, "reason": "No replacement answer."},
             "41": {"verdict": {"problem": "unrepairable", "model": "none"}, "reason": "No unique repair."},

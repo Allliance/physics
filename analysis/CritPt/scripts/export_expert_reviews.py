@@ -10,6 +10,7 @@ import csv
 import json
 from pathlib import Path
 
+from build_verdicts import review_source
 from solution_layout import challenge_folder
 
 
@@ -47,7 +48,7 @@ def build_expert_reviews(headers, records):
 def write_expert_reviews(directory, reviews):
     from update_annotations import atomic_write
 
-    clarification_path = directory.parent / "expert_clarifications.json"
+    clarification_path = review_source(directory.parent, "expert_clarifications.json")
     appendices = (json.loads(clarification_path.read_text()).get("review_appendices", {})
                   if clarification_path.exists() else {})
     for folder, data in reviews.items():
@@ -63,7 +64,8 @@ def main():
     from update_annotations import parse_rows
 
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--annotations", type=Path, default=BASE / "annotations.csv")
+    parser.add_argument("--annotations", type=Path,
+                        default=review_source(BASE, "annotations.csv"))
     parser.add_argument("--solutions", type=Path, default=BASE / "solutions")
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()

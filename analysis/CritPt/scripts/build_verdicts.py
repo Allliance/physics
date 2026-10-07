@@ -12,6 +12,7 @@ import csv
 import hashlib
 import io
 import json
+import tempfile
 from pathlib import Path
 
 from solution_layout import challenge_folder
@@ -20,13 +21,42 @@ from solution_layout import challenge_folder
 BASE = Path(__file__).resolve().parents[1]
 
 
+def atomic_write(destination, data):
+    """Write local audit outputs without importing the download pipeline."""
+    temporary_path = None
+    try:
+        with tempfile.NamedTemporaryFile(dir=destination.parent,
+                                         prefix=".verdicts.", delete=False) as output:
+            temporary_path = Path(output.name)
+            output.write(data)
+        if destination.exists():
+            temporary_path.chmod(destination.stat().st_mode & 0o777)
+        temporary_path.replace(destination)
+    finally:
+        if temporary_path is not None:
+            temporary_path.unlink(missing_ok=True)
+
+
+def review_source(base, relative):
+    """Resolve archived review files after their move into supplemental_data."""
+    names = {"annotations.csv": "raw_annotations.csv",
+             "verdict_review.json": "verdict_review.json",
+             "expert_clarifications.json": "expert_clarifications.json",
+             "verdict_ambiguities.csv": "verdict_ambiguities.csv"}
+    if relative in names:
+        archived = base / "supplemental_data" / names[relative]
+        if archived.exists():
+            return archived
+    return base / relative
+
+
 def build_verdicts(base):
-    review = json.loads((base / "verdict_review.json").read_text())
+    review = json.loads(review_source(base, "verdict_review.json").read_text())
     for relative, checksum in review["source_sha256"].items():
-        path = base / relative
+        path = review_source(base, relative)
         if not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest() != checksum:
             raise ValueError(f"Reviewed source changed; adjudicate again before exporting: {relative}")
-    with (base / "annotations.csv").open(encoding="utf-8-sig", newline="") as source:
+    with review_source(base, "annotations.csv").open(encoding="utf-8-sig", newline="") as source:
         submitted = {challenge_folder(row["Challenge ID"]) for row in csv.DictReader(source)}
     if set(review["challenges"]) != submitted:
         raise ValueError("Adjudication must cover every reviewed challenge and no unreviewed challenges")
@@ -50,7 +80,7 @@ def build_verdicts(base):
             raise ValueError(f"Invalid problem verdict for {challenge}")
         if model not in {"correct", "incorrect", "none"} or (
                 problem == "clean" and model == "none") or (
-                problem == "unrepairable" and model != "none"):
+                problem in {"repairable", "unrepairable"} and model != "none"):
             raise ValueError(f"Invalid problem/model combination for {challenge}")
         if problem == "repairable":
             if not (base / "solutions" / challenge / "problem.tex").is_file():
@@ -68,15 +98,13 @@ def build_verdicts(base):
 
 
 def main():
-    from update_annotations import atomic_write
-
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
     verdicts, ambiguities, pending = build_verdicts(BASE)
     if not args.dry_run:
         atomic_write(BASE / "verdicts.json", (json.dumps(verdicts, indent=2) + "\n").encode())
-        atomic_write(BASE / "verdict_ambiguities.csv", ambiguities.encode())
+        atomic_write(review_source(BASE, "verdict_ambiguities.csv"), ambiguities.encode())
     print(f"{len(verdicts)} evaluation verdicts; {pending} require expert clarification"
           + (" (dry run)" if args.dry_run else ""))
 

@@ -13,7 +13,7 @@ import io
 import json
 from pathlib import Path
 
-from build_verdicts import build_verdicts
+from build_verdicts import build_verdicts, review_source
 from export_expert_reviews import build_expert_reviews, write_expert_reviews
 from update_annotations import atomic_write, parse_rows
 
@@ -26,9 +26,9 @@ def checksum(data):
 
 
 def apply_clarifications(base, dry_run=False):
-    plan = json.loads((base / "expert_clarifications.json").read_text())
+    plan = json.loads(review_source(base, "expert_clarifications.json").read_text())
     report_path = base / "solution_normalization_report.json"
-    review_path = base / "verdict_review.json"
+    review_path = review_source(base, "verdict_review.json")
     review = json.loads(review_path.read_text())
     manifest_path = base / "solutions/manifest.json"
     manifest = json.loads(manifest_path.read_text())
@@ -68,7 +68,7 @@ def apply_clarifications(base, dry_run=False):
             continue
         if relative.startswith("solutions/") and relative.endswith("/expert_review.txt") and Path(relative).parts[1] in plan["comments"]:
             continue
-        if checksum((base / relative).read_bytes()) != old_hash:
+        if checksum(review_source(base, relative).read_bytes()) != old_hash:
             raise ValueError(f"Other reviewed source changed: {relative}")
     if dry_run:
         return len(outputs)
@@ -109,7 +109,7 @@ def apply_clarifications(base, dry_run=False):
     if (base / "solution_normalization_exceptions.csv").exists():
         atomic_write(base / "solution_normalization_exceptions.csv", output.getvalue().encode())
 
-    with (base / "annotations.csv").open(encoding="utf-8-sig", newline="") as source:
+    with review_source(base, "annotations.csv").open(encoding="utf-8-sig", newline="") as source:
         headers, records = parse_rows(list(csv.reader(source)))
     write_expert_reviews(base / "solutions", build_expert_reviews(headers, records))
     for challenge, decision in plan["decisions"].items():
@@ -123,16 +123,19 @@ def apply_clarifications(base, dry_run=False):
     review["policy"].update(plan.get("verdict_policy", {}))
     review["policy"]["follow_up"] = (
         "User-relayed expert clarification authorizes the listed statement repairs and ground truths. "
-        "The model label continues to judge the original AI answer."
+        "Benchmark errors take precedence; their model attribution is withheld."
     )
     paths = set(review["source_sha256"]) | set(outputs) | {"expert_clarifications.json"}
     if not report_path.exists():
         paths.discard("solution_normalization_report.json")
-    review["source_sha256"] = {relative: checksum((base / relative).read_bytes()) for relative in sorted(paths)}
+    review["source_sha256"] = {
+        relative: checksum(review_source(base, relative).read_bytes())
+        for relative in sorted(paths)
+    }
     atomic_write(review_path, (json.dumps(review, indent=2, ensure_ascii=False) + "\n").encode())
     verdicts, ambiguities, pending = build_verdicts(base)
     atomic_write(base / "verdicts.json", (json.dumps(verdicts, indent=2) + "\n").encode())
-    atomic_write(base / "verdict_ambiguities.csv", ambiguities.encode())
+    atomic_write(review_source(base, "verdict_ambiguities.csv"), ambiguities.encode())
     print(f"Applied {len(outputs)} file selections/patches; {len(verdicts)} verdicts, {pending} pending.")
     return len(outputs)
 

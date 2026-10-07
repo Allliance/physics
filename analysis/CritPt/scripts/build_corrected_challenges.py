@@ -20,8 +20,7 @@ import json
 import re
 from pathlib import Path
 
-from build_verdicts import build_verdicts
-from update_annotations import atomic_write
+from build_verdicts import atomic_write, build_verdicts, review_source
 
 
 BASE = Path(__file__).resolve().parents[1]
@@ -275,7 +274,7 @@ def build_corrected_challenges(base):
     persisted = json.loads((base / "verdicts.json").read_text())
     if verdicts != persisted:
         raise ValueError("verdicts.json is stale; regenerate it before exporting")
-    reviewed = json.loads((base / "verdict_review.json").read_text())["challenges"]
+    reviewed = json.loads(review_source(base, "verdict_review.json").read_text())["challenges"]
     originals = {}
     for line in (base / "original_challenges.jsonl").read_text().splitlines():
         row = json.loads(line)

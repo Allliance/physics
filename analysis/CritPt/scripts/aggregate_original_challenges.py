@@ -131,7 +131,7 @@ def project_original_records(records, ground_truths):
 
 def main():
     from build_corrected_challenges import build_corrected_challenges, text_body
-    from update_annotations import atomic_write
+    from build_verdicts import atomic_write, review_source
 
     records = build_source_records()
     rows, _, _ = build_corrected_challenges(OUTPUT_DIR)
@@ -154,7 +154,7 @@ def main():
     # This is a schema-only migration of the reviewed original prompts. Keep the
     # audit's integrity snapshot in sync without blessing unrelated source edits.
     # build_corrected_challenges validated every reviewed source before this write.
-    review_path = OUTPUT_DIR / "verdict_review.json"
+    review_path = review_source(OUTPUT_DIR, "verdict_review.json")
     review = json.loads(review_path.read_text())
     review["source_sha256"]["original_challenges.jsonl"] = hashlib.sha256(data).hexdigest()
     review["policy"]["original_export"] = (

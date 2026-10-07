@@ -34,12 +34,14 @@ from pathlib import Path
 import tempfile
 from urllib.parse import quote
 
+from build_verdicts import review_source
 from download_drive_files import DRIVE_SCOPE, sync_files
 from export_expert_reviews import build_expert_reviews, write_expert_reviews
 
 
 SPREADSHEET_ID = "1LSBYdccdvykcHcQHL_EE_XjklbtVmILKOSZTno1Bfo0"
-DESTINATION = Path(__file__).resolve().parents[1] / "annotations.csv"
+BASE = Path(__file__).resolve().parents[1]
+DESTINATION = review_source(BASE, "annotations.csv")
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets.readonly"]
 ID_COLUMN = "Challenge ID"
 FORM_ID_COLUMN = "Enter the challenge ID you are contributing to (a number between 1 and 70)"
@@ -175,10 +177,10 @@ def main():
             reviews = build_expert_reviews(headers, records)
             downloads = None
             if not args.annotations_only:
-                downloads = sync_files(session, records, DESTINATION.parent / "solutions", args.dry_run)
+                downloads = sync_files(session, records, BASE / "solutions", args.dry_run)
         if not args.dry_run:
             atomic_write(DESTINATION, data)
-            write_expert_reviews(DESTINATION.parent / "solutions", reviews)
+            write_expert_reviews(BASE / "solutions", reviews)
     except Exception as error:
         parser.exit(1, f"Update failed: {error}\n")
     action = "Validated (dry run)" if args.dry_run else "Updated"

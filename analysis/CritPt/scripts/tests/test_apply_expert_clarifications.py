@@ -26,8 +26,8 @@ class ExpertClarificationTests(unittest.TestCase):
         plan = {
             "authority": "user-relayed expert clarification", "comments": {"02": "accept this repair"},
             "review_appendices": {"02": "accepted follow-up"},
-            "verdict_policy": {"model": "Assess original model answer independently."},
-            "decisions": {"02": {"verdict": {"problem": "repairable", "model": "correct"}, "reason": "expert-authorized repair; model verified"}},
+            "verdict_policy": {"model": "Benchmark errors take precedence; model verdict is none."},
+            "decisions": {"02": {"verdict": {"problem": "repairable", "model": "none"}, "reason": "expert-authorized repair; model attribution withheld"}},
             "files": {"solutions/02/problem.tex": {
                 "before_sha256": None, "content": "corrected problem", "source": "expert clarification",
                 "source_sha256": sha(b"expert clarification"), "action": "repaired"}},
@@ -46,9 +46,9 @@ class ExpertClarificationTests(unittest.TestCase):
             self.assertEqual((base / "solutions/02/expert_review.txt").read_bytes(), first)
             self.assertEqual(first.count(b"accepted follow-up"), 1)
             self.assertEqual(json.loads((base / "verdicts.json").read_text())["02"],
-                             {"problem": "repairable", "model": "correct"})
+                             {"problem": "repairable", "model": "none"})
             self.assertEqual(json.loads((base / "verdict_review.json").read_text())["policy"]["model"],
-                             "Assess original model answer independently.")
+                             "Benchmark errors take precedence; model verdict is none.")
             # Simulate a fresh download that must not overwrite the accepted repair.
             source = base / "solutions/02/supporting/problem - Reviewer.tex"
             source.parent.mkdir()
@@ -94,6 +94,26 @@ class ExpertClarificationTests(unittest.TestCase):
             apply_clarifications(base, dry_run=True)
             after = {p.relative_to(base): p.read_bytes() for p in base.rglob("*") if p.is_file()}
             self.assertEqual(before, after)
+
+    def test_relocated_review_sources_remain_replayable(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            base = Path(temporary)
+            self.fixture(base)
+            archive = base / "supplemental_data"
+            archive.mkdir()
+            for source, destination in (
+                    ("annotations.csv", "raw_annotations.csv"),
+                    ("expert_clarifications.json", "expert_clarifications.json"),
+                    ("verdict_review.json", "verdict_review.json")):
+                (base / source).rename(archive / destination)
+            for _ in range(2):
+                apply_clarifications(base)
+            self.assertEqual(json.loads((base / "verdicts.json").read_text())["02"],
+                             {"problem": "repairable", "model": "none"})
+            self.assertEqual((base / "solutions/02/expert_review.txt").read_text().count(
+                "accepted follow-up"), 1)
+            self.assertFalse((base / "annotations.csv").exists())
+            self.assertFalse((base / "verdict_review.json").exists())
 
 
 if __name__ == "__main__":
