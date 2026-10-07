@@ -8,8 +8,10 @@ pipeline modules, and tests in `eval/tests/`. `data/` contains preparation
 workflows: `extract_gt/`, `filter/`, `partition/`, and `repair/`. `inspection/`
 is a local web app for reviewing parquet rows. `final_datasets/` holds current
 scored datasets; `backup/` preserves earlier states. `utils/` contains shared
-helpers such as the Codex CLI wrapper. Keep one-off analysis in `scratch/` or
-`leftovers/`.
+helpers such as the Codex CLI wrapper. Keep the main repository clean: put
+scripts, reports, intermediate files, and other artifacts created for a single
+request or experiment in `scratch/`. Promote them into the main project tree
+only when they are genuinely reusable.
 
 ## Build, Test, and Development Commands
 
