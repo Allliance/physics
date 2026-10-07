@@ -298,14 +298,13 @@ def _make_adapted_judge(dataset: str, settings: JudgeSettings) -> Judge:
                          {"response": response, "refused": False}, problem.reference_answer)
         return evaluate
     if dataset == "critpt":
-        module = _prepend_import(ROOT / "analysis/CritPt/scripts", "critpt_eval.backends")
-        from utils.fable_backend import resolve_fable_model
-
-        judge = module.make_judge(args, {"api_model": resolve_fable_model(settings.fable_model)})
+        from . import critpt as module
+        judge = module.make_judge(args)
 
         def evaluate(problem: Problem, response: str) -> dict[str, Any]:
-            return judge({"id": problem.id, "question": problem.question},
-                         {"response": response, "refused": False}, problem.reference_answer)
+            return judge({"id": problem.id, "question": problem.question,
+                          "reference_answer": problem.reference_answer},
+                         {"response": response, "refused": False})
         return evaluate
     raise ValueError(f"{dataset} does not use the HLE-adapted judge")
 

@@ -108,10 +108,9 @@ class HLEUpstreamTests(unittest.TestCase):
         forbidden = {name: None for name in (
             "hle_eval", "hle_eval.backends", "hle_eval.claude", "hle_eval.errors",
             "benchmarks.hle.hle_eval.backends", "benchmarks.hle.hle_eval.scoring")}
-        sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "utils"))
-        import codex_cli
-
-        with patch.dict(sys.modules, forbidden), patch.object(codex_cli, "CodexLLM"):
+        forbidden["critpt_eval"] = None
+        forbidden["critpt_eval.backends"] = None
+        with patch.dict(sys.modules, forbidden), patch.object(backends, "CodexLLM"):
             judge = _make_adapted_judge("critpt", JudgeSettings(fable_model="claude-fable-5"))
         self.assertTrue(callable(judge))
 

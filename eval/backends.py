@@ -21,10 +21,11 @@ FINAL_ANSWER_SCHEMA = {
 }
 
 
-def validate_judgment(content):
-    if not isinstance(content, dict) or set(content) != set(SCHEMA['required']):
+def validate_judgment(content, schema=SCHEMA):
+    if not isinstance(content, dict) or set(content) != set(schema['required']):
         raise ValueError('Judge response does not match the schema')
-    if content['correct'] not in {'yes', 'no'} or content['strict'] is not True:
+    if content['correct'] not in {'yes', 'no'} or (
+            'strict' in schema['required'] and content['strict'] is not True):
         raise ValueError('Invalid correctness or strict flag')
     if type(content['confidence']) is not int or not 0 <= content['confidence'] <= 100:
         raise ValueError('Invalid confidence')
@@ -142,9 +143,12 @@ def make_judge(args, *, judge_prompt=JUDGE, system_prompt=JUDGE_SYSTEM, schema=S
         if prediction.get('refused'):
             content = {'extracted_final_answer': 'None', 'reasoning': 'The evaluated model refused.',
                        'correct': 'no', 'confidence': 0, 'strict': True}
+            if 'strict' not in schema['required']:
+                content.pop('strict')
             return {'judgment': content, 'actual_model': None, 'judge_called': False}
-        prompt = judge_prompt.format(question=question['question'], response=prediction['response'],
-                              correct_answer=question['reference_answer'])
+        prompt = (judge_prompt(question, prediction) if callable(judge_prompt) else
+                  judge_prompt.format(question=question['question'], response=prediction['response'],
+                                      correct_answer=question['reference_answer']))
         with tempfile.TemporaryDirectory(prefix='physics-judge-') as directory:
             image = image_path(question, directory)
             if fable:
@@ -160,7 +164,7 @@ def make_judge(args, *, judge_prompt=JUDGE, system_prompt=JUDGE_SYSTEM, schema=S
                 if parsed['refused']:
                     raise ValueError('Fable judge refused; judgment remains pending')
                 judgment = json.loads(parsed['response'])
-                validate_judgment(judgment)
+                validate_judgment(judgment, schema)
                 return {'judgment': judgment, 'usage': parsed['usage'],
                         'raw_response': parsed['response'], 'raw_api_response': raw,
                         'requested_model': args.judge_model, 'actual_model': parsed['actual_model'],
@@ -170,7 +174,7 @@ def make_judge(args, *, judge_prompt=JUDGE, system_prompt=JUDGE_SYSTEM, schema=S
             response = client.complete(prompt, output_schema=schema_path, image_paths=[image] if image else None)
         validate_codex(response)
         content = json.loads(response.text)
-        validate_judgment(content)
+        validate_judgment(content, schema)
         return {'judgment': content, 'usage': response.usage, 'raw_response': response.text,
                 'requested_model': args.judge_model, 'actual_model': None, 'judge_called': True}
     return judge

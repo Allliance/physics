@@ -109,6 +109,12 @@ is Artificial Analysis's aggregate `mean@5` on 70 challenges, not a result this
 per-question pipeline can reconstruct. See `data/manifest.json` for exact IDs,
 exclusions, source paths, evaluator descriptions, and snapshot hashes.
 
+CritPt evaluations use only the code and snapshots in `eval/` and the shared
+backends in `utils/`. They do not require `analysis/CritPt/` or `model_evals/`.
+The pre-audit judge contract is in `pre_audit/critpt.py` and `pre_audit/prompts/`;
+post-audit uses the unified judge in `backends.py`. Pre-audit manifests fingerprint
+the CritPt contract, so use a new output directory after this consolidation.
+
 ## Run evaluations
 
 Run from the repository root. The Fable virtual environment has the native

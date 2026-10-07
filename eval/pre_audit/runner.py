@@ -149,6 +149,10 @@ def _run_attempt(args, dataset: str, attempt: int) -> int:
         from .native import provenance
 
         manifest["evaluator_source"] = provenance(dataset)
+    elif dataset == "critpt":
+        from .critpt import provenance
+
+        manifest["evaluator_source"] = provenance()
     manifest["shared_backend_sha256"] = file_hash(
         Path(__file__).parents[2] / "utils/fable_backend.py")
     if args.model in {"gpt-oss-120b", "kimi-k3", "glm-5.3", "deepseek-v4-pro",

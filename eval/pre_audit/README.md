@@ -15,6 +15,11 @@ with the evaluator used before audit:
 The CritPt snapshot archives 71 rows but only 55 have an original reference.
 The other 16 are recorded as excluded rather than scored as failures.
 
+CritPt's judge adapter and original prompt/schema are in `critpt.py` and
+`prompts/`. It uses the shared no-tool backends and has no dependency on the
+analysis folder or historical model runners. Its judge-contract hashes are
+recorded in run manifests and checked when resuming.
+
 Fresh repeated evaluation:
 
 ```bash
