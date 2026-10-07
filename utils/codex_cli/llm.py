@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import shutil
 import subprocess
 import tempfile
 import time
@@ -140,9 +141,24 @@ class CodexLLM:
     ) -> CodexLLMResult:
         workspace_files: dict[str, str] | None = None
         for attempt in range(1, self.max_exec_retries + 2):
-            with tempfile.TemporaryDirectory(prefix="codex-llm-") as tmpdir:
+            runtime_root = Path.home() / ".codex" / "run-homes"
+            runtime_root.mkdir(mode=0o700, parents=True, exist_ok=True)
+            with (tempfile.TemporaryDirectory(prefix="codex-llm-") as tmpdir,
+                  tempfile.TemporaryDirectory(prefix="run-", dir=runtime_root) as codex_home):
                 cmd = self._build_command(Path(tmpdir), output_schema, image_paths or [])
                 env = os.environ.copy()
+                # The standalone Codex binary is packaged with arg0. Concurrent
+                # launches otherwise race while cleaning shared /tmp/arg0 dirs.
+                env["TMPDIR"] = tmpdir
+                env["TMP"] = tmpdir
+                env["TEMP"] = tmpdir
+                source_home = Path(os.environ.get("CODEX_HOME", Path.home() / ".codex"))
+                auth = source_home / "auth.json"
+                if auth.is_file():
+                    copied_auth = Path(codex_home) / "auth.json"
+                    shutil.copy2(auth, copied_auth)
+                    copied_auth.chmod(0o600)
+                env["CODEX_HOME"] = codex_home
                 if api_key:
                     env["CODEX_API_KEY"] = api_key
 
@@ -160,12 +176,14 @@ class CodexLLM:
 
             if completed.returncode == 0:
                 break
-            if attempt <= self.max_exec_retries and is_retryable_exec_error(completed.stderr):
+            diagnostic = f"{completed.stderr}\n{completed.stdout}"
+            if attempt <= self.max_exec_retries and is_retryable_exec_error(diagnostic):
                 time.sleep(min(self.exec_retry_delay * attempt, 60.0))
                 continue
             raise CodexExecError(
                 f"codex exec failed with exit code {completed.returncode}\n"
-                f"stderr:\n{completed.stderr.strip()}"
+                f"stderr:\n{completed.stderr.strip()}\n"
+                f"stdout:\n{completed.stdout.strip()[-3000:]}"
             )
 
         result = self._parse_jsonl(completed.stdout)
@@ -373,5 +391,6 @@ def is_retryable_exec_error(stderr: str) -> bool:
         "403 Forbidden",
         "failed to connect to websocket",
         "rate limit",
+        "at capacity",
     ]
     return any(marker.lower() in stderr.lower() for marker in retry_markers)
